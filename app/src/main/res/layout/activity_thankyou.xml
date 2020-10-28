@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/account_bg"
+    android:orientation="vertical"
+   >
+    <ImageView
+        android:id="@+id/back_img"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/back_arrow"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_congrats"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/thank_icon"
+            android:layout_centerHorizontal="true"/>
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thank You!"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="Your payment has been successfully\nprocessed. We'll start running your ad\nand you can see your results in the\nAd Manager."
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btn_view"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_shape"
+        android:gravity="center"
+        android:minHeight="45dp"
+        android:text="View Ads"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</RelativeLayout>
+
+</LinearLayout>

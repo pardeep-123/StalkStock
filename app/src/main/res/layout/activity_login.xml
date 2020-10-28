@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/sign_in"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/app_icon" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp">
+
+
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/emailEdittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_text_bg"
+                        android:gravity="center_vertical"
+                        android:hint="@string/enter_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColorHint="@color/light_grey"
+                        android:minHeight="45dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:text="@string/email"
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp">
+
+
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/passwordEdittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_text_bg"
+                        android:gravity="center_vertical"
+                        android:hint="Password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:textColorHint="@color/light_grey"
+                        android:minHeight="45dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:text="Password"
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tv_forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/light_grey"
+                    android:textSize="13sp" />
+
+                <com.stalkstock.utils.custom.TitiliumBoldButton
+                    android:id="@+id/btn_signin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:minHeight="45dp"
+                    android:text="@string/sign_in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/signup"
+                        android:layout_height="wrap_content"
+                        android:text="@string/don_t_have_an_account"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tv_signup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/sign_up"
+                        android:textColor="@color/theme_green"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/fb_ico"/>
+                    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/googlr_ico"/>
+                    <ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/twitter_ico"/>
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="45dp"-->
+<!--                        android:layout_height="45dp"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:background="@drawable/white_circle"-->
+<!--                        android:elevation="10dp"-->
+<!--                        android:gravity="center">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="35dp"-->
+<!--                            android:layout_height="35dp"-->
+<!--                            android:background="@drawable/green_circle"-->
+<!--                            android:gravity="center">-->
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="10dp"-->
+<!--                                android:layout_height="20dp"-->
+<!--                                android:layout_gravity="center"-->
+<!--                                android:background="@drawable/fb_icon"-->
+<!--                                android:backgroundTint="@color/white"-->
+<!--                                app:tint="@color/white" />-->
+
+<!--                        </LinearLayout>-->
+<!--                    </LinearLayout>-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="45dp"-->
+<!--                        android:layout_height="45dp"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:elevation="10dp"-->
+<!--                        android:background="@drawable/white_circle"-->
+<!--                        android:gravity="center">-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:background="@drawable/green_circle"-->
+<!--                        android:gravity="center">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="17dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/google_plus"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            app:tint="@color/white" />-->
+
+<!--                    </LinearLayout>-->
+<!--                    </LinearLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="45dp"-->
+<!--                        android:layout_height="45dp"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:elevation="10dp"-->
+<!--                        android:background="@drawable/white_circle"-->
+<!--                        android:gravity="center">-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:background="@drawable/green_circle"-->
+<!--                        android:gravity="center">-->
+
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/twitter"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            app:tint="@color/white" />-->
+
+<!--                    </LinearLayout>-->
+<!--                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:elevation="10dp"
+                        android:visibility="gone"
+                        android:background="@drawable/white_circle"
+                        android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:visibility="gone"
+                        android:background="@drawable/green_circle"
+                        android:gravity="center">
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:background="@drawable/instagram"
+                            android:backgroundTint="@color/white"
+                            app:tint="@color/white" />
+
+                    </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

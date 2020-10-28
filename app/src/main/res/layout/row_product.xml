@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_box_white"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="115dp"
+            android:layout_height="130dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/product_img_1"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img"
+            android:text="Meat"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+       <!-- <ImageView
+            android:id="@+id/star"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/star_fill"
+            android:layout_toRightOf="@+id/img"
+            android:layout_marginLeft="10dp"
+            />-->
+
+        <RatingBar android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/star"
+            android:progressTint="@color/yellow"
+            android:progressBackgroundTint="@color/yellow"
+            android:layout_below="@+id/name"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/img"
+            android:rating="5"
+            android:numStars="5"
+            android:layout_marginTop="5dp"
+            style="?android:attr/ratingBarStyleSmall"/>
+
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beef: $9.50/LB"
+            android:layout_below="@+id/star"
+            android:layout_toRightOf="@+id/img"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/red_arrow"
+            android:layout_marginLeft="10dp"
+            android:drawablePadding="10dp"
+            android:textSize="19sp"/>
+        <TextView
+            android:id="@+id/by"
+            android:layout_below="@+id/price"
+            android:layout_toRightOf="@+id/img"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Macdonalds"
+            android:layout_toRightOf="@+id/by"
+            android:layout_below="@+id/price"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/theme_green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New York 920.."
+            android:layout_below="@+id/by"
+            android:layout_toRightOf="@+id/img"
+            android:drawablePadding="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/green_location_arrow"/>
+    </RelativeLayout>
+</LinearLayout>
