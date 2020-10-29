@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/iv_backArrow"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/back_arrow" />
+
+    <LinearLayout
+        android:id="@+id/layoutBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_below="@+id/iv_backArrow">
+
+        <ImageView
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_Congo"
+            android:src="@drawable/congo_img"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thanks"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your request was completed suceesfully."
+            android:textSize="@dimen/_14sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request Id:#1234567"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/tv_Resend"
+            android:id="@+id/btnGo"
+            android:background="@drawable/green_btn"
+            android:text="Go to Home Page"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:layout_marginRight="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_70sdp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

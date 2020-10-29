@@ -10,11 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.LoginActivity;
+import com.stalkstock.commercial.view.activities.MainCommercialActivity;
 import com.stalkstock.utils.others.AppController;
 
 
 public class SelectuserActivity extends AppCompatActivity {
-    Button user,btn_advertiser;
+    Button user,btn_advertiser, commercial;
     SelectuserActivity context;
     ImageView back;
 
@@ -27,6 +28,8 @@ public class SelectuserActivity extends AppCompatActivity {
         user= findViewById(R.id.user);
         back= findViewById(R.id.back);
         btn_advertiser= findViewById(R.id.btn_advertiser);
+        commercial= findViewById(R.id.commercial);
+
 
 
         user.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +46,15 @@ public class SelectuserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //store value in preference (select user)
                 AppController.getInstance().setString("usertype","1");
+                Intent intent=new Intent(context, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        commercial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppController.getInstance().setString("usertype","2");
                 Intent intent=new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }

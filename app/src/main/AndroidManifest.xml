@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.stalkstock">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,24 +18,92 @@
         android:usesCleartextTraffic="true">
 
         <!--commercial-->
+        <activity android:name="com.live.stalkstockcommercial.ui.view.activities.OrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.paymnet.ManagePayment"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.view.fragments.account.ManageAddress"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.address.AddAddress"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.view.fragments.account.BusinessProfile"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
 
-        <activity android:name=".commercial.view.activities.RequestDetail" />
-        <activity android:name=".commercial.view.activities.Verification" />
+        <activity android:name="com.live.stalkstockcommercial.ui.product.AddedProduct"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.paymnet.AddNewCard"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.product.AddThanks"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.view.activities.Chat"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name=".commercial.view.activities.MainCommercialActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.paymnet.PaymentStatus"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.view.fragments.home.RequestDetail"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
+        <activity android:name="com.live.stalkstockcommercial.ui.paymnet.SelectPayment"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
+        </activity>
 
 
-        <activity android:name=".commercial.view.activities.PaymentStatus" />
-        <activity android:name=".commercial.view.activities.SelectPayment" />
-        <activity android:name=".commercial.view.activities.AddNewCard" />
-        <activity android:name=".commercial.view.activities.HelpActivity" />
 
-        <activity android:name=".commercial.view.activities.ManageAddress" />
+<!--        <activity android:name=".commercial.view.activities.RequestDetail" />-->
+<!--        <activity android:name=".commercial.view.activities.Verification" />-->
 
-        <activity android:name=".commercial.view.activities.AddThanks" />
-        <activity android:name=".commercial.view.activities.ManagePayment" />
 
-        <activity android:name=".commercial.view.activities.AddedProduct" />
-        <activity android:name=".commercial.view.activities.Chat" />
-        <activity android:name=".commercial.view.activities.OrderDetailActivity" />
+<!--        <activity android:name=".commercial.view.activities.PaymentStatus" />-->
+<!--        <activity android:name=".commercial.view.activities.SelectPayment" />-->
+<!--        <activity android:name=".commercial.view.activities.AddNewCard" />-->
+<!--        <activity android:name=".commercial.view.activities.HelpActivity" />-->
+
+<!--        <activity android:name=".commercial.view.activities.ManageAddress" />-->
+
+<!--        <activity android:name=".commercial.view.activities.AddThanks" />-->
+<!--        <activity android:name=".commercial.view.activities.ManagePayment" />-->
+
+<!--        <activity android:name=".commercial.view.activities.AddedProduct" />-->
+<!--        <activity android:name=".commercial.view.activities.Chat" />-->
+<!--        <activity android:name=".commercial.view.activities.OrderDetailActivity" />-->
 
         <!--consumer-->
 

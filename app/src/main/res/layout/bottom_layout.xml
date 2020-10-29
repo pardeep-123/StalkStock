@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/white_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/value_1dp"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="@dimen/value_0dp"
+       android:layout_height="match_parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintWidth_percent="0.25"
+       android:id="@+id/home_tab">
+       <androidx.appcompat.widget.AppCompatImageView
+           android:layout_width="@dimen/value_0dp"
+           android:layout_height="@dimen/value_0dp"
+           app:layout_constraintWidth_percent="0.50"
+           app:layout_constraintHeight_percent="0.50"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           android:id="@+id/iv_homeTab"
+           android:padding="@dimen/value_5dp"
+           android:src="@drawable/home_green_icon"
+           />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/value_0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/home_tab"
+        app:layout_constraintWidth_percent="0.25"
+        android:id="@+id/orders_tab">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/value_0dp"
+            android:layout_height="@dimen/value_0dp"
+            app:layout_constraintWidth_percent="0.50"
+            app:layout_constraintHeight_percent="0.50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/iv_orderTab"
+            android:padding="@dimen/value_5dp"
+
+            android:src="@drawable/list_black_icon"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/value_0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orders_tab"
+        app:layout_constraintWidth_percent="0.25"
+        android:id="@+id/message_tab">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/value_0dp"
+            android:layout_height="@dimen/value_0dp"
+            app:layout_constraintWidth_percent="0.50"
+            app:layout_constraintHeight_percent="0.50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/iv_messageTab"
+            android:src="@drawable/chat_grey_icon"
+            android:padding="@dimen/value_5dp"
+
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/value_0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/message_tab"
+        app:layout_constraintWidth_percent="0.25"
+        android:id="@+id/account_tab">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/value_0dp"
+            android:layout_height="@dimen/value_0dp"
+            app:layout_constraintWidth_percent="0.50"
+            app:layout_constraintHeight_percent="0.50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/iv_accountTab"
+            android:src="@drawable/user_black_icon"
+            android:padding="@dimen/value_5dp"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.live.stalkstockcommercial.ui.view.fragments.home.HomeFragment"
+        android:name="com.stalkstock.commercial.view.fragments.home.HomeFragmentCommercial"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home_commercial" />
 
     <fragment
         android:id="@+id/navigation_orders"

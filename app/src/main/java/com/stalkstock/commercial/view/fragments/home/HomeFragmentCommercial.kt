@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
+import com.live.stalkstockcommercial.ui.product.AddedProduct
 import com.live.stalkstockcommercial.ui.view.fragments.home.HomeAdapter
+
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.NotificationListActivity
-import com.stalkstock.commercial.view.activities.AddedProduct
 import com.stalkstock.commercial.view.activities.CommunicationListner
 import kotlinx.android.synthetic.main.fragment_home_commercial.*
 

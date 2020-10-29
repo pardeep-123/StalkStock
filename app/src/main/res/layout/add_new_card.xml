@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/toolbar_myorders">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/value_1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/dark_gray"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actHome"
+            android:layout_width="@dimen/value_0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Add A New Card"
+            android:textColor="@color/black_color"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:padding="@dimen/value_15dp"
+            />
+        <ImageView
+            android:id="@+id/ivBackAddNewCard"
+            android:layout_width="@dimen/value_18dp"
+            android:layout_height="@dimen/value_14dp"
+            app:layout_constraintTop_toTopOf="@id/actHome"
+            app:layout_constraintBottom_toBottomOf="@id/actHome"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/value_10dp"
+            android:background="@drawable/back_arrow"
+            android:backgroundTint="@color/black_color"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter New Card Details"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/name"
+            android:textColor="@color/light_grey2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/transparent_round_bg"
+            android:gravity="center_vertical"
+            android:hint="Enter Name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:minHeight="45dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey2"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="Credit Card Number"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/light_grey2"
+            android:textSize="13sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/transparent_round_bg"
+            android:gravity="center_vertical"
+            android:hint="Enter Number "
+
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:drawableRight="@drawable/visa_img"
+            android:maxLines="1"
+            android:minHeight="45dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey2"
+            android:textSize="13sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:text="Expiry Month"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/light_grey2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/month_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/transparent_round_bg"
+                    android:gravity="center_vertical"
+                    android:hint="Select Month"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:minHeight="45dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey2"
+                    android:textSize="13sp" />
+            </LinearLayout><LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:text="Expiry Year"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/light_grey2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/year_text"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/transparent_round_bg"
+                android:gravity="center_vertical"
+                android:hint="Select Year"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1"
+                android:minHeight="45dp"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey2"
+                android:textSize="13sp" />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:text="CVV"
+                    android:visibility="visible"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/light_grey2"
+                    android:textSize="13sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/transparent_round_bg"
+                    android:gravity="center_vertical"
+                    android:hint="Enter CVV"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberPassword"
+                    android:visibility="visible"
+                    android:maxLines="1"
+                    android:maxLength="3"
+                    android:minHeight="45dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey2"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ivCheckbox"
+                />
+
+            <TextView
+                android:id="@+id/tv_terms_conditions"
+                android:layout_toRightOf="@+id/ivCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:drawablePadding="3dp"
+                android:gravity="start"
+                android:text="Save for future transactions"
+                android:textColor="@color/light_grey2"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center_horizontal">
+            
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_shape"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:minHeight="45dp"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

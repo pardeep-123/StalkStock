@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginLeft="@dimen/_6sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_item"
+        android:paddingLeft="@dimen/_12sdp"
+        android:paddingRight="@dimen/_12sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:background="@drawable/strokegreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kosher"
+        android:textColor="@color/green_colour"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

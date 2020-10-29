@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/value_10dp"
+    android:layout_marginVertical="@dimen/value_7dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/mc_img"
+        android:layout_marginLeft="@dimen/value_15dp"
+        android:layout_marginTop="@dimen/value_24dp"
+        android:id="@+id/iv_brandImage"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mc Donald's"
+        android:textStyle="bold"
+        android:gravity="left|top"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/value_18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/value_15dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_brandImage"
+        android:layout_marginLeft="@dimen/value_15dp"
+        android:id="@+id/tv_brandName"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New York"
+        android:textSize="@dimen/value_12sp"
+        android:textColor="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@+id/tv_brandName"
+        app:layout_constraintStart_toStartOf="@+id/tv_brandName"
+        android:layout_marginTop="7dp"
+        android:id="@+id/tv_cityname"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=","
+        android:textColor="@color/dark_gray"
+        app:layout_constraintTop_toTopOf="@+id/tv_cityname"
+        app:layout_constraintStart_toEndOf="@+id/tv_cityname"
+        android:id="@+id/comma"
+        android:textSize="@dimen/value_12sp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tv_cityname"
+        app:layout_constraintStart_toEndOf="@+id/comma"
+        android:layout_marginLeft="@dimen/value_5dp"
+        android:text="USA"
+        android:textSize="@dimen/value_12sp"
+        android:textColor="@color/dark_gray"
+        android:id="@+id/tv_countryname"
+        />
+
+    <View
+        android:layout_width="@dimen/value_0dp"
+        android:layout_height="@dimen/value_1dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cityname"
+        android:layout_marginTop="@dimen/value_5dp"
+        app:layout_constraintStart_toStartOf="@+id/iv_brandImage"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cityname"
+        android:background="@color/dark_gray"
+        android:id="@+id/lineView"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beef Fresh Meet 250gm"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/value_12sp"
+        app:layout_constraintTop_toBottomOf="@+id/lineView"
+        app:layout_constraintStart_toStartOf="@+id/lineView"
+        android:layout_marginTop="@dimen/value_7dp"
+        android:id="@+id/tv_description"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01 May 2020"
+        android:textSize="@dimen/value_10sp"
+        android:textColor="@color/dark_gray"
+        app:layout_constraintStart_toStartOf="@+id/tv_description"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+        android:id="@+id/tv_dateOrders"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=","
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/value_10sp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dateOrders"
+        app:layout_constraintStart_toEndOf="@+id/tv_dateOrders"
+        android:id="@+id/comma2"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="06:17 PM"
+        android:textSize="@dimen/value_10sp"
+        android:textColor="@color/dark_gray"
+        app:layout_constraintStart_toEndOf="@+id/comma2"
+        android:layout_marginLeft="@dimen/value_5dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dateOrders"
+        android:id="@+id/tv_timeorders"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$80.50"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/value_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="@dimen/value_15dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_description"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_description"
+        android:id="@+id/tv_priceOrders"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="end"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pending"
+        android:textSize="@dimen/value_16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_priceOrders"
+        app:layout_constraintTop_toTopOf="@+id/tv_brandName"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_brandName"
+        android:textColor="@color/orange_colour"
+        android:id="@+id/tv_statusValueorders"
+        />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

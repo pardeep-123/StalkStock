@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:elevation="@dimen/value_1dp"
+    android:layout_marginLeft="@dimen/value_2dp"
+    android:layout_marginRight="@dimen/value_2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/value_10dp"
+    android:layout_marginBottom="@dimen/value_5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_15sdp"
+        android:background="@color/white_color"
+
+    >
+
+
+        <TextView
+            android:id="@+id/tvRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request ID:#123456"
+            android:textStyle="bold"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/value_14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:typeface="serif"
+            />
+
+        <TextView
+            android:id="@+id/tvBid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BID:8"
+            android:textStyle="bold"
+            android:textColor="@color/orange_colour"
+            android:textSize="@dimen/value_15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:typeface="serif"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="June 10, 2020 | 03:23"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/value_12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRequest"
+
+            android:layout_marginTop="@dimen/value_10dp"
+            android:typeface="serif"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bid Received"
+            android:textStyle="bold"
+            android:paddingBottom="@dimen/value_3dp"
+            android:paddingTop="@dimen/value_3dp"
+            android:paddingRight="@dimen/value_7dp"
+            android:paddingLeft="@dimen/value_7dp"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/value_13dp"
+            android:background="@color/orange_colour"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRequest"
+
+            android:layout_marginTop="@dimen/value_10dp"
+            android:typeface="serif"
+            />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
