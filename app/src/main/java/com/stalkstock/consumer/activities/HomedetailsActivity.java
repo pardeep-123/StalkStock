@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stalkstock.R;
+import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.HomedetailAdapter;
 
 
@@ -19,6 +22,7 @@ public class HomedetailsActivity extends AppCompatActivity {
     HomedetailAdapter adapter;
     RelativeLayout meat,dairy,fish,food;
     TextView chat,group,fish_text,food_text;
+    ImageView ivNotification;
     View request_view,inprogress_view,inprogress_view1,inprogress_view2;
 
     @Override
@@ -42,6 +46,9 @@ public class HomedetailsActivity extends AppCompatActivity {
         inprogress_view=findViewById(R.id.inprogress_view);
         inprogress_view1=findViewById(R.id.inprogress_view1);
         inprogress_view2=findViewById(R.id.inprogress_view2);
+        ivNotification=findViewById(R.id.ivNotification);
+
+
 
         meat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,8 +108,18 @@ public class HomedetailsActivity extends AppCompatActivity {
             }
         });
 
+        ivNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, Notification_firstActivity.class);
+                startActivity(intent);
+            }
+        });
+
         adapter = new HomedetailAdapter(context);
         detail_recycle.setLayoutManager(new LinearLayoutManager(context));
         detail_recycle.setAdapter(adapter) ;
     }
+
+
 }

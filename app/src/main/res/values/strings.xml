@@ -57,4 +57,24 @@
     <string name="submit">Submit</string>
     <string name="expiry_month">Expiry Month</string>
     <string name="expiry_year">Expiry Year</string>
+
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="strok" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_myOrders">MyOrders</string>
+    <string name="title_message">Messages</string>
+    <string name="title_account">Account</string>
+
+
+    <!--new2-->
+
+
+    <string name="add_photo">Add Photo</string>
+    <string name="now_dish">Now dish<b> Pizza Creamy Nachos </b>with extra cheese. Try it.</string>
+    <string name="resend"><u>Resend</u></string>
+    <string name="save">Save</string>
+
 </resources>

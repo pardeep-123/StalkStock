@@ -38,7 +38,7 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/search_icon"/>
         <ImageView
-            android:id="@+id/notification"
+            android:id="@+id/ivnotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/search"
@@ -327,11 +327,12 @@
             android:layout_marginTop="5dp"/>
 
         <Button
+            android:id="@+id/btnCheckOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="checkout"
-android:layout_marginRight="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/white"
             android:background="@drawable/edit_btn_circle"/>
 

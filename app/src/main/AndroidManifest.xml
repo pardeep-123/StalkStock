@@ -17,6 +17,28 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <!--commercial-->
+
+        <activity android:name=".commercial.view.activities.RequestDetail" />
+        <activity android:name=".commercial.view.activities.Verification" />
+
+
+        <activity android:name=".commercial.view.activities.PaymentStatus" />
+        <activity android:name=".commercial.view.activities.SelectPayment" />
+        <activity android:name=".commercial.view.activities.AddNewCard" />
+        <activity android:name=".commercial.view.activities.HelpActivity" />
+
+        <activity android:name=".commercial.view.activities.ManageAddress" />
+
+        <activity android:name=".commercial.view.activities.AddThanks" />
+        <activity android:name=".commercial.view.activities.ManagePayment" />
+
+        <activity android:name=".commercial.view.activities.AddedProduct" />
+        <activity android:name=".commercial.view.activities.Chat" />
+        <activity android:name=".commercial.view.activities.OrderDetailActivity" />
+
+        <!--consumer-->
+
         <activity android:name=".consumer.activities.ProductdetailsActivity" />
         <activity android:name=".consumer.activities.ProductActivity" />
         <activity android:name=".consumer.activities.HomedetailsActivity" />
@@ -29,6 +51,8 @@
         <activity android:name=".consumer.activities.ManageaddressActivity" />
         <activity android:name=".consumer.activities.AddcardpaymentActivity" />
         <activity android:name=".consumer.activities.ManagmentPaymentActivity" />
+
+        <!--advertiser-->
 
         <activity android:name=".consumer.activities.SelectuserActivity"
             android:screenOrientation="portrait"

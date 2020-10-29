@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import com.stalkstock.R;
+import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.ProductsdetailsAdapter;
 
 import java.util.Objects;
@@ -24,9 +26,11 @@ import java.util.Objects;
 public class AddcartdetailsActivity extends AppCompatActivity {
     AddcartdetailsActivity context;
 TextView minus,plus,count;
+ImageView ivnotification;
 RecyclerView productdetails_recycle;
+Button btnCheckOut;
     ProductsdetailsAdapter adapter;
-    RelativeLayout all;
+    RelativeLayout  all;
 
 
     @Override
@@ -37,8 +41,25 @@ RecyclerView productdetails_recycle;
         minus=findViewById(R.id.minus);
         plus=findViewById(R.id.plus);
         count=findViewById(R.id.count);
+        btnCheckOut=findViewById(R.id.btnCheckOut);
+       ivnotification = findViewById(R.id.ivnotification);
         all=findViewById(R.id.all);
         productdetails_recycle=findViewById(R.id.productdetails_recycle);
+
+        ivnotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, Notification_firstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openStartInfoApp();
+            }
+        });
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override

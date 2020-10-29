@@ -8,11 +8,36 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="theme_green">#7DBB00</color>
+    <color name="themeColor">#459972</color>
     <color name="dark_green">#3A4E22</color>
     <color name="light_grey">#C3C3C3</color>
     <color name="profile_grey">#FAFAFA</color>
     <color name="home_grey">#797979</color>
     <color name="yellow">#fcbb1a</color>
+    <color name="white_color">#ffffff</color>
+    <color name="dark_gray">#A9A9A9</color>
+
+
+    <color name="black_color">#000000</color>
+
+
+
+    <color name="orange_colour">#fb862e</color>
+    <color name="dark_green_colour">#459972</color>
+    <color name="green_colour">#7DBB00</color>
+    <color name="red_dark_colour">#b8130b</color>
+
+
+
+    <!--new-->
+    <color name="transparent">#00000000</color>
+    <color name="App">#7DBB00</color>
+    <color name="grey">#F4EFEF</color>
+
+
+    <!--new2-->
+    <color name="light_grey2">#BCBBBB</color>
+
 
 
 </resources>

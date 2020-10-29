@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.HomedetailsActivity">
+>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,17 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/search"
             android:layout_toLeftOf="@+id/fillter"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/search_icon"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/ivNotification"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/search"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:src="@drawable/notification_icon"/>

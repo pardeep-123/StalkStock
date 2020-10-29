@@ -18,7 +18,7 @@ public class ProductsdetailsAdapter extends RecyclerView.Adapter<Productsdetails
     LayoutInflater inflater;
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
-TextView add;
+     TextView add;
         public RecyclerViewHolder(View view) {
             super(view);
             add=view.findViewById(R.id.add);
