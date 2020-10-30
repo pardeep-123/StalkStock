@@ -92,6 +92,7 @@
         <com.stalkstock.utils.custom.TitiliumBoldEditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:singleLine="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_bg"
             android:gravity="center_vertical"
@@ -216,7 +217,7 @@
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/btn_shape"
             android:gravity="center"
             android:minHeight="45dp"

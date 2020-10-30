@@ -126,7 +126,8 @@
                 style="@style/EditextFieldwhit1"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
-
+                android:textColorHint="@color/black"
+                android:hint="Enter product name"
                 android:layout_margin="@dimen/value_10dp">
             </EditText>
 
@@ -242,9 +243,9 @@
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/value_20dp"
+        android:layout_marginLeft="@dimen/value_30dp"
         android:layout_marginBottom="@dimen/value_20dp"
-        android:layout_marginRight="@dimen/value_20dp"
+        android:layout_marginRight="@dimen/value_30dp"
         android:background="@drawable/white_round_corners"
         android:text="Save"
 
@@ -255,9 +256,9 @@
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/value_20dp"
+        android:layout_marginLeft="@dimen/value_30dp"
         android:layout_marginBottom="@dimen/value_20dp"
-        android:layout_marginRight="@dimen/value_20dp"
+        android:layout_marginRight="@dimen/value_30dp"
         android:background="@drawable/button_round_corners"
         android:text="Submit"
         android:textAllCaps="false"

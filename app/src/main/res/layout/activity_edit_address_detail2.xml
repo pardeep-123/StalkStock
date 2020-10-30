@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".consumer.activities.EditAddressDetail2Activity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/toolbar_myorders">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/value_1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/dark_gray"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actHome"
+            android:layout_width="@dimen/value_0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Edit Address Detail"
+            android:textColor="@color/black_color"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:autoSizeTextType="uniform"
+            android:padding="@dimen/value_15dp"
+            />
+        <ImageView
+            android:id="@+id/ivBackAddress"
+            android:layout_width="@dimen/value_18dp"
+            android:layout_height="@dimen/value_14dp"
+            app:layout_constraintTop_toTopOf="@id/actHome"
+            app:layout_constraintBottom_toBottomOf="@id/actHome"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/value_10dp"
+            android:background="@drawable/back_arrow"
+            android:backgroundTint="@color/black_color"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_myorders"
+        app:layout_constraintBottom_toTopOf="@id/clBottom">
+    </LinearLayout>
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_myorders"
+        app:layout_constraintBottom_toTopOf="@id/clBottom"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingTop="@dimen/value_5dp"
+        android:paddingLeft="@dimen/value_15dp"
+        android:paddingRight="@dimen/value_15dp"
+        >
+
+
+        <TextView
+            android:id="@+id/tvSelectLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Select Delivery Location"
+            app:layout_constraintBottom_toTopOf="@id/viewAddress"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/value_4dp"
+            android:textSize="@dimen/value_14dp"
+            android:textColor="@color/black_color"
+            app:layout_constraintStart_toStartOf="parent"
+            android:typeface="monospace"
+            />
+
+        <View
+            android:id="@+id/viewAddress"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            app:layout_constraintBottom_toTopOf="@id/tvYourLocation"
+            android:background="#D3D3D3"
+            android:layout_marginBottom="@dimen/value_4dp"
+            android:layout_marginTop="@dimen/value_10dp"
+            />
+
+        <TextView
+            android:id="@+id/tvYourLocation"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Location"
+            app:layout_constraintBottom_toTopOf="@id/tvLocation"
+            android:layout_marginBottom="@dimen/value_3dp"
+            android:textSize="@dimen/value_10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="The Castro"
+            app:layout_constraintBottom_toTopOf="@id/clAddressDetail"
+            android:layout_marginBottom="@dimen/value_10dp"
+            android:textSize="@dimen/value_12dp"
+            android:textColor="@color/black_color"
+            android:drawablePadding="@dimen/value_5dp"
+            android:drawableLeft="@drawable/cart_check"
+            app:layout_constraintStart_toStartOf="parent"
+            android:typeface="monospace"
+            />
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAddressDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/btnEdit"
+            >
+
+
+            <RelativeLayout
+                android:id="@+id/rlStreetAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/rlAddressLine2"
+                >
+
+                <EditText
+                    android:hint="Street Address"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+
+                    style="@style/EditextFieldwhit1"
+                    android:layout_margin="@dimen/value_10dp">
+                </EditText>
+
+                <TextView
+                    style="@style/Textfield1"
+                    android:text="Street Address"
+                    android:layout_marginLeft="@dimen/value_45dp"
+                    android:paddingStart="@dimen/value_10dp"
+                    android:paddingEnd="@dimen/value_10dp"
+                    android:background="#ffffff">
+                </TextView>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlAddressLine2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/rlCity"
+                >
+
+                <EditText
+                    android:hint="Address Line 2(Optional)"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+                    style="@style/EditextFieldwhit1"
+                    android:layout_margin="@dimen/value_10dp">
+                </EditText>
+
+                <TextView
+                    style="@style/Textfield1"
+                    android:text="Address Line 2(Optional)"
+                    android:layout_marginLeft="@dimen/value_45dp"
+                    android:paddingStart="@dimen/value_10dp"
+                    android:paddingEnd="@dimen/value_10dp"
+                    android:background="#ffffff">
+                </TextView>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/rlState"
+                >
+
+                <EditText
+                    style="@style/EditextFieldwhit1"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+
+                    android:hint="City"
+                    android:layout_margin="@dimen/value_10dp">
+                </EditText>
+
+                <TextView
+                    style="@style/Textfield1"
+                    android:text="City"
+                    android:layout_marginLeft="@dimen/value_45dp"
+                    android:paddingStart="@dimen/value_10dp"
+                    android:paddingEnd="@dimen/value_10dp"
+                    android:background="#ffffff">
+                </TextView>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/rlPostal"
+                >
+
+                <EditText
+                    style="@style/EditextFieldwhit1"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+
+                    android:hint="State/Province/Region"
+                    android:layout_margin="@dimen/value_10dp">
+                </EditText>
+
+                <TextView
+                    style="@style/Textfield1"
+                    android:text="State/Province/Region"
+                    android:layout_marginLeft="@dimen/value_45dp"
+                    android:paddingStart="@dimen/value_10dp"
+                    android:paddingEnd="@dimen/value_10dp"
+                    android:background="#ffffff">
+                </TextView>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlPostal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/rlSpecialInstruction"
+                >
+
+                <EditText
+                    style="@style/EditextFieldwhit1"
+                    android:hint="postal/Zip code"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+                    android:inputType="number"
+                    android:layout_margin="@dimen/value_10dp">
+                </EditText>
+
+                <TextView
+                    style="@style/Textfield1"
+                    android:text="Postal/Zip code"
+                    android:layout_marginLeft="@dimen/value_45dp"
+                    android:paddingStart="@dimen/value_10dp"
+                    android:paddingEnd="@dimen/value_10dp"
+                    android:background="#ffffff">
+                </TextView>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rlSpecialInstruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/tvTagTitle"
+                >
+
+                <EditText
+                    style="@style/EditextFieldwhit1"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+                    android:hint="Enter Delivery Instructions eg. Gate Code"
+                    android:layout_margin="@dimen/value_10dp">
+                </EditText>
+
+                <TextView
+                    style="@style/Textfield1"
+                    android:text="Special Instructions(Optional)"
+                    android:layout_marginLeft="@dimen/value_45dp"
+                    android:paddingStart="@dimen/value_10dp"
+                    android:paddingEnd="@dimen/value_10dp"
+                    android:background="#ffffff">
+                </TextView>
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvTagTitle"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tvTagHome"
+                android:layout_marginBottom="@dimen/value_5dp"
+                android:text="Tag this location for Later"
+                android:textSize="@dimen/value_10dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/tvTagHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Home"
+                android:layout_marginBottom="@dimen/value_10dp"
+                android:background="@color/light_grey"
+                android:padding="@dimen/value_4dp"
+                android:textSize="@dimen/value_12dp"
+                />
+
+            <TextView
+                android:id="@+id/tvTagWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tvTagHome"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Work"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:layout_marginBottom="@dimen/value_10dp"
+                android:background="@color/light_grey"
+                android:padding="@dimen/value_4dp"
+                android:textSize="@dimen/value_12dp"
+                />
+
+            <TextView
+                android:id="@+id/tvTagHotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tvTagWork"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Home"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:layout_marginBottom="@dimen/value_10dp"
+                android:background="@color/light_grey"
+                android:padding="@dimen/value_4dp"
+                android:textSize="@dimen/value_12dp"
+                />
+
+            <TextView
+                android:id="@+id/tvTagOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tvTagHotel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Other"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:layout_marginBottom="@dimen/value_10dp"
+                android:background="@color/green_colour"
+                android:padding="@dimen/value_4dp"
+                android:textSize="@dimen/value_12dp"
+                android:textColor="@color/white_color"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_30dp"
+            android:layout_marginBottom="@dimen/value_20dp"
+            android:layout_marginRight="@dimen/value_30dp"
+            android:background="@drawable/button_round_corners"
+            android:text="Save Address"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

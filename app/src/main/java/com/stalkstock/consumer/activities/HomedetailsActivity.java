@@ -15,6 +15,8 @@ import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.HomedetailAdapter;
 
+import stalkstockcommercial.ui.view.activities.FilterActivity;
+
 
 public class HomedetailsActivity extends AppCompatActivity {
     HomedetailsActivity context;
@@ -22,7 +24,7 @@ public class HomedetailsActivity extends AppCompatActivity {
     HomedetailAdapter adapter;
     RelativeLayout meat,dairy,fish,food;
     TextView chat,group,fish_text,food_text;
-    ImageView ivNotification;
+    ImageView ivNotification,search,fillter;
     View request_view,inprogress_view,inprogress_view1,inprogress_view2;
 
     @Override
@@ -47,6 +49,8 @@ public class HomedetailsActivity extends AppCompatActivity {
         inprogress_view1=findViewById(R.id.inprogress_view1);
         inprogress_view2=findViewById(R.id.inprogress_view2);
         ivNotification=findViewById(R.id.ivNotification);
+        fillter=findViewById(R.id.fillter);
+        search=findViewById(R.id.search);
 
 
 
@@ -112,6 +116,20 @@ public class HomedetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, Notification_firstActivity.class);
+                startActivity(intent);
+            }
+        });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        fillter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, FilterActivity.class);
                 startActivity(intent);
             }
         });

@@ -13,12 +13,14 @@ import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.ProductsAdapter;
 
+import stalkstockcommercial.ui.view.activities.FilterActivity;
+
 
 public class ProductActivity extends AppCompatActivity {
     ProductActivity context;
     RecyclerView product_recycle;
     ProductsAdapter adapter;
-    ImageView back,notification;
+    ImageView back,notification,search,fillter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,27 @@ public class ProductActivity extends AppCompatActivity {
         product_recycle=findViewById(R.id.product_recycle);
         back=findViewById(R.id.back);
         notification=findViewById(R.id.notification);
+        search=findViewById(R.id.search);
+        fillter=findViewById(R.id.fillter);
 
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, Notification_firstActivity.class);
+                startActivity(intent);
+            }
+        });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        fillter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, FilterActivity.class);
                 startActivity(intent);
             }
         });

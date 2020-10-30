@@ -9,21 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.live.stalkstockcommercial.ui.view.fragments.account.ManageAddress;
 import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.ChangePasswordActivity;
 import com.stalkstock.advertiser.activities.HelpActivity;
 import com.stalkstock.advertiser.activities.LoginActivity;
 import com.stalkstock.advertiser.activities.ManagePaymentsActivity;
-import com.stalkstock.consumer.activities.EditprofileActivity;
-import com.stalkstock.consumer.activities.MainConsumerActivity;
-import com.stalkstock.consumer.activities.ManagmentPaymentActivity;
+import com.stalkstock.consumer.activities.EditprofileConsumerActivity;
 import com.stalkstock.utils.custom.TitiliumBoldButton;
 
 import java.util.Objects;
@@ -54,7 +52,7 @@ public class ProfileConsumerFragment extends Fragment {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), EditprofileActivity.class);
+                Intent intent=new Intent(getActivity(), EditprofileConsumerActivity.class);
                 startActivity(intent);
             }
         }); tv_help.setOnClickListener(new View.OnClickListener() {
@@ -80,14 +78,16 @@ public class ProfileConsumerFragment extends Fragment {
 
         tv_manage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {Intent intent=new Intent(getActivity(), ManagePaymentsActivity.class);
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), ManagePaymentsActivity.class);
                 startActivity(intent);
             }
         });tv_business_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  Intent intent=new Intent(getActivity(), ManageaddressActivity.class);
-               // startActivity(intent);
+                Intent intent=new Intent(getActivity(), ManageAddress.class);
+                startActivity(intent);
+
             }
         });
 
@@ -95,7 +95,7 @@ public class ProfileConsumerFragment extends Fragment {
     }
 
     public void LogoutAlert() {
-        final Dialog dialogSuccessful = new Dialog(Objects.requireNonNull(getActivity()), R.style.Theme_Dialog);
+        final Dialog dialogSuccessful = new Dialog(requireActivity(), R.style.Theme_Dialog);
         dialogSuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogSuccessful.setContentView(R.layout.logout_alert);
         dialogSuccessful.setCancelable(false);
@@ -115,10 +115,13 @@ public class ProfileConsumerFragment extends Fragment {
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent=new Intent(getActivity(), LoginActivity.class);
-                intent.putExtra("is_open","1");
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+               // intent.putExtra("is_open","1");
+                startActivity(intent);
                 dialogSuccessful.dismiss();
+                getActivity().finishAffinity();
+
             }
         });
 

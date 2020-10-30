@@ -80,7 +80,7 @@ Button btnCheckOut;
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openStartInfoApp();
+              //  openStartInfoApp();
             }
         });
 

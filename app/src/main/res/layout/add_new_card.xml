@@ -141,7 +141,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/month_text"
+                    android:id="@+id/monthsss"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -172,7 +172,7 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/year_text"
+                android:id="@+id/yearsss"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"

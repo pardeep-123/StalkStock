@@ -114,14 +114,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/value_15dp"
             android:text="Notification"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clCard" />
 
@@ -144,15 +144,15 @@
             app:layout_constraintTop_toBottomOf="@id/tvNotification" />
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvBusiness"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/value_15dp"
             android:paddingBottom="@dimen/value_15dp"
-            android:text="business Profile"
+            android:text="Business Profile"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewNotification" />
 
@@ -164,7 +164,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvBusiness" />
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvManage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
             android:paddingBottom="@dimen/value_15dp"
             android:text="Manage Addresses"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewBusiness" />
 
@@ -184,7 +184,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvManage" />
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvManagePayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
             android:paddingBottom="@dimen/value_15dp"
             android:text="Manage Payment Methods"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewManage" />
 
@@ -204,7 +204,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvManagePayment" />
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
             android:paddingBottom="@dimen/value_15dp"
             android:text="Change Password"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewManagePayment" />
 
@@ -223,7 +223,7 @@
             android:background="#D3D3D3"
             app:layout_constraintTop_toBottomOf="@id/tvPassword" />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvHelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
             android:paddingBottom="@dimen/value_15dp"
             android:text="Help"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewPassword" />
 
@@ -242,7 +242,7 @@
             android:background="#D3D3D3"
             app:layout_constraintTop_toBottomOf="@id/tvHelp" />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tvLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -250,7 +250,7 @@
             android:paddingBottom="@dimen/value_15dp"
             android:text="Logout"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_20dp"
+            android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewHelp" />
 

@@ -9,6 +9,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.Verification
+import com.stalkstock.utils.others.AppController
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -48,8 +50,14 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(mContext, LoginActivity::class.java))
                 finish()
             }R.id.btn_signup->{
+            if(AppController.getInstance().getString("usertype").equals("2")){
+                startActivity(Intent(mContext, Verification::class.java))
+                finish()
+            }else{
                 startActivity(Intent(mContext, LoginActivity::class.java))
                 finish()
+            }
+
             }
             R.id.iv_back->{
                 finish()

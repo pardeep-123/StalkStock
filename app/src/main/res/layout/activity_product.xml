@@ -23,6 +23,7 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
+           android:textStyle="bold"
            android:text="Meat"
            android:textColor="@color/black"
            android:textSize="20sp"
@@ -32,26 +33,29 @@
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:layout_toLeftOf="@+id/fillter"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/search_icon"/>
         <ImageView
             android:id="@+id/notification"
             android:layout_width="wrap_content"
+            android:padding="@dimen/_8sdp"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/search"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/notification_icon"/>
 
         <ImageView
             android:id="@+id/fillter"
+            android:padding="@dimen/_8sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/filter_icn"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
     <View
@@ -62,6 +66,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:src="@drawable/ad_img_2"
         android:layout_marginTop="10dp"/>
 

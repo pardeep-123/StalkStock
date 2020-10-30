@@ -227,8 +227,11 @@
                 android:drawableLeft="@drawable/green_location_arrow"/>
 
             <RelativeLayout
-                android:layout_width="70dp"
+                android:layout_width="80dp"
                 android:layout_height="30dp"
+                android:paddingRight="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
                 android:text="View More"
                 android:layout_below="@+id/location_text"
                 android:layout_marginTop="5dp"
@@ -239,13 +242,12 @@
                 >
                 <TextView
                     android:id="@+id/minus"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="-"
+                    android:textSize="@dimen/_20sdp"
                     android:gravity="center"
-                    android:layout_centerVertical="true"
-                    android:textSize="20sp"
                     android:textColor="@color/theme_green"/>
 
                 <TextView
@@ -254,18 +256,18 @@
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:layout_centerInParent="true"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="@color/theme_green"
                     />
 
                 <TextView
                     android:id="@+id/plus"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="+"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginRight="5dp"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:textSize="20sp"
                     android:textColor="@color/theme_green"/>
             </RelativeLayout>
@@ -328,8 +330,9 @@
 
         <Button
             android:id="@+id/btnCheckOut"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:layout_alignParentRight="true"
             android:text="checkout"
             android:layout_marginRight="10dp"

@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.MainCommercialActivity
+import com.stalkstock.consumer.activities.MainConsumerActivity
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_thankyou.*
 
 class ThankyouActivity : AppCompatActivity(), View.OnClickListener {
@@ -21,9 +24,21 @@ class ThankyouActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.btn_view->{
-                val intent = Intent(mContext, MainActivity::class.java)
-                startActivity(intent)
-                finishAffinity()
+                if(AppController.getInstance().getString("usertype").equals("1")){
+                    val intent = Intent(mContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finishAffinity()
+                }else if(AppController.getInstance().getString("usertype").equals("2")){
+                    val intent = Intent(mContext, MainCommercialActivity::class.java)
+                    startActivity(intent)
+                    finishAffinity()
+                }else{
+                    val intent = Intent(mContext, MainConsumerActivity::class.java)
+                    startActivity(intent)
+                    finishAffinity()
+                }
+
+
             }
             R.id.back_img->{
                 finish()

@@ -20,6 +20,7 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
         <ImageView
+            android:id="@+id/back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/back_arrow"
@@ -71,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/titilliumweb_bold"
             android:background="@drawable/edit_text_bg"
             android:gravity="center_vertical"
             android:hint="@string/enter_name"
@@ -88,6 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:fontFamily="@font/titilliumweb_bold"
             android:layout_marginLeft="45dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
@@ -108,6 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/titilliumweb_bold"
             android:background="@drawable/edit_text_bg"
             android:gravity="center_vertical"
             android:hint="@string/enter_your_email_address"
@@ -125,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:fontFamily="@font/titilliumweb_bold"
             android:layout_marginLeft="45dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
@@ -142,6 +147,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:fontFamily="@font/titilliumweb_bold"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_bg"
             android:gravity="center_vertical"
@@ -159,6 +165,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/titilliumweb_bold"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="45dp"
             android:layout_marginBottom="10dp"
@@ -181,7 +188,7 @@
             android:background="@drawable/btn_shape"
             android:gravity="center"
             android:minHeight="45dp"
-            android:text="@string/update"
+            android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />

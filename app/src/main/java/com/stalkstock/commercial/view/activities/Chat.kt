@@ -9,16 +9,24 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.AlbumFile
+import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class Chat : AppCompatActivity(), View.OnClickListener {
 
-
+    var click = ""
+    private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
+    var firstimage=""
     var chatList : ArrayList<ChatData> = ArrayList()
     lateinit var chatAdapter: ChatAdapter
 
@@ -45,11 +53,38 @@ class Chat : AppCompatActivity(), View.OnClickListener {
         rvChat.adapter = chatAdapter
     }
 
+    private fun selectImage(ivProduct: ImageView, type:String) {
+        Album.image(this)
+            .singleChoice()
+            .camera(true)
+            .columnCount(4)
+            //.selectCount(1)
+            //.checkedList(mAlbumFiles)
+            .widget(
+                Widget.newDarkBuilder(this)
+                    .title(getString(R.string.app_name))
+                    .build()
+            )
+            .onResult { result ->
+                mAlbumFiles.addAll(result)
+              //  Glide.with(this).load(result[0].path).into(ivProduct)
+                if (type.equals("1"))
+                {
+                    firstimage = result[0].path
+                }
+            }
+            .onCancel {
+
+            }
+            .start()
+    }
+
     private  fun init(){
         iv_backChat.setOnClickListener(this)
         iv_dotMenu.setOnClickListener(this)
         ivSend.setOnClickListener(this)
         tvClearChat.setOnClickListener(this)
+        ivAttach.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -57,8 +92,20 @@ class Chat : AppCompatActivity(), View.OnClickListener {
             R.id.iv_backChat->{
                 onBackPressed()
             }
+            R.id.ivAttach ->{
+                mAlbumFiles = java.util.ArrayList()
+                mAlbumFiles.clear()
+                selectImage(ivAttach,"1")
+            }
             R.id.iv_dotMenu->{
-                clDots.visibility = View.VISIBLE
+                if(click.equals("")){
+                    clDots.visibility = View.VISIBLE
+                    click = "1"
+                }else{
+                    clDots.visibility = View.GONE
+                    click = ""
+                }
+
             }
             R.id.ivSend->{
                 if(etMessage.text.toString().isNotEmpty())

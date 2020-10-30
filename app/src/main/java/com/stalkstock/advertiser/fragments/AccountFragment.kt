@@ -97,6 +97,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
             activity?.finishAffinity()
+
         }
 
         logoutUpdatedDialog.show()

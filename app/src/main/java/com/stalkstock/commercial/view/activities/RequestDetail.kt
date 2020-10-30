@@ -68,6 +68,10 @@ class RequestDetail : AppCompatActivity() {
             }
             }
 
+        ivBusinessEdit.setOnClickListener {
+            finish()
+        }
+
 
         tvChat.setOnClickListener {
             startActivity(Intent(this, Chat::class.java))

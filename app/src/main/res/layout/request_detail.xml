@@ -231,9 +231,9 @@
     <Button
         android:id="@+id/btnAccept"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
         android:layout_marginBottom="@dimen/value_30dp"
         android:background="@drawable/green_btn"
         android:text="Accept"

@@ -12,6 +12,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.live.stalkstockcommercial.ui.address.AddAddress
 import com.stalkstock.R
+import com.stalkstock.consumer.activities.AddnewaddressActivity
+import com.stalkstock.consumer.activities.EditAddressDetail2Activity
 import kotlinx.android.synthetic.main.manage_address.*
 import java.util.*
 
@@ -30,13 +32,13 @@ class ManageAddress : AppCompatActivity() {
         }
 
         tbnAdd.setOnClickListener {
-            val intent = Intent(this, AddAddress::class.java)
+            val intent = Intent(this, AddnewaddressActivity::class.java)
             intent.putExtra("key","add")
             startActivity(intent)
         }
 
         btnEdit.setOnClickListener {
-            val intent = Intent(this, AddAddress::class.java)
+            val intent = Intent(this, EditAddressDetail2Activity::class.java)
             intent.putExtra("key","edit")
             startActivity(intent)
         }

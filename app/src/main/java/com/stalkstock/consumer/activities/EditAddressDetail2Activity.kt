@@ -1,10 +1,9 @@
-package com.live.stalkstockcommercial.ui.address
+package com.stalkstock.consumer.activities
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,11 +16,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.stalkstock.R
 import kotlinx.android.synthetic.main.add_address.*
 
-class AddAddress : AppCompatActivity(), OnMapReadyCallback {
+class EditAddressDetail2Activity : AppCompatActivity(), OnMapReadyCallback {
 
-   var dataSet = 2
-
-
+    var dataSet = 2
     override fun onMapReady(p0: GoogleMap?) {
         p0?.apply {
             val sydney = LatLng(30.7121687,76.6928878)
@@ -42,8 +39,7 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.add_address)
-
+        setContentView(R.layout.activity_edit_address_detail2)
         setMapInit(mapBool)
 
         dataSet = if(intent.hasExtra("key")) {
@@ -53,24 +49,7 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
         }
         ivBackAddress.setOnClickListener { onBackPressed() }
         btnEdit.setOnClickListener { onBackPressed() }
-       // setData(dataSet)
     }
-
-    /*private fun setData(i: Int) {
-
-        if(i==1)
-        {
-            clAddressDetail.visibility = View.VISIBLE
-            tvSelectLocation.text = "Enter Address Detail"
-            btnEdit.text = "Save Address"
-        }
-        else{
-            clAddressDetail.visibility = View.GONE
-            tvSelectLocation.text = "Select Delivery Location"
-            btnEdit.text = "Confirm Location & Proceed"
-        }
-    }*/
-
 
     lateinit var fusedLocationClient: FusedLocationProviderClient
     lateinit var mapFragment : SupportMapFragment
@@ -88,9 +67,8 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
                 mapFragment = supportFragmentManager
                     .findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
-          }
+            }
         } }
-
 
 
 }

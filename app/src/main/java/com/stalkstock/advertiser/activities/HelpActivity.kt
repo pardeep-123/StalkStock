@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.MainCommercialActivity
+import com.stalkstock.consumer.activities.MainConsumerActivity
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_help.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -27,7 +30,20 @@ class HelpActivity : AppCompatActivity(), View.OnClickListener {
             R.id.iv_back->{
                 finish()
             }R.id.btn_ok->{
-            startActivity(Intent(mContext, MainActivity::class.java))
+            if(AppController.getInstance().getString("usertype").equals("1")){
+                val intent = Intent(mContext, MainActivity::class.java)
+                startActivity(intent)
+                finishAffinity()
+            }else if(AppController.getInstance().getString("usertype").equals("2")){
+                val intent = Intent(mContext, MainCommercialActivity::class.java)
+                startActivity(intent)
+                finishAffinity()
+            }else{
+                val intent = Intent(mContext, MainConsumerActivity::class.java)
+                startActivity(intent)
+                finishAffinity()
+            }
+
             }
         }
     }

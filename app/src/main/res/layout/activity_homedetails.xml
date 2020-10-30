@@ -37,6 +37,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:id="@+id/ivNotification"
+            android:padding="@dimen/_5sdp"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/search"
             android:layout_centerVertical="true"
@@ -49,6 +50,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/filter_icn"
             android:layout_centerVertical="true"
+            android:padding="@dimen/_8sdp"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>

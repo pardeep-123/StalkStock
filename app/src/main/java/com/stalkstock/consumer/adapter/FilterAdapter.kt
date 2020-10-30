@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.activities
+package stalkstockcommercial.ui.view.activities
 
 import android.content.Context
 import android.content.Intent
@@ -21,7 +21,6 @@ class FilterAdapter(var list: ArrayList<FilterActivity.FilterData>) : RecyclerVi
     lateinit var clickDoctor: ClickDoctor
 
     interface ClickDoctor {
-
         fun clicked(position: Int)
     }
 

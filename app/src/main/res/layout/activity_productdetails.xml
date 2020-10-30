@@ -24,6 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Details"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -31,24 +32,27 @@
 
         <ImageView
             android:id="@+id/search"
+            android:padding="@dimen/_5sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/fillter"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/search_icon"/>
         <ImageView
             android:id="@+id/notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/search"
+            android:padding="@dimen/_5sdp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/notification_icon"/>
 
         <ImageView
             android:id="@+id/fillter"
             android:layout_width="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:layout_height="wrap_content"
             android:src="@drawable/filter_icn"
             android:layout_centerVertical="true"
@@ -147,7 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="45 Minutes (Delivery time)"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="25dp"
                             android:layout_below="@+id/name"
                             android:textSize="14sp"
 

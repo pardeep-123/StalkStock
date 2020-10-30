@@ -22,6 +22,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textSize="@dimen/_14sdp"
                 android:layout_height="wrap_content"
                 android:text="New York 920.."
                 android:layout_centerVertical="true"
@@ -57,24 +58,47 @@
         </RelativeLayout>
 
 
-    <EditText
-        android:id="@+id/etSearch"
-        android:drawableRight="@drawable/audio_icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:cursorVisible="false"
-        android:background="@drawable/search_input"
-        android:layout_marginLeft="15sp"
-        android:drawableLeft="@drawable/search_icon"
-        android:drawablePadding="15dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_marginRight="15sp"
-        android:layout_marginTop="10sp"
-        android:textSize="16sp"
-        android:hint="Search.."
-        />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/etSearch"
+            android:layout_marginRight="15sp"
+            android:layout_marginLeft="15sp"
+            android:background="@drawable/search_input"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_icon"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/audio_icon"/>
+
+            <TextView
+
+                android:layout_toRightOf="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:text="Search.."
+                />
+
+        </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/viewpager"
         android:layout_width="match_parent"

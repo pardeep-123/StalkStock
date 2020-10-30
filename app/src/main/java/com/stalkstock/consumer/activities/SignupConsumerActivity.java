@@ -23,11 +23,12 @@ import java.util.ArrayList;
 public class SignupConsumerActivity extends AppCompatActivity {
 
     private ArrayList<AlbumFile> mAlbumFiles = new ArrayList<>();
+    String firstimage="";
     SignupConsumerActivity context;
     ImageView img,iv_back;
     TextView tv_signin;
     Button btn_signup;
-    String firstimage="";
+
 
 
     @Override
