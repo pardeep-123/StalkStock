@@ -97,21 +97,22 @@
             app:layout_constraintBottom_toTopOf="@id/rlCity"
             >
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
                 style="@style/EditextFieldwhit1"
                 android:layout_margin="@dimen/value_10dp">
-            </EditText>
+            </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textColor="@color/light_grey"
                 style="@style/Textfield1"
                 android:text="Category"
                 android:layout_marginLeft="@dimen/value_60dp"
-                android:paddingStart="@dimen/value_10dp"
-                android:paddingEnd="@dimen/value_10dp"
                 android:background="#ffffff">
-            </TextView>
+            </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
         </RelativeLayout>
         <RelativeLayout
@@ -122,23 +123,24 @@
             app:layout_constraintBottom_toTopOf="@id/rlState"
             >
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
                 style="@style/EditextFieldwhit1"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
-                android:textColorHint="@color/black"
+
                 android:hint="Enter product name"
                 android:layout_margin="@dimen/value_10dp">
-            </EditText>
+            </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textColor="@color/light_grey"
                 style="@style/Textfield1"
                 android:text="Product Name"
                 android:layout_marginLeft="@dimen/value_60dp"
-                android:paddingStart="@dimen/value_10dp"
-                android:paddingEnd="@dimen/value_10dp"
                 android:background="#ffffff">
-            </TextView>
+            </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
         </RelativeLayout>
         <RelativeLayout
@@ -149,22 +151,23 @@
             app:layout_constraintBottom_toTopOf="@id/rlUnitMesurment"
             >
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 style="@style/EditextFieldwhit1"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
-
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
                 android:layout_margin="@dimen/value_10dp">
-            </EditText>
+            </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textColor="@color/light_grey"
                 style="@style/Textfield1"
                 android:text="Quantity of Product"
                 android:layout_marginLeft="@dimen/value_60dp"
-                android:paddingStart="@dimen/value_10dp"
-                android:paddingEnd="@dimen/value_10dp"
+
                 android:background="#ffffff">
-            </TextView>
+            </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
         </RelativeLayout>
         <RelativeLayout
@@ -175,25 +178,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             >
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/etUnitMeasurement"
                 style="@style/EditextFieldwhit1"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
                 android:editable="false"
                 android:focusable="false"
                 android:layout_margin="@dimen/value_10dp">
-            </EditText>
+            </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textColor="@color/light_grey"
                 android:id="@+id/tvUnitMeasurement"
                 style="@style/Textfield1"
                 android:text="Unit of Measurement"
                 android:layout_marginLeft="@dimen/value_60dp"
-                android:paddingStart="@dimen/value_10dp"
-                android:paddingEnd="@dimen/value_10dp"
                 android:background="#ffffff">
-            </TextView>
+            </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
         </RelativeLayout>
 

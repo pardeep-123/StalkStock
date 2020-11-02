@@ -79,7 +79,7 @@
             android:id="@+id/tvSelectLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/value_10dp"
             android:text="Select Delivery Location"
             app:layout_constraintBottom_toTopOf="@id/viewAddress"
             android:textStyle="bold"
@@ -102,7 +102,7 @@
 
         <TextView
             android:id="@+id/tvYourLocation"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/value_10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Your Location"
@@ -116,7 +116,7 @@
             android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/value_10dp"
             android:text="The Castro"
             app:layout_constraintBottom_toTopOf="@id/clAddressDetail"
             android:layout_marginBottom="@dimen/value_10dp"
@@ -159,8 +159,8 @@
                     style="@style/Textfield1"
                     android:text="Street Address"
                     android:layout_marginLeft="@dimen/value_45dp"
-                    android:paddingStart="@dimen/value_10dp"
-                    android:paddingEnd="@dimen/value_10dp"
+
+
                     android:background="#ffffff">
                 </TextView>
 
@@ -184,8 +184,6 @@
                     style="@style/Textfield1"
                     android:text="Address Line 2(Optional)"
                     android:layout_marginLeft="@dimen/value_45dp"
-                    android:paddingStart="@dimen/value_10dp"
-                    android:paddingEnd="@dimen/value_10dp"
                     android:background="#ffffff">
                 </TextView>
 

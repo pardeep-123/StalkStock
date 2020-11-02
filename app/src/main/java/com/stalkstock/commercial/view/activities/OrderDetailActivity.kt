@@ -18,6 +18,7 @@ class OrderDetailActivity : AppCompatActivity() {
             }
             "1"->{
                 tvStatus.text = "Delivered"
+                tvStatus.setTextColor(resources.getColor(R.color.themeColor))
 
             }
         }

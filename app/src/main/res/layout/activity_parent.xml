@@ -93,13 +93,18 @@
                     android:text="New York, USA"/>
 
                 <TextView
-                    android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    android:textColor="@color/orange_colour"
                     android:text="Pending"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+
+                    android:id="@+id/tvStatus"
+                    />
 
 
             </RelativeLayout>
