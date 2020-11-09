@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         tv_signup.setOnClickListener(this)
         btn_signin.setOnClickListener(this)
         signup.setOnClickListener(this)
+        back.setOnClickListener(this)
 
 
     }
@@ -38,7 +39,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_forgot_password->{
                 startActivity(Intent(mContext, ForgotPasswordActivity::class.java))
             }
-
+            R.id.back ->{
+                finish()
+            }
 
             R.id.tv_signup->{
                if(AppController.getInstance().getString("usertype").equals("1")){

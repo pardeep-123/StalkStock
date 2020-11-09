@@ -2,8 +2,10 @@ package com.stalkstock.consumer.activities
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -49,7 +51,34 @@ class EditAddressDetail2Activity : AppCompatActivity(), OnMapReadyCallback {
         }
         ivBackAddress.setOnClickListener { onBackPressed() }
         btnEdit.setOnClickListener { onBackPressed() }
+
+
+        tvTagHome.setOnClickListener {
+            changeColor(tvTagHome,tvTagWork,tvTagHotel,tvTagOther)
+        }
+        tvTagWork.setOnClickListener {
+            changeColor(tvTagWork,tvTagHome,tvTagHotel,tvTagOther)
+        }
+        tvTagHotel.setOnClickListener {
+            changeColor(tvTagHotel,tvTagHome,tvTagWork,tvTagOther)
+        }
+        tvTagOther.setOnClickListener {
+            changeColor(tvTagOther,tvTagHotel,tvTagHome,tvTagWork)
+        }
     }
+
+    private  fun changeColor(textview1: TextView, textview2: TextView,textview3: TextView,textview4: TextView) {
+        textview1.setBackgroundColor(Color.parseColor("#7DBB00"))
+        textview1.setTextColor(Color.parseColor("#FFFFFF"))
+        textview2.setBackgroundColor(Color.parseColor("#C3C3C3"))
+        textview2.setTextColor(Color.parseColor("#000000"))
+        textview3.setBackgroundColor(Color.parseColor("#C3C3C3"))
+        textview3.setTextColor(Color.parseColor("#000000"))
+        textview4.setBackgroundColor(Color.parseColor("#C3C3C3"))
+        textview4.setTextColor(Color.parseColor("#000000"))
+
+    }
+
 
     lateinit var fusedLocationClient: FusedLocationProviderClient
     lateinit var mapFragment : SupportMapFragment

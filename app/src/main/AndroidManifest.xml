@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".consumer.activities.MyRequestActivity"></activity>
+        <activity android:name=".consumer.activities.MyOrderActivity"></activity>
+        <activity android:name=".consumer.activities.MyRequestActivity" />
         <activity android:name=".consumer.activities.EditAddressDetail2Activity" />
         <activity android:name=".advertiser.activities.EditAddressDetailActivity" /> <!-- commercial -->
         <activity

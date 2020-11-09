@@ -20,9 +20,10 @@
             app:layout_constraintStart_toStartOf="parent"
             android:background="@color/dark_gray"
             />
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/actHome"
             android:layout_width="@dimen/value_0dp"
+        android:textSize="17sp"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,11 +34,11 @@
             android:textStyle="bold"
             android:gravity="center"
             android:autoSizeTextType="uniform"
-            android:padding="@dimen/value_15dp"
+            android:padding="17sp"
             />
         <ImageView
-            android:layout_width="@dimen/value_18dp"
-            android:layout_height="@dimen/value_14dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             app:layout_constraintTop_toTopOf="@id/actHome"
             app:layout_constraintBottom_toBottomOf="@id/actHome"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +103,7 @@
                 android:textColorHint="@color/light_grey"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
+                android:hint="Enter Category"
                 style="@style/EditextFieldwhit1"
                 android:layout_margin="@dimen/value_10dp">
             </com.stalkstock.utils.custom.TitiliumBoldEditText>
@@ -126,6 +128,7 @@
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
+
                 style="@style/EditextFieldwhit1"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
@@ -153,12 +156,15 @@
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 style="@style/EditextFieldwhit1"
+                android:layout_marginStart="@dimen/value_10dp"
+                android:layout_marginTop="@dimen/value_10dp"
+
+                android:layout_marginEnd="@dimen/value_10dp"
+                android:hint="Enter quantity of product"
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_grey"
-                android:layout_margin="@dimen/value_10dp">
-            </com.stalkstock.utils.custom.TitiliumBoldEditText>
+                android:textColorHint="@color/light_grey"></com.stalkstock.utils.custom.TitiliumBoldEditText>
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:textColor="@color/light_grey"
@@ -181,10 +187,12 @@
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/etUnitMeasurement"
                 style="@style/EditextFieldwhit1"
+                android:textColorHint="@color/light_grey"
+
                 android:paddingLeft="@dimen/value_10dp"
                 android:paddingRight="@dimen/value_10dp"
+                android:hint="Enter unit of measurement"
                 android:textColor="@color/black"
-                android:textColorHint="@color/light_grey"
                 android:editable="false"
                 android:focusable="false"
                 android:layout_margin="@dimen/value_10dp">

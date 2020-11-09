@@ -331,6 +331,7 @@
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvTagHome"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -345,6 +346,7 @@
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvTagWork"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tvTagHome"
@@ -359,6 +361,7 @@
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvTagHotel"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tvTagWork"

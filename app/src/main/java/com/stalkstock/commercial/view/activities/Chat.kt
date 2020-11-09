@@ -40,7 +40,6 @@ class Chat : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setAdapter() {
-
         chatList.add(ChatData("What's Up?","17:00 PM","a","other"))
         chatList.add(ChatData("Lorem ipsum is a simply dummy text of the printing and typeset","17:00 PM","a","other"))
         chatList.add(ChatData("What's Up?","17:00 PM","b","me"))

@@ -52,7 +52,16 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:gravity="center"
-            android:text="Your payment has been successfully\nprocessed. We'll start running your ad\nand you can see your results in the\nAd Manager."
+            android:text="Your payment has been successfully\n processed."
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="Your Order has been submitted.\nyou will receive status updates via \nemail and/or text."
             android:textColor="@color/black"
             android:textSize="15sp" />
     </LinearLayout>
@@ -65,7 +74,7 @@
         android:background="@drawable/btn_shape"
         android:gravity="center"
         android:minHeight="45dp"
-        android:text="View Ads"
+        android:text="View Order Details"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"

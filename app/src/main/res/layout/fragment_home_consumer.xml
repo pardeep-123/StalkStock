@@ -20,9 +20,10 @@
             android:layout_marginLeft="15dp"
             >
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:layout_width="wrap_content"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="17sp"
+
                 android:layout_height="wrap_content"
                 android:text="New York 920.."
                 android:layout_centerVertical="true"

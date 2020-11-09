@@ -23,8 +23,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/actHome"
+            android:textSize="17sp"
             android:layout_width="@dimen/value_0dp"
             android:layout_height="match_parent"
             android:autoSizeTextType="uniform"
@@ -130,7 +131,7 @@
             android:id="@+id/switchNotification"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/value_10dp"
-            android:thumb="@drawable/custom_switch"
+            android:src="@drawable/toggle_off1"
             app:layout_constraintBottom_toBottomOf="@id/tvNotification"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvNotification" />

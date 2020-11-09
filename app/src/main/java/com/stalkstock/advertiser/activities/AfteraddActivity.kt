@@ -9,6 +9,8 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.stalkstock.R
+import com.stalkstock.consumer.activities.ThanksActivity
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_add_new_card.btn_save
 import kotlinx.android.synthetic.main.activity_afteradd.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -90,8 +92,15 @@ class AfteraddActivity : AppCompatActivity() , View.OnClickListener{
             openMonth()
             }
             R.id.btn_save -> {
-                val intent = Intent(mContext, ThankyouActivity::class.java)
-                startActivity(intent)
+
+                if(AppController.getInstance().getString("usertype").equals("3")){
+                    val intent = Intent(mContext, ThanksActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    val intent = Intent(mContext, ThankyouActivity::class.java)
+                    startActivity(intent)
+                }
+
             }
         }
     }

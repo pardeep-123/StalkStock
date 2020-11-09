@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/iv_backArrow"
-        android:layout_width="@dimen/_18sdp"
-        android:layout_height="@dimen/_18sdp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/back_arrow" />
@@ -22,10 +22,10 @@
         android:layout_below="@+id/iv_backArrow">
 
         <ImageView
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_100sdp"
             android:id="@+id/iv_Congo"
-            android:src="@drawable/thank_icon"
+            android:src="@drawable/confirm_icon"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_40sdp"
             android:layout_marginBottom="@dimen/_40sdp"
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thanks"
+            android:text="Thank You !"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -60,22 +60,25 @@
             android:layout_marginTop="@dimen/_10sdp"
             />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_below="@+id/tv_Resend"
-            android:id="@+id/btnGo"
-            android:background="@drawable/green_btn"
-            android:text="Go to Home Page"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
-            android:textAllCaps="false"
-            android:gravity="center"
-            android:layout_marginLeft="@dimen/_25sdp"
-            android:layout_marginRight="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_70sdp"
-            />
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:id="@+id/btnGo"
+        android:background="@drawable/green_btn"
+        android:text="Go to Home Page"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_140sdp"
+        />
+
 
 </RelativeLayout>

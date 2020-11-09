@@ -23,8 +23,6 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
     var handler: Handler?=null
     var list:ArrayList<ModelPojo.MyOrdersListModel>?=null
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -29,8 +29,9 @@
                   app:layout_constraintStart_toStartOf="parent"
                   android:background="@color/dark_gray"
                   />
-              <androidx.appcompat.widget.AppCompatTextView
+              <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                   android:layout_width="@dimen/value_0dp"
+                  android:textSize="17sp"
                   android:layout_height="match_parent"
                   app:layout_constraintTop_toTopOf="parent"
                   app:layout_constraintBottom_toBottomOf="parent"

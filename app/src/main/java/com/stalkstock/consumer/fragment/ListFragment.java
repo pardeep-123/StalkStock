@@ -27,8 +27,8 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_list, container, false);
-        myorder_recycle=view.findViewById(R.id.myorder_recycle);
 
+        myorder_recycle=view.findViewById(R.id.myorder_recycle);
         adapter = new MyordersAdapter(getActivity());
         myorder_recycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         myorder_recycle.setAdapter(adapter) ;

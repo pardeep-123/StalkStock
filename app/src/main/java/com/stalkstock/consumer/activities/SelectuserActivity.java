@@ -26,7 +26,7 @@ public class SelectuserActivity extends AppCompatActivity {
 
         context = this;
         user= findViewById(R.id.user);
-        back= findViewById(R.id.back);
+       // back= findViewById(R.id.back);
         btn_advertiser= findViewById(R.id.btn_advertiser);
         commercial= findViewById(R.id.commercial);
 
@@ -60,11 +60,11 @@ public class SelectuserActivity extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
+        /*back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                finish();
             }
-        });
+        });*/
     }
 }

@@ -28,8 +28,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@color/dark_gray"
                 />
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:id="@+id/actHome"
+                android:textSize="17sp"
                 android:layout_width="@dimen/value_0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"

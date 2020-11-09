@@ -106,7 +106,7 @@ Button btnCheckOut;
             @Override
             public void onClick(View v) {
                 dialogSuccessful.dismiss();
-                Intent intent=new Intent(context, MainConsumerActivity.class);
+                Intent intent=new Intent(context, MyOrderActivity.class);
                 intent.putExtra("is_open","1");
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

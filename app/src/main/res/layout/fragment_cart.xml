@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:id="@+id/header"
         android:layout_height="40dp">
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="Cart"
             android:layout_centerInParent="true"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_17sdp"
+            android:textSize="17sp"
             android:textStyle="bold"/>
 
     </RelativeLayout>
@@ -166,15 +167,14 @@
 
                 >
                 <TextView
+                    android:gravity="center"
                     android:id="@+id/minus"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-"
-                    android:textSize="@dimen/_20sdp"
-                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="20sp"
                     android:textColor="@color/theme_green"/>
-
                 <TextView
                     android:id="@+id/count"
                     android:layout_width="wrap_content"

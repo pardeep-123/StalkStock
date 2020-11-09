@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import com.stalkstock.R
+import com.stalkstock.consumer.activities.ThanksActivity
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -32,8 +34,13 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             R.id.btn_checkout -> {
-                val intent = Intent(mContext, ThankyouActivity::class.java)
-                startActivity(intent)
+               if (AppController.getInstance().getString("usertype").equals("3")){
+                    val intent = Intent(mContext, ThanksActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    val intent = Intent(mContext, ThankyouActivity::class.java)
+                    startActivity(intent)
+                }
             } R.id.btn_preview -> {
                 val intent = Intent(mContext, AfteraddActivity::class.java)
                 startActivity(intent)
