@@ -12,10 +12,11 @@ import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.LoginActivity;
 import com.stalkstock.commercial.view.activities.MainCommercialActivity;
 import com.stalkstock.utils.others.AppController;
+import com.stalkstock.vender.ui.LoginScreen;
 
 
 public class SelectuserActivity extends AppCompatActivity {
-    Button user,btn_advertiser, commercial;
+    Button user,btn_advertiser, commercial,vendor,driver;
     SelectuserActivity context;
     ImageView back;
 
@@ -29,18 +30,11 @@ public class SelectuserActivity extends AppCompatActivity {
        // back= findViewById(R.id.back);
         btn_advertiser= findViewById(R.id.btn_advertiser);
         commercial= findViewById(R.id.commercial);
+        vendor= findViewById(R.id.vendor);
+        driver= findViewById(R.id.driver);
 
 
 
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //store value in preference (select user)
-                AppController.getInstance().setString("usertype","3");
-                Intent intent=new Intent(context, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
         btn_advertiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +49,37 @@ public class SelectuserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AppController.getInstance().setString("usertype","2");
+                Intent intent=new Intent(context, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //store value in preference (select user)
+                AppController.getInstance().setString("usertype","3");
+                Intent intent=new Intent(context, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        vendor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppController.getInstance().setString("usertype","4");
+                Intent intent=new Intent(context, LoginScreen.class);
+                startActivity(intent);
+            }
+        });
+
+        driver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppController.getInstance().setString("usertype","5");
                 Intent intent=new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }

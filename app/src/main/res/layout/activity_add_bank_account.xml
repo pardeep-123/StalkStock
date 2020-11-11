@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/addbank_backarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow"
+            android:layout_marginLeft="10dp">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Bank Account"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_centerHorizontal="true">
+        </TextView>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_height="1dp"
+        android:background="#BDBCBC"
+        ></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name of Account"
+                android:textColor="#FFC3C3C3"
+                ></TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:hint="Enter name of account"
+                android:textColorHint="#FFC3C3C3"
+               android:paddingLeft="@dimen/_10sdp"
+                android:inputType="text"
+                android:textColor="#000"
+                android:background="@drawable/addbankedittext"></EditText>
+            <TextView
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name of Bank"
+                android:textColor="#FFC3C3C3"
+                ></TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:inputType="text"
+                android:hint="Enter name of bank"
+                android:textColorHint="#FFC3C3C3"
+
+                android:textColor="#000"
+                android:background="@drawable/addbankedittext">
+            </EditText>
+            <TextView
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Routing Number"
+                android:textColor="#FFC3C3C3"
+                ></TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:hint="Enter Routing Number"
+                android:textColorHint="#FFC3C3C3"
+                android:inputType="number"
+                android:textColor="#000"
+                android:background="@drawable/addbankedittext">
+            </EditText>
+            <TextView
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bank Account"
+                android:textColor="#FFC3C3C3"
+                ></TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:hint="Enter bank account"
+                android:textColorHint="#FFC3C3C3"
+                android:inputType="number"
+                android:textColor="#000"
+                android:background="@drawable/addbankedittext">
+
+            </EditText>
+            <TextView
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Bank Account"
+                android:textColor="#FFC3C3C3"
+                ></TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                android:hint="Confirm bank account"
+                android:inputType="number"
+                android:background="@drawable/addbankedittext">
+            </EditText>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp">
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/addbankaccbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:textAllCaps="false"
+                android:text="Save"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                android:background="@drawable/buttonshape"
+                >
+            </Button>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

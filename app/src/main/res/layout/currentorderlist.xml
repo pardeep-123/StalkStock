@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:id="@+id/neworder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/current_button"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/neworder_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="#fff"
+        android:text="New Orders"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:paddingLeft="@dimen/_10sdp"
+
+       ></TextView>
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/neworder_img"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_arrow_icon"
+                android:paddingRight="@dimen/_10sdp"
+                ></ImageView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/inprogress"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/cureentbackground"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/inprogress_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#000"
+            android:layout_gravity="left"
+            android:gravity="center_vertical"
+            android:text="In Progres"
+            android:paddingLeft="@dimen/_10sdp"
+            ></TextView>
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/inprogress_img"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_grey_icon"
+                android:paddingRight="@dimen/_10sdp"
+                ></ImageView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/redypickup"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/cureentbackground"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/redypickup_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:text="Ready For Pickup"
+            android:paddingLeft="@dimen/_10sdp"
+
+            ></TextView>
+            <ImageView
+                android:id="@+id/redy_img"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_grey_icon"
+                android:paddingRight="@dimen/_10sdp"
+                ></ImageView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

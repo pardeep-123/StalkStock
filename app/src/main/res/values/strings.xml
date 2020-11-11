@@ -78,8 +78,52 @@
     <string name="resend"><u>Resend</u></string>
     <string name="save">Save</string>
 
-
+    <string name="helptext">Nunc a velit quis neque malesuada accumsan eu at erat Ut feugiat necaugue non sollicitudin. Pellentesque volutpat blandit nunc eu aliquet. Phasellus vestibulum malesuada felies Nunc a velit quis neque malesuada accumsaneu at eart. Ut feugiat necaugue non sollicitudin. Pellentesque volutpat blandit nunc eu aliquet. Phasellus vestibulum malesuada felies Nunc a velit quis neque malesuadaaccumsan eu at erat.Ut feugiat necaugue non sollicitudin. Pellentesque volutpat  blandit nunc eu aliquet.Phasellus vestibulum malesuada felies</string>
+    <string name="forgotpassword">Forgot Password?</string>
+    <string name="dropdown">Select Category</string>
+    <string name="thanks"><u>No Thanks</u></string>
+    <string name="in_progress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="documents">Documents</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="search">Search</string>
     <string name="all_categories">All Categories</string>
+    <string name="current">Current</string>
+    <string name="finish_job">Finish Job</string>
+    <string name="add_amount">Add Amount</string>
+    <string name="name_on_account">Name on Account</string>
+    <string name="name_of_bank">Name of Bank</string>
+    <string name="routing_number">Routing Number</string>
+    <string name="bank_account">Bank Account</string>
+    <string name="confirm_bank_account">Confirm Bank Account</string>
+    <string name="license_number">License Number</string>
+    <string name="license_number_valid_through">License Number Valid Through</string>
+
+    <string name="registration_number">Registration Number</string>
+    <string name="registration_valid_through">Registration Valid Through</string>
+    <string name="vechicle_type">Vechicle Type</string>
+    <string name="make">Make</string>
+    <string name="model">Model</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="driver_s_license_number">Driver\'s License Number</string>
+
+    <string name="driver_s_license_valid_through">Driver\'s License Valid Through</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="upload_your_driver_s_license">Upload your driver\'s license</string>
+
+
+    <string-array name="Select_Category">
+        <item>Select Category</item>
+        <item>Vegetables</item>
+        <item>Fruits</item>
+        <item>Grains, Beans and Nuts</item>
+        <item>Meat and Poultry</item>
+        <item>Fish and Seafood</item>
+        <item>Dairy</item>
+        <item>Other(Please Specify Below)</item>
+    </string-array>
 
 </resources>

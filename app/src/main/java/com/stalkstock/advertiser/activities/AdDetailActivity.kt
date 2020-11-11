@@ -27,7 +27,7 @@ class AdDetailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var filterPopUp: PopupWindow
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+      //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_ad_detail)
         tv_heading.text = "Request Ad"

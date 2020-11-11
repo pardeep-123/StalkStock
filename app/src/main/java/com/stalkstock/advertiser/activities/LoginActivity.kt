@@ -10,6 +10,7 @@ import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.SignupConsumerActivity
+import com.stalkstock.driver.HomeActivity
 import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+       // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_login)
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv_forgot_password.setOnClickListener(this)
@@ -50,6 +51,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                    startActivity(Intent(mContext, SignupConsumerActivity::class.java))
                }else if(AppController.getInstance().getString("usertype").equals("2")){
                    startActivity(Intent(mContext, SignupActivity::class.java))
+               } else if(AppController.getInstance().getString("usertype").equals("5")){
+                   startActivity(Intent(mContext, com.stalkstock.driver.SignupActivity::class.java))
                }
 
             }
@@ -63,6 +66,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(Intent(mContext, SignupConsumerActivity::class.java))
                 }else if(AppController.getInstance().getString("usertype").equals("2")){
                     startActivity(Intent(mContext, SignupActivity::class.java))
+                }else if(AppController.getInstance().getString("usertype").equals("5")){
+                    startActivity(Intent(mContext, com.stalkstock.driver.SignupActivity::class.java))
                 }
             }
 
@@ -76,6 +81,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     finishAffinity()
                 }else if(AppController.getInstance().getString("usertype").equals("2")){
                     startActivity(Intent(mContext, MainCommercialActivity::class.java))
+                    finishAffinity()
+                }else if(AppController.getInstance().getString("usertype").equals("5")){
+                    startActivity(Intent(mContext, HomeActivity::class.java))
                     finishAffinity()
                 }
             }

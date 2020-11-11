@@ -10,6 +10,12 @@
     <color name="theme_green">#7DBB00</color>
     <color name="themeColor">#459972</color>
 
+    <color name="balck">#000</color>
+    <color name="green">#8BC34A</color>
+
+    <color name="dark_transparent">#40000000</color>
+
+
     <color name="dark_green">#3A4E22</color>
     <color name="light_grey">#C3C3C3</color>
     <color name="profile_grey">#FAFAFA</color>

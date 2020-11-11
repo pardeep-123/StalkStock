@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/homeicon"
+        
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/listicon"
+        android:icon="@drawable/listicon"
+        tools:ignore="MenuTitle" />
+
+    <!-- Here is the trick -->
+
+    <item
+        android:id="@+id/action_chat"
+        android:icon="@drawable/chaticon"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/usericon"
+        android:icon="@drawable/usericon"
+        tools:ignore="MenuTitle" />
+
+
+
+</menu>

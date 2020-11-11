@@ -23,7 +23,58 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".consumer.activities.MyOrderActivity"></activity>
+
+        <!--driver start-->
+        <activity android:name=".driver.AddBankAccount"/>
+        <activity android:name=".driver.AddDetailActivity"/>
+        <activity android:name=".driver.DriverInformationActivity"/>
+        <activity android:name=".driver.Edit_profile"/>
+        <activity android:name=".driver.EditDriverInfoActivity"/>
+        <activity android:name=".driver.HomeActivity"/>
+        <activity android:name=".driver.SignupActivity"/>
+        <activity android:name=".driver.UploadActivity"/>
+        <activity android:name=".driver.UploadDocActivity"/>
+
+
+        <!--driver end-->
+
+
+        <!--vender start-->
+        <activity android:name=".vender.ui.FilterScreen"/>
+        <activity android:name=".vender.ui.SearchScreen" />
+        <activity android:name=".vender.ui.Subscription" />
+        <activity android:name=".vender.ui.BidDetail" />
+        <activity android:name=".vender.ui.EditProfile" />
+        <activity android:name=".vender.ui.OrderDetails" />
+        <activity android:name=".vender.ui.NewOrderList" />
+        <activity android:name=".vender.ui.EditProduct" />
+        <activity android:name=".vender.ui.ProductDetail" />
+        <activity android:name=".vender.ui.NotificationSetting" />
+        <activity android:name=".vender.ui.NotificationScreen" />
+        <activity android:name=".vender.ui.Help" />
+        <activity android:name=".vender.ui.ThankYou" />
+        <activity android:name=".vender.ui.ChatBox" />
+        <activity android:name=".vender.ui.AddNewCard" />
+        <activity android:name=".vender.ui.SelectPaymentMethod" />
+        <activity android:name=".vender.ui.AddBankAccount" />
+        <activity android:name=".vender.ui.PaymentAccounts" />
+        <activity android:name=".vender.ui.EditBussinessProfile" />
+        <activity android:name=".vender.ui.BussinessProfile" />
+        <activity android:name=".vender.ui.BidProduct" />
+        <activity android:name=".vender.ui.ChangePassword" />
+        <activity android:name=".vender.ui.AddProduct" />
+        <activity android:name=".vender.ui.SelectCategory" />
+        <activity android:name=".vender.ui.BottomnavigationScreen" />
+        <activity android:name=".vender.ui.AddBusinessDetails" />
+        <activity android:name=".vender.ui.Verification" />
+        <activity android:name=".vender.ui.SignUp" />
+        <activity android:name=".vender.ui.ForgotPassword" />
+        <activity android:name=".vender.ui.LoginScreen" />
+
+
+        <!--vender end-->
+
+        <activity android:name=".consumer.activities.MyOrderActivity"/>
         <activity android:name=".consumer.activities.MyRequestActivity" />
         <activity android:name=".consumer.activities.EditAddressDetail2Activity" />
         <activity android:name=".advertiser.activities.EditAddressDetailActivity" /> <!-- commercial -->
@@ -123,98 +174,122 @@
         <activity
             android:name=".consumer.activities.SelectuserActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".consumer.activities.MainConsumerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".consumer.activities.SignupConsumerActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.TestingActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.AfteraddActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.NewActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.Notification_firstActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.ThankyouActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.PaymentActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.AddNewCardActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.NotificationListActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.EditAdActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.AdDetailActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.PreviewActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.ManagePaymentsActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.HelpActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.ChangePasswordActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.EditBusinessProfileActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.BusinessProfileActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.EditProfileActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.MainActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.SignupActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".advertiser.activities.LoginActivity"
             android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".advertiser.activities.SplashActivity">
             <intent-filter>
