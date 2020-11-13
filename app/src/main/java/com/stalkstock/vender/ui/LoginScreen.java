@@ -18,6 +18,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
+        ImageView back=findViewById(R.id.back);
         TextView forgot=findViewById(R.id.loginforgotpassword);
         Button sign = findViewById(R.id.loginbutton);
         TextView signup= findViewById(R.id.loginsignuptext);
@@ -25,7 +26,12 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         forgot.setOnClickListener(this);
         signup.setOnClickListener(this);
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override

@@ -21,9 +21,9 @@
             app:layout_constraintStart_toStartOf="parent"
             android:background="@color/dark_gray"
             />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:id="@+id/actHome"
-            android:textSize="17sp"
             android:layout_width="@dimen/value_0dp"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,21 +32,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Manage Payments"
             android:textColor="@color/black_color"
-            android:textStyle="bold"
             android:gravity="center"
-            android:autoSizeTextType="uniform"
             android:padding="@dimen/value_15dp"
             />
         <ImageView
             android:id="@+id/ivBackPayment"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
             app:layout_constraintTop_toTopOf="@id/actHome"
             app:layout_constraintBottom_toBottomOf="@id/actHome"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="@dimen/value_10dp"
-            android:background="@drawable/back_arrow"
-            android:backgroundTint="@color/black_color"
+            android:src="@drawable/back_arrow"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

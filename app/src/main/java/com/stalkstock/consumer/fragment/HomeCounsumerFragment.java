@@ -59,9 +59,9 @@ public class HomeCounsumerFragment extends Fragment {
         etSearch=view.findViewById(R.id.etSearch);
         ArrayList<CategoryModel> arrayList=new ArrayList<>();
 
-        arrayList.add(new CategoryModel("Vegetable",R.drawable.veg_icon));
+        arrayList.add(new CategoryModel("Vegetables",R.drawable.veg_icon));
         arrayList.add(new CategoryModel("Fruits",R.drawable.fruit_icon));
-        arrayList.add(new CategoryModel("Grains Beans,Nutts",R.drawable.grains_icon));
+        arrayList.add(new CategoryModel("Grains,Beans,Nuts",R.drawable.grains_icon));
         arrayList.add(new CategoryModel("Meat and Poultry",R.drawable.meat_ico));
         arrayList.add(new CategoryModel("Fish and Seafood",R.drawable.fish_icon1));
         arrayList.add(new CategoryModel("Dairy",R.drawable.dairy_ico));

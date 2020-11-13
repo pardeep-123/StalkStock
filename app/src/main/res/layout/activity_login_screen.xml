@@ -14,16 +14,31 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:textColor="#000"
-            android:layout_gravity="center"
-            android:gravity="center">
-        </TextView>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:id="@+id/back"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/back_arrow"
+               android:layout_centerVertical="true"
+                android:padding="10dp"/>
+           <com.stalkstock.utils.custom.TitiliumBoldTextView
+               android:textSize="16dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Sign In"
+               android:layout_centerInParent="true"
+               android:textColor="@color/black"
+                android:gravity="center">
+           </com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+
+
+       </RelativeLayout>
         <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

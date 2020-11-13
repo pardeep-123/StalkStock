@@ -13,22 +13,23 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:padding="10dp"
             android:src="@drawable/back_arrow" />
 
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:id="@+id/tv_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Add Bank Account"
+             android:text="Add Bank Account"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+             />
 
     </RelativeLayout>
 

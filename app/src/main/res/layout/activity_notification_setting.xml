@@ -21,18 +21,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/back_arrow"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp">
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+             android:layout_marginLeft="10dp">
         </ImageView>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Notifications"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:textSize="16dp"
-            android:layout_centerHorizontal="true">
-        </TextView>
+            android:layout_centerVertical="true"
+             android:textColor="#000"
+             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

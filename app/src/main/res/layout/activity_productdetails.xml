@@ -19,16 +19,17 @@
             android:layout_centerVertical="true"
             android:src="@drawable/back_arrow"
             android:padding="10dp"
+
             android:layout_marginLeft="10dp"
             />
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Details"
+             android:text="Details"
+
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"/>
+             android:layout_centerInParent="true"/>
 
         <ImageView
             android:id="@+id/search"

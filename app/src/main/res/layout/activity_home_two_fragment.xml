@@ -22,15 +22,13 @@
         android:layout_marginTop="5dp"
         tools:ignore="MissingConstraints">
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Product"
             android:textColor="#000"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true">
-        </TextView>
+            android:layout_centerHorizontal="true"/>
         <ImageView
             android:id="@+id/notification"
             android:layout_width="wrap_content"

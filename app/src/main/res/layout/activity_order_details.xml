@@ -21,20 +21,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/back_arrow"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp">
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+             android:layout_marginLeft="10dp">
         </ImageView>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
             android:id="@+id/appbar_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order Details"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:textColor="#000"
-            android:textSize="16dp"></TextView>
+             android:layout_centerHorizontal="true"
+            android:textColor="#000"/>
+
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

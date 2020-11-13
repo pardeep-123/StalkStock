@@ -21,15 +21,14 @@
             android:src="@drawable/header_logo" />
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:id="@+id/tv_titele"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/titilliumweb_semibold"
-            android:text="My Request"
+             android:text="My Request"
             android:textColor="@color/black"
-            android:textSize="18sp"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.SwitchCompat

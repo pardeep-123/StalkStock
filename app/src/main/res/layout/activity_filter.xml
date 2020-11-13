@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textStyle="bold"
             android:text="Filter"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+           />
 
         <TextView
             android:layout_width="wrap_content"

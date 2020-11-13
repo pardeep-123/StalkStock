@@ -21,18 +21,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
                 android:src="@drawable/back_arrow"
                 android:layout_marginLeft="10dp">
             </ImageView>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Verification"
-                android:textSize="16dp"
-                android:textStyle="bold"
+                android:layout_centerVertical="true"
                 android:textColor="#000"
-                android:layout_centerHorizontal="true">
-            </TextView>
+                android:layout_centerHorizontal="true"/>
         </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"

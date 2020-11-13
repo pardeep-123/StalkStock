@@ -21,13 +21,13 @@
             android:padding="10dp"
             android:layout_marginLeft="5dp"
             />
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add New Address"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
+
             android:layout_centerInParent="true"/>
 
     </RelativeLayout>

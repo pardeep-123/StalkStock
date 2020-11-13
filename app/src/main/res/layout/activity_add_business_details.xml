@@ -20,21 +20,20 @@
             <ImageView
                 android:id="@+id/addbusinessbackarrow"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content"
+                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:src="@drawable/back_arrow"
-                app:tint="#434343"
-                android:layout_marginLeft="10dp">
+                android:padding="10dp"
+                 android:layout_marginLeft="10dp">
             </ImageView>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="Add Business Details"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_centerHorizontal="true">
-            </TextView>
+                  android:textColor="@color/black"
+                android:layout_centerHorizontal="true"/>
         </RelativeLayout>
         <ScrollView
             android:id="@+id/scrolView_account"

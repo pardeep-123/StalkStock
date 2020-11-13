@@ -20,7 +20,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:background="@color/dark_gray"
             />
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="16dp"
             android:id="@+id/actHome"
             android:layout_width="@dimen/value_0dp"
             android:layout_height="match_parent"
@@ -30,22 +31,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Edit Address Detail"
             android:textColor="@color/black_color"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:autoSizeTextType="uniform"
-            android:padding="@dimen/value_15dp"
+             android:gravity="center"
+             android:padding="@dimen/value_15dp"
             />
         <ImageView
             android:id="@+id/ivBackAddress"
-            android:layout_width="@dimen/value_18dp"
-            android:layout_height="@dimen/value_14dp"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/actHome"
             app:layout_constraintBottom_toBottomOf="@id/actHome"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="@dimen/value_10dp"
-            android:background="@drawable/back_arrow"
-            android:backgroundTint="@color/black_color"
-            />
+            android:src="@drawable/back_arrow"
+             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -148,7 +147,7 @@
                 app:layout_constraintBottom_toTopOf="@id/rlAddressLine2"
                 >
 
-             
+
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
@@ -178,7 +177,7 @@
                 app:layout_constraintBottom_toTopOf="@id/rlCity"
                 >
 
-             
+
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
@@ -206,7 +205,7 @@
                 app:layout_constraintBottom_toTopOf="@id/rlState"
                 >
 
-             
+
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
@@ -234,7 +233,7 @@
                 app:layout_constraintBottom_toTopOf="@id/rlPostal"
                 >
 
-             
+
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
@@ -262,7 +261,7 @@
                 app:layout_constraintBottom_toTopOf="@id/rlSpecialInstruction"
                 >
 
-             
+
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
@@ -292,7 +291,7 @@
                 app:layout_constraintBottom_toTopOf="@id/tvTagTitle"
                 >
 
-             
+
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
