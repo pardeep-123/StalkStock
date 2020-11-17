@@ -1,158 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/account_bg">
+    android:background="@color/white">
 
-    <include layout="@layout/toolbar" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="20dp"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Business Name"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Meat Shop"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Business Telephone Number"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="675454657"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Website"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="www.dummy.com"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Business Address"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Brompton"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Business Type"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Meat"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Business Description"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum doler is the lorem ipsum doler"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-</LinearLayout>
-
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="bottom">
-        <com.stalkstock.utils.custom.TitiliumBoldButton
-            android:id="@+id/btn_edit"
+        android:orientation="vertical">
+        <include layout="@layout/toolbar" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/btn_shape"
-            android:gravity="center"
-            android:minHeight="45dp"
-            android:text="@string/edit_business_profile"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:padding="20dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Business Name"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Meat Shop"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Business Telephone Number"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="675454657"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Website"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="www.dummy.com"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Business Address"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Brompton"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Business Type"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Meat"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Business Description"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum doler is the lorem ipsum doler"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="bottom">
+            <com.stalkstock.utils.custom.TitiliumBoldButton
+                android:id="@+id/btn_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_shape"
+                android:gravity="center"
+                android:minHeight="45dp"
+                android:text="@string/edit_business_profile"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -1,459 +1,521 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg" >
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        tools:ignore="MissingConstraints">
-        <ImageView
-            android:id="@+id/order_details_backarrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_arrow"
-            android:layout_centerVertical="true"
-            android:padding="10dp"
-             android:layout_marginLeft="10dp">
-        </ImageView>
-
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:layout_centerVertical="true"
-            android:id="@+id/appbar_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Order Details"
-            android:gravity="center"
-             android:layout_centerHorizontal="true"
-            android:textColor="#000"/>
-
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_height="1dp"
-        android:background="#BDBCBC"
-        ></View>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:orientation="vertical">
-    <LinearLayout
-        android:layout_marginTop="@dimen/_15sdp"
-        android:id="@+id/order_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#D6D6D6"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tom Martin"
-                android:textColor="#000"
-                android:textSize="@dimen/_15sdp"></TextView>
-            <TextView
-                android:id="@+id/text_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#FF5722"
-                android:textStyle="bold"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_25sdp"
-                android:textSize="@dimen/_12sdp"></TextView>
-            <TextView
-                android:id="@+id/text_detailes2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#FF9800"
-                android:textStyle="bold"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_25sdp"
-                android:textSize="@dimen/_12sdp"></TextView>
-            <TextView
-                android:id="@+id/text_detailes3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#8BC34A"
-                android:textStyle="bold"
-
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_25sdp"
-                android:textSize="@dimen/_12sdp"></TextView>
-            <TextView
-                android:id="@+id/text_detailes4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#8BC34A"
-                android:textStyle="bold"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_25sdp"
-                android:textSize="@dimen/_12sdp"></TextView>
-            <TextView
-                android:id="@+id/text_de"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_25sdp"
-                android:textSize="@dimen/_12sdp"></TextView>
-            <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/down_arow"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_5sdp"
-                ></ImageView>
-
-
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order number"
-                android:textSize="@dimen/_12sdp"></TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:text="152KL0552"
-                android:textSize="@dimen/_12sdp"></TextView>
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:id="@+id/orderlistone1"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
-                tools:ignore="MissingConstraints"
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot">
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints">
 
-                    </ImageView>
-                    <TextView
-                        android:layout_marginLeft="@dimen/_25sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Creamy nachos"
-                        android:textColor="#000"
-                        android:textSize="@dimen/_15sdp"></TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Quantity : 10"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:textSize="@dimen/_12sdp"></TextView>
+                <ImageView
+                    android:id="@+id/order_details_backarrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/back_arrow"></ImageView>
 
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Regular"
-                        android:textSize="@dimen/_12sdp"></TextView>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/appbar_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="Order Details"
+                    android:textColor="#000"
+                    android:textSize="16dp" />
 
-                </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
                 android:layout_height="1dp"
-                android:background="#BDBCBC"
-                ></View>
-            <LinearLayout
-                android:id="@+id/order_detailstwo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                tools:ignore="MissingConstraints"
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot">
-
-                    </ImageView>
-                    <TextView
-                        android:layout_marginLeft="@dimen/_25sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Maharaja mac"
-                        android:textColor="#000"
-                        android:textSize="@dimen/_15sdp"></TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Quantity : 20"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:textSize="@dimen/_12sdp"></TextView>
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Regular"
-                        android:textSize="@dimen/_12sdp"></TextView>
-
-                </LinearLayout>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
                 android:layout_marginTop="8dp"
-                android:layout_height="1dp"
-                android:background="#BDBCBC"
-                ></View>
-            <LinearLayout
-                android:id="@+id/order_detailsthree"
+                android:background="#BDBCBC"></View>
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                tools:ignore="MissingConstraints"
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot">
+                android:layout_height="wrap_content">
 
-                    </ImageView>
-                    <TextView
-                        android:layout_marginLeft="@dimen/_25sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Maharaja mac"
-                        android:textColor="#000"
-                        android:textSize="@dimen/_15sdp"></TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Quantity : 10"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:textSize="@dimen/_12sdp"></TextView>
-
-                </RelativeLayout>
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Regular"
-                        android:textSize="@dimen/_12sdp"></TextView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:orientation="vertical">
 
-                </LinearLayout>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_height="1dp"
-                android:background="#BDBCBC"
-                ></View>
-            <LinearLayout
-                android:id="@+id/order_detailsfour"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                tools:ignore="MissingConstraints"
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/order_details"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot">
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="#D6D6D6"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints">
 
-                    </ImageView>
-                    <TextView
-                        android:layout_marginLeft="@dimen/_25sdp"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp">
+
+                            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:text="Tom Martin"
+                                android:textColor="#000"
+                                android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+
+                            <TextView
+                                android:id="@+id/text_details"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_25sdp"
+                                android:text=""
+                                android:textColor="#FF5722"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"></TextView>
+
+                            <TextView
+                                android:id="@+id/text_detailes2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_25sdp"
+                                android:text=""
+                                android:textColor="#FF9800"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"></TextView>
+
+                            <TextView
+                                android:id="@+id/text_detailes3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_25sdp"
+                                android:text=""
+
+                                android:textColor="#8BC34A"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"></TextView>
+
+                            <TextView
+                                android:id="@+id/text_detailes4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_25sdp"
+                                android:text=""
+                                android:textColor="#8BC34A"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"></TextView>
+
+                            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                android:id="@+id/text_de"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_25sdp"
+                                android:textSize="@dimen/_12sdp"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/down_arow"></ImageView>
+
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp">
+
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:text="Order number"
+                                android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:text="152KL0552"
+                                android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/orderlistone1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:orientation="vertical"
+                            tools:ignore="MissingConstraints">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_8sdp"
+                                android:layout_marginTop="@dimen/_8sdp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:src="@drawable/red_dot">
+
+                                </ImageView>
+
+                                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_25sdp"
+                                    android:text="Creamy nachos"
+                                    android:textColor="#000"
+                                    android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:text="Quantity : 10"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:text="Regular"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#BDBCBC"></View>
+
+                        <LinearLayout
+                            android:id="@+id/order_detailstwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:orientation="vertical"
+                            tools:ignore="MissingConstraints">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_8sdp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:src="@drawable/red_dot">
+
+                                </ImageView>
+
+                                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_25sdp"
+                                    android:text="Maharaja mac"
+                                    android:textColor="#000"
+                                    android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:text="Quantity : 20"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:text="Regular"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#BDBCBC"></View>
+
+                        <LinearLayout
+                            android:id="@+id/order_detailsthree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:orientation="vertical"
+                            tools:ignore="MissingConstraints">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_8sdp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:src="@drawable/red_dot">
+
+                                </ImageView>
+
+                                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_25sdp"
+                                    android:text="Maharaja mac"
+                                    android:textColor="#000"
+                                    android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:text="Quantity : 10"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:text="Regular"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#BDBCBC"></View>
+
+                        <LinearLayout
+                            android:id="@+id/order_detailsfour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:orientation="vertical"
+                            tools:ignore="MissingConstraints">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_8sdp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:src="@drawable/red_dot">
+
+                                </ImageView>
+
+                                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_25sdp"
+                                    android:text="Maharaj mac"
+                                    android:textColor="#000"
+                                    android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:text="Quantity : 10"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:text="Regular"
+                                    android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maharaj mac"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Order Details"
                         android:textColor="#000"
-                        android:textSize="@dimen/_15sdp"></TextView>
-                    <TextView
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quantity : 10"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:textSize="@dimen/_12sdp"></TextView>
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="ORDER NUMBER"
+                        android:textColor="#000" />
 
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginLeft="@dimen/_5sdp"
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Regular"
-                        android:textSize="@dimen/_12sdp"></TextView>
+                        android:layout_marginLeft="15dp"
+                        android:text="123456789"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
 
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="DATE"
+                        android:textColor="#000" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="MAY 1,2020 AT 04:07 PM"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="DELIVERY BY"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="John Due"
+                        android:textColor="#000" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="DELIVERY TO"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="20sp"
+                        android:text="43-D San Francisco,near church USA"
+                        android:textColor="#000" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="PAID"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="20sp"
+                        android:src="@drawable/visa_img"></ImageView>
                 </LinearLayout>
-            </LinearLayout>
-
-
+            </ScrollView>
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Order Details"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="ORDER NUMBER"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:text="123456789"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="DATE"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:text="MAY 1,2020 AT 04:07 PM"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="DELIVERY BY"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            android:text="John Due"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="DELIVERY TO"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            android:layout_marginBottom="20sp"
-            android:text="43-D San Francisco,near church USA"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="PAID"
-            android:textColor="#000" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/visa_img"></ImageView>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

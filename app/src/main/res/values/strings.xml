@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stalk &amp; Stock</string>
+    <string name="app_name">STALK + STOCK</string>
     <string name="log_in">Log In</string>
     <string name="email">Email</string>
     <string name="enter_email">Enter email</string>
@@ -113,6 +113,17 @@
     <string name="driver_s_license_valid_through">Driver\'s License Valid Through</string>
     <string name="vehicle_type">Vehicle Type</string>
     <string name="upload_your_driver_s_license">Upload your driver\'s license</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_last_name">Enter last name</string>
+    <string name="get_started_text">Welcome to STALK</string>
+    <string name="get_started_text2"><b> + STOCK</b>,</string>
+    <string name="get_started_text3">your virtual</string>
+    <string name="get_started_text4">marketplace! Let\'s get started by creating an\naccount that\'s tailored to your needs.\nHow would you best describe yourself?</string>
+    <string name="i_want_to_purchase_items_for_my_household">I want to purchase items for my household</string>
+    <string name="i_want_to_purchase_items_in_bulk_or_my_business">I want to purchase items in bulk or my business</string>
+    <string name="i_want_to_sell_items_i_produce">I want to sell items I produce</string>
+    <string name="i_want_to_offer_delivery_services_for_items">I want to offer delivery services for items</string>
+    <string name="i_want_to_promote_my_goods_and_services">I want to promote my goods and services</string>
 
 
     <string-array name="Select_Category">

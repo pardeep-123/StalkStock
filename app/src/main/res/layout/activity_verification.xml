@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundimage"
+    android:background="@color/white"
     >
+    <!--
+    android:background="@drawable/backgroundimage"
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,16 +57,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="vertical">
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Verification Code"
                 android:textSize="@dimen/_18sdp"
                 android:textColor="#000"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:gravity="center"></TextView>
-            <TextView
+                 android:layout_gravity="center"
+                android:gravity="center"/>
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +73,7 @@
                 android:textSize="16dp"
                 android:textColor="#353333"
                 android:layout_gravity="center"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
 
         </LinearLayout>
         <LinearLayout
@@ -81,12 +83,12 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:orientation="vertical">
-        <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PIN CODE"
             android:textColor="#000"
-            android:textSize="14dp"></TextView>
+            android:textSize="14dp"/>
         <LinearLayout
             android:id="@+id/otp_layout"
             android:layout_width="match_parent"
@@ -96,7 +98,7 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="4">
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/otp_edit_box1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -112,7 +114,7 @@
                 android:textColorLink="#000"
                 android:textColor="#000"
                 android:imeOptions="actionNext" />
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/otp_edit_box2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -127,7 +129,7 @@
                 android:maxLength="1"
                 android:imeOptions="actionNext"
                 />
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/otp_edit_box3"
                 android:layout_weight="1"
                 android:layout_marginRight="20dp"
@@ -143,7 +145,7 @@
                 android:imeOptions="actionNext"
                 />
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/otp_edit_box4"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -160,16 +162,15 @@
 
 
         </LinearLayout>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/resendotp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:gravity="right"
                 android:text="@string/resend"
-                android:textColor="#535252">
-            </TextView>
-            <Button
+                android:textColor="#8C8C8C"/>
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/verifybutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,7 +180,7 @@
                 android:textColor="#fff"
                 android:textSize="16dp"
                 android:background="@drawable/buttonshape">
-            </Button>
+            </com.stalkstock.utils.custom.TitiliumBoldButton>
 
         </LinearLayout>
 

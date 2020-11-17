@@ -54,7 +54,10 @@ ImageView home_img,list_img,cart_img,profile_img;
                 profile_img.setImageResource(R.drawable.user_black_icon);
                 switchFragment(new HomeCounsumerFragment());
             }
-        }); list.setOnClickListener(new View.OnClickListener() {
+        });
+
+
+        list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 home_img.setImageResource(R.drawable.home_black_icon);

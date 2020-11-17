@@ -1,242 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        tools:ignore="MissingConstraints">
-        <ImageView
-            android:id="@+id/editprofile_backarrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_arrow"
-            android:padding="10dp"
-            android:layout_centerVertical="true"
-             android:layout_marginLeft="10dp">
-        </ImageView>
 
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:id="@+id/appbar_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Edit Profile"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_height="1dp"
-        android:background="#BDBCBC"
-        ></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/editprofile_imageset"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:src="@drawable/edit_img"
-                app:civ_border_color="#8C8D8E"
-                app:civ_border_overlay="true"
-                app:civ_border_width="1dp" />
-            <ImageView
-                android:id="@+id/editprofile_camera"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:backgroundTintMode="screen"
-                android:padding="45dp"
-                android:src="@drawable/camera" />
-        </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload Photo"
-            android:textColor="#000"
-            android:layout_gravity="center"
-            android:layout_centerHorizontal="true"/>
-        <RelativeLayout
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <EditText
-                android:id="@+id/editprofile_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextshape"
-                android:paddingLeft="15dp"
-                android:inputType="text"
-                android:hint="Enter Name"
-                android:textStyle="bold"
-                android:textColorHint="#FFC3C3C3"
-                android:textSize="15dp"
-                android:textColor="#000"/>
-            <TextView
+            android:layout_marginTop="10dp"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/editprofile_backarrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="5dp"
-                android:background="#fff"
-                android:text="Name"
-                android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
-                android:textSize="14dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <EditText
-                android:id="@+id/editprofile_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextshape"
-                android:paddingLeft="15dp"
-                android:hint="Enter your email address"
-                android:inputType="textEmailAddress"
-                android:textStyle="bold"
-                android:textColorHint="#FFC3C3C3"
-                android:textSize="15dp"
-                android:textColor="#000"/>
-            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow"></ImageView>
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/appbar_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="5dp"
-                android:background="#fff"
-                android:text="Email"
-                android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
-                android:textSize="14dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <EditText
-                android:id="@+id/editboxbusinesslicense"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextshape"
-                android:paddingLeft="15dp"
-                android:hint="Enter mobile"
-                android:textStyle="bold"
-                android:textColorHint="#FFC3C3C3"
-                android:inputType="number"
-                android:textSize="15dp"
-                android:textColor="#000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="5dp"
-                android:background="#fff"
-                android:text="Mobile"
-                android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
-                android:textSize="14dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <EditText
-                android:id="@+id/editprofile_address"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextshape"
-                android:paddingLeft="15dp"
-                android:hint="Enter address"
-                android:inputType="textMultiLine"
-                android:textStyle="bold"
-                android:textColorHint="#FFC3C3C3"
-                android:textSize="15dp"
-                android:textColor="#000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="5dp"
-                android:background="#fff"
-                android:text="Address"
-                android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
-                android:textSize="14dp"/>
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Edit Profile"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#BDBCBC"></View>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical"
+
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/editprofile_imageset"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="20dp"
+                                android:gravity="center"
+                                android:src="@drawable/edit_img"
+                                app:civ_border_color="#8C8D8E"
+                                app:civ_border_overlay="true"
+                                app:civ_border_width="1dp" />
+
+                            <ImageView
+                                android:id="@+id/editprofile_camera"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTintMode="screen"
+                                android:padding="45dp"
+                                android:src="@drawable/camera" />
+                        </RelativeLayout>
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:text="Upload Photo"
+                            android:textColor="#000" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="20dp">
+
+                            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                                android:id="@+id/editprofile_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/edittextshape"
+                                android:hint="@string/enter_first_name"
+                                android:inputType="text"
+                                android:paddingLeft="15dp"
+                                android:textColor="#000"
+                                android:textColorHint="#FFC3C3C3"
+                                android:textSize="15dp"
+                                 />
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="35dp"
+                                android:layout_marginTop="5dp"
+                                android:background="#fff"
+                                android:text="First Name"
+                                android:textColor="#FFC3C3C3"
+                                android:textSize="14dp"
+                                 />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="20dp">
+
+                            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                                android:id="@+id/editprofile_last_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/edittextshape"
+                                android:hint="@string/enter_last_name"
+                                android:inputType="text"
+                                android:paddingLeft="15dp"
+                                android:textColor="#000"
+                                android:textColorHint="#FFC3C3C3"
+                                android:textSize="15dp"  />
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="35dp"
+                                android:layout_marginTop="5dp"
+                                android:background="#fff"
+                                android:text="Last Name"
+                                android:textColor="#FFC3C3C3"
+                                android:textSize="14dp"
+                                 />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="20dp">
+
+                            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                                android:id="@+id/editprofile_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/edittextshape"
+                                android:hint="Enter your email address"
+                                android:inputType="textEmailAddress"
+                                android:paddingLeft="15dp"
+                                android:textColor="#000"
+                                android:textColorHint="#FFC3C3C3"
+                                android:textSize="15dp"
+                                  />
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="35dp"
+                                android:layout_marginTop="5dp"
+                                android:background="#fff"
+                                android:text="Email"
+                                android:textColor="#FFC3C3C3"
+                                android:textSize="14dp"
+                                 />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="20dp">
+
+                            <EditText
+                                android:id="@+id/editboxbusinesslicense"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/edittextshape"
+                                android:hint="Enter mobile"
+                                android:inputType="number"
+                                android:paddingLeft="15dp"
+                                android:textColor="#000"
+                                android:textColorHint="#FFC3C3C3"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="35dp"
+                                android:layout_marginTop="5dp"
+                                android:background="#fff"
+                                android:text="Mobile"
+                                android:textColor="#FFC3C3C3"
+                                android:textSize="14dp"
+                                />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="20dp">
+
+                            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                                android:id="@+id/editprofile_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/edittextshape"
+                                android:hint="Enter address"
+                                android:inputType="textMultiLine"
+                                android:paddingLeft="15dp"
+                                android:textColor="#000"
+                                android:textColorHint="#FFC3C3C3"
+                                android:textSize="15dp"  />
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="35dp"
+                                android:layout_marginTop="5dp"
+                                android:background="#fff"
+                                android:text="Address"
+                                android:textColor="#FFC3C3C3"
+                                android:textSize="14dp"
+                                  />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:layout_marginBottom="@dimen/_20sdp">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+
+                        android:id="@+id/editprofile_savebtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/buttonshape"
+                        android:text="Save"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </ScrollView>
 
     </LinearLayout>
 
 
-
-        </LinearLayout>
-        <RelativeLayout
-            android:layout_gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp">
-            <Button
-
-                android:id="@+id/editprofile_savebtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:textAllCaps="false"
-                android:text="Save"
-                android:textColor="#fff"
-                android:textSize="16dp"
-                android:background="@drawable/buttonshape">
-            </Button>
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

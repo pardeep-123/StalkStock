@@ -1,241 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/account_bg"
+    android:background="@color/white"
     tools:context=".advertiser.fragments.AddPostFragment">
 
-    <include layout="@layout/toolbar" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/light_grey"/>
-
-    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Default Payment Method"
-        android:layout_margin="20dp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_paymethod"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_above="@+id/btn_add"/>-->
-
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
     <LinearLayout
-        android:id="@+id/one"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VISA CARD"
-                android:padding="10dp"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/light_grey"
-                android:textSize="15sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <include layout="@layout/toolbar" />
 
-            <ImageView
-                android:id="@+id/item_address_rb"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/radio_circle" />
-        </RelativeLayout>
-        <LinearLayout
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"/>
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_bg"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:minHeight="90dp"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:weightSum="1">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/visa_img"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:paddingLeft="10dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="**** **** **** 7655"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
-
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="MM/YY 12/24 CVV ***"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/layout_delete"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:paddingLeft="10dp"
-                    android:gravity="end"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/iv_delete"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/dlt_icon"/>
-                </LinearLayout>
-            </LinearLayout>
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Added on Jan 10, 2020"
-                android:textColor="@color/light_grey"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/two"
-        android:layout_below="@+id/one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:text="Default Payment Method"
+            android:layout_margin="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VISA CARD"
-                android:padding="10dp"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/light_grey"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:id="@+id/item_address_rb1"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/radio_circle" />
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_bg"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:minHeight="90dp"
-            android:orientation="vertical">
-
+            android:layout_height="match_parent">
+            <!--    <androidx.recyclerview.widget.RecyclerView-->
+            <!--        android:id="@+id/rv_paymethod"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="match_parent"-->
+            <!--        android:layout_above="@+id/btn_add"/>-->
 
             <LinearLayout
+                android:id="@+id/one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:weightSum="1">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/visa_img"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:paddingLeft="10dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="**** **** **** 7655"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/home_grey"
+                        android:text="VISA CARD"
+                        android:padding="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/light_grey"
                         android:textSize="15sp" />
 
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="MM/YY 12/24 CVV ***"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/layout_delete1"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:paddingLeft="10dp"
-                    android:gravity="end"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
                     <ImageView
-                        android:id="@+id/iv_delete1"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/dlt_icon"/>
+                        android:id="@+id/item_address_rb"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/radio_circle" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bg"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:minHeight="90dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/visa_img"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.7"
+                            android:paddingLeft="10dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="**** **** **** 7655"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/home_grey"
+                                android:textSize="15sp" />
+
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="MM/YY 12/24 CVV ***"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/home_grey"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/layout_delete"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.3"
+                            android:paddingLeft="10dp"
+                            android:gravity="end"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/iv_delete"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/dlt_icon"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Added on Jan 10, 2020"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
+
+            <LinearLayout
+                android:id="@+id/two"
+                android:layout_below="@+id/one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Added on Jan 10, 2020"
-                android:textColor="@color/light_grey"
-                android:textSize="15sp" />
-        </LinearLayout>
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VISA CARD"
+                        android:padding="10dp"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/item_address_rb1"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/radio_circle" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bg"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:minHeight="90dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/visa_img"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.7"
+                            android:paddingLeft="10dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="**** **** **** 7655"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/home_grey"
+                                android:textSize="15sp" />
+
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="MM/YY 12/24 CVV ***"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/home_grey"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/layout_delete1"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.3"
+                            android:paddingLeft="10dp"
+                            android:gravity="end"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/iv_delete1"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/dlt_icon"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Added on Jan 10, 2020"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.stalkstock.utils.custom.TitiliumSemiBoldButton
+                android:id="@+id/btn_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add New Payment Method"
+                android:layout_margin="20dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/edit_text_bg"
+                android:textColor="@color/theme_green"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
     </LinearLayout>
 
-    <com.stalkstock.utils.custom.TitiliumSemiBoldButton
-        android:id="@+id/btn_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add New Payment Method"
-        android:layout_margin="20dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/edit_text_bg"
-        android:textColor="@color/theme_green"
-        android:textSize="13sp" />
 </RelativeLayout>
-
-</LinearLayout>

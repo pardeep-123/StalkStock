@@ -1,190 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/white"
    >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_60sdp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        tools:ignore="MissingConstraints">
-        <ImageView
-            android:id="@+id/id_backarrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_arrow"
-             android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            >
-        </ImageView>
-
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:layout_centerVertical="true"
-            android:textColor="#000"
-            android:layout_centerHorizontal="true"/>
-
-
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_height="1dp"
-        android:background="#BDBCBC"
-        ></View>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="horizontal">
-    <EditText
-        android:layout_weight="5"
-        android:id="@+id/search"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:background="@drawable/searchshape"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:hint="Search.."></EditText>
-        <ImageView
-            android:layout_weight="0.5"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_searchicon"></ImageView>
-    </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Categories"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:textColor="#000"
-            android:textSize="@dimen/_15sdp"></TextView>
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
 
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:orientation="horizontal">
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_60sdp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    tools:ignore="MissingConstraints">
+                    <ImageView
+                        android:id="@+id/id_backarrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/back_arrow"
+                        android:padding="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        >
+                    </ImageView>
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search"
+                        android:layout_centerVertical="true"
+                        android:textColor="#000"
+                        android:layout_centerHorizontal="true"/>
 
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-
-                <TextView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:text="meet"
-                    android:background="#EFECEC"
-                    android:textColor="#8BC34A"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"></TextView>
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:layout_gravity="top"
-                    android:src="@drawable/cross_icon"></ImageView>
-
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-
-                <TextView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:text="Dairy"
-                    android:background="#EFECEC"
-                    android:textColor="#8BC34A"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"></TextView>
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:layout_gravity="top"
-                    android:src="@drawable/cross_icon"></ImageView>
-
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-
-                <TextView
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="1dp"
+                    android:background="#BDBCBC"
+                    ></View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
+                        android:layout_weight="5"
+                        android:id="@+id/search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/searchshape"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:hint="Search.."></com.stalkstock.utils.custom.TitiliumSemiBoldEditText>
+                    <ImageView
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_searchicon"></ImageView>
+                </LinearLayout>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:text="SefoodProduce"
-                    android:background="#EFECEC"
-                    android:textColor="#8BC34A"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"></TextView>
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginLeft="@dimen/_90sdp"
-                    android:layout_gravity="top"
-                    android:src="@drawable/cross_icon"></ImageView>
-
-
-            </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:text="All Categories"
+                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="meet"
+                            android:background="#EFECEC"
+                            android:textColor="#8BC34A"
+                            android:textSize="@dimen/_13sdp"
+                        ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginLeft="@dimen/_40sdp"
+                            android:layout_gravity="top"
+                            android:src="@drawable/cross_icon"></ImageView>
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:text="Dairy"
+                            android:background="#EFECEC"
+                            android:textColor="#8BC34A"
+                            android:textSize="@dimen/_13sdp"
+                            ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginLeft="@dimen/_40sdp"
+                            android:layout_gravity="top"
+                            android:src="@drawable/cross_icon"></ImageView>
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:text="SefoodProduce"
+                            android:background="#EFECEC"
+                            android:textColor="#8BC34A"
+                            android:textSize="@dimen/_13sdp"
+                       ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginLeft="@dimen/_90sdp"
+                            android:layout_gravity="top"
+                            android:src="@drawable/cross_icon"></ImageView>
+
+
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

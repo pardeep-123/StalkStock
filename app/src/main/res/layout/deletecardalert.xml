@@ -28,7 +28,7 @@
                 app:civ_border_width="1dp" />
 
         </RelativeLayout>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Are you sure want to clear\nthis chat?"
@@ -36,14 +36,14 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="18dp">
-        </TextView>
+        </com.stalkstock.utils.custom.TitiliumRegularTextView>
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumRegularButton
                 android:id="@+id/yesbtn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -58,8 +58,8 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 >
 
-            </Button>
-            <Button
+            </com.stalkstock.utils.custom.TitiliumRegularButton>
+            <com.stalkstock.utils.custom.TitiliumRegularButton
                 android:layout_weight="1"
                 android:id="@+id/nobtn"
                 android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:textSize="15dp"
                 >
 
-            </Button>
+            </com.stalkstock.utils.custom.TitiliumRegularButton>
         </LinearLayout>
 
     </LinearLayout>

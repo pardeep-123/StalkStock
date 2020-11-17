@@ -1,84 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_60sdp">
-    <LinearLayout
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-         tools:ignore="MissingConstraints">
-
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Orders"
-            android:layout_centerInParent="true"
-            android:textColor="#000"
-            android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_height="1dp"
-            android:background="#BDBCBC"
-            ></View>
         <LinearLayout
-            android:id="@+id/lvBtn"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_60sdp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/current_button"
-                android:text="Current"
-                android:textAllCaps="false"
-                android:textColor="#fff" />
-            <Button
-                android:id="@+id/btnPast"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Past"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:textAllCaps="false"
-                android:background="@drawable/past_button"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    tools:ignore="MissingConstraints">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:textSize="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Orders"
+                        android:layout_centerInParent="true"
+                        android:textColor="#000"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="1dp"
+                    android:background="#BDBCBC"
+                    ></View>
+                <LinearLayout
+                    android:id="@+id/lvBtn"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/btnCurrent"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/current_button"
+                        android:text="Current"
+                        android:textAllCaps="false"
+                        android:textColor="#fff" />
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/btnPast"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Past"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:textColor="#000"
+                        android:textAllCaps="false"
+                        android:background="@drawable/past_button"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_below="@id/lvBtn"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:id="@+id/currentrecyclerview"/>
+
+            </LinearLayout>
+
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/lvBtn"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:id="@+id/currentrecyclerview"/>
 
-    </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

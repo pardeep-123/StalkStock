@@ -1,430 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/toolbar_myorders">
-        <View
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/dark_gray"
-            />
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:id="@+id/actHome"
-            android:layout_width="@dimen/value_0dp"
-            android:layout_height="match_parent"
+            android:layout_height="?actionBarSize"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Order Details"
-            android:textColor="@color/black_color"
-            android:gravity="center"
-            android:padding="@dimen/value_15dp"
-            />
-        <ImageView
-            android:id="@+id/ivBackDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:layout_constraintTop_toTopOf="@id/actHome"
-            app:layout_constraintBottom_toBottomOf="@id/actHome"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/value_10dp"
-            android:src="@drawable/back_arrow"
-             />
+            android:id="@+id/toolbar_myorders">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@color/dark_gray"
+                />
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textSize="16dp"
+                android:id="@+id/actHome"
+                android:layout_width="@dimen/value_0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Order Details"
+                android:textColor="@color/black_color"
+                android:gravity="center"
+                android:padding="@dimen/value_15dp"
+                />
+            <ImageView
+                android:id="@+id/ivBackDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:layout_constraintTop_toTopOf="@id/actHome"
+                app:layout_constraintBottom_toBottomOf="@id/actHome"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:src="@drawable/back_arrow"
+                />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:fillViewport="true">
 
-            <RelativeLayout
-                android:id="@+id/top"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp">
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="45dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/mc_img"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/kfc"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/top"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/img"
-                    android:layout_marginLeft="10dp"
-                    android:text="McDonald's"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/kfc"
-                    android:textSize="12sp"
-                    android:layout_toRightOf="@+id/img"
-                    android:layout_marginLeft="10dp"
-                    android:text="New York, USA"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp">
+                    <ImageView
+                        android:id="@+id/img"
+                        android:layout_width="45dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/mc_img"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    <TextView
+                        android:id="@+id/kfc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/img"
+                        android:layout_marginLeft="10dp"
+                        android:text="McDonald's"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/kfc"
+                        android:textSize="12sp"
+                        android:layout_toRightOf="@+id/img"
+                        android:layout_marginLeft="10dp"
+                        android:text="New York, USA"/>
 
-                    android:textColor="@color/orange_colour"
-                    android:text="Pending"
-                    android:textSize="@dimen/_15sdp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/orange_colour"
+                        android:text="Pending"
+                        android:textSize="@dimen/_15sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+
+                        android:id="@+id/tvStatus"
+                        />
+
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginTop="20sp"
                     android:layout_marginRight="10dp"
-
-                    android:id="@+id/tvStatus"
+                    android:layout_marginLeft="10dp"
                     />
 
-
-            </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="20sp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Your Order with KFC is on the way"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Order"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:textSize="19sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp">
-
-                <ImageView
-                    android:id="@+id/img1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/red_dot"
-                    android:layout_marginTop="10sp"/>
                 <TextView
-                    android:id="@+id/name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your Order with KFC is on the way"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15sp"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Creamy nachos"
+                    android:text="Your Order"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="19sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_marginLeft="20sp"
-                    android:textSize="18sp"
-                    android:layout_toRightOf="@+id/img1"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="$9.50"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_alignParentRight="true"
-                    android:textSize="18sp"
-                    android:layout_marginRight="15sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Regular"
-                    android:layout_toRightOf="@+id/img1"
+                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/red_dot"
+                        android:layout_marginTop="10sp"/>
+                    <TextView
+                        android:id="@+id/name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Creamy nachos"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="20sp"
+                        android:textSize="18sp"
+                        android:layout_toRightOf="@+id/img1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$9.50"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_marginRight="15sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Regular"
+                        android:layout_toRightOf="@+id/img1"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/name_text"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/name_text"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp">
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/red_dot"
+                        android:layout_marginTop="10sp"/>
+                    <TextView
+                        android:id="@+id/name_text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maharja mac"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="20sp"
+                        android:textSize="18sp"
+                        android:layout_toRightOf="@+id/img2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$9.50"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18sp"
+                        android:layout_marginRight="15sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Regular"
+                        android:layout_toRightOf="@+id/img2"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/name_text2"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Item Total"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:text="$69.50"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="McDonald's Restaurant Charges"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:text="$5.50"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery Free"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:text="$1.50"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hp Charges"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:text="$5.50"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery Charges"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:text="$4.50"
+                        />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginTop="30sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     />
 
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="10sp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp">
-
-                <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/red_dot"
-                    android:layout_marginTop="10sp"/>
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/black"
+                        android:text="$4.50"
+                        />
+                </RelativeLayout>
+
                 <TextView
-                    android:id="@+id/name_text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Maharja mac"
+                    android:text="Order Details"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="18sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_marginLeft="20sp"
-                    android:textSize="18sp"
-                    android:layout_toRightOf="@+id/img2"/>
+                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$9.50"
+                    android:layout_marginLeft="15dp"
+                    android:text="ORDER NUMBER"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_alignParentRight="true"
-                    android:textSize="18sp"
-                    android:layout_marginRight="15sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Regular"
-                    android:layout_toRightOf="@+id/img2"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/name_text2"
-                    />
+                    android:text="123456789"/>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Item Total"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="DATE"
                     android:textColor="@color/black"
-                    android:text="$69.50"
-                    />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp">
+                    android:layout_marginTop="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="McDonald's Restaurant Charges"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="$5.50"
-                    />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp">
+                    android:textStyle="bold"
+                    android:text="MAY 1,2020 AT 04:07 PM"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Free"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="DELIVERY BY"
                     android:textColor="@color/black"
-                    android:text="$1.50"
-                    />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp">
+                    android:layout_marginTop="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hp Charges"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    android:text="$5.50"
-                    />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp">
+                    android:textStyle="bold"
+                    android:text="John Due"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Charges"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="DELIVERY TO"
                     android:textColor="@color/black"
-                    android:text="$4.50"
-                    />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="30sp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp">
+                    android:layout_marginTop="10dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total"
+                    android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/black"
-                    android:text="$4.50"
-                    />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order Details"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="ORDER NUMBER"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="123456789"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="DATE"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="MAY 1,2020 AT 04:07 PM"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="DELIVERY BY"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="John Due"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="DELIVERY TO"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginBottom="20sp"
-                android:text="43-D San Francisco,near church USA"/>
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20sp"
+                    android:text="43-D San Francisco,near church USA"/>
 
 
 
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+        </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

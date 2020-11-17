@@ -1,282 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg" >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:orientation="vertical">
+    android:background="@color/white" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        tools:ignore="MissingConstraints">
-        <ImageView
-            android:id="@+id/paymentsbackarrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="10dp"
-            android:src="@drawable/back_arrow"
-             android:layout_marginLeft="10dp">
-        </ImageView>
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Payment Accounts"
-            android:textColor="#000"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_height="1dp"
-            android:background="#BDBCBC"
-            ></View>
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
+            tools:ignore="MissingConstraints"
             android:orientation="vertical">
-            <RelativeLayout
-                android:id="@+id/rlone"
 
-                android:layout_marginTop="@dimen/_10sdp"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints">
+                <ImageView
+                    android:id="@+id/paymentsbackarrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="VISA CARD"
-                    android:textColor="#424141"
-                    android:textSize="@dimen/_14sdp">
-                </TextView>
-                <ImageView
-                    android:id="@+id/radio_fillone"
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:src="@drawable/radiobutton"
-                    android:layout_weight="1"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:buttonTint="#8BC34A"
-                    />
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:src="@drawable/back_arrow"
+                    android:layout_marginLeft="10dp">
+                </ImageView>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:textSize="16dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Accounts"
+                    android:textColor="#000"
+                    android:layout_centerHorizontal="true"/>
             </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="1dp"
+                android:background="#BDBCBC"
+                ></View>
             <LinearLayout
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/cureentbackground">
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:id="@+id/rlone"
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/visa_img"
-                        android:padding="@dimen/_20sdp"
-                        ></ImageView>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="**** **** **** 5609"></TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MM/YY 12/24 CVV***"></TextView>
-                    </LinearLayout><RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                        android:text="VISA CARD"
+                        android:textColor="#424141"
+                        android:textSize="14sp"/>
                     <ImageView
-                        android:id="@+id/visadelete"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:src="@drawable/dlt_icon"
-                        android:layout_gravity="right"
+                        android:id="@+id/radio_fillone"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center"
+                        android:gravity="right"
+                        android:src="@drawable/radiobutton"
+                        android:layout_weight="1"
                         android:layout_alignParentRight="true"
-                        android:paddingRight="@dimen/_10sdp"
-                        android:paddingTop="@dimen/_5sdp"
-                        ></ImageView>
-
+                        android:layout_centerInParent="true"
+                        android:buttonTint="#8BC34A"
+                        />
                 </RelativeLayout>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="bottom"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Added on Dec 24,2019"></TextView>
-            </LinearLayout>
-            <RelativeLayout
-                android:id="@+id/rltwo"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Master CARD"
-                    android:textColor="#424141"
-                    android:textSize="@dimen/_14sdp">
-                </TextView>
-                <ImageView
-                    android:id="@+id/radio_emptyone"
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/radio_circle"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    android:buttonTint="#8BC34A"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-
-                    />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/cureentbackground">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/master_card"
-                        android:padding="@dimen/_20sdp"
-                        ></ImageView>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="**** **** **** 4486"></TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MM/YY 12/24 CVV***"></TextView>
-                    </LinearLayout>
-                    <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/mastercarddelete"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:src="@drawable/dlt_icon"
-                        android:layout_gravity="right"
-                        android:layout_alignParentRight="true"
-                        android:paddingRight="@dimen/_10sdp"
-                        android:paddingTop="@dimen/_5sdp"
-                        ></ImageView>
-
-                </RelativeLayout>
-
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="bottom"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Added on Dec 24,2019"></TextView>
-            </LinearLayout>
-            <RelativeLayout
-                android:id="@+id/rlthree"
+                    android:orientation="vertical"
+                    android:background="@drawable/cureentbackground">
 
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Master CARD"
-                    android:textColor="#424141"
-                    android:textSize="@dimen/_14sdp">
-                </TextView>
-                <ImageView
-                    android:id="@+id/radio_emptytwo"
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/radio_circle"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    android:buttonTint="#8BC34A"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-
-                    />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/cureentbackground">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/paypal"
-                        android:padding="@dimen/_20sdp"
-                        ></ImageView>
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="**** **** **** 4486"></TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MM/YY 12/24 CVV***"></TextView>
-                    </LinearLayout>
-                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:id="@+id/paypaldelete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/visa_img"
+                            android:padding="@dimen/_20sdp"
+                            ></ImageView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="@color/card_number_color"
+                                android:text="**** **** **** 5609"/>
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/card_number_color"
+                                android:text="MM/YY 12/24 CVV***"/>
+                        </LinearLayout><RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/visadelete"
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
                             android:src="@drawable/dlt_icon"
@@ -284,44 +127,224 @@
                             android:layout_alignParentRight="true"
                             android:paddingRight="@dimen/_10sdp"
                             android:paddingTop="@dimen/_5sdp"
-                            ></ImageView>
-
+                            />
 
                     </RelativeLayout>
-
-
+                    </LinearLayout>
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="bottom"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Added on Dec 24,2019"/>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/rltwo"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Master CARD"
+                        android:textColor="#424141"
+                        android:textSize="14sp"/>
+                    <ImageView
+                        android:id="@+id/radio_emptyone"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/radio_circle"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:buttonTint="#8BC34A"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+
+                        />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="bottom"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="Added on Dec 24,2019"></TextView>
-        </LinearLayout>
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp">
+                    android:orientation="vertical"
+                    android:background="@drawable/cureentbackground">
 
-        <Button
-            android:id="@+id/paymentsaccbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:textAllCaps="false"
-            android:text="Add New Payment Method"
-            android:textColor="#8BC34A"
-            android:textSize="15dp"
-            android:background="@drawable/edittextshape"
-            >
-        </Button>
-        </LinearLayout>
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/master_card"
+                            android:padding="@dimen/_20sdp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="@color/card_number_color"
+                                android:text="**** **** **** 4486"/>
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/card_number_color"
+                                android:text="MM/YY 12/24 CVV***"/>
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/mastercarddelete"
+                                android:layout_width="@dimen/_25sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:src="@drawable/dlt_icon"
+                                android:layout_gravity="right"
+                                android:layout_alignParentRight="true"
+                                android:paddingRight="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_5sdp"
+                                />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="bottom"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Added on Dec 24,2019"/>
+                </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/rlthree"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Master CARD"
+                        android:textColor="#424141"
+                        android:textSize="14sp"/>
+                    <ImageView
+                        android:id="@+id/radio_emptytwo"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/radio_circle"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:buttonTint="#8BC34A"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+
+                        />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/cureentbackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/paypal"
+                            android:padding="@dimen/_20sdp"
+                            ></ImageView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="@color/card_number_color"
+                                android:text="**** **** **** 4486"/>
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/card_number_color"
+                                android:text="MM/YY 12/24 CVV***"/>
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/paypaldelete"
+                                android:layout_width="@dimen/_25sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:src="@drawable/dlt_icon"
+                                android:layout_gravity="right"
+                                android:layout_alignParentRight="true"
+                                android:paddingRight="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_5sdp"
+                                />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="bottom"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Added on Dec 24,2019"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp">
+
+                <com.stalkstock.utils.custom.TitiliumBoldButton
+                    android:id="@+id/paymentsaccbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textAllCaps="false"
+                    android:text="Add New Payment Method"
+                    android:textColor="#8BC34A"
+                    android:textSize="15dp"
+                    android:background="@drawable/edittextshape"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</RelativeLayout>

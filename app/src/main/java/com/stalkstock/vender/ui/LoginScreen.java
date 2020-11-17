@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stalkstock.R;
+import com.stalkstock.consumer.activities.SelectuserActivity;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +23,10 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         TextView forgot=findViewById(R.id.loginforgotpassword);
         Button sign = findViewById(R.id.loginbutton);
         TextView signup= findViewById(R.id.loginsignuptext);
+
+        ImageView iv_fb= findViewById(R.id.iv_fb);
+        ImageView iv_gmail= findViewById(R.id.iv_gmail);
+        ImageView iv_twitter= findViewById(R.id.iv_twitter);
         sign.setOnClickListener(this);
         forgot.setOnClickListener(this);
         signup.setOnClickListener(this);
@@ -29,9 +34,41 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                startActivity(new Intent(LoginScreen.this, SelectuserActivity.class));
+                finishAffinity();
             }
         });
+
+        iv_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginScreen.this, BottomnavigationScreen.class));
+                finishAffinity();
+            }
+        });
+
+        iv_gmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginScreen.this, BottomnavigationScreen.class));
+                finishAffinity();
+            }
+        });
+
+        iv_twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginScreen.this, BottomnavigationScreen.class));
+                finishAffinity();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+        startActivity(new Intent(LoginScreen.this, SelectuserActivity.class));
+        finishAffinity();
     }
 
     @Override

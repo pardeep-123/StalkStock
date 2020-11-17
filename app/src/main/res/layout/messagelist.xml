@@ -36,7 +36,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/msgusername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                     android:textSize="16sp"
                     android:layout_alignParentLeft="true"
                     android:text="Jamie Jai"/>
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/messagetime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                     android:text="2:30 PM"
                     android:textColor="#8BC34A"/>
             </RelativeLayout>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/messagerecive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,82 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
+    android:background="@color/white"
     >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/back_arrow"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            />
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-            android:text="Meat"
-           android:textColor="@color/black"
-
-           android:layout_centerInParent="true"/>
-
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp"
-            android:layout_toLeftOf="@+id/fillter"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/search_icon"/>
-        <ImageView
-            android:id="@+id/notification"
-            android:layout_width="wrap_content"
-            android:padding="@dimen/_8sdp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/search"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/notification_icon"/>
-
-        <ImageView
-            android:id="@+id/fillter"
-            android:padding="@dimen/_8sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/filter_icn"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/light_grey"/>
-
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:src="@drawable/ad_img_2"
-        android:layout_marginTop="10dp"/>
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_recycle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_arrow"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                />
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meat"
+                android:textColor="@color/black"
+
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/fillter"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/search_icon"/>
+            <ImageView
+                android:id="@+id/notification"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/search"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/notification_icon"/>
+
+            <ImageView
+                android:id="@+id/fillter"
+                android:padding="@dimen/_8sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/filter_icn"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/light_grey"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:src="@drawable/ad_img_2"
+            android:layout_marginTop="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

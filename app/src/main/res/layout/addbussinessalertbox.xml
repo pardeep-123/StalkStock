@@ -29,7 +29,7 @@
 
 
         </RelativeLayout>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,10 +37,8 @@
             android:textColor="#000"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="@dimen/_18sdp">
-        </TextView>
-        <TextView
+             android:textSize="@dimen/_18sdp"/>
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your business profile has been\nsuccessfully submitted for review. You will\nreceive a notification when it is approved."
@@ -48,8 +46,8 @@
             android:layout_gravity="center"
             android:textColor="#5C5B5B"
             android:textSize="14dp">
-        </TextView>
-        <Button
+        </com.stalkstock.utils.custom.TitiliumRegularTextView>
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/close_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,8 +57,7 @@
             android:text="Close"
             android:textColor="#fff"
             android:textSize="16dp"
-            android:background="@drawable/buttonshape">
-        </Button>
+            android:background="@drawable/buttonshape"/>
 
     </LinearLayout>
 

@@ -169,7 +169,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                         btnyes.setTextColor(getResources().getColor(R.color.balck));
                         Intent intent9 = new Intent(getActivity(), LoginScreen.class);
                         startActivity(intent9);
-
+                        requireActivity().finish();
                         deleteDialog.dismiss();
                     }
                 });

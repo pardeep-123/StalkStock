@@ -32,14 +32,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_weight="1"
                     android:id="@+id/itemname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Beef Fresh Meet"
-                    android:textStyle="bold"
-                    android:textColor="#000"></TextView>
+                     android:textColor="#000"/>
                 <ImageView
                     android:id="@+id/edititem"
                     android:layout_width="wrap_content"
@@ -54,30 +53,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:orientation="vertical">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="250g"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:textSize="15dp"></TextView>
+                     android:textColor="#000"
+                    android:textSize="15dp"/>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/editname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="Beef"
-                    android:textStyle="bold"
-                    android:textColor="#E81414"
-                    android:textSize="15dp"></TextView>
-                <TextView
+                     android:textColor="#E81414"
+                    android:textSize="15dp"/>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/lb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +82,7 @@
                     android:text="$9.50/LB"
                     android:textStyle="bold"
                     android:textColor="#E81414"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="15dp"/>
             </LinearLayout>
             <LinearLayout
 
@@ -95,7 +92,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="@dimen/_8sdp">
 
-                <Button
+                <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/notavble"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
@@ -105,8 +102,8 @@
                     android:textSize="12dp"
                     android:textColor="#fff"
                     android:textAllCaps="false"
-                    android:background="@drawable/backgroundshapebtn"></Button>
-                <Button
+                    android:background="@drawable/backgroundshapebtn"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/avble"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
@@ -118,7 +115,7 @@
                     android:textSize="12dp"
                     android:textColor="#fff"
                     android:textAllCaps="false"
-                    android:background="@drawable/backgroundshapebtn"></Button>
+                    android:background="@drawable/backgroundshapebtn"></com.stalkstock.utils.custom.TitiliumBoldButton>
             </LinearLayout>
         </LinearLayout>
 

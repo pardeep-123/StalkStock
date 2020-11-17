@@ -16,18 +16,18 @@
             android:background="@drawable/current_button"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical">
-    <TextView
+    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
         android:id="@+id/neworder_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="16sp"
         android:textColor="#fff"
         android:text="New Orders"
         android:layout_gravity="center_vertical"
         android:gravity="center"
         android:paddingLeft="@dimen/_10sdp"
 
-       ></TextView>
+       ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
             <ImageView
                 android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/neworder_img"
@@ -46,17 +46,17 @@
             android:background="@drawable/cureentbackground"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical">
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/inprogress_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="16sp"
             android:textColor="#000"
             android:layout_gravity="left"
             android:gravity="center_vertical"
             android:text="In Progres"
             android:paddingLeft="@dimen/_10sdp"
-            ></TextView>
+            ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
             <ImageView
                 android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/inprogress_img"
@@ -75,17 +75,17 @@
             android:background="@drawable/cureentbackground"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical">
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/redypickup_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="16sp"
             android:textColor="#000"
             android:gravity="center_vertical"
             android:text="Ready For Pickup"
             android:paddingLeft="@dimen/_10sdp"
 
-            ></TextView>
+            ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
             <ImageView
                 android:id="@+id/redy_img"
                 android:layout_marginTop="@dimen/_5sdp"

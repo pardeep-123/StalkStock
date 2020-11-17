@@ -3,6 +3,7 @@ package com.stalkstock.vender.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.stalkstock.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectCategory extends AppCompatActivity implements View.OnClickListener {
     Spinner spinner;
@@ -69,7 +73,24 @@ public class SelectCategory extends AppCompatActivity implements View.OnClickLis
 
        // addItemsOnSpinner2();
 
+
+
+
         spinner= (Spinner) findViewById(R.id.spinner);
+        List<String> list = new ArrayList<String>();
+        list.add("Select Category");
+        list.add("Vegetables");
+        list.add("Fruits");
+        list.add("Grains, Beans and Nuts");
+        list.add("Meat and Poultry");
+        list.add("Fish and Seafood");
+        list.add("Dairy");
+        list.add("Other(Please Specify Below)");
+
+
+
+
+         spinner.setAdapter(new ArrayAdapter(this, R.layout.spinner_item_text,list));
 
 
     }

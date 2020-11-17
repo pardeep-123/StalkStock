@@ -20,7 +20,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:id="@+id/requestid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center_horizontal"
                     >
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/bidid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/biddate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:textSize="12sp"
                     android:layout_marginTop="3dp"
                     android:text="June 10, 2020"/>
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
@@ -63,7 +63,7 @@
                     android:textSize="12sp"
                     android:layout_marginTop="3dp"
                     android:text="|"/>
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/bidtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_gravity="center">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/bidusername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -109,15 +109,14 @@
                         android:textSize="17sp"
                         android:layout_alignParentLeft="true"
                         android:text="Jamie Jai"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/messagetime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:layout_alignParentRight="true"
                         android:text="$80.50"
-                        android:textStyle="bold"
-                        android:layout_marginRight="@dimen/_20sdp"
+                         android:layout_marginRight="@dimen/_20sdp"
                         android:textColor="#8BC34A"/>
                     <ImageView
                         android:layout_width="wrap_content"

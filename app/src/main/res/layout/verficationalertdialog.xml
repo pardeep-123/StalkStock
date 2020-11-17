@@ -29,17 +29,16 @@
                 app:civ_border_width="1dp" />
 
         </RelativeLayout>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Let's add your business"
             android:textColor="#000"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="18dp">
-        </TextView>
-        <Button
+             android:textSize="18dp">
+        </com.stalkstock.utils.custom.TitiliumBoldTextView>
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/verify_continuebutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,8 +48,7 @@
             android:text="Continue"
             android:textColor="#fff"
             android:textSize="16dp"
-            android:background="@drawable/buttonshape">
-        </Button>
+            android:background="@drawable/buttonshape"/>
 
     </LinearLayout>
 

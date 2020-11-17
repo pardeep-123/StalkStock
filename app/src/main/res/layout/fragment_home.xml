@@ -1,144 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/account_bg"
+    android:background="@color/white"
     tools:context=".advertiser.fragments.HomeFragment">
-    <RelativeLayout
-        android:id="@+id/rl_top_menu"
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true">
-
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:gravity="center">
+            android:id="@+id/rl_top_menu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true">
 
-            <ImageView
-                android:id="@+id/iv_loc"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:src="@drawable/location_icon" />
 
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_toRightOf="@+id/iv_loc"
-                android:layout_height="wrap_content"
-                android:text="New York 920..."
+                android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_loc"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/location_icon" />
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_toRightOf="@+id/iv_loc"
+                    android:layout_height="wrap_content"
+                    android:text="New York 920..."
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/header_logo" />
+
+            <ImageView
+                android:id="@+id/iv_notification"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/notification_icon" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/user_black_icon" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/header_logo" />
-
-        <ImageView
-            android:id="@+id/iv_notification"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/notification_icon" />
+        <View
+            android:id="@+id/shadow1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/light_grey" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/no_ad_img" />
 
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/you_have_no_ads_at_the_momemt"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/user_black_icon" />
+                <com.stalkstock.utils.custom.TitiliumLightTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/looks_like_you_have_no_ads_running_yet_nlets_get_you_started"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <com.stalkstock.utils.custom.TitiliumBoldButton
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:minHeight="45dp"
+                    android:text="@string/create_ad"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                app:tabBackground="@drawable/tab_layout_selector"
+                app:tabMode="fixed"
+                android:layout_marginTop="15dp"
+                app:tabIndicatorColor="@android:color/transparent"
+                android:layout_width="match_parent"
+                app:tabTextColor="@color/black"
+                app:tabTextAppearance="@style/customFontTab"
+                app:tabSelectedTextColor="@color/white"
+                android:layout_height="wrap_content"
+                />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/tabLayout"
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/shadow1"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/light_grey" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/no_ad_img" />
-
-            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/you_have_no_ads_at_the_momemt"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"
-                android:textSize="22sp" />
-
-            <com.stalkstock.utils.custom.TitiliumLightTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/looks_like_you_have_no_ads_running_yet_nlets_get_you_started"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <com.stalkstock.utils.custom.TitiliumBoldButton
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:background="@drawable/btn_shape"
-                android:gravity="center"
-                android:minHeight="45dp"
-                android:text="@string/create_ad"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            app:tabBackground="@drawable/tab_layout_selector"
-            app:tabMode="fixed"
-            android:layout_marginTop="15dp"
-            app:tabIndicatorColor="@android:color/transparent"
-            android:layout_width="match_parent"
-            app:tabTextColor="@color/black"
-            app:tabTextAppearance="@style/customFontTab"
-            app:tabSelectedTextColor="@color/white"
-            android:layout_height="wrap_content"
-            />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/tabLayout"
-            android:layout_height="match_parent" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

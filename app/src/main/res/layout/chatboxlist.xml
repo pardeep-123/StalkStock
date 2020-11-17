@@ -30,7 +30,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:src="@drawable/chat_img"></ImageView>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:id="@+id/chatsendtext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -44,10 +44,10 @@
 
                     android:background="@drawable/chatboxlistshape"
                     android:textColor="#000"
-                    android:textSize="14dp"></TextView>
+                    android:textSize="14dp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
 
             </LinearLayout>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:id="@+id/sendertimer"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                 android:textColor="#101010"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
-                android:layout_below="@+id/sendchatliner"></TextView>
+                android:layout_below="@+id/sendchatliner"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
 
         </RelativeLayout>
         <RelativeLayout
@@ -78,7 +78,7 @@
                 tools:ignore="MissingConstraints"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:layout_weight="1"
                     android:id="@+id/chattext"
                     android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical"
                     android:textColor="#fff"
-                    android:textSize="14dp"></TextView>
+                    android:textSize="14dp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
 
 
                 <ImageView
@@ -107,7 +107,7 @@
 
 
             </LinearLayout>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:id="@+id/userchattime"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                 android:textColor="#090909"
                 android:gravity="center_horizontal"
                 android:layout_marginRight="10dp"
-                android:layout_below="@+id/userchatliner"></TextView>
+                android:layout_below="@+id/userchatliner"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
 
         </RelativeLayout>
 

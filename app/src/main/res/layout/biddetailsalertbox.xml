@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         >
-        <EditText
+        <com.stalkstock.utils.custom.TitiliumBoldEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
@@ -29,17 +29,15 @@
             android:paddingLeft="15dp"
             android:hint="Enter bid amount"
             android:inputType="number"
-            android:textStyle="bold"
-            android:textColorHint="#FFC3C3C3"
+             android:textColorHint="#FFC3C3C3"
             android:textSize="15dp"
             android:textColor="#000"/>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="5dp"
-            android:textStyle="bold"
-            android:textColor="#FFC3C3C3"
+             android:textColor="#FFC3C3C3"
             android:background="#fff"
             android:text="Bid Amount"
             android:inputType="number"
@@ -50,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
        >
-        <EditText
+        <com.stalkstock.utils.custom.TitiliumBoldEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
@@ -58,22 +56,20 @@
             android:paddingLeft="15dp"
             android:hint="Enter description"
             android:inputType="textMultiLine"
-            android:textStyle="bold"
-            android:textColorHint="#FFC3C3C3"
+             android:textColorHint="#FFC3C3C3"
             android:textSize="15dp"
             android:textColor="#000"/>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="5dp"
             android:background="#fff"
-            android:textStyle="bold"
-            android:textColor="#FFC3C3C3"
+             android:textColor="#FFC3C3C3"
             android:text="Description"
             android:textSize="14dp"/>
     </RelativeLayout>
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/submitbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +81,7 @@
             android:textSize="16dp"
             android:background="@drawable/buttonshape"
             >
-        </Button>
+        </com.stalkstock.utils.custom.TitiliumBoldButton>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

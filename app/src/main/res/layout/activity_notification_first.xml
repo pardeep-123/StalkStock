@@ -1,78 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    android:background="@drawable/account_bg"
+    android:background="@color/white"
     tools:context=".advertiser.fragments.AddPostFragment">
 
-    <include layout="@layout/toolbar" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/light_grey" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+        <include layout="@layout/toolbar" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey" />
 
-        <ImageView
-            android:id="@+id/iv_congrats"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/noitfy_empty"
-            android:layout_centerHorizontal="true"/>
-
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_gravity="center_horizontal"
-            android:text="No New Updates!"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:padding="20dp"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:id="@+id/tv_msg"
+            <ImageView
+                android:id="@+id/iv_congrats"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/noitfy_empty"
+                android:layout_centerHorizontal="true"/>
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_gravity="center_horizontal"
+                android:text="No New Updates!"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/tv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Stay tuned! Notifications about your\n activity will show up here."
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+        <com.stalkstock.utils.custom.TitiliumBoldButton
+            android:id="@+id/btn_ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Stay tuned! Notifications about your\n activity will show up here."
-            android:gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_shape"
+            android:gravity="center"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:minHeight="45dp"
+            android:text="Notification Settings"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
 
     </LinearLayout>
-    <com.stalkstock.utils.custom.TitiliumBoldButton
-        android:id="@+id/btn_ok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/btn_shape"
-        android:gravity="center"
-        android:layout_marginRight="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:minHeight="45dp"
-        android:text="Notification Settings"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
 
-</LinearLayout>
+</RelativeLayout>

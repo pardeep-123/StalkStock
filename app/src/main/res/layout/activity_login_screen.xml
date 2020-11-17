@@ -4,208 +4,217 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundimage"
-    >
+    android:background="@color/white"
+ >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp">
+        android:orientation="vertical">
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-
-           <ImageView
-               android:id="@+id/back"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/back_arrow"
-               android:layout_centerVertical="true"
-                android:padding="10dp"/>
-           <com.stalkstock.utils.custom.TitiliumBoldTextView
-               android:textSize="16dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Sign In"
-               android:layout_centerInParent="true"
-               android:textColor="@color/black"
-                android:gravity="center">
-           </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-
-
-       </RelativeLayout>
-        <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_140sdp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/app_icons"
-        android:layout_marginTop="50dp"></ImageView>
         <RelativeLayout
-            android:layout_marginTop="70dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextshape"
-                android:paddingLeft="15dp"
-                android:hint="Enter Email"
-                android:textStyle="bold"
-                android:inputType="textEmailAddress"
-                android:textColorHint="#FFC3C3C3"
-                android:textSize="15dp"
-                android:textColor="#000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="5dp"
-                android:background="#fff"
-                android:text="Email"
-                android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
-                android:textSize="14dp"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittextshape"
-                android:paddingLeft="15dp"
-                android:hint="Password"
-                android:textColorHint="#FFC3C3C3"
-                android:textStyle="bold"
-                android:inputType="textPassword"
-                android:textSize="15dp"
-                android:textColor="#000"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="5dp"
-                android:background="#fff"
-                android:text="Password"
-                android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
-                android:textSize="14dp" />
-        </RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginTop="8dp"
-    android:orientation="vertical">
-        <TextView
-            android:id="@+id/loginforgotpassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/forgotpassword"
-            android:textColor="#FFC3C3C3"
-            android:layout_gravity="right"
-            android:gravity="right"></TextView>
-
-    <Button
-        android:id="@+id/loginbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textAllCaps="false"
-        android:text="Sign In"
-        android:textColor="#fff"
-        android:textSize="16dp"
-        android:background="@drawable/buttonshape"
-        >
-    </Button>
-
-</LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't have an account? "
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="15dp"
-                tools:ignore="MissingConstraints"></TextView>
-            <TextView
-                android:id="@+id/loginsignuptext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:text="Sign Up"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:textColor="#7DBB00"
-                android:textSize="15dp"
-                tools:ignore="MissingConstraints"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/fb_ico"
-                />
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/back_arrow" />
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="Sign In"
+                android:textColor="@color/black"
+                android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
                 <ImageView
                     android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_140sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/app_icons"></ImageView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginRight="20dp">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/edittextshape"
+                        android:hint="Enter Email"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="15dp"
+                        android:textColor="#000"
+                        android:textColorHint="#FFC3C3C3"
+                        android:textSize="15dp"
+                         />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#fff"
+                        android:text="Email"
+                        android:textColor="@color/gray_editext_hint"
+                        android:textSize="14dp"
+                          />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/edittextshape"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="15dp"
+                        android:textColor="#000"
+                        android:textColorHint="#FFC3C3C3"
+                        android:textSize="15dp"
+                         />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#fff"
+                        android:text="Password"
+                        android:textColor="#FFC3C3C3"
+                        android:textSize="14dp"
+                          />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/googlr_ico" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
 
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/loginforgotpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:text="@string/forgotpassword"
+                        android:textColor="#FFC3C3C3"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/loginbutton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="Sign In"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/twitter_ico"
-                    />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:text="Don't have an account? "
+                        android:textColor="#000"
+                        android:textSize="15dp"
+                        tools:ignore="MissingConstraints"/>
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/loginsignuptext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="2dp"
+                        android:gravity="center"
+                        android:text="Sign Up"
+                        android:textColor="#7DBB00"
+                        android:textSize="15dp"
+                        tools:ignore="MissingConstraints"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_fb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fb_ico" />
 
 
+                    <ImageView
+                        android:id="@+id/iv_gmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/googlr_ico" />
 
-        </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_twitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/twitter_ico" />
+
+
+                </LinearLayout>
             </LinearLayout>
 
         </ScrollView>
-        </LinearLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

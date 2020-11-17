@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundimage"
+    android:background="@color/white"
     >
+    <!--
+    android:background="@drawable/backgroundimage"
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,7 +77,7 @@
                         android:src="@drawable/img_uploader_ad" />
 
                 </RelativeLayout>
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -88,7 +91,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessname"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -97,20 +100,18 @@
                         android:paddingLeft="15dp"
                         android:inputType="text"
                         android:hint="Enter Name"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
 
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Name"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
 
                         android:textSize="14dp"/>
                 </RelativeLayout>
@@ -120,7 +121,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessname2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -128,12 +129,11 @@
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
                         android:hint="Enter business name"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
@@ -143,7 +143,7 @@
                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"
 
-                        android:textStyle="bold" />
+                         />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_marginTop="8dp"
@@ -151,7 +151,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinesslicense"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -160,19 +160,17 @@
                         android:paddingLeft="15dp"
                         android:hint="Enter business license"
                         android:inputType="text"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Business License"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -181,7 +179,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessEmail"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -190,19 +188,17 @@
                         android:paddingLeft="15dp"
                         android:hint="Enter your email address"
                         android:inputType="textEmailAddress"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Email"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -211,7 +207,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessmobile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -220,19 +216,17 @@
                         android:paddingLeft="15dp"
                         android:hint="Enter mobile"
                         android:inputType="number"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Mobile"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
 
                         android:textSize="14dp"/>
                 </RelativeLayout>
@@ -242,7 +236,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessmobilenumber"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -251,19 +245,17 @@
                         android:paddingLeft="15dp"
                         android:inputType="number"
                         android:hint="Enter Business Telephone Number"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Business Telephone Number"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -272,7 +264,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinesswebsite"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -281,20 +273,18 @@
                         android:paddingLeft="15dp"
                         android:inputType="textMultiLine"
                         android:hint="Enter website"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
 
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Website"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -303,7 +293,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessadress"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -313,19 +303,17 @@
                         android:inputType="textMultiLine"
                         android:maxLines="3"
                         android:hint="Business Address"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Business Address"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -334,7 +322,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/addbusinesstype"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -346,19 +334,17 @@
                         android:hint="Select Business Type"
                         android:drawableRight="@drawable/down_arow"
                         android:paddingRight="@dimen/_10sdp"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Business Type"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
 
                         android:textSize="14dp"/>
                 </RelativeLayout>
@@ -368,7 +354,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessabout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -377,19 +363,17 @@
                         android:paddingLeft="15dp"
                         android:inputType="textMultiLine"
                         android:hint="About your business"
-                        android:textStyle="bold"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="#FFC3C3C3"
                         android:textSize="15dp"
                         android:textColor="#000"/>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="About Your Business"
-                        android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
+                         android:textColor="#FFC3C3C3"
                         android:textSize="14dp"/>
                 </RelativeLayout>
             <LinearLayout
@@ -398,7 +382,7 @@
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_marginBottom="30dp"
                 android:layout_marginRight="@dimen/_15sdp">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/addbusinessavebutton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -407,8 +391,7 @@
                     android:text="Save"
                     android:textColor="#fff"
                     android:textSize="16dp"
-                    android:background="@drawable/buttonshape">
-                </Button>
+                    android:background="@drawable/buttonshape"/>
             </LinearLayout>
 
             </LinearLayout>
