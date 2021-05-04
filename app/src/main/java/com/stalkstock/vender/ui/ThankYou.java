@@ -35,13 +35,16 @@ public class ThankYou extends AppCompatActivity implements View.OnClickListener 
                 onBackPressed();
                 break;
             case R.id.vieworder:
-                Intent intent = new Intent(this, Verification.class);
+               /* Intent intent = new Intent(this, Verification.class);
             //    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
              //   intent.putExtra("t","m");
                 intent.putExtra("type","my");
 
-                startActivity(intent);
+                startActivity(intent);*/
 
+                Intent intent = new Intent(this, BottomnavigationScreen.class);
+                startActivity(intent);
+                finishAffinity();
 
                 break;
 

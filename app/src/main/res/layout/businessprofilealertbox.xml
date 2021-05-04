@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/alertbox"
     android:layout_marginLeft="25dp"
     android:layout_marginRight="25dp"
@@ -40,27 +40,26 @@
                 />
         </RelativeLayout>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your business profile has been\nsuccessfully updated!"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="15dp">
-        </TextView>
-        <Button
+             android:textSize="15dp">
+        </com.stalkstock.utils.custom.TitiliumRegularTextView>
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/done_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginBottom="10dp"
             android:textAllCaps="false"
             android:text="Done"
             android:textColor="#fff"
             android:textSize="16dp"
             android:background="@drawable/buttonshape">
-        </Button>
+        </com.stalkstock.utils.custom.TitiliumBoldButton>
 
     </LinearLayout>
 

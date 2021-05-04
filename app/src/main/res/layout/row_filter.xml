@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:layout_marginLeft="@dimen/_6sdp"
+    android:layout_marginRight="@dimen/_6sdp"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-    <TextView
+    <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:id="@+id/tv_item"
         android:paddingLeft="@dimen/_12sdp"
         android:paddingRight="@dimen/_12sdp"

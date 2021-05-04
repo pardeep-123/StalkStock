@@ -41,6 +41,12 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener {
         c2.setOnClickListener(this)
         delete123.setOnClickListener(this)
         click.setOnClickListener(this)
+
+         btn_manage_payment.setOnClickListener {
+            val intent = Intent(this, ManagePaymentsActivity::class.java)
+             intent.putExtra("from","add_post")
+             startActivity(intent)
+        }
     }
 
     private fun selectImage(ivProduct: ImageView, type:String) {

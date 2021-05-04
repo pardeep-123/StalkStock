@@ -57,42 +57,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/rl_t"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tv_l"
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:text="@string/get_started_text"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tv_l2"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:text=" Stalk"
+                        android:textAllCaps="true"
+                        android:textColor="#98C55D"
+                        android:textSize="16dp" />
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tv_bold"
+                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:text="@string/get_started_text2"
+                        android:layout_gravity="center_vertical"
+
+                        android:textColor="#7DB733"
+                        android:textSize="16dp" />
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_toRightOf="@+id/tv_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                         android:text="@string/get_started_text3"
+                        android:layout_gravity="center_vertical"
+
+                        android:textColor="@android:color/black"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:id="@+id/tv_l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                     android:layout_gravity="center_horizontal"
-                     android:text="@string/get_started_text"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                   android:id="@+id/tv_bold"
-                    android:layout_toRightOf="@+id/tv_l"
+                    android:id="@+id/tbsdgfsd"
+                    android:layout_below="@+id/rl_t"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                     android:layout_gravity="center_horizontal"
-                    android:text="@string/get_started_text2"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:layout_toRightOf="@+id/tv_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                     android:layout_gravity="center_horizontal"
-                    android:text="@string/get_started_text3"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:layout_below="@+id/tv_l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
                      android:layout_gravity="center_horizontal"
                     android:text="@string/get_started_text4"
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />
+
 
             </RelativeLayout>
 
@@ -111,6 +135,16 @@ comsumer ==user
 “Producer”= vender
 
 -->
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/i_want_to"
+                    android:textColor="@color/green"
+                    android:textSize="20sp" />
+
                 <com.stalkstock.utils.custom.TitiliumRegularButton
                     android:id="@+id/user"
                     android:layout_width="match_parent"
@@ -120,6 +154,7 @@ comsumer ==user
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:paddingLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:paddingTop="3dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="3dp"

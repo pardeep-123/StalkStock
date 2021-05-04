@@ -43,11 +43,21 @@ public class PaymentselectActivity extends AppCompatActivity {
                 onetwo.setImageResource(R.drawable.radio_fill);
                 oneone.setImageResource(R.drawable.radio_circle);
             }
-        });  btn_preview.setOnClickListener(new View.OnClickListener() {
+        });
+
+        btn_preview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,AddcardpaymentActivity.class);
                 startActivity(intent);
+
+               /* if(AppController.getInstance().getString("usertype").equals("3")){
+                    val intent = Intent(mContext, ThanksActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    val intent = Intent(mContext, ThankyouActivity::class.java)
+                    startActivity(intent)
+                }*/
             }
         });
     }

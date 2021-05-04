@@ -56,7 +56,10 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<ModelPojo.MyO
                 time.visibility=View.VISIBLE
                 itemView.comma2.visibility= View.VISIBLE
             }else{
+/*
                 status.setTextColor(Color.parseColor("#459972"))
+*/
+                status.setTextColor(Color.parseColor("#7DB733"))
                 date.visibility=  View.GONE
                 time.visibility=View.GONE
                 itemView.comma2.visibility= View.GONE

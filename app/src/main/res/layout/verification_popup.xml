@@ -22,7 +22,7 @@
             android:src="@drawable/loading"
             android:layout_centerHorizontal="true"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_marginTop="20dp"
             android:textSize="15sp" />
 
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_ok11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

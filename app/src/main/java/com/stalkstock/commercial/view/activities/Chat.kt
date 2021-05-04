@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.stalkstock.utils.others.CommonMethods
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -33,10 +34,12 @@ class Chat : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
         init()
 
         setAdapter()
 
+        CommonMethods.hideKeyboard(this@Chat,rvChat)
     }
 
     private fun setAdapter() {

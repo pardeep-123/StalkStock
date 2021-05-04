@@ -88,7 +88,7 @@ public class EditprofileConsumerActivity extends AppCompatActivity {
     public void openStartInfoApp() {
         final Dialog dialogSuccessful = new Dialog(Objects.requireNonNull(context), R.style.Theme_Dialog);
         dialogSuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogSuccessful.setContentView(R.layout.update_successfully_alert);
+        dialogSuccessful.setContentView(R.layout.update_successfully_alert2);
         dialogSuccessful.setCancelable(false);
         Objects.requireNonNull(dialogSuccessful.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         dialogSuccessful.setCanceledOnTouchOutside(false);

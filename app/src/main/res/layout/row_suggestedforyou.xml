@@ -11,12 +11,12 @@
         android:padding="10dp"
         android:src="@drawable/ad_img"/>
 
-    <TextView
+    <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textColor="@color/home_grey"
-        android:text="Mixed non-veg biryani"/>
+        android:text="Six core elements"/>
 
 </LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:minHeight="90dp"
+        android:background="@drawable/btn_shape1"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical"
+
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:text="@string/dummy_text"
+                 android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent">
+            <com.stalkstock.utils.custom.TitiliumSemiBoldButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEW"
+                android:textStyle="italic"
+                android:layout_centerInParent="true"
+                android:textSize="18sp"
+                android:textColor="@color/theme_green"
+                android:background="@color/white"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

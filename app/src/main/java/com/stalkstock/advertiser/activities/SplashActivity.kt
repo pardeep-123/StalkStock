@@ -1,33 +1,68 @@
 package com.stalkstock.advertiser.activities
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.CountDownTimer
-import android.view.WindowManager
-import com.stalkstock.R
-import com.stalkstock.consumer.activities.SelectuserActivity
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
+ import android.content.Context
+ import android.content.Intent
+ import android.os.Bundle
+ import android.os.CountDownTimer
+ import android.view.WindowManager
+ import androidx.appcompat.app.AppCompatActivity
+ import com.google.android.gms.wallet.WalletConstants
+ import com.stalkstock.R
+ import com.stalkstock.consumer.activities.SelectuserActivity
+ import com.stripe.android.Stripe
+ import com.stripe.android.model.PaymentMethodCreateParams
+
 
 class SplashActivity : AppCompatActivity() {
     val mContext : Context = this
+    //var value="17.9500005"
+
+    val PUBLISHABLE_KEY = "pk_test_TYooMQauvdEDq54NiTphI7jx"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_splash)
 
         val countDownTimer = object : CountDownTimer(1000, 1000) {
             override fun onTick(l: Long) {}
             override fun onFinish() {
                 startActivity(Intent(mContext, SelectuserActivity::class.java))
+                //startActivity(Intent(mContext, GetStartedPageActivity::class.java))
                 finishAffinity()
             }
         }.start()
 
 
+
+//        val card: MutableMap<String, Any> = HashMap()
+//        card["number"] = "4242424242424242"
+//        card["exp_month"] = 1
+//        card["exp_year"] = 2022
+//        card["cvc"] = "314"
+//        val params: MutableMap<String, Any> = HashMap()
+//        params["type"] = "card"
+//        params["card"] = card
+//
+//
+//
+//         val paymentMethod: PaymentMethodCreateParams = PaymentMethodCreateParams..create(params)
+
+
+    }
+
+
+
+
+//        val df = DecimalFormat("0.00")
+//       Log.e("precision",df.format(value.toDouble()))
+ //
+//
+//
+//       Log.e("valueCheck", DecimalFormat("##.00").format(i2.toFloat()).toString());
 
       /*  var jsonArray= JSONArray()
 
@@ -74,5 +109,74 @@ class SplashActivity : AppCompatActivity() {
 
 
         println("jsonString: $jsonArray")*/
-    }
+
+//        if (Build.VERSION.SDK_INT > 9) {
+//            val policy = StrictMode.ThreadPolicy.Builder()
+//                .permitAll().build()
+//            StrictMode.setThreadPolicy(policy)
+//        }
+//
+//        saveCreditCard()
+//    }
+
+//    fun saveCreditCard() {
+//        val card = Card(
+//            "4242424242424242", 11,
+//            2025, "123"
+//        )
+//        Log.e("card ", ""+card)
+//        val validation: Boolean = card.validateCard()
+//        Log.e("Validation", ""+validation)
+//        if (validation) {
+//            startProgress()
+//            Stripe().createToken(card, PUBLISHABLE_KEY,
+//                object : TokenCallback {
+//                    override fun onSuccess(token: Token?) {
+//                        try {
+//
+//                            Log.e("Token_Json",  token.toString());
+//
+//                        }catch (e:Exception){
+//                            //toast print
+//                            e.localizedMessage
+//                        }
+//
+//                        }
+//
+//                    override fun onError(error: Exception?) {
+//                        handleError(error!!.localizedMessage)
+////                        finishProgress()
+//
+//                    }
+//
+//
+//                })
+//        } else if (!card.validateNumber()) {
+//            handleError("The card number that you entered is invalid")
+//        } else if (!card.validateExpiryDate()) {
+//            handleError("The expiration date that you entered is invalid")
+//        } else if (!card.validateCVC()) {
+//            handleError("The CVC code that you entered is invalid")
+//        } else {
+//            handleError("The card details that you entered are invalid")
+//        }
+//    }
+//
+//    private fun startProgress() {
+//       // progressFragment.show(supportFragmentManager, "progress")
+//    }
+//
+//    private fun finishProgress() {
+//        //progressFragment.dismiss()
+//    }
+//
+//    private fun handleError(error: String) {
+//       /* val fragment = ErrorDialogFragment.newInstance(R.string.validationErrors, error)
+//        fragment.show(fragmentManager, "error")*/
+//
+//        //toast print
+//
+//        // Log.e("validationErrors",error)
+//    }
+
 }

@@ -17,11 +17,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
 import com.stalkstock.R;
+import com.stalkstock.advertiser.activities.LoginActivity;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
@@ -49,6 +52,20 @@ public class AddBusinessDetails extends AppCompatActivity implements View.OnClic
         backarrow.setOnClickListener(this);
         cameraopen.setOnClickListener(this);
         setimage.setOnClickListener(this);
+
+        Spinner spinner=findViewById(R.id.spinner);
+
+        Spinner spinner_type=findViewById(R.id.spinner_type);
+
+        ArrayAdapter foodadapter = ArrayAdapter.createFromResource(this, R.array.Select_country, R.layout.spinner_layout_for_vehicle);
+        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text);
+        spinner.setAdapter(foodadapter);
+
+        ArrayAdapter foodadapter2 = ArrayAdapter.createFromResource(this, R.array.Select_business_type, R.layout.spinner_layout_for_vehicle);
+        foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text);
+        spinner_type.setAdapter(foodadapter2);
+
+
     }
 
     @Override
@@ -76,7 +93,7 @@ public class AddBusinessDetails extends AppCompatActivity implements View.OnClic
                     public void onClick(View v) {
 //                                        Intent intent = new Intent(ChatBox.this, MessageFragment.class);
 //                                        startActivity(intent);
-                        startActivity(new Intent(AddBusinessDetails.this, LoginScreen.class));
+                        startActivity(new Intent(AddBusinessDetails.this, LoginActivity.class));
 
 
 

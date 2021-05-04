@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
+        android:layout_alignParentRight="true"
         android:src="@drawable/bg_fit" />
 
     <LinearLayout
@@ -25,18 +26,19 @@
             android:layout_height="1dp"
             android:background="@color/light_grey" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/profile_grey"
             android:padding="10dp"
-            android:weightSum="1">
+            >
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
+                android:id="@+id/rl_iv"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center">
 
                 <ImageView
@@ -46,9 +48,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/rl_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
                 android:paddingLeft="10dp">
@@ -76,14 +79,19 @@
                     android:text="123785768"
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
+
+
             </LinearLayout>
 
+
             <LinearLayout
+
+                android:layout_alignParentRight="true"
                 android:id="@+id/lin_editProfile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:gravity="center">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="end">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -91,30 +99,51 @@
                     android:src="@drawable/edi_icon" />
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_notifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="40dp"
+                 android:minHeight="40dp"
                 android:padding="15dp"
+                android:layout_centerVertical="true"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
+<!--
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/toggle_off1"
                 android:layout_marginRight="10dp" />
+-->
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/toggle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginRight="15dp"
+                android:src="@drawable/toggle_off"/>
+
+            <ImageView
+                android:id="@+id/toggle_off2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:src="@drawable/toggle_on"
+                android:visibility="gone" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

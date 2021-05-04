@@ -5,20 +5,30 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import com.stalkstock.R
+import com.stalkstock.utils.others.CommonMethods
+import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.AlbumFile
+import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_driver_info.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
+import java.util.*
 
 
 class EditDriverInfoActivity : AppCompatActivity() {
     val mContext: Context =this
+    private var mAlbumFiles = ArrayList<AlbumFile>()
+
+
     lateinit var successfulUpdatedDialog:Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +44,50 @@ class EditDriverInfoActivity : AppCompatActivity() {
         btn_update.setOnClickListener {
             updateDailogMethod()
         }
+
+        rl_first.setOnClickListener {
+            askCameraPermissons()
+        }
+        rl_second.setOnClickListener {
+            askCameraPermissons()
+        }
+
+        rl_second.setOnClickListener {
+            askCameraPermissons()
+        }
+        CommonMethods.hideKeyboard(this@EditDriverInfoActivity,btn_update)
+
+
+        // addItemsOnSpinner2();
+        var spinner = findViewById<View>(R.id.spinner) as Spinner
+
+
+
+        val foodadapter = ArrayAdapter.createFromResource(this, R.array.Select_Vehicle_type, R.layout.spinner_layout_for_vehicle)
+        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = foodadapter
+    }
+    private fun askCameraPermissons() {
+        mAlbumFiles = ArrayList<AlbumFile>()
+        mAlbumFiles.clear()
+        selectImage("1")
+    }
+
+    private fun selectImage(s: String) {
+        Album.image(this)
+            .singleChoice()
+            .widget(Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build())
+            .camera(true)
+            .columnCount(4)
+            .onResult { result ->
+                mAlbumFiles.addAll(result)
+              /*  Glide.with(this@EditProduct).load(result[0].path).into(adduploadimages)
+                if (s == "1") {
+                    firstimage = result[0].path
+                }*/
+            }
+            .onCancel { }
+            .start()
     }
 
     private fun updateDailogMethod() {

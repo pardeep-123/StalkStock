@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:ignore="MissingConstraints">
+                <ImageView
+                    android:id="@+id/spm_backarrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back_arrow"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:layout_marginLeft="10dp">
+                </ImageView>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment"
+                    android:layout_centerVertical="true"
+                    android:textColor="#000"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="1dp"
+                android:background="#BDBCBC"
+                ></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutDetail"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_below="@+id/layout">
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select Your Payment Method"
+                    android:id="@+id/spm_Detail"
+                    android:textSize="25sp"
+                     android:textColor="#171717"
+                     android:layout_marginTop="@dimen/_15sdp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/rl_1"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_below="@+id/layoutDetail">
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CREDIT/DEBIT CARD"
+                    android:textSize="22sp"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@drawable/credit_card_img"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:layout_weight="3"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/radio_fill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:buttonTint="#8BC34A"
+                    android:gravity="right"
+                    android:src="@drawable/radio_circle" />
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_22sdp"
+                android:background="@drawable/cureentbackground">
+
+                <LinearLayout
+                    android:id="@+id/spm_cardshow"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/visa_img"
+                        android:padding="@dimen/_20sdp"
+                        ></ImageView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="**** **** **** 4486"></TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MM/YY 12/24 CVV***"></TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/rl2"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_below="@+id/layoutDetail">
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CREDIT/DEBIT CARD"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/paypal_img"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="22sp"
+                    android:layout_weight="3"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/radio_empty"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/radio_circle"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:buttonTint="#8BC34A"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+
+                    />
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_22sdp"
+                android:background="@drawable/cureentbackground">
+
+                <LinearLayout
+                    android:id="@+id/spm_cardpaypalshow"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/visa_img"
+                        android:padding="@dimen/_20sdp"
+                        ></ImageView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="**** **** **** 4486"></TextView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MM/YY 12/24 CVV***"></TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp">
+                <LinearLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_25sdp"
+                    android:orientation="vertical">
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/btn_add"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="30dp"
+                        android:textAllCaps="false"
+                        android:text="Add New Payment Method"
+                        android:textColor="#8BC34A"
+                        android:visibility="gone"
+                        android:textSize="17sp"
+                        android:background="@drawable/edittextshape"
+                        >
+                    </com.stalkstock.utils.custom.TitiliumBoldButton>
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@drawable/buttonshape"
+                        android:id="@+id/spm_btnNext"
+                        android:text="Next"
+                        android:layout_marginBottom="20dp"
+                        android:textColor="#fff"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</RelativeLayout>

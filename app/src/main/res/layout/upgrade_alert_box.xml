@@ -28,7 +28,7 @@
                 app:civ_border_width="1dp" />
 
         </RelativeLayout>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Want to add more photos?\nUpgrade now to unlock this feature\nand so much more!"
@@ -36,7 +36,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="14dp">
-        </TextView>
+        </com.stalkstock.utils.custom.TitiliumRegularTextView>
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_marginBottom="@dimen/_10sdp"
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/upgrade_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,8 +58,8 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 >
 
-            </Button>
-            <Button
+            </com.stalkstock.utils.custom.TitiliumBoldButton>
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:layout_marginTop="@dimen/_8sdp"
                 android:id="@+id/upgrade_cancel"
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:textSize="15dp"
                 >
 
-            </Button>
+            </com.stalkstock.utils.custom.TitiliumBoldButton>
         </LinearLayout>
 
     </LinearLayout>

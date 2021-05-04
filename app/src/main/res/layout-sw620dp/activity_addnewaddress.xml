@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/bg_fit" />
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        >
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_arrow"
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
+            />
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add New Address"
+            android:textColor="@color/black"
+
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/vendor"
+        android:layout_below="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/light_grey"/>
+
+
+     <fragment
+        android:layout_below="@+id/vendor"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_bootm"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="16dp" />
+    <RelativeLayout
+        android:id="@+id/rl_bootm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white">
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/select_text"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Delivery Location"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+             android:textSize="25sp"
+            />
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/select_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/location_text123"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Location"
+            android:textSize="22sp"
+            android:layout_below="@+id/view"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Castro"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/check_circle_price"
+            android:layout_below="@+id/location_text123"
+            />
+        <com.stalkstock.utils.custom.TitiliumBoldButton
+            android:id="@+id/btn_signup"
+            android:layout_below="@+id/tv_ll"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_shape"
+            android:gravity="center"
+             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Confirm Location &amp; Proceed"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+</RelativeLayout>

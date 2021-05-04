@@ -21,7 +21,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp">
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
 
                 android:id="@+id/tv_order"
 
@@ -33,14 +33,14 @@
                 android:textSize="@dimen/value_18sp" />
 
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_status"
                 android:text="Status : "
                 android:textColor="@color/black" />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,12 +65,12 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/subway" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="10:30am, 20 june 2020"
+                    android:text="10:30am, 20 June 2020"
                     android:textColor="@color/dark_gray" />
             </RelativeLayout>
 
@@ -90,7 +90,7 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:src="@drawable/chat_img_1" />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,12 +98,11 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_toRightOf="@id/iv_profile"
-                android:fontFamily="@font/titilliumweb_bold"
-                android:text="Allen Chander "
+                 android:text="Allen Chander "
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_name"

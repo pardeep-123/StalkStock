@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/llDialog"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="500dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="50dp"
+    android:layout_marginTop="@dimen/value_20dp"
+    android:layout_marginLeft="50dp"
+    android:layout_marginBottom="@dimen/value_20dp"
+    android:padding="@dimen/value_10dp"
+    android:background="@drawable/white_radius_popup"
+
+    >
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductUnit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        />
+
+
+</LinearLayout>

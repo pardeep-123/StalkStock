@@ -5,7 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
-    android:layout_margin="10dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout android:id="@+id/main_layout"
     android:layout_width="match_parent"
@@ -37,6 +40,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Approved"
+                app:textAllCaps="true"
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
@@ -58,6 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                app:textAllCaps="true"
+
                 android:text="Pending"
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
@@ -81,6 +87,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Expired"
+                app:textAllCaps="true"
+
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
                 android:textSize="13sp" />

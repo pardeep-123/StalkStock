@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/shadow"
+        android:orientation="vertical">
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/rl_bottom_menu"
+        android:background="@color/light_grey" />
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/rl_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:background="@color/white"
+            android:orientation="horizontal"
+
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/rl_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:id="@+id/iv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/home_green_icon1" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_plus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:id="@+id/iv_homedgsd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible"
+                    android:src="@drawable/home_green_icon1" />
+
+
+
+                <ImageView
+                    android:padding="2dp"
+                    android:layout_alignTop="@+id/iv_homedgsd"
+                    android:layout_alignLeft="@+id/iv_homedgsd"
+                    android:layout_alignRight="@+id/iv_homedgsd"
+                    android:layout_alignBottom="@+id/iv_homedgsd"
+                    android:id="@+id/iv_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/plus_grey_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/user_black_icon1" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            >
+
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+
+                android:id="@+id/tv_home"
+                android:textColor="@color/green"
+                android:text="HOME"
+                android:textSize="16sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+             <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_cart"
+
+                android:textColor="@color/colorIcon"
+                 android:text="POST AD"
+                android:textSize="16sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_account"
+
+                android:textColor="@color/colorIcon"
+                android:text="ACCOUNT"
+                android:textSize="16sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

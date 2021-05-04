@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".advertiser.GetStartedPageActivity">
+
+
+
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_lets"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+             android:gravity="center"
+            android:text="Let’s get you started"
+            android:textColor="@color/green"
+            android:textSize="25sp"
+            tools:ignore="MissingConstraints"/>
+<!--
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_below="@+id/tv_lets"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+             android:gravity="center"
+            android:text="@string/by_tapping"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints"/>
+-->
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/sdgsd"
+            android:layout_below="@+id/tv_lets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:text="By continuing, you agree to our"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tv_termss"
+            android:layout_below="@+id/sdgsd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:textColor="#7DB733"
+
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:text="Terms &amp; Conditions."
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+         android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+         >
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tv_not_now"
+
+            android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+             android:background="@drawable/buttonshape_trans"
+            android:text="Decline"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_gray"
+            android:textSize="16dp"/>
+        <com.stalkstock.utils.custom.TitiliumBoldButton
+            android:id="@+id/btn_let_go"
+
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/buttonshape"
+            android:text="Continue"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="16dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

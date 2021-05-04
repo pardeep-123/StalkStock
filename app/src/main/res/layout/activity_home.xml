@@ -68,21 +68,23 @@
         android:background="@color/light_grey" />
 
 
-    <RelativeLayout
-        android:id="@+id/rl_bottom_menu"
+    <LinearLayout
+         android:id="@+id/rl_bottom_menu"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_alignParentBottom="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:weightSum="4">
 
             <RelativeLayout
                 android:id="@+id/rl_home"
@@ -94,9 +96,10 @@
 
                 <ImageView
                     android:id="@+id/iv_home"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/home_green_icon" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/home_green_icon1" />
 
             </RelativeLayout>
 
@@ -110,9 +113,10 @@
 
                 <ImageView
                     android:id="@+id/iv_add"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/list_black_icon" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/list_black_icon1" />
 
             </RelativeLayout>
 
@@ -127,9 +131,10 @@
 
                 <ImageView
                     android:id="@+id/iv_payment"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/a14dooler" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/a14dooler1" />
 
             </RelativeLayout>
 
@@ -143,17 +148,79 @@
 
                 <ImageView
                     android:id="@+id/iv_profile1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/user_black_icon" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/user_black_icon1" />
 
             </RelativeLayout>
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            >
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+
+                android:id="@+id/tv_home"
+                android:textColor="@color/green"
+                android:text="HOME"
+                android:textSize="10sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+             <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_order"
+
+                android:textColor="@color/colorIcon"
+                android:text="MY REQUESTS"
+                android:textSize="10sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_cart"
+
+                android:textColor="@color/colorIcon"
+                android:text="PAYMENTS"
+                android:textSize="10sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_account"
+
+                android:textColor="@color/colorIcon"
+                android:text="ACCOUNT"
+                android:textSize="10sp"
+
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
 
 
-    </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -10,7 +10,10 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ArrayAdapter
 import com.stalkstock.R
+import com.stalkstock.utils.others.AppController
+import com.stalkstock.utils.others.CommonMethods
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
@@ -23,11 +26,22 @@ class EditBusinessProfileActivity : AppCompatActivity(), View.OnClickListener {
        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_edit_business_profile)
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         tv_heading.text = "Edit Business Profile"
         iv_back.setOnClickListener(this)
         btn_update.setOnClickListener(this)
+
+
+        CommonMethods.hideKeyboard(this@EditBusinessProfileActivity,btn_update)
+        val foodadapter = ArrayAdapter.createFromResource(this, R.array.Select_country, R.layout.spinner_layout_for_vehicle)
+        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = foodadapter
+
+
+        val foodadapter2 = ArrayAdapter.createFromResource(this, R.array.Select_business_type, R.layout.spinner_layout_for_vehicle)
+        foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner_type.adapter = foodadapter2
+
     }
 
     override fun onClick(p0: View?) {
@@ -40,6 +54,8 @@ class EditBusinessProfileActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+
 
     private fun updateDailogMethod() {
         successfulUpdatedDialog = Dialog(mContext, R.style.Theme_Dialog)
@@ -56,6 +72,16 @@ class EditBusinessProfileActivity : AppCompatActivity(), View.OnClickListener {
 
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+
+        if(AppController.getInstance().getString("usertype").equals("2")){
+
+            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+        }else  if(AppController.getInstance().getString("usertype").equals("1")){
+
+            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+        }else{
+
+        }
         successfulUpdatedDialog.btn_ok.setOnClickListener {
             successfulUpdatedDialog.dismiss()
             finish()

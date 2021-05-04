@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
         />
 
@@ -64,39 +65,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textColor="#FFC3C3C3"
+                    android:textSize="13sp"
+                    android:textColor="@color/light_grey"
                     />
                 <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
                     android:id="@+id/addcard_name"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
+                    android:textSize="13sp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:hint="Enter Name"
-                    android:textColorHint="#FFC3C3C3"
+                    android:hint="@string/enter_cardholder_full_name"
+                    android:textColorHint="@color/light_grey"
                     android:paddingLeft="@dimen/_10sdp"
                     android:textColor="#000"
-                    android:background="@drawable/addbankedittext"/>
+                    android:background="@drawable/shape_edit_for_add_card"/>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Credit Card Number"
-                    android:textColor="#FFC3C3C3"
+                    android:textSize="13sp"
+
+                    android:textColor="@color/light_grey"
                     />
                 <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
                     android:id="@+id/addcard_cardnumber"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
+                    android:textSize="13sp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
-                    android:hint="Credit card number"
-                    android:inputType="numberPassword"
-                    android:textColorHint="#FFC3C3C3"
+                    android:hint="@string/enter_credit_card_number"
+                    android:inputType="number"
+                    android:textColorHint="@color/light_grey"
 
                     android:textColor="#000"
                     android:drawableRight="@drawable/visa_img"
                     android:paddingRight="@dimen/_10sdp"
-                    android:background="@drawable/addbankedittext"/>
+                    android:background="@drawable/shape_edit_for_add_card"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -106,7 +112,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Expiry Date"
-                        android:textColor="#FFC3C3C3"
+                        android:textSize="13sp"
+
+                        android:textColor="@color/light_grey"
 
                         android:layout_weight="1"></com.stalkstock.utils.custom.TitiliumBoldTextView>
                     <TextView
@@ -115,7 +123,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="CVV/CW"
-                        android:textColor="#FFC3C3C3"
+                        android:textSize="13sp"
+
+                        android:textColor="@color/light_grey"
                         ></TextView>
                     <ImageView
                         android:layout_marginTop="@dimen/_8sdp"
@@ -133,32 +143,33 @@
                         android:id="@+id/date"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="45dp"
+                        android:textSize="13sp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="#000"
                         android:hint="MM/YY"
                         android:maxLength="5"
                         android:inputType="date"
-                        android:textColorHint="#FFC3C3C3"
+                        android:textColorHint="@color/light_grey"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:paddingRight="@dimen/_10sdp"
                         android:drawableRight="@drawable/expiry_check"
-                        android:background="@drawable/addbankedittext"/>
+                        android:background="@drawable/shape_edit_for_add_card"/>
                     <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
                         android:layout_weight="2"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                        android:layout_height="45dp"
+                        android:textSize="13sp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
 
                         android:maxLength="3"
                         android:textColor="#000"
                         android:hint="CVV"
                         android:gravity="center"
                         android:inputType="numberPassword"
-                        android:background="@drawable/addbankedittext"/>
+                        android:background="@drawable/shape_edit_for_add_card"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/editprofilcheck"
@@ -179,8 +190,10 @@
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_height="wrap_content"
+                        android:textSize="13sp"
+
                         android:text="Save for future transactions"
-                        android:textColor="#FFC3C3C3"
+                        android:textColor="@color/light_grey"
                         />
 
 

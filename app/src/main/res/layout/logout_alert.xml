@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_logout" />
+            android:src="@drawable/ic_logout_new" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_msg"

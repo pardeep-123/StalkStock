@@ -1,77 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
     android:layout_marginVertical="@dimen/value_7dp">
-<de.hdodenhof.circleimageview.CircleImageView
-    android:layout_width="0dp"
-    android:layout_height="@dimen/value_0dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_marginLeft="@dimen/value_5dp"
-    android:src="@drawable/chat_img_1"
-    app:layout_constraintHeight_percent="0.85"
-    app:layout_constraintDimensionRatio="V,1:1"
-    android:id="@+id/iv_userimage"
-    />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jamie Jai"
-        android:textColor="@color/black_color"
-        android:textStyle="bold"
-        android:textSize="@dimen/value_14sp"
-        android:layout_marginLeft="@dimen/value_15dp"
-        app:layout_constraintTop_toTopOf="@+id/iv_userimage"
-        app:layout_constraintStart_toEndOf="@+id/iv_userimage"
-        android:id="@+id/tv_personName"
-        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_userimage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/chat_img_1" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet"
-        android:textColor="@color/black_color"
-        android:textStyle="normal"
-        android:textSize="@dimen/value_14sp"
-        android:layout_marginLeft="@dimen/value_15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_userimage"
-        app:layout_constraintStart_toEndOf="@+id/iv_userimage"
-        android:id="@+id/tv_messageTemplate"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/iv_userimage"
+        android:gravity="center_vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2:30 PM"
-        android:textColor="@color/dark_green_colour"
-        android:textStyle="normal"
-        android:textSize="@dimen/value_12sp"
-        android:layout_marginLeft="@dimen/value_15dp"
-        app:layout_constraintTop_toTopOf="@+id/iv_userimage"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="@dimen/value_15dp"
-        android:id="@+id/tv_timeOFMessage"
-        />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="@dimen/value_0dp"
-        android:layout_height="@dimen/value_0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_userimage"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="@dimen/value_15dp"
-        android:background="@drawable/red_solid_circle"
-        app:layout_constraintHeight_percent="0.40"
-        app:layout_constraintDimensionRatio="V,1:1"
-        android:id="@+id/tv_numberOfMessages"
-        android:text="2"
-        android:textColor="@color/white_color"
-        android:gravity="center"
-        />
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tv_personName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:text="Jamie Jai"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/value_14sp"
+            />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_messageTemplate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_personName"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:layout_marginTop="10dp"
+            android:text="Lorem ipsum dolor sit amet"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/value_14sp"
 
 
+             />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_timeOFMessage"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:layout_marginRight="15dp"
+            android:text="2:30 PM"
+            android:textColor="@color/dark_green_colour"
+            android:textSize="@dimen/value_12sp"
+            />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_numberOfMessages"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tv_timeOFMessage"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/red_solid_circle"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+
+            android:layout_marginTop="10dp"
+            android:text="2"
+            android:textColor="@color/white_color"
+            />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

@@ -6,15 +6,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
-
+import com.live.stalkstockcommercial.ui.view.fragments.account.ManageAddress
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.ChangePasswordActivity
-import com.stalkstock.advertiser.activities.EditProfileActivity
-import com.stalkstock.advertiser.activities.HelpActivity
-import com.stalkstock.advertiser.activities.LoginActivity
+import com.stalkstock.advertiser.activities.*
 import com.stalkstock.driver.DriverInformationActivity
-import com.stalkstock.driver.EditDriverInfoActivity
 import kotlinx.android.synthetic.main.fragment_account2.*
 import kotlinx.android.synthetic.main.logout_alert.*
 
@@ -33,6 +30,9 @@ class AccountFragment : Fragment() {
         tv_help.setOnClickListener {
             requireContext().startActivity(Intent(requireContext(), HelpActivity::class.java))
         }
+        tv_notification.setOnClickListener {
+            requireContext().startActivity(Intent(requireContext(), Notification_firstActivity::class.java))
+        }
         lin_editProfile.setOnClickListener {
             requireContext().startActivity(Intent(requireContext(), EditProfileActivity::class.java))
         }
@@ -40,6 +40,10 @@ class AccountFragment : Fragment() {
         tv_document.setOnClickListener {
             requireContext().startActivity(Intent(requireContext(), DriverInformationActivity::class.java))
         }
+        tv_manage_address.setOnClickListener {
+            requireContext().startActivity(Intent(requireContext(), ManageAddress::class.java))
+        }
+
 
         tv_logout.setOnClickListener {
             logoutDailogMethod()
@@ -49,6 +53,20 @@ class AccountFragment : Fragment() {
             requireContext().startActivity(Intent(requireContext(), ChangePasswordActivity::class.java))
         }
 
+
+        val toggle1 =
+            view.findViewById<ImageView>(R.id.toggle1)
+        val toggle_off2 =
+            view.findViewById<ImageView>(R.id.toggle_off2)
+
+        toggle1.setOnClickListener {
+            toggle_off2.visibility = View.VISIBLE
+            toggle1.visibility = View.GONE
+        }
+        toggle_off2.setOnClickListener {
+            toggle_off2.visibility = View.GONE
+            toggle1.visibility = View.VISIBLE
+        }
     }
 
 

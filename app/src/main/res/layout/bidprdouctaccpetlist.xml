@@ -40,6 +40,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
+                        android:layout_gravity="center_vertical"
+
                         android:text="BID:9"
                         android:textColor="#fff"/>
                 </LinearLayout>
@@ -51,27 +53,32 @@
                     android:id="@+id/biddate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:layout_marginTop="3dp"
-                    android:text="June 10, 2020"/>
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_marginLeft="@dimen/_2sdp"
-                    android:textSize="12sp"
-                    android:layout_marginTop="3dp"
-                    android:text="|"/>
+                     android:textSize="12sp"
+                     android:text="June 10, 2020"/>
+
+                <View
+
+                    android:layout_alignTop="@+id/biddate"
+                    android:layout_alignBottom="@+id/biddate"
+                    android:id="@+id/view_gdsd"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/biddate"
+
+                    android:layout_width="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_vertical"
+                     android:layout_marginBottom="5sp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray"
+                    />
+
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/bidtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_marginLeft="@dimen/_5sdp"
+                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="12sp"
-                    android:layout_marginTop="3dp"
-                    android:text="3:30"/>
+                     android:text="3:30"/>
             </LinearLayout>
         </LinearLayout>
         <View

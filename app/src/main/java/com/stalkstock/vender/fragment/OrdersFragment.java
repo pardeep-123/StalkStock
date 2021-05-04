@@ -42,7 +42,7 @@ public class OrdersFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btnCurrent.setBackground(getResources().getDrawable(R.drawable.current_button));
-                btnPast.setBackground(getResources().getDrawable(R.drawable.past_button));
+                btnPast.setBackground(getResources().getDrawable(R.drawable.past_button2));
                 btnCurrent.setTextColor(getResources().getColor(R.color.white));
                 btnPast.setTextColor(getResources().getColor(R.color.balck));
                 currentAdapter = new CurrentAdapter(mContext);
@@ -55,7 +55,7 @@ public class OrdersFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btnPast.setBackground(getResources().getDrawable(R.drawable.current_button));
-                btnCurrent.setBackground(getResources().getDrawable(R.drawable.past_button));
+                btnCurrent.setBackground(getResources().getDrawable(R.drawable.past_button2));
                 btnPast.setTextColor(getResources().getColor(R.color.white));
                 btnCurrent.setTextColor(getResources().getColor(R.color.balck));
                 pastAdapter = new PastAdapter(mContext);

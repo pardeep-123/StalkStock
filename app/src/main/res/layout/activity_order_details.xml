@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,9 +25,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:ignore="MissingConstraints">
+                android:layout_height="50dp"
+                 tools:ignore="MissingConstraints">
 
                 <ImageView
                     android:id="@+id/order_details_backarrow"
@@ -52,9 +52,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#BDBCBC"></View>
+                android:layout_height="0.5dp"
+                 android:background="@color/dark_gray"></View>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -89,60 +88,69 @@
                                 android:textColor="#000"
                                 android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
 
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/text_details"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="@dimen/_25sdp"
+                                android:layout_toLeftOf="@+id/iv_drop"
+                                android:layout_marginRight="10dp"
                                 android:text=""
+                                android:visibility="gone"
                                 android:textColor="#FF5722"
                                 android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold"></TextView>
+                                />
 
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/text_detailes2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="@dimen/_25sdp"
+                                android:layout_toLeftOf="@+id/iv_drop"
+                                android:layout_marginRight="10dp"
                                 android:text=""
+                                android:visibility="gone"
+
                                 android:textColor="#FF9800"
                                 android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold"></TextView>
+                                ></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/text_detailes3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="@dimen/_25sdp"
+                                android:layout_marginRight="10dp"
                                 android:text=""
+                                android:visibility="gone"
+
+                                android:layout_toLeftOf="@+id/iv_drop"
 
                                 android:textColor="#8BC34A"
                                 android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold"></TextView>
+                                ></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/text_detailes4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="@dimen/_25sdp"
+                                 android:layout_marginRight="10dp"
+                                android:visibility="gone"
+
                                 android:text=""
                                 android:textColor="#8BC34A"
+                                android:layout_toLeftOf="@+id/iv_drop"
+
                                 android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold"></TextView>
+                                 ></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
                             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                                 android:id="@+id/text_de"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="@dimen/_25sdp"
+                                android:layout_toLeftOf="@+id/iv_drop"
+                                 android:layout_marginRight="@dimen/_25sdp"
                                 android:textSize="@dimen/_12sdp"/>
 
                             <ImageView
+                                android:id="@+id/iv_drop"
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
                                 android:layout_alignParentRight="true"
@@ -431,7 +439,7 @@
                         android:text="Order Details"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                          />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
@@ -447,7 +455,7 @@
                         android:layout_marginLeft="15dp"
                         android:text="123456789"
                         android:textColor="#000"
-                        android:textStyle="bold" />
+                         />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
@@ -463,34 +471,37 @@
                         android:layout_marginLeft="15dp"
                         android:text="MAY 1,2020 AT 04:07 PM"
                         android:textColor="#000"
-                        android:textStyle="bold" />
+                          />
 
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tv_deli_by"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:text="DELIVERY BY"
                         android:textColor="#000"
-                        android:textStyle="bold" />
+                       />
 
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tv_deli_by_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:text="John Due"
                         android:textColor="#000" />
 
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                      android:id="@+id/tv_deli_to"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:text="DELIVERY TO"
                         android:textColor="#000"
-                        android:textStyle="bold" />
+                         />
 
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"

@@ -1,13 +1,13 @@
 package stalkstockcommercial.ui.view.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.innovattic.rangeseekbar.RangeSeekBar
 import com.stalkstock.R
-import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.ProductActivity
-import com.stalkstock.consumer.fragment.HomeCounsumerFragment
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_filter.*
 
 class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
@@ -26,16 +26,46 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         rangeSeekBar.seekBarChangeListener = this
 
         btn_apply.setOnClickListener {
-            val intent = Intent(applicationContext,MainConsumerActivity::class.java)
-            startActivity(intent)
+           /* val intent = Intent(applicationContext,MainConsumerActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)*/
+            onBackPressed()
+        }
+        btn_clear.setOnClickListener {
+           /* val intent = Intent(applicationContext,MainConsumerActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)*/
+            onBackPressed()
         }
         tvSortBy.setOnClickListener {
-            val intent = Intent(applicationContext,ProductActivity::class.java)
-            startActivity(intent)
+            if (AppController.getInstance().getString("usertype").equals("4")){
+                    onBackPressed()
+            } else{
+                val intent = Intent(applicationContext,ProductActivity::class.java)
+                startActivity(intent)
+            }
+
         }
         rlCost.setOnClickListener {
-            val intent = Intent(applicationContext,ProductActivity::class.java)
-            startActivity(intent)
+
+
+            if (AppController.getInstance().getString("usertype").equals("4")){
+
+                onBackPressed()
+            } else{
+                val intent = Intent(applicationContext,ProductActivity::class.java)
+                startActivity(intent)
+            }
+
+
+        }
+
+        //vender
+        if (AppController.getInstance().getString("usertype").equals("4")){
+            tv_sort_cate.visibility=View.VISIBLE
+            rl_sort_cate.visibility=View.VISIBLE
+        }else{
+
         }
 
     }

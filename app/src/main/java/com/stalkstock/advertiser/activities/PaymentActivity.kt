@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class PaymentActivity : AppCompatActivity(), View.OnClickListener {
     val mContext:Context = this
+    var click=0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -34,13 +36,19 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             R.id.btn_checkout -> {
-               if (AppController.getInstance().getString("usertype").equals("3")){
-                    val intent = Intent(mContext, ThanksActivity::class.java)
-                    startActivity(intent)
+                if (click==0){
+                    click=1;
+                    btn_checkout.setText("Pay Now")
                 }else{
-                    val intent = Intent(mContext, ThankyouActivity::class.java)
-                    startActivity(intent)
+                    if (AppController.getInstance().getString("usertype").equals("3")){
+                        val intent = Intent(mContext, ThanksActivity::class.java)
+                        startActivity(intent)
+                    }else{
+                        val intent = Intent(mContext, ThankyouActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
+
             } R.id.btn_preview -> {
                 val intent = Intent(mContext, AfteraddActivity::class.java)
                 startActivity(intent)

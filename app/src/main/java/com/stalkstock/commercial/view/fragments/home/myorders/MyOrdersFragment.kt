@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_my_orders.*
 import java.lang.RuntimeException
 
 class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.OnMyOrdersRecyclerViewItemClickListner{
-    var listner: CommunicationListner?=null
+   // var listner: CommunicationListner?=null
     var handler: Handler?=null
     var list:ArrayList<ModelPojo.MyOrdersListModel>?=null
 
@@ -34,11 +34,11 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        listner!!.getYourFragmentActive(2)
-        handler= Handler(Looper.myLooper()!!)
-        handler!!.postDelayed({
+        //listner!!.getYourFragmentActive(2)
+//        handler= Handler(Looper.myLooper()!!)
+//        handler!!.postDelayed({
             createAdapterList()
-        },60)
+//        },60)
     }
     private  fun init(){
 
@@ -51,9 +51,9 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
         }
         list!!.add(ModelPojo.MyOrdersListModel(R.drawable.mc_img,"McDonald's","New York","USA","Beef Fresh Meet 250gm","01 May 2020","06:17 PM","$80.50","Pending"))
         list!!.add(ModelPojo.MyOrdersListModel(R.drawable.mkfc_image,"KFC","New York","USA","Creamy nachos, Maharaja mac","01 May 2020","06:17 PM","$36.00","Delivered"))
-        rv_myOrders.adapter= MyOrdersListAdapter(requireContext(), list!!, this@MyOrdersFragment)
+        rv_myOrders.adapter= MyOrdersListAdapter(requireActivity(), list!!, this@MyOrdersFragment)
 
-        val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
+        val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
         rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
 
 
@@ -78,17 +78,17 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is CommunicationListner){
-            listner= context as CommunicationListner
-        }else{
-            throw RuntimeException("Orders Frag not Attched")
-
-        }
+//        if(context is CommunicationListner){
+//            listner= context as CommunicationListner
+//        }else{
+//            throw RuntimeException("Orders Frag not Attched")
+//
+//        }
     }
 
     override fun onDetach() {
         super.onDetach()
-        listner= null
+       // listner= null
         list= null
         handler= null
         requireContext().cacheDir.deleteRecursively()

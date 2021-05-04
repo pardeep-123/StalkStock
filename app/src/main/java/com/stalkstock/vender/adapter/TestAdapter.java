@@ -43,10 +43,9 @@ public class TestAdapter  extends RecyclerView.Adapter<TestAdapter.RecyclerViewH
 
         RecyclerViewHolder viewHolder = new RecyclerViewHolder(v);
 
-        LinearLayout linearLayout= v.findViewById(R.id.itemlayout);
 
 
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 context.startActivity(new Intent(context, ProductDetail.class));
@@ -61,7 +60,7 @@ public class TestAdapter  extends RecyclerView.Adapter<TestAdapter.RecyclerViewH
     }
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 
 

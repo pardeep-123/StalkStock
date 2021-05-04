@@ -14,7 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,49 +36,47 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="50dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/toolbar_chat">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="@dimen/value_5dp"
-
-                android:src="@drawable/back_arrow"
+                 android:src="@drawable/back_arrow"
                 android:id="@+id/iv_backChat"
                 />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/value_0dp"
-                android:layout_height="@dimen/value_0dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_backChat"
-                android:layout_marginLeft="@dimen/value_10dp"
-                app:layout_constraintDimensionRatio="V,1:1"
-                app:layout_constraintHeight_percent="0.70"
+                android:layout_marginLeft="5dp"
+
                 android:src="@drawable/chat_img_1"
                 android:id="@+id/iv_userImageChat"
                 />
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16dp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_userImageChat"
-                android:layout_marginLeft="@dimen/value_10dp"
-                app:layout_constraintWidth_percent="0.65"
+                android:layout_marginLeft="15dp"
+
                 android:text="jamie Jai"
                 android:textColor="@color/black_color"
-                android:autoSizeTextType="uniform"
-                android:padding="@dimen/value_15dp"
-                android:gravity="left|center_vertical"
-                android:maxLines="1"
+
+                 android:maxLines="1"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:id="@+id/tv_nameOfChatPerson"
@@ -170,7 +169,7 @@
                 android:backgroundTint="@android:color/transparent"
                 android:hint="Type your message here..."
                 android:gravity="center_vertical"
-                android:textColorHint="#000"
+                android:textColorHint="@android:color/darker_gray"
                 android:maxLines="2"
                 android:layout_centerInParent="true"
                 android:textSize="@dimen/_12sdp"
@@ -237,8 +236,7 @@
                 android:text="Clear Chat"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
-                android:typeface="monospace"
-                />
+                 />
 
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:id="@+id/tvNotification"
@@ -252,8 +250,7 @@
                 android:text="Notification"
                 android:textColor="@color/black"
 
-                android:typeface="monospace"
-                />
+                 />
 
 
             <Switch

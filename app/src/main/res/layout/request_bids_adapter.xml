@@ -8,8 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginBottom="15dp"
         android:layout_marginStart="@dimen/value_2dp"
         android:layout_marginEnd="@dimen/value_2dp"
         app:cardElevation="@dimen/value_1dp"
@@ -37,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,11 +46,10 @@
                 android:layout_marginStart="@dimen/value_10dp"
                 android:textColor="@color/black_color"
                 android:textSize="@dimen/value_14dp"
-                android:textStyle="bold"
-                android:typeface="monospace"
+
                 android:text="Jamie Jai"
                 />
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,12 +59,12 @@
                 android:layout_marginBottom="@dimen/value_2dp"
                 android:textColor="@color/black_color"
                 android:textSize="@dimen/value_12dp"
-                android:typeface="monospace"
+
                 android:text="Mcdonald's"
                 />
 
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,13 +73,12 @@
                 android:layout_marginEnd="@dimen/value_15dp"
                 android:textColor="@color/red_dark_colour"
                 android:textSize="@dimen/value_14dp"
-                android:typeface="monospace"
-                android:textStyle="bold"
+
                 android:text="$80.50"
                 />
 
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvAccept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,8 +92,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textSize="@dimen/value_14dp"
-                android:typeface="monospace"
-                android:textStyle="bold"
+
                 android:text="Accept"
                 />
 

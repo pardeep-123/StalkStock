@@ -14,6 +14,11 @@ import android.widget.TextView;
 import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.HomedetailAdapter;
+import com.stalkstock.consumer.adapter.TitleAdapter;
+import com.stalkstock.utils.SliderItemTitleModel;
+import com.stalkstock.vender.ui.SearchScreen;
+
+import java.util.ArrayList;
 
 import stalkstockcommercial.ui.view.activities.FilterActivity;
 
@@ -24,8 +29,10 @@ public class HomedetailsActivity extends AppCompatActivity {
     HomedetailAdapter adapter;
     RelativeLayout meat,dairy,fish,food;
     TextView chat,group,fish_text,food_text;
-    ImageView ivNotification,search,fillter;
+    ImageView ivNotification,search,fillter,oll;
     View request_view,inprogress_view,inprogress_view1,inprogress_view2;
+
+    RecyclerView rv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,7 @@ public class HomedetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homedetails);
         context=this;
         detail_recycle=findViewById(R.id.detail_recycle);
+        rv_title=findViewById(R.id.rv_title);
 
         meat=findViewById(R.id.meat);
         dairy=findViewById(R.id.dairy);
@@ -51,9 +59,15 @@ public class HomedetailsActivity extends AppCompatActivity {
         ivNotification=findViewById(R.id.ivNotification);
         fillter=findViewById(R.id.fillter);
         search=findViewById(R.id.search);
+        oll=findViewById(R.id.oll);
 
 
-
+        oll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         meat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +79,7 @@ public class HomedetailsActivity extends AppCompatActivity {
                 request_view.setBackgroundColor(getResources().getColor(R.color.theme_green));
                 inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
                 inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view2.setBackgroundColor(getResources().getColor(R.color.home_grey));
             }
         });
 
@@ -77,10 +91,14 @@ public class HomedetailsActivity extends AppCompatActivity {
                 fish_text.setTextColor(getResources().getColor(R.color.home_grey));
                 food_text.setTextColor(getResources().getColor(R.color.home_grey));
 
+              /*  request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view.setBackgroundColor(getResources().getColor(R.color.theme_green));
+                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));*/
                 request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
                 inprogress_view.setBackgroundColor(getResources().getColor(R.color.theme_green));
                 inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view2.setBackgroundColor(getResources().getColor(R.color.home_grey));
             }
         });
         fish.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +109,14 @@ public class HomedetailsActivity extends AppCompatActivity {
                 fish_text.setTextColor(getResources().getColor(R.color.theme_green));
                 food_text.setTextColor(getResources().getColor(R.color.home_grey));
 
+              /*  request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.theme_green));
+                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));*/
                 request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
                 inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
                 inprogress_view1.setBackgroundColor(getResources().getColor(R.color.theme_green));
-                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view2.setBackgroundColor(getResources().getColor(R.color.home_grey));
             }
         });
         food.setOnClickListener(new View.OnClickListener() {
@@ -105,10 +127,14 @@ public class HomedetailsActivity extends AppCompatActivity {
                 fish_text.setTextColor(getResources().getColor(R.color.home_grey));
                 food_text.setTextColor(getResources().getColor(R.color.theme_green));
 
+               /* request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
+                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.theme_green));*/
                 request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
                 inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
                 inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                inprogress_view1.setBackgroundColor(getResources().getColor(R.color.theme_green));
+                inprogress_view2.setBackgroundColor(getResources().getColor(R.color.theme_green));
             }
         });
 
@@ -122,7 +148,10 @@ public class HomedetailsActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, SearchActivity.class);
+              /*  Intent intent=new Intent(context, SearchActivity.class);
+                startActivity(intent);*/
+
+                Intent intent=new Intent(context, SearchScreen.class);
                 startActivity(intent);
             }
         });
@@ -137,6 +166,41 @@ public class HomedetailsActivity extends AppCompatActivity {
         adapter = new HomedetailAdapter(context);
         detail_recycle.setLayoutManager(new LinearLayoutManager(context));
         detail_recycle.setAdapter(adapter) ;
+
+
+         setTitleAdapter();
+    }
+
+    private void setTitleAdapter() {
+
+        ArrayList<SliderItemTitleModel> arrayList=new ArrayList<>();
+        arrayList.add(new SliderItemTitleModel("Bake","true"));
+        arrayList.add(new SliderItemTitleModel("Biscuit","false"));
+        arrayList.add(new SliderItemTitleModel("Bread","false"));
+        arrayList.add(new SliderItemTitleModel("Bread roll","false"));
+        arrayList.add(new SliderItemTitleModel("Bagel","false"));
+        arrayList.add(new SliderItemTitleModel("Bun","false"));
+        arrayList.add(new SliderItemTitleModel("Festival","false"));
+        arrayList.add(new SliderItemTitleModel("Flatbread","false"));
+        arrayList.add(new SliderItemTitleModel("Muffin","false"));
+        arrayList.add(new SliderItemTitleModel("Brownie","false"));
+        arrayList.add(new SliderItemTitleModel("Cake","false"));
+        arrayList.add(new SliderItemTitleModel("Cookie","false"));
+        arrayList.add(new SliderItemTitleModel("Cracker","false"));
+        arrayList.add(new SliderItemTitleModel("Cheese cracker","false"));
+        arrayList.add(new SliderItemTitleModel("Pastry","false"));
+        arrayList.add(new SliderItemTitleModel("Pie","false"));
+        arrayList.add(new SliderItemTitleModel("Roti","false"));
+        arrayList.add(new SliderItemTitleModel("Tart","false"));
+        arrayList.add(new SliderItemTitleModel("Torte","false"));
+        arrayList.add(new SliderItemTitleModel("Viennoiserie","false"));
+        arrayList.add(new SliderItemTitleModel("Other (please specify)","false"));
+
+        TitleAdapter adapter = new TitleAdapter(context,arrayList);
+        rv_title.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+        rv_title.setAdapter(adapter) ;
+
+
     }
 
 

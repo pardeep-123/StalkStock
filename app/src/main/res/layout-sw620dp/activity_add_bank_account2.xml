@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitEnd"
+        />
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@drawable/back_arrow" />
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="20sp"
+            android:id="@+id/tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+             android:text="Add Bank Account"
+            android:textColor="@color/black"
+             />
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/v_View"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/layout"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/grey" />
+
+    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+        android:id="@+id/tv_Account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v_View"
+        android:layout_marginLeft="@dimen/_18sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="sans-serif"
+        android:text="Name on Account"
+        android:textColor="@color/light_grey"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_Account"
+        android:orientation="vertical">
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
+            android:id="@+id/et1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shape_xml"
+            android:hint="@string/name_on_account"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="16sp" />
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:id="@+id/tv_Bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="sans-serif"
+            android:text="Name of Bank"
+            android:textColor="@color/light_grey"
+            android:textSize="16sp" />
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
+            android:id="@+id/et2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shape_xml"
+            android:hint="@string/name_of_bank"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="13sp"/>
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:id="@+id/tv_Routing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="sans-serif"
+            android:text="Routing Number"
+            android:textColor="@color/light_grey"
+            android:textSize="16sp" />
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
+            android:id="@+id/et3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shape_xml"
+            android:hint="@string/routing_number"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="13sp"/>
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:id="@+id/tv_AccountBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="sans-serif"
+            android:text="@string/bank_account"
+            android:textSize="16sp"
+            android:textColor="@color/light_grey"/>
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
+            android:id="@+id/et4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shape_xml"
+            android:hint="@string/bank_account"
+            android:inputType="number"
+
+            android:padding="@dimen/_10sdp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="13sp"/>
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:id="@+id/tv_ConfirmAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="sans-serif"
+            android:text="Confirm Bank Account"
+            android:textSize="16sp"
+            android:textColor="@color/light_grey" />
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
+            android:id="@+id/et5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shape_xml"
+            android:hint="@string/confirm_bank_account"
+            android:inputType="number"
+
+             android:padding="@dimen/_10sdp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="13sp" />
+
+
+    </LinearLayout>
+
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btn_Save"
+        android:layout_width="450dp"
+
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/value_30dp"
+        android:background="@drawable/btn_shape"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+
+</RelativeLayout>

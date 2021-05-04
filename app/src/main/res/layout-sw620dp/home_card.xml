@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ad_img"/>
+        <RelativeLayout
+            android:id="@+id/rel_approved"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:backgroundTint="#48b618"
+            android:background="@drawable/pending_bg"
+            android:layout_alignParentEnd="true">
+             <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                 android:text="Approved"
+                app:textAllCaps="true"
+
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rel_pending"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:backgroundTint="#ffa200"
+            android:background="@drawable/pending_bg"
+            android:layout_alignParentEnd="true">
+             <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                 app:textAllCaps="true"
+
+                android:text="Pending"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rel_expired"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+
+            android:backgroundTint="#ff0000"
+            android:background="@drawable/pending_bg"
+
+            android:layout_alignParentEnd="true">
+<!--
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:scaleType="centerCrop"
+
+                android:src="@drawable/expired_bg"/>
+-->
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                 android:text="Expired"
+                app:textAllCaps="true"
+
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Mixed non-veg biryani"
+        android:textColor="@color/home_grey"
+        android:textSize="25sp" />
+
+    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="May 1 2020 AT 14:30"
+        android:textColor="@color/light_grey"
+        android:textSize="22sp" />
+
+    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="@string/dummy_text"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/light_grey"
+        android:textSize="22sp" />
+
+</LinearLayout>
+</androidx.cardview.widget.CardView>

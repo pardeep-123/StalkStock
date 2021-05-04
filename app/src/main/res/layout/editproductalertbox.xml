@@ -40,7 +40,7 @@
                 android:src="@drawable/warning_icon"
                 />
         </RelativeLayout>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Are you sure you want to\nupdate this product?"
@@ -48,14 +48,14 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="18dp">
-        </TextView>
+        </com.stalkstock.utils.custom.TitiliumRegularTextView>
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/edit_Yesbtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,10 +68,8 @@
                 android:textColor="#fff"
                 android:textSize="15dp"
                 android:layout_marginRight="@dimen/_5sdp"
-                >
-
-            </Button>
-            <Button
+                />
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:layout_weight="1"
                 android:id="@+id/edit_Nobtn"
                 android:layout_width="match_parent"
@@ -82,12 +80,9 @@
                 android:background="@drawable/edittextshape"
                 android:layout_marginRight="30dp"
                 android:text="No"
-
                 android:textColor="#8BC34A"
                 android:textSize="15dp"
-                >
-
-            </Button>
+                />
         </LinearLayout>
 
     </LinearLayout>

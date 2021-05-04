@@ -40,7 +40,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         ImageView backarrow= findViewById(R.id.signupbackarrow);
         imageView=findViewById(R.id.signup_imageset);
        // imageView1=findViewById(R.id.ivImg);
-         camera = findViewById(R.id.signup_imgcamera);
+        camera = findViewById(R.id.signup_imgcamera);
         Button signupbtn= findViewById(R.id.signupbutton);
         TextView signtext= findViewById(R.id.losignuptext);
 

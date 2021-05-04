@@ -39,12 +39,14 @@ class SelectPayment : AppCompatActivity() {
         }
         ivBackPayment.setOnClickListener { onBackPressed() }
         btn_preview.setOnClickListener {
-            if(card.isNotEmpty()){
-            onBackPressed()}
-        else
-            {
-                startActivity(Intent(this,AddNewCard::class.java))
-            }
+            startActivity(Intent(this,AddNewCard::class.java))
+
+            /* if(card.isNotEmpty()){
+             onBackPressed()}
+         else
+             {
+                 startActivity(Intent(this,AddNewCard::class.java))
+             }*/
         }
         btn_checkout.setOnClickListener { startActivity(Intent(this,PaymentStatus::class.java)) }
     }

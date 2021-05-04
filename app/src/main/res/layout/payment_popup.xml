@@ -20,19 +20,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_gravity="center_horizontal"
-            android:text="Funds transfer in progress Please allow 3-5 business days for transfer to be completed"
+            android:text="@string/funds_transfer_in_progress_please_allow_3_5_business_days_for_transfer_to_be_completed"
             android:gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:textSize="15sp" />
 
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_ok11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

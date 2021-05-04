@@ -140,7 +140,7 @@
                     android:text="Select Category"
 
                     android:entries="@array/Select_Category"
-                    android:textColorHint="#FFC3C3C3"
+                    android:textColorHint="@color/light_grey"
                     android:paddingLeft="15dp"
                     android:paddingRight="20dp"
                     android:textSize="15dp"
@@ -156,7 +156,7 @@
                 android:background="#fff"
                 android:text="Select Category"
                 android:textStyle="bold"
-                android:textColor="#FFC3C3C3"
+                android:textColor="@color/light_grey"
                 android:textSize="14dp"/>
         </RelativeLayout>
         <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
@@ -254,10 +254,10 @@
                 android:layout_height="wrap_content"
                 android:text="$0.00"
                 android:textColor="#000"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="17sp"
                />
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                android:textSize="@dimen/_16sdp"
+                android:textSize="17sp"
                 android:id="@+id/tv_end"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

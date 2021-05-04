@@ -27,7 +27,9 @@ public class Help extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Help.this, BottomnavigationScreen.class));
+               /* startActivity(new Intent(Help.this, BottomnavigationScreen.class));*/
+
+                onBackPressed();
 
             }
         });

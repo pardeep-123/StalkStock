@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ import com.stalkstock.advertiser.activities.ChangePasswordActivity;
 import com.stalkstock.advertiser.activities.HelpActivity;
 import com.stalkstock.advertiser.activities.LoginActivity;
 import com.stalkstock.advertiser.activities.ManagePaymentsActivity;
+import com.stalkstock.advertiser.activities.PaymentActivity;
 import com.stalkstock.consumer.activities.EditprofileConsumerActivity;
 import com.stalkstock.utils.custom.TitiliumBoldButton;
 
@@ -34,7 +36,7 @@ public class ProfileConsumerFragment extends Fragment {
 
    View view;
    ImageView edi_icon;
-   LinearLayout profile;
+   RelativeLayout profile;
    TextView tv_changepass,tv_help,tv_manage,tv_business_profile,tv_logout;
 
     @Override
@@ -79,8 +81,11 @@ public class ProfileConsumerFragment extends Fragment {
         tv_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), ManagePaymentsActivity.class);
+              Intent intent=new Intent(getActivity(), ManagePaymentsActivity.class);
                 startActivity(intent);
+
+//                Intent intent=new Intent(getActivity(), PaymentActivity.class);
+//                startActivity(intent);
             }
         });tv_business_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +95,29 @@ public class ProfileConsumerFragment extends Fragment {
 
             }
         });
+
+
+        final ImageView toggle1=view.findViewById(R.id.toggle1);
+        final ImageView toggle_off2=view.findViewById(R.id.toggle_off2);
+
+        toggle1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggle_off2.setVisibility(View.VISIBLE);
+                toggle1.setVisibility(View.GONE);
+
+            }
+        });
+        toggle_off2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggle_off2.setVisibility(View.GONE);
+                toggle1.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+
 
         return view;
     }

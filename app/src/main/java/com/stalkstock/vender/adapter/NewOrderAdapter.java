@@ -17,15 +17,17 @@ import com.stalkstock.vender.ui.OrderDetails;
 public class NewOrderAdapter extends RecyclerView.Adapter<NewOrderAdapter.ViewHolder> {
     Context context;
     LayoutInflater inflater;
-    String message="New";
+    //String message="New Orders";
 //    String message2="In Progress";
 //
-//    String message3="Ready For Pickup";
+//    String message3="Ready for Pickup";
+    String text="";
 
 
 
-    public  NewOrderAdapter(Context context){
+    public  NewOrderAdapter(Context context, String text){
         this.context=context;
+        this.text=text;
        inflater = LayoutInflater.from(context);
     }
 
@@ -57,7 +59,18 @@ public class NewOrderAdapter extends RecyclerView.Adapter<NewOrderAdapter.ViewHo
                 @Override
                 public void onClick(View view) {
                     Intent intent4 = new Intent(context, OrderDetails.class);
-                    intent4.putExtra("key",message);
+
+                    if (text.equals("New Orders")){
+                        intent4.putExtra("key","New");
+
+                    }else  if (text.equals("In Progress")){
+                        intent4.putExtra("value","In Progress");
+
+                    }else  if (text.equals("Ready for Pickup")){
+                        intent4.putExtra("val","Ready For Pickup");
+
+                    }else {
+                    }
 //                    intent4.putExtra("value",message2);
 //                    intent4.putExtra("val",message3);
                     context.startActivity(intent4);

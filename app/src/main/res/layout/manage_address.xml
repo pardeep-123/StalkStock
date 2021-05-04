@@ -146,12 +146,12 @@
         <ImageView
             android:layout_width="@dimen/_20sdp"
             android:layout_height="match_parent"
-            android:src="@drawable/house_icon"
+            android:src="@drawable/home_edit_address"
             android:id="@+id/iv_Home"
             android:layout_marginLeft="@dimen/_30sdp"
             />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:id="@+id/tv_USA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -182,11 +182,11 @@
         android:layout_below="@+id/tv_USA"
         android:orientation="horizontal">
 
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnEdit"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/editbutton"
+            android:background="@drawable/edit_text_bg_trans"
             android:layout_marginLeft="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="EDIT"
@@ -194,11 +194,11 @@
             android:textColor="@color/App"
             />
 
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnDelete"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/editbutton"
+            android:background="@drawable/edit_text_bg_trans"
             android:layout_marginLeft="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="DELETE"
@@ -208,14 +208,15 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/tbnAdd"
+
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
         android:background="@drawable/green_btn"
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginRight="@dimen/_30sdp"
-        android:text="Add New Address"
+         android:text="Add New Address"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:layout_marginBottom="@dimen/value_40dp"

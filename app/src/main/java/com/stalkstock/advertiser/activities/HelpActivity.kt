@@ -31,7 +31,7 @@ class HelpActivity : AppCompatActivity(), View.OnClickListener {
             R.id.iv_back->{
                 finish()
             }R.id.btn_ok->{
-            if(AppController.getInstance().getString("usertype").equals("1")){
+            /*if(AppController.getInstance().getString("usertype").equals("1")){
                 val intent = Intent(mContext, MainActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
@@ -47,9 +47,15 @@ class HelpActivity : AppCompatActivity(), View.OnClickListener {
                 val intent = Intent(mContext, MainConsumerActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
-            }
+            }*/
+
+            onBackPressed()
 
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

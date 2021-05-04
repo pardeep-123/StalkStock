@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/bg_fit" />
+
+
+    <ImageView
+        android:id="@+id/iv_backArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/back_arrow" />
+
+    <LinearLayout
+        android:id="@+id/layoutBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+         android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/iv_Congo"
+            android:src="@drawable/confirm_icon"
+            android:layout_gravity="center"
+              />
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thank You !"
+            android:textSize="25sp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your request was completed successfully."
+            android:textSize="22sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+             android:layout_marginTop="@dimen/_10sdp"
+            />
+<!--
+        android:textColor="#222222"
+-->
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request Id:#1234567"
+            android:textSize="22sp"
+            android:gravity="center"
+             android:layout_marginTop="@dimen/_10sdp"
+            />
+<!--
+        android:textColor="#666666"
+-->
+
+
+    </LinearLayout>
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:id="@+id/btnGo"
+        android:background="@drawable/btn_shape"
+        android:text="Go to Home Page"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_140sdp"
+        />
+
+
+</RelativeLayout>

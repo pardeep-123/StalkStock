@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="70dp">
+
+    <RelativeLayout
+        android:id="@+id/rltoo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+
+            android:gravity="center"
+            android:textColor="@color/home_grey"
+            android:textSize="25sp"
+            />
+
+        <View
+            android:id="@+id/view_simple"
+            android:layout_alignLeft="@+id/tv_item_title"
+            android:layout_alignRight="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_height="2dp"
+            android:background="@color/light_grey"/>
+
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tv_item_title_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+
+
+            android:gravity="center"
+            android:textColor="@color/theme_green"
+            android:textSize="25sp"
+            />
+
+        <View
+            android:id="@+id/view_bold"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/tv_item_title_bold"
+            android:layout_alignRight="@+id/tv_item_title_bold"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+
+            android:visibility="gone"
+            android:background="@color/theme_green"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

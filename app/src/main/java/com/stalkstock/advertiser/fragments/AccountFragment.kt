@@ -7,12 +7,13 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
 import kotlinx.android.synthetic.main.logout_alert.*
-import kotlinx.android.synthetic.main.toolbar2.view.tv_heading
+import kotlinx.android.synthetic.main.toolbar2.view.*
 
 class AccountFragment : Fragment(), View.OnClickListener {
 
@@ -34,7 +35,22 @@ class AccountFragment : Fragment(), View.OnClickListener {
         v.tv_help.setOnClickListener(this)
         v.tv_logout.setOnClickListener(this)
         v.lin_editProfile.setOnClickListener(this)
-       // v.toggle.setOnClickListener(this)
+
+
+        val toggle1 =
+            v!!.findViewById<ImageView>(R.id.toggle1)
+        val toggle_off2 =
+            v!!.findViewById<ImageView>(R.id.toggle_off2)
+
+        toggle1.setOnClickListener {
+            toggle_off2.visibility = View.VISIBLE
+            toggle1.visibility = View.GONE
+        }
+        toggle_off2.setOnClickListener {
+            toggle_off2.visibility = View.GONE
+            toggle1.visibility = View.VISIBLE
+        }
+        // v.toggle.setOnClickListener(this)
         return v
     }
 

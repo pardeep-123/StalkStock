@@ -23,143 +23,205 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/grey" />
 
-    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-        android:id="@+id/tv_Upload"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ScrollView
         android:layout_below="@id/v_View"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:gravity="center"
-        android:text="@string/upload_your_driver_s_license"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_12sdp" />
 
-    <LinearLayout
-        android:id="@+id/layoutApp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_Upload"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="130dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape_xml"
-            android:padding="@dimen/_5sdp">
-
-            <ImageView
-                android:id="@+id/ivCamera"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:tint="@color/dark_gray"
-                android:scaleType="fitXY"/>
-
-            <ImageView
-                android:id="@+id/ivCamera1"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:src="@drawable/uploader_icon"
-                app:tint="@color/dark_gray" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_10sdp" />
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="130dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape_xml"
-            android:padding="@dimen/_5sdp">
-
-            <ImageView
-                android:id="@+id/ivCamera2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:tint="@color/dark_gray"
-                android:scaleType="fitXY"/>
-
-            <ImageView
-                android:id="@+id/iv_camera2"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:src="@drawable/uploader_icon"
-                app:tint="@color/dark_gray" />
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layoutApp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:orientation="vertical">
-
-        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:gravity="center"
-            android:text="Upload your registration"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp" />
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/shape_xml"
-            android:padding="@dimen/_5sdp">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/ivCamera3"
+
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                android:id="@+id/tv_Upload"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                app:tint="@color/dark_gray"
-                android:scaleType="fitXY"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/upload_your_driver_s_license"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp" />
 
-            <ImageView
-                android:id="@+id/iv_camera3"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/camera"
-                app:tint="@color/dark_gray" />
+            <LinearLayout
+                android:id="@+id/layoutApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_Upload"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_xml"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/ivCamera"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:tint="@color/dark_gray"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/ivCamera1"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:src="@drawable/uploader_icon"
+                        app:tint="@color/dark_gray" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_10sdp" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_xml"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/ivCamera2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:tint="@color/dark_gray"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/iv_camera2"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:src="@drawable/uploader_icon"
+                        app:tint="@color/dark_gray" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutApp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="@string/upload_your_registration"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/shape_xml"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/ivCamera3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        app:tint="@color/dark_gray"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/iv_camera3"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/camera"
+                        app:tint="@color/dark_gray" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:id="@+id/layoutText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutText"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="@string/upload_your_proof_of_insurance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/shape_xml"
+                    android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/ivCamera4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                         app:tint="@color/dark_gray"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/iv_camera4"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/camera"
+                        app:tint="@color/dark_gray" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_Upload1"
+                android:layout_below="@+id/layoutText2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                 android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/green_btn"
+                android:text="Upload"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+
+                />
+
         </RelativeLayout>
+    </ScrollView>
 
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_Upload1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginRight="@dimen/_30sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:background="@drawable/green_btn"
-        android:text="Upload"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
-
-        />
 
 </RelativeLayout>

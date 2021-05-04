@@ -46,15 +46,15 @@
                 android:orientation="vertical"
                 android:paddingLeft="10dp">
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jamie Row"
                     android:textColor="@color/black"
                     android:textSize="17sp"
-                    android:textStyle="bold" />
+                     />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -62,7 +62,7 @@
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -87,22 +87,24 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_notifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                android:layout_width="0dp"
+                android:id="@+id/tv_notification"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="40dp"
+                 android:minHeight="40dp"
                 android:padding="15dp"
+                android:layout_centerVertical="true"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
+<!--
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/toggle"
                 android:layout_width="60dp"
@@ -111,8 +113,27 @@
                 android:src="@drawable/toggle_off"
                 app:trackTint="@color/switch_track_selector"
                 android:thumb="@drawable/custom_switch" />
+-->
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/toggle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/toggle_off"/>
+
+            <ImageView
+                android:id="@+id/toggle_off2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/toggle_on"
+                android:visibility="gone" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -126,6 +147,22 @@
             android:minHeight="40dp"
             android:padding="15dp"
             android:text="@string/documents"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="20sp"
+
+            android:background="@color/white" />
+ <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:id="@+id/tv_manage_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:padding="15dp"
+            android:text="Manage Addresses"
             android:textColor="@color/black"
             android:textSize="17sp" />
 

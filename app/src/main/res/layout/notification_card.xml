@@ -13,7 +13,7 @@
         android:background="@drawable/btn_shape_notification"
         android:weightSum="1">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="0.8"
             android:paddingLeft="10dp"
@@ -22,12 +22,13 @@
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
                 android:text="@string/dummy_text"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/white"
+                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
-        </LinearLayout>
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="0.2"

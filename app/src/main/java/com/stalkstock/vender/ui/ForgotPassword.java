@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.stalkstock.R;
+import com.stalkstock.advertiser.activities.LoginActivity;
 
 public class ForgotPassword extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,7 +36,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
 
 
             case R.id.forgotbutton:
-                startActivity(new Intent(ForgotPassword.this, LoginScreen.class));
+                startActivity(new Intent(ForgotPassword.this, LoginActivity.class));
                 break;
 
 

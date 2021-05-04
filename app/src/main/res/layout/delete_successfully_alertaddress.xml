@@ -22,7 +22,7 @@
                 android:src="@drawable/delete_icon"
                 android:layout_centerHorizontal="true"/>
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-    <Button
+    <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btn_yes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp" />
-    <Button
+    <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btn_no"
         android:layout_width="0dp"
         android:layout_weight="1"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <com.stalkstock.utils.custom.TitiliumBoldTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volume"
+         android:textColor="@color/black_color"
+        android:textSize="25sp"
+        android:typeface="monospace"
+        android:layout_marginTop="@dimen/value_15dp"
+        android:layout_marginRight="@dimen/value_20dp"
+        android:layout_marginLeft="@dimen/value_20dp"
+        android:layout_marginBottom="5dp"
+
+        />
+
+
+    <RelativeLayout
+        android:layout_marginBottom="5dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--
+                <TextView
+                    android:id="@+id/tvUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Teaspoon(t or tsp.)"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/value_11dp"
+                    android:typeface="monospace"
+                    android:layout_marginTop="@dimen/value_15dp"
+                    android:layout_marginRight="@dimen/value_20dp"
+                    android:layout_marginLeft="@dimen/value_20dp"
+                    android:drawableRight="@drawable/radio_circle"
+                    />
+        -->
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvUnit"
+            android:layout_width="wrap_content"
+            android:layout_toLeftOf="@+id/iv_rad"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:text="Teaspoon(t or tsp.)"
+            android:textColor="@color/black_color"
+            android:textSize="22sp"
+            android:typeface="monospace"
+            android:layout_centerVertical="true"
+
+            android:layout_marginTop="@dimen/value_15dp"
+            android:layout_marginLeft="@dimen/value_20dp"
+            android:layout_marginRight="@dimen/value_20dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_rad"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/value_20dp"
+
+
+            android:src="@drawable/radio_circle"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

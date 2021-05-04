@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.stalkstock.R;
+import com.stalkstock.advertiser.activities.LoginActivity;
 import com.stalkstock.vender.ui.AddProduct;
 import com.stalkstock.vender.ui.BidProduct;
 import com.stalkstock.vender.ui.BussinessProfile;
@@ -142,7 +146,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             case R.id.ll_1:
                 //showDialog()
 
-                LayoutInflater inflate= LayoutInflater.from(getActivity());
+               /* LayoutInflater inflate= LayoutInflater.from(getActivity());
                 View v= inflate.inflate(R.layout.logout_alert_box,null);
                 final AlertDialog deleteDialog = new AlertDialog.Builder(getActivity()).create();
                 deleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -173,7 +177,53 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                         deleteDialog.dismiss();
                     }
                 });
-                deleteDialog.show();
+                deleteDialog.show();*/
+
+                final Dialog logoutUpdatedDialog2 = new  Dialog(requireContext());
+                logoutUpdatedDialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                logoutUpdatedDialog2.setContentView(R.layout.logout_alert_box);
+
+                logoutUpdatedDialog2.getWindow().setLayout(
+                        WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.WRAP_CONTENT
+                );
+                logoutUpdatedDialog2.setCancelable(true);
+                logoutUpdatedDialog2.setCanceledOnTouchOutside(false);
+                logoutUpdatedDialog2.getWindow().setGravity(Gravity.CENTER);
+
+                logoutUpdatedDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                final Button btnyes= logoutUpdatedDialog2.findViewById(R.id.logout_yesbtn);
+                final Button buttonno=logoutUpdatedDialog2.findViewById(R.id.logout_nobtn);
+                btnyes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        btnyes.setBackground(getResources().getDrawable(R.drawable.logoutshape));
+                        buttonno.setBackground(getResources().getDrawable(R.drawable.buttonshape));
+                        btnyes.setTextColor(getResources().getColor(R.color.white));
+                        buttonno.setTextColor(getResources().getColor(R.color.balck));
+
+                        logoutUpdatedDialog2.dismiss();
+                    }
+                });
+                buttonno.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        buttonno.setBackground(getResources().getDrawable(R.drawable.current_button));
+                        btnyes.setBackground(getResources().getDrawable(R.drawable.past_button));
+                        buttonno.setTextColor(getResources().getColor(R.color.white));
+                        btnyes.setTextColor(getResources().getColor(R.color.balck));
+                        Intent intent9 = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent9);
+                        requireActivity().finish();
+                        logoutUpdatedDialog2.dismiss();
+                    }
+                });
+
+
+
+
+                logoutUpdatedDialog2.show();
 
 
                 break;

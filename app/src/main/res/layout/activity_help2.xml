@@ -90,7 +90,7 @@
                     android:id="@+id/go_home_button"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/buttonshape"
-                    android:text="Go Home"
+                    android:text="Back"
                     android:textColor="#fff"
                     android:textSize="@dimen/_14sdp"
                     android:textAllCaps="false"

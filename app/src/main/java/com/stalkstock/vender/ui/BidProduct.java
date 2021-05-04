@@ -46,7 +46,7 @@ public class BidProduct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnRequest.setBackground(getResources().getDrawable(R.drawable.current_button));
-                btnAccpet.setBackground(getResources().getDrawable(R.drawable.past_button));
+                btnAccpet.setBackground(getResources().getDrawable(R.drawable.past_button2));
                 btnRequest.setTextColor(getResources().getColor(R.color.white));
                 btnAccpet.setTextColor(getResources().getColor(R.color.balck));
                 requestAdapter = new RequestAdapter(mContext);
@@ -59,7 +59,7 @@ public class BidProduct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnAccpet.setBackground(getResources().getDrawable(R.drawable.current_button));
-                btnRequest.setBackground(getResources().getDrawable(R.drawable.past_button));
+                btnRequest.setBackground(getResources().getDrawable(R.drawable.past_button2));
                 btnAccpet.setTextColor(getResources().getColor(R.color.white));
                 btnRequest.setTextColor(getResources().getColor(R.color.balck));
                 accpetAdapter = new AccpetAdapter(mContext);

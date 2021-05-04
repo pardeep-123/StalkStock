@@ -67,7 +67,7 @@
             android:layout_height="1dp"
             android:background="@color/light_grey2"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enter New Card Details"
@@ -79,7 +79,7 @@
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -87,13 +87,13 @@
                 android:textColor="@color/light_grey2"
                 android:textSize="13sp" />
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/transparent_round_bg"
+                android:background="@drawable/shape_edit_for_add_card"
                 android:gravity="center_vertical"
-                android:hint="Enter Name"
+                android:hint="@string/enter_cardholder_full_name"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName"
                 android:maxLines="1"
@@ -104,7 +104,7 @@
                 android:textColorHint="@color/light_grey2"
                 android:textSize="13sp" />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -113,13 +113,13 @@
                 android:textColor="@color/light_grey2"
                 android:textSize="13sp" />
 
-            <EditText
+            <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/transparent_round_bg"
+                android:background="@drawable/shape_edit_for_add_card"
                 android:gravity="center_vertical"
-                android:hint="Enter Number "
+                android:hint="@string/enter_credit_card_number"
 
                 android:imeOptions="actionNext"
                 android:inputType="number"
@@ -141,7 +141,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -150,12 +150,12 @@
                         android:textColor="@color/light_grey2"
                         android:textSize="13sp" />
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/monthsss"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/transparent_round_bg"
+                        android:background="@drawable/shape_edit_for_add_card"
                         android:gravity="center_vertical"
                         android:hint="Select Month"
                         android:imeOptions="actionNext"
@@ -172,7 +172,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -181,12 +181,12 @@
                     android:textColor="@color/light_grey2"
                     android:textSize="13sp" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/yearsss"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/transparent_round_bg"
+                    android:background="@drawable/shape_edit_for_add_card"
                     android:gravity="center_vertical"
                     android:hint="Select Year"
                     android:imeOptions="actionNext"
@@ -206,21 +206,20 @@
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:text="CVV"
+                         android:text="CVV"
                         android:visibility="visible"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey2"
                         android:textSize="13sp"/>
 
-                    <EditText
+                    <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/transparent_round_bg"
+                        android:background="@drawable/shape_edit_for_add_card"
                         android:gravity="center_vertical"
                         android:hint="Enter CVV"
                         android:imeOptions="actionNext"
@@ -249,7 +248,7 @@
                     android:id="@+id/ivCheckbox"
                     />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tv_terms_conditions"
                     android:layout_toRightOf="@+id/ivCheckbox"
                     android:layout_width="wrap_content"
@@ -268,7 +267,7 @@
                 android:gravity="bottom|center_horizontal">
 
 
-                <Button
+                <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

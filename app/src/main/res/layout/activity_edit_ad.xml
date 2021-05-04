@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -178,6 +179,8 @@
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:maxLines="1"
+                        android:hint="@string/enter_your_ad_title"
+
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="12dp"
@@ -219,6 +222,8 @@
                             android:imeOptions="actionNext"
                             android:inputType="textPersonName"
                             android:maxLines="1"
+                            android:hint="Select ad start date"
+
                             android:drawableRight="@drawable/calendar_icon"
                             android:minHeight="45dp"
                             android:paddingLeft="15dp"
@@ -255,6 +260,8 @@
                             android:imeOptions="actionNext"
                             android:inputType="textPersonName"
                             android:maxLines="1"
+                            android:hint="Select ad end date"
+
                             android:drawableRight="@drawable/calendar_icon"
 
                             android:minHeight="45dp"
@@ -285,7 +292,7 @@
                     android:drawablePadding="3dp"
                     android:gravity="start"
                     android:layout_marginTop="10dp"
-                    android:text="Click to action text"
+                    android:text="Call to action text"
                     android:textColor="@color/light_grey"
                     android:textSize="15sp" />
 
@@ -437,6 +444,8 @@
                         android:maxLines="1"
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
+                        android:hint="@string/enter_your_ad_destination_link"
+
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
@@ -465,9 +474,11 @@
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:imeOptions="actionNext"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
+                        android:hint="@string/enter_your_daily_advertising_budget"
+
                         android:paddingLeft="15dp"
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
@@ -494,13 +505,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/add_card_btn"
-                        android:gravity="start"
+                        android:background="@drawable/edit_text_bg"
+                        android:gravity="center_vertical"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:maxLines="4"
                         android:lines="4"
                         android:paddingLeft="15dp"
+                        android:hint="@string/enter_your_ad_description"
+
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:minLines="4"
@@ -519,19 +532,24 @@
                         android:textSize="13sp" />
                 </RelativeLayout>
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/add_card_btn"
+                        android:background="@drawable/edit_text_bg"
                         android:paddingLeft="15dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:paddingRight="12dp"
+
+                        android:hint="Enter billing information for approved ads"
+
+
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -573,11 +591,25 @@
                         android:textSize="13sp" />
 
                 </RelativeLayout>
+
+                <com.stalkstock.utils.custom.TitiliumBoldButton
+                    android:id="@+id/btn_manage_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:minHeight="45dp"
+                    android:text="@string/edit_update_payment_method"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_preview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"

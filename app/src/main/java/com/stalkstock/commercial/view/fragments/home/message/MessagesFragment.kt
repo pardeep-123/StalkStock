@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_messages.*
 import kotlinx.android.synthetic.main.fragment_my_orders.*
 
 class MessagesFragment : Fragment(), View.OnClickListener, MessagesListAdapter.OnMessageRecyclerViewListAdapter {
-    var listner: CommunicationListner?=null
+  //  var listner: CommunicationListner?=null
     var list:ArrayList<ModelPojo.MessageListModel>?=null
     var handler: Handler?=null
 
@@ -35,11 +35,11 @@ class MessagesFragment : Fragment(), View.OnClickListener, MessagesListAdapter.O
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        listner!!.getYourFragmentActive(3)
-        handler= Handler(Looper.myLooper()!!)
-        handler!!.postDelayed({
+       // listner!!.getYourFragmentActive(3)
+//        handler= Handler(Looper.myLooper()!!)
+//        handler!!.postDelayed({
             createMessageList()
-        },60)
+//        },60)
     }
     private fun init(){
 
@@ -53,14 +53,14 @@ class MessagesFragment : Fragment(), View.OnClickListener, MessagesListAdapter.O
         }
         list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_1,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",2))
         list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_2,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_3,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_1,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_2,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_3,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_1,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_2,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
-        rv_messagesList.adapter= MessagesListAdapter(requireContext(), list!!, this@MessagesFragment)
-        var dividerBetweenRecyclerViewItems = DividerItemDecoration(requireContext(),
+//        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_3,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
+//        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_1,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
+//        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_2,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
+//        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_3,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
+//        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_1,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
+//        list!!.add(ModelPojo.MessageListModel(R.drawable.chat_img_2,"Jamie Jai","Lorem ipsum dolor sit amet","2:30 PM",0))
+        rv_messagesList.adapter= MessagesListAdapter(requireActivity(), list!!, this@MessagesFragment)
+        var dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),
             DividerItemDecoration.VERTICAL)
         rv_messagesList.addItemDecoration(dividerBetweenRecyclerViewItems)
 
@@ -81,16 +81,16 @@ class MessagesFragment : Fragment(), View.OnClickListener, MessagesListAdapter.O
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is CommunicationListner){
-            listner= context as CommunicationListner
-        }else{
-            throw RuntimeException("Message Frag not Attached")
-        }
+//        if(context is CommunicationListner){
+//            listner= context as CommunicationListner
+//        }else{
+//            throw RuntimeException("Message Frag not Attached")
+//        }
     }
 
     override fun onDetach() {
         super.onDetach()
-        listner= null
+       // listner= null
     }
 
 }

@@ -29,6 +29,8 @@
 
         </RelativeLayout>
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_msg"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Are you sure want to clear\nthis chat?"

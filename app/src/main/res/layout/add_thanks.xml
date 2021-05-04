@@ -9,6 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
+        android:layout_alignParentRight="true"
+
         android:src="@drawable/bg_fit" />
 
 
@@ -39,45 +41,44 @@
             android:layout_marginBottom="@dimen/_40sdp"
             />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thank You !"
             android:textSize="@dimen/_16sdp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
+             android:textColor="@color/black"
             android:gravity="center"
             />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your request was completed suceesfully."
+            android:text="Your request was completed successfully."
             android:textSize="@dimen/_14sdp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/black"
+             android:layout_marginTop="@dimen/_10sdp"
             />
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Request Id:#1234567"
             android:textSize="@dimen/_14sdp"
             android:gravity="center"
-            android:textStyle="bold"
+
             android:layout_marginTop="@dimen/_10sdp"
             />
 
 
     </LinearLayout>
 
-    <Button
+    <com.stalkstock.utils.custom.TitiliumBoldButton
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/_10sdp"
         android:id="@+id/btnGo"
-        android:background="@drawable/green_btn"
+        android:background="@drawable/button_round_corners"
         android:text="Go to Home Page"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"

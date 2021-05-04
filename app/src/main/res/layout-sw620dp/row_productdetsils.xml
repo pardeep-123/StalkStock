@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="50dp"
+    android:layout_marginRight="50dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/item_border"
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:background="@drawable/item_border"
+
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_alignBottom="@+id/add"
+                android:layout_alignTop="@+id/name"
+                android:layout_width="135dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/product_img_1"/>
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img"
+                android:includeFontPadding="false"
+                android:text="Meat"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                 android:layout_marginLeft="10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/red_dot"
+
+                android:layout_alignParentRight="true"/>
+
+            <!--
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_below="@+id/name"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/star_fill"
+                        android:layout_toRightOf="@+id/img"
+                        android:layout_marginLeft="10dp"
+                        />
+            -->
+
+
+            <RatingBar
+                android:layout_below="@+id/name"
+                android:layout_marginTop="5dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/star"
+                android:progressTint="@color/yellow"
+                android:progressBackgroundTint="@color/yellow"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img"
+                android:rating="5"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyleSmall"/>
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/star"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:includeFontPadding="false"
+                android:layout_toRightOf="@+id/img"
+                android:text="Beef: $9.50/LB"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                  />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New York 920.."
+                android:layout_below="@+id/price"
+                android:includeFontPadding="false"
+                android:layout_toRightOf="@+id/img"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/green_location_arrow"/>
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/add"
+                android:layout_width="140dp"
+
+                android:layout_height="50dp"
+                android:text="Add"
+                android:textSize="22sp"
+                android:layout_below="@+id/location_text"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginLeft="10dp"
+
+                android:gravity="center"
+                android:textColor="@color/white"
+
+                android:layout_alignParentRight="true"
+                android:background="@drawable/add_btn"
+
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

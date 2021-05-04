@@ -40,6 +40,7 @@
         </RelativeLayout>
 
         <ScrollView
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
@@ -66,16 +67,15 @@
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
-                        android:hint="Enter Email"
+                        android:hint="@string/enter_your_email_address"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="15dp"
                         android:textColor="#000"
-                        android:textColorHint="#FFC3C3C3"
-                        android:textSize="15dp"
-                         />
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="13sp"                         />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -84,9 +84,8 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Email"
-                        android:textColor="@color/gray_editext_hint"
-                        android:textSize="14dp"
-                          />
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp"                          />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -98,16 +97,15 @@
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
-                        android:hint="Password"
+                        android:hint="@string/enter_your_password"
                         android:inputType="textPassword"
                         android:paddingLeft="15dp"
                         android:textColor="#000"
-                        android:textColorHint="#FFC3C3C3"
-                        android:textSize="15dp"
-                         />
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="13sp"                         />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -116,9 +114,8 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Password"
-                        android:textColor="#FFC3C3C3"
-                        android:textSize="14dp"
-                          />
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp"                          />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -136,7 +133,9 @@
                         android:layout_gravity="right"
                         android:gravity="right"
                         android:text="@string/forgotpassword"
-                        android:textColor="#FFC3C3C3"/>
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp" />
+
 
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/loginbutton"
@@ -166,7 +165,7 @@
                         android:gravity="center"
                         android:text="Don't have an account? "
                         android:textColor="#000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         tools:ignore="MissingConstraints"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -178,9 +177,46 @@
                         android:gravity="center"
                         android:text="Sign Up"
                         android:textColor="#7DBB00"
-                        android:textSize="15dp"
-                        tools:ignore="MissingConstraints"/>
+                        android:textSize="15sp"                         tools:ignore="MissingConstraints"/>
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="20dp"
+
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_toLeftOf="@+id/tv_or"
+                        android:layout_marginRight="5dp"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/darker_gray"/>
+
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tv_or"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/or"
+                        android:layout_centerVertical="true"
+
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp" />
+
+                    <View
+                        android:layout_toRightOf="@+id/tv_or"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/darker_gray"/>
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -54,7 +54,7 @@
             android:textColor="#000"
             android:layout_gravity="left"
             android:gravity="center_vertical"
-            android:text="In Progres"
+            android:text="In Progress"
             android:paddingLeft="@dimen/_10sdp"
             ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
             <ImageView

@@ -9,7 +9,7 @@
     android:background="#fff"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="150dp"
+        android:layout_width="220dp"
         android:gravity="right"
         android:background="#fff"
         android:layout_gravity="right"
@@ -25,7 +25,7 @@
             android:layout_marginRight="5dp"
             android:orientation="vertical"
             android:layout_alignParentRight="true">
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,9 +41,10 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:text="Notification"
@@ -53,19 +54,20 @@
                     />
                 <ImageView
                     android:id="@+id/toggle"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
+                     android:layout_width="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:src="@drawable/toggle_on"/>
                 <ImageView
                     android:id="@+id/toggle_off"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="@dimen/_8sdp"
+                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+
                     android:layout_marginRight="@dimen/_5sdp"
                     android:visibility="gone"
                     android:layout_alignParentRight="true"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.live.stalkstockcommercial.ui.view.activities.Chat;
 import com.stalkstock.R;
 import com.stalkstock.vender.Model.MessageList;
 import com.stalkstock.vender.ui.ChatBox;
@@ -39,11 +40,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.messagelist, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-        LinearLayout lv = view.findViewById(R.id.messagelayout);
-        lv.setOnClickListener(new View.OnClickListener() {
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, ChatBox.class));
+                //context.startActivity(new Intent(context, ChatBox.class));
+                context.startActivity(new Intent(context, Chat.class));
             }
         });
         return viewHolder;
@@ -61,28 +63,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 3;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
         ImageView imageview;
         TextView textname,texttime,textView;
         public ViewHolder(View itemView) {
             super(itemView);
              imageview= itemView.findViewById(R.id.imguser);
-             textname=itemView.findViewById(R.id.msgusername);
+            // textname=itemView.findViewById(R.id.msgusername);
              texttime=itemView.findViewById(R.id.messagetime);
-            textView=itemView.findViewById(R.id.messagerecive);
-            LinearLayout lv = itemView.findViewById(R.id.messagelayout);
-            lv.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
-
-
+          //  textView=itemView.findViewById(R.id.messagerecive);
 
         }
+
+
     }
 }

@@ -58,15 +58,27 @@ class AdapterProductUnit(var listProductUnit: ArrayList<AddedProduct.ProductUnit
 
         if(listProductUnit[position].selected)
         {
-            holder.itemView.tvUnit.setCompoundDrawablesWithIntrinsicBounds(null,
-                null,context.resources.getDrawable(R.drawable.radio_fill),null)
+            holder.itemView.iv_rad.setImageResource(R.drawable.radio_fill)
         }
         else
         {
-            holder.itemView.tvUnit.setCompoundDrawablesWithIntrinsicBounds(null,
-                null,context.resources.getDrawable(R.drawable.radio_circle),null)
+            holder.itemView.iv_rad.setImageResource(R.drawable.radio_circle)
+
+
 
         }
+//
+//       if(listProductUnit[position].selected)
+//        {
+//            holder.itemView.tvUnit.setCompoundDrawablesWithIntrinsicBounds(null,
+//                null,context.resources.getDrawable(R.drawable.radio_fill),null)
+//        }
+//        else
+//        {
+//            holder.itemView.tvUnit.setCompoundDrawablesWithIntrinsicBounds(null,
+//                null,context.resources.getDrawable(R.drawable.radio_circle),null)
+//
+//        }
 
 
     }

@@ -46,33 +46,31 @@
 
 
         </RelativeLayout>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="You haven't added any products yet!"
             android:textColor="#000"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="18dp">
-        </TextView>
-        <TextView
+             android:textSize="18dp">
+        </com.stalkstock.utils.custom.TitiliumBoldTextView>
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Looks like you havn't started selling yet.\nLet's get you started!"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="15dp">
-        </TextView>
+             android:textSize="15dp">
+        </com.stalkstock.utils.custom.TitiliumBoldTextView>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:layout_marginBottom="100dp">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/homeadditembutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,7 +80,7 @@
                 android:textColor="#fff"
                 android:textSize="16dp"
                 android:background="@drawable/buttonshape">
-            </Button>
+            </com.stalkstock.utils.custom.TitiliumBoldButton>
         </RelativeLayout>
     </LinearLayout>
 

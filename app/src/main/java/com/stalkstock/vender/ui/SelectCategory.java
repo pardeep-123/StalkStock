@@ -85,12 +85,16 @@ public class SelectCategory extends AppCompatActivity implements View.OnClickLis
         list.add("Meat and Poultry");
         list.add("Fish and Seafood");
         list.add("Dairy");
-        list.add("Other(Please Specify Below)");
+        list.add("Other (Please Specify Below)");
 
 
 
 
-         spinner.setAdapter(new ArrayAdapter(this, R.layout.spinner_item_text,list));
+        // spinner.setAdapter(new ArrayAdapter(this, R.layout.spinner_item_text,list));
+
+        ArrayAdapter<CharSequence> foodadapter =  ArrayAdapter.createFromResource(this, R.array.Select_Category, R.layout.spinner_layout);
+        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text);
+        spinner.setAdapter(foodadapter);
 
 
     }

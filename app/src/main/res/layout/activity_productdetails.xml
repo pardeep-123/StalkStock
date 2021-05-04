@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <RelativeLayout
         android:id="@+id/top12"
@@ -37,7 +38,7 @@
             android:textColor="@color/black"
              android:layout_centerInParent="true"/>
 
-        <ImageView
+      <!--  <ImageView
             android:id="@+id/search"
             android:padding="@dimen/_5sdp"
             android:layout_width="wrap_content"
@@ -64,6 +65,39 @@
             android:src="@drawable/filter_icn"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"/>-->
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search"
+            android:layout_toLeftOf="@+id/fillter"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/search_icon_new"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notification_icon1"
+            android:id="@+id/notification"
+
+             android:layout_toLeftOf="@+id/search"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+       />
+
+        <ImageView
+            android:id="@+id/fillter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/filter_icn1"
+            android:layout_centerVertical="true"
+
+
+             android:layout_marginRight="10dp"
+
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
     <View
@@ -73,10 +107,11 @@
         android:layout_height="0.5dp"
         android:background="@color/light_grey"/>
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsc_top"
         android:layout_below="@+id/view12"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+       >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,7 +150,7 @@
                             android:layout_height="50dp"
                             android:src="@drawable/mc_img"/>
 
-                        <TextView
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:id="@+id/kfc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -124,8 +159,8 @@
                             android:text="McDonald's"
                             android:textColor="@color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"/>
-                        <TextView
+                             />
+                        <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/kfc"
@@ -144,22 +179,43 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp">
-                        <TextView
-                            android:id="@+id/name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4.1 Rating. 500+"
-                            android:textSize="14sp"
-                            android:drawablePadding="10dp"
-                            android:drawableLeft="@drawable/star_fill"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"/>
-                        <TextView
+
+                        <RelativeLayout
+                            android:id="@+id/rl_ra"
+                            android:layout_marginLeft="23dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RatingBar
+                                 android:layout_marginTop="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/star"
+                                android:layout_centerVertical="true"
+                                android:progressTint="@color/yellow"
+                                android:progressBackgroundTint="@color/yellow"
+                                 android:rating="5"
+                                android:numStars="5"
+                                style="?android:attr/ratingBarStyleSmall"/>
+
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/star"
+                                android:id="@+id/name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5.0 Rating. 500+"
+                                android:textSize="14sp"
+                                android:layout_marginLeft="10dp"
+                                />
+
+                        </RelativeLayout>
+                        <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="45 Minutes (Delivery time)"
                             android:layout_marginLeft="25dp"
-                            android:layout_below="@+id/name"
+                            android:layout_below="@+id/rl_ra"
                             android:textSize="14sp"
 
                             android:layout_marginTop="5dp"/>
@@ -176,6 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"/>
 

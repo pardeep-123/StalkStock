@@ -11,25 +11,49 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.stalkstock.R
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_manage_payments.*
 import kotlinx.android.synthetic.main.delete_successfully_alert.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener {
     val mContext:Context=this
+    var from=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_manage_payments)
         tv_heading.text = "Manage Payments"
+
+        if (intent.getStringExtra("from")!=null){
+            from=intent.getStringExtra("from")
+            btn_checkout.setText("Save")
+        }else{
+            from=""
+        }
+
         iv_back.setOnClickListener(this)
         btn_add.setOnClickListener(this)
         one.setOnClickListener(this)
-        two.setOnClickListener(this)
         layout_delete.setOnClickListener(this)
-        layout_delete1.setOnClickListener(this)
-       // setAdapter()
+        btn_checkout.setOnClickListener {
+
+            if (from.isEmpty()){
+                var intents= Intent(this@ManagePaymentsActivity,ThankyouActivity2::class.java)
+                startActivity(intents)
+            }else{
+                onBackPressed()
+            }
+
+        }
+
+        if(AppController.getInstance().getString("usertype").equals("1")){
+            btn_checkout.visibility=View.VISIBLE
+        }
+
+
+        // setAdapter()
     }
 
 //    fun setAdapter() {
@@ -44,12 +68,8 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             } R.id.one->{
             item_address_rb.setImageResource(R.drawable.radio_fill)
-            item_address_rb1.setImageResource(R.drawable.radio_circle)
 
-        } R.id.two->{
-            item_address_rb.setImageResource(R.drawable.radio_circle)
-            item_address_rb1.setImageResource(R.drawable.radio_fill)
-            }
+        }
             R.id.btn_add->{
                 val intent = Intent(mContext, AddNewCardActivity::class.java)
                 startActivity(intent)

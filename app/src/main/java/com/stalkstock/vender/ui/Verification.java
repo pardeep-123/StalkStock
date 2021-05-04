@@ -1,11 +1,17 @@
 package com.stalkstock.vender.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,7 +36,7 @@ public class Verification extends AppCompatActivity implements View.OnClickListe
             try {
                 if(getIntent().getStringExtra("type").equals("my"))
                 {
-                    LayoutInflater inflater= LayoutInflater.from(Verification.this);
+                    /*LayoutInflater inflater= LayoutInflater.from(Verification.this);
                     View v= inflater.inflate(R.layout.verficationalertdialog,null);
                     final AlertDialog deleteDialog = new AlertDialog.Builder(Verification.this).create();
                     deleteDialog.setView(v);
@@ -49,7 +55,39 @@ public class Verification extends AppCompatActivity implements View.OnClickListe
 
                         }
                     });
-                    deleteDialog.show();
+                    deleteDialog.show();*/
+                    final Dialog logoutUpdatedDialog = new  Dialog(this, R.style.Theme_Dialog);
+                    logoutUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    logoutUpdatedDialog.setContentView(R.layout.verficationalertdialog);
+
+                    logoutUpdatedDialog.getWindow().setLayout(
+                            WindowManager.LayoutParams.MATCH_PARENT,
+                            WindowManager.LayoutParams.WRAP_CONTENT
+                    );
+                    logoutUpdatedDialog.setCancelable(true);
+                    logoutUpdatedDialog.setCanceledOnTouchOutside(false);
+                    logoutUpdatedDialog.getWindow().setGravity(Gravity.CENTER);
+
+                    logoutUpdatedDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    Button btncontinue= logoutUpdatedDialog.findViewById(R.id.verify_continuebutton);
+
+                    btncontinue.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+//                                        Intent intent = new Intent(ChatBox.this, MessageFragment.class);
+//                                        startActivity(intent);
+                            startActivity(new Intent(Verification.this, AddBusinessDetails.class));
+
+
+
+                            logoutUpdatedDialog.dismiss();
+
+                        }
+                    });
+
+
+                    logoutUpdatedDialog.show();
                 }
             }catch (Exception e)
             {
@@ -136,8 +174,10 @@ public class Verification extends AppCompatActivity implements View.OnClickListe
             case R.id.verifybutton:
 
 
+                verifyloDailogMethod();
 
-                LayoutInflater inflater= LayoutInflater.from(Verification.this);
+
+               /* LayoutInflater inflater= LayoutInflater.from(Verification.this);
                 View v= inflater.inflate(R.layout.verficationalertdialog,null);
                 final AlertDialog deleteDialog = new AlertDialog.Builder(Verification.this).create();
                 deleteDialog.setView(v);
@@ -160,7 +200,7 @@ public class Verification extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
-                deleteDialog.show();
+                deleteDialog.show();*/
                 break;
 
 
@@ -168,7 +208,40 @@ public class Verification extends AppCompatActivity implements View.OnClickListe
 
             default:
         }
+    }
+
+    private void verifyloDailogMethod() {
+        final Dialog logoutUpdatedDialog = new  Dialog(this, R.style.Theme_Dialog);
+        logoutUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        logoutUpdatedDialog.setContentView(R.layout.verficationalertdialog);
+
+        logoutUpdatedDialog.getWindow().setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+        );
+        logoutUpdatedDialog.setCancelable(true);
+        logoutUpdatedDialog.setCanceledOnTouchOutside(false);
+        logoutUpdatedDialog.getWindow().setGravity(Gravity.CENTER);
+
+        logoutUpdatedDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button btncontinue= logoutUpdatedDialog.findViewById(R.id.verify_continuebutton);
+
+        btncontinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                                        Intent intent = new Intent(ChatBox.this, MessageFragment.class);
+//                                        startActivity(intent);
+                startActivity(new Intent(Verification.this, AddBusinessDetails.class));
 
 
+
+                logoutUpdatedDialog.dismiss();
+
+            }
+        });
+
+
+        logoutUpdatedDialog.show();
     }
 }

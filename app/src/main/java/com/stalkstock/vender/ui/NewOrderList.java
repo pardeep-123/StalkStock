@@ -32,7 +32,7 @@ public class NewOrderList extends AppCompatActivity {
         mcontext=NewOrderList.this;
 
         orderrecyclerview= findViewById(R.id.neworder_recyclerview);
-        newOrderAdapter = new NewOrderAdapter(mcontext);
+        newOrderAdapter = new NewOrderAdapter(mcontext,text);
         orderrecyclerview.setLayoutManager(new LinearLayoutManager(mcontext));
         orderrecyclerview.setAdapter(newOrderAdapter) ;
 

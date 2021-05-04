@@ -8,9 +8,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/value_20dp"
     android:padding="@dimen/value_10dp"
-    android:background="@color/white_color"
+    android:background="@drawable/white_radius_popup"
 
     >
+
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_10sdp"
+    android:layout_height="match_parent"
+    tools:context=".driver.fragment.MyRequestFragment">
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <com.stalkstock.utils.custom.TitiliumBoldButton
+            android:id="@+id/btn_current"
+             android:textSize="22sp"
+            android:text="@string/current"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@color/green_colour"
+            android:layout_width="@dimen/album_dp_0"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="@dimen/_4sdp"
+            android:layout_height="2dp"/>
+        <com.stalkstock.utils.custom.TitiliumBoldButton
+            android:textSize="22sp"
+            android:id="@+id/btn_completed"
+            android:text="@string/completed"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:background="@color/light_grey"
+            android:layout_width="@dimen/album_dp_0"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy_req"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_below="@id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

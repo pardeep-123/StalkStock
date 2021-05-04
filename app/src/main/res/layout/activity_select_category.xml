@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,13 +24,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:ignore="MissingConstraints">
+                android:layout_height="50dp"
+                 tools:ignore="MissingConstraints">
                 <ImageView
                     android:id="@+id/selectctgbackarrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:padding="10dp"
                     android:src="@drawable/back_arrow"
                     android:layout_marginLeft="10dp">
@@ -47,9 +48,8 @@
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="1dp"
-                android:background="#BDBCBC"
+                 android:layout_height="0.dp"
+                android:background="@color/dark_gray"
                 ></View>
             <LinearLayout
                 android:layout_marginTop="30dp"
@@ -82,7 +82,7 @@
                             android:textStyle="bold"
 
                             android:textColorHint="#F8F6F6"
-                            android:textSize="15dp"
+                            android:textSize="13sp"
                             android:textColor="#000"/>
 
                     </RelativeLayout>
@@ -94,8 +94,9 @@
                         android:background="#fff"
                         android:text="Category"
                         android:textStyle="bold"
-                        android:textColor="#FFC3C3C3"
-                        android:textSize="14dp"/>
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp"
+                        />
 
 
                 </RelativeLayout>
@@ -103,7 +104,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFC3C3C3"
+                    android:textColor="@color/light_grey"
                     android:text="Select Tags"
                     ></com.stalkstock.utils.custom.TitiliumBoldTextView>
                 <LinearLayout
@@ -198,7 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
-                    android:text="Enter items"
+                    android:text="Enter item"
                     android:layout_alignParentBottom="true"
                     android:textColor="#fff"
                     android:textSize="16dp"

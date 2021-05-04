@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.stalkstock.R;
 
@@ -28,6 +29,15 @@ public class Subscription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Subscription.this, SelectPaymentMethod.class));
+
+            }
+        });
+
+        TextView upgrade_button1=findViewById(R.id.upgrade_button1);
+        upgrade_button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
 
             }
         });

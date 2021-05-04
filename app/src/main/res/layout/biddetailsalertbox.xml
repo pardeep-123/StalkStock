@@ -27,9 +27,9 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/edittextshape"
             android:paddingLeft="15dp"
-            android:hint="Enter bid amount"
+            android:hint="Enter your selling price"
             android:inputType="number"
-             android:textColorHint="#FFC3C3C3"
+             android:textColorHint="@color/light_grey"
             android:textSize="15dp"
             android:textColor="#000"/>
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="5dp"
-             android:textColor="#FFC3C3C3"
+             android:textColor="@color/light_grey"
             android:background="#fff"
             android:text="Bid Amount"
             android:inputType="number"
@@ -54,9 +54,9 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/edittextshape"
             android:paddingLeft="15dp"
-            android:hint="Enter description"
+            android:hint="Enter your terms of sale"
             android:inputType="textMultiLine"
-             android:textColorHint="#FFC3C3C3"
+             android:textColorHint="@color/light_grey"
             android:textSize="15dp"
             android:textColor="#000"/>
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -65,7 +65,7 @@
             android:layout_marginLeft="35dp"
             android:layout_marginTop="5dp"
             android:background="#fff"
-             android:textColor="#FFC3C3C3"
+             android:textColor="@color/light_grey"
             android:text="Description"
             android:textSize="14dp"/>
     </RelativeLayout>

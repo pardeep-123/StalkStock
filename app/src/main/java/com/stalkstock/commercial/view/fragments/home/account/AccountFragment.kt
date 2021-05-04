@@ -7,8 +7,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.live.stalkstockcommercial.ui.paymnet.ManagePayment
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.*
 import com.stalkstock.commercial.view.activities.CommunicationListner
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.account.*
 import kotlinx.android.synthetic.main.logout_alert.*
 
 class AccountFragment : Fragment(), View.OnClickListener {
-    var listner: CommunicationListner? = null
+   // var listner: CommunicationListner? = null
     lateinit var mContext:Context
     lateinit var logoutUpdatedDialog:Dialog
     override fun onCreateView(
@@ -26,15 +26,29 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.account, container, false)
+        var views = inflater.inflate(R.layout.account, container, false)
         mContext = activity as Context
-        return view
+
+
+        val toggle1 = views.findViewById<ImageView>(R.id.toggle1)
+        val toggle_off2 = views!!.findViewById<ImageView>(R.id.toggle_off2)
+
+        toggle1.setOnClickListener {
+            toggle_off2.visibility = View.VISIBLE
+            toggle1.visibility = View.GONE
+        }
+        toggle_off2.setOnClickListener {
+            toggle_off2.visibility = View.GONE
+            toggle1.visibility = View.VISIBLE
+        }
+
+        return views
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        listner!!.getYourFragmentActive(4)
+       // listner!!.getYourFragmentActive(4)
     }
 
     private fun init() {
@@ -66,6 +80,8 @@ class AccountFragment : Fragment(), View.OnClickListener {
         tvManagePayment.setOnClickListener {
             startActivity(Intent(tvPassword.context, ManagePaymentsActivity::class.java))
         }
+
+
     }
 
     override fun onClick(p0: View?) {
@@ -105,7 +121,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is CommunicationListner) {
-            listner = context
+            //listner = context
         } else {
             throw RuntimeException("Account frag not Attached")
 
@@ -114,7 +130,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
     override fun onDetach() {
         super.onDetach()
-        listner = null
+      //  listner = null
     }
 
 }

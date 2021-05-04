@@ -22,6 +22,7 @@ class RequestDetail : AppCompatActivity() {
         setContentView(R.layout.request_detail)
 
 
+        list.add(AddedProduct.RequestProductData("Item Brand", "Item Name", "Quantity", "Unit of Measurement",false,false))
         list.add(AddedProduct.RequestProductData("Meat", "Bacon Grill", "10", "Kg",false,false))
         list.add(AddedProduct.RequestProductData("Meat", "Bacon Normal", "8", "Kg",false,false))
 
@@ -45,7 +46,7 @@ class RequestDetail : AppCompatActivity() {
                 tvChat.visibility = View.VISIBLE
                 cvBidder.visibility = View.VISIBLE
                 rvRequestBids.visibility = View.GONE
-                btnAccept.visibility = View.VISIBLE
+                btnAccepts.visibility = View.VISIBLE
             }
         })
 
@@ -56,10 +57,10 @@ class RequestDetail : AppCompatActivity() {
     }
 
     private fun clicks() {
-        btnAccept.setOnClickListener {
-            if(btnAccept.text !="Pay Now") {
-                btnAccept.text = "Pay Now"
-                tvPrice.setTextColor(resources.getColor(R.color.green_colour))
+        btnAccepts.setOnClickListener {
+            if(btnAccepts.text !="Pay Now") {
+                btnAccepts.text = "Pay Now"
+                tvPrices.setTextColor(resources.getColor(R.color.green_colour))
                 ivTick.visibility = View.VISIBLE
             }
             else
@@ -69,7 +70,7 @@ class RequestDetail : AppCompatActivity() {
             }
 
         ivBusinessEdit.setOnClickListener {
-            finish()
+            onBackPressed()
         }
 
 

@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/header"
+        android:layout_height="70dp">
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Cart"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/black"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/header"
+        android:layout_above="@+id/btnPaymentMethod"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="12dp"
+                android:background="@drawable/bid_price_bg"
+                >
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/item_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deliver to Home"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"/>
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:layout_toLeftOf="@+id/tvChange"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="10dp"
+                    android:text="201,Dev mall, near lorem ipsum"
+                    android:layout_below="@+id/item_count"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    />
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:paddingLeft="30sp"
+                    android:paddingRight="30sp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    android:text="Change"
+                    android:textSize="22sp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/theme_green"
+                    android:background="@drawable/green_stroke_backround"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp">
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="65dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/mc_img"/>
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/kfc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img"
+                    android:layout_marginLeft="10dp"
+                    android:text="McDonald's"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    />
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/kfc"
+                    android:textSize="22sp"
+                    android:layout_toRightOf="@+id/img"
+                    android:layout_marginLeft="10dp"
+                    android:text="New York, USA"/>
+
+
+            </RelativeLayout>
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Order"
+                android:visibility="gone"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textSize="19sp"
+                android:textColor="@color/black"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/red_dot"
+                    android:layout_marginTop="10sp"/>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+
+                    android:text="Creamy nachos"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20sp"
+                     android:layout_toRightOf="@+id/img1"/>
+
+
+<!--
+                <RelativeLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/location_text"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background_box_new"
+                    android:textColor="@color/theme_green"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:padding="4dp"
+                        android:text="-"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="1"
+                        android:textColor="@color/theme_green"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="+"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+                </RelativeLayout>
+-->
+
+                <RelativeLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/name_text"
+
+                     android:layout_marginTop="5dp"
+                    android:textColor="@color/theme_green"
+                    android:background="@drawable/background_box_new"
+
+                    >
+                    <TextView
+                        android:id="@+id/minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:padding="4dp"
+                        android:text="-"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="1"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="+"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                   <!-- <TextView
+                        android:gravity="center"
+                        android:id="@+id/minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/theme_green"/>
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:layout_centerInParent="true"
+                        android:textSize="15sp"
+                        android:textColor="@color/theme_green"
+                        />
+
+                    <TextView
+                        android:id="@+id/plus"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:layout_marginRight="5dp"
+                        android:layout_alignParentRight="true"
+                        android:textSize="20sp"
+                        android:textColor="@color/theme_green"/>-->
+                </RelativeLayout>
+
+                <!--<RelativeLayout
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/tvPrice"
+                    android:layout_below="@+id/location_text"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/theme_green"
+                    android:background="@drawable/background_box_new"
+
+                    >
+                    <TextView
+                        android:id="@+id/minus"
+                        android:layout_marginLeft="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="-"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:textColor="@color/theme_green"/>
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:layout_centerInParent="true"
+                        android:textSize="20sp"
+                        android:textColor="@color/theme_green"
+                        />
+
+                    <TextView
+                        android:id="@+id/plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="+"
+                        android:layout_marginRight="2dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:textColor="@color/theme_green"/>
+                </RelativeLayout>-->
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:id="@+id/tvPrice"
+                    android:text="$9.50"
+                    android:textSize="25sp"
+
+                    android:textColor="@color/black"
+                    android:layout_alignParentRight="true"
+                     android:layout_marginRight="15sp"/>
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regular"
+                    android:textSize="22sp"
+
+                    android:layout_toRightOf="@+id/img1"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/name_text"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp">
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/red_dot"
+                    android:layout_marginTop="10sp"/>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/name_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Maharaja mac"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20sp"
+                    android:textSize="25sp"
+                    android:layout_toRightOf="@+id/img2"/>
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/name_text23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+
+                    android:visibility="invisible"
+                    android:text="Creamy nachos"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20sp"
+                    android:layout_toRightOf="@+id/img2"/>
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/tvPrice2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$9.50"
+                    android:textSize="22sp"
+
+                    android:textColor="@color/black"
+                    android:layout_alignParentRight="true"
+                     android:layout_marginRight="15sp"/>
+
+
+                <RelativeLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/name_text23"
+
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/theme_green"
+                    android:background="@drawable/background_box_new"
+
+                    >
+                    <TextView
+                        android:id="@+id/minus2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:padding="4dp"
+                        android:text="-"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/count2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="1"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/plus2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="+"
+                        android:textColor="@color/theme_green"
+                        android:textSize="22sp" />
+
+                </RelativeLayout>
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regular"
+                    android:textSize="22sp"
+
+                    android:layout_toRightOf="@+id/img2"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/name_text2"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+
+                    android:text="Item Total"/>
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+
+                    android:text="$69.50"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+
+                    android:text="McDonald's Charges"/>
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="22sp"
+
+                    android:textColor="@color/black"
+                    android:text="$5.50"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+
+                    android:text="Delivery Charges"/>
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="22sp"
+
+                    android:textColor="@color/black"
+                    android:text="$4.50"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="30sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp">
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+
+                    android:text="Total"/>
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
+                    android:text="$4.50"
+                    android:textSize="25sp"
+
+                    />
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bid_price_bg"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:layout_height="wrap_content">
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bill Details"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:layout_toRightOf="@+id/img2"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    >
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Grand Total"
+                        android:textSize="25sp"
+
+                        android:textColor="@color/green"
+                        />
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/green"
+                        android:text="$4.50"
+                        android:textSize="25sp"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="30sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnPaymentMethod"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_shape"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="140dp"
+        android:text="Select Payment Method"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+
+</RelativeLayout>

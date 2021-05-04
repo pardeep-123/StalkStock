@@ -44,7 +44,7 @@ class AfteraddActivity : AppCompatActivity() , View.OnClickListener{
 
         setContentView(R.layout.activity_afteradd)
 
-        tv_heading.text = "Add a New Card"
+        tv_heading.text = "Add A New Card"
         iv_back.setOnClickListener(this)
         btn_save.setOnClickListener(this)
         month_text.setOnClickListener(this)
@@ -93,13 +93,14 @@ class AfteraddActivity : AppCompatActivity() , View.OnClickListener{
             }
             R.id.btn_save -> {
 
-                if(AppController.getInstance().getString("usertype").equals("3")){
+               /* if(AppController.getInstance().getString("usertype").equals("3")){
                     val intent = Intent(mContext, ThanksActivity::class.java)
                     startActivity(intent)
                 }else{
                     val intent = Intent(mContext, ThankyouActivity::class.java)
                     startActivity(intent)
-                }
+                }*/
+                onBackPressed()
 
             }
         }

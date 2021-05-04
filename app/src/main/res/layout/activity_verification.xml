@@ -69,11 +69,22 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SMS verification code has been\nsent to your registered mobile number"
+                android:text="SMS verification code has been sent to:"
                 android:textSize="16dp"
                 android:textColor="#353333"
                 android:layout_gravity="center"
                 android:gravity="center"/>
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_marginTop="8dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+1 12******89"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:gravity="center" />
+
 
         </LinearLayout>
         <LinearLayout

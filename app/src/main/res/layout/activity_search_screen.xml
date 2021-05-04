@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,9 +31,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    tools:ignore="MissingConstraints">
+                    android:layout_height="50dp"
+                     tools:ignore="MissingConstraints">
                     <ImageView
                         android:id="@+id/id_backarrow"
                         android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
                     </ImageView>
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Search"
@@ -58,9 +58,10 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_marginTop="8dp"
-                    android:layout_height="1dp"
-                    android:background="#BDBCBC"
+                    android:layout_height="0.5dp"
+                    android:background="@color/light_grey"
                     ></View>
+<!--
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -79,11 +80,62 @@
                         android:hint="Search.."></com.stalkstock.utils.custom.TitiliumSemiBoldEditText>
                     <ImageView
                         android:layout_weight="0.5"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical"
+                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/ic_searchicon"></ImageView>
                 </LinearLayout>
+-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/etSearch"
+                    android:layout_marginTop="15dp"
+
+                    android:layout_marginRight="15sp"
+                    android:layout_marginLeft="15sp"
+                     android:background="@drawable/shape_edit_new_home"
+                    android:layout_height="45dp">
+
+                    <ImageView
+                        android:id="@+id/search"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/search_icon"/>
+
+
+                    <ImageView
+                        android:id="@+id/iv_voice"
+                        android:paddingRight="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/audio_icon"/>
+
+                    <com.stalkstock.utils.custom.TitiliumRegularEditText
+                        android:layout_toRightOf="@+id/search"
+                        android:layout_toLeftOf="@+id/iv_voice"
+                        android:layout_marginRight="12dp"
+                        android:layout_width="match_parent"
+                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:layout_height="match_parent"
+                         android:textSize="17sp"
+                        android:hint="Search.."
+
+                        />
+
+                </RelativeLayout>
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,7 +229,7 @@
                             android:gravity="center"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
-                            android:text="SefoodProduce"
+                            android:text="Seafood Produce"
                             android:background="#EFECEC"
                             android:textColor="#8BC34A"
                             android:textSize="@dimen/_13sdp"

@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            tools:ignore="MissingConstraints"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,535 +30,1584 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="50dp"
+
                     tools:ignore="MissingConstraints">
+
                     <ImageView
                         android:id="@+id/subscription_backarrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/back_arrow"
-                        android:padding="10dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp">
-                    </ImageView>
+
+                        android:padding="12dp"
+                        android:src="@drawable/back_arrow"/>
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:textSize="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:text="Subscription"
                         android:textColor="#000"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="16dp" />
 
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="1dp"
-                    android:background="#BDBCBC"
-                    ></View>
+
+                    android:layout_height="0.5dp"
+                    android:background="@color/dark_gray"></View>
+
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+                        <!--new-->
                         <LinearLayout
-                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
                             android:orientation="vertical">
+
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Upgrade your account to unlock\n the following"
-                                 android:textSize="@dimen/_14sdp"
-                                android:textColor="#000"/>
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="#8BC34A"
-                                android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginRight="@dimen/_10sdp"
-                                android:orientation="horizontal">
+                                android:gravity="center"
 
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="@dimen/_500sdp"
-                                    android:layout_marginLeft="160dp"
-                                    android:background="@color/white"/>
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="@dimen/_500sdp"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_marginRight="120dp"
-                                    android:background="@color/white"/>
+                                android:text="DONʼT GET LEFT BEHIND BY YOUR COMPETITORS."
+                                android:textColor="@color/red_bid"
+                                android:textSize="17sp" />
 
-                                <RelativeLayout
-                                    android:id="@+id/rl1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:orientation="horizontal">
-                                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Features"
-                                        android:textSize="16dp"
-                                        android:paddingLeft="10dp"
-                                         android:layout_alignParentLeft="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Producer\nStandar"
-                                        android:textSize="16dp"
-                                        android:paddingLeft="45dp"
-                                         android:layout_centerInParent="true"
-                                        android:textColor="#FFFEFE"/>
-                                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Producer\nPremium"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="16dp"
-                                        android:paddingRight="20dp"
-                                         android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl2"
-                                    android:layout_below="@+id/rl1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal">
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Product listings"
-                                        android:textSize="14dp"
-                                        android:paddingLeft="10dp"
-                                        android:layout_alignParentLeft="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Up to 10 items"
-                                        android:textSize="12dp"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Up to 100items"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:paddingRight="14dp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl3"
-                                    android:layout_below="@+id/rl2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal">
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Product photos"
-                                        android:textSize="14dp"
-                                        android:paddingLeft="10dp"
-                                        android:layout_alignParentLeft="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="2 per item"
-                                        android:textSize="12dp"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:gravity="center_vertical"
-                                        android:paddingRight="20dp"
-                                        android:text="10 per item"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl4"
-                                    android:layout_below="@+id/rl3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal">
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Pirce lock"
-                                        android:textSize="14dp"
-                                        android:paddingLeft="10dp"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="4 weeks"
-                                        android:textSize="12dp"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:text="1 week"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:layout_marginRight="22dp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl5"
-                                    android:layout_below="@+id/rl4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Location listing"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Limited to City"
-                                        android:textSize="12dp"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text="Full Address"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:paddingRight="15dp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl6"
-                                    android:layout_below="@+id/rl5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:text="Visibility to customers"
-                                        android:paddingLeft="10dp"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Lower"
-                                        android:textSize="12dp"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="@dimen/_50sdp"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:text="Higher"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:layout_marginRight="5dp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl7"
-                                    android:layout_below="@+id/rl6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Data collection"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:paddingLeft="45dp"
-
-                                        >
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/cross_red_icon"
-                                            />
-                                    </LinearLayout>
-                                    <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:src="@drawable/right_icon"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:layout_marginRight="@dimen/_15sdp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl8"
-                                    android:layout_below="@+id/rl7"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Earlyy access to bid on\ncommercial contracts"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/cross_red_icon"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/right_icon"
-                                        android:layout_marginTop="@dimen/_8sdp"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:layout_marginRight="@dimen/_15sdp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl9"
-                                    android:layout_below="@+id/rl8"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Offer custom prices\non goods"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerHorizontal="true"
-                                        android:paddingLeft="45dp"
-                                        android:src="@drawable/cross_red_icon"
-                                        android:textColor="@color/white" />
-
-                                    <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/_8sdp"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_marginRight="@dimen/_15sdp"
-                                        android:src="@drawable/right_icon"
-                                        android:textColor="@color/white"
-                                        />
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl10"
-                                    android:layout_below="@+id/rl9"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Verfication badge\neligible"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/cross_red_icon"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:src="@drawable/right_icon"
-                                        android:layout_marginTop="@dimen/_8sdp"
-
-                                        android:layout_alignParentRight="true"
-                                        android:layout_marginRight="@dimen/_15sdp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl11"
-                                    android:layout_below="@+id/rl10"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Access to your\nbusiness and market\nanalytics"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/cross_red_icon"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:src="@drawable/right_icon"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:layout_marginTop="@dimen/_12sdp"
-
-                                        android:layout_marginRight="@dimen/_15sdp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                                <RelativeLayout
-                                    android:id="@+id/rl12"
-                                    android:layout_below="@+id/rl11"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_marginBottom="20dp"
-                                    android:orientation="horizontal"
-                                    >
-
-                                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentLeft="true"
-                                        android:paddingLeft="10dp"
-                                        android:text="Profile eligible to be\nfeatured on explore\npage"
-                                        android:textColor="@color/white"
-                                        android:textSize="14dp" />
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/cross_red_icon"
-                                        android:paddingLeft="45dp"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/white"/>
-                                    <ImageView
-                                        android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center_vertical"
-                                        android:src="@drawable/right_icon"
-                                        android:layout_alignParentRight="true"
-                                        android:textSize="14dp"
-                                        android:layout_marginTop="@dimen/_12sdp"
-
-                                        android:layout_marginRight="@dimen/_15sdp"
-                                        android:textColor="@color/white"/>
-                                </RelativeLayout>
-                            </RelativeLayout>
-                            <LinearLayout
-                                android:layout_marginTop="@dimen/_10sdp"
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_10sdp"
-                                android:layout_marginLeft="@dimen/_35sdp"
-                                android:orientation="vertical"
-                                android:layout_marginRight="@dimen/_35sdp">
-                                <com.stalkstock.utils.custom.TitiliumBoldButton
-                                    android:id="@+id/upgrade_button"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:gravity="center"
+
+                                android:text="UPGRADE YOUR PLAN TODAY TO UNLOCK THESE PREMIUM FEATURES!"
+                                android:textColor="#000"
+                                android:textSize="14sp" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:id="@+id/rlsdf"
+
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginRight="@dimen/_10sdp"
+                                    android:background="@drawable/gradiant_colour">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1.2">
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:background="@color/black"/>
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+
+                                        android:layout_weight="1">
+
+                                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:includeFontPadding="false"
+                                            android:paddingTop="8dp"
+                                            android:paddingBottom="8dp"
+                                            android:text="CURRENT PLAN"
+                                            android:textColor="@color/white"
+
+                                            android:textSize="12dp"
+                                            app:textAllCaps="true" />
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:background="@color/black"/>
+
+
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/shape_left">
+
+                                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:includeFontPadding="false"
+                                            android:paddingTop="8dp"
+                                            android:paddingBottom="8dp"
+                                            android:text="POPULAR"
+                                            android:textColor="@color/red_bid"
+
+                                            android:textSize="12dp"
+                                            app:textAllCaps="true" />
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:background="@color/black"/>
+
+                                        <ImageView
+                                            android:layout_width="18dp"
+                                            android:layout_height="20dp"
+                                            android:layout_marginBottom="-12dp"
+                                            android:layout_alignParentBottom="true"
+                                             android:layout_centerHorizontal="true"
+                                             android:src="@drawable/down_new"
+                                            android:tint="#fbbf00"
+                                             />
+
+<!--
+                                        <View
+
+                                            android:layout_width="15dp"
+                                             android:layout_height="1dp"
+                                            android:layout_centerHorizontal="true"
+
+                                            android:layout_alignParentBottom="true"
+                                            android:background="#fbbf00"
+                                            />
+-->
+
+                                    </RelativeLayout>
+
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:layout_width="32dp"
+
+                                    android:layout_height="55dp"
+                                    android:layout_alignParentRight="true"
+                                     android:layout_marginRight="15dp"
+                                    android:src="@drawable/ic_fi" />
+
+
+                                <LinearLayout
+
+                                    android:id="@+id/rl_ll"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:background="@drawable/buttonshape"
-                                    android:backgroundTint="#8BC34A"
-                                    android:textAllCaps="false"
-                                    android:text="Upgrade to premium"
-                                    android:layout_weight="1"
-                                    android:textColor="#fff"
-                                    android:textSize="15dp"
-                                    >
-                                </com.stalkstock.utils.custom.TitiliumBoldButton>
-                                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                    android:layout_marginTop="@dimen/_8sdp"
+                                    android:layout_below="@+id/rlsdf"
+                                    android:orientation="vertical">
 
-                                    android:id="@+id/upgrade_button1"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="45dp"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1.2">
+
+                                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerVertical="true"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Features"
+                                                android:textColor="@color/black"
+                                                android:textSize="14dp"
+                                                app:textAllCaps="true" />
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_alignParentBottom="true"
+                                                android:background="@color/white" />
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0.5dp"
+                                                android:layout_alignParentTop="true"
+                                                android:background="@color/black"
+                                                android:visibility="gone" />
+
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1">
+
+                                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="STANDARD\nPRODUCER"
+                                                android:textColor="@color/black"
+
+
+                                                android:gravity="center"
+                                                android:textSize="14dp"
+                                                app:textAllCaps="true" />
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_alignParentBottom="true"
+                                                android:background="@color/white" />
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0.5dp"
+                                                android:layout_alignParentTop="true"
+
+                                                android:background="@color/black"
+                                                android:visibility="gone" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1">
+
+                                            <ImageView
+                                                android:layout_width="20dp"
+                                                android:layout_height="30dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_marginTop="-12dp"
+                                                android:src="@drawable/down_new"
+                                                  />
+
+                                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="PREMIUM\nPRODUCER"
+                                                android:textColor="@color/black"
+
+                                                android:textSize="14dp"
+                                                app:textAllCaps="true" />
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_alignParentBottom="true"
+                                                android:layout_marginRight="5dp"
+                                                android:background="@color/white" />
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0.5dp"
+                                                android:layout_alignParentTop="true"
+
+                                                android:background="@color/black"
+                                                android:visibility="gone" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Product listings"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="Up to 10 items"
+                                                android:textColor="#FFFEFE"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="Up to 100 items"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Product photos"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="2 per item"
+                                                android:textColor="#FFFEFE"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="10 per item"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Price lock"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="4 weeks"
+                                                android:textColor="#FFFEFE"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="1 week"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Location listing"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="Limited to City"
+                                                android:textColor="#FFFEFE"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="Full Address"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Visibility to customers"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="Lower"
+                                                android:textColor="#FFFEFE"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:text="Higher"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="7dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Data collection"
+                                                android:paddingTop="8dp"
+                                                android:paddingBottom="8dp"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:src="@drawable/cross_red_icon" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center_vertical"
+                                                android:src="@drawable/right_icon" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginRight="5dp"
+                                                android:text="Early access to bid on commercial contracts"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:src="@drawable/cross_red_icon" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center_vertical"
+                                                android:src="@drawable/right_icon" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginRight="5dp"
+                                                android:text="Offer custom prices on goods"
+
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:src="@drawable/cross_red_icon" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center_vertical"
+                                                android:src="@drawable/right_icon" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:text="Verfication badge eligible"
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:src="@drawable/cross_red_icon" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center_vertical"
+                                                android:src="@drawable/right_icon" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginRight="5dp"
+                                                android:text="Access to your business and market analytics"
+
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:src="@drawable/cross_red_icon" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center_vertical"
+                                                android:src="@drawable/right_icon" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp"
+                                        android:layout_marginRight="@dimen/_10sdp"
+                                        android:background="@color/green"
+                                        android:paddingTop="15dp"
+                                        android:paddingBottom="25dp">
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:gravity="center_vertical">
+
+                                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginRight="5dp"
+                                                android:text="Profile eligible to be featured on explore page"
+
+                                                android:textColor="@color/white"
+                                                android:textSize="14dp" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+
+                                            android:layout_weight="1"
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:src="@drawable/cross_red_icon" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+
+                                            android:gravity="center">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center_vertical"
+                                                android:src="@drawable/right_icon" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:textAllCaps="false"
-                                    android:text="@string/thanks"
-                                    android:layout_weight="1"
-                                    android:textColor="#504F4F"
-                                    android:textSize="15dp"
-                                    >
-                                </com.stalkstock.utils.custom.TitiliumBoldTextView>
+                                    android:layout_height="match_parent"
+                                    android:layout_alignLeft="@+id/rl_ll"
+                                    android:layout_alignTop="@+id/rl_ll"
+                                    android:layout_alignRight="@+id/rl_ll"
+                                    android:layout_alignBottom="@+id/rl_ll"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_marginRight="@dimen/_10sdp">
 
-                            </LinearLayout>
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1.2">
+
+                                        <View
+                                            android:layout_width="0.5dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentRight="true"
+                                            android:background="@color/white" />
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1">
+
+                                        <View
+                                            android:layout_width="0.5dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentRight="true"
+                                            android:background="@color/white" />
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+
+                                        android:layout_weight="1">
+
+                                        <View
+                                            android:layout_width="0.5dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentRight="true"
+                                            android:background="@color/white" />
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_35sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_35sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:orientation="vertical">
+
+                            <com.stalkstock.utils.custom.TitiliumBoldButton
+                                android:id="@+id/upgrade_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_weight="1"
+                                android:background="@drawable/buttonshape"
+                                android:backgroundTint="@color/red_bid"
+                                android:text="UPGRADE TO PREMIUM NOW"
+                                android:textColor="#fff"
+
+                                android:textSize="15dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:id="@+id/upgrade_button1"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/thanks"
+                                android:textAllCaps="false"
+                                android:textColor="#504F4F"
+                                android:textSize="15dp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+                        </LinearLayout>
+
+                        <!--old-->
+                        <!--
+                                                <LinearLayout
+                                                    android:visibility="visible"
+                                                    android:layout_marginTop="@dimen/_8sdp"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical">
+                                                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="center"
+                                                        android:gravity="center"
+                                                        android:text="Upgrade your account to unlock\n the following"
+                                                         android:textSize="@dimen/_14sdp"
+                                                        android:textColor="#000"/>
+                                                    <RelativeLayout
+                                                        android:layout_marginTop="10dp"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content">
+
+
+                                                        <RelativeLayout
+                                                            android:id="@+id/rlsss"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:background="#8BC34A"
+                                                            android:layout_marginTop="28dp"
+                                                            android:layout_marginLeft="@dimen/_10sdp"
+                                                            android:layout_marginRight="@dimen/_10sdp"
+                                                            android:orientation="horizontal">
+
+                                                            <View
+                                                                android:layout_width="1dp"
+                                                                android:layout_height="@dimen/_500sdp"
+                                                                android:layout_marginLeft="160dp"
+                                                                android:background="@color/white"/>
+                                                            <View
+                                                                android:layout_width="1dp"
+                                                                android:layout_height="@dimen/_500sdp"
+                                                                android:layout_alignParentRight="true"
+                                                                android:layout_marginRight="120dp"
+                                                                android:background="@color/white"/>
+
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl1"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="10dp"
+                                                                android:orientation="horizontal">
+                                                                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Features"
+                                                                    android:textSize="16dp"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Producer\nStandard"
+                                                                    android:textSize="16dp"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="#FFFEFE"/>
+                                                                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Producer\nPremium"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="16dp"
+                                                                    android:paddingRight="20dp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl2"
+                                                                android:layout_below="@+id/rl1"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal">
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Product listings"
+                                                                    android:textSize="14dp"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Up to 10 items"
+                                                                    android:textSize="12dp"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Up to 100items"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:paddingRight="14dp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl3"
+                                                                android:layout_below="@+id/rl2"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal">
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Product photos"
+                                                                    android:textSize="14dp"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="2 per item"
+                                                                    android:textSize="12dp"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:gravity="center_vertical"
+                                                                    android:paddingRight="20dp"
+                                                                    android:text="10 per item"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl4"
+                                                                android:layout_below="@+id/rl3"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal">
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Pirce lock"
+                                                                    android:textSize="14dp"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="4 weeks"
+                                                                    android:textSize="12dp"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="1 week"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:layout_marginRight="22dp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl5"
+                                                                android:layout_below="@+id/rl4"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Location listing"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Limited to City"
+                                                                    android:textSize="12dp"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:gravity="center_vertical"
+                                                                    android:text="Full Address"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:paddingRight="15dp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl6"
+                                                                android:layout_below="@+id/rl5"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:text="Visibility to customers"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="Lower"
+                                                                    android:textSize="12dp"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="@dimen/_50sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:gravity="center_vertical"
+                                                                    android:text="Higher"
+
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:layout_marginRight="5dp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl7"
+                                                                android:layout_below="@+id/rl6"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Data collection"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <LinearLayout
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:paddingLeft="45dp"
+
+                                                                    >
+                                                                    <ImageView
+                                                                        android:layout_width="wrap_content"
+                                                                        android:layout_height="wrap_content"
+                                                                        android:src="@drawable/cross_red_icon"
+                                                                        />
+                                                                </LinearLayout>
+                                                                <ImageView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:gravity="center_vertical"
+                                                                    android:src="@drawable/right_icon"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:layout_marginRight="@dimen/_15sdp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl8"
+                                                                android:layout_below="@+id/rl7"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Earlyy access to bid\noncommercial\ncontracts"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <ImageView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:src="@drawable/cross_red_icon"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <ImageView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:src="@drawable/right_icon"
+                                                                    android:layout_marginTop="@dimen/_8sdp"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:layout_marginRight="@dimen/_15sdp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl9"
+                                                                android:layout_below="@+id/rl8"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Offer custom prices\non goods"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+
+                                                                <ImageView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_centerHorizontal="true"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:src="@drawable/cross_red_icon"
+                                                                    android:textColor="@color/white" />
+
+                                                                <ImageView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_marginTop="@dimen/_8sdp"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:layout_marginRight="@dimen/_15sdp"
+                                                                    android:src="@drawable/right_icon"
+                                                                    android:textColor="@color/white"
+                                                                    />
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl10"
+                                                                android:layout_below="@+id/rl9"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Verfication badge\neligible"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <ImageView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:src="@drawable/cross_red_icon"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <ImageView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:gravity="center_vertical"
+                                                                    android:src="@drawable/right_icon"
+                                                                    android:layout_marginTop="@dimen/_8sdp"
+
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:layout_marginRight="@dimen/_15sdp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl11"
+                                                                android:layout_below="@+id/rl10"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Access to your\nbusiness and market\nanalytics"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <ImageView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:src="@drawable/cross_red_icon"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <ImageView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:gravity="center_vertical"
+                                                                    android:src="@drawable/right_icon"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:layout_marginTop="@dimen/_12sdp"
+
+                                                                    android:layout_marginRight="@dimen/_15sdp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                            <RelativeLayout
+                                                                android:id="@+id/rl12"
+                                                                android:layout_below="@+id/rl11"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="20dp"
+                                                                android:layout_marginBottom="20dp"
+                                                                android:orientation="horizontal"
+                                                                >
+
+                                                                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_alignParentLeft="true"
+                                                                    android:paddingLeft="10dp"
+                                                                    android:text="Profile eligible to be\nfeatured on explore\npage"
+                                                                    android:textColor="@color/white"
+                                                                    android:textSize="14dp" />
+                                                                <ImageView
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:src="@drawable/cross_red_icon"
+                                                                    android:paddingLeft="45dp"
+                                                                    android:layout_centerInParent="true"
+                                                                    android:textColor="@color/white"/>
+                                                                <ImageView
+                                                                    android:layout_width="@dimen/_40sdp"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:gravity="center_vertical"
+                                                                    android:src="@drawable/right_icon"
+                                                                    android:layout_alignParentRight="true"
+                                                                    android:textSize="14dp"
+                                                                    android:layout_marginTop="@dimen/_12sdp"
+
+                                                                    android:layout_marginRight="@dimen/_15sdp"
+                                                                    android:textColor="@color/white"/>
+                                                            </RelativeLayout>
+                                                        </RelativeLayout>
+
+                                                        <ImageView
+                                                            android:layout_marginLeft="@dimen/_10sdp"
+                                                            android:layout_marginRight="@dimen/_12sdp"
+                                                             android:layout_alignParentRight="true"
+                                                            android:layout_width="115dp"
+                                                            android:layout_height="50dp"
+                                                            android:src="@drawable/ic_recomended"/>
+                                                    </RelativeLayout>
+                                                    <LinearLayout
+                                                        android:layout_marginTop="@dimen/_10sdp"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="@dimen/_10sdp"
+                                                        android:layout_marginLeft="@dimen/_35sdp"
+                                                        android:orientation="vertical"
+                                                        android:layout_marginRight="@dimen/_35sdp">
+                                                        <com.stalkstock.utils.custom.TitiliumBoldButton
+                                                            android:id="@+id/upgrade_button"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentBottom="true"
+                                                            android:background="@drawable/buttonshape"
+                                                            android:backgroundTint="#8BC34A"
+                                                             android:text="UPGRADE TO PREMIUM NOW"
+                                                            android:layout_weight="1"
+                                                            android:textColor="#fff"
+                                                            android:textSize="15dp"
+                                                            >
+                                                        </com.stalkstock.utils.custom.TitiliumBoldButton>
+                                                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                                            android:layout_marginTop="@dimen/_8sdp"
+
+                                                            android:id="@+id/upgrade_button1"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_alignParentBottom="true"
+                                                            android:layout_gravity="center"
+                                                            android:gravity="center"
+                                                            android:textAllCaps="false"
+                                                            android:text="@string/thanks"
+                                                            android:layout_weight="1"
+                                                            android:textColor="#504F4F"
+                                                            android:textSize="15dp"
+                                                            >
+                                                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+                                                    </LinearLayout>
+                                                </LinearLayout>
+                        -->
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>

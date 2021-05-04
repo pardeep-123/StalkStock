@@ -3,17 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/item_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_box_white"
-        android:padding="10dp">
+         android:padding="10dp">
         <ImageView
             android:id="@+id/img"
             android:layout_width="115dp"
             android:layout_height="130dp"
             android:scaleType="fitXY"
             android:src="@drawable/product_img_1"/>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,8 +25,7 @@
             android:text="Meat"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+             android:layout_marginLeft="10dp"/>
 
        <!-- <ImageView
             android:id="@+id/star"
@@ -49,21 +52,21 @@
             style="?android:attr/ratingBarStyleSmall"/>
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Beef: $9.50/LB"
             android:layout_below="@+id/star"
+            android:gravity="center"
             android:layout_toRightOf="@+id/img"
             android:layout_marginTop="5dp"
             android:textColor="@android:color/holo_red_dark"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/red_arrow"
+             android:drawableRight="@drawable/red_arrow"
             android:layout_marginLeft="10dp"
             android:drawablePadding="10dp"
             android:textSize="19sp"/>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/by"
             android:layout_below="@+id/price"
             android:layout_toRightOf="@+id/img"
@@ -72,21 +75,22 @@
             android:layout_height="wrap_content"
             android:text="By"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Macdonalds"
+            android:text="McDonald\'s"
             android:layout_toRightOf="@+id/by"
             android:layout_below="@+id/price"
             android:layout_marginLeft="5dp"
             android:textColor="@color/theme_green"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New York 920.."
             android:layout_below="@+id/by"
             android:layout_toRightOf="@+id/img"
+            android:gravity="center"
             android:drawablePadding="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"

@@ -44,7 +44,7 @@
             android:layout_height="1dp"
             android:background="@color/light_grey"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Default Payment Method"
@@ -68,7 +68,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VISA CARD"
@@ -113,7 +113,7 @@
                             android:paddingLeft="10dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="**** **** **** 7655"
@@ -121,7 +121,7 @@
                                 android:textColor="@color/home_grey"
                                 android:textSize="15sp" />
 
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="MM/YY 12/24 CVV ***"
@@ -145,7 +145,7 @@
                                 android:src="@drawable/dlt_icon"/>
                         </LinearLayout>
                     </LinearLayout>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -166,7 +166,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VISA CARD"
@@ -211,7 +211,7 @@
                             android:paddingLeft="10dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="**** **** **** 7655"
@@ -219,7 +219,7 @@
                                 android:textColor="@color/home_grey"
                                 android:textSize="15sp" />
 
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="MM/YY 12/24 CVV ***"
@@ -243,7 +243,7 @@
                                 android:src="@drawable/dlt_icon"/>
                         </LinearLayout>
                     </LinearLayout>
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -255,7 +255,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

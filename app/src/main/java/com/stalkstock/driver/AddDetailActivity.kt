@@ -26,7 +26,7 @@ class AddDetailActivity : AppCompatActivity() {
             getWindow().setStatusBarColor(Color.WHITE);
         }
         setContentView(R.layout.activity_add_detail)
-        tv_heading.text = "Add Detials"
+        tv_heading.text = "Add Details"
         iv_back.setOnClickListener {finish()}
         btn_Continue.setOnClickListener {
             dialogconfirmation()

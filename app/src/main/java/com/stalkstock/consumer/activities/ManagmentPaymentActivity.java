@@ -58,12 +58,15 @@ public class ManagmentPaymentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 openStartInfoApp();
             }
-        }); layout_delete1.setOnClickListener(new View.OnClickListener() {
+        });
+        layout_delete1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openStartInfoApp();
             }
-        });btn_add.setOnClickListener(new View.OnClickListener() {
+        });
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, PaymentselectActivity.class);

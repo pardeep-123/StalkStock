@@ -76,7 +76,9 @@ public class ChatBox extends AppCompatActivity implements View.OnClickListener {
 
                 //    changeSortPopUp.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
                 // changeSortPopUp.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-                changeSortPopUp.showAtLocation(layout, Gravity.TOP, 350, 200);
+                //changeSortPopUp.showAtLocation(layout, Gravity.TOP, 350, 200);
+
+                changeSortPopUp.showAsDropDown(sideclick);
                 TextView side = layout.findViewById(R.id.chat_moreverticon);
 
                 final TextView report = layout.findViewById(R.id.clearchat);
@@ -126,9 +128,11 @@ public class ChatBox extends AppCompatActivity implements View.OnClickListener {
                                         btndel.setTextColor(getResources().getColor(R.color.white));
                                         btncancel.setTextColor(getResources().getColor(R.color.green));
 
-                                        Intent intent = new Intent(ChatBox.this, BottomnavigationScreen.class);
+                                       /* Intent intent = new Intent(ChatBox.this, BottomnavigationScreen.class);
                                         intent.putExtra("data", "m");
-                                        startActivity(intent);
+                                        startActivity(intent);*/
+
+                                       onBackPressed();
                                         //startActivity(new Intent(ChatBox.this, MessageFragment.class));
 
 

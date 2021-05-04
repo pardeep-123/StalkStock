@@ -22,7 +22,7 @@
             android:src="@drawable/warning_icon"
             android:layout_centerHorizontal="true"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,11 +41,12 @@
             android:weightSum="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/btn_accept1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_shape"
                 android:gravity="center"
                 android:layout_alignParentBottom="true"
@@ -57,11 +58,13 @@
             <View
                 android:layout_width="@dimen/_10sdp"
                 android:layout_height="@dimen/_10sdp"/>
-            <Button
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/btn_decline1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+
                 android:background="@drawable/strokegreen"
                 android:gravity="center"
                 android:layout_alignParentBottom="true"

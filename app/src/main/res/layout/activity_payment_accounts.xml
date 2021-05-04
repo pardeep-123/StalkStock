@@ -10,9 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -23,9 +24,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:ignore="MissingConstraints">
+                android:layout_height="50dp"
+                 tools:ignore="MissingConstraints">
                 <ImageView
                     android:id="@+id/paymentsbackarrow"
                     android:layout_width="wrap_content"
@@ -46,9 +46,8 @@
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_height="1dp"
-                android:background="#BDBCBC"
+                 android:layout_height="0.5dp"
+                android:background="@color/dark_gray"
                 ></View>
             <LinearLayout
                 android:layout_marginTop="@dimen/_10sdp"
@@ -144,6 +143,7 @@
                 </LinearLayout>
                 <RelativeLayout
                     android:id="@+id/rltwo"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -169,6 +169,8 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -232,6 +234,7 @@
                 </LinearLayout>
                 <RelativeLayout
                     android:id="@+id/rlthree"
+                    android:visibility="gone"
 
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
@@ -258,6 +261,8 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
+
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -322,27 +327,34 @@
                         android:text="Added on Dec 24,2019"/>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp">
-
-                <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:id="@+id/paymentsaccbutton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textAllCaps="false"
-                    android:text="Add New Payment Method"
-                    android:textColor="#8BC34A"
-                    android:textSize="15dp"
-                    android:background="@drawable/edittextshape"
-                    />
-            </LinearLayout>
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp">
+
+            <com.stalkstock.utils.custom.TitiliumBoldButton
+                android:id="@+id/paymentsaccbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:textAllCaps="false"
+                android:text="Add New Payment Method"
+                android:textColor="#8BC34A"
+                android:textSize="15dp"
+                android:background="@drawable/edittextshape"
+                />
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
 
 
 

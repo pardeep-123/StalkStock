@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <RelativeLayout
         android:id="@+id/top"
@@ -60,16 +61,15 @@
         android:layout_height="230dp"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white">
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/select_text"
             android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Delivery Loaction"
+            android:text="Select Delivery Location"
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
+             android:textSize="18sp"
             />
         <View
             android:id="@+id/view"
@@ -81,7 +81,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/location_text123"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="The Castro"
@@ -102,7 +102,7 @@
             android:drawableLeft="@drawable/check_circle_price"
             android:layout_below="@+id/location_text123"
             />
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="40dp"

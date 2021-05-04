@@ -10,8 +10,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:scaleType="fitEnd"
-      android:src="@drawable/bg_fit" />
+      android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
   <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_above="@+id/ly_bottom"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
@@ -19,17 +21,20 @@
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_above="@+id/hometwo"
         tools:ignore="MissingConstraints" />
 
+<!--
+    android:layout_marginBottom="60dp"
+-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="5dp"
+        android:visibility="gone"
         android:gravity="bottom"
         android:layout_gravity="bottom"
         android:background="#fff"
@@ -43,5 +48,23 @@
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+  <FrameLayout
+      android:visibility="gone"
+      android:layout_above="@+id/ly_bottom"
+      android:id="@+id/rl_content_frame"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+
+  <LinearLayout
+      android:id="@+id/ly_bottom"
+      android:layout_alignParentBottom="true"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+    <include layout="@layout/bottom_layout2"/>
+  </LinearLayout>
 
 </RelativeLayout>

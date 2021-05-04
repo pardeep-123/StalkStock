@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
+
+    <RelativeLayout
+        android:id="@+id/rl_tooll"
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New York 920.."
+            android:gravity="center"
+            android:textSize="22sp"
+            android:layout_centerVertical="true"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/location_icon"/>
+        <ImageView
+            android:id="@+id/sdgd"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/header_log0"/>
+        <ImageView
+            android:id="@+id/oll"
+            android:layout_alignTop="@+id/sdgd"
+            android:layout_alignRight="@+id/sdgd"
+            android:layout_alignBottom="@+id/sdgd"
+            android:layout_alignLeft="@+id/sdgd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo_get"/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_toLeftOf="@+id/fillter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/search_icon_new"/>
+
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notification_icon1"
+            android:layout_toLeftOf="@+id/search"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+          />
+
+        <ImageView
+            android:id="@+id/fillter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/filter_icn1"
+              android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_below="@+id/rl_tooll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_title"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <RelativeLayout
+                android:id="@+id/meat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:id="@+id/chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bake"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/theme_green"
+                    android:textSize="25sp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dairy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+
+                >
+                <TextView
+                    android:id="@+id/group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Biscuit"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/fish"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+
+                >
+                <TextView
+                    android:id="@+id/fish_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bread"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+
+                >
+                <TextView
+                    android:id="@+id/food_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bagel"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/request_view"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:background="@color/theme_green"
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/inprogress_view"
+                android:layout_height="1dp"
+                android:background="@color/light_grey"
+
+                />
+
+            <View
+                android:id="@+id/inprogress_view1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:background="@color/light_grey"
+                />
+
+
+            <View
+                android:id="@+id/inprogress_view2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:background="@color/light_grey"
+                />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detail_recycle"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

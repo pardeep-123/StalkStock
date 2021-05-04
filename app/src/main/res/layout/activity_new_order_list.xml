@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,9 +24,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:ignore="MissingConstraints">
+                android:layout_height="50dp"
+                 tools:ignore="MissingConstraints">
                 <ImageView
                     android:id="@+id/orderlist_backarrow"
                     android:layout_width="wrap_content"
@@ -47,9 +47,8 @@
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_height="1dp"
-                android:background="#BDBCBC"
+                 android:layout_height="0.5dp"
+                android:background="@color/dark_gray"
                 ></View>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

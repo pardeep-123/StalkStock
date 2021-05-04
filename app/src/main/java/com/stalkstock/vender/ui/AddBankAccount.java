@@ -28,7 +28,7 @@ public class AddBankAccount extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddBankAccount.this, PaymentAccounts.class));
+                onBackPressed();
 
             }
         });

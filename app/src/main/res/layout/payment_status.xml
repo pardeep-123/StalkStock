@@ -48,7 +48,7 @@
                     android:src="@drawable/thank_icon"
                     android:layout_centerHorizontal="true"/>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Thank You!"
@@ -56,7 +56,7 @@
                     android:textColor="@color/black"
                     android:textSize="25sp" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -65,7 +65,7 @@
                     android:textColor="@color/black"
                     android:textSize="19sp" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your order has been submitted.\nYou will receive status updated via email\nand/or text."
@@ -74,7 +74,7 @@
                     android:textSize="17sp"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_view"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

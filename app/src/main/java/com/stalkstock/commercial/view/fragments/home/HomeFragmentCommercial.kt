@@ -16,7 +16,7 @@ import com.stalkstock.commercial.view.activities.CommunicationListner
 import kotlinx.android.synthetic.main.fragment_home_commercial.*
 
 class HomeFragmentCommercial : Fragment(), View.OnClickListener {
-    var listner: CommunicationListner? = null
+  //  var listner: CommunicationListner? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +29,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         init()
 
-        listner!!.getYourFragmentActive(1)
+       // listner!!.getYourFragmentActive(1)
 
         btnAddNew.setOnClickListener {
             startActivity(Intent(context, AddedProduct::class.java))
@@ -49,8 +49,8 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener {
         list.add(HomeData("", "8", "Bid Processing", R.color.orange_colour))
         list.add(HomeData("", "10", "Bid Received", R.color.orange_colour))
         list.add(HomeData("", "10", "Pay Now", R.color.orange_colour))
-        list.add(HomeData("", "10", "Pay Now", R.color.orange_colour))
-        list.add(HomeData("", "10", "Pay Now", R.color.orange_colour))
+//        list.add(HomeData("", "10", "Pay Now", R.color.orange_colour))
+//        list.add(HomeData("", "10", "Pay Now", R.color.orange_colour))
 
 
         rvHome.adapter = HomeAdapter(list)
@@ -68,7 +68,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is CommunicationListner) {
-            listner = context
+            //listner = context
         } else {
             throw RuntimeException("home frag not Attached")
         }
@@ -76,7 +76,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener {
 
     override fun onDetach() {
         super.onDetach()
-        listner = null
+       // listner = null
     }
 
 

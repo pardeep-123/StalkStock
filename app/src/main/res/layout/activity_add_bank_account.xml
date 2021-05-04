@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
         />
 
@@ -26,7 +27,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 tools:ignore="MissingConstraints">
                 <ImageView
                     android:id="@+id/addbank_backarrow"
@@ -48,9 +49,8 @@
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_height="1dp"
-                android:background="#BDBCBC"
+                 android:layout_height="0.5dp"
+                android:background="@color/dark_gray"
                 ></View>
 
             <LinearLayout
@@ -60,95 +60,119 @@
                 android:layout_marginRight="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:orientation="vertical">
-                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name of Account"
-                    android:textColor="#FFC3C3C3"
-                    ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-                <com.stalkstock.utils.custom.TitiliumRegularEditText
+                    android:textSize="13sp"
+
+                    android:textColor="@color/light_grey"
+                    ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:hint="Enter name of account"
-                    android:textColorHint="#FFC3C3C3"
+                    android:textColorHint="@color/light_grey"
                     android:paddingLeft="@dimen/_10sdp"
                     android:inputType="text"
+                    android:textSize="13sp"
+
                     android:textColor="#000"
-                    android:background="@drawable/addbankedittext"></com.stalkstock.utils.custom.TitiliumRegularEditText>
-                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:background="@drawable/shape_edit_new_home"/>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name of Bank"
-                    android:textColor="#FFC3C3C3"
-                    ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-                <com.stalkstock.utils.custom.TitiliumRegularEditText
+                    android:textSize="13sp"
+
+                    android:textColor="@color/light_grey"
+                    ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:inputType="text"
                     android:hint="Enter name of bank"
-                    android:textColorHint="#FFC3C3C3"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="13sp"
 
                     android:textColor="#000"
-                    android:background="@drawable/addbankedittext">
-                </com.stalkstock.utils.custom.TitiliumRegularEditText>
-                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:background="@drawable/shape_edit_new_home">
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Routing Number"
-                    android:textColor="#FFC3C3C3"
-                    ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-                <com.stalkstock.utils.custom.TitiliumRegularEditText
+                    android:textSize="13sp"
+
+                    android:textColor="@color/light_grey"
+                    ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
-                    android:hint="Enter Routing Number"
-                    android:textColorHint="#FFC3C3C3"
+                    android:hint="Enter routing number"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="13sp"
+
                     android:inputType="number"
                     android:textColor="#000"
-                    android:background="@drawable/addbankedittext">
-                </com.stalkstock.utils.custom.TitiliumRegularEditText>
-                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:background="@drawable/shape_edit_new_home">
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Bank Account"
-                    android:textColor="#FFC3C3C3"
-                    ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-                <com.stalkstock.utils.custom.TitiliumRegularEditText
+                    android:textSize="13sp"
+
+                    android:textColor="@color/light_grey"
+                    ></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:hint="Enter bank account"
-                    android:textColorHint="#FFC3C3C3"
+                    android:textSize="13sp"
+
+                    android:textColorHint="@color/light_grey"
                     android:inputType="number"
                     android:textColor="#000"
-                    android:background="@drawable/addbankedittext">
+                    android:background="@drawable/shape_edit_new_home">
 
-                </com.stalkstock.utils.custom.TitiliumRegularEditText>
-                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
+
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Confirm Bank Account"
-                    android:textColor="#FFC3C3C3"
-                    ></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-                <com.stalkstock.utils.custom.TitiliumRegularEditText
+                    android:text="@string/confirm_bank_account"
+                    android:textSize="13sp"
+
+                    android:textColor="@color/light_grey"
+                    />
+
+
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:textColor="#000"
-                    android:hint="Confirm bank account"
+                    android:textSize="13sp"
+                    android:textColorHint="@color/light_grey"
+
+                    android:hint="@string/confirm_bank_account2"
                     android:inputType="number"
-                    android:background="@drawable/addbankedittext">
-                </com.stalkstock.utils.custom.TitiliumRegularEditText>
+                    android:background="@drawable/shape_edit_new_home">
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

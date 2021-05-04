@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        android:id="@+id/congo_backArrow"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_below="@+id/congo_backArrow">
+
+        <ImageView
+            android:id="@+id/iv_Congo"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:src="@drawable/thank_icon" />
+
+
+
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Congratulations!"
+            android:textSize="22sp"
+            android:textColor="#000"
+            android:gravity="center"
+             android:layout_marginTop="@dimen/_10sdp"
+            />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your payment has been successfully\nprocessed and your account has been\nupgraded with premium features!"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+             android:layout_marginTop="@dimen/_10sdp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_20sdp">
+            <com.stalkstock.utils.custom.TitiliumBoldButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/vieworder"
+            android:background="@drawable/btn_shape"
+            android:text="View Details "
+            android:textColor="#fff"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+
+            />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

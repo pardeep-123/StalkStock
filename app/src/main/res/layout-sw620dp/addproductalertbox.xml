@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_gravity="center_horizontal"
+
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/alertbox"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="15dp"
+        tools:ignore="MissingConstraints">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/verifyset"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:src="@drawable/thumb_up"
+            app:civ_border_color="#8C8D8E"
+            app:civ_border_overlay="true"
+            app:civ_border_width="1dp" />
+
+    </RelativeLayout>
+    <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product added successfully"
+        android:textColor="#676363"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="22sp">
+    </com.stalkstock.utils.custom.TitiliumRegularTextView>
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/gotomyproducts_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textAllCaps="false"
+        android:text="Go to My Products"
+        android:textColor="#fff"
+        android:textSize="17sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/buttonshape">
+    </com.stalkstock.utils.custom.TitiliumBoldButton>
+    </LinearLayout>
+
+</RelativeLayout>

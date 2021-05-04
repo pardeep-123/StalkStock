@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
@@ -12,13 +14,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        tools:ignore="MissingConstraints">
+        android:layout_height="50dp"
+         tools:ignore="MissingConstraints">
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:textSize="16dp"
             android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_height="wrap_content"
             android:text="Account"
              android:textColor="@color/black"
@@ -26,9 +28,8 @@
     </RelativeLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="1dp"
-            android:background="#BDBCBC"
+             android:layout_height="0.5dp"
+            android:background="@color/dark_gray"
             ></View>
         <ScrollView
             android:layout_width="match_parent"
@@ -59,7 +60,7 @@
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/chat_img_2"/>
+                        android:src="@drawable/dummy_profile"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -77,7 +78,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <TextView
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/profileusename"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -94,7 +95,7 @@
                                 android:layout_alignParentRight="true"
                                 />
                         </RelativeLayout>
-                        <TextView
+                        <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:id="@+id/useremail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -113,27 +114,30 @@
                     android:layout_marginRight="10dp"
                     android:minHeight="40dp"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="match_parent"
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
+                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:text="Notification"
                         android:layout_alignParentLeft="true"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
+
                         android:textColor="#000"
                         />
                     <ImageView
                         android:id="@+id/toggle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginRight="10dp"
                         android:src="@drawable/toggle_off"/>
 
                     <ImageView
                         android:id="@+id/toggle_off2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:src="@drawable/toggle_on"
@@ -156,18 +160,16 @@
                     android:orientation="horizontal"
                     android:dividerPadding="10dp"
                     >
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:minHeight="40dp"
+                         android:minHeight="40dp"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
-                        android:textStyle="bold"
-                        android:text="Business Profile"
+                         android:text="Business Profile"
                         android:layout_weight="1"
-                        android:textColor="#000">
-                    </TextView>
+                        android:textColor="#000"/>
 
                 </LinearLayout>
                 <View
@@ -187,15 +189,13 @@
                     android:gravity="center"
                     android:divider="?dividerHorizontal"
                     android:showDividers="end">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
                         android:text="Add Product"
-                        android:textColor="#000">
-                    </TextView>
+                        android:textColor="#000"/>
                     </LinearLayout>
                 <View
                     android:layout_width="fill_parent"
@@ -212,15 +212,13 @@
                     android:layout_gravity="center"
                     android:dividerPadding="10dp"
                     >
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
-                        android:text="Bid Product"
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:textColor="#000">
-                    </TextView>
+                         android:text="My Bids"
+                         android:layout_weight="1"
+                        android:textColor="#000"/>
 
                 </LinearLayout>
                 <View
@@ -236,17 +234,15 @@
                 android:layout_marginRight="10dp"
                 android:dividerPadding="10dp"
                 >
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:textSize="16sp"
 
                     android:layout_width="wrap_content"
                     android:layout_weight="0"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Subscription"
-                    android:textStyle="bold"
-                    android:textSize="16dp"
-                    android:textColor="#000"
-                    ></TextView>
+                      android:textColor="#000"/>
             </LinearLayout>
                 <View
                     android:layout_width="fill_parent"
@@ -261,15 +257,14 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="50dp">
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#000"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:text="Payment Accounts">
-                    </TextView>
+
+                        android:text="Payment Accounts"/>
 
                 </LinearLayout>
                 <View
@@ -284,15 +279,14 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="50dp">
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#000"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        android:text="Change Password">
-                    </TextView>
+
+                        android:text="Change Password"/>
 
                 </LinearLayout>
                 <View
@@ -307,16 +301,15 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="50dp">
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="left"
-                        android:textStyle="bold"
                         android:textColor="#000"
-                        android:textSize="16dp"
-                        android:text="Help">
-                    </TextView>
+
+                        android:text="Help"/>
 
                 </LinearLayout>
                 <View
@@ -331,16 +324,14 @@
                     android:layout_marginRight="10dp"
                     android:layout_height="50dp">
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="16sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="left"
                         android:textColor="#000"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        android:text="Logout">
-                    </TextView>
+                         android:text="Logout"/>
 
                 </LinearLayout>
                 <View

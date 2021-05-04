@@ -12,6 +12,7 @@ import com.stalkstock.R
 import com.stalkstock.driver.AddBankAccount
 import com.stalkstock.driver.adapter.CardAdapter
 import com.stalkstock.driver.models.CardModel
+import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.fragment_payment.*
 import kotlinx.android.synthetic.main.payment_popup.*
 
@@ -31,19 +32,24 @@ class PaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_addnew.setOnClickListener {
-            requireContext().startActivity(Intent(requireContext(), AddBankAccount::class.java))
+            //requireContext().startActivity(Intent(requireContext(), AddBankAccount::class.java))
+            requireContext().startActivity(Intent(requireContext(), com.stalkstock.vender.ui.AddBankAccount::class.java))
         }
         btn_update.setOnClickListener {
             dialo()
         }
 
         val arrayList = ArrayList<CardModel>()
-        arrayList.add(CardModel(R.drawable.a11,"**** **** **** 3456", false))
-        arrayList.add(CardModel(R.drawable.a12,"**** **** **** 3456", false))
+        arrayList.add(CardModel(R.drawable.a11,"**** **** **** 3456", true))
+        //arrayList.add(CardModel(R.drawable.a11,"**** **** **** 3456", false))
 
         cardAdapter = activity?.let { CardAdapter(it,arrayList) }
         rvCards.layoutManager = LinearLayoutManager(activity)
         rvCards.adapter = cardAdapter
+
+        if(AppController.getInstance().getString("usertype").equals("4")){
+            rl_toos.visibility=View.VISIBLE
+        }
     }
 
 

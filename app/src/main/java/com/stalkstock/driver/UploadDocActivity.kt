@@ -50,6 +50,11 @@ class UploadDocActivity : AppCompatActivity() {
             mAlbumFiles.clear()
             selectImage(ivCamera3, "1")
         }
+        iv_camera4.setOnClickListener {
+            mAlbumFiles = java.util.ArrayList()
+            mAlbumFiles.clear()
+            selectImage(ivCamera4, "1")
+        }
     }
 
     private fun selectImage(ivProduct: ImageView, type: String) {

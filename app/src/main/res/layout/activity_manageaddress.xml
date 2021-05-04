@@ -54,7 +54,7 @@
         android:layout_below="@+id/vendor"
         android:layout_marginRight="10dp"/>
 
-    <Button
+    <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="50dp"

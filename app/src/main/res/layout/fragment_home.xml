@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,12 +57,13 @@
 
             <ImageView
                 android:id="@+id/iv_notification"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/notification_icon1"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/notification_icon" />
+                  />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -71,6 +73,7 @@
 
 
                 <ImageView
+                    android:visibility="invisible"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/user_black_icon" />
@@ -132,8 +135,10 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
+                android:visibility="gone"
                 app:tabBackground="@drawable/tab_layout_selector"
                 app:tabMode="fixed"
+
                 android:layout_marginTop="15dp"
                 app:tabIndicatorColor="@android:color/transparent"
                 android:layout_width="match_parent"
@@ -143,13 +148,77 @@
                 android:layout_height="wrap_content"
                 />
 
+            <LinearLayout
+                android:id="@+id/rl_b"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_pending"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_background_selected">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tv_pending"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:text="Pending Ads"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_approved"
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_background">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tv_approved"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Approved Ads"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rel_expired"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_background">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tv_expire"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Expired Ads"/>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/tabLayout"
+                android:layout_below="@+id/rl_b"
                 android:layout_height="match_parent" />
 
         </RelativeLayout>
+
+
 
     </LinearLayout>
 

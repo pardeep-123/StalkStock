@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.ProductsAdapter;
+import com.stalkstock.vender.ui.SearchScreen;
 
 import stalkstockcommercial.ui.view.activities.FilterActivity;
 
@@ -43,7 +44,7 @@ public class ProductActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, SearchActivity.class);
+                Intent intent=new Intent(context, SearchScreen.class);
                 startActivity(intent);
             }
         });

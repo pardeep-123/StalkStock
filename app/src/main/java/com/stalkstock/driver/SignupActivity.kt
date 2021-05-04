@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
 import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.commercial.view.activities.Verification
 import com.stalkstock.utils.others.AppController
+import com.stalkstock.utils.others.CommonMethods
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -38,6 +41,26 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         tv_signin.setOnClickListener(this)
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
+
+        CommonMethods.hideKeyboard(this,btn_signup)
+
+
+        // addItemsOnSpinner2();
+        var spinner = findViewById<View>(R.id.spinner) as Spinner
+
+
+
+        val foodadapter = ArrayAdapter.createFromResource(this, R.array.Select_Vehicle_type, R.layout.spinner_layout_for_vehicle)
+        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = foodadapter
+
+
+        val foodadapter2 = ArrayAdapter.createFromResource(this, R.array.Select_country, R.layout.spinner_layout_for_vehicle)
+        foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner_country.adapter = foodadapter2
+
+
+
 
     }
 

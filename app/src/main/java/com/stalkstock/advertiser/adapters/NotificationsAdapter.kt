@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 
 class NotificationsAdapter(
-    val context: Context?,
+    val context: Context?
     ) : RecyclerView.Adapter<NotificationsAdapter.AdsHolder>() {
     override fun onBindViewHolder(holder: AdsHolder, position: Int) {
             holder.bindItems(position)

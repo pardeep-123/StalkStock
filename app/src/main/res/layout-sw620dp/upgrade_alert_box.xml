@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="500dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginBottom="15dp"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/verifyset"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:src="@drawable/lock_icon"
+                app:civ_border_color="#8C8D8E"
+                app:civ_border_overlay="true"
+                app:civ_border_width="1dp" />
+
+        </RelativeLayout>
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Want to add more photos?\nUpgrade now to unlock this feature\nand so much more!"
+            android:textColor="#4A4949"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="22sp">
+        </com.stalkstock.utils.custom.TitiliumRegularTextView>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <com.stalkstock.utils.custom.TitiliumBoldButton
+                android:id="@+id/upgrade_yes"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/buttonshape"
+                android:backgroundTint="#8BC34A"
+                android:textAllCaps="false"
+                android:text="Upgrade Your Account"
+                android:textColor="#fff"
+                android:textSize="17sp"
+                android:layout_marginRight="@dimen/_5sdp"
+                >
+
+            </com.stalkstock.utils.custom.TitiliumBoldButton>
+            <com.stalkstock.utils.custom.TitiliumBoldButton
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/upgrade_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textAllCaps="false"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edittextshape"
+                android:text="Cancel"
+
+                android:textColor="#8BC34A"
+                android:textSize="17sp"
+                >
+
+            </com.stalkstock.utils.custom.TitiliumBoldButton>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

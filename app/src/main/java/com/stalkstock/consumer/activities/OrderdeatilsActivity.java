@@ -37,7 +37,7 @@ public class OrderdeatilsActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+             onBackPressed();
 
             }
         });

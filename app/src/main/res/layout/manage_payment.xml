@@ -58,7 +58,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@id/btnAddNew"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnAddNew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

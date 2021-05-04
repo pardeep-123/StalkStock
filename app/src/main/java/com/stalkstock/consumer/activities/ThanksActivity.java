@@ -23,8 +23,13 @@ public class ThanksActivity extends AppCompatActivity {
         btn_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, MyOrderActivity.class);
+                Intent intent=new Intent(context, MainConsumerActivity.class);
+                intent.putExtra("is_open","3");
                 startActivity(intent);
+                finishAffinity();
+             /*   Intent intent=new Intent(context, MainConsumerActivity.class);
+                startActivity(intent);
+                */
             }
         });
     }

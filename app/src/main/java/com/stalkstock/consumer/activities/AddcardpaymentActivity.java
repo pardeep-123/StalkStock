@@ -23,8 +23,9 @@ public class AddcardpaymentActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, PaymentselectActivity.class);
-                startActivity(intent);
+              /*  Intent intent=new Intent(context, PaymentselectActivity.class);
+                startActivity(intent);*/
+              onBackPressed();
             }
         });
     }

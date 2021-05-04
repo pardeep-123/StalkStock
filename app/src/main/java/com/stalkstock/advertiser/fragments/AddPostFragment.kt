@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.stalkstock.advertiser.activities.ManagePaymentsActivity
 import com.stalkstock.advertiser.activities.NewActivity
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
@@ -31,6 +32,12 @@ class AddPostFragment : Fragment(), View.OnClickListener {
         v.image1.setOnClickListener(this)
         v.c12.setOnClickListener(this)
         v.c123.setOnClickListener(this)
+
+        v.btn_manage_payment.setOnClickListener {
+            val intent = Intent(activity, ManagePaymentsActivity::class.java)
+            intent.putExtra("from","add_post")
+            startActivity(intent)
+        }
         return v
     }
 
@@ -45,7 +52,7 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(activity !!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val dpd = DatePickerDialog(requireActivity()!!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
                 // Display Selected date in textbox
                 c12.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
@@ -58,7 +65,7 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(activity !!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val dpd = DatePickerDialog(requireActivity() !!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
                 // Display Selected date in textbox
                 c123.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)

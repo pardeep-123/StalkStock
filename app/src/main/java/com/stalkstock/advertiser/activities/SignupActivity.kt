@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -27,7 +27,7 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_signup)
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+       // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         tv_heading.text = getString(R.string.sign_up)
         tv_signin.setOnClickListener(this)
@@ -36,6 +36,18 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         tv_signin.setOnClickListener(this)
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
+
+
+        val foodadapter = ArrayAdapter.createFromResource(this, R.array.Select_country, R.layout.spinner_layout_for_vehicle)
+        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = foodadapter
+
+
+        val foodadapter2 = ArrayAdapter.createFromResource(this, R.array.Select_business_type, R.layout.spinner_layout_for_vehicle)
+        foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner_type.adapter = foodadapter2
+
+
     }
 
     override fun onClick(p0: View?) {
@@ -51,8 +63,11 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }R.id.btn_signup->{
             if(AppController.getInstance().getString("usertype").equals("2")){
-                startActivity(Intent(mContext, Verification::class.java))
-                finish()
+
+               var intent=Intent(mContext,Verification::class.java)
+                startActivityForResult(intent,125)
+                //startActivity(Intent(mContext, Verification::class.java))
+//                finish()
             }else{
                 startActivity(Intent(mContext, LoginActivity::class.java))
                 finish()
@@ -61,7 +76,9 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.iv_back->{
                 finish()
-            } R.id.image->{
+            }
+
+            R.id.image->{
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
             selectImage(image,"1")
@@ -69,6 +86,21 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 125) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    if (data!!.getStringExtra("status")!=null) {
+                      onBackPressed()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+
+    }
 
     private fun selectImage(ivProduct: ImageView, type:String) {
         Album.image(this)

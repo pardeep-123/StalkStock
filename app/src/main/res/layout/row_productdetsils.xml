@@ -2,12 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+      >
 
     <RelativeLayout
+         android:layout_margin="5dp"
+        android:background="@drawable/item_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
@@ -17,7 +21,7 @@
             android:layout_height="130dp"
             android:scaleType="fitXY"
             android:src="@drawable/product_img_1"/>
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,16 +29,15 @@
             android:text="Meat"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
+             android:layout_marginLeft="10dp"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/red_dot"
             android:layout_alignParentRight="true"/>
 
+<!--
         <ImageView
-            android:id="@+id/star"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_below="@+id/name"
@@ -43,7 +46,25 @@
             android:layout_toRightOf="@+id/img"
             android:layout_marginLeft="10dp"
             />
-        <TextView
+-->
+
+
+        <RatingBar
+            android:layout_below="@+id/name"
+            android:layout_marginTop="5dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/star"
+            android:progressTint="@color/yellow"
+            android:progressBackgroundTint="@color/yellow"
+             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/img"
+            android:rating="5"
+            android:numStars="5"
+             style="?android:attr/ratingBarStyleSmall"/>
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,23 +73,24 @@
             android:layout_toRightOf="@+id/img"
             android:layout_marginTop="5dp"
             android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"
+             android:layout_marginLeft="10dp"
             android:textSize="19sp"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/location_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New York 920.."
             android:layout_below="@+id/price"
+            android:gravity="center"
+
             android:layout_toRightOf="@+id/img"
             android:drawablePadding="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:drawableLeft="@drawable/green_location_arrow"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/add"
             android:layout_width="90dp"
             android:layout_height="wrap_content"

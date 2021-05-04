@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginVertical="@dimen/value_7dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_userimage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/chat_img_1" />
+
+    <RelativeLayout
+        android:layout_alignTop="@+id/iv_userimage"
+        android:layout_alignBottom="@+id/iv_userimage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/iv_userimage"
+        android:gravity="center_vertical">
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tv_personName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:text="Jamie Jai"
+            android:textColor="@color/black_color"
+            android:textSize="25sp"
+           />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_messageTemplate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_personName"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:layout_marginTop="15dp"
+            android:text="Lorem ipsum dolor sit amet"
+            android:textColor="@color/black_color"
+            android:textSize="22sp"
+            />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_timeOFMessage"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_15dp"
+            android:layout_marginRight="15dp"
+            android:text="2:30 PM"
+            android:textColor="@color/dark_green_colour"
+            android:textSize="22sp"
+             />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_numberOfMessages"
+            android:layout_width="30dp"
+            android:layout_below="@+id/tv_timeOFMessage"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/red_solid_circle"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:textSize="20sp"
+
+            android:layout_marginTop="10dp"
+            android:text="2"
+            android:textColor="@color/white_color"
+             />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

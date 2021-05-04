@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar_myorders"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/value_1dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="20sp"
+            android:id="@+id/actHome"
+            android:layout_width="@dimen/value_0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/value_15dp"
+            android:text="Request Details"
+            android:textColor="@color/black_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivBusinessEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/value_10dp"
+            android:padding="10dp"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/actHome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/actHome" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+
+        android:layout_below="@+id/toolbar_myorders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="@dimen/value_25dp"
+        android:background="@drawable/item_border"
+
+         >
+        <RelativeLayout
+            android:id="@+id/clBidId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/value_5dp"
+            >
+
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tvRequest"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:text="Request ID:#123456"
+                android:textColor="@color/black_color"
+                android:textSize="25sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_10dp"
+                android:layout_marginTop="@dimen/value_10dp"
+                android:text="June 10, 2020 | 03:23"
+                android:textColor="#ACACAC"
+                android:textSize="22sp"
+
+                android:layout_marginBottom="10dp"
+
+                android:layout_below="@+id/tvRequest" />
+
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tvChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/value_10dp"
+                android:background="@drawable/edit_text_bg"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="New Chat"
+                android:textAlignment="center"
+                android:textColor="@color/green_colour"
+                android:textSize="22sp"
+                  android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_below="@+id/clBidId"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F2F2F2"/>
+        <!--single-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvBidder"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/value_15dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/value_15dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/value_2dp"
+            app:cardElevation="@dimen/value_1dp"
+            android:layout_below="@+id/clBidId" >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civImage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="@dimen/value_10dp"
+                    android:layout_marginTop="@dimen/value_12dp"
+                    android:layout_marginBottom="@dimen/value_12dp"
+                    android:src="@drawable/chat_img_1"
+                    android:layout_centerVertical="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/civImage"
+
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/value_10dp"
+                        android:text="Jamie Jai"
+                        android:textColor="@color/black_color"
+                        android:textSize="25sp"
+                         />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvDetail"
+                         android:layout_below="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/value_10dp"
+                        android:layout_marginBottom="@dimen/value_2dp"
+                        android:text="Mcdonald's"
+                        android:textSize="22sp"
+
+
+                        android:textColor="@color/black_color"
+                         />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true">
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tvPrices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/value_15dp"
+                        android:layout_centerVertical="true"
+                        android:text="$80.50"
+                        android:textColor="@color/red_dark_colour"
+                        android:textSize="22sp"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/ivTick"
+                        android:layout_toRightOf="@+id/tvPrices"
+                        android:layout_width="@dimen/value_18dp"
+                        android:layout_height="@dimen/value_18dp"
+
+                        android:background="@drawable/cart_check"
+                        android:visibility="gone"
+                         android:layout_centerVertical="true"
+                        />
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tvshoping"
+            android:layout_below="@+id/cvBidder"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="@dimen/value_15dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Shopping List"
+            android:textColor="@color/black_color"
+            android:textSize="25sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRequestProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/value_15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/value_15dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/tvshoping"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRequestBids"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/value_15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/value_15dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_below="@+id/rvRequestProducts"  />
+
+
+    </RelativeLayout>
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnAccepts"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/value_30dp"
+        android:background="@drawable/btn_shape"
+        android:text="Accept"
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>

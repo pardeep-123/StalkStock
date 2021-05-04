@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.live.stalkstockcommercial.ui.view.activities.Chat;
 import com.stalkstock.R;
 
 public class BidDetail extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class BidDetail extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BidDetail.this, ChatBox.class));
+                startActivity(new Intent(BidDetail.this, Chat.class));
 
 
             }

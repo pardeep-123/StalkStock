@@ -64,9 +64,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
    /*     val mapFragment =
             mactivity!!.fragmentManager.findFragmentById(R.id.map1) as MapFragment
         mapFragment.getMapAsync(this)*/
-        ca_tv1.setOnClickListener {
-            dialogconfirmation()
-        }
+
         btn_declin.setOnClickListener {
             rl_top.visibility = View.VISIBLE
             rl_tv.visibility = View.GONE
@@ -76,6 +74,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             rl_top.visibility = View.GONE
             rl_tv.visibility = View.VISIBLE
         }
+
+        ca_tv1.setOnClickListener {
+            dialogconfirmation()
+
+        }
+
+        btn_signup.setOnClickListener {
+            dialo()
+        }
+
     }
     private var mMap: GoogleMap? = null
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -229,6 +237,32 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
 
         dialog.show()
+
+      /*  val  dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.accept_request_alert)
+
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.window!!.setGravity(Gravity.CENTER)
+
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialog.btn_accept1.setOnClickListener {
+            dialog.dismiss()
+            listner!!.getYourFragmentActive(1)
+        }
+        dialog.btn_decline1.setOnClickListener{
+            dialog.dismiss()
+            listner!!.getYourFragmentActive(1)
+        }
+
+
+        dialog.show()*/
     }
 
 

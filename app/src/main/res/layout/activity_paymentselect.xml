@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +46,7 @@
             android:layout_height="1dp"
             android:background="@color/light_grey"/>
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select your Payment Method"
@@ -66,7 +67,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/credit_card_img"/>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -121,7 +122,7 @@
                     android:paddingLeft="10dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="**** **** **** 7655"
@@ -129,7 +130,7 @@
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="MM/YY 12/24 CVV ***"
@@ -153,7 +154,7 @@
                         android:src="@drawable/dlt_icon"/>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
@@ -178,7 +179,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/paypal_img"/>
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -207,7 +208,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="bottom|center_horizontal">
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_preview"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -218,7 +219,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/theme_green"
                 android:textSize="15sp" />
-            <Button
+            <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_checkout"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

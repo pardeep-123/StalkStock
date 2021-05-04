@@ -40,7 +40,7 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener {
 
         setContentView(R.layout.activity_add_new_card)
 
-        tv_heading.text = "Add a New Card"
+        tv_heading.text = "Add A New Card"
         iv_back.setOnClickListener(this)
         btn_save.setOnClickListener(this)
         monthsss.setOnClickListener(this)
@@ -86,8 +86,9 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener {
             openYear()
             }
             R.id.btn_save -> {
-                val intent = Intent(mContext, PaymentActivity::class.java)
-                startActivity(intent)
+                /*val intent = Intent(mContext, PaymentActivity::class.java)
+                startActivity(intent)*/
+                onBackPressed()
             }
         }
     }

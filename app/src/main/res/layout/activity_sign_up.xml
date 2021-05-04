@@ -89,7 +89,7 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upload"
+                    android:text="@string/add_change_profile_photo"
                     android:textColor="#000"
                     android:layout_gravity="center"
                     android:layout_centerHorizontal="true"/>
@@ -102,13 +102,13 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/sigunname"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
                         android:hint="@string/enter_first_name"
                         android:inputType="text"
-                         android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -118,7 +118,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="First Name"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -130,13 +130,13 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/sigunname2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
                         android:hint="@string/enter_last_name"
                         android:inputType="text"
-                         android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -146,7 +146,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Last Name"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -158,12 +158,14 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/signupemail"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
+                        android:inputType="textEmailAddress"
+
                         android:hint="Enter your email address"
-                         android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -173,7 +175,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Email"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -185,13 +187,13 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/signupmobile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
                         android:hint="Enter mobile"
                          android:inputType="number"
-                        android:textColorHint="#FFC3C3C3"
+                        android:textColorHint="@color/light_grey"
                         android:textSize="13sp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -201,7 +203,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Mobile"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -213,13 +215,13 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/signuppassword"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
-                        android:hint="Password"
+                        android:hint="@string/create_your_password"
                         android:inputType="textPassword"
-                         android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -229,7 +231,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Password"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -241,13 +243,13 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/signupconfrimpassword"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
-                        android:hint="Confirm Password"
+                        android:hint="@string/re_enter_your_password"
                         android:inputType="textPassword"
-                         android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -257,7 +259,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Confirm Password"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -269,13 +271,14 @@
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/signupaddress"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="45dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
                         android:paddingLeft="15dp"
-                        android:inputType="textMultiLine"
+                        android:inputType="text"
+                        android:singleLine="true"
                         android:hint="Enter Address"
-                         android:textColorHint="#FFC3C3C3"
+                         android:textColorHint="@color/light_grey"
 
                         android:textSize="13sp"
                         android:textColor="#000"/>
@@ -286,7 +289,7 @@
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Address"
-                         android:textColor="#FFC3C3C3"
+                         android:textColor="@color/light_grey"
                         android:textSize="13sp"/>
                 </RelativeLayout>
                 <LinearLayout
@@ -315,7 +318,7 @@
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="30dp"
                     android:orientation="horizontal">
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Already have an account? "
@@ -324,7 +327,7 @@
                         android:textColor="#000"
                         android:textSize="15dp"
                         tools:ignore="MissingConstraints"/>
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/losignuptext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

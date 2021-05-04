@@ -44,7 +44,10 @@ class MessagesListAdapter(var context: Context, var list:ArrayList<ModelPojo.Mes
                 time.setTextColor(Color.parseColor("#000000"))
             }else{
                 numberOfMessages.visibility= View.VISIBLE
+/*
                 time.setTextColor(Color.parseColor("#459972"))
+*/
+                time.setTextColor(Color.parseColor("#7DB733"))
             }
             //click for open chat activity...
 

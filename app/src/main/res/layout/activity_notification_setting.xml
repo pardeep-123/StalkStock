@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -68,7 +69,7 @@
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="your order no 8974563251 has been be picked up!"
+                        android:text="Your order no 8974563251 has been be picked up!"
                         android:textSize="@dimen/_8sdp"
                         android:textColor="#fff"></com.stalkstock.utils.custom.TitiliumRegularTextView>
                     <LinearLayout
@@ -107,7 +108,7 @@
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="your order no 8974563251 has been be picked up!"
+                        android:text="Your order no 8974563251 has been be picked up!"
                         android:textSize="@dimen/_8sdp"
                         android:textColor="#fff"></com.stalkstock.utils.custom.TitiliumRegularTextView>
 

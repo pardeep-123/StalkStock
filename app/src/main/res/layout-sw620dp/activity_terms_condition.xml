@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".utils.TermsConditionActivity">
+
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
+
+
+    <RelativeLayout
+        android:id="@+id/toollll"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="22sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terms &amp; Conditions"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/black"
+            />
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/ssd"
+        android:layout_below="@+id/toollll"
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey"/>
+
+
+    <ScrollView
+        android:layout_below="@+id/ssd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:textSize="20dp"
+                android:layout_margin="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy_text_long"
+                android:textColor="@color/dark_gray"
+                android:justificationMode="inter_word"
+                  />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

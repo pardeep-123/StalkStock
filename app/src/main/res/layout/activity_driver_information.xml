@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +74,29 @@
                     android:layout_height="200dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/license_a"
-                    android:layout_margin="@dimen/_20sdp"/>
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    />
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Proof of Insurance"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/license_a"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -262,6 +285,131 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:text="@string/insurance_company"
+                        android:textColor="@color/home_grey"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="Aegon Life Insurance Co. Ltd."
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/insurance_policy"
+                        android:textColor="@color/home_grey"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="123-1454-8595"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/insurance_valid_through"
+                        android:textColor="@color/home_grey"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="28/09"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/address"
+                        android:textColor="@color/home_grey"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="Motia Pacific Centre, Gazipur Road, Zirakpur"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/address_line2"
+                        android:textColor="@color/home_grey"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="Shop No. 211"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="City"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
@@ -287,7 +435,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="State"
+                        android:text="@string/state_province_region"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -297,6 +445,31 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:text="Toronto"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Postal/Zip Code"
+                        android:textColor="@color/home_grey"
+                        android:textSize="15sp" />
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="135102"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>

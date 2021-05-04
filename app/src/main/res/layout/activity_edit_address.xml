@@ -71,18 +71,18 @@
         >
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvSelectLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Delivery Location"
             app:layout_constraintBottom_toTopOf="@id/viewAddress"
-            android:textStyle="bold"
+
             android:layout_marginBottom="4dp"
             android:textSize="14dp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            android:typeface="monospace"
+
             />
 
         <View
@@ -95,7 +95,7 @@
             android:layout_marginTop="10dp"
             />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tvYourLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,11 +114,12 @@
             app:layout_constraintBottom_toTopOf="@id/clAddressDetail"
             android:layout_marginBottom="10dp"
             android:textSize="12dp"
+            android:gravity="center_vertical"
             android:textColor="@color/black"
             android:drawablePadding="5dp"
             android:drawableLeft="@drawable/cart_check"
             app:layout_constraintStart_toStartOf="parent"
-            android:typeface="monospace"
+
             />
 
 
@@ -128,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@id/btnEdit"
             >
 
@@ -139,23 +141,23 @@
                 app:layout_constraintBottom_toTopOf="@id/rlAddressLine2"
                 >
 
-                <EditText
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:hint="Street Address"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
 
                     style="@style/EditextFieldwhit1"
                     android:layout_margin="10dp">
-                </EditText>
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
                     android:text="Street Address"
                     android:layout_marginLeft="45dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:background="#ffffff">
-                </TextView>
+                </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
             <RelativeLayout
@@ -165,22 +167,22 @@
                 app:layout_constraintBottom_toTopOf="@id/rlCity"
                 >
 
-                <EditText
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:hint="Address Line 2(Optional)"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     style="@style/EditextFieldwhit1"
                     android:layout_margin="10dp">
-                </EditText>
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     style="@style/Textfield1"
                     android:text="Address Line 2(Optional)"
                     android:layout_marginLeft="45dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:background="#ffffff">
-                </TextView>
+                </com.stalkstock.utils.custom.TitiliumRegularTextView>
 
             </RelativeLayout>
             <RelativeLayout
@@ -190,23 +192,23 @@
                 app:layout_constraintBottom_toTopOf="@id/rlState"
                 >
 
-                <EditText
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     style="@style/EditextFieldwhit1"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
 
                     android:hint="City"
                     android:layout_margin="10dp">
-                </EditText>
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
                     android:text="City"
                     android:layout_marginLeft="45dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:background="#ffffff">
-                </TextView>
+                </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
             <RelativeLayout
@@ -216,23 +218,23 @@
                 app:layout_constraintBottom_toTopOf="@id/rlPostal"
                 >
 
-                <EditText
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     style="@style/EditextFieldwhit1"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
 
                     android:hint="State/Province/Region"
                     android:layout_margin="10dp">
-                </EditText>
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
                     android:text="State/Province/Region"
                     android:layout_marginLeft="45dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:background="#ffffff">
-                </TextView>
+                </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
             <RelativeLayout
@@ -242,23 +244,23 @@
                 app:layout_constraintBottom_toTopOf="@id/rlSpecialInstruction"
                 >
 
-                <EditText
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     style="@style/EditextFieldwhit1"
                     android:hint="postal/Zip code"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
 
                     android:layout_margin="10dp">
-                </EditText>
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
                     android:text="Postal/Zip code"
                     android:layout_marginLeft="45dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:background="#ffffff">
-                </TextView>
+                </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
 
@@ -270,28 +272,28 @@
                 app:layout_constraintBottom_toTopOf="@id/tvTagTitle"
                 >
 
-                <EditText
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
                     style="@style/EditextFieldwhit1"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:hint="Enter Delivery Instructions eg. Gate Code"
                     android:layout_margin="10dp">
-                </EditText>
+                </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
                     android:text="Special Instructions(Optional)"
                     android:layout_marginLeft="45dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:background="#ffffff">
-                </TextView>
+                </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
 
 
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvTagTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -304,7 +306,7 @@
 
 
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvTagHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -317,7 +319,7 @@
                 android:textSize="12dp"
                 />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvTagWork"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -331,7 +333,7 @@
                 android:textSize="12dp"
                 />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvTagHotel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -345,7 +347,7 @@
                 android:textSize="12dp"
                 />
 
-            <TextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvTagOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -364,12 +366,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/button_round_corners"
             android:text="Confirm Location &amp; Proceed"

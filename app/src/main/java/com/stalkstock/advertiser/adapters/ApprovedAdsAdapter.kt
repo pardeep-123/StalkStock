@@ -23,7 +23,7 @@ class ApprovedAdsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return 2
     }
 
     inner class AdsHolder(view: View) : RecyclerView.ViewHolder(view) {

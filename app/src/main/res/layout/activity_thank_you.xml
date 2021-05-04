@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -34,30 +35,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/congo" />
+            android:src="@drawable/thank_icon" />
 
 
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Congratulations!"
             android:textSize="@dimen/_18sdp"
             android:textColor="#000"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_10sdp"
+             android:layout_marginTop="@dimen/_10sdp"
             />
 
-        <TextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your payment has been successfully\nprocessed and your account has been\nupgraded with premium features!"
             android:textSize="@dimen/_12sdp"
             android:gravity="center"
             android:textColor="#323131"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_10sdp"
+             android:layout_marginTop="@dimen/_10sdp"
             />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,7 +64,7 @@
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_20sdp">
-        <Button
+        <com.stalkstock.utils.custom.TitiliumBoldButton
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:id="@+id/vieworder"

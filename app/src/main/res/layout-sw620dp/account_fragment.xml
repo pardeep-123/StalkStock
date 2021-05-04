@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+         tools:ignore="MissingConstraints">
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account"
+             android:textColor="@color/black"
+             android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+             android:layout_height="1dp"
+            android:background="@color/dark_gray"
+            ></View>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical">
+<!--
+                <LinearLayout
+                    android:id="@+id/messagelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#DAF4F4F4"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        >
+                    <ImageView
+                        android:id="@+id/imguser"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/chat_img_2"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/verified_icon"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/_40sdp"
+
+                        ></ImageView>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/profileusename"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:textSize="16sp"
+                                android:layout_alignParentLeft="true"
+                                android:text="Jamie Row"/>
+                            <ImageView
+                                android:id="@+id/profileediticon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_editicon"
+                                app:tint="#8BC34A"
+                                android:layout_alignParentRight="true"
+                                />
+                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/useremail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000"
+                            android:textSize="12sp"
+                            android:layout_marginTop="3dp"
+                            android:text="Jamie.row@gmail.com"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+-->
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/profile_grey"
+                    android:padding="10dp"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/rl_iv"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/tvssss"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                             android:src="@drawable/dummy_profile" />
+
+                        <ImageView
+                            android:id="@+id/profileediticossn"
+                            android:layout_alignBottom="@+id/tvssss"
+                            android:layout_toRightOf="@+id/tvssss"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-25dp"
+                            android:src="@drawable/verified_icon"
+
+                            ></ImageView>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/rl_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp">
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jamie Row"
+                            android:textColor="@color/black"
+                            android:textSize="25sp" />
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="jamie@gmail.com"
+                            android:textColor="@color/light_grey"
+                            android:textSize="22sp" />
+
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="123785768"
+                            android:textColor="@color/light_grey"
+                            android:textSize="22sp" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:id="@+id/profileediticon"
+
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/edi_icon" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                     android:layout_height="wrap_content">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Notification"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="#000"
+                        />
+
+
+
+                     <ImageView
+                        android:id="@+id/toggle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                         android:layout_marginRight="15dp"
+                        android:src="@drawable/toggle_off"/>
+
+                    <ImageView
+                        android:id="@+id/toggle_off2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/toggle_on"
+                        android:visibility="gone" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="1dp"
+                    android:background="#D7DADB"/>
+                <LinearLayout
+                    android:id="@+id/businessprofile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:dividerPadding="10dp"
+                    >
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:padding="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                         android:text="Business Profile"
+                        android:layout_weight="1"
+                        android:textColor="#000"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="1dp"
+                    android:background="#D7DADB"/>
+
+                <LinearLayout
+                    android:id="@+id/addproductaccounts"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:dividerPadding="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:divider="?dividerHorizontal"
+                    android:showDividers="end">
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                         android:text="Add Product"
+                        android:textColor="#000"/>
+                    </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#D7DADB"/>
+
+                <LinearLayout
+                    android:id="@+id/bidproduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:dividerPadding="10dp"
+                    >
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         android:text="My Bids"
+                        android:layout_weight="1"
+                        android:textColor="#000"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="0.5dp"
+                    android:background="#D7DADB"/>
+            <LinearLayout
+                android:id="@+id/subscription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:dividerPadding="10dp"
+                >
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:textSize="25sp"
+                    android:padding="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Subscription"
+                    android:textColor="#000"/>
+            </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="1dp"
+                    android:background="#D7DADB"/>
+
+                <LinearLayout
+                    android:id="@+id/payments"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#000"
+                         android:text="Payment Accounts"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#D7DADB"/>
+                <LinearLayout
+                    android:id="@+id/chnagepassword"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:padding="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#000"
+                          android:text="Change Password"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#D7DADB"/>
+                <LinearLayout
+                    android:id="@+id/help"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="left"
+                        android:textColor="#000"
+                        android:padding="15dp"
+                       android:text="Help"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#D7DADB"/>
+                <LinearLayout
+                    android:id="@+id/ll_1"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content">
+
+                    <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:textSize="25sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="left"
+                        android:padding="15dp"
+                        android:textColor="#000"
+                        android:text="Logout"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#D7DADB"/>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

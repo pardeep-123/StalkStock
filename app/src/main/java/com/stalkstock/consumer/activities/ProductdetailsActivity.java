@@ -1,6 +1,7 @@
 package com.stalkstock.consumer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import com.stalkstock.R;
 import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.ProductsdetailsAdapter;
+import com.stalkstock.vender.ui.SearchScreen;
 
 import stalkstockcommercial.ui.view.activities.FilterActivity;
 
@@ -21,6 +23,8 @@ public class ProductdetailsActivity extends AppCompatActivity {
     ProductsdetailsAdapter adapter;
     RecyclerView productdetails_recycle;
     ImageView back,notification,search,fillter;
+
+    NestedScrollView nsc_top;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class ProductdetailsActivity extends AppCompatActivity {
         notification = findViewById(R.id.notification);
         search = findViewById(R.id.search);
         fillter = findViewById(R.id.fillter);
+        nsc_top = findViewById(R.id.nsc_top);
 
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +49,7 @@ public class ProductdetailsActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, SearchActivity.class);
+                Intent intent=new Intent(context, SearchScreen.class);
                 startActivity(intent);
             }
         });
@@ -65,5 +70,13 @@ public class ProductdetailsActivity extends AppCompatActivity {
         adapter = new ProductsdetailsAdapter(context);
         productdetails_recycle.setLayoutManager(new LinearLayoutManager(context));
         productdetails_recycle.setAdapter(adapter);
+
+        nsc_top.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                nsc_top.scrollTo(0,0);
+            }
+        }, 400);
+
     }
 }

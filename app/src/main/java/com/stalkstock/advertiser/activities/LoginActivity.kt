@@ -13,6 +13,8 @@ import com.stalkstock.consumer.activities.SelectuserActivity
 import com.stalkstock.consumer.activities.SignupConsumerActivity
 import com.stalkstock.driver.HomeActivity
 import com.stalkstock.utils.others.AppController
+import com.stalkstock.vender.ui.BottomnavigationScreen
+import com.stalkstock.vender.ui.SignUp
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -25,7 +27,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_login)
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+//        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv_forgot_password.setOnClickListener(this)
         tv_signup.setOnClickListener(this)
         btn_signin.setOnClickListener(this)
@@ -101,6 +103,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }else if(AppController.getInstance().getString("usertype").equals("2")){
             startActivity(Intent(mContext, MainCommercialActivity::class.java))
             finishAffinity()
+        }else if(AppController.getInstance().getString("usertype").equals("4")){
+            startActivity(Intent(mContext, BottomnavigationScreen::class.java))
+            finishAffinity()
         }else if(AppController.getInstance().getString("usertype").equals("5")){
             startActivity(Intent(mContext, HomeActivity::class.java))
             finishAffinity()
@@ -109,12 +114,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
 
     fun goingToSignUp(){
+        /*
+        * 1 =advser
+        * 2=comercial
+        * 4=vender
+        *
+        * */
         if(AppController.getInstance().getString("usertype").equals("1")){
             startActivity(Intent(mContext, SignupActivity::class.java))
         }else if(AppController.getInstance().getString("usertype").equals("3")){
             startActivity(Intent(mContext, SignupConsumerActivity::class.java))
         }else if(AppController.getInstance().getString("usertype").equals("2")){
             startActivity(Intent(mContext, SignupActivity::class.java))
+        }else if(AppController.getInstance().getString("usertype").equals("4")){
+           startActivity(Intent(mContext, SignupActivity::class.java))
+         //  startActivity(Intent(mContext, SignUp::class.java))
         }else if(AppController.getInstance().getString("usertype").equals("5")){
             startActivity(Intent(mContext, com.stalkstock.driver.SignupActivity::class.java))
         }

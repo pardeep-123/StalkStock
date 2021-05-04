@@ -42,9 +42,11 @@ class AddNewCard : AppCompatActivity(){
         ivBackAddNewCard.setOnClickListener { onBackPressed() }
         btn_save.setOnClickListener {
 
-            val intent = Intent(this,SelectPayment::class.java)
+           /* val intent = Intent(this,SelectPayment::class.java)
             intent.putExtra("card","yes")
-            startActivity(intent) }
+            startActivity(intent)*/
+        onBackPressed()
+        }
 
         current_year = Calendar.getInstance().get(Calendar.YEAR)
 

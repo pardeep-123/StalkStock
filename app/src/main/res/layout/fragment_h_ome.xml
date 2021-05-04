@@ -3,7 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitEnd"
+        android:src="@drawable/bg_fit" />
 
     <!-- <fragment
          android:id="@+id/map1"
@@ -14,7 +23,7 @@
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg">
+        >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -39,7 +48,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <com.stalkstock.utils.custom.TitiliumBoldTextView
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ra"
@@ -47,7 +56,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:gravity="center"
-                android:text="Lore texts are a way the community can contribute to the mod, by writing and submitting texts for players to find in the game." />
+                android:text="@string/look_like_you_do"/>
         </RelativeLayout>
 
 
@@ -151,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp">
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
 
                     android:id="@+id/tv_order"
 
@@ -163,14 +172,14 @@
                     android:textSize="@dimen/value_18sp" />
 
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/tv_status"
                     android:text="Status : "
                     android:textColor="@color/black" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,12 +203,12 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/subway" />
 
-                    <TextView
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:text="10:30am, 20 june 2020"
+                        android:text="10:30am, 20 June 2020"
                         android:textColor="@color/dark_gray" />
                 </RelativeLayout>
 
@@ -231,7 +240,7 @@
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_name"
@@ -253,7 +262,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                    <Button
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btn_signup"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -271,7 +280,7 @@
                         android:layout_width="@dimen/_10sdp"
                         android:layout_height="@dimen/_10sdp" />
 
-                    <Button
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btn_declin"
                         android:layout_width="0dp"
                         android:layout_height="50dp"

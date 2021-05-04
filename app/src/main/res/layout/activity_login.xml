@@ -34,6 +34,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -73,7 +74,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
-                        android:hint="@string/enter_email"
+                        android:hint="@string/enter_your_email_address"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
@@ -109,7 +110,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
-                        android:hint="Password"
+                        android:hint="@string/enter_your_password"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:maxLines="1"
@@ -156,6 +157,7 @@
                     android:textColor="@color/white"
                     android:textSize="15sp" />
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -184,6 +186,41 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_toLeftOf="@+id/tv_or"
+                        android:layout_marginRight="5dp"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/darker_gray"/>
+
+
+                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tv_or"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:text="@string/or"
+                        android:layout_centerVertical="true"
+
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/light_grey"
+                        android:textSize="13sp" />
+
+                    <View
+                        android:layout_toRightOf="@+id/tv_or"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/darker_gray"/>
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -1,17 +1,12 @@
 package com.stalkstock.commercial.view.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.WindowManager
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.LoginActivity
-import com.yanzhenjie.album.Album
-import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.verification.*
 
 class Verification : AppCompatActivity(){
@@ -22,8 +17,12 @@ class Verification : AppCompatActivity(){
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.verification)
 
-        verifybutton.setOnClickListener { startActivity(Intent(this, LoginActivity::class.java)) }
+        verifybutton.setOnClickListener {
+           // startActivity(Intent(this, LoginActivity::class.java))
+            onBackPressed()
+        }
         verify_backarrow.setOnClickListener { onBackPressed() }
+
         otp_edit_box1.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
@@ -121,6 +120,14 @@ class Verification : AppCompatActivity(){
 
     }
 
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        //  super.onBackPressed();
+        val returnIntent = Intent()
+        returnIntent.putExtra("status", "login")
+         setResult(Activity.RESULT_OK, returnIntent)
+        finish()
+    }
 
 
 }
