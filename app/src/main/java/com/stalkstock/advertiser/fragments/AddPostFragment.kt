@@ -95,7 +95,7 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                Glide.with(activity).load(result[0].path).into(ivProduct)
+                Glide.with(requireContext()).load(result[0].path).into(ivProduct)
                 if (type.equals("1"))
                 {
                     firstimage = result[0].path

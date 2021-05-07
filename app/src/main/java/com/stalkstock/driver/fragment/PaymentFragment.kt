@@ -8,11 +8,10 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.driver.AddBankAccount
 import com.stalkstock.driver.adapter.CardAdapter
 import com.stalkstock.driver.models.CardModel
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.fragment_payment.*
 import kotlinx.android.synthetic.main.payment_popup.*
 
@@ -47,7 +46,7 @@ class PaymentFragment : Fragment() {
         rvCards.layoutManager = LinearLayoutManager(activity)
         rvCards.adapter = cardAdapter
 
-        if(AppController.getInstance().getString("usertype").equals("4")){
+        if(MyApplication.instance.getString("usertype").equals("4")){
             rl_toos.visibility=View.VISIBLE
         }
     }

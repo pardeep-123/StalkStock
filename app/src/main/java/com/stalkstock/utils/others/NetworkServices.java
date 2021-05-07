@@ -26,7 +26,7 @@ public class NetworkServices extends Service implements ConnectivityReceiver.Con
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        //AppController.getInstance().setConnectivityListener(this);
+        //MyApplication.instance.setConnectivityListener(this);
         return super.onStartCommand(intent, flags, startId);
     }
 

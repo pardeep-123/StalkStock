@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.stalkstock.MyApplication;
+
 
 public class ConnectivityReceiver extends BroadcastReceiver
 {
@@ -34,7 +36,7 @@ public class ConnectivityReceiver extends BroadcastReceiver
 
     public static boolean isConnected()
     {
-        ConnectivityManager cm = (ConnectivityManager) AppController.getInstance().getApplicationContext()
+        ConnectivityManager cm = (ConnectivityManager) MyApplication.instance.getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();

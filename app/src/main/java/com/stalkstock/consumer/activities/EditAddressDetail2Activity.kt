@@ -1,7 +1,5 @@
 package com.stalkstock.consumer.activities
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +18,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_edit_address_detail2.*
-import kotlinx.android.synthetic.main.add_address.*
 import kotlinx.android.synthetic.main.add_address.btnEdit
 import kotlinx.android.synthetic.main.add_address.ivBackAddress
 
@@ -101,7 +98,7 @@ class EditAddressDetail2Activity : AppCompatActivity(), OnMapReadyCallback {
 //           // changeColor(tvTagOther,tvTagHotel,tvTagHome,tvTagWork)
 //        }
 
-        if ( AppController.getInstance().getString("usertype").equals("2")){
+        if ( MyApplication.instance.getString("usertype").equals("2")){
             rl_work.visibility= View.GONE
             tvTagHome.text="Business"
             iv_home_edit.setImageResource(R.drawable.ic_work_for_edit)

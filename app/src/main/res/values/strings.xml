@@ -207,6 +207,29 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="first_name">First Name</string>
     <string name="edit_update_payment_method">Edit/Update Payment Method</string>
     <string name="full_address">Sh 6a Indira Colony, Jagadhri 135004 India</string>
+    <string name="unable_to_connect_server">Unable to connect server</string>
+    <string name="error_">Something went wrong</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="please_enter_email">Please enter email</string>
+    <string name="please_enter_valid_email">Please enter valid email</string>
+    <string name="please_enter_password">Please enter password</string>
+    <string name="please_enter_first_name">Please enter first name</string>
+    <string name="please_enter_last_name">Please enter last name</string>
+    <string name="please_enter_business_name">Please enter business name</string>
+    <string name="please_enter_business_description">Please enter business description</string>
+    <string name="please_enter_business_license">Please enter business license</string>
+    <string name="please_enter_mobile_number">Please enter mobile number</string>
+    <string name="please_enter_valid_number">Please enter valid number</string>
+    <string name="please_enter_business_phone_number">Please enter business phone number</string>
+    <string name="please_enter_website">Please enter website</string>
+    <string name="please_enter_business_address">Please enter business address</string>
+    <string name="please_enter_city">Please enter city</string>
+    <string name="please_enter_state">Please enter state/province/region</string>
+    <string name="please_enter_postal_code">Please enter postal/zip code</string>
+    <string name="please_enter_country">Please enter country</string>
+    <string name="please_reenter_password">Please reenter your password</string>
+    <string name="please_select_image">Please select image</string>
+    <string name="new_confirm_password_dont_match">New and confirm password do not match</string>
 
 
     <string-array name="Select_Category">

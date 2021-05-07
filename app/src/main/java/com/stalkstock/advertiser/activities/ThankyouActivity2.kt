@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.MainCommercialActivity
-import com.stalkstock.consumer.activities.MainConsumerActivity
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_thankyou.*
 
 class ThankyouActivity2 : AppCompatActivity(), View.OnClickListener {

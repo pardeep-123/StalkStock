@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+//import com.bumptech.glide.signature.StringSignature;
 import com.stalkstock.R;
 import com.stalkstock.consumer.activities.HomedetailsActivity;
 import com.stalkstock.consumer.model.CategoryModel;
@@ -54,7 +54,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Recycl
 
 
         Glide.with(context).load(arrayList.get(position).getIcon())
-                .signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
+//                .signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
                 .into(holder.img);
 
         holder.name.setText(arrayList.get(position).getAbc());

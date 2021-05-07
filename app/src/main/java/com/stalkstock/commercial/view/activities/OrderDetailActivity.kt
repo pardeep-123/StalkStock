@@ -3,9 +3,8 @@ package com.live.stalkstockcommercial.ui.view.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
+import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_parent.*
 
 class OrderDetailActivity : AppCompatActivity() {
@@ -40,7 +39,7 @@ class OrderDetailActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if(AppController.getInstance().getString("usertype").equals("2")){
+        if(MyApplication.instance.getString("usertype").equals("2")){
             rl_visa.visibility= View.VISIBLE
             tv_rest_charges.visibility= View.GONE
             tv_free.text= "Fee"

@@ -59,6 +59,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_firstName"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -80,7 +81,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="45dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@color/white"
                     android:text="First Name"
                     android:textColor="@color/light_grey"
@@ -94,6 +94,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_lastName"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -128,6 +129,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_businessName"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -162,6 +164,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_businessDescptn"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -187,7 +190,7 @@
                     android:textSize="13sp" />
             </RelativeLayout>
 
-<!--
+            <!--
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -225,28 +228,30 @@
 -->
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                >
+                android:layout_marginTop="10dp">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edit_text_bg">
+
                     <Spinner
                         android:id="@+id/spinner_type"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
                         android:entries="@array/Select_business_type"
-                        android:prompt="@string/select_business_type"
+                        android:gravity="center_vertical"
                         android:paddingRight="20dp"
+                        android:prompt="@string/select_business_type"
+                        android:textColor="#000"
                         android:textColorHint="#F8F6F6"
-                        android:textSize="13sp"
-                        android:textColor="#000"/>
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -255,8 +260,7 @@
                     android:background="#fff"
                     android:text="@string/business_type"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp"
-                    />
+                    android:textSize="13sp" />
 
 
             </RelativeLayout>
@@ -338,6 +342,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_mobileNo"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -372,6 +377,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_businessPhone"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -406,6 +412,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_website"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -440,6 +447,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_businessAddress"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -472,6 +480,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_addressline2"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -504,6 +513,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_city"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -536,6 +546,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_state"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -568,6 +579,7 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/et_zipCode"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"

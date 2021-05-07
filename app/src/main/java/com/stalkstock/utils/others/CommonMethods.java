@@ -321,7 +321,7 @@ public class CommonMethods {
 //        CommonMethods.hideProgress();
 //        if (error.equals(UNAUTHORIZED)) {
 //
-//            AppController.getInstance().clearData();
+//            MyApplication.instance.clearData();
 //
 //             CommonMethods.failureMethod(mContext,"You are already logged in other device");
 //

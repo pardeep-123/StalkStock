@@ -11,8 +11,8 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ArrayAdapter
+import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.utils.others.AppController
 import com.stalkstock.utils.others.CommonMethods
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -73,10 +73,10 @@ class EditBusinessProfileActivity : AppCompatActivity(), View.OnClickListener {
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
-        if(AppController.getInstance().getString("usertype").equals("2")){
+        if(MyApplication.instance.getString("usertype").equals("2")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else  if(AppController.getInstance().getString("usertype").equals("1")){
+        }else  if(MyApplication.instance.getString("usertype").equals("1")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
         }else{

@@ -1,16 +1,10 @@
 package com.stalkstock.advertiser.activities
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.MainCommercialActivity
-import com.stalkstock.consumer.activities.MainConsumerActivity
-import com.stalkstock.driver.HomeActivity
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_help.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -31,15 +25,15 @@ class HelpActivity : AppCompatActivity(), View.OnClickListener {
             R.id.iv_back->{
                 finish()
             }R.id.btn_ok->{
-            /*if(AppController.getInstance().getString("usertype").equals("1")){
+            /*if(MyApplication.instance.getString("usertype").equals("1")){
                 val intent = Intent(mContext, MainActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
-            }else if(AppController.getInstance().getString("usertype").equals("2")){
+            }else if(MyApplication.instance.getString("usertype").equals("2")){
                 val intent = Intent(mContext, MainCommercialActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
-            } else if (AppController.getInstance().getString("usertype").equals("5")) {
+            } else if (MyApplication.instance.getString("usertype").equals("5")) {
                 val intent = Intent(mContext, HomeActivity::class.java)
                 startActivity(intent)
                 finishAffinity()

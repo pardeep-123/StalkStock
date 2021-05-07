@@ -8,10 +8,9 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_manage_payments.*
 import kotlinx.android.synthetic.main.delete_successfully_alert.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -48,7 +47,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
-        if(AppController.getInstance().getString("usertype").equals("1")){
+        if(MyApplication.instance.getString("usertype").equals("1")){
             btn_checkout.visibility=View.VISIBLE
         }
 

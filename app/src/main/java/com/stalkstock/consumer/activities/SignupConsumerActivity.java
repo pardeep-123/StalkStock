@@ -104,4 +104,6 @@ public class SignupConsumerActivity extends AppCompatActivity {
                 .start();
     }
 
+
 }
+

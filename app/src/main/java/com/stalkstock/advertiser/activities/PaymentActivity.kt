@@ -5,10 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
+import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.consumer.activities.ThanksActivity
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -40,7 +39,7 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
                     click=1;
                     btn_checkout.setText("Pay Now")
                 }else{
-                    if (AppController.getInstance().getString("usertype").equals("3")){
+                    if (MyApplication.instance.getString("usertype").equals("3")){
                         val intent = Intent(mContext, ThanksActivity::class.java)
                         startActivity(intent)
                     }else{

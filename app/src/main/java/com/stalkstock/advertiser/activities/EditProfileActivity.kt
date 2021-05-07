@@ -12,8 +12,8 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.utils.others.AppController
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -96,13 +96,13 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        if(AppController.getInstance().getString("usertype").equals("2")){
+        if(MyApplication.instance.getString("usertype").equals("2")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else  if(AppController.getInstance().getString("usertype").equals("1")){
+        }else  if(MyApplication.instance.getString("usertype").equals("1")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else  if(AppController.getInstance().getString("usertype").equals("5")){
+        }else  if(MyApplication.instance.getString("usertype").equals("5")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
         }else{

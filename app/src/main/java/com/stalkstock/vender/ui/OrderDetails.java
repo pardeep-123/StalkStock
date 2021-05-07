@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.stalkstock.MyApplication;
 import com.stalkstock.R;
-import com.stalkstock.utils.others.AppController;
 
 public class OrderDetails extends AppCompatActivity {
 
@@ -100,7 +100,7 @@ public class OrderDetails extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(AppController.getInstance().getString("usertype").equals("4")){
+        if(MyApplication.instance.getString("usertype").equals("4")){
 
             if (getIntent().getStringExtra("show")!=null){
 

@@ -2,15 +2,11 @@ package com.stalkstock.advertiser.activities
 
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.stalkstock.R
-import com.stalkstock.consumer.activities.ThanksActivity
-import com.stalkstock.utils.others.AppController
 import kotlinx.android.synthetic.main.activity_add_new_card.btn_save
 import kotlinx.android.synthetic.main.activity_afteradd.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -93,7 +89,7 @@ class AfteraddActivity : AppCompatActivity() , View.OnClickListener{
             }
             R.id.btn_save -> {
 
-               /* if(AppController.getInstance().getString("usertype").equals("3")){
+               /* if(MyApplication.instance.getString("usertype").equals("3")){
                     val intent = Intent(mContext, ThanksActivity::class.java)
                     startActivity(intent)
                 }else{

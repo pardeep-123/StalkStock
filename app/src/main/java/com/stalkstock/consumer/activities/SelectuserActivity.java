@@ -13,13 +13,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.stalkstock.MyApplication;
 import com.stalkstock.R;
 import com.stalkstock.advertiser.GetStartedPageActivity;
-import com.stalkstock.advertiser.activities.LoginActivity;
-import com.stalkstock.commercial.view.activities.MainCommercialActivity;
-import com.stalkstock.utils.TermsConditionActivity;
-import com.stalkstock.utils.others.AppController;
-import com.stalkstock.vender.ui.LoginScreen;
 
 
 public class SelectuserActivity extends AppCompatActivity {
@@ -51,7 +47,7 @@ public class SelectuserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //store value in preference (select user)
-                AppController.getInstance().setString("usertype","1");
+              MyApplication.instance.setString("usertype","1");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
@@ -60,7 +56,7 @@ public class SelectuserActivity extends AppCompatActivity {
         commercial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppController.getInstance().setString("usertype","2");
+              MyApplication.instance.setString("usertype","2");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
@@ -72,7 +68,7 @@ public class SelectuserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //store value in preference (select user)
-                AppController.getInstance().setString("usertype","3");
+                MyApplication.instance.setString("usertype","3");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
@@ -82,7 +78,7 @@ public class SelectuserActivity extends AppCompatActivity {
         vendor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppController.getInstance().setString("usertype","4");
+              MyApplication.instance.setString("usertype","4");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
@@ -91,7 +87,7 @@ public class SelectuserActivity extends AppCompatActivity {
         driver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppController.getInstance().setString("usertype","5");
+              MyApplication.instance.setString("usertype","5");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
@@ -104,7 +100,7 @@ public class SelectuserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //store value in preference (select user)
-                AppController.getInstance().setString("usertype","1");
+              MyApplication.instance.setString("usertype","1");
                 Intent intent=new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }
@@ -113,7 +109,7 @@ public class SelectuserActivity extends AppCompatActivity {
         commercial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppController.getInstance().setString("usertype","2");
+              MyApplication.instance.setString("usertype","2");
                 Intent intent=new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }
@@ -125,7 +121,7 @@ public class SelectuserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //store value in preference (select user)
-                AppController.getInstance().setString("usertype","3");
+              MyApplication.instance.setString("usertype","3");
                 Intent intent=new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }
@@ -135,7 +131,7 @@ public class SelectuserActivity extends AppCompatActivity {
         vendor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppController.getInstance().setString("usertype","4");
+              MyApplication.instance.setString("usertype","4");
                 Intent intent=new Intent(context, LoginScreen.class);
                 startActivity(intent);
             }
@@ -144,7 +140,7 @@ public class SelectuserActivity extends AppCompatActivity {
         driver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppController.getInstance().setString("usertype","5");
+              MyApplication.instance.setString("usertype","5");
                 Intent intent=new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }
