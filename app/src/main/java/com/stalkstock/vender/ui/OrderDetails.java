@@ -100,7 +100,7 @@ public class OrderDetails extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(MyApplication.instance.getString("usertype").equals("4")){
+        if(MyApplication.instance.getString("usertype").equals("3")){
 
             if (getIntent().getStringExtra("show")!=null){
 

@@ -83,21 +83,14 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="strok" />
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="title_myOrders">MyOrders</string>
     <string name="title_message">Messages</string>
     <string name="title_account">Account</string>
-
-
     <!--new2-->
-
-
     <string name="add_photo">Add Photo</string>
     <string name="now_dish">Now dish<b> Pizza Creamy Nachos </b>with extra cheese. Try it.</string>
     <string name="resend"><u>Resend</u></string>
     <string name="save">Save</string>
-
     <string name="helptext">Nunc a velit quis neque malesuada accumsan eu at erat Ut feugiat necaugue non sollicitudin. Pellentesque volutpat blandit nunc eu aliquet. Phasellus vestibulum malesuada felies Nunc a velit quis neque malesuada accumsaneu at eart. Ut feugiat necaugue non sollicitudin. Pellentesque volutpat blandit nunc eu aliquet. Phasellus vestibulum malesuada felies Nunc a velit quis neque malesuadaaccumsan eu at erat.Ut feugiat necaugue non sollicitudin. Pellentesque volutpat  blandit nunc eu aliquet.Phasellus vestibulum malesuada felies</string>
     <string name="forgotpassword">Forgot Password?</string>
     <string name="dropdown">Select Category</string>
@@ -122,7 +115,6 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="confirm_bank_account2">Confirm bank account</string>
     <string name="license_number">License Number</string>
     <string name="license_number_valid_through">License Number Valid Through</string>
-
     <string name="registration_number">Registration Number</string>
     <string name="registration_valid_through">Registration Valid Through</string>
     <string name="vechicle_type">Vechicle Type</string>
@@ -132,7 +124,6 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="state">State</string>
     <string name="country">Country</string>
     <string name="driver_s_license_number">Driver\'s License Number</string>
-
     <string name="driver_s_license_valid_through">Driver\'s License Valid Through</string>
     <string name="vehicle_type">Vehicle Type</string>
     <string name="upload_your_driver_s_license">Upload your driver\'s license</string>
@@ -153,7 +144,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="funds_transfer_in_progress_please_allow_3_5_business_days_for_transfer_to_be_completed">Funds transfer in progress. Please allow 3-5 business days for transfer to be completed.</string>
     <string name="or">OR</string>
     <string name="your_order_no_8974563251_has_been_be_picked_up">Your order no <b>8974563251</b> has been be picked up!</string>
-    <string name="i_want_to">I want to...</string>
+    <string name="i_want_to">I want to…</string>
     <!--
      <string name="by_tapping">By tapping \"LET\'S GO\", you agree to join the\nUser Experience Programme.</string>
 -->
@@ -208,7 +199,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="edit_update_payment_method">Edit/Update Payment Method</string>
     <string name="full_address">Sh 6a Indira Colony, Jagadhri 135004 India</string>
     <string name="unable_to_connect_server">Unable to connect server</string>
-    <string name="error_">Something went wrong</string>
+    <string name="error_">Error!</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="please_enter_email">Please enter email</string>
     <string name="please_enter_valid_email">Please enter valid email</string>
@@ -230,8 +221,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_reenter_password">Please reenter your password</string>
     <string name="please_select_image">Please select image</string>
     <string name="new_confirm_password_dont_match">New and confirm password do not match</string>
-
-
+    <string name="success">Success!</string>
     <string-array name="Select_Category">
         <item>Select category</item>
         <item>Vegetables</item>
@@ -256,20 +246,245 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
         <item>Afghanistan</item>
         <item>Albania</item>
         <item>Algeria</item>
+        <item>American Samoa</item>
         <item>Andorra</item>
+        <item>Angola</item>
+        <item>Anguilla</item>
+        <item>Antarctica</item>
+        <item>Antigua and Barbuda</item>
+        <item>Argentina</item>
+        <item>Armenia</item>
+        <item>Aruba</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahamas</item>
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+        <item>Bermuda</item>
+        <item>Bhutan</item>
+        <item>Bolivia</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Botswana</item>
+        <item>Brazil</item>
+        <item>British Indian Ocean Territory</item>
+        <item>British Virgin Islands</item>
+        <item>Brunei</item>
+        <item>Bulgaria</item>
+        <item>Burkina Faso</item>
+        <item>Burundi</item>
+        <item>Cambodia</item>
+        <item>Cameroon</item>
+        <item>Canada</item>
+        <item>Cape Verde</item>
+        <item>Cayman Islands</item>
+        <item>Central African Republic</item>
+        <item>Chad</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Christmas Island</item>
+        <item>Cocos Islands</item>
+        <item>Colombia</item>
+        <item>Comoros</item>
+        <item>Cook Islands</item>
+        <item>Costa Rica</item>
+        <item>Croatia</item>
+        <item>Cuba</item>
+        <item>Cyprus</item>
+        <item>Czech Republic</item>
+        <item>Democratic Republic of the Congo</item>
+        <item>Denmark</item>
+        <item>Djibouti</item>
+        <item>Dominica</item>
+        <item>Dominican Republic</item>
+        <item>East Timor</item>
+        <item>Ecuador</item>
+        <item>Egypt</item>
+        <item>El Salvador</item>
+        <item>Equatorial Guinea</item>
+        <item>Eritrea</item>
+        <item>Estonia</item>
+        <item>Ethiopia</item>
+        <item>Falkland Islands</item>
+        <item>Faroe Islands</item>
+        <item>Fiji</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>French Polynesia</item>
+        <item>Gabon</item>
+        <item>Gambia</item>
+        <item>Georgia</item>
+        <item>Germany</item>
+        <item>Ghana</item>
+        <item>Gibraltar</item>
+        <item>Greece</item>
+        <item>Greenland</item>
+        <item>Grenada</item>
+        <item>Guam</item>
+        <item>Guatemala</item>
+        <item>Guinea</item>
+        <item>Guinea-Bissau</item>
+        <item>Guyana</item>
+        <item>Haiti</item>
+        <item>Honduras</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Iran</item>
+        <item>Iraq</item>
+        <item>Ireland</item>
+        <item>Isle of Man</item>
+        <item>Israel</item>
+        <item>Italy</item>
+        <item>Ivory Coast</item>
+        <item>Jamaica</item>
+        <item>Japan</item>
+        <item>Jersey</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Kiribati</item>
+        <item>Kuwait</item>
+        <item>Kyrgyzstan</item>
+        <item>Laos</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Lesotho</item>
+        <item>Liberia</item>
+        <item>Libya</item>
+        <item>Liechtenstein</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macao</item>
+        <item>Macedonia</item>
+        <item>Madagascar</item>
+        <item>Malawi</item>
+        <item>Malaysia</item>
+        <item>Maldives</item>
+        <item>Mali</item>
+        <item>Malta</item>
+        <item>Marshall Islands</item>
+        <item>Mauritania</item>
+        <item>Mauritius</item>
+        <item>Mayotte</item>
+        <item>Mexico</item>
+        <item>Micronesia</item>
+        <item>Moldova</item>
+        <item>Monaco</item>
+        <item>Mongolia</item>
+        <item>Montenegro</item>
+        <item>Montserrat</item>
+        <item>Morocco</item>
+        <item>Mozambique</item>
+        <item>Myanmar</item>
+        <item>Namibia</item>
+        <item>Nauru</item>
+        <item>Nepal</item>
+        <item>Netherlands</item>
+        <item>Netherlands Antilles</item>
+        <item>New Caledonia</item>
+        <item>New Zealand</item>
+        <item>Nicaragua</item>
+        <item>Niger</item>
+        <item>Nigeria</item>
+        <item>Niue</item>
+        <item>North Korea</item>
+        <item>Northern Mariana Islands</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Pakistan</item>
+        <item>Palau</item>
+        <item>Panama</item>
+        <item>Papua New Guinea</item>
+        <item>Paraguay</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Pitcairn</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Republic of the Congo</item>
+        <item>Romania</item>
+        <item>Russia</item>
+        <item>Rwanda</item>
+        <item>Saint Barthelemy</item>
+        <item>Saint Helena</item>
+        <item>Saint Kitts and Nevis</item>
+        <item>Saint Lucia</item>
+        <item>Saint Martin</item>
+        <item>Saint Pierre and Miquelon</item>
+        <item>Saint Vincent and the Grenadines</item>
+        <item>Samoa</item>
+        <item>San Marino</item>
+        <item>Sao Tome and Principe</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Seychelles</item>
+        <item>Sierra Leone</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>Solomon Islands</item>
+        <item>Somalia</item>
+        <item>South Africa</item>
+        <item>South Georgia and the South Sandwich Islands</item>
+        <item>South Korea</item>
+        <item>Spain</item>
+        <item>Sri Lanka</item>
+        <item>Sudan</item>
+        <item>Suriname</item>
+        <item>Svalbard and Jan Mayen</item>
+        <item>Swaziland</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Syria</item>
+        <item>Taiwan</item>
+        <item>Tajikistan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Togo</item>
+        <item>Tokelau</item>
+        <item>Tonga</item>
+        <item>Trinidad and Tobago</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Turkmenistan</item>
+        <item>Turks and Caicos Islands</item>
+        <item>Tuvalu</item>
+        <item>U.S. Virgin Islands</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Arab Emirates</item>
+        <item>United Kingdom</item>
+        <item>United States</item>
+        <item>Uruguay</item>
+        <item>Uzbekistan</item>
+        <item>Vanuatu</item>
+        <item>Vatican</item>
+        <item>Venezuela</item>
+        <item>Vietnam</item>
+        <item>Wallis and Futuna</item>
+        <item>Western Sahara</item>
+        <item>Yemen</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
     </string-array>
     <string-array name="Select_Category_available">
         <item>Available</item>
         <item>Not Available</item>
-
     </string-array>
-
     <string-array name="Select_business_type">
         <item>Select your business type</item>
         <item>Big stocklist</item>
         <item>Wholesaler\’s</item>
-
     </string-array>
-
-
 </resources>

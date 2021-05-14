@@ -7,8 +7,15 @@ package com.stalkstock.advertiser.activities
  import android.view.WindowManager
  import androidx.appcompat.app.AppCompatActivity
  import com.google.android.gms.wallet.WalletConstants
+ import com.stalkstock.MyApplication
  import com.stalkstock.R
+ import com.stalkstock.commercial.view.activities.MainCommercialActivity
+ import com.stalkstock.consumer.activities.MainConsumerActivity
  import com.stalkstock.consumer.activities.SelectuserActivity
+ import com.stalkstock.driver.HomeActivity
+ import com.stalkstock.utils.others.GlobalVariables
+ import com.stalkstock.utils.others.getPrefrence
+ import com.stalkstock.vender.ui.BottomnavigationScreen
  import com.stripe.android.Stripe
  import com.stripe.android.model.PaymentMethodCreateParams
 
@@ -30,9 +37,7 @@ class SplashActivity : AppCompatActivity() {
         val countDownTimer = object : CountDownTimer(1000, 1000) {
             override fun onTick(l: Long) {}
             override fun onFinish() {
-                startActivity(Intent(mContext, SelectuserActivity::class.java))
-                //startActivity(Intent(mContext, GetStartedPageActivity::class.java))
-                finishAffinity()
+                selectLoginOrHome()
             }
         }.start()
 
@@ -54,7 +59,34 @@ class SplashActivity : AppCompatActivity() {
 
     }
 
+    private fun selectLoginOrHome() {
+        if(!getPrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, "").equals(""))
+        {
+            val userType = getPrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "")
+            if (userType.equals("5")) {
+                startActivity(Intent(mContext, MainActivity::class.java))
+                finishAffinity()
+            } else if (userType.equals("1")) {
+                startActivity(Intent(mContext, MainConsumerActivity::class.java))
+                finishAffinity()
+            } else if (userType.equals("4")) {
+                startActivity(Intent(mContext, MainCommercialActivity::class.java))
+                finishAffinity()
+            } else if (userType.equals("3")) {
+                startActivity(Intent(mContext, BottomnavigationScreen::class.java))
+                finishAffinity()
+            } else if (userType.equals("2")) {
+                startActivity(Intent(mContext, HomeActivity::class.java))
+                finishAffinity()
+            }
 
+        }
+        else{
+            startActivity(Intent(mContext, SelectuserActivity::class.java))
+            //startActivity(Intent(mContext, GetStartedPageActivity::class.java))
+            finishAffinity()
+        }
+    }
 
 
 //        val df = DecimalFormat("0.00")

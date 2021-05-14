@@ -29,7 +29,7 @@ import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.location.*
 
 
-abstract class GPSTracker : AppCompatActivity() , LocationListener {
+abstract class GPSTracker : BaseActivity() , LocationListener {
 
     // The minimum distance to change Updates in meters
     private var   MIN_DISTANCE_CHANGE_FOR_UPDATES = 1f; //10// 10 meters

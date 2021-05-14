@@ -2,7 +2,6 @@ package com.stalkstock.advertiser.activities
 
 import android.content.Context
 import android.content.Intent
-import android.database.Observable
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -12,28 +11,25 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.net.Status
+import com.stalkstock.api.Status
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.Verification
-import com.stalkstock.consumer.activities.SelectuserActivity
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.net.RestObservable
-import com.tamam.utils.others.GlobalVariables
+import com.stalkstock.api.RestObservable
+import com.stalkstock.utils.others.GlobalVariables
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.emailEdittext
 import kotlinx.android.synthetic.main.toolbar.*
-import java.util.*
 import kotlin.collections.HashMap
 
-class SignupActivity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable>,
+class SignupAdvertiserAndCommercial : AppCompatActivity(), View.OnClickListener, Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
 
     val viewModel: HomeViewModel by lazy {
@@ -255,7 +251,7 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener, Observer<RestO
 
             Status.SUCCESS -> {
                 if (t.data is VendorSignupResponse) {
-                    if (MyApplication.instance.getString("usertype").equals("2")) {
+                    if (MyApplication.instance.getString("usertype").equals("4")) {
 
                         var intent = Intent(mContext, Verification::class.java)
                         startActivityForResult(intent, 125)

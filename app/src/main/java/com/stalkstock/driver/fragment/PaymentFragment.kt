@@ -46,7 +46,7 @@ class PaymentFragment : Fragment() {
         rvCards.layoutManager = LinearLayoutManager(activity)
         rvCards.adapter = cardAdapter
 
-        if(MyApplication.instance.getString("usertype").equals("4")){
+        if(MyApplication.instance.getString("usertype").equals("3")){
             rl_toos.visibility=View.VISIBLE
         }
     }

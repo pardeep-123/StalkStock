@@ -39,7 +39,7 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
                     click=1;
                     btn_checkout.setText("Pay Now")
                 }else{
-                    if (MyApplication.instance.getString("usertype").equals("3")){
+                    if (MyApplication.instance.getString("usertype").equals("1")){
                         val intent = Intent(mContext, ThanksActivity::class.java)
                         startActivity(intent)
                     }else{

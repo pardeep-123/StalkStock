@@ -96,13 +96,13 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        if(MyApplication.instance.getString("usertype").equals("2")){
-
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else  if(MyApplication.instance.getString("usertype").equals("1")){
+        if(MyApplication.instance.getString("usertype").equals("4")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
         }else  if(MyApplication.instance.getString("usertype").equals("5")){
+
+            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+        }else  if(MyApplication.instance.getString("usertype").equals("2")){
 
             successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
         }else{

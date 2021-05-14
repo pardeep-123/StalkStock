@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.*
 import com.stalkstock.commercial.view.activities.CommunicationListner
+import com.stalkstock.commercial.view.activities.ManageAddress
 import kotlinx.android.synthetic.main.account.*
 import kotlinx.android.synthetic.main.logout_alert.*
 

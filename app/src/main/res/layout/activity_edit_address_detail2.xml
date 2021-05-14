@@ -131,6 +131,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtStreetAddress"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
@@ -171,6 +172,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
+                        android:id="@+id/edtFloor"
                         android:hint="@string/enter_unit_apt_suite_floor"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
@@ -208,6 +210,7 @@
                         android:gravity="center_vertical"
                         android:hint="@string/enter_city"
                         android:imeOptions="actionNext"
+                        android:id="@+id/edtCity"
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
@@ -236,12 +239,14 @@
                     android:layout_marginTop="10dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtState"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
-                        android:hint="@string/enter_state_province_region"                        android:imeOptions="actionNext"
+                        android:hint="@string/enter_state_province_region"
+                        android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
@@ -277,6 +282,7 @@
                         android:gravity="center_vertical"
                         android:hint="@string/enter_postal_zipcode"
                         android:imeOptions="actionNext"
+                        android:id="@+id/edtPostalCode"
                         android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
@@ -352,6 +358,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
+                        android:id="@+id/edtDeliveryInstructions"
                         android:hint="@string/enter_delivery_instructions_eg_gate_code"
                         android:inputType="text"
                         android:maxLines="1"

@@ -98,6 +98,7 @@
             android:text="The Castro"
             android:drawablePadding="10dp"
             android:layout_marginLeft="10dp"
+
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:textSize="18sp"

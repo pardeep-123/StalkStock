@@ -1,34 +1,114 @@
-package com.net
+package com.stalkstock.api
 
+import com.stalkstock.consumer.model.*
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
-import com.stalkstock.response_models.user_response.user_login.UserLoginResponse
-import com.stalkstock.response_models.user_response.user_signup.UserSignupResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
-import com.tamam.utils.others.GlobalVariables.*
+import com.stalkstock.utils.others.GlobalVariables.URL
 import io.reactivex.Observable
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.http.*
 
-interface RestApiInterface {
 
+interface RestApiInterface {
+    /*OLD
+    * 1-adv
+    * 2-commerc
+    * 3-consumer
+    * 4-vendor
+    * 5-driver
+    *
+    New
+1=>user
+2=>driver
+3=>vendor
+4=>commercial
+5=>advertiser* */
+
+    /*-------------------------------------Common API's-----------------------------*/
+
+    @Multipart
+    @PUT(URL.notification_on_off)
+    fun notification_on_offAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserCommonModel>
+
+    @Multipart
+    @POST(URL.changePassword)
+    fun changePasswordAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserCommonModel>
+
+    @GET(URL.helpContent)
+    fun helpContentAPI(): Observable<ModelHelpContent>
+
+    @POST(URL.logout)
+    fun logout(): Observable<UserCommonModel>
+
+    /*-------------------------------------User API's-----------------------------*/
     @FormUrlEncoded
     @POST(URL.USERLOGIN)
-    fun userlogin(@FieldMap map :HashMap<String,String>
+    fun userlogin(
+        @FieldMap map: HashMap<String, String>
     ): Observable<UserLoginResponse>
 
-    @GET(URL.USERSIGNUP)
-    fun usersignup(): Observable<UserSignupResponse>
+
+    @FormUrlEncoded
+    @POST(URL.getProfileDetail)
+    fun getProfileDetail(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<ModelGetProfileDetail>
+
+    @Multipart
+    @POST(URL.useraddUserAddress)
+    fun useraddUserAddressAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserCommonModel>
+
+    @Multipart
+    @POST(URL.getUserAddressList)
+    fun getUserAddressListAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelUserAddressList>
+
+    @Multipart
+    @PUT(URL.editUserAddress)
+    fun editUserAddressAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserCommonModel>
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = URL.deleteUserAddress , hasBody = true)
+    fun deleteUserAddressAPI(
+        @Field("address_id") postId: Int
+    ): Observable<UserCommonModel>
+
+    @Multipart
+    @POST(URL.USERSIGNUP)
+    fun usersignup(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    ): Observable<ModelSignupUser>
+
+    @Multipart
+    @PUT(URL.editUserProfileDetail)
+    fun editUserProfileDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    ): Observable<ModelUpdateProfile>
 
 
     @FormUrlEncoded
     @POST(URL.VENDORSIGNUP)
-    fun vendorsignup(@FieldMap map :HashMap<String,String>
+    fun vendorsignup(
+        @FieldMap map: HashMap<String, String>
     ): Observable<VendorSignupResponse>
-
 
 
     @FormUrlEncoded
     @POST(URL.FORGOTPASSWORD)
-    fun    forgotpassword(@FieldMap map :HashMap<String,String>
+    fun forgotpassword(
+        @FieldMap map: HashMap<String, String>
     ): Observable<ForgotPasswordResponse>
 
 //@GET(URL.GETPROFILE)
@@ -107,8 +187,6 @@ interface RestApiInterface {
 //    fun uploadImage(
 //        @Part images: ArrayList<MultipartBody.Part?>
 //    ): Observable<ImageResponse>
-
-
 
 
 }

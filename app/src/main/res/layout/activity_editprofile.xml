@@ -3,51 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="@color/white"
-     >
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_alignParentRight="true"
-
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
                 android:layout_centerInParent="true"
+                android:text="Edit Profile"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="16dp" />
+
             <ImageView
                 android:id="@+id/back_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/back_arrow"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:src="@drawable/back_arrow" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/light_grey"/>
+            android:background="@color/light_grey" />
 
 
         <ScrollView
@@ -55,17 +56,18 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
                 <!--start-->
 
                 <RelativeLayout
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="40dp">
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image"
                         android:layout_width="120dp"
@@ -73,38 +75,40 @@
                         android:layout_gravity="center"
                         android:alpha="0.7"
                         android:background="@drawable/edit_img" />
+
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="center"
                         android:layout_centerInParent="true"
+                        android:layout_gravity="center"
                         android:background="@drawable/img_uploader_ad" />
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_change_profile_photo"
                     android:layout_gravity="center_horizontal"
-
                     android:layout_marginTop="10dp"
+
+                    android:text="@string/add_change_profile_photo"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
                 <RelativeLayout
-                    android:layout_gravity="center_horizontal"
-
                     android:layout_width="wrap_content"
+
                     android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
-                         android:background="@drawable/edit_text_bg"
+                        android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_first_name"
                         android:imeOptions="actionNext"
@@ -121,28 +125,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                         android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="First Name"
                         android:textColor="@color/light_grey"
                         android:textSize="13sp" />
                 </RelativeLayout>
-                <RelativeLayout
-                    android:layout_gravity="center_horizontal"
 
+                <RelativeLayout
                     android:layout_width="wrap_content"
+
                     android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
 
+                        android:id="@+id/edtLastName"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
-                         android:background="@drawable/edit_text_bg"
+                        android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_last_name"
                         android:imeOptions="actionNext"
@@ -159,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                         android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="Last Name"
@@ -168,24 +174,25 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_gravity="center_horizontal"
-
                     android:layout_width="wrap_content"
+
                     android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/emailEdittext"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
-                         android:background="@drawable/edit_text_bg"
+                        android:background="@drawable/edit_text_bg"
+                        android:focusable="false"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_your_email_address"
                         android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
+                        android:inputType=""
                         android:maxLines="1"
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
@@ -198,26 +205,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                         android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/email"
                         android:textColor="@color/light_grey"
                         android:textSize="13sp" />
                 </RelativeLayout>
-                <RelativeLayout
-                    android:layout_gravity="center_horizontal"
 
+                <RelativeLayout
                     android:layout_width="wrap_content"
+
                     android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtMobile"
+                        android:focusable="false"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                         android:layout_marginTop="10dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_mobile"
@@ -234,7 +244,7 @@
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                         android:layout_alignParentTop="true"
+                        android:layout_alignParentTop="true"
                         android:layout_marginLeft="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
@@ -242,15 +252,16 @@
                         android:textColor="@color/light_grey"
                         android:textSize="13sp" />
                 </RelativeLayout>
-                <LinearLayout
-                    android:layout_gravity="center_horizontal"
 
+                <LinearLayout
                     android:layout_width="match_parent"
+
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                     >
+                    android:layout_marginBottom="20dp">
+
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btn_update_profile"
                         android:layout_width="match_parent"
@@ -270,10 +281,7 @@
         </ScrollView>
 
 
-
-
     </LinearLayout>
-
 
 
 </RelativeLayout>

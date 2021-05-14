@@ -1,10 +1,9 @@
-package com.live.stalkstockcommercial.ui.address
+package com.stalkstock.commercial.view.activities
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -28,6 +27,7 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
             addMarker(
                 MarkerOptions()
                     .position(sydney)
+                    .anchor(0.5f, 0.5f)
                     .title("Your are Here").icon(
                         BitmapDescriptorFactory.fromBitmap(
                             Bitmap.createScaledBitmap(

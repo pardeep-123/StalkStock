@@ -8,6 +8,7 @@ import com.innovattic.rangeseekbar.RangeSeekBar
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.consumer.activities.ProductActivity
+import com.stalkstock.consumer.adapter.FilterAdapter
 import kotlinx.android.synthetic.main.activity_filter.*
 
 class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
@@ -38,7 +39,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
             onBackPressed()
         }
         tvSortBy.setOnClickListener {
-            if (MyApplication.instance.getString("usertype").equals("4")){
+            if (MyApplication.instance.getString("usertype").equals("3")){
                     onBackPressed()
             } else{
                 val intent = Intent(applicationContext,ProductActivity::class.java)
@@ -49,7 +50,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         rlCost.setOnClickListener {
 
 
-            if (MyApplication.instance.getString("usertype").equals("4")){
+            if (MyApplication.instance.getString("usertype").equals("3")){
 
                 onBackPressed()
             } else{
@@ -61,7 +62,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         }
 
         //vender
-        if (MyApplication.instance.getString("usertype").equals("4")){
+        if (MyApplication.instance.getString("usertype").equals("3")){
             tv_sort_cate.visibility=View.VISIBLE
             rl_sort_cate.visibility=View.VISIBLE
         }else{

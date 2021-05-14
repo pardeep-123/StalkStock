@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
-import com.net.RestApiInterface
-import com.net.ServiceGenerator
+import com.stalkstock.api.RestApiInterface
+import com.stalkstock.api.ServiceGenerator
 import com.stalkstock.utils.others.AppLifecycleHandler
 import com.stalkstock.utils.others.AppLifecycleHandler.AppLifecycleDelegates
 import com.stalkstock.utils.others.MediaLoader
@@ -21,7 +21,6 @@ class MyApplication : Application(), AppLifecycleDelegates {
 
     private var mSocket: Socket? = null
     companion object {
-
         const val PREF_TOKEN = "dummy"
 
 

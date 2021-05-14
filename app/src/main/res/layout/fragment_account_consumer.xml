@@ -55,9 +55,9 @@
                  android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/imgUserProfile"
                     android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/profile_img" />
+                    android:layout_height="60dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,7 +72,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jamie Row"
+                    android:id="@+id/txtUserName"
                      android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="jamie@gmail.com"
+                    android:id="@+id/txtUserEmail"
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
 
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="123785768"
+                    android:id="@+id/txtUserPhone"
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
             </LinearLayout>

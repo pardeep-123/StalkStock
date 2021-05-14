@@ -32,6 +32,17 @@ object AppUtils {
     }
 
     @JvmStatic
+    fun showSuccessAlert(context: Activity, msg: String) {
+        Alerter.create(context)
+            .setTitle(context.getString(R.string.success))
+            .setTitleAppearance(R.style.AlertTextAppearanceTitle)
+            .setText(msg)
+            .setTextAppearance(R.style.AlertTextAppearanceText)
+                .setBackgroundColorRes(android.R.color.holo_green_dark)
+            .show()
+    }
+
+    @JvmStatic
     fun showNoInternetAlert(context: Activity, msg: String, listener: OnNoInternetConnectionListener) {
         Alerter.create(context)
             .setTitle(context.getString(R.string.error_))

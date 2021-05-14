@@ -1,4 +1,4 @@
-package com.net
+package com.stalkstock.api
 
 enum class Status {
 

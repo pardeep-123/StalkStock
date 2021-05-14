@@ -1,18 +1,10 @@
 package com.stalkstock.vender.ui;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,7 +19,7 @@ import com.yanzhenjie.album.api.widget.Widget;
 
 import java.util.ArrayList;
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener {
+public class SignUpVendor extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<AlbumFile> mAlbumFiles = new ArrayList<>();
     String firstimage="";
 
@@ -48,9 +40,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         signupbtn.setOnClickListener(this);
         signtext.setOnClickListener(this);
         camera.setOnClickListener(this);
-
-
-
     }
 
 
@@ -67,7 +56,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.signupbutton:
-                startActivity(new Intent(SignUp.this, Verification.class));
+                startActivity(new Intent(SignUpVendor.this, BottomnavigationScreen.class));
+//                startActivity(new Intent(SignUpVendor.this, Verification.class));
                 break;
             case R.id.losignuptext:
                 onBackPressed();
@@ -100,7 +90,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onAction(@NonNull ArrayList<AlbumFile> result) {
                         mAlbumFiles.addAll(result);
-                        Glide.with(SignUp.this).load(result.get(0).getPath()).into(imageView);
+                        Glide.with(SignUpVendor.this).load(result.get(0).getPath()).into(imageView);
                         if (s.equals("1"))
                         {
                             firstimage =result.get(0).getPath();

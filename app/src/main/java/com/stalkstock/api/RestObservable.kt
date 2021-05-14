@@ -1,4 +1,4 @@
-package com.tamam.net
+package com.stalkstock.api
 
 import android.app.Activity
 import android.content.ContentValues.TAG
@@ -6,15 +6,12 @@ import android.content.Intent
 import android.util.Log
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
 import com.mender.utlis.ProgressHUD
-import com.net.ServiceGenerator
-import com.net.Status
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.utils.others.clearPrefrences
 
 import com.tamam.utils.others.AppUtils
 
-import io.reactivex.annotations.NonNull
 import okhttp3.ResponseBody
 import java.io.IOException
 
@@ -79,7 +76,7 @@ class RestObservable(
                         clearPrefrences()
                         //AppUtils.showToast(activity, R.string.session_expired)
                     } else {
-                        AppUtils.showErrorAlert(activity, errorMessage)
+//                        AppUtils.showErrorAlert(activity, errorMessage)
                     }
                     //AppUtils.showErrorAlert(activity, errorMessage)
                     return RestObservable(Status.ERROR, null, errorMessage)

@@ -40,14 +40,21 @@ public class SelectuserActivity extends AppCompatActivity {
         vendor= findViewById(R.id.vendor);
         driver= findViewById(R.id.driver);
         tv_l= findViewById(R.id.tv_l);
+/*
+1=>user
+2=>driver
+3=>vendor
+4=>commercial
+5=>advertiser*
+*/
 
-       // SpannableString formattedSpan = formatStyles(getString(R.string.get_started_text), getString(R.string.text_sub0), R.style.style0, getString(R.string.main_text_sub1), R.style.style1);
+        // SpannableString formattedSpan = formatStyles(getString(R.string.get_started_text), getString(R.string.text_sub0), R.style.style0, getString(R.string.main_text_sub1), R.style.style1);
        // tv_l.setText(formattedSpan, TextView.BufferType.SPANNABLE);
         btn_advertiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //store value in preference (select user)
-              MyApplication.instance.setString("usertype","1");
+              MyApplication.instance.setString("usertype","5");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
@@ -56,38 +63,32 @@ public class SelectuserActivity extends AppCompatActivity {
         commercial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              MyApplication.instance.setString("usertype","2");
-                Intent intent=new Intent(context, GetStartedPageActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //store value in preference (select user)
-                MyApplication.instance.setString("usertype","3");
-                Intent intent=new Intent(context, GetStartedPageActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        vendor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
               MyApplication.instance.setString("usertype","4");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }
         });
-
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //store value in preference (select user)
+                MyApplication.instance.setString("usertype","1");
+                Intent intent=new Intent(context, GetStartedPageActivity.class);
+                startActivity(intent);
+            }
+        });
+        vendor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              MyApplication.instance.setString("usertype","3");
+                Intent intent=new Intent(context, GetStartedPageActivity.class);
+                startActivity(intent);
+            }
+        });
         driver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              MyApplication.instance.setString("usertype","5");
+              MyApplication.instance.setString("usertype","2");
                 Intent intent=new Intent(context, GetStartedPageActivity.class);
                 startActivity(intent);
             }

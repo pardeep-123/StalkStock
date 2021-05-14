@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stalkstock.R;
 import com.stalkstock.consumer.activities.SelectuserActivity;
 
@@ -87,7 +86,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
                 finishAffinity();
                 break;
             case R.id.loginsignuptext:
-                startActivity(new Intent(LoginScreen.this, SignUp.class));
+                startActivity(new Intent(LoginScreen.this, SignUpVendor.class));
                 break;
 
         }

@@ -51,7 +51,7 @@ public class PaymentselectActivity extends AppCompatActivity {
                 Intent intent=new Intent(context,AddcardpaymentActivity.class);
                 startActivity(intent);
 
-               /* if(MyApplication.instance.getString("usertype").equals("3")){
+               /* if(MyApplication.instance.getString("usertype").equals("1")){
                     val intent = Intent(mContext, ThanksActivity::class.java)
                     startActivity(intent)
                 }else{

@@ -39,7 +39,7 @@ class OrderDetailActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if(MyApplication.instance.getString("usertype").equals("2")){
+        if(MyApplication.instance.getString("usertype").equals("4")){
             rl_visa.visibility= View.VISIBLE
             tv_rest_charges.visibility= View.GONE
             tv_free.text= "Fee"

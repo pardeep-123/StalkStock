@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.live.stalkstockcommercial.ui.view.fragments.account.ManageAddress
+import com.stalkstock.commercial.view.activities.ManageAddress
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.*
 import com.stalkstock.driver.DriverInformationActivity

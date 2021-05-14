@@ -1,10 +1,10 @@
-package com.net
+package com.stalkstock.api
 
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.stalkstock.utils.others.getPrefrence
-import com.tamam.utils.others.GlobalVariables
-import com.tamam.utils.others.GlobalVariables.URL.SECURITY_KEY
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.GlobalVariables.URL.SECURITY_KEY
 import okhttp3.ConnectionSpec
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -40,24 +40,16 @@ object ServiceGenerator {
 
 
 
-   fun <S> createService(serviceClass: Class<S>): S {
-        val retrofit = builder.client(httpClient)
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().setPrettyPrinting().create()
-                )
-            )
-            .build()
+    @JvmStatic
+    fun <S> createService(serviceClass: Class<S>): S {
+        val retrofit = getRetrofit()
         return retrofit.create(serviceClass)
     }
 
+    @JvmStatic
     fun getRetrofit(): Retrofit {
         return builder.client(httpClient)
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().setPrettyPrinting().create()
-                )
-            )
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setPrettyPrinting().create()))
             .build()
     }
 
