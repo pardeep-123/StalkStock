@@ -125,15 +125,15 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/tvssss"
+                            android:id="@+id/imguser"
                             android:layout_width="90dp"
                             android:layout_height="90dp"
-                             android:src="@drawable/dummy_profile" />
+                             android:src="@drawable/place_holder" />
 
                         <ImageView
                             android:id="@+id/profileediticossn"
-                            android:layout_alignBottom="@+id/tvssss"
-                            android:layout_toRightOf="@+id/tvssss"
+                            android:layout_alignBottom="@+id/imguser"
+                            android:layout_toRightOf="@+id/imguser"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="-25dp"
@@ -156,15 +156,16 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jamie Row"
+
+                            android:id="@+id/profileusename"
                             android:textColor="@color/black"
                             android:textSize="25sp" />
 
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="jamie@gmail.com"
+                            android:id="@+id/emaildID"
                             android:textColor="@color/light_grey"
                             android:textSize="22sp" />
 
@@ -172,6 +173,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:visibility="gone"
                             android:text="123785768"
                             android:textColor="@color/light_grey"
                             android:textSize="22sp" />

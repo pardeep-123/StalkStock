@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.stalkstock.api.Status
 import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.api.RestError
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.SelectuserActivity
@@ -24,12 +22,10 @@ import com.stalkstock.utils.others.getPrefrence
 import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.api.RestObservable
-import com.stalkstock.consumer.model.ModelSignupUser
 import com.stalkstock.driver.SignupActivity
-import com.stalkstock.vender.ui.SignUpVendor
+import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
-import com.tamam.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {
@@ -134,7 +130,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
 
 
     fun goingToSignUp() {
-        /*
+        /* OLD
 * 1-adv
 * 2-commercial
 * 3-consumer
@@ -149,14 +145,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
     5=>advertiser* */
 
         if (MyApplication.instance.getString("usertype").equals("4")) {
-            startActivity(Intent(mContext, SignupAdvertiserAndCommercial::class.java))
+            startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
         } else if (MyApplication.instance.getString("usertype").equals("1")) {
             startActivity(Intent(mContext, SignupConsumerActivity::class.java))
         } else if (MyApplication.instance.getString("usertype").equals("5")) {
-            startActivity(Intent(mContext, SignupAdvertiserAndCommercial::class.java))
+            startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
         } else if (MyApplication.instance.getString("usertype").equals("3")) {
 //           startActivity(Intent(mContext, SignupActivity::class.java))
-            startActivity(Intent(mContext, SignUpVendor::class.java))
+//            startActivity(Intent(mContext, SignUpVendor::class.java))
+            startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
         } else if (MyApplication.instance.getString("usertype").equals("2")) {
             startActivity(Intent(mContext, SignupActivity::class.java))
         }
@@ -209,7 +206,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
                 if (it.data is UserLoginResponse) {
                     val mResponse: UserLoginResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        setData(mResponse)
+                        if (mResponse.body.role == 1)
+                            setData(mResponse)
+                        else if (mResponse.body.role == 3)
+                            setDataVendor(mResponse)
                         goingToHome()
                     } else {
 //                        AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -228,6 +228,143 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
             }
         }
     }
+
+    private fun setDataVendor(data: UserLoginResponse) {
+        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.AUTH_KEY, data.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.token, data.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.id, data.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.role, data.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.verified, data.body.verified)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.status, data.body.status)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.email, data.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.mobile, data.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.deviceToken, data.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.deviceType, data.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.notification, data.body.notification)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.remember_token,
+            data.body.remember_token
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.created, data.body.created)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.updated, data.body.updated)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.createdAt, data.body.createdAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.updatedAt, data.body.updatedAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.vendorID, data.body.vendorDetail.id)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.approvalStatus,
+            data.body.vendorDetail.approvalStatus
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.approvalStatusReason,
+            data.body.vendorDetail.approvalStatusReason
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.firstName,
+            data.body.vendorDetail.firstName
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.lastName, data.body.vendorDetail.lastName)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.image, data.body.vendorDetail.image)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.buisnessPhone,
+            data.body.vendorDetail.buisnessPhone
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.shopLogo, data.body.vendorDetail.shopLogo)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.buisnessTypeId,
+            data.body.vendorDetail.buisnessTypeId
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.shopName, data.body.vendorDetail.shopName)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.buisnessLicense,
+            data.body.vendorDetail.buisnessLicense
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.website, data.body.vendorDetail.website)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.city, data.body.vendorDetail.city)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.state, data.body.vendorDetail.state)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.country, data.body.vendorDetail.country)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.postalCode,
+            data.body.vendorDetail.postalCode
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.latitude, data.body.vendorDetail.latitude)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.longitude,
+            data.body.vendorDetail.longitude
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.geoLocation,
+            data.body.vendorDetail.geoLocation
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.shopAddress,
+            data.body.vendorDetail.shopAddress
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.addressLine2,
+            data.body.vendorDetail.addressLine2
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.shopDescription,
+            data.body.vendorDetail.shopDescription
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.shopCharges,
+            data.body.vendorDetail.shopCharges
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.deliveryTime,
+            data.body.vendorDetail.deliveryTime
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.paymentPolicy,
+            data.body.vendorDetail.paymentPolicy
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.deliveryPolicy,
+            data.body.vendorDetail.deliveryPolicy
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.sellerInformation,
+            data.body.vendorDetail.sellerInformation
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.taxInPercent,
+            data.body.vendorDetail.taxInPercent
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.taxValue, data.body.vendorDetail.taxValue)
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.bankName, data.body.vendorDetail.bankName)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.bankBranch,
+            data.body.vendorDetail.bankBranch
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.accountHolderName,
+            data.body.vendorDetail.accountHolderName
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.accountNumber,
+            data.body.vendorDetail.accountNumber
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.bsbNumber,
+            data.body.vendorDetail.bsbNumber
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.ifscSwiftCode,
+            data.body.vendorDetail.ifscSwiftCode
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_VENDOR.bankAddress,
+            data.body.vendorDetail.bankAddress
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.userId, data.body.vendorDetail.userId)
+    }
+
     private fun setData(mResponse: UserLoginResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "1")

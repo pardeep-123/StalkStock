@@ -15,12 +15,13 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stalkstock.R;
 import com.stalkstock.driver.fragment.PaymentFragment;
+import com.stalkstock.utils.BaseActivity;
 import com.stalkstock.vender.fragment.AccountFragment;
 import com.stalkstock.vender.fragment.MainHomeFragment;
 import com.stalkstock.vender.fragment.MessageFragment;
 import com.stalkstock.vender.fragment.OrdersFragment;
 
-public class BottomnavigationScreen extends AppCompatActivity  implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class BottomnavigationScreen extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     RelativeLayout home_tab;
      ImageView iv_homeTab;
@@ -46,7 +47,7 @@ public class BottomnavigationScreen extends AppCompatActivity  implements Bottom
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bottomnavigation_screen);
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottomnavigation);
         bottomNavigationView.setItemIconTintList(null);
@@ -416,5 +417,10 @@ public class BottomnavigationScreen extends AppCompatActivity  implements Bottom
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+    @Override
+    protected int getContentId() {
+        return R.layout.activity_bottomnavigation_screen;
     }
+}
 

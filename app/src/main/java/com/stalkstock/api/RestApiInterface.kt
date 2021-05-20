@@ -1,14 +1,16 @@
 package com.stalkstock.api
 
+import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.consumer.model.*
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables.URL
+import com.stalkstock.vender.Model.UpdateVendorProfileModel
+import com.stalkstock.vender.Model.VendorProfileDetail
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.http.*
 
 
@@ -41,8 +43,17 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<UserCommonModel>
 
+    @Multipart
+    @POST(URL.getSubCategoryList)
+    fun getSubCategoryListAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelSubCategoriesList>
+
     @GET(URL.helpContent)
     fun helpContentAPI(): Observable<ModelHelpContent>
+
+    @GET(URL.getCategoryList)
+    fun getCategoryListAPI(): Observable<ModelCategoryList>
 
     @POST(URL.logout)
     fun logout(): Observable<UserCommonModel>
@@ -60,6 +71,12 @@ interface RestApiInterface {
     fun getProfileDetail(
         @FieldMap map: HashMap<String, String>
     ): Observable<ModelGetProfileDetail>
+
+    @FormUrlEncoded
+    @POST(URL.getProfileDetailVendor)
+    fun getProfileDetailVendor(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<VendorProfileDetail>
 
     @Multipart
     @POST(URL.useraddUserAddress)
@@ -80,7 +97,7 @@ interface RestApiInterface {
     ): Observable<UserCommonModel>
 
     @FormUrlEncoded
-    @HTTP(method = "DELETE", path = URL.deleteUserAddress , hasBody = true)
+    @HTTP(method = "DELETE", path = URL.deleteUserAddress, hasBody = true)
     fun deleteUserAddressAPI(
         @Field("address_id") postId: Int
     ): Observable<UserCommonModel>
@@ -97,11 +114,18 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<ModelUpdateProfile>
 
+    @Multipart
+    @PUT(URL.editVendorProfileDetail)
+    fun editVendorProfileDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    ): Observable<UpdateVendorProfileModel>
 
-    @FormUrlEncoded
+
+    @Multipart
     @POST(URL.VENDORSIGNUP)
     fun vendorsignup(
-        @FieldMap map: HashMap<String, String>
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part?
     ): Observable<VendorSignupResponse>
 
 

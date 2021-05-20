@@ -60,7 +60,7 @@
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/dummy_profile"/>
+                        android:src="@drawable/place_holder"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                                 android:textColor="#000"
                                 android:textSize="16sp"
                                 android:layout_alignParentLeft="true"
-                                android:text="Jamie Row"/>
+                                android:text=""/>
                             <ImageView
                                 android:id="@+id/profileediticon"
                                 android:layout_width="wrap_content"
@@ -96,13 +96,13 @@
                                 />
                         </RelativeLayout>
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
-                            android:id="@+id/useremail"
+                            android:id="@+id/emaildID"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#000"
                             android:textSize="12sp"
                             android:layout_marginTop="3dp"
-                            android:text="Jamie.row@gmail.com"/>
+                            android:text=""/>
                     </LinearLayout>
 
                 </LinearLayout>

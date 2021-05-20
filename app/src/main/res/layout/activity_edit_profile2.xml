@@ -194,6 +194,7 @@
                                 android:layout_marginTop="15dp"
                                 android:background="@drawable/edittextshape"
                                 android:hint="Enter your email address"
+                                android:focusable="false"
                                 android:inputType="textEmailAddress"
                                 android:paddingLeft="15dp"
                                 android:textColor="#000"
@@ -221,12 +222,13 @@
                             android:layout_marginRight="20dp">
 
                             <EditText
-                                android:id="@+id/editboxbusinesslicense"
+                                android:id="@+id/edtNumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
                                 android:layout_marginTop="15dp"
                                 android:background="@drawable/edittextshape"
                                 android:hint="@string/enter_mobile"
+                                android:focusable="false"
                                 android:inputType="number"
                                 android:paddingLeft="15dp"
                                 android:textColor="#000"

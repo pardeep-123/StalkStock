@@ -49,9 +49,8 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
     val viewModel: HomeViewModel by viewModels()
 
     private fun getAddresses() {
-        if (reset)
-        {
-            currentOffset=0
+        if (reset) {
+            currentOffset = 0
             currentModel.clear()
         }
         val map = HashMap<String, RequestBody>()
@@ -59,7 +58,6 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
         map.put("limit", mUtils.createPartFromString("5"))
         viewModel.getUserAddressListAPI(this, true, map)
         viewModel.homeResponse.observe(this, this)
-        currentOffset += 10
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +94,8 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!recyclerView.canScrollVertically(1)) {
-                    getAddresses()
+                    if (currentOffset > 1)
+                        getAddresses()
                 }
 
             }
@@ -115,6 +114,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                 if (it.data is ModelUserAddressList) {
                     val mResponse: ModelUserAddressList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOffset += 10
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -125,6 +125,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(this, mResponse.message.toString())
+                        reset = true
                         getAddresses()
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -136,9 +137,11 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
-                        AppUtils.showErrorAlert(this, "No more addresses")
+//                        AppUtils.showErrorAlert(this, "No more addresses")
                     } else
                         Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+//
+
 //                    showAlerterRed()
                 }
             }

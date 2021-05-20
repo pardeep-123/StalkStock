@@ -182,27 +182,14 @@ class EditprofileConsumerActivity : BaseActivity(), Observer<RestObservable> {
         edtLastName.setText(mResponse.body.userDetail.last_name)
         edtMobile.setText(mResponse.body.mobile)
         emailEdittext.setText(mResponse.body.email)
-//        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "1")
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.AUTH_KEY, mResponse.body.token)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.token, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.id, mResponse.body.id)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.role, mResponse.body.role)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.verified, mResponse.body.verified)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.status, mResponse.body.status)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.email, mResponse.body.email)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.mobile, mResponse.body.mobile)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.notification, mResponse.body.notification)
-//        savePrefrence(
-//            GlobalVariables.SHARED_PREF_USER.remember_token,
-//            mResponse.body.remember_token
-//        )
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.created, mResponse.body.created)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.updated, mResponse.body.updated)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.createdAt, mResponse.body.createdAt)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.updatedAt, mResponse.body.updatedAt)
     }
 
 }
