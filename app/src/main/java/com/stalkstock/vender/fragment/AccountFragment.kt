@@ -115,7 +115,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 startActivity(intent2)
             }
             R.id.addproductaccounts -> {
-                val intent3 = Intent(activity, AddProduct::class.java)
+                val intent3 = Intent(activity, SelectCategory::class.java)
                 startActivity(intent3)
             }
             R.id.bidproduct -> {

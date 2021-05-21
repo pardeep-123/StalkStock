@@ -41,7 +41,6 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
     override fun onResume() {
         super.onResume()
-        getCategories()
     }
 
     val viewModel: HomeViewModel by viewModels()
@@ -126,6 +125,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
         subCatAdapter = ArrayAdapter(this, R.layout.spinner_item_text, listSub)
         spinnerSubCategory!!.adapter = subCatAdapter
+
+        getCategories()
 
     }
 

@@ -1,16 +1,18 @@
 package com.live.stalkstockcommercial.ui.view.fragments.home
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.live.stalkstockcommercial.ui.product.AddedProduct
 import com.stalkstock.R
 import com.stalkstock.utils.ProductUnitData
+import com.stalkstock.vender.ui.AddProduct
+import com.stalkstock.vender.ui.EditProduct
 import kotlinx.android.synthetic.main.product_unit_adapter.view.*
 
-class AdapterProductUnit2(var listProductUnit: ArrayList<ProductUnitData>) : RecyclerView.Adapter<AdapterProductUnit2.MyViewHolder>() {
+class AdapterProductUnit2(var mActivity : Activity, var listProductUnit: ArrayList<ProductUnitData>) : RecyclerView.Adapter<AdapterProductUnit2.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
@@ -64,8 +66,18 @@ class AdapterProductUnit2(var listProductUnit: ArrayList<ProductUnitData>) : Rec
         else
         {
             holder.itemView.iv_rad.setImageResource(R.drawable.radio_circle)
+        }
 
+        holder.itemView.setOnClickListener {
+            if (mActivity is AddProduct)
+            {
+                val addProduct = mActivity as AddProduct
+                addProduct.setSelectedMeasurement(position,listProductUnit[position])
+            }
+            else if (mActivity is EditProduct)
+            {
 
+            }
 
         }
 //

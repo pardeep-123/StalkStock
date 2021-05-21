@@ -156,7 +156,7 @@ class EditProduct : AppCompatActivity(), View.OnClickListener {
         detailDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val rvProductUnit: RecyclerView = detailDialog!!.findViewById(R.id.rvProductUnit)
         val llDialog = detailDialog!!.findViewById<LinearLayout>(R.id.llDialog)
-        rvProductUnit.adapter = AdapterProductUnit2(listProductUnit)
+        rvProductUnit.adapter = AdapterProductUnit2(this,listProductUnit)
         llDialog.setOnClickListener { detailDialog!!.dismiss() }
         detailDialog!!.show()
     }

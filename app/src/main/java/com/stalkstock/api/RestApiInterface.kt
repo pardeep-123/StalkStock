@@ -1,11 +1,13 @@
 package com.stalkstock.api
 
 import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.consumer.model.*
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables.URL
+import com.stalkstock.vender.Model.ModelAddProduct
 import com.stalkstock.vender.Model.UpdateVendorProfileModel
 import com.stalkstock.vender.Model.VendorProfileDetail
 import io.reactivex.Observable
@@ -54,6 +56,9 @@ interface RestApiInterface {
 
     @GET(URL.getCategoryList)
     fun getCategoryListAPI(): Observable<ModelCategoryList>
+
+    @GET(URL.measurementList)
+    fun measurementListAPI(): Observable<ModelMeasurementList>
 
     @POST(URL.logout)
     fun logout(): Observable<UserCommonModel>
@@ -107,6 +112,12 @@ interface RestApiInterface {
     fun usersignup(
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<ModelSignupUser>
+
+    @Multipart
+    @POST(URL.vendorAddProduct)
+    fun vendorAddProductAPI(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: ArrayList<MultipartBody.Part>
+    ): Observable<ModelAddProduct>
 
     @Multipart
     @PUT(URL.editUserProfileDetail)
