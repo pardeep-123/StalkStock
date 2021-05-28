@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import kotlinx.android.synthetic.main.row_filter.view.*
-import stalkstockcommercial.ui.view.activities.FilterActivity
+import com.stalkstock.consumer.activities.FilterActivity
 
 
 class FilterAdapter(var list: ArrayList<FilterActivity.FilterData>) : RecyclerView.Adapter<FilterAdapter.MyViewHolder>() {

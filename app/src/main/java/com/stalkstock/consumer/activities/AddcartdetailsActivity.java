@@ -25,8 +25,6 @@ import com.stalkstock.vender.ui.SearchScreen;
 
 import java.util.Objects;
 
-import stalkstockcommercial.ui.view.activities.FilterActivity;
-
 public class AddcartdetailsActivity extends AppCompatActivity {
     AddcartdetailsActivity context;
 TextView minus,plus,count;
@@ -78,6 +76,7 @@ Button btnCheckOut;
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, FilterActivity.class);
+                intent.putExtra("from","AddcartdetailsActivity");
                 startActivity(intent);
             }
         });

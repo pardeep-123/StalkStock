@@ -38,6 +38,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     private var curreMeasurementId = ""
     private lateinit var adapterMeasurements: AdapterProductUnit2
     private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
+    var listProductUnit: ArrayList<ProductUnitData> = ArrayList()
     private var currentCatId = ""
     private var currentSubCatId = ""
     private var currentTags = ""
@@ -48,7 +49,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     lateinit var cameropen: ImageView
     lateinit var visibaleimage: ImageView
     lateinit var detailDialog: Dialog
-    var listProductUnit: ArrayList<ProductUnitData> = ArrayList()
     lateinit var imagethree: RelativeLayout
     lateinit var relativeLayout: RelativeLayout
     lateinit var setimage: RelativeLayout

@@ -266,7 +266,7 @@
         <activity android:name=".commercial.view.activities.Verification"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
-        <activity android:name="stalkstockcommercial.ui.view.activities.FilterActivity"
+        <activity android:name=".consumer.activities.FilterActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
         <activity android:name=".consumer.activities.SearchActivity"

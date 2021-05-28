@@ -158,14 +158,22 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
             R.id.selectctgbackarrow -> onBackPressed()
             R.id.enteritembutton -> {
 
+                val tags = ltTagContainer.tags
+
                 if (spinnerSubCategory.selectedItemPosition == -1) {
                     AppUtils.showErrorAlert(
                         this,
                         "Change category , Sub category not found for this category "
                     )
-                } else {
-
-                    val tags = ltTagContainer.tags
+                }
+                else if (tags.size<1)
+                {
+                    AppUtils.showErrorAlert(
+                        this,
+                        "Add at least one tag!"
+                    )
+                }
+                else {
                     val join = TextUtils.join(",", tags)
                     Log.e("Joinedss>>>,", join)
 

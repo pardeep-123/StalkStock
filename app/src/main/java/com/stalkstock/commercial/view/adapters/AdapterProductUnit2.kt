@@ -76,7 +76,8 @@ class AdapterProductUnit2(var mActivity : Activity, var listProductUnit: ArrayLi
             }
             else if (mActivity is EditProduct)
             {
-
+                val addProduct = mActivity as EditProduct
+                addProduct.setSelectedMeasurement(position,listProductUnit[position])
             }
 
         }

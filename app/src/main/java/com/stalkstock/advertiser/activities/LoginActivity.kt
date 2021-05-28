@@ -231,6 +231,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
 
     private fun setDataVendor(data: UserLoginResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)
+        MyApplication.instance.setString("usertype",data.body.role.toString())
         savePrefrence(
             GlobalVariables.SHARED_PREF.USER_TYPE,
             MyApplication.instance.getString("usertype").toString()
@@ -368,6 +369,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
     private fun setData(mResponse: UserLoginResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "1")
+        MyApplication.instance.setString("usertype","1")
         savePrefrence(GlobalVariables.SHARED_PREF_USER.AUTH_KEY, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.token, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.id, mResponse.body.id)

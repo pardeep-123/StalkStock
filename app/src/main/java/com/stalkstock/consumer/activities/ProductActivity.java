@@ -14,8 +14,6 @@ import com.stalkstock.advertiser.activities.Notification_firstActivity;
 import com.stalkstock.consumer.adapter.ProductsAdapter;
 import com.stalkstock.vender.ui.SearchScreen;
 
-import stalkstockcommercial.ui.view.activities.FilterActivity;
-
 
 public class ProductActivity extends AppCompatActivity {
     ProductActivity context;
@@ -52,6 +50,7 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, FilterActivity.class);
+                intent.putExtra("from","ProductActivity");
                 startActivity(intent);
             }
         });

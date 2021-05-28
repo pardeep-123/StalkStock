@@ -39,7 +39,6 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
     private var currentModel: ArrayList<ModelUserAddressList.Body> = ArrayList()
     var adapter: MangeaddressAdapter? = null
 
-
     override fun onResume() {
         super.onResume()
         reset = true
@@ -94,7 +93,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!recyclerView.canScrollVertically(1)) {
-                    if (currentOffset > 1)
+                    if (currentOffset > 1 && currentModel.size > 4)
                         getAddresses()
                 }
 
@@ -114,7 +113,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                 if (it.data is ModelUserAddressList) {
                     val mResponse: ModelUserAddressList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        currentOffset += 10
+                        currentOffset += 5
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())

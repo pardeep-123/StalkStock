@@ -7,9 +7,7 @@ import com.stalkstock.consumer.model.*
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables.URL
-import com.stalkstock.vender.Model.ModelAddProduct
-import com.stalkstock.vender.Model.UpdateVendorProfileModel
-import com.stalkstock.vender.Model.VendorProfileDetail
+import com.stalkstock.vender.Model.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,14 +15,14 @@ import retrofit2.http.*
 
 
 interface RestApiInterface {
-    /*OLD
-    * 1-adv
-    * 2-commerc
-    * 3-consumer
-    * 4-vendor
-    * 5-driver
-    *
-    New
+
+    /*
+    vendor:-business@yopmail.com    123456
+    consumer:-anikaesash@mailinator.com 123456
+
+    * */
+
+    /*
 1=>user
 2=>driver
 3=>vendor
@@ -40,6 +38,13 @@ interface RestApiInterface {
     ): Observable<UserCommonModel>
 
     @Multipart
+    @PUT(URL.editProduct)
+    fun editProductAPI(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: ArrayList<MultipartBody.Part>
+    ): Observable<ModelEditProduct>
+
+    @Multipart
     @POST(URL.changePassword)
     fun changePasswordAPI(
         @PartMap map: HashMap<String, RequestBody>
@@ -50,6 +55,18 @@ interface RestApiInterface {
     fun getSubCategoryListAPI(
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<ModelSubCategoriesList>
+
+    @Multipart
+    @POST(URL.getProductAccToCategorySubcategory)
+    fun getProductAccToCategorySubcategoryAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelProductListAsPerSubCat>
+
+    @Multipart
+    @POST(URL.userBannerList)
+    fun userBannerListAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserBannerModel>
 
     @GET(URL.helpContent)
     fun helpContentAPI(): Observable<ModelHelpContent>
@@ -96,6 +113,18 @@ interface RestApiInterface {
     ): Observable<ModelUserAddressList>
 
     @Multipart
+    @POST(URL.getVendorProductList)
+    fun getVendorProductListAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelVendorProductList>
+
+    @Multipart
+    @POST(URL.getVendorProductDetails)
+    fun getVendorProductDetailsAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelProductDetail>
+
+    @Multipart
     @PUT(URL.editUserAddress)
     fun editUserAddressAPI(
         @PartMap map: HashMap<String, RequestBody>
@@ -105,6 +134,12 @@ interface RestApiInterface {
     @HTTP(method = "DELETE", path = URL.deleteUserAddress, hasBody = true)
     fun deleteUserAddressAPI(
         @Field("address_id") postId: Int
+    ): Observable<UserCommonModel>
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = URL.deleteVendorProduct, hasBody = true)
+    fun deleteVendorProductAPI(
+        @Field("product_id") postId: Int
     ): Observable<UserCommonModel>
 
     @Multipart

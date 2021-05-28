@@ -2,347 +2,340 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            >
-
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:layout_width="wrap_content"
-                android:textSize="16sp"
-                android:visibility="gone"
-                android:gravity="center_vertical"
-                android:layout_height="wrap_content"
-                android:text="New York 920.."
-                android:layout_centerVertical="true"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/location_icon"/>
-
-
-            <ImageView
-                android:id="@+id/sdgd"
-
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               android:layout_centerInParent="true"
-                android:src="@drawable/header_log0"/>
-            <ImageView
-                android:layout_alignTop="@+id/sdgd"
-                android:layout_alignRight="@+id/sdgd"
-                android:layout_alignBottom="@+id/sdgd"
-                android:layout_alignLeft="@+id/sdgd"
-                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               android:layout_centerInParent="true"
-                android:src="@drawable/logo_get"/>
-
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/searchss"
-                android:visibility="invisible"
-                android:layout_toLeftOf="@+id/fillter"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/search_icon"/>
-
-            <ImageView
-                android:id="@+id/iv_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/notification"
-                android:layout_centerVertical="true"
-                android:src="@drawable/chat_grey_icon1"
-                android:tint="#ED1F24"
-                android:layout_marginRight="15dp"
-                >
-            </ImageView>
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/notification_icon1"
-                android:id="@+id/notification"
-
-                 android:layout_toLeftOf="@+id/fillter"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_alignParentRight="true"
-                />
-
-            <ImageView
-                android:id="@+id/fillter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/filter_icn1"
-                android:layout_centerVertical="true"
-                  />
-
-
-           <!-- <ImageView
-                android:id="@+id/notification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/fillter"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:padding="5dp"
-                android:src="@drawable/notification_icon"/>
-
-            <ImageView
-                android:id="@+id/fillter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/filter_icn"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:padding="5dp"
-                android:layout_alignParentRight="true"/>
-            -->
-
-
-
-
-        </RelativeLayout>
-
-
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:id="@+id/etSearcha"
-
-            android:layout_marginRight="15sp"
-            android:layout_marginLeft="15sp"
-            android:padding="12dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@drawable/shape_edit_new_home"
-            android:layout_height="45dp">
-
-            <ImageView
-                android:id="@+id/iv_loo"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/location_icon">
-
-            </ImageView>
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:id="@+id/ss"
-                android:layout_width="wrap_content"
-                android:textSize="17sp"
-                android:gravity="center_vertical"
-                android:layout_toRightOf="@+id/iv_loo"
-                android:includeFontPadding="false"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content"
-                android:text="New York 920, NY 10001"
-                android:layout_centerVertical="true"
-                android:textColor="@color/green_ss"
-                />
-
-        </RelativeLayout>
-
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-
-            android:orientation="horizontal"
-            android:layout_marginRight="15sp"
-            android:layout_marginLeft="15sp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp">
 
-                <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:id="@+id/bt_sort"
-                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/btn_shape_gray"
-                    android:gravity="center"
-                    android:text="SORT"
-                    android:textAllCaps="false"
-                    android:textColor="@color/green_ss"
-                    android:textSize="14sp" />
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/location_icon"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="New York 920.."
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+
+                <ImageView
+                    android:id="@+id/sdgd"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/header_log0"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/sdgd"
+                    android:layout_alignTop="@+id/sdgd"
+                    android:layout_alignRight="@+id/sdgd"
+                    android:layout_alignBottom="@+id/sdgd"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo_get" />
+
+
+                <ImageView
+                    android:id="@+id/searchss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/fillter"
+                    android:src="@drawable/search_icon"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/iv_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@+id/notification"
+                    android:src="@drawable/chat_grey_icon1"
+                    android:tint="#ED1F24"></ImageView>
+
+
+                <ImageView
+                    android:id="@+id/notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@+id/fillter"
+                    android:src="@drawable/notification_icon1" />
+
+                <ImageView
+                    android:id="@+id/fillter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/filter_icn1" />
+
+
+                <!-- <ImageView
+                     android:id="@+id/notification"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_toLeftOf="@+id/fillter"
+                     android:layout_centerVertical="true"
+                     android:layout_marginRight="10dp"
+                     android:padding="5dp"
+                     android:src="@drawable/notification_icon"/>
+
+                 <ImageView
+                     android:id="@+id/fillter"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/filter_icn"
+                     android:layout_centerVertical="true"
+                     android:layout_marginRight="10dp"
+                     android:padding="5dp"
+                     android:layout_alignParentRight="true"/>
+                 -->
+
+
             </RelativeLayout>
+
+
             <RelativeLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:id="@+id/etSearcha"
+                android:layout_width="match_parent"
 
-                <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:id="@+id/bt_pickup"
-                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-
-                    android:background="@drawable/btn_shape_gray"
-                    android:gravity="center"
-                    android:text="PICKUP"
-                    android:textAllCaps="false"
-                    android:textColor="@color/green_ss"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="match_parent">
-
-                <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:id="@+id/tv_delivery"
-                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-
-                    android:background="@drawable/btn_shape"
-                    android:gravity="center"
-                    android:text="DELIVERY"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_marginTop="15dp"
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-         >
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPagerDetail"
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            >
-
-        </androidx.viewpager.widget.ViewPager>
-
-        <com.viewpagerindicator.CirclePageIndicator
-            android:id="@+id/indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:padding="5dp">
-
-        </com.viewpagerindicator.CirclePageIndicator>
-
-    </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:id="@+id/etSearch"
-            android:layout_marginTop="10dp"
-
-            android:layout_marginRight="15sp"
-            android:layout_marginLeft="15sp"
-            android:padding="12dp"
-            android:background="@drawable/shape_edit_new_home"
-            android:layout_height="45dp">
-
-            <ImageView
-                android:id="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/search_icon"/>
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_centerVertical="true"
-
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/audio_icon"/>
-
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:layout_toRightOf="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:textSize="17sp"
-                android:text="Search.."
-                />
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
+                android:background="@drawable/shape_edit_new_home"
+                android:gravity="center"
+                android:padding="12dp">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/iv_loo"
 
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Categories"
-        android:textStyle="italic"
-            android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="20dp"
-        android:textSize="18sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/location_icon">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+                </ImageView>
 
-    </androidx.recyclerview.widget.RecyclerView>
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/ss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_loo"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="New York 920, NY 10001"
+                    android:textColor="@color/green_ss"
+                    android:textSize="17sp" />
 
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Suggested for you"
-            android:layout_marginTop="10dp"
-             android:textColor="@color/green_ss"
-            android:textAllCaps="true"
-            android:layout_marginLeft="10dp"
-            android:paddingLeft="10dp"
-            android:textSize="12sp"/>
+            </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/suggested_recycle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
 
-        </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15sp"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15sp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/bt_sort"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/btn_shape_gray"
+                        android:gravity="center"
+                        android:text="SORT"
+                        android:textAllCaps="false"
+                        android:textColor="@color/green_ss"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/bt_pickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+
+                        android:background="@drawable/btn_shape"
+                        android:gravity="center"
+                        android:text="PICKUP"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/tv_delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+
+                        android:background="@drawable/btn_shape_gray"
+                        android:gravity="center"
+                        android:text="DELIVERY"
+                        android:textAllCaps="false"
+                        android:textColor="@color/green_ss"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginTop="15dp">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPagerDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp">
+
+                </androidx.viewpager.widget.ViewPager>
+
+                <com.viewpagerindicator.CirclePageIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="5dp">
+
+                </com.viewpagerindicator.CirclePageIndicator>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15sp"
+                android:background="@drawable/shape_edit_new_home"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/search_icon" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/audio_icon" />
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/search"
+                    android:text="Search.."
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Categories"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:text="Suggested for you"
+                android:textAllCaps="true"
+                android:textColor="@color/green_ss"
+                android:textSize="12sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suggested_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

@@ -19,6 +19,13 @@ class GlobalVariables {
             const val JOB_STATE = "job_state"
         }
     }
+    class FilterVariables {
+        companion object{
+            var currentLowPrice = 0
+             var currentHighPrice = 100000
+             var currentSortBy = ""
+        }
+    }
     class SHARED_PREF_USER {
         companion object {
             const val AUTH_KEY = "auth_key"
@@ -117,11 +124,17 @@ class GlobalVariables {
         const val getProfileDetailVendor = "vendor/getProfileDetail"
         const val useraddUserAddress = "user/addUserAddress"
         const val getUserAddressList = "user/getUserAddressList"
+        const val getVendorProductList = "vendor/getVendorProductList"
+        const val getVendorProductDetails = "vendor/getVendorProductDetails"
         const val editUserAddress = "user/editUserAddress"
         const val deleteUserAddress = "user/deleteUserAddress"
+        const val deleteVendorProduct = "vendor/deleteProduct"
         const val notification_on_off = "notification_on_off"
+        const val editProduct = "vendor/editProduct"
         const val changePassword = "changePassword"
         const val getSubCategoryList = "getSubCategoryList"
+        const val getProductAccToCategorySubcategory = "getProductAccToCategorySubcategory"
+        const val userBannerList = "user/home/banner"
         const val helpContent = "helpContent"
         const val getCategoryList = "getCategoryList"
         const val measurementList = "measurementList"
