@@ -22,7 +22,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/product_img_1"/>
         <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:id="@+id/name"
+            android:id="@+id/starCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/img"
@@ -32,6 +32,7 @@
              android:layout_marginLeft="10dp"/>
         <ImageView
             android:layout_width="wrap_content"
+            android:id="@+id/imgVegNon"
             android:layout_height="wrap_content"
             android:src="@drawable/red_dot"
             android:layout_alignParentRight="true"/>
@@ -50,7 +51,7 @@
 
 
         <RatingBar
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/starCount"
             android:layout_marginTop="5dp"
 
             android:layout_width="wrap_content"
@@ -68,13 +69,13 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beef: $9.50/LB"
             android:layout_below="@+id/star"
-            android:layout_toRightOf="@+id/img"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img"
+            android:text="Beef: $9.50/LB"
             android:textColor="@android:color/black"
-             android:layout_marginLeft="10dp"
-            android:textSize="19sp"/>
+            android:textSize="19sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/location_text"
@@ -89,6 +90,50 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:drawableLeft="@drawable/green_location_arrow"/>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:id="@+id/ltPlusMinus"
+            android:visibility="gone"
+            android:layout_below="@+id/location_text"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_box_new"
+            android:textColor="@color/theme_green"
+
+            >
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/theme_green"
+                android:textSize="20sp" />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="1"
+                android:textColor="@color/theme_green"
+                android:textSize="15sp" />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/theme_green"
+                android:textSize="20sp" />
+        </RelativeLayout>
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/add"

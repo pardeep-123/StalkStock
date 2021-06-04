@@ -125,6 +125,14 @@ class MainConsumerActivity : BaseActivity() {
                     textColorChange(tv_order, tv_home, tv_search, tv_cart, tv_account)
 
                     //  switchFragment(new ListFragment());
+                } else if (intent.getStringExtra("is_open") == "4") {
+                    home_img.setImageResource(R.drawable.home_green_icon1)
+                    search_img.setImageResource(R.drawable.search_icon_new)
+                    list_img.setImageResource(R.drawable.list_black_icon1)
+                    cart_img.setImageResource(R.drawable.cart_black_icon1)
+                    profile_img.setImageResource(R.drawable.user_black_icon1)
+                    textColorChange(tv_home, tv_search, tv_order, tv_cart, tv_account)
+                    switchFragment(HomeCounsumerFragment())
                 } else if (intent.getStringExtra("is_open") == "3") {
                     home_img.setImageResource(R.drawable.home_black_icon1)
                     search_img.setImageResource(R.drawable.search_icon_new)

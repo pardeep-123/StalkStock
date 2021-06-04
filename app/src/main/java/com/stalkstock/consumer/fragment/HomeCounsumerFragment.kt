@@ -236,7 +236,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         getCategories()
 
         if (requireActivity() != null) {
-
             CurrentLocationActivity(requireActivity())
         }
         return viewFrag
@@ -534,7 +533,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     }
 
     override fun onChanged(it: RestObservable?) {
-        val bottomnavigationScreen = activity as MainConsumerActivity
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is UserBannerModel) {

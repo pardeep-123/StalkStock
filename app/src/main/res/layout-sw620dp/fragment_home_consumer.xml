@@ -218,11 +218,12 @@
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"
+            android:padding="@dimen/_10sdp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:padding="5dp"
             >
 
         </com.viewpagerindicator.CirclePageIndicator>

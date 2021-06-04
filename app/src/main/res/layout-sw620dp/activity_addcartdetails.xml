@@ -157,7 +157,7 @@
                         android:layout_marginTop="10dp">
 
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
-                            android:id="@+id/name"
+                            android:id="@+id/starCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -171,7 +171,7 @@
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/name"
+                            android:layout_below="@+id/starCount"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="5dp"
                             android:text="45 Minutes (Delivery time)"

@@ -299,8 +299,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         map["availability"] = mUtils.createPartFromString(avail.toString())
         viewModel.editProductAPI(this, true, map, arrStringMultipleImagesUploadable, mUtils)
         viewModel.homeResponse.observe(this, this)
-
-
     }
 
     private fun askCameraPermissons() {

@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Meat"
+                android:id="@+id/txtTitle"
                 android:textColor="@color/black"
 
                 android:layout_centerInParent="true"/>

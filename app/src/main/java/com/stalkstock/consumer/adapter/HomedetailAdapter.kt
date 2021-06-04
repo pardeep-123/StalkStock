@@ -15,7 +15,8 @@ import java.util.ArrayList
 
 class HomedetailAdapter(
     var context: HomedetailsActivity,
-    var currentModel: ArrayList<ModelProductListAsPerSubCat.Body>
+    var currentModel: ArrayList<ModelProductListAsPerSubCat.Body>,
+    var currentDeliveryType: String
 ) :
     RecyclerView.Adapter<HomedetailAdapter.RecyclerViewHolder>() {
     var inflater : LayoutInflater
@@ -33,11 +34,15 @@ class HomedetailAdapter(
 
         val body = currentModel[position]
         holder.itemView.img.loadImage(body.productImage[0].image)
-        holder.itemView.name.setText(body.name)
+        holder.itemView.starCount.setText(body.name)
         holder.itemView.price.setText("$"+body.mrp+"/")
+        holder.itemView.star.visibility = View.GONE
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductActivity::class.java)
+            intent.putExtra("product_id",body.id.toString())
+            intent.putExtra("title",body.name.toString())
+            intent.putExtra("delivery_type",currentDeliveryType)
             context.startActivity(intent)
         }
     }

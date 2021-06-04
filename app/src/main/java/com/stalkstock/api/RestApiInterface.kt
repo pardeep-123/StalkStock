@@ -68,12 +68,30 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<UserBannerModel>
 
+
+    @Multipart
+    @POST(URL.userGetVendorAsPerProduct)
+    fun userGetVendorAsPerProductAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelProductVendorList>
+
+    @Multipart
+    @POST(URL.userGetVendorProductList)
+    fun userGetVendorProductListAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserVendorsProductList>
+
+    @Multipart
+    @POST(URL.userAddUpdateToCart)
+    fun userAddUpdateToCartAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelAddToCart>
+
     @GET(URL.helpContent)
     fun helpContentAPI(): Observable<ModelHelpContent>
 
     @GET(URL.getCategoryList)
     fun getCategoryListAPI(): Observable<ModelCategoryList>
-
     @GET(URL.measurementList)
     fun measurementListAPI(): Observable<ModelMeasurementList>
 
@@ -87,12 +105,15 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<UserLoginResponse>
 
-
     @FormUrlEncoded
     @POST(URL.getProfileDetail)
     fun getProfileDetail(
         @FieldMap map: HashMap<String, String>
     ): Observable<ModelGetProfileDetail>
+
+
+    @GET(URL.getUserCardData)
+    fun getUserCardDataAPI(): Observable<ModelCartData>
 
     @FormUrlEncoded
     @POST(URL.getProfileDetailVendor)
@@ -151,7 +172,8 @@ interface RestApiInterface {
     @Multipart
     @POST(URL.vendorAddProduct)
     fun vendorAddProductAPI(
-        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: ArrayList<MultipartBody.Part>
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part profileImage: ArrayList<MultipartBody.Part>
     ): Observable<ModelAddProduct>
 
     @Multipart

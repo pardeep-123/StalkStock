@@ -13,7 +13,6 @@ import com.stalkstock.consumer.fragment.HomeCounsumerFragment
 import com.stalkstock.utils.loadImage
 import kotlin.collections.ArrayList
 
-//import com.bumptech.glide.signature.StringSignature;
 class CategoryAdapter(
     var context: HomeCounsumerFragment,
     var mContext: Context,
@@ -28,7 +27,7 @@ class CategoryAdapter(
 
         init {
             img = view.findViewById(R.id.img)
-            name = view.findViewById(R.id.name)
+            name = view.findViewById(R.id.starCount)
         }
     }
 

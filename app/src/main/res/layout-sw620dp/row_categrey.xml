@@ -15,7 +15,7 @@
         android:layout_height="170dp"
         android:src="@drawable/dairy_icon"/>
     <com.stalkstock.utils.custom.TitiliumBoldTextView
-        android:id="@+id/name"
+        android:id="@+id/starCount"
         android:singleLine="true"
         android:layout_below="@+id/img"
         android:layout_width="wrap_content"

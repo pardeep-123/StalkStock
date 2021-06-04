@@ -41,7 +41,6 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
-
     private var reset = false
     private var currentOffset = 0
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
@@ -217,7 +216,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             intent.putExtra("from", "HomedetailsActivity")
             resultLauncher.launch(intent)
         }
-        adapter = HomedetailAdapter(this, currentModel)
+        adapter = HomedetailAdapter(this, currentModel,currentDeliveryType)
         detail_recycle.setLayoutManager(LinearLayoutManager(context))
         detail_recycle.setAdapter(adapter)
         detail_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {

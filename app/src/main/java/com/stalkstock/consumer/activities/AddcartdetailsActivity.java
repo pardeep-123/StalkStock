@@ -27,12 +27,12 @@ import java.util.Objects;
 
 public class AddcartdetailsActivity extends AppCompatActivity {
     AddcartdetailsActivity context;
-TextView minus,plus,count;
-ImageView ivnotification,search,fillter;
-RecyclerView productdetails_recycle;
-Button btnCheckOut;
+    TextView minus, plus, count;
+    ImageView ivnotification, search, fillter;
+    RecyclerView productdetails_recycle;
+    Button btnCheckOut;
     ProductsdetailsAdapter adapter;
-    RelativeLayout  all;
+    RelativeLayout all;
 
     NestedScrollView nsc_top;
 
@@ -42,15 +42,15 @@ Button btnCheckOut;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcartdetails);
-        context=this;
-        back=findViewById(R.id.back);
-        minus=findViewById(R.id.minus);
-        plus=findViewById(R.id.plus);
-        count=findViewById(R.id.count);
-        btnCheckOut=findViewById(R.id.btnCheckOut);
-       ivnotification = findViewById(R.id.ivnotification);
-        all=findViewById(R.id.all);
-        productdetails_recycle=findViewById(R.id.productdetails_recycle);
+        context = this;
+        back = findViewById(R.id.back);
+        minus = findViewById(R.id.minus);
+        plus = findViewById(R.id.plus);
+        count = findViewById(R.id.count);
+        btnCheckOut = findViewById(R.id.btnCheckOut);
+        ivnotification = findViewById(R.id.ivnotification);
+        all = findViewById(R.id.all);
+        productdetails_recycle = findViewById(R.id.productdetails_recycle);
         nsc_top = findViewById(R.id.nsc_top);
         search = findViewById(R.id.search);
         fillter = findViewById(R.id.fillter);
@@ -58,25 +58,25 @@ Button btnCheckOut;
         ivnotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, Notification_firstActivity.class);
+                Intent intent = new Intent(context, Notification_firstActivity.class);
                 startActivity(intent);
             }
         });
 
         search.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent=new Intent(context, SearchScreen.class);
-                        startActivity(intent);
-                    }
-                });
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SearchScreen.class);
+                startActivity(intent);
+            }
+        });
 
 
         fillter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, FilterActivity.class);
-                intent.putExtra("from","AddcartdetailsActivity");
+                Intent intent = new Intent(context, FilterActivity.class);
+                intent.putExtra("from", "AddcartdetailsActivity");
                 startActivity(intent);
             }
         });
@@ -84,7 +84,7 @@ Button btnCheckOut;
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -101,7 +101,8 @@ Button btnCheckOut;
                 int inc = Integer.parseInt(count.getText().toString()) + 1;
                 count.setText(String.valueOf(inc));
             }
-        });minus.setOnClickListener(new View.OnClickListener() {
+        });
+        minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!count.getText().toString().equals("1")) {
@@ -114,18 +115,18 @@ Button btnCheckOut;
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  openStartInfoApp();
+                //  openStartInfoApp();
             }
         });
 
-        adapter = new ProductsdetailsAdapter(context);
+//        adapter = new ProductsdetailsAdapter(context, currentModel);
         productdetails_recycle.setLayoutManager(new LinearLayoutManager(context));
         productdetails_recycle.setAdapter(adapter);
 
         nsc_top.postDelayed(new Runnable() {
             @Override
             public void run() {
-                nsc_top.scrollTo(0,0);
+                nsc_top.scrollTo(0, 0);
             }
         }, 400);
 
@@ -147,9 +148,9 @@ Button btnCheckOut;
             @Override
             public void onClick(View v) {
                 dialogSuccessful.dismiss();
-                Intent intent=new Intent(context, MainConsumerActivity.class);
-                intent.putExtra("is_open","1");
-                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent intent = new Intent(context, MainConsumerActivity.class);
+                intent.putExtra("is_open", "1");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });

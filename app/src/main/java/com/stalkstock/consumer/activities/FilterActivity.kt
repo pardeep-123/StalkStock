@@ -47,6 +47,10 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
                 returnIntent = Intent(this, HomeCounsumerFragment::class.java)
             if (fromWhichActivity.equals("HomedetailsActivity"))
                 returnIntent = Intent(this, HomedetailsActivity::class.java)
+            if (fromWhichActivity.equals("ProductdetailsActivity"))
+                returnIntent = Intent(this, ProductdetailsActivity::class.java)
+            if (fromWhichActivity.equals("ProductActivity"))
+                returnIntent = Intent(this, ProductActivity::class.java)
             if (!fromWhichActivity.isEmpty()) {
                 returnIntent.putExtra("lowPrice", currentLowPrice.toString())
                 returnIntent.putExtra("highPrice", currentHighPrice.toString())

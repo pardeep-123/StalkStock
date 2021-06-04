@@ -19,7 +19,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/product_img_1"/>
         <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:id="@+id/name"
+            android:id="@+id/starCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/img"
@@ -44,7 +44,7 @@
             android:id="@+id/star"
             android:progressTint="@color/yellow"
             android:progressBackgroundTint="@color/yellow"
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/starCount"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/img"
             android:rating="5"
@@ -79,27 +79,29 @@
             android:text="By"/>
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/txtVendor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="McDonald\'s"
-            android:layout_toRightOf="@+id/by"
-            android:textSize="22sp"
             android:layout_below="@+id/price"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/theme_green"/>
+            android:layout_toRightOf="@+id/by"
+            android:text="McDonald\'s"
+            android:textColor="@color/theme_green"
+            android:textSize="22sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/txtLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New York"
             android:layout_below="@+id/by"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/img"
-            android:textSize="22sp"
+            android:drawableLeft="@drawable/green_location_arrow"
+
             android:drawablePadding="5dp"
             android:gravity="center"
-
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@drawable/green_location_arrow"/>
+            android:text="New York"
+            android:textSize="22sp" />
     </RelativeLayout>
 </LinearLayout>
