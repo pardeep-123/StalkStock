@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
+import com.google.android.libraries.places.api.Places
 import com.stalkstock.api.RestApiInterface
 import com.stalkstock.api.ServiceGenerator
 import com.stalkstock.utils.others.AppLifecycleHandler
@@ -59,7 +60,9 @@ class MyApplication : Application(), AppLifecycleDelegates {
         //   FirebaseApp.initializeApp(this);
         initializePreferences()
         initializePreferencesToken()
-
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), resources.getString(R.string.maps_api_key))
+        }
         Album.initialize(
             AlbumConfig.newBuilder(this)
                 .setAlbumLoader(MediaLoader())

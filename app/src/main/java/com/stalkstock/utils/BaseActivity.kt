@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.stalkstock.utils.others.Util
 
@@ -30,5 +31,10 @@ abstract class BaseActivity : AppCompatActivity() {
             val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    fun showToast(msg:String)
+    {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

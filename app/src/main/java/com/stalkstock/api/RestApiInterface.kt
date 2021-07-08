@@ -1,5 +1,6 @@
 package com.stalkstock.api
 
+import com.google.gson.JsonObject
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
@@ -202,6 +203,22 @@ interface RestApiInterface {
     fun forgotpassword(
         @FieldMap map: HashMap<String, String>
     ): Observable<ForgotPasswordResponse>
+
+    @FormUrlEncoded
+    @POST(URL.ORDERPLACE)
+    fun userOrderPlace(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<JsonObject>
+
+    @POST(URL.VENDORBUSINESSDETAIL)
+    fun vendorBusinessDetail(): Observable<VendorBusinessDetailResponse>
+
+    @Multipart
+    @PUT(URL.VENDOREDITBUSINESSDETAIL)
+    fun vendorUpdateBusinessDetail(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part?
+    ): Observable<VendorBusinessDetailResponse>
 
 //@GET(URL.GETPROFILE)
 //fun getProfile(): Observable<GetProfileResponse>

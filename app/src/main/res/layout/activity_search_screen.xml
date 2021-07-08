@@ -118,7 +118,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_10sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/audio_icon"/>
+                        />
 
                     <com.stalkstock.utils.custom.TitiliumRegularEditText
                         android:layout_toRightOf="@+id/search"

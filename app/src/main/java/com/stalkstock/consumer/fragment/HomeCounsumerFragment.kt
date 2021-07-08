@@ -99,9 +99,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 if (result.resultCode == Activity.RESULT_OK ) {
                     // There are no request codes
                     val data: Intent? = result.data
-                    currentLowPrice = data!!.getStringExtra("lowPrice")
-                    currentHighPrice = data!!.getStringExtra("highPrice")
-                    currentSortBy = data!!.getStringExtra("sortBy")
+                    currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                    currentHighPrice = data!!.getStringExtra("highPrice")!!
+                    currentSortBy = data!!.getStringExtra("sortBy")!!
                 }
             }
     }

@@ -147,9 +147,12 @@ class GlobalVariables {
         const val editUserProfileDetail = "user/editUserProfileDetail"
         const val editVendorProfileDetail = "vendor/editVendorProfileDetail"
         const val VENDORSIGNUP = "vendor/signup"
+        const val VENDORBUSINESSDETAIL = "vendor/getBuisnessDetail"
+        const val VENDOREDITBUSINESSDETAIL = "vendor/editVendorBuisnessDetail"
         const val code = 200
         const val FORGOTPASSWORD = "forgotPassword"
         const val GETPROFILE = "get_profile"
+        const val ORDERPLACE = "orderPlace"
         const val EDITPROFILE = "edit_profile"
         const val CHANGEPASSWORD = "change_password"
         const val TERMCONDITION = "term_condition"
@@ -191,6 +194,10 @@ class GlobalVariables {
         val postalCode = "postalCode"
         val shopAddress = "shopAddress"
         val shopDescription = "shopDescription"
+        val latitude = "latitude"
+        val longitude = "longitude"
+        val geoLocation = "geoLocation"
+        val addressLine2 = "addressLine2"
 
     }
 

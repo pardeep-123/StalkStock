@@ -78,9 +78,9 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         imagethree.setOnClickListener(this)
 
         try {
-            currentCatId = intent.getStringExtra("catId")
-            currentSubCatId = intent.getStringExtra("subCatId")
-            currentTags = intent.getStringExtra("tags")
+            currentCatId = intent.getStringExtra("catId")!!
+            currentSubCatId = intent.getStringExtra("subCatId")!!
+            currentTags = intent.getStringExtra("tags")!!
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -276,7 +276,6 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {

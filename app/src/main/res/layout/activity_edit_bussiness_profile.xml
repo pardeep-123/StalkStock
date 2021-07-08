@@ -462,7 +462,21 @@
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp">
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        <AutoCompleteTextView
+                            android:id="@+id/autoTvLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/titilliumweb_bold"
+                            android:background="@drawable/edittextshape"
+                            android:paddingLeft="15dp"
+                            android:inputType="textMultiLine"
+                            android:maxLines="3"
+                            android:hint="@string/enter_your_street_address"
+                            android:textColorHint="@color/light_grey"
+                            android:textSize="13sp"
+                            android:textColor="#000"/>
+                        <!--<com.stalkstock.utils.custom.TitiliumBoldEditText
                             android:id="@+id/editboxbusinessadress"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
@@ -474,7 +488,7 @@
                             android:hint="@string/enter_your_street_address"
                              android:textColorHint="@color/light_grey"
                             android:textSize="13sp"
-                            android:textColor="#000"/>
+                            android:textColor="#000"/>-->
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -661,7 +675,6 @@
                                 android:entries="@array/Select_country"
                                 android:prompt="@string/select_country"
                                 android:paddingRight="20dp"
-
                                 android:textColorHint="#F8F6F6"
                                 android:textSize="13sp"
                                 android:textColor="#000"/>

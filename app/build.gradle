@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.stalkstock"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -30,6 +30,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "StalkStock" + ".apk"
+        }
+    }
 }
 
 dependencies {
@@ -43,7 +48,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //design
-    implementation 'com.android.support:design:29.0.0'
+    implementation 'com.google.android.material:material:1.3.0'
+//    implementation 'com.android.support:design:29.0.0'
     //circle indicator
     implementation 'me.relex:circleindicator:1.2.2@aar'
 
@@ -117,6 +123,7 @@ dependencies {
 
     /*For Tags*/
     implementation 'co.lujun:androidtagview:1.1.7'
-
+// Alerter
+    implementation 'com.tapadoo.android:alerter:6.1.0'
 
 }

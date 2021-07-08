@@ -9,7 +9,6 @@ import com.live.stalkstockcommercial.ui.product.AddedProduct
 import com.live.stalkstockcommercial.ui.product.RequestProductAdapter
 import com.live.stalkstockcommercial.ui.view.activities.Chat
 import com.stalkstock.R
-import com.stalkstock.consumer.activities.PaymentActivity
 import kotlinx.android.synthetic.main.request_detail.*
 
 class RequestDetail : AppCompatActivity() {

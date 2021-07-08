@@ -44,7 +44,7 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
         }
         backarrow.setOnClickListener { onBackPressed() }
 
-        currentProductID = intent.getStringExtra("product_id")
+        currentProductID = intent.getStringExtra("product_id")!!
     }
 
     private fun deleteProduct(currentProductID: String) {

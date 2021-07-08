@@ -238,20 +238,20 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
         setTitleAdapter()
 
 
-        currentCatId = intent.getStringExtra("catId")
-        currentDeliveryType = intent.getStringExtra("currentDeliveryType")
-        currentHighPrice = intent.getStringExtra("currentHighPrice")
-        currentLowPrice = intent.getStringExtra("currentLowPrice")
-        currentSortBy = intent.getStringExtra("currentSortBy")
+        currentCatId = intent.getStringExtra("catId")!!
+        currentDeliveryType = intent.getStringExtra("currentDeliveryType")!!
+        currentHighPrice = intent.getStringExtra("currentHighPrice")!!
+        currentLowPrice = intent.getStringExtra("currentLowPrice")!!
+        currentSortBy = intent.getStringExtra("currentSortBy")!!
 
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     // There are no request codes
                     val data: Intent? = result.data
-                    currentLowPrice = data!!.getStringExtra("lowPrice")
-                    currentHighPrice = data!!.getStringExtra("highPrice")
-                    currentSortBy = data!!.getStringExtra("sortBy")
+                    currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                    currentHighPrice = data!!.getStringExtra("highPrice")!!
+                    currentSortBy = data!!.getStringExtra("sortBy")!!
 
                     reset = true
                     getProductAsPerCatSub()

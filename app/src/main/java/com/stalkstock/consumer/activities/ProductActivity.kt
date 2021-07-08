@@ -75,9 +75,9 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
             resultLauncher.launch(intent)
         })
 
-        currentProductID = intent.getStringExtra("product_id")
-        currentDelivery_type = intent.getStringExtra("delivery_type")
-        txtTitle.setText(intent.getStringExtra("title"))
+        currentProductID = intent.getStringExtra("product_id")!!
+        currentDelivery_type = intent.getStringExtra("delivery_type")!!
+        txtTitle.setText(intent.getStringExtra("title"))!!
         getProductAsVendor()
         back.setOnClickListener(View.OnClickListener { finish() })
         adapter = ProductsAdapter(this,currentModel,currentDelivery_type)
@@ -90,9 +90,9 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
                 if (result.resultCode == Activity.RESULT_OK) {
                     // There are no request codes
                     val data: Intent? = result.data
-                    currentLowPrice = data!!.getStringExtra("lowPrice")
-                    currentHighPrice = data!!.getStringExtra("highPrice")
-                    currentSortBy = data!!.getStringExtra("sortBy")
+                    currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                    currentHighPrice = data!!.getStringExtra("highPrice")!!
+                    currentSortBy = data!!.getStringExtra("sortBy")!!
 
                     reset = true
                     getProductAsVendor()

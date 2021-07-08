@@ -90,10 +90,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
 
 
             R.id.btn_signin -> {
-
-                emailEdittext.text.toString()
-                passwordEdittext.text.toString()
-                SetValidation()
+                val userType = MyApplication.instance.getString("usertype")
+                if(userType.equals("4"))
+                {
+                    startActivity(Intent(mContext, MainCommercialActivity::class.java))
+                    finishAffinity()
+                }else if(userType.equals("2"))
+                {
+                    startActivity(Intent(mContext, HomeActivity::class.java))
+                    finishAffinity()
+                }
+                else {
+                    emailEdittext.text.toString()
+                    passwordEdittext.text.toString()
+                    SetValidation()
+                }
 
             }
 

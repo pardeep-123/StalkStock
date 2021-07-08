@@ -34,7 +34,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         rangeSeekBar.seekBarChangeListener = this
 
 
-        fromWhichActivity = intent.getStringExtra("from")
+        fromWhichActivity = intent.getStringExtra("from")!!
 
         btn_apply.setOnClickListener {
             /* val intent = Intent(applicationContext,MainConsumerActivity::class.java)

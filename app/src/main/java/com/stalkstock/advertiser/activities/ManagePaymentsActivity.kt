@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener {
     val mContext:Context=this
-    var from=""
+    var from = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -26,7 +26,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener {
         tv_heading.text = "Manage Payments"
 
         if (intent.getStringExtra("from")!=null){
-            from=intent.getStringExtra("from")
+            from = intent.getStringExtra("from")!!
             btn_checkout.setText("Save")
         }else{
             from=""

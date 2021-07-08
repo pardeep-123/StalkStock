@@ -40,14 +40,12 @@ class ProductdetailsActivity : BaseActivity(), Observer<RestObservable> {
     var context: ProductdetailsActivity? = null
     lateinit var adapter: ProductsdetailsAdapter
     lateinit var productdetails_recycle: RecyclerView
-
     private var currentProductID = ""
     private var currentDelivery_type = ""
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
-
 
     private var reset = false
     private var currentOffset = 0
@@ -87,17 +85,17 @@ class ProductdetailsActivity : BaseActivity(), Observer<RestObservable> {
         fillter = findViewById(R.id.fillter)
         nsc_top = findViewById(R.id.nsc_top)
 
-        currentProductID = intent.getStringExtra("product_id")
-        currentDelivery_type = intent.getStringExtra("deliveryType")
+        currentProductID = intent.getStringExtra("product_id")!!
+        currentDelivery_type = intent.getStringExtra("deliveryType")!!
         getProductAsPerVendor()
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     // There are no request codes
                     val data: Intent? = result.data
-                    currentLowPrice = data!!.getStringExtra("lowPrice")
-                    currentHighPrice = data!!.getStringExtra("highPrice")
-                    currentSortBy = data!!.getStringExtra("sortBy")
+                    currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                    currentHighPrice = data!!.getStringExtra("highPrice")!!
+                    currentSortBy = data!!.getStringExtra("sortBy")!!
                     reset = true
                     getProductAsPerVendor()
 
@@ -125,7 +123,6 @@ class ProductdetailsActivity : BaseActivity(), Observer<RestObservable> {
         productdetails_recycle.setAdapter(adapter)
         nsc_top.postDelayed(Runnable { nsc_top.scrollTo(0, 0) }, 400)
     }
-
 
     val viewModel: HomeViewModel by viewModels()
 
@@ -246,7 +243,6 @@ class ProductdetailsActivity : BaseActivity(), Observer<RestObservable> {
         }
         dialogSuccessful.show()
     }
-
 
     fun addToCartAPI(toString: String, qty: String) {
         val hashMap = HashMap<String, RequestBody>()

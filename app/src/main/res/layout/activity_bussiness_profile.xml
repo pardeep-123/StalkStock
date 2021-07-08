@@ -238,7 +238,6 @@
                                 android:layout_height="wrap_content"
                                 android:text="Farming - Seafood"
                                 android:textSize="@dimen/_14sdp"
-
                                 android:textColor="#000"/>
 
                         </RelativeLayout>
@@ -479,11 +478,11 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:id="@+id/tvAddressBusiness"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/full_address"
                                 android:textSize="@dimen/_14sdp"
-
                                 android:textColor="#000"/>
 
                         </RelativeLayout>
@@ -501,6 +500,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
+                               android:id="@+id/businessAddressLine2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/address_line2"
@@ -553,6 +553,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:id="@+id/businessCity"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Mohali"
@@ -594,7 +595,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Punjab"
                                 android:textSize="@dimen/_14sdp"
-
+                                android:id="@+id/tvStateBusiness"
                                 android:textColor="#000"/>
 
                         </RelativeLayout>
@@ -617,7 +618,6 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/postal_zipcode"
                                 android:textSize="@dimen/_14sdp"
-
                                 android:textColor="#000"/>
 
 
@@ -633,7 +633,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="135102"
                                 android:textSize="@dimen/_14sdp"
-
+                                android:id="@+id/tvPostalcodeBusiness"
                                 android:textColor="#000"/>
 
                         </RelativeLayout>
@@ -669,7 +669,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Afghanistan"
                                 android:textSize="@dimen/_14sdp"
-
+                                android:id="@+id/tvCountryBusiness"
                                 android:textColor="#000"/>
 
                         </RelativeLayout>

@@ -278,7 +278,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/audio_icon" />
+                     />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
