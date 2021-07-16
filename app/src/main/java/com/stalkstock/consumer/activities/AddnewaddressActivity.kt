@@ -9,7 +9,6 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -25,7 +24,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.consumer.model.ModelSignupUser
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.GPSTracker
 import com.stalkstock.utils.others.GlobalVariables

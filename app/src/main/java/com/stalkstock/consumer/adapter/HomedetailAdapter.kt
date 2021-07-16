@@ -1,22 +1,26 @@
 package com.stalkstock.consumer.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.consumer.activities.HomedetailsActivity
+import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.ProductActivity
+import com.stalkstock.consumer.fragment.SearchFragment
 import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.loadImage
+import com.stalkstock.vender.ui.SearchScreen
 import kotlinx.android.synthetic.main.row_homedetails.view.*
 import java.util.ArrayList
 
 class HomedetailAdapter(
-    var context: HomedetailsActivity,
+    var context: Activity,
     var currentModel: ArrayList<ModelProductListAsPerSubCat.Body>,
-    var currentDeliveryType: String
+    var currentDeliveryType: String,
+    var searchFragment: SearchFragment?
 ) :
     RecyclerView.Adapter<HomedetailAdapter.RecyclerViewHolder>() {
     var inflater : LayoutInflater
@@ -39,11 +43,16 @@ class HomedetailAdapter(
         holder.itemView.star.visibility = View.GONE
 
         holder.itemView.setOnClickListener {
+            if (context is MainConsumerActivity)
+            {
+                searchFragment!!.addRecentSearchApi(body.id.toString(),body.name)
+            }else{
             val intent = Intent(context, ProductActivity::class.java)
             intent.putExtra("product_id",body.id.toString())
             intent.putExtra("title",body.name.toString())
             intent.putExtra("delivery_type",currentDeliveryType)
             context.startActivity(intent)
+        }
         }
     }
 

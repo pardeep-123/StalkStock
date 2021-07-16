@@ -55,7 +55,7 @@
                 android:layout_height="0.5dp"
                  android:background="@color/dark_gray"></View>
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -81,6 +81,7 @@
                             android:layout_marginTop="@dimen/_8sdp">
 
                             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                                android:id="@+id/tvName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_5sdp"
@@ -174,6 +175,7 @@
                                 android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
 
                             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:id="@+id/tvOrderNumber"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_5sdp"
@@ -182,8 +184,16 @@
                         </LinearLayout>
                     </LinearLayout>
 
-
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mRecyclerView"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
@@ -450,6 +460,7 @@
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tvOrderNumber2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -466,6 +477,7 @@
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tvDateTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -502,6 +514,7 @@
                          />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/tvDeliveryLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -523,7 +536,7 @@
                         android:layout_marginBottom="20sp"
                         android:src="@drawable/visa_img"></ImageView>
                 </LinearLayout>
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
         </LinearLayout>
 
 

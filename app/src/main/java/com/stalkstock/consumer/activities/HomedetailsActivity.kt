@@ -27,7 +27,6 @@ import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.SliderItemTitleModel
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CheckLocationActivity
-import com.stalkstock.vender.ui.SearchScreen
 import com.stalkstock.viewmodel.HomeViewModel
 import com.tamam.utils.others.AppUtils
 import okhttp3.RequestBody
@@ -37,7 +36,6 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     private var whichApi = ""
     private var currentSubCatID = ""
     private lateinit var titleAdapter: TitleAdapter
-
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
@@ -208,15 +206,22 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             startActivity(intent)
         }
         search.setOnClickListener {
-            val intent = Intent(context, SearchScreen::class.java)
+            val intent = Intent(this, MainConsumerActivity::class.java)
+            intent.putExtra("is_open", "2")
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            /*val intent = Intent(context, SearchScreen::class.java)
+            intent.putExtra("currentDeliveryType", currentDeliveryType.toString())
+            intent.putExtra("whichScreen", "0")
+            startActivity(intent)*/
         }
         fillter.setOnClickListener {
             val intent = Intent(this, FilterActivity::class.java)
             intent.putExtra("from", "HomedetailsActivity")
             resultLauncher.launch(intent)
         }
-        adapter = HomedetailAdapter(this, currentModel,currentDeliveryType)
+        adapter = HomedetailAdapter(this, currentModel, currentDeliveryType, null)
         detail_recycle.setLayoutManager(LinearLayoutManager(context))
         detail_recycle.setAdapter(adapter)
         detail_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {

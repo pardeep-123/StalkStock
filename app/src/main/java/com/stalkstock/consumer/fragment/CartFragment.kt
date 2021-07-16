@@ -21,6 +21,7 @@ import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.adapter.CartAdapter
 import com.stalkstock.consumer.model.ModelAddToCart
 import com.stalkstock.consumer.model.ModelCartData
+import com.stalkstock.consumer.model.PlaceOrderModel
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
@@ -29,7 +30,9 @@ import com.tamam.utils.others.AppUtils
 import kotlinx.android.synthetic.main.fragment_cart.*
 import okhttp3.RequestBody
 import java.text.DecimalFormat
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.set
 
 /**
  * A simple [Fragment] subclass.
@@ -41,6 +44,16 @@ class CartFragment : Fragment(), Observer<RestObservable> {
     lateinit var btnPaymentMethod: Button
     lateinit var recyceler: RecyclerView
     var currentCartModel: ArrayList<ModelCartData.Body.CartData> = ArrayList()
+    var mVendorId = ""
+    var mTotalQuantity = 0
+    var mNetAmount = "0"
+    var mShippingCharges = "0"
+    var mShopCharges = "0"
+    var mTotalAmount = "0"
+    var mSelfPickUp = "1"
+    var mAddressId = ""
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,11 +62,63 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         views = inflater.inflate(R.layout.fragment_cart, container, false)
         btnPaymentMethod = views!!.findViewById(R.id.btnPaymentMethod)
         tvChange = views!!.findViewById(R.id.tvChange)
-        btnPaymentMethod.setOnClickListener(View.OnClickListener {
+        btnPaymentMethod.setOnClickListener({
+
+            /*val map = HashMap<String, String>()
+            map.put("vendorId",mVendorId)
+            map.put("totalQuantity",mTotalQuantity.toString())
+            map.put("netAmount",mNetAmount)
+            map.put("shippingCharges",mShippingCharges)
+            map.put("shopCharges",mShopCharges)
+            map.put("paymentMethod","1")
+            map.put("total",mTotalAmount)
+            map.put("isSelfpickup","1")*/
+
+//            mObject.put("total", "1");
+           /* val mArray = JSONArray()*/
+            val mArrayLIst = ArrayList<PlaceOrderModel.OrderItem>()
+            for (model in currentCartModel)
+            {
+                /*val jsonObject = JSONObject()
+                    jsonObject.put("productId",model.productId)
+                    jsonObject.put("netAmount",model.product.mrp)
+                    jsonObject.put("total",format)
+                    jsonObject.put("qty",model.quantity)
+                    mArray.put(jsonObject)*/
+                val price = model.product.mrp.toFloat()*model.quantity
+                val format = DecimalFormat("##.##").format(price)
+                mArrayLIst.add(PlaceOrderModel.OrderItem(model.product.mrp,model.productId,model.quantity,format))
+            }
+           /* map.put("orderItem",mArray.toString())
+
+            val mObject = JSONObject()
+            mObject.put("vendorId",mVendorId)
+            mObject.put("totalQuantity",mTotalQuantity.toString())
+            mObject.put("netAmount",mNetAmount)
+            mObject.put("shippingCharges",mShippingCharges)
+            mObject.put("shopCharges",mShopCharges)
+            mObject.put("paymentMethod","1")
+            mObject.put("total",mTotalAmount)
+            mObject.put("isSelfpickup","1")
+            mObject.put("orderItem",mArray)
+            Log.e("orderPlace",mObject.toString())*/
+            val placeOrderModel = PlaceOrderModel(
+                mSelfPickUp,
+                mNetAmount,
+                mArrayLIst,
+                "1",
+                mShippingCharges,
+                mShopCharges,
+                mTotalAmount,
+                mTotalQuantity.toString(),
+                mVendorId,
+                mAddressId
+            )
             val intent = Intent(activity, PaymentActivity::class.java)
+            intent.putExtra("orderdata",placeOrderModel)
             startActivity(intent)
         })
-        tvChange.setOnClickListener(View.OnClickListener {
+        tvChange.setOnClickListener({
             val intent = Intent(activity, ManageAddress::class.java)
             startActivity(intent)
         })
@@ -76,76 +141,78 @@ class CartFragment : Fragment(), Observer<RestObservable> {
     }
 
     val viewModel: HomeViewModel by viewModels()
-    override fun onChanged(it: RestObservable?) {
-        when {
-            it!!.status == Status.SUCCESS -> {
+        override fun onChanged(it: RestObservable?) {
+            when {
+                it!!.status == Status.SUCCESS -> {
 
-                if (it.data is ModelCartData) {
-                    val mResponse: ModelCartData = it.data
-                    if (mResponse.code == GlobalVariables.URL.code) {
-                        setDataCart(mResponse)
-                    } else {
-                        AppUtils.showErrorAlert(
-                            requireActivity(),
-                            mResponse.message.toString()
-                        )
+                    if (it.data is ModelCartData) {
+                        val mResponse: ModelCartData = it.data
+                        if (mResponse.code == GlobalVariables.URL.code) {
+                            setDataCart(mResponse)
+                        } else {
+                            AppUtils.showErrorAlert(
+                                requireActivity(),
+                                mResponse.message.toString()
+                            )
+                        }
+                    }
+
+                    if (it.data is ModelAddToCart) {
+                        val mResponse: ModelAddToCart = it.data
+                        if (mResponse.code == GlobalVariables.URL.code) {
+                            getCartData()
+                        } else {
+                            AppUtils.showErrorAlert(
+                                requireActivity(),
+                                mResponse.message.toString()
+                            )
+                        }
+                    }
+                    if (it.data is UserCommonModel) {
+                        val mResponse: UserCommonModel = it.data
+                        if (mResponse.code == GlobalVariables.URL.code) {
+                            getCartData()
+                        } else {
+                            AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        }
                     }
                 }
-
-                if (it.data is ModelAddToCart) {
-                    val mResponse: ModelAddToCart = it.data
-                    if (mResponse.code == GlobalVariables.URL.code) {
-                        getCartData()
+                it.status == Status.ERROR -> {
+                    if (it.data != null) {
+                        Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
                     } else {
-                        AppUtils.showErrorAlert(
-                            requireActivity(),
-                            mResponse.message.toString()
-                        )
+                        if (it.error!!.toString().contains("Data not found")) {
+                            val intent = Intent(requireActivity(), MainConsumerActivity::class.java)
+                            intent.putExtra("is_open", "4")
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                            Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
+                                .show()
+
+                        } else
+                            Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
+                                .show()
+    //
+
+    //                    showAlerterRed()
                     }
                 }
-                if (it.data is UserCommonModel) {
-                    val mResponse: UserCommonModel = it.data
-                    if (mResponse.code == GlobalVariables.URL.code) {
-                        getCartData()
-                    } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
-                    }
+                it.status == Status.LOADING -> {
                 }
-            }
-            it.status == Status.ERROR -> {
-                if (it.data != null) {
-                    Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
-                } else {
-                    if (it.error!!.toString().contains("Data not found")) {
-                        val intent = Intent(requireActivity(), MainConsumerActivity::class.java)
-                        intent.putExtra("is_open", "4")
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
-                            .show()
-
-                    } else
-                        Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
-                            .show()
-//
-
-//                    showAlerterRed()
-                }
-            }
-            it.status == Status.LOADING -> {
             }
         }
-    }
 
     private fun setDataCart(mResponse: ModelCartData) {
         if (mResponse.body.shopDetail.deliveryType == 0) {
             ltPickup.visibility = View.VISIBLE
             ltDeliveryAddress.visibility = View.GONE
+            mSelfPickUp = "1"
         } else {
             ltPickup.visibility = View.GONE
             ltDeliveryAddress.visibility = View.VISIBLE
-
+            mSelfPickUp = "0"
+            mAddressId = mResponse.body.address.id.toString()
             var addressType = ""
             if (mResponse.body.address.type.equals("1"))
                 addressType = "Home"
@@ -157,17 +224,21 @@ class CartFragment : Fragment(), Observer<RestObservable> {
             addressInCart.setText(mResponse.body.address.geoLocation)
         }
 
-
         var totalItemValue = 0.0f
         for (i in mResponse.body.cartData) {
             val mrp = i.product.mrp.toFloat()
             val singleItemTotal = i.quantity * mrp
             totalItemValue += singleItemTotal
+            mTotalQuantity = mTotalQuantity+i.quantity
+            mVendorId = i.vendorId.toString()
         }
         val format = DecimalFormat("##.##").format(totalItemValue)
         txtItemTotal.setText("$$format")
+        mNetAmount = format
         val shopCharges = mResponse.body.shopDetail.shopCharges.toFloat()
         val deliveryCharges = mResponse.body.deliveryCharges.value.toFloat()
+        mShopCharges = mResponse.body.shopDetail.shopCharges
+        mShippingCharges = mResponse.body.deliveryCharges.value
         txtMerchantChargesTitle.setText(mResponse.body.shopDetail.shopName + " Charges")
         txtMerchantCharges.setText("$$shopCharges")
         txtDeliveryCharges.setText("$$deliveryCharges")
@@ -176,7 +247,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         val subtotalFormat = DecimalFormat("##.##").format(subtotal)
         txtTotal.setText("$$subtotalFormat")
         txtGrandTotal.setText("$$subtotalFormat")
-
+        mTotalAmount = subtotalFormat
         img.loadImage(mResponse.body.shopDetail.shopLogo)
         kfc.setText(mResponse.body.shopDetail.shopName)
         shopLocation.setText(mResponse.body.shopDetail.geoLocation)

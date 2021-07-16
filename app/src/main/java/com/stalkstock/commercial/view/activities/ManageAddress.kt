@@ -1,13 +1,7 @@
 package com.stalkstock.commercial.view.activities
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.Window
-import android.view.WindowManager
-import android.widget.AbsListView
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer

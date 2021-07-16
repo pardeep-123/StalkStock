@@ -56,8 +56,12 @@ public class PastAdapter extends RecyclerView.Adapter<PastAdapter.ViewHolder> {
             pastorder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent4 = new Intent(context, OrderDetails.class);
+                    /*Intent intent4 = new Intent(context, OrderDetails.class);
                     intent4.putExtra("valu",message4);
+                    intent4.putExtra("show","delivered_by");
+                    context.startActivity(intent4);*/
+                    Intent intent4 = new Intent(context, OrderDetails.class);
+                    intent4.putExtra("key",message4);
                     intent4.putExtra("show","delivered_by");
                     context.startActivity(intent4);
                 }

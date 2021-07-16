@@ -123,6 +123,8 @@ class GlobalVariables {
         const val getProfileDetail = "user/getProfileDetail"
         const val getProfileDetailVendor = "vendor/getProfileDetail"
         const val useraddUserAddress = "user/addUserAddress"
+        const val userOrderList = "user/order/list"
+        const val userOrderDetail = "user/order/detail"
         const val getUserAddressList = "user/getUserAddressList"
         const val getVendorProductList = "vendor/getVendorProductList"
         const val getVendorProductDetails = "vendor/getVendorProductDetails"
@@ -134,6 +136,9 @@ class GlobalVariables {
         const val changePassword = "changePassword"
         const val getSubCategoryList = "getSubCategoryList"
         const val getProductAccToCategorySubcategory = "getProductAccToCategorySubcategory"
+        const val addRecentSearch = "user/addRecentSearch"
+        const val recentSearchList = "user/recentSearchList"
+        const val deleteRecentSearch = "user/deleteRecentSearch"
         const val userBannerList = "user/home/banner"
         const val userGetVendorAsPerProduct = "get/product/vendor"
         const val userGetVendorProductList = "get/vendor/product/list"
@@ -149,10 +154,12 @@ class GlobalVariables {
         const val VENDORSIGNUP = "vendor/signup"
         const val VENDORBUSINESSDETAIL = "vendor/getBuisnessDetail"
         const val VENDOREDITBUSINESSDETAIL = "vendor/editVendorBuisnessDetail"
+        const val VENDORORDERLISTDETAIL = "vendor/orderList"
+        const val VENDORORDERDETAIL = "vendor/orderDetail"
         const val code = 200
         const val FORGOTPASSWORD = "forgotPassword"
         const val GETPROFILE = "get_profile"
-        const val ORDERPLACE = "orderPlace"
+        const val ORDERPLACE = "user/orderPlace"
         const val EDITPROFILE = "edit_profile"
         const val CHANGEPASSWORD = "change_password"
         const val TERMCONDITION = "term_condition"
@@ -198,7 +205,26 @@ class GlobalVariables {
         val longitude = "longitude"
         val geoLocation = "geoLocation"
         val addressLine2 = "addressLine2"
+        val vehicleType = "vehicleType"
+        val vehicleMake = "vehicleMake"
+        val vehicleModel = "vehicleModel"
+        val licenceNumber = "licenceNumber"
+        val registrationNumber = "registrationNumber"
+        val licenceExpiryDate = "licenceExpiryDate"
+        val registrationExpiryDate = "registrationExpiryDate"
 
+    }
+
+    object DATEFORMAT
+    {
+        const val DateFormat = "MM/dd/yyyy"
+        const val DateFormat1 = "dd MMM,yyyy"
+        const val DateFormat2 = "yyyy-MM-dd"
+        const val DateFormat3 = "EE, MMM dd"
+        const val TimeFormat1 = "hh:mm a"
+        const val DateTimeFormat = "dd MMM,yyyy hh:mm a"
+        const val DateTimeFormat2 = "MMM dd,yyyy hh:mm a"
+        const val DateTimeFormat1 = "yyyy-MM-dd'T'hh:mm"
     }
 
     object Job_state {
@@ -207,7 +233,6 @@ class GlobalVariables {
         const val TOKEN_PAYMENT = "token_payment"
         const val STOP_JOBSTATUS = "stop_job"
         const val RESTART_JOB = "restart_job"
-
     }
 
 

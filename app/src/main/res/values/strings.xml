@@ -225,6 +225,18 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_select_image">Please select image</string>
     <string name="new_confirm_password_dont_match">New and confirm password do not match</string>
     <string name="success">Success!</string>
+    <string name="please_select_vehicletype">Please select vehicle type</string>
+    <string name="please_enter_vehicle_make">Please enter vehicle make</string>
+    <string name="please_enter_vehicle_model">Please enter vehicle model</string>
+    <string name="please_select_countryname">Please select country</string>
+    <string name="please_select_license_frontphoto">Please upload license front side photo</string>
+    <string name="please_select_license_backphoto">Please upload license back side photo</string>
+    <string name="please_select_registration_photo">Please upload registration photo</string>
+    <string name="please_select_insurance_photo">Please upload insurance photo</string>
+    <string name="please_enter_driver_license_number">Please enter driver license number</string>
+    <string name="please_enter_driver_license_exp_date">Please enter license expiration date</string>
+    <string name="please_enter_registration_number">Please enter registration number</string>
+    <string name="please_enter_registration_expdate">Please enter registration expiration date</string>
     <string-array name="Select_Category">
         <item>Select category</item>
         <item>Vegetables</item>

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,10 +17,11 @@
         android:background="#fff"
         tools:ignore="MissingConstraints"
         android:orientation="vertical">
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                android:id="@+id/tvName"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,15 +49,16 @@
             android:text="Order number"
             android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/tvOrderNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:text="152KL0552"
                 android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,7 +104,7 @@
                     android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
             </LinearLayout>
 
-        </LinearLayout>
+        </LinearLayout>-->
         <LinearLayout
             android:id="@+id/orderlistthree"
             android:layout_marginTop="@dimen/_10sdp"
@@ -116,6 +118,7 @@
                 android:layout_height="wrap_content">
 
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -123,6 +126,7 @@
                     android:textColor="#000"
                     android:textSize="16sp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="28 April 2020"
@@ -143,12 +147,14 @@
                     android:text="Order number"
                     android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvOrderNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:text="152KL0552"
                     android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvTime"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

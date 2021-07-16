@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.stalkstock.R
 import com.stalkstock.consumer.fragment.*
@@ -29,6 +28,8 @@ class MainConsumerActivity : BaseActivity() {
     lateinit var tv_order: TextView
     lateinit var tv_cart: TextView
     lateinit var tv_account: TextView
+    var currentDeliveryType = 0 // 0- pickup,1-deelivery , 2 -all
+
     override fun getContentId(): Int {
         return R.layout.activity_main_consumer
     }
@@ -66,13 +67,7 @@ class MainConsumerActivity : BaseActivity() {
             switchFragment(HomeCounsumerFragment())
         })
         search_home.setOnClickListener(View.OnClickListener {
-            home_img.setImageResource(R.drawable.home_black_icon1)
-            search_img.setImageResource(R.drawable.ic_search_green_new)
-            list_img.setImageResource(R.drawable.list_black_icon1)
-            cart_img.setImageResource(R.drawable.cart_black_icon1)
-            profile_img.setImageResource(R.drawable.user_black_icon1)
-            textColorChange(tv_search, tv_home, tv_order, tv_cart, tv_account)
-            switchFragment(SearchFragment())
+            openSearchFragment()
         })
         list.setOnClickListener(View.OnClickListener {
             home_img.setImageResource(R.drawable.home_black_icon1)
@@ -102,7 +97,7 @@ class MainConsumerActivity : BaseActivity() {
             switchFragment(ProfileConsumerFragment())
         })
         try {
-            if (intent.getStringExtra("is_open") != null) {
+            if (intent.hasExtra("is_open")) {
                 if (intent.getStringExtra("is_open") == "1") {
                     /*  home_img.setImageResource(R.drawable.home_black_icon);
                  list_img.setImageResource(R.drawable.list_black_icon);
@@ -117,22 +112,9 @@ class MainConsumerActivity : BaseActivity() {
                     switchFragment(CartFragment())
                     // switchFragment(new CartFragment());
                 } else if (intent.getStringExtra("is_open") == "2") {
-                    home_img.setImageResource(R.drawable.home_black_icon1)
-                    search_img.setImageResource(R.drawable.search_icon_new)
-                    list_img.setImageResource(R.drawable.list_green_icon1)
-                    cart_img.setImageResource(R.drawable.cart_black_icon1)
-                    profile_img.setImageResource(R.drawable.user_black_icon1)
-                    textColorChange(tv_order, tv_home, tv_search, tv_cart, tv_account)
+                    openSearchFragment()
 
                     //  switchFragment(new ListFragment());
-                } else if (intent.getStringExtra("is_open") == "4") {
-                    home_img.setImageResource(R.drawable.home_green_icon1)
-                    search_img.setImageResource(R.drawable.search_icon_new)
-                    list_img.setImageResource(R.drawable.list_black_icon1)
-                    cart_img.setImageResource(R.drawable.cart_black_icon1)
-                    profile_img.setImageResource(R.drawable.user_black_icon1)
-                    textColorChange(tv_home, tv_search, tv_order, tv_cart, tv_account)
-                    switchFragment(HomeCounsumerFragment())
                 } else if (intent.getStringExtra("is_open") == "3") {
                     home_img.setImageResource(R.drawable.home_black_icon1)
                     search_img.setImageResource(R.drawable.search_icon_new)
@@ -142,6 +124,14 @@ class MainConsumerActivity : BaseActivity() {
                     textColorChange(tv_order, tv_home, tv_search, tv_cart, tv_account)
                     switchFragment(ListFragment())
                     //  switchFragment(new ListFragment());
+                }else if (intent.getStringExtra("is_open") == "4") {
+                    home_img.setImageResource(R.drawable.home_green_icon1)
+                    search_img.setImageResource(R.drawable.search_icon_new)
+                    list_img.setImageResource(R.drawable.list_black_icon1)
+                    cart_img.setImageResource(R.drawable.cart_black_icon1)
+                    profile_img.setImageResource(R.drawable.user_black_icon1)
+                    textColorChange(tv_home, tv_search, tv_order, tv_cart, tv_account)
+                    switchFragment(HomeCounsumerFragment())
                 }
             }
         } catch (e: Exception) {
@@ -174,5 +164,16 @@ class MainConsumerActivity : BaseActivity() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment!!)
         fragmentTransaction.commit()
+    }
+
+    fun openSearchFragment()
+    {
+        home_img.setImageResource(R.drawable.home_black_icon1)
+        search_img.setImageResource(R.drawable.ic_search_green_new)
+        list_img.setImageResource(R.drawable.list_black_icon1)
+        cart_img.setImageResource(R.drawable.cart_black_icon1)
+        profile_img.setImageResource(R.drawable.user_black_icon1)
+        textColorChange(tv_search, tv_home, tv_order, tv_cart, tv_account)
+        switchFragment(SearchFragment())
     }
 }

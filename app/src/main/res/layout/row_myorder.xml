@@ -27,6 +27,7 @@
               />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/kfc"
@@ -35,6 +36,7 @@
             android:text="New York, USA" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -63,6 +65,7 @@
             android:textSize="16sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/starCount"
@@ -71,6 +74,7 @@
             android:text="01 Feb 2020, 09:30PM" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -121,10 +121,13 @@
                         />
 
                     <com.stalkstock.utils.custom.TitiliumRegularEditText
+                        android:id="@+id/editTextSearch"
                         android:layout_toRightOf="@+id/search"
                         android:layout_toLeftOf="@+id/iv_voice"
                         android:layout_marginRight="12dp"
                         android:layout_width="match_parent"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
                          android:layout_marginLeft="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:background="@android:color/transparent"
@@ -145,10 +148,16 @@
                     android:layout_marginRight="15dp"
                     android:textColor="#000"
                     android:textSize="@dimen/_15sdp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/searchRecycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -246,8 +255,16 @@
 
 
 
-                </LinearLayout>
-
+                </LinearLayout>-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/detail_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
             </LinearLayout>
         </LinearLayout>
 

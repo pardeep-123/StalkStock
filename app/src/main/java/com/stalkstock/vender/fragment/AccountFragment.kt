@@ -1,7 +1,6 @@
 package com.stalkstock.vender.fragment
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -20,8 +19,6 @@ import com.stalkstock.advertiser.activities.HelpActivity
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.consumer.activities.MainConsumerActivity
-import com.stalkstock.consumer.model.ModelGetProfileDetail
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables

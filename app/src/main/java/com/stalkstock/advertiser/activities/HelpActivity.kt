@@ -2,20 +2,16 @@ package com.stalkstock.advertiser.activities
 
 import android.content.Context
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.consumer.model.ModelGetProfileDetail
 import com.stalkstock.consumer.model.ModelHelpContent
-import com.stalkstock.consumer.model.ModelUpdateProfile
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel

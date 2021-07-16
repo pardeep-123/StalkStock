@@ -9,6 +9,7 @@ import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
+import com.stalkstock.consumer.model.PlaceOrderModel
 import com.stalkstock.utils.others.Util
 import com.tamam.utils.others.AppUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -482,6 +483,88 @@ class HomeViewModel : ViewModel() {
     }
 
     @SuppressLint("CheckResult")
+    fun addRecentSearchAPI(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.addRecentSearchAPI(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        addRecentSearchAPI(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun getRecentSearchAPI(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getRecentSearchListAPI()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getRecentSearchAPI(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun deleteRecentSearchAPI(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.deleteSearchListAPI(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        deleteRecentSearchAPI(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
     fun userBannerListAPI(
         activity: Activity,
         showLoader: Boolean,
@@ -902,6 +985,90 @@ class HomeViewModel : ViewModel() {
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
                         postforgotpasswordApi(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun placeOrderApi(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: PlaceOrderModel
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.userOrderPlace(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        placeOrderApi(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun getOrderListAPI(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getOrderList(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getOrderListAPI(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun getOrderDetailAPI(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getOrderDetail(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getOrderDetailAPI(activity, showLoader, hashMap)
                     }
                 })
         }

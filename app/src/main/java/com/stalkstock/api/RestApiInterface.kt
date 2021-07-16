@@ -63,6 +63,19 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<ModelProductListAsPerSubCat>
 
+    @FormUrlEncoded
+    @POST(URL.addRecentSearch)
+    fun addRecentSearchAPI(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<AddRecentSearchResponse>
+
+    @POST(URL.recentSearchList)
+    fun getRecentSearchListAPI(): Observable<RecentSearchListResponse>
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = URL.deleteRecentSearch, hasBody = true)
+    fun deleteSearchListAPI(@FieldMap map: HashMap<String, String>): Observable<DeleteRecentSearchResponse>
+
     @Multipart
     @POST(URL.userBannerList)
     fun userBannerListAPI(
@@ -116,17 +129,10 @@ interface RestApiInterface {
     @GET(URL.getUserCardData)
     fun getUserCardDataAPI(): Observable<ModelCartData>
 
-    @FormUrlEncoded
-    @POST(URL.getProfileDetailVendor)
-    fun getProfileDetailVendor(
-        @FieldMap map: HashMap<String, String>
-    ): Observable<VendorProfileDetail>
-
-    @Multipart
-    @POST(URL.useraddUserAddress)
-    fun useraddUserAddressAPI(
-        @PartMap map: HashMap<String, RequestBody>
-    ): Observable<UserCommonModel>
+    @POST(URL.ORDERPLACE)
+    fun userOrderPlace(
+        @Body map:PlaceOrderModel
+    ): Observable<OrderPlaceResponse>
 
     @Multipart
     @POST(URL.getUserAddressList)
@@ -135,16 +141,10 @@ interface RestApiInterface {
     ): Observable<ModelUserAddressList>
 
     @Multipart
-    @POST(URL.getVendorProductList)
-    fun getVendorProductListAPI(
+    @POST(URL.useraddUserAddress)
+    fun useraddUserAddressAPI(
         @PartMap map: HashMap<String, RequestBody>
-    ): Observable<ModelVendorProductList>
-
-    @Multipart
-    @POST(URL.getVendorProductDetails)
-    fun getVendorProductDetailsAPI(
-        @PartMap map: HashMap<String, RequestBody>
-    ): Observable<ModelProductDetail>
+    ): Observable<UserCommonModel>
 
     @Multipart
     @PUT(URL.editUserAddress)
@@ -158,17 +158,55 @@ interface RestApiInterface {
         @Field("address_id") postId: Int
     ): Observable<UserCommonModel>
 
-    @FormUrlEncoded
-    @HTTP(method = "DELETE", path = URL.deleteVendorProduct, hasBody = true)
-    fun deleteVendorProductAPI(
-        @Field("product_id") postId: Int
-    ): Observable<UserCommonModel>
-
     @Multipart
     @POST(URL.USERSIGNUP)
     fun usersignup(
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<ModelSignupUser>
+
+    @Multipart
+    @PUT(URL.editUserProfileDetail)
+    fun editUserProfileDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    ): Observable<ModelUpdateProfile>
+
+    @FormUrlEncoded
+    @POST(URL.userOrderList)
+    fun getOrderList(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<OrderListModel>
+
+    @FormUrlEncoded
+    @POST(URL.userOrderDetail)
+    fun getOrderDetail(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<OrderDetailResponse>
+
+    /*-------------------------------------Vendor API's-----------------------------*/
+
+    @Multipart
+    @POST(URL.getVendorProductList)
+    fun getVendorProductListAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelVendorProductList>
+
+    @FormUrlEncoded
+    @POST(URL.getProfileDetailVendor)
+    fun getProfileDetailVendor(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<VendorProfileDetail>
+
+    @Multipart
+    @POST(URL.getVendorProductDetails)
+    fun getVendorProductDetailsAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelProductDetail>
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = URL.deleteVendorProduct, hasBody = true)
+    fun deleteVendorProductAPI(
+        @Field("product_id") postId: Int
+    ): Observable<UserCommonModel>
 
     @Multipart
     @POST(URL.vendorAddProduct)
@@ -178,17 +216,10 @@ interface RestApiInterface {
     ): Observable<ModelAddProduct>
 
     @Multipart
-    @PUT(URL.editUserProfileDetail)
-    fun editUserProfileDetail(
-        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
-    ): Observable<ModelUpdateProfile>
-
-    @Multipart
     @PUT(URL.editVendorProfileDetail)
     fun editVendorProfileDetail(
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<UpdateVendorProfileModel>
-
 
     @Multipart
     @POST(URL.VENDORSIGNUP)
@@ -197,18 +228,11 @@ interface RestApiInterface {
         @Part image: MultipartBody.Part?
     ): Observable<VendorSignupResponse>
 
-
     @FormUrlEncoded
     @POST(URL.FORGOTPASSWORD)
     fun forgotpassword(
         @FieldMap map: HashMap<String, String>
     ): Observable<ForgotPasswordResponse>
-
-    @FormUrlEncoded
-    @POST(URL.ORDERPLACE)
-    fun userOrderPlace(
-        @FieldMap map: HashMap<String, String>
-    ): Observable<JsonObject>
 
     @POST(URL.VENDORBUSINESSDETAIL)
     fun vendorBusinessDetail(): Observable<VendorBusinessDetailResponse>
@@ -219,6 +243,30 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>,
         @Part image: MultipartBody.Part?
     ): Observable<VendorBusinessDetailResponse>
+
+    @FormUrlEncoded
+    @POST(URL.VENDORORDERLISTDETAIL)
+    fun vendorOrderList(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<VendorOrderListResponse>
+
+    @FormUrlEncoded
+    @POST(URL.VENDORORDERDETAIL)
+    fun vendorOrderDetail(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<OrderDetailVendorResponse>
+
+
+    /*-------------------------------------Driver API's-----------------------------*/
+
+
+    @Multipart
+    @POST(URL.USERSIGNUP)
+    fun driverSignup(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?,
+        @Part licenseImage1: MultipartBody.Part?,@Part licenseImage2: MultipartBody.Part?,
+        @Part registrationImage: MultipartBody.Part?,@Part insuranceImage: MultipartBody.Part?
+    ): Observable<JsonObject>
 
 //@GET(URL.GETPROFILE)
 //fun getProfile(): Observable<GetProfileResponse>

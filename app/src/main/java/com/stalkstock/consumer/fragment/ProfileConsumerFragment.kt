@@ -23,7 +23,6 @@ import com.stalkstock.consumer.activities.EditprofileConsumerActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.model.ModelGetProfileDetail
 import com.stalkstock.consumer.model.UserCommonModel
-import com.stalkstock.consumer.model.UserLoginResponse
 import com.stalkstock.utils.custom.TitiliumBoldButton
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables

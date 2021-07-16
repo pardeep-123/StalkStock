@@ -2,6 +2,7 @@ package com.stalkstock.consumer.fragment
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -35,7 +36,6 @@ import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CurrentLocationActivity
 import com.stalkstock.vender.ui.MessageActivity
-import com.stalkstock.vender.ui.SearchScreen
 import com.stalkstock.viewmodel.HomeViewModel
 import com.tamam.utils.others.AppUtils
 import com.viewpagerindicator.CirclePageIndicator
@@ -53,7 +53,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     private var mLong: Double = 0.0
     var stAddress = ""
 
-    var currentDeliveryType = 0 // 0- pickup,1-deelivery , 2 -all
+//    var currentDeliveryType = 0 // 0- pickup,1-deelivery , 2 -all
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
@@ -91,7 +91,13 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     lateinit var bt_sort: Button
     lateinit var bt_pickup: Button
     lateinit var tv_delivery: Button
+    lateinit var mActivity:MainConsumerActivity
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mActivity = context as MainConsumerActivity
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         resultLauncher =
@@ -129,7 +135,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         iv_msg.setOnClickListener {
             if (clickMsg == 0) {
                 clickMsg = 1
-                val intent = Intent(requireActivity(), MessageActivity::class.java)
+                val intent = Intent(mActivity, MessageActivity::class.java)
                 startActivity(intent)
             } else {
             }
@@ -196,46 +202,49 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             intent.putExtra("from","HomeCounsumerFragment")
             resultLauncher.launch(intent)
         })
-        etSearch.setOnClickListener(View.OnClickListener {
-            val intent = Intent(activity, SearchScreen::class.java)
-            startActivity(intent)
+        etSearch.setOnClickListener({
+            mActivity.openSearchFragment()
+            /*val intent = Intent(activity, SearchScreen::class.java)
+            intent.putExtra("currentDeliveryType", currentDeliveryType.toString())
+            intent.putExtra("whichScreen", "0")
+            startActivity(intent)*/
         })
         bt_sort.setOnClickListener {
-            bt_sort.background = requireActivity().resources.getDrawable(R.drawable.btn_shape)
-            bt_sort.setTextColor(requireActivity().getColor(R.color.white))
+            bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
+            bt_sort.setTextColor(mActivity.getColor(R.color.white))
             bt_pickup.background =
-                requireActivity().resources.getDrawable(R.drawable.btn_shape_gray)
-            bt_pickup.setTextColor(requireActivity().getColor(R.color.green_ss))
+                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            bt_pickup.setTextColor(mActivity.getColor(R.color.green_ss))
             tv_delivery.background =
-                requireActivity().resources.getDrawable(R.drawable.btn_shape_gray)
-            tv_delivery.setTextColor(requireActivity().getColor(R.color.green_ss))
+                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            tv_delivery.setTextColor(mActivity.getColor(R.color.green_ss))
             popupSort()
         }
         bt_pickup.setOnClickListener {
-            bt_sort.background = requireActivity().resources.getDrawable(R.drawable.btn_shape_gray)
-            bt_sort.setTextColor(requireActivity().getColor(R.color.green_ss))
-            bt_pickup.background = requireActivity().resources.getDrawable(R.drawable.btn_shape)
-            bt_pickup.setTextColor(requireActivity().getColor(R.color.white))
+            bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            bt_sort.setTextColor(mActivity.getColor(R.color.green_ss))
+            bt_pickup.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
+            bt_pickup.setTextColor(mActivity.getColor(R.color.white))
             tv_delivery.background =
-                requireActivity().resources.getDrawable(R.drawable.btn_shape_gray)
-            tv_delivery.setTextColor(requireActivity().getColor(R.color.green_ss))
-            currentDeliveryType = 0
+                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            tv_delivery.setTextColor(mActivity.getColor(R.color.green_ss))
+            mActivity.currentDeliveryType = 0
         }
         tv_delivery.setOnClickListener {
-            bt_sort.background = requireActivity().resources.getDrawable(R.drawable.btn_shape_gray)
-            bt_sort.setTextColor(requireActivity().getColor(R.color.green_ss))
+            bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            bt_sort.setTextColor(mActivity.getColor(R.color.green_ss))
             bt_pickup.background =
-                requireActivity().resources.getDrawable(R.drawable.btn_shape_gray)
-            bt_pickup.setTextColor(requireActivity().getColor(R.color.green_ss))
-            tv_delivery.background = requireActivity().resources.getDrawable(R.drawable.btn_shape)
-            tv_delivery.setTextColor(requireActivity().getColor(R.color.white))
-            currentDeliveryType = 1
+                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            bt_pickup.setTextColor(mActivity.getColor(R.color.green_ss))
+            tv_delivery.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
+            tv_delivery.setTextColor(mActivity.getColor(R.color.white))
+            mActivity.currentDeliveryType = 1
         }
 
         getAdsBannerAPI()
         getCategories()
 
-        if (requireActivity() != null) {
+        if (mActivity != null) {
             CurrentLocationActivity(requireActivity())
         }
         return viewFrag
@@ -276,7 +285,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         try {
             val geocoder: Geocoder
             val addresses: List<Address>
-            geocoder = Geocoder(requireActivity(), Locale.getDefault())
+            geocoder = Geocoder(mActivity, Locale.getDefault())
 
             addresses = geocoder.getFromLocation(
                 latitude,
@@ -336,7 +345,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val ic_dining = logoutUpdatedDialog2.findViewById<ImageView>(R.id.ic_dining)
         iv_cross.setOnClickListener {
             logoutUpdatedDialog2.dismiss()
-            if (currentDeliveryType == 0)
+            if (mActivity.currentDeliveryType == 0)
                 bt_pickup.performClick()
             else
                 this.tv_delivery.performClick()
@@ -346,14 +355,14 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         tv_rating = logoutUpdatedDialog2.findViewById(R.id.tv_rating)
         btn_apply.setOnClickListener {
             logoutUpdatedDialog2.dismiss()
-            if (currentDeliveryType == 0)
+            if (mActivity.currentDeliveryType == 0)
                 bt_pickup.performClick()
             else
                 this.tv_delivery.performClick()
         }
         rl_delivery.setOnClickListener {
             statusClick = 1
-            currentDeliveryType = 1
+            mActivity.currentDeliveryType = 1
             iconAndTextColorChange(
                 statusClick,
                 tv_delivery,
@@ -369,7 +378,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         }
         rl_pickups.setOnClickListener {
             statusClick = 2
-            currentDeliveryType = 0
+            mActivity.currentDeliveryType = 0
             iconAndTextColorChange(
                 statusClick,
                 tv_delivery,
@@ -541,7 +550,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                         currentOffset += 5
                         setData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
                     }
                 }
 
@@ -550,16 +559,16 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setDataCategody(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
                     }
                 }
 
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showSuccessAlert(mActivity, mResponse.message.toString())
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
                     }
                 }
             }
@@ -599,7 +608,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     fun startSubCat(toString: String) {
         val intent = Intent(context, HomedetailsActivity::class.java)
         intent.putExtra("catId", toString)
-        intent.putExtra("currentDeliveryType", currentDeliveryType.toString())
+        intent.putExtra("currentDeliveryType", mActivity.currentDeliveryType.toString())
         intent.putExtra("currentHighPrice", currentHighPrice)
         intent.putExtra("currentLowPrice", currentLowPrice)
         intent.putExtra("currentSortBy", currentSortBy)

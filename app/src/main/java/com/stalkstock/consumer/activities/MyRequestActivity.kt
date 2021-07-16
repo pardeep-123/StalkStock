@@ -11,7 +11,7 @@ class MyRequestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_request)
 
-        myorder_recycle.adapter = MyordersAdapter(this)
+//        myorder_recycle.adapter = MyordersAdapter(this, mOrderArrayList)
         backArrow.setOnClickListener {
             finish()
         }

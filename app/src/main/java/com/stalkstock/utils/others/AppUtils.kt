@@ -131,7 +131,7 @@ object AppUtils {
         //dd.MMM.yyyy
 
         val sdf = SimpleDateFormat(from, Locale.US);
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
+//        sdf.timeZone = TimeZone.getTimeZone("UTC")
         val date = sdf.parse(dateString);
 
         // var  dateFormat =  SimpleDateFormat("yyyy-MM-dd");

@@ -20,7 +20,6 @@ import com.stalkstock.consumer.adapter.ProductsAdapter
 import com.stalkstock.consumer.model.ModelProductVendorList
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
-import com.stalkstock.vender.ui.SearchScreen
 import com.stalkstock.viewmodel.HomeViewModel
 import com.tamam.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_product.*
@@ -66,8 +65,13 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
             startActivity(intent)
         })
         search.setOnClickListener(View.OnClickListener {
-            val intent = Intent(context, SearchScreen::class.java)
+            val intent = Intent(this, MainConsumerActivity::class.java)
+            intent.putExtra("is_open", "2")
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+           /* val intent = Intent(context, SearchScreen::class.java)
+            startActivity(intent)*/
         })
         fillter.setOnClickListener(View.OnClickListener {
             val intent = Intent(context, FilterActivity::class.java)

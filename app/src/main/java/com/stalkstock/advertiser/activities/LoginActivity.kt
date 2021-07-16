@@ -23,7 +23,6 @@ import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.driver.SignupActivity
-import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import kotlinx.android.synthetic.main.activity_login.*

@@ -8,13 +8,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.consumer.model.ModelUserAddressList
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.loadImage

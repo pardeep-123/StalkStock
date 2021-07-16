@@ -3,7 +3,6 @@ package com.stalkstock.vender.ui
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -25,7 +24,6 @@ import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
-import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.ProductUnitData
 import com.stalkstock.utils.loadImage

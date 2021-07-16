@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/red_dot"
+            android:layout_marginTop="10sp"/>
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creamy nachos"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20sp"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/img1"/>
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:text="Quantity : 10"
+            android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regular"
+            android:layout_toRightOf="@+id/img1"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/name_text"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>

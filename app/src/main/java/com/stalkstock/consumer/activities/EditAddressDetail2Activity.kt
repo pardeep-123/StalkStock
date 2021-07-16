@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.location.Address
 import android.location.Geocoder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -34,7 +33,6 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.tamam.utils.others.AppUtils
-import kotlinx.android.synthetic.main.activity_addnewaddress.*
 import kotlinx.android.synthetic.main.activity_edit_address_detail2.*
 import okhttp3.RequestBody
 import java.util.*

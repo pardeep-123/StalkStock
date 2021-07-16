@@ -35,7 +35,7 @@ class ProductsAdapter(
         holder.itemView.txtVendor.setText(currentModel[position].productVendor.shopName)
         holder.itemView.price.setText(currentModel[position].mrp+"/"+currentModel[position].measurement.name)
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
-        holder.itemView.img.loadImage(currentModel[position].productImage[0].image.toString())
+        holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductdetailsActivity::class.java)
