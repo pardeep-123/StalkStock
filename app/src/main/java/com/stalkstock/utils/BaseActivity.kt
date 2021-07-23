@@ -6,6 +6,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
 import com.stalkstock.utils.others.Util
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -36,5 +37,15 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showToast(msg:String)
     {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun modelToString(response: Any):String
+    {
+        return Gson().toJson(response)
+    }
+
+    fun stringToModel(response: String, modelName: Class<*>):Any
+    {
+        return Gson().fromJson(response, modelName)
     }
 }

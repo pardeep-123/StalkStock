@@ -23,22 +23,25 @@ import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.driver.SignupActivity
+import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {
+class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
 
     val viewModel: HomeViewModel by viewModels()
 
     val mContext: Context = this
+    override fun getContentId(): Int {
+        return R.layout.activity_login
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(R.layout.activity_login)
 //        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv_forgot_password.setOnClickListener(this)
         tv_signup.setOnClickListener(this)
@@ -94,11 +97,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
                 {
                     startActivity(Intent(mContext, MainCommercialActivity::class.java))
                     finishAffinity()
-                }else if(userType.equals("2"))
+                }/*else if(userType.equals("2"))
                 {
                     startActivity(Intent(mContext, HomeActivity::class.java))
                     finishAffinity()
-                }
+                }*/
                 else {
                     emailEdittext.text.toString()
                     passwordEdittext.text.toString()
@@ -220,6 +223,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
                             setData(mResponse)
                         else if (mResponse.body.role == 3)
                             setDataVendor(mResponse)
+                        else if(mResponse.body.role == 2)
+                        {
+                            setDataDriver(mResponse)
+                        }
                         goingToHome()
                     } else {
 //                        AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -237,6 +244,34 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, Observer<RestOb
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    private fun setDataDriver(mResponse: UserLoginResponse) {
+        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
+        MyApplication.instance.setString("usertype",mResponse.body.role.toString())
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.DRIVER_DATA, modelToString(mResponse.body.driverDetail))
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.token, mResponse.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, mResponse.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.role, mResponse.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.verified, mResponse.body.verified)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.status, mResponse.body.status)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.email, mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.mobile, mResponse.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_DRIVER.remember_token,
+            mResponse.body.remember_token
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.created, mResponse.body.created)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updated, mResponse.body.updated)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.createdAt, mResponse.body.createdAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updatedAt, mResponse.body.updatedAt)
     }
 
     private fun setDataVendor(data: UserLoginResponse) {

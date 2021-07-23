@@ -5,6 +5,9 @@ import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.consumer.model.*
+import com.stalkstock.driver.models.DriverProfileDetailResponse
+import com.stalkstock.driver.models.DriverSignUpResponse
+import com.stalkstock.driver.models.EditDriverResponse
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables.URL
@@ -261,12 +264,24 @@ interface RestApiInterface {
 
 
     @Multipart
-    @POST(URL.USERSIGNUP)
+    @POST(URL.DRIVERSIGNUP)
     fun driverSignup(
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?,
         @Part licenseImage1: MultipartBody.Part?,@Part licenseImage2: MultipartBody.Part?,
         @Part registrationImage: MultipartBody.Part?,@Part insuranceImage: MultipartBody.Part?
-    ): Observable<JsonObject>
+    ): Observable<DriverSignUpResponse>
+
+    @FormUrlEncoded
+    @POST(URL.getDriverProfileDetail)
+    fun getDriverProfileDetail(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<DriverProfileDetailResponse>
+
+    @Multipart
+    @PUT(URL.editDriverProfileDetail)
+    fun editDriverProfileDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    ): Observable<EditDriverResponse>
 
 //@GET(URL.GETPROFILE)
 //fun getProfile(): Observable<GetProfileResponse>

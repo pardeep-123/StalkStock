@@ -12,17 +12,18 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
+import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.driver.models.DriverSignUpResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.savePrefrence
 import kotlinx.android.synthetic.main.activity_add_detail.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.verification_popup.*
@@ -86,9 +87,6 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
             finishAffinity()
 
         }
-
-
-
         dialog.show()
     }
 
@@ -145,18 +143,14 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-                /*if (it.data is VendorSignupResponse) {
-                    val data = it.data as VendorSignupResponse
-                    if (MyApplication.instance.getString("usertype").equals("3")) {
-                        setData(data)
-                        startActivity(Intent(this, BottomnavigationScreen::class.java))
-                        //startActivity(Intent(mContext, Verification::class.java))
-//                finish()
-                    } else {
-                        startActivity(Intent(mContext, LoginActivity::class.java))
-                        finish()
-                    }
-                }*/
+                if (it.data is DriverSignUpResponse) {
+                    val data = it.data as DriverSignUpResponse
+                   if (data.code == 200) {
+                       dialogconfirmation()
+                       setData(data)
+                   }
+
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -168,6 +162,30 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    private fun setData(mResponse: DriverSignUpResponse) {
+        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.DRIVER_DATA, modelToString(mResponse.body.driverDetail))
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.token, mResponse.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, mResponse.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.role, mResponse.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.verified, mResponse.body.verified)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.status, mResponse.body.status)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.email, mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.mobile, mResponse.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_DRIVER.remember_token,
+            mResponse.body.remember_token
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.created, mResponse.body.created)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updated, mResponse.body.updated)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.createdAt, mResponse.body.createdAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updatedAt, mResponse.body.updatedAt)
     }
 
 }

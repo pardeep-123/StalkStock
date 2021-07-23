@@ -105,6 +105,28 @@ class GlobalVariables {
         }
     }
 
+    class SHARED_PREF_DRIVER {
+        companion object {
+            const val AUTH_KEY = "auth_key"
+            const val id = "id"
+            const val role = "role"
+            const val verified = "verified"
+            const val status = "status"
+            const val email = "email"
+            const val mobile = "mobile"
+            const val deviceToken = "deviceToken"
+            const val deviceType = "deviceType"
+            const val notification = "notification"
+            const val remember_token = "remember_token"
+            const val created = "created"
+            const val updated = "updated"
+            const val createdAt = "createdAt"
+            const val updatedAt = "updatedAt"
+            const val token = "token"
+            const val DRIVER_DATA = "driverLogindata"
+        }
+    }
+
 
     object URL {
 
@@ -160,22 +182,13 @@ class GlobalVariables {
         const val FORGOTPASSWORD = "forgotPassword"
         const val GETPROFILE = "get_profile"
         const val ORDERPLACE = "user/orderPlace"
-        const val EDITPROFILE = "edit_profile"
         const val CHANGEPASSWORD = "change_password"
-        const val TERMCONDITION = "term_condition"
-        const val PRIVACYPOLICY = "privacy_policy"
         const val LOGOUT = "logout"
         const val NOTIFICATIONSSTATUS = "notifications_status"
         const val GETNOTIFICATIONS = "get_notifications"
-        const val DELETENOTIFICATION = "delete_notification"
-        const val GETCURRENTORDERASSIGN = "get_current_order_assign"
-        const val STARTJOB = "start_job"
-        const val STOPJOB = "stop_job"
-        const val JOBHISTORY = "job_history"
-        const val RESTARTJOB = "restart_job"
-        const val COMPLETEJOB = "complete_job"
-        const val PAYMENT = "payment"
-
+        const val DRIVERSIGNUP = "driver/signup"
+        const val getDriverProfileDetail = "driver/getProfileDetail"
+        const val editDriverProfileDetail = "driver/editDriverProfileDetail"
 
     }
 

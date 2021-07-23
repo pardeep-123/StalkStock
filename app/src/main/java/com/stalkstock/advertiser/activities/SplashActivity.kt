@@ -62,7 +62,8 @@ class SplashActivity : AppCompatActivity() {
     private fun selectLoginOrHome() {
         if(!getPrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, "").equals(""))
         {
-            val userType = getPrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "")
+//            val userType = getPrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "")
+            val userType = MyApplication.instance.getString("usertype")
             if (userType.equals("5")) {
                 startActivity(Intent(mContext, MainActivity::class.java))
                 finishAffinity()

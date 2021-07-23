@@ -68,7 +68,7 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
             val intent = Intent(activity, HelpActivity::class.java)
             startActivity(intent)
         })
-        tv_changepass.setOnClickListener(View.OnClickListener {
+        tv_changepass.setOnClickListener({
             val intent = Intent(activity, ChangePasswordActivity::class.java)
             startActivity(intent)
         })

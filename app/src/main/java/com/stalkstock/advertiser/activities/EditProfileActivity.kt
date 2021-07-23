@@ -11,31 +11,61 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.bumptech.glide.Glide
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
+import com.stalkstock.consumer.model.ModelGetProfileDetail
+import com.stalkstock.driver.models.DriverProfileDetailResponse
+import com.stalkstock.driver.models.EditDriverResponse
+import com.stalkstock.driver.viewmodel.DriverViewModel
+import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.loadImage
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.savePrefrence
+import com.tamam.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.activity_edit_profile.btn_update_profile
+import kotlinx.android.synthetic.main.activity_edit_profile.edtFirstName
+import kotlinx.android.synthetic.main.activity_edit_profile.edtLastName
+import kotlinx.android.synthetic.main.activity_edit_profile.edtMobile
+import kotlinx.android.synthetic.main.activity_edit_profile.emailEdittext
 import kotlinx.android.synthetic.main.activity_edit_profile.image
+import kotlinx.android.synthetic.main.activity_editprofile.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
+import okhttp3.RequestBody
+import java.util.HashMap
 
-class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
+class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
+
+    val viewModel: DriverViewModel by viewModels()
     lateinit var successfulUpdatedDialog:Dialog
     val mContext: Context =this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage=""
+    override fun getContentId(): Int {
+        return R.layout.activity_edit_profile
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        setContentView(R.layout.activity_edit_profile)
         tv_heading.text = "Edit Profile"
         iv_back.setOnClickListener(this)
         btn_update_profile.setOnClickListener(this)
         image.setOnClickListener(this)
+        viewModel.mResponse.observe(this, this)
+        getprofileAPI()
     }
 
     override fun onClick(p0: View?) {
@@ -44,7 +74,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             R.id.btn_update_profile->{
-                updateDailogMethod()
+                updateProfileAPI()
+                /*updateDailogMethod()*/
             }R.id.image->{
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
@@ -69,10 +100,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type.equals("1"))
-                {
+                /*if (type.equals("1"))
+                {*/
                     firstimage = result[0].path
-                }
+                /*}*/
             }
             .onCancel {
 
@@ -117,4 +148,70 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         successfulUpdatedDialog.show()
     }
 
+
+    private fun getprofileAPI() {
+        val map = HashMap<String, String>()
+        viewModel.getProfileDetail(this, true, map)
+    }
+
+    private fun updateProfileAPI() {
+        val map = HashMap<String, RequestBody>()
+        map.put("firstName", mUtils.createPartFromString(edtFirstName.text.toString()))
+        map.put("lastName", mUtils.createPartFromString(edtLastName.text.toString()))
+        viewModel.editDriverProfileDetail(this, true, map, firstimage, mUtils)
+
+    }
+
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is EditDriverResponse) {
+                    val mResponse: EditDriverResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        updateDailogMethod()
+
+//                        AppUtils.showSuccessAlert(this, mResponse.message.toString())
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                }
+                if (it.data is DriverProfileDetailResponse) {
+                    val mResponse: DriverProfileDetailResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        setData(mResponse)
+
+                    } else {
+//                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                }
+
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+//                    showAlerterRed()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
+
+    private fun setData(mResponse: DriverProfileDetailResponse) {
+        image.loadImage(mResponse.body.driverDetail.image)
+        edtFirstName.setText(mResponse.body.driverDetail.firstName)
+        edtLastName.setText(mResponse.body.driverDetail.lastName)
+        edtMobile.setText(mResponse.body.mobile)
+        emailEdittext.setText(mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "2")
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, mResponse.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.role, mResponse.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.email, mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.mobile, mResponse.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
+    }
 }

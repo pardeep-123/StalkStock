@@ -2,28 +2,29 @@ package com.stalkstock.driver;
 
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
+import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.CommunicationListner
 import com.stalkstock.driver.fragment.AccountFragment
-import com.stalkstock.driver.fragment.MyRequestFragment
 import com.stalkstock.driver.fragment.HomeFragment
+import com.stalkstock.driver.fragment.MyRequestFragment
 import com.stalkstock.driver.fragment.PaymentFragment
+import com.stalkstock.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : AppCompatActivity(), View.OnClickListener, CommunicationListner {
+class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner {
 
     var tv_home: TextView? = null
     var tv_order: TextView? = null
     var tv_cart: TextView? = null
     var tv_account: TextView? = null
+    override fun getContentId(): Int {
+        return R.layout.activity_home
+    }
 
     override fun  onCreate( savedInstanceState
         : Bundle?){
@@ -33,7 +34,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, CommunicationLis
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(Color.WHITE);
         }
-        setContentView(R.layout.activity_home);
 
         tv_home = findViewById(R.id.tv_home)
         tv_order = findViewById(R.id.tv_order)

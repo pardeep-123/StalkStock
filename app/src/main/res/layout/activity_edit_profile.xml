@@ -58,6 +58,7 @@
             android:layout_marginTop="20dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:id="@+id/edtFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -93,6 +94,7 @@
             android:layout_marginTop="20dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:id="@+id/edtLastName"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -139,6 +141,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:focusable="false"
                 android:minHeight="45dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="12dp"
@@ -165,6 +168,7 @@
             android:layout_marginTop="20dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:id="@+id/edtMobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -177,6 +181,7 @@
                 android:minHeight="45dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="12dp"
+                android:focusable="false"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="13sp" />

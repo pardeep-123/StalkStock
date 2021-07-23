@@ -23,6 +23,7 @@ data class UserLoginResponse(
         val updatedAt: String, // 2021-05-13T12:31:32.000Z
         val userDetail: UserDetail,
         val vendorDetail: VendorDetail,
+        val driverDetail: DriverDetail,
         val verified: Int // 1
     ) {
         data class VendorDetail(
@@ -79,6 +80,43 @@ data class UserLoginResponse(
             val updated: Int, // 1620628728
             val updatedAt: String, // 2021-05-10T06:38:48.000Z
             val userId: Int // 66
+        )
+
+        data class DriverDetail(
+            val address: String,
+            val addressLine2: String,
+            val approvalStatus: Int, // 0
+            val approvalStatusReason: String,
+            val city: String, // fdfdfd
+            val country: String, // Algeria
+            val created: Int, // 1626692741
+            val createdAt: String, // 2021-07-19T11:05:40.000Z
+            val firstName: String, // test1
+            val id: Int, // 24
+            val image: String, // http://3.13.214.27:8800/uploads/user/48572343-1b33-4ad4-af1a-906e42947b53.jpg
+            val insuranceCompany: String,
+            val insuranceExpiryDate: String, // null
+            val insurancePolicy: String,
+            val insuranceProof: String, // 7b9d71ea-7453-4d70-92cb-51a0ad6b7256.jpg
+            val lastName: String, // driver
+            val latitude: String, // 0.00000000
+            val licenceBackImage: String, // 2ce7b9a8-34c5-4951-a092-926919a4400c.jpg
+            val licenceExpiryDate: String, // 2001-12-23
+            val licenceFrontImage: String, // a4f6ba93-5a4a-40e8-bd90-bfead0af934d.jpg
+            val licenceNumber: String, // fccxcxc
+            val longitude: String, // 0.00000000
+            val name: String,
+            val postalCode: String,
+            val registrationExpiryDate: String, // 2001-12-24
+            val registrationImage: String, // 2a8ed17b-4fd6-4725-889a-a9459d03ea5c.jpg
+            val registrationNumber: String, // dcdc454
+            val state: String, // dsdsdsd
+            val updated: Int, // 1626692741
+            val updatedAt: String, // 2021-07-19T11:05:40.000Z
+            val userId: Int, // 88
+            val vehicleMake: String, // asasas
+            val vehicleModel: String, // dfdfd
+            val vehicleType: String // Scooter
         )
     }
 }
