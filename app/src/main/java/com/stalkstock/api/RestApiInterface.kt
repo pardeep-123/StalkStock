@@ -1,13 +1,10 @@
 package com.stalkstock.api
 
-import com.google.gson.JsonObject
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.consumer.model.*
-import com.stalkstock.driver.models.DriverProfileDetailResponse
-import com.stalkstock.driver.models.DriverSignUpResponse
-import com.stalkstock.driver.models.EditDriverResponse
+import com.stalkstock.driver.models.*
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables.URL
@@ -23,6 +20,7 @@ interface RestApiInterface {
     /*
     vendor:-business@yopmail.com    123456
     consumer:-anikaesash@mailinator.com 123456
+    driver:-testdriver1@yopmail.com 123456
 
     * */
 
@@ -109,6 +107,7 @@ interface RestApiInterface {
 
     @GET(URL.getCategoryList)
     fun getCategoryListAPI(): Observable<ModelCategoryList>
+
     @GET(URL.measurementList)
     fun measurementListAPI(): Observable<ModelMeasurementList>
 
@@ -134,7 +133,7 @@ interface RestApiInterface {
 
     @POST(URL.ORDERPLACE)
     fun userOrderPlace(
-        @Body map:PlaceOrderModel
+        @Body map: PlaceOrderModel
     ): Observable<OrderPlaceResponse>
 
     @Multipart
@@ -263,19 +262,46 @@ interface RestApiInterface {
     /*-------------------------------------Driver API's-----------------------------*/
 
 
+
+    @Multipart
+    @PUT(URL.onlineOffline)
+    fun driveronlineOffline(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserCommonModel>
+
     @Multipart
     @POST(URL.DRIVERSIGNUP)
     fun driverSignup(
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?,
-        @Part licenseImage1: MultipartBody.Part?,@Part licenseImage2: MultipartBody.Part?,
-        @Part registrationImage: MultipartBody.Part?,@Part insuranceImage: MultipartBody.Part?
+        @Part licenseImage1: MultipartBody.Part?, @Part licenseImage2: MultipartBody.Part?,
+        @Part registrationImage: MultipartBody.Part?, @Part insuranceImage: MultipartBody.Part?
     ): Observable<DriverSignUpResponse>
+
+    @Multipart
+    @PUT(URL.editDriverDocumentDetail)
+    fun editDriverDocumentDetail(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part licenseImage1: MultipartBody.Part?, @Part licenseImage2: MultipartBody.Part?,
+        @Part registrationImage: MultipartBody.Part?, @Part insuranceImage: MultipartBody.Part?
+    ): Observable<DriverDocResponse>
 
     @FormUrlEncoded
     @POST(URL.getDriverProfileDetail)
     fun getDriverProfileDetail(
         @FieldMap map: HashMap<String, String>
     ): Observable<DriverProfileDetailResponse>
+
+    @FormUrlEncoded
+    @POST(URL.getDocumentDetail)
+    fun getDocumentDetail(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<DriverDocResponse>
+
+    @FormUrlEncoded
+    @POST(URL.checkEmailMobileExist)
+    fun checkEmailMobileExist(
+        @FieldMap map: HashMap<String, RequestBody>
+    ): Observable<CheckEmailResponse>
 
     @Multipart
     @PUT(URL.editDriverProfileDetail)

@@ -133,7 +133,7 @@ class GlobalVariables {
         const val BASE_URL: String = "http://3.13.214.27:8800/api/"
         const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
 
-//            const val SOCKET_URL: String = "http://202.164.42.227:8992/"
+            const val SOCKET_URL: String = "http://3.13.214.27:8800"
 //            const val IMAGE_URL: String = "http://202.164.42.227:8992/images/users/"
 
 
@@ -170,6 +170,7 @@ class GlobalVariables {
         const val getUserCardData  = "user/cartDetail"
         const val measurementList = "measurementList"
         const val USERSIGNUP = "user/signup"
+        const val checkEmailMobileExist = "user/checkEmailMobileExist"
         const val vendorAddProduct = "vendor/addProduct"
         const val editUserProfileDetail = "user/editUserProfileDetail"
         const val editVendorProfileDetail = "vendor/editVendorProfileDetail"
@@ -187,7 +188,10 @@ class GlobalVariables {
         const val NOTIFICATIONSSTATUS = "notifications_status"
         const val GETNOTIFICATIONS = "get_notifications"
         const val DRIVERSIGNUP = "driver/signup"
+        const val editDriverDocumentDetail = "driver/editDriverDocumentDetail"
         const val getDriverProfileDetail = "driver/getProfileDetail"
+        const val onlineOffline = "driver/onlineOffline"
+        const val getDocumentDetail = "driver/getDocumentDetail"
         const val editDriverProfileDetail = "driver/editDriverProfileDetail"
 
     }

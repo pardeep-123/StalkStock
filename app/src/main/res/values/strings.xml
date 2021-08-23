@@ -237,6 +237,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_driver_license_exp_date">Please enter license expiration date</string>
     <string name="please_enter_registration_number">Please enter registration number</string>
     <string name="please_enter_registration_expdate">Please enter registration expiration date</string>
+    <string name="enter_valid_date">Enter date in \"yyyy-mm-dd\" format</string>
     <string-array name="Select_Category">
         <item>Select category</item>
         <item>Vegetables</item>

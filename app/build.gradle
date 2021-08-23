@@ -110,7 +110,7 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
 
 
-    implementation('io.socket:socket.io-client:1.0.0') {
+    implementation('io.socket:socket.io-client:2.0.1') {
         exclude group: 'org.json', module: 'json'
     }
 

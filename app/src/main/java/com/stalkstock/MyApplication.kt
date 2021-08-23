@@ -5,35 +5,49 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
+import android.util.Log
 import com.google.android.libraries.places.api.Places
 import com.stalkstock.api.RestApiInterface
 import com.stalkstock.api.ServiceGenerator
+import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.others.AppLifecycleHandler
 import com.stalkstock.utils.others.AppLifecycleHandler.AppLifecycleDelegates
+import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.MediaLoader
+import com.stalkstock.utils.socket.SocketManager
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig
+import io.socket.client.IO
 import io.socket.client.Socket
 import java.util.*
 
 
 class MyApplication : Application(), AppLifecycleDelegates {
 
-
-    private var mSocket: Socket? = null
     companion object {
         const val PREF_TOKEN = "dummy"
 
-
-        var preferences: SharedPreferences? =null
+        var preferences: SharedPreferences? = null
         var prefToken: SharedPreferences? = null
         var editor: SharedPreferences.Editor? = null
         var editorToken: SharedPreferences.Editor? = null
         lateinit var instance: MyApplication
 
-         fun getinstance(): MyApplication {
+        fun getinstance(): MyApplication {
             return instance!!
         }
+
+        private var mSocketManager: SocketManager? = null
+
+        fun getSocketManager(): SocketManager {
+            if (mSocketManager == null) {
+                mSocketManager = SocketManager.getSocket()
+                return mSocketManager!!
+            } else {
+                return mSocketManager!!
+            }
+        }
+
 //        fun hasNetwork(): Boolean {
 //            return AppController.mInstance.checkIfHasNetwork()
 //        }
@@ -41,7 +55,7 @@ class MyApplication : Application(), AppLifecycleDelegates {
 
     }
 
-    // SocketManager mSocketManager = null;
+
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         //   MultiDex.install(this);
@@ -51,7 +65,6 @@ class MyApplication : Application(), AppLifecycleDelegates {
         super.onCreate()
         instance = this
 
-        //mSocketManager = getSocketManager();
 
         //mSocketManager = getSocketManager();
         val lifecycleHandler = AppLifecycleHandler(this)
@@ -69,18 +82,10 @@ class MyApplication : Application(), AppLifecycleDelegates {
                 .setLocale(Locale.getDefault())
                 .build()
         )
+
+        getSocketManager()
+
 //        FirebaseApp.initializeApp(this)
-//        try {
-//            mSocket = IO.socket(SOCKET_URL)
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            Log.d("fail", "Failed to connect")
-//        }
-
-    }
-
-    fun getSocket(): Socket? {
-        return mSocket
     }
 
 
@@ -142,14 +147,17 @@ class MyApplication : Application(), AppLifecycleDelegates {
 
 
     override fun onAppForegrounded() {
-        /* if (!mSocketManager.isConnected() || mSocketManager.getmSocket() == null)
-        {
-            mSocketManager.init();
-        }*/
+        val string = getinstance().getString("globalID")
+        if (!checkStringNull(string)) {
+            if (!mSocketManager!!.isConnected()) {
+//                mSocketManager!!.onConnect()
+                mSocketManager!!.onConnect()
+            }
+        }
     }
 
     override fun onAppBackgrounded() {
-        // mSocketManager.disconnectAll();
+        mSocketManager!!.onDisconnect()
     }
 
 
@@ -165,18 +173,6 @@ class MyApplication : Application(), AppLifecycleDelegates {
     }
 
 
-    /*public SocketManager getSocketManager()
-    {
-        if (mSocketManager == null) {
-            mSocketManager = new SocketManager();
-        }
-        else
-        {
-            return mSocketManager;
-        }
-
-        return mSocketManager;
-    }*/
     private fun registerLifecycleHandler(lifeCycleHandler: AppLifecycleHandler) {
         registerActivityLifecycleCallbacks(lifeCycleHandler)
         registerComponentCallbacks(lifeCycleHandler)
@@ -185,8 +181,6 @@ class MyApplication : Application(), AppLifecycleDelegates {
     override fun onTerminate() {
         super.onTerminate()
     }
-
-
 
 
 }

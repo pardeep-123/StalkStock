@@ -50,12 +50,14 @@
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="120dp"
+                        android:id="@+id/imgFrontDriver"
                         android:scaleType="fitXY"
                         android:layout_marginRight="@dimen/_10sdp"
                         android:src="@drawable/license_two"
                         android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="0dp"
+                        android:id="@+id/imgBackDriver"
                         android:layout_height="120dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/license_three"
@@ -71,6 +73,7 @@
                     android:textSize="15sp" />
                 <ImageView
                     android:layout_width="match_parent"
+                    android:id="@+id/imgDriverRegistration"
                     android:layout_height="200dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/license_a"
@@ -89,6 +92,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:id="@+id/imgDriverProofInsurance"
                     android:scaleType="fitXY"
                     android:src="@drawable/license_a"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -119,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="Bike"
+                        android:id="@+id/txtVehicleName"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -143,8 +147,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtMake"
                         android:layout_weight="1"
-                        android:text="Duke"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -168,8 +172,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtModel"
                         android:layout_weight="1"
-                        android:text="KTM 74"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -194,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="47457474"
+                        android:id="@+id/txtDriverLicenceNumber"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -219,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="28/09"
+                        android:id="@+id/txtDriverLicenceValidThrough"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -244,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="278578809"
+                        android:id="@+id/txtDriverRegNumber"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -269,7 +273,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="28/09"
+                        android:id="@+id/txtDriverRegistrationValidThrough"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -293,8 +297,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtInsuranceCompany"
                         android:layout_weight="1"
-                        android:text="Aegon Life Insurance Co. Ltd."
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -318,8 +322,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtInsurancePolicy"
                         android:layout_weight="1"
-                        android:text="123-1454-8595"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -344,7 +348,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="28/09"
+                        android:id="@+id/txtInsuranceValid"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -367,9 +371,9 @@
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:id="@+id/txtDriverAddress"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="Motia Pacific Centre, Gazipur Road, Zirakpur"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -394,7 +398,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="Shop No. 211"
+                        android:id="@+id/txtDriverAddressLine2"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -418,8 +422,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtDriverCity"
                         android:layout_weight="1"
-                        android:text="Brompton"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -443,8 +447,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtDriverState"
                         android:layout_weight="1"
-                        android:text="Toronto"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -467,9 +471,9 @@
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:id="@+id/txtDriverZipCode"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:text="135102"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -493,8 +497,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/txtDriverCountry"
                         android:layout_weight="1"
-                        android:text="Canada"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </LinearLayout>

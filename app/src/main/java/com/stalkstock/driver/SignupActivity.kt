@@ -9,17 +9,19 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
+import com.stalkstock.driver.models.CheckEmailResponse
+import com.stalkstock.driver.models.DriverSignUpResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.GlobalVariables
-import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -40,12 +42,13 @@ import kotlinx.android.synthetic.main.activity_signup3.tv_signin
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 
-class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener,
+    Observer<RestObservable> {
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
-    var firstimage=""
+    var firstimage = ""
     var mVehicleType = ""
     var mCountryName = ""
-    val viewModel: DriverViewModel by viewModels()
 
     override fun getContentId(): Int {
         return R.layout.activity_signup3
@@ -53,7 +56,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         tv_heading.text = getString(R.string.sign_up)
 
         tv_signin.setOnClickListener(this)
@@ -63,14 +66,22 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
 
-        CommonMethods.hideKeyboard(this,btn_signup)
+        CommonMethods.hideKeyboard(this, btn_signup)
         // addItemsOnSpinner2();
-        val foodadapter = ArrayAdapter.createFromResource(this, R.array.Select_Vehicle_type, R.layout.spinner_layout_for_vehicle)
+        val foodadapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_Vehicle_type,
+            R.layout.spinner_layout_for_vehicle
+        )
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
 
 
-        val foodadapter2 = ArrayAdapter.createFromResource(this, R.array.Select_country, R.layout.spinner_layout_for_vehicle)
+        val foodadapter2 = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_country,
+            R.layout.spinner_layout_for_vehicle
+        )
         foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner_country.adapter = foodadapter2
         spinner_country.onItemSelectedListener = this
@@ -78,27 +89,31 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.tv_signin->{
+        when (p0?.id) {
+            R.id.tv_signin -> {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
-            } R.id.tv_signin->{
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }R.id.total->{
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }R.id.btn_signup->{
-            setValidation()
-
-        }
-            R.id.iv_back->{
+            }
+            R.id.tv_signin -> {
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
-            } R.id.image->{
-            mAlbumFiles = java.util.ArrayList()
-            mAlbumFiles.clear()
-            selectImage(image,"1")
-        }
+            }
+            R.id.total -> {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+            R.id.btn_signup -> {
+                setValidation()
+
+            }
+            R.id.iv_back -> {
+                finish()
+            }
+            R.id.image -> {
+                mAlbumFiles = java.util.ArrayList()
+                mAlbumFiles.clear()
+                selectImage(image, "1")
+            }
         }
     }
 
@@ -116,7 +131,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
 
     }
 
-    private fun selectImage(ivProduct: ImageView, type:String) {
+    private fun selectImage(ivProduct: ImageView, type: String) {
         Album.image(this)
             .singleChoice()
             .camera(true)
@@ -131,8 +146,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type.equals("1"))
-                {
+                if (type.equals("1")) {
                     firstimage = result[0].path
                 }
             }
@@ -142,7 +156,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             .start()
     }
 
-   private fun setValidation() {
+    private fun setValidation() {
         if (firstimage.isEmpty()) {
             Toast.makeText(
                 this,
@@ -164,7 +178,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         ) {
             emailEdittext.requestFocus()
             emailEdittext.setError(resources.getString(R.string.please_enter_valid_email))
-        }else if (et_mobileNo.getText().toString().isEmpty()) {
+        } else if (et_mobileNo.getText().toString().isEmpty()) {
             et_mobileNo.requestFocus()
             et_mobileNo.setError(resources.getString(R.string.please_enter_mobile_number))
         } else if (et_mobileNo.getText().toString().length < 10 || et_mobileNo.getText()
@@ -172,7 +186,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         ) {
             et_mobileNo.requestFocus()
             et_mobileNo.setError(resources.getString(R.string.please_enter_valid_number))
-        }  else if (checkStringNull(mVehicleType)) {
+        } else if (checkStringNull(mVehicleType)) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.please_select_vehicletype),
@@ -223,22 +237,68 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
            hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(mCountryName)
            hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())*/
             val hashMap = HashMap<String, String>()
-               hashMap[GlobalVariables.PARAM.firstname] =  et_firstName.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.lastname] =  et_lastName.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.email] =  emailEdittext.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.mobile] =  et_mobileNo.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.vehicleType] =  mVehicleType
-            hashMap[GlobalVariables.PARAM.vehicleMake] =  et_vehiclemake.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.firstname] = et_firstName.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.lastname] = et_lastName.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.mobile] = et_mobileNo.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.vehicleType] = mVehicleType
+            hashMap[GlobalVariables.PARAM.vehicleMake] = et_vehiclemake.text.toString().trim()
             hashMap[GlobalVariables.PARAM.vehicleModel] =
-                 et_vehiclemodel.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.city] =  et_city.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.state] =  et_state.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.country] =  mCountryName
-            hashMap[GlobalVariables.PARAM.password] =  passwordEdittext.text.toString().trim()
+                et_vehiclemodel.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.city] = et_city.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.state] = et_state.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.country] = mCountryName
+            hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
+
+            checkEmailAndMobileExistAPI()
+/*
             startActivity(Intent(this, UploadDocActivity::class.java)
                 .putExtra("driverData",hashMap)
                 .putExtra("profileImage",firstimage))
+*/
         }
 
+    }
+
+    val viewModel: DriverViewModel by viewModels()
+
+    lateinit var hashMap:HashMap<String,RequestBody>
+
+    private fun checkEmailAndMobileExistAPI() {
+        hashMap = HashMap<String, RequestBody>()
+        hashMap[GlobalVariables.PARAM.email] =
+            mUtils.createPartFromString(emailEdittext.text.toString())
+        hashMap[GlobalVariables.PARAM.mobile] =
+            mUtils.createPartFromString(et_mobileNo.text.toString())
+        viewModel.checkEmailMobileExist(this, true, hashMap)
+        viewModel.mResponse.observe(this, this)
+    }
+
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is CheckEmailResponse) {
+                    val data = it.data as CheckEmailResponse
+                    if (data.code == 200) {
+                        startActivity(
+                            Intent(this, UploadDocActivity::class.java)
+                                .putExtra("driverData", hashMap)
+                                .putExtra("profileImage", firstimage)
+                        )
+                    }
+
+
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ class HomedetailAdapter(
     var searchFragment: SearchFragment?
 ) :
     RecyclerView.Adapter<HomedetailAdapter.RecyclerViewHolder>() {
-    var inflater : LayoutInflater
+    var inflater: LayoutInflater
 
     class RecyclerViewHolder(view: View?) : RecyclerView.ViewHolder(
         view!!
@@ -37,22 +37,22 @@ class HomedetailAdapter(
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
         val body = currentModel[position]
-        holder.itemView.img.loadImage(body.productImage[0].image)
+        if (body.productImage.size > 0)
+            holder.itemView.img.loadImage(body.productImage[0].image)
         holder.itemView.starCount.setText(body.name)
-        holder.itemView.price.setText("$"+body.mrp+"/")
+        holder.itemView.price.setText("$" + body.mrp + "/")
         holder.itemView.star.visibility = View.GONE
 
         holder.itemView.setOnClickListener {
-            if (context is MainConsumerActivity)
-            {
-                searchFragment!!.addRecentSearchApi(body.id.toString(),body.name)
-            }else{
-            val intent = Intent(context, ProductActivity::class.java)
-            intent.putExtra("product_id",body.id.toString())
-            intent.putExtra("title",body.name.toString())
-            intent.putExtra("delivery_type",currentDeliveryType)
-            context.startActivity(intent)
-        }
+            if (context is MainConsumerActivity) {
+                searchFragment!!.addRecentSearchApi(body.id.toString(), body.name)
+            } else {
+                val intent = Intent(context, ProductActivity::class.java)
+                intent.putExtra("product_id", body.id.toString())
+                intent.putExtra("title", body.name.toString())
+                intent.putExtra("delivery_type", currentDeliveryType)
+                context.startActivity(intent)
+            }
         }
     }
 

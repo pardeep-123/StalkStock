@@ -219,6 +219,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 if (it.data is UserLoginResponse) {
                     val mResponse: UserLoginResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        MyApplication.instance.setString("globalID",mResponse.body.id.toString())
                         if (mResponse.body.role == 1)
                             setData(mResponse)
                         else if (mResponse.body.role == 3)

@@ -2,14 +2,12 @@ package com.stalkstock.driver.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
-import com.stalkstock.consumer.model.PlaceOrderModel
 import com.stalkstock.utils.others.Util
 import com.tamam.utils.others.AppUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -61,7 +59,7 @@ class DriverViewModel : ViewModel() {
                 imageI = mUtils.prepareFilePart("insuranceProof", file)
             }
 
-            restApiInterface.driverSignup(map, image,imageL1,imageL2,imageR,imageI)
+            restApiInterface.driverSignup(map, image, imageL1, imageL2, imageR, imageI)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -74,11 +72,71 @@ class DriverViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        driverSignUpApi(activity, showLoader, map, profileImage,
+                        driverSignUpApi(
+                            activity, showLoader, map, profileImage,
                             license1Image,
                             license2Image,
                             registerImage,
-                            insuranceImage, mUtils)
+                            insuranceImage, mUtils
+                        )
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun editDriverDocumentDetail(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+        license1Image: String,
+        license2Image: String,
+        registerImage: String,
+        insuranceImage: String,
+        mUtils: Util
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            var imageL1: MultipartBody.Part? = null
+            var imageL2: MultipartBody.Part? = null
+            var imageR: MultipartBody.Part? = null
+            var imageI: MultipartBody.Part? = null
+            if (license1Image.isNotEmpty()) {
+                val file = File(license1Image)
+                imageL1 = mUtils.prepareFilePart("licenceFrontImage", file)
+            }
+            if (license2Image.isNotEmpty()) {
+                val file = File(license2Image)
+                imageL2 = mUtils.prepareFilePart("licenceBackImage", file)
+            }
+            if (registerImage.isNotEmpty()) {
+                val file = File(registerImage)
+                imageR = mUtils.prepareFilePart("registrationImage", file)
+            }
+            if (insuranceImage.isNotEmpty()) {
+                val file = File(insuranceImage)
+                imageI = mUtils.prepareFilePart("insuranceProof", file)
+            }
+
+            restApiInterface.editDriverDocumentDetail(map, imageL1, imageL2, imageR, imageI)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        editDriverDocumentDetail(
+                            activity, showLoader, map, license1Image,
+                            license2Image,
+                            registerImage,
+                            insuranceImage, mUtils
+                        )
                     }
                 })
         }
@@ -108,6 +166,89 @@ class DriverViewModel : ViewModel() {
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
                         getProfileDetail(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun driveronlineOffline(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.driveronlineOffline(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        driveronlineOffline(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun getDocumentDetail(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getDocumentDetail(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getDocumentDetail(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun checkEmailMobileExist(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.checkEmailMobileExist(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        checkEmailMobileExist(activity, showLoader, hashMap)
                     }
                 })
         }
