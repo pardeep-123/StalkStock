@@ -22,8 +22,7 @@ interface RestApiInterface {
     consumer:-anikaesash@mailinator.com 123456
     driver:-testdriver1@yopmail.com 123456
 
-    * */
-
+    */
     /*
 1=>user
 2=>driver
@@ -198,6 +197,12 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<VendorProfileDetail>
 
+    @FormUrlEncoded
+    @POST(URL.vendorChangeOrderStatus)
+    fun vendorChangeOrderStatus(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<VendorCommonModel>
+
     @Multipart
     @POST(URL.getVendorProductDetails)
     fun getVendorProductDetailsAPI(
@@ -262,12 +267,14 @@ interface RestApiInterface {
     /*-------------------------------------Driver API's-----------------------------*/
 
 
-
     @Multipart
     @PUT(URL.onlineOffline)
     fun driveronlineOffline(
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<UserCommonModel>
+
+    @POST(URL.driverOrderRequestAPI)
+    fun driverOrderRequestAPI(): Observable<NewOrderResponse>
 
     @Multipart
     @POST(URL.DRIVERSIGNUP)

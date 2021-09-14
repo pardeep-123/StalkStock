@@ -27,7 +27,7 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:text="Order ID : ADS777558"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="@dimen/value_18sp" />
 
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -35,7 +35,6 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_status"
                 android:text="Status : "
-                android:textSize="22sp"
                 android:textColor="@color/black" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -44,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:textSize="22sp"
                 android:text="Pending"
                 android:textColor="@color/orange_colour" />
 
@@ -58,28 +56,18 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp">
 
-<!--
                 <ImageView
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/subway" />
--->
-
-                <ImageView
-                    android:layout_marginTop="@dimen/_10sdp"
-                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/subway" />
-
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/txtDatePopup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textSize="22sp"
                     android:text="10:30am, 20 June 2020"
                     android:textColor="@color/dark_gray" />
             </RelativeLayout>
@@ -102,7 +90,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     android:layout_weight="2">
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_weight="2">
 
                     <LinearLayout
 
@@ -112,66 +101,35 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        <ImageView
 
-                            <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:src="@drawable/location1" />
 
-                                android:id="@+id/iv_locs"
-                                android:layout_centerHorizontal="true"
-                                android:layout_width="@dimen/_25sdp"
-                                android:layout_height="@dimen/_25sdp"
-                                android:src="@drawable/location1" />
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:id="@+id/txtKmAway"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="9.5 Km"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
-                            <com.stalkstock.utils.custom.TitiliumBoldTextView
-                               android:id="@+id/tv_km"
-                                android:layout_below="@+id/iv_locs"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:text="9.5 Km"
-                                android:layout_centerHorizontal="true"
-
-                                android:textColor="@color/black"
-                                android:textSize="22sp" />
-
-                            <com.stalkstock.utils.custom.TitiliumRegularTextView
-
-                                android:id="@+id/tv_av"
-                               android:layout_below="@+id/tv_km"
-                                android:layout_centerHorizontal="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:layout_marginBottom="@dimen/_20sdp"
-                                android:text="Away"
-                                android:textSize="22sp"
-                                android:textColor="@color/black" />
-
-                            <View
-
-                                android:layout_alignTop="@+id/tv_km"
-                                android:layout_alignBottom="@+id/tv_av"
-                                android:layout_alignParentRight="true"
-                                android:layout_width="0.5dp"
-                                android:layout_height="50dp"
-                                android:layout_gravity="center"
-                                android:background="@android:color/darker_gray" />
-
-
-                            <View
-                                android:layout_marginTop="5dp"
-
-                                android:layout_alignParentBottom="true"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray"/>
-
-                        </RelativeLayout>
-
+                        <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:text="Away"
+                            android:textColor="@color/black" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -180,59 +138,37 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:src="@drawable/dollar" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:id="@+id/txtEstEarning"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="$04.49"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
-
-                            <ImageView
-                                android:id="@+id/iv_doll"
-                                android:layout_centerHorizontal="true"
-                                android:layout_width="@dimen/_25sdp"
-                                android:layout_height="@dimen/_25sdp"
-                                android:src="@drawable/dollar" />
-
-                            <com.stalkstock.utils.custom.TitiliumBoldTextView
-                               android:layout_below="@+id/iv_doll"
-                                android:layout_centerHorizontal="true"
-
-                                android:id="@+id/tv_pp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:text="$04.49"
-                                android:textColor="@color/black"
-                                android:textSize="22sp"/>
-
-                            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                                android:layout_width="wrap_content"
-                                android:layout_centerHorizontal="true"
-
-                                android:layout_below="@+id/tv_pp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:layout_marginBottom="@dimen/_20sdp"
-                                android:text="Esti. Earn"
-                                android:textSize="22sp"
-                                android:textColor="@color/black" />
-
-
-                            <View
-                                android:layout_marginTop="5dp"
-
-                                android:layout_alignParentBottom="true"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@android:color/darker_gray"/>
-
-
-                        </RelativeLayout>
-
+                        <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:text="Esti. Earn"
+                            android:textColor="@color/black" />
                     </LinearLayout>
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/rl"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/black" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -243,75 +179,71 @@
                     <ImageView
 
                         android:id="@+id/iv_circle"
-                        android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/radiobutton" />
 
                     <ImageView
                         android:id="@+id/iv_sub"
-                        android:layout_toRightOf="@+id/iv_circle"
                         android:layout_width="@dimen/_32sdp"
                         android:layout_height="@dimen/_20sdp"
-
-
-                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_alignTop="@+id/iv_circle"
+                        android:layout_alignBottom="@+id/iv_circle"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/iv_circle"
                         android:src="@drawable/subway" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_toRightOf="@+id/iv_sub"
+                        android:id="@+id/txtRestLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_alignTop="@+id/iv_sub"
-                        android:layout_alignBottom="@+id/iv_sub"
+                        android:layout_alignTop="@+id/iv_circle"
+                        android:layout_alignBottom="@+id/iv_circle"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/iv_sub"
                         android:text="8753, Mauricio Walks, Mohali Stadium"
                         android:textColor="@color/black"
-                        android:textSize="22sp" />
+                        android:textSize="10sp" />
 
 
-                    <include
-                        layout="@layout/line_layout"
+                    <View
                         android:id="@+id/views"
-                        android:layout_alignLeft="@+id/iv_loc"
 
-                        android:layout_marginLeft="8dp"
-                         android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="100dp"
                         android:layout_below="@+id/iv_circle"
-                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+
+                        android:layout_marginLeft="-18dp"
                         android:background="@drawable/line" />
 
 
                     <ImageView
                         android:id="@+id/iv_loc"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
                         android:layout_below="@+id/views"
-                        android:tint="@color/black"
                         android:layout_alignLeft="@+id/iv_circle"
                         android:layout_alignRight="@+id/iv_circle"
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_marginTop="-10dp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:src="@drawable/location_icon" />
+                        android:src="@drawable/location_icon"
+                        android:tint="@color/black" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_toRightOf="@+id/iv_loc"
-                        android:layout_alignTop="@+id/iv_loc"
-                        android:layout_alignBottom="@+id/iv_loc"
-                        android:gravity="center_vertical"
+                        android:id="@+id/txtDestinationLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_loc"
+                        android:layout_alignBottom="@+id/iv_loc"
                         android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_toRightOf="@+id/iv_loc"
+                        android:gravity="center_vertical"
                         android:text="8753, Mauricio Walks, Mohali Stadium"
                         android:textColor="@color/black"
-                        android:textSize="22sp" />
+                        android:textSize="10sp" />
 
 
                 </RelativeLayout>
-
 
 
                 <RelativeLayout
@@ -336,70 +268,53 @@
             </LinearLayout>
 
 
-            <RelativeLayout
-                android:id="@+id/rl_pro"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_below="@id/ll_m"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:src="@drawable/chat_img_1" />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_m"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_toRightOf="@id/iv_profile"
+                android:text="Allen Chander "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="70dp"
-                    android:layout_centerVertical="true"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/chat_img_1" />
-
-
-                <RelativeLayout
-
-                    android:layout_toRightOf="@id/iv_profile"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:text="Allen Chander "
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_name"
-                        android:layout_marginTop="10dp"
-                         android:layout_marginLeft="@dimen/_10sdp"
-                         android:text="8753, Mauricio Walks, Mohali Stadium"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtAddressPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_toRightOf="@id/iv_profile"
+                android:text="8753, Mauricio Walks, Mohali Stadium"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_pro"
+                android:layout_below="@id/iv_profile"
                 android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_accept"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
                     android:layout_weight="1"
                     android:background="@drawable/btn_shape"
@@ -408,7 +323,7 @@
                     android:text="Accept"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="@dimen/_10sdp"
@@ -417,7 +332,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_decline"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
                     android:layout_weight="1"
                     android:background="@drawable/strokegreen"
@@ -425,7 +340,7 @@
                     android:text="Decline"
                     android:textAllCaps="false"
                     android:textColor="@color/green_colour"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
 

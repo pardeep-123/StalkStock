@@ -9,39 +9,69 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import android.view.*
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapFragment
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import com.google.android.libraries.maps.CameraUpdateFactory
+import com.google.android.libraries.maps.GoogleMap
+import com.google.android.libraries.maps.OnMapReadyCallback
+import com.google.android.libraries.maps.SupportMapFragment
+import com.google.android.libraries.maps.model.BitmapDescriptorFactory
+import com.google.android.libraries.maps.model.LatLng
+import com.google.android.libraries.maps.model.MarkerOptions
+import com.google.gson.GsonBuilder
+import com.live.stalkstockcommercial.updateCamera
+import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.CommunicationListner
 import com.stalkstock.driver.HomeActivity
+import com.stalkstock.driver.models.NewOrderResponse
+import com.stalkstock.driver.viewmodel.DriverViewModel
+import com.stalkstock.utils.`interface`.GetLatLongInterface
 import com.stalkstock.utils.others.GPSTracker
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.getPrefrence
+import com.stalkstock.utils.socket.SocketManager
+import com.stalkstock.vender.Utils.CurrentLocationActivity
 import kotlinx.android.synthetic.main.accept_request_alert.*
 import kotlinx.android.synthetic.main.fragment_h_ome.*
 import kotlinx.android.synthetic.main.home_popup.*
-import kotlinx.android.synthetic.main.home_popup.ca_tv
+import okhttp3.RequestBody
+import org.json.JSONObject
+import java.util.*
 
 
-class HomeFragment : Fragment(), OnMapReadyCallback {
+class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
+    GoogleMap.OnMyLocationButtonClickListener,
+    GoogleMap.OnMyLocationClickListener,
+    GetLatLongInterface, SocketManager.SocketInterface, Observer<RestObservable> {
+
+    private lateinit var currentOrder: NewOrderResponse
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1
+    private lateinit var mGoogleMap: GoogleMap
+    lateinit var mapFragment: SupportMapFragment
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_h_ome, container, false)
     }
 
-     var mactivity :HomeActivity ? = null
+    var mactivity: HomeActivity? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,17 +83,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         mactivity = context as HomeActivity
 
     }
+
     var listner: CommunicationListner? = null
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-/* SupportMapFragment map = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        map.getMapAsync(this);*/
-   /*     val mapFragment =
-            mactivity!!.fragmentManager.findFragmentById(R.id.map1) as MapFragment
-        mapFragment.getMapAsync(this)*/
+        mapFragment = getChildFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+        /*     val mapFragment =
+                 mactivity!!.fragmentManager.findFragmentById(R.id.map1) as MapFragment
+             mapFragment.getMapAsync(this)*/
 
         btn_declin.setOnClickListener {
             rl_top.visibility = View.VISIBLE
@@ -84,55 +113,186 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             dialo()
         }
 
+        MyApplication.getSocketManager().onRegister(this)
+
     }
-    private var mMap: GoogleMap? = null
-    override fun onMapReady(googleMap: GoogleMap?) {
-        mMap = googleMap!!
+
+    override fun onLocationGet(latitude: String?, longitude: String?) {
+        mLatitude = latitude!!
+        mLongitude = longitude!!
+        if (mGoogleMap != null)
+            updateCamera(mGoogleMap, mLatitude, mLongitude, 12F)
+        //        completeAddress(latitude!!.toDouble(), longitude!!.toDouble())
+
+    }
+
+    val viewModel: DriverViewModel by viewModels()
+
+
+    override fun onMapReady(p0: GoogleMap?) {
+        this.mGoogleMap = p0!!
         checkLocationPermission()
+        if (mactivity != null) {
+            CurrentLocationActivity(requireActivity())
+        }
+/*
+        if (mModel != null)
+            updateCamera(mGoogleMap, mModel!!.currentLatitude, mModel!!.currentLongitude, 4F)
+*/
+        enabaleMyLocationIfPermitted()
+        mGoogleMap.setOnMyLocationButtonClickListener(this)
+        mGoogleMap.setOnMyLocationClickListener(this)
+        setZoomControlPOsition()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        mactivity
+        val map = HashMap<String, RequestBody>()
+        viewModel.driverOrderRequestAPI(mactivity!!, true, map)
+        viewModel.mResponse.observe(this, this)
+
+    }
+
+    private fun enabaleMyLocationIfPermitted() {
+        val homeActivity = activity as HomeActivity
+        if (ActivityCompat.checkSelfPermission(
+                homeActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                homeActivity,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                homeActivity,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            mGoogleMap.isMyLocationEnabled = true
+            mGoogleMap.uiSettings.isMyLocationButtonEnabled = true
+        }
+
+    }
+
+    override fun onMyLocationButtonClick(): Boolean {
+//        updateCamera(mGoogleMap, mModel!!.currentLatitude, mModel!!.currentLongitude, 10F)
+        return false
+    }
+
+    override fun onMyLocationClick(p0: Location) {
+//        updateCamera(mGoogleMap,p0.latitude.toString(),p0.longitude.toString(),7F)
+    }
+
+    private fun setZoomControlPOsition() {
+        val locationButton =
+            (mapFragment.requireView().findViewById<View>(Integer.parseInt("1"))
+                .getParent() as View).findViewById<View>(
+                Integer.parseInt("2")
+            )
+        val rlp = locationButton.getLayoutParams() as RelativeLayout.LayoutParams
+// position on right bottom
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        val margin = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 10f,
+            resources.displayMetrics
+        ).toInt()
+        val marginBottom = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 120f,
+            resources.displayMetrics
+        ).toInt()
+        rlp.setMargins(margin, margin, margin, marginBottom)
+    }
+
+    override fun getLatLongListner(lat: String, long: String) {
+        this.mLatitude = lat
+        this.mLongitude = long
+        updateCamera(mGoogleMap, mLatitude, mLongitude, 12F)
     }
 
     var mLatitude = ""
     var mLongitude = ""
-  /*  fun checkgps() {
+    /*  fun checkgps() {
 
 
-    }*/
+      }*/
 
-    fun checkgps(){
+    fun checkgps() {
+        val homeActivity = activity as HomeActivity
         gpsTracker = GPSTracker(requireContext())
-        if (!gpsTracker!!.canGetLocation()){
+        if (!gpsTracker!!.canGetLocation()) {
             gpsTracker!!.showSettingsAlert()
-        }else{
+        } else {
             mLatitude = gpsTracker!!.latitude.toString()
             mLongitude = gpsTracker!!.longitude.toString()
-            if (mLatitude.equals("0.0") && mLongitude.equals("0.0") )
+            if (mLatitude.equals("0.0") && mLongitude.equals("0.0"))
                 checkgps()
-            else{
+            else {
                 val sydney: LatLng
 
                 //sydney  = LatLng(getPrefrence(Constant.lat,"0.0").toDouble(), getPrefrence(Constant.long,"0.0").toDouble())
-
+                updateDriverLocationSocket()
                 sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
                 //marker.visible()
 
-                mMap!!.  addMarker(
+                mGoogleMap!!.addMarker(
                     MarkerOptions()
                         .position(sydney)
                         .title("Your are Here").icon(
                             BitmapDescriptorFactory.fromBitmap(
                                 Bitmap.createScaledBitmap(
-                                    BitmapFactory.decodeResource(resources, R.drawable.black_map_circle), 70, 120, false)))
+                                    BitmapFactory.decodeResource(
+                                        resources,
+                                        R.drawable.black_map_circle
+                                    ), 70, 120, false
+                                )
+                            )
+                        )
                 )
 
 
                 val zoomLevel = 12.0f //This goes up to 21
-                mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel))
-                mMap!!.isMyLocationEnabled = false
+                mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel))
+                if (ActivityCompat.checkSelfPermission(
+                        homeActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        homeActivity,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return
+                }
+                mGoogleMap!!.isMyLocationEnabled = false
             }
         }
     }
 
-  fun checkLocationPermission() {
+    private fun updateDriverLocationSocket() {
+        val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("providerId", userId)
+        jsonObject.put("latitude", mLatitude)
+        jsonObject.put("longitude", mLongitude)
+        Log.e(SocketManager.UPDATE_DRIVER_LOCATION, jsonObject.toString())
+        SocketManager.getSocket().sendDataToServer(SocketManager.UPDATE_DRIVER_LOCATION, jsonObject)
+    }
+
+    fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -149,6 +309,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
         }
     }
+
     private val MY_PERMISSION_FINE_LOCATION = 101
 
     var gpsTracker: GPSTracker? = null
@@ -165,6 +326,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) == PackageManager.PERMISSION_GRANTED
                 ) {
+
                     checkgps()
                 }
             }
@@ -180,11 +342,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        MyApplication.getSocketManager().unRegister(this)
+    }
 
     private fun dialogconfirmation() {
-        val  dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.home_popup)
 
@@ -197,12 +361,29 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         dialog.window!!.setGravity(Gravity.CENTER)
 
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.tv_order.setText("Order ID : " + currentOrder.body.orderNo)
+        dialog.txtEstEarning.setText("$" + currentOrder.body.total.toString())
+        dialog.txtDatePopup.setText(currentOrder.body.updatedAt.substring(0, 10))
+        dialog.txtRestLocation.setText(currentOrder.body.vendorDetail.shopAddress)
+        dialog.txtDestinationLocation.setText(currentOrder.body.orderAddress.geoLocation)
+        dialog.txtAddressPopup.setText(currentOrder.body.orderAddress.geoLocation)
+        dialog.tv_name.setText(currentOrder.body.firstName + " " + currentOrder.body.lastName)
+        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.iv_sub)
+        Glide.with(this).load(currentOrder.body.image).into(dialog.iv_profile)
+        /*
+        *                 tv_orderHome.setText("Order ID : "+offeredOrder.body.orderNo)
+                txtDateHome.setText(offeredOrder.body.updatedAt.substring(0,10))
+                tv_nameHome.setText(offeredOrder.body.firstName+" "+offeredOrder.body.lastName)
+                txtAddressHome.setText(offeredOrder.body.orderAddress.geoLocation)
+                Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage)
+                Glide.with(this).load(offeredOrder.body.image).into(iv_profileHome)
+*/
 
         dialog.btn_accept.setOnClickListener {
             dialog.dismiss()
             dialo()
         }
-        dialog.btn_decline.setOnClickListener{
+        dialog.btn_decline.setOnClickListener {
             dialog.dismiss()
             rl_top.visibility = View.VISIBLE
             rl_tv.visibility = View.GONE
@@ -211,8 +392,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         dialog.show()
     }
+
     private fun dialo() {
-        val  dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.accept_request_alert)
 
@@ -230,42 +412,121 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             dialog.dismiss()
             listner!!.getYourFragmentActive(1)
         }
-        dialog.btn_decline1.setOnClickListener{
+        dialog.btn_decline1.setOnClickListener {
             dialog.dismiss()
-            listner!!.getYourFragmentActive(1)
+            listner!!.getYourFragmentActive(0)
         }
 
 
         dialog.show()
 
-      /*  val  dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.accept_request_alert)
+        /*  val  dialog = Dialog(requireContext())
+          dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+          dialog.setContentView(R.layout.accept_request_alert)
 
-        dialog.window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCancelable(false)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.window!!.setGravity(Gravity.CENTER)
+          dialog.window!!.setLayout(
+              WindowManager.LayoutParams.MATCH_PARENT,
+              WindowManager.LayoutParams.WRAP_CONTENT
+          )
+          dialog.setCancelable(false)
+          dialog.setCanceledOnTouchOutside(false)
+          dialog.window!!.setGravity(Gravity.CENTER)
 
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+          dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        dialog.btn_accept1.setOnClickListener {
-            dialog.dismiss()
-            listner!!.getYourFragmentActive(1)
-        }
-        dialog.btn_decline1.setOnClickListener{
-            dialog.dismiss()
-            listner!!.getYourFragmentActive(1)
-        }
+          dialog.btn_accept1.setOnClickListener {
+              dialog.dismiss()
+              listner!!.getYourFragmentActive(1)
+          }
+          dialog.btn_decline1.setOnClickListener{
+              dialog.dismiss()
+              listner!!.getYourFragmentActive(1)
+          }
 
 
-        dialog.show()*/
+          dialog.show()*/
     }
 
+    override fun onSocketCall(event: String?, vararg args: Any?) {
 
+        if (event != null) {
+            Log.e("onSocketCall", event)
+        }
+        when (event) {
+            SocketManager.driverOrderRequest -> {
+                val gson = GsonBuilder().serializeNulls().create()
+
+                val mObject = args[0] as JSONObject
+                try {
+                    Log.e("sockVendorOrderListener", mObject.toString())
+                } catch (e: Exception) {
+                }
+                val offeredOrder =
+                    gson.fromJson(mObject.toString(), NewOrderResponse::class.java) ?: return
+                ca_tv1.visibility = View.VISIBLE
+                tv_orderHome.setText("Order ID : " + offeredOrder.body.orderNo)
+                txtDateHome.setText(offeredOrder.body.updatedAt.substring(0, 10))
+                tv_nameHome.setText(offeredOrder.body.firstName + " " + offeredOrder.body.lastName)
+                txtAddressHome.setText(offeredOrder.body.orderAddress.geoLocation)
+                Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage)
+                Glide.with(this).load(offeredOrder.body.image).into(iv_profileHome)
+                currentOrder = offeredOrder
+
+            }
+        }
+    }
+
+    override fun onSocketConnect(vararg args: Any?) {
+    }
+
+    override fun onSocketDisconnect(vararg args: Any?) {
+    }
+
+    override fun onError(event: String?, vararg args: Any?) {
+    }
+
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+
+                if (it.data is NewOrderResponse) {
+                    val mResponse: NewOrderResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOrder = mResponse
+                        if (currentOrder.body.orderNo != null) {
+                            ca_tv1.visibility = View.VISIBLE
+                            tv_orderHome.setText("Order ID : " + currentOrder.body.orderNo)
+                            txtDateHome.setText(currentOrder.body.updatedAt.substring(0, 10))
+                            tv_nameHome.setText(currentOrder.body.firstName + " " + currentOrder.body.lastName)
+                            txtAddressHome.setText(currentOrder.body.orderAddress.geoLocation)
+                            Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
+                                .into(imgVendorImage)
+                            Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
+                        } else {
+                            ca_tv1.visibility = View.GONE
+                        }
+                    } else {
+                        ca_tv1.visibility = View.GONE
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(mactivity!!, it.data as String, Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(
+                        mactivity!!,
+                        it.error!!.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+//                    showAlerterRed()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
 
 
 }

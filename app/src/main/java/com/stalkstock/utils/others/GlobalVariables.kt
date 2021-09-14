@@ -144,6 +144,7 @@ class GlobalVariables {
         const val logout = "logout"
         const val getProfileDetail = "user/getProfileDetail"
         const val getProfileDetailVendor = "vendor/getProfileDetail"
+        const val vendorChangeOrderStatus = "vendor/changeOrderStatus"
         const val useraddUserAddress = "user/addUserAddress"
         const val userOrderList = "user/order/list"
         const val userOrderDetail = "user/order/detail"
@@ -191,6 +192,7 @@ class GlobalVariables {
         const val editDriverDocumentDetail = "driver/editDriverDocumentDetail"
         const val getDriverProfileDetail = "driver/getProfileDetail"
         const val onlineOffline = "driver/onlineOffline"
+        const val driverOrderRequestAPI = "driver/driverOrderRequest"
         const val getDocumentDetail = "driver/getDocumentDetail"
         const val editDriverProfileDetail = "driver/editDriverProfileDetail"
 
@@ -210,6 +212,7 @@ class GlobalVariables {
         val businessPhone = "buisnessPhone"
         val shopName = "shopName"
         val buisnessTypeId = "buisnessTypeId"
+        val buisnessDeliveryTypeId = "deliveryType"
         val buisnessLicense = "buisnessLicense"
         val website = "website"
         val city = "city"

@@ -38,9 +38,12 @@ public class SocketManager {
 
     public static final String GET_CHAT = "get_message";
     public static final String GET_USER_LIST = "chat_listing";
+    public static final String VendorOrderListener = "vendorOrder";
 
-    public static final String UPDATE_MY_LOCATION = "update_my_current_location";
-    public static final String UPDATE_LOCATION_LISTENER = "update_my_current_location";
+    public static final String driverOrderRequest = "driverOrderRequest";
+
+    public static final String UPDATE_DRIVER_LOCATION = "update_driver_location";
+    public static final String UPDATE_LOCATION_LISTENER = "get_driver_location";
 
     public static final String TRACK_ORDER = "track_order";
     public static final String TRACK_ORDER_LISTENER = "track_order";
@@ -201,11 +204,13 @@ public class SocketManager {
             mSocket.on(CONNECT_LISTNER, onConnectUserListner);
             mSocket.on(RECIEVE_MESSAGE, onRecieveListner);
 
-            mSocket.on(UPDATE_MY_LOCATION, OnUPDATE_MY_LOCATIONListener);
+            mSocket.on(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener);
             mSocket.on(TRACK_ORDER, onTrackOrderListener);
             mSocket.on(SEND_MESSAGE, onSendListner);
             mSocket.on(GET_CHAT, OnGetchatListener);
             mSocket.on(GET_USER_LIST, OnGetUserListener);
+//            mSocket.on(VendorOrderListener, OnVendorOrderListener);
+            mSocket.on(driverOrderRequest, OnVendorOrderListener);
             mSocket.on(CALL_STATUS, OnCallStatusListener);
             mSocket.connect();
         }
@@ -224,10 +229,12 @@ public class SocketManager {
         mSocket.off(CONNECT_LISTNER, onConnectUserListner);
         mSocket.off(RECIEVE_MESSAGE, onRecieveListner);
         mSocket.off(SEND_MESSAGE, onSendListner);
-        mSocket.off(UPDATE_MY_LOCATION, OnUPDATE_MY_LOCATIONListener);
+        mSocket.off(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener);
         mSocket.off(TRACK_ORDER, onTrackOrderListener);
 
         mSocket.off(GET_USER_LIST, OnGetUserListener);
+//        mSocket.off(VendorOrderListener, OnVendorOrderListener);
+        mSocket.off(driverOrderRequest, OnVendorOrderListener);
         mSocket.off(GET_CHAT, OnGetchatListener);
         mSocket.off(CALL_STATUS, OnCallStatusListener);
     }
@@ -421,6 +428,28 @@ public class SocketManager {
 
                     for (SocketInterface observer : observerList) {
                         observer.onSocketCall(GET_USER_LIST, args);
+                    }
+                }
+            });
+        }
+    };
+
+    private Emitter.Listener OnVendorOrderListener = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            // Get a handler that can be used to post to the main thread
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject data = (JSONObject) args[0];
+                    Log.e("VendorOrderListener", data.toString());
+//                    if (mSocketInterface != null) {
+//                        Log.e("response_socket", args.toString());
+//                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
+//                    }
+
+                    for (SocketInterface observer : observerList) {
+                        observer.onSocketCall(driverOrderRequest, args);
                     }
                 }
             });

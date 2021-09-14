@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
 
     <ImageView
         android:layout_width="wrap_content"
@@ -18,13 +18,10 @@
          android:name="com.google.android.gms.maps.MapFragment"
          android:layout_width="match_parent"
          android:layout_height="match_parent" />-->
-
-
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -33,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_130sdp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/aahome" />
 
@@ -47,57 +44,67 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="No pending deliveries"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_ra"
-                android:textSize="22sp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:gravity="center"
-                android:text="@string/look_like_you_do"/>
+                android:text="@string/look_like_you_do" />
         </RelativeLayout>
 
 
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_ok"
-            android:layout_width="450dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_25sdp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="@dimen/_25sdp"
-            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/btn_shape"
             android:gravity="center"
-             android:text="Try Again"
+            android:minHeight="50dp"
+            android:text="Try Again"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <ImageView
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.libraries.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/map" />
+            app:cameraZoom="1"
+            app:mapType="normal"
+            app:uiCompass="false"
+            app:uiRotateGestures="true"
+            app:uiScrollGestures="true"
+            app:uiTiltGestures="true"
+            app:uiZoomControls="false"
+            app:uiZoomGestures="true" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_above="@id/ca_tv1"
             android:layout_alignParentRight="true"
+            android:visibility="gone"
             android:layout_gravity="end|bottom"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
@@ -153,6 +160,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/_10sdp"
             app:cardCornerRadius="8dp"
             app:cardElevation="@dimen/_2sdp">
@@ -164,14 +172,14 @@
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
 
-                    android:id="@+id/tv_order"
+                    android:id="@+id/tv_orderHome"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Order ID : ADS777558"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/value_18sp" />
 
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -179,7 +187,6 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/tv_status"
                     android:text="Status : "
-                    android:textSize="22sp"
                     android:textColor="@color/black" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -189,23 +196,21 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:text="Pending"
-                    android:textSize="22sp"
-
                     android:textColor="@color/orange_colour" />
 
                 <RelativeLayout
                     android:id="@+id/rl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_order"
+                    android:layout_below="@id/tv_orderHome"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:id="@+id/imgVendorImage"
                         android:layout_centerVertical="true"
                         android:src="@drawable/subway" />
 
@@ -213,10 +218,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:id="@+id/txtDateHome"
                         android:layout_centerVertical="true"
                         android:text="10:30am, 20 June 2020"
-                        android:textSize="22sp"
-
                         android:textColor="@color/dark_gray" />
                 </RelativeLayout>
 
@@ -226,49 +230,44 @@
                     android:layout_height="0.5dp"
                     android:layout_below="@id/rl"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/black" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:id="@+id/iv_profileHome"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_below="@id/line"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/chat_img_1" />
 
-                <RelativeLayout
-                    android:layout_alignTop="@+id/iv_profile"
-                    android:layout_alignBottom="@+id/iv_profile"
-                    android:layout_width="match_parent"
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/tv_nameHome"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_toRightOf="@id/iv_profile"
-                    >
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         android:layout_marginLeft="12dp"
-                        android:text="Allen Chander "
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
+                    android:layout_below="@id/line"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/iv_profileHome"
+                    android:text="Allen Chander "
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_name"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="12dp"
-                         android:text="8753, Mauricio Walks, Mohali Stadium"
-                        android:textColor="@color/black"
-                        android:textSize="22sp" />
-                </RelativeLayout>
-
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtAddressHome"
+                    android:layout_below="@id/tv_nameHome"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/iv_profileHome"
+                    android:text="8753, Mauricio Walks, Mohali Stadium"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/iv_profile"
+                    android:layout_below="@id/iv_profileHome"
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -279,7 +278,7 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btn_signup"
                         android:layout_width="0dp"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:layout_alignParentBottom="true"
                         android:layout_weight="1"
                         android:background="@drawable/btn_shape"
@@ -288,7 +287,7 @@
                         android:text="Accept"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
 
                     <View
                         android:layout_width="@dimen/_10sdp"
@@ -297,7 +296,7 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btn_declin"
                         android:layout_width="0dp"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:layout_alignParentBottom="true"
                         android:layout_weight="1"
                         android:background="@drawable/strokegreen"
@@ -305,7 +304,7 @@
                         android:text="Decline"
                         android:textAllCaps="false"
                         android:textColor="@color/green_colour"
-                        android:textSize="17sp" />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
 

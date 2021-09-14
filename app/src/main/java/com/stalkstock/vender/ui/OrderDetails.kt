@@ -1,7 +1,14 @@
 package com.stalkstock.vender.ui
 
+import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -15,6 +22,7 @@ import com.stalkstock.utils.extention.checkObjectNull
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.OrderDetailVendorResponse
+import com.stalkstock.vender.Model.VendorCommonModel
 import com.stalkstock.vender.adapter.MyVendorOrderProductAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
 import com.tamam.utils.others.AppUtils
@@ -55,6 +63,8 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
                 text_detailes4.text = stringExtra
             }
         }
+
+        ltStatusChange.setOnClickListener { dialogSpinner() }
 
         /*val intent = intent
         val text = intent.getStringExtra("ke")
@@ -104,6 +114,55 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
             getOrderDetail(intent.getStringExtra("orderId")!!)
     }
 
+    private fun dialogSpinner() {
+
+        val dialogSuccessful = Dialog(Objects.requireNonNull(this), R.style.Theme_Dialog)
+        dialogSuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogSuccessful.setContentView(R.layout.dialog_spinner)
+        dialogSuccessful.setCancelable(true)
+        Objects.requireNonNull(dialogSuccessful.window)!!
+            .setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+        dialogSuccessful.setCanceledOnTouchOutside(true)
+        dialogSuccessful.window!!.setGravity(Gravity.CENTER)
+
+        val ltStatus1 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus1)
+        val ltStatus2 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus2)
+        val ltStatus3 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus3)
+        val ltStatus4 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus4)
+        ltStatus1.setOnClickListener {
+            changeStatus("1") //accept
+            dialogSuccessful.dismiss()
+        }
+        ltStatus2.setOnClickListener {
+            changeStatus("2") //Packed
+            dialogSuccessful.dismiss()
+        }
+        ltStatus3.setOnClickListener {
+            changeStatus("4") //user picked order from restaurant     order delivered
+            dialogSuccessful.dismiss()
+        }
+        ltStatus4.setOnClickListener {
+            changeStatus("6") //order rejected
+            dialogSuccessful.dismiss()
+        }
+
+        dialogSuccessful.show()
+
+    }
+
+    private fun changeStatus(s: String) {
+        val hashMap = HashMap<String, String>()
+        if (intent.hasExtra("orderId")) {
+            hashMap.put("orderId", intent.getStringExtra("orderId").toString())
+            hashMap.put("status",s)
+            viewModel.vendorChangeOrderStatus(this, true, hashMap)
+            viewModel.mResponse.observe(this, this)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         if (MyApplication.instance.getString("usertype") == "3") {
@@ -130,7 +189,6 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-
                 if (it.data is OrderDetailVendorResponse) {
                     val mResponse: OrderDetailVendorResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
@@ -153,11 +211,24 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
                                 tvDeliveryLocation.visibility = View.GONE
                                 tv_deli_to!!.visibility = View.GONE
                             }
-                        }else{
+                        } else {
                             tvDeliveryLocation.visibility = View.GONE
                             tv_deli_to!!.visibility = View.GONE
                         }
                     } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                }
+                if (it.data is VendorCommonModel)
+                {
+                    val mResponse: VendorCommonModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        AppUtils.showSuccessAlert(this, mResponse.message)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            finish()
+                        }, 2000)
+                    }
+                    else {
                         AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }

@@ -63,6 +63,7 @@
                     android:src="@drawable/subway" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/txtDatePopup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -107,6 +108,7 @@
                             android:src="@drawable/location1" />
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:id="@+id/txtKmAway"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
@@ -142,6 +144,7 @@
                             android:src="@drawable/dollar" />
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:id="@+id/txtEstEarning"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
@@ -176,30 +179,30 @@
                     <ImageView
 
                         android:id="@+id/iv_circle"
-                        android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/radiobutton" />
 
                     <ImageView
                         android:id="@+id/iv_sub"
-                        android:layout_toRightOf="@+id/iv_circle"
                         android:layout_width="@dimen/_32sdp"
                         android:layout_height="@dimen/_20sdp"
-
                         android:layout_alignTop="@+id/iv_circle"
                         android:layout_alignBottom="@+id/iv_circle"
                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/iv_circle"
                         android:src="@drawable/subway" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_toRightOf="@+id/iv_sub"
+                        android:id="@+id/txtRestLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/iv_circle"
                         android:layout_alignBottom="@+id/iv_circle"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/iv_sub"
                         android:text="8753, Mauricio Walks, Mohali Stadium"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
@@ -208,9 +211,9 @@
                     <View
                         android:id="@+id/views"
 
-                        android:layout_below="@+id/iv_circle"
-                          android:layout_width="50dp"
+                        android:layout_width="50dp"
                         android:layout_height="100dp"
+                        android:layout_below="@+id/iv_circle"
 
                         android:layout_marginLeft="-18dp"
                         android:background="@drawable/line" />
@@ -218,29 +221,29 @@
 
                     <ImageView
                         android:id="@+id/iv_loc"
-                        android:layout_below="@+id/views"
-                        android:tint="@color/black"
-                        android:layout_alignLeft="@+id/iv_circle"
-                        android:layout_alignRight="@+id/iv_circle"
                         android:layout_width="@dimen/_18sdp"
                         android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/location_icon" />
+                        android:layout_below="@+id/views"
+                        android:layout_alignLeft="@+id/iv_circle"
+                        android:layout_alignRight="@+id/iv_circle"
+                        android:src="@drawable/location_icon"
+                        android:tint="@color/black" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_toRightOf="@+id/iv_loc"
-                        android:layout_alignTop="@+id/iv_loc"
-                        android:layout_alignBottom="@+id/iv_loc"
-                        android:gravity="center_vertical"
+                        android:id="@+id/txtDestinationLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_loc"
+                        android:layout_alignBottom="@+id/iv_loc"
                         android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_toRightOf="@+id/iv_loc"
+                        android:gravity="center_vertical"
                         android:text="8753, Mauricio Walks, Mohali Stadium"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
 
 
                 </RelativeLayout>
-
 
 
                 <RelativeLayout
@@ -286,6 +289,7 @@
                 android:textSize="18sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtAddressPopup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_name"

@@ -212,6 +212,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_business_description">Please enter business description</string>
     <string name="please_enter_business_license">Please enter business license</string>
     <string name="please_enter_business_type">Please enter business Type</string>
+    <string name="please_enter_business_delivery_type">Please enter business delivery Type</string>
     <string name="please_enter_mobile_number">Please enter mobile number</string>
     <string name="please_enter_valid_number">Please enter valid number</string>
     <string name="please_enter_business_phone_number">Please enter business phone number</string>
@@ -238,6 +239,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_registration_number">Please enter registration number</string>
     <string name="please_enter_registration_expdate">Please enter registration expiration date</string>
     <string name="enter_valid_date">Enter date in \"yyyy-mm-dd\" format</string>
+    <string name="select_your_business_delivery_type">Select your business delivery type</string>
     <string-array name="Select_Category">
         <item>Select category</item>
         <item>Vegetables</item>
@@ -502,5 +504,11 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
         <item>Select your business type</item>
         <item>Big stocklist</item>
         <item>Wholesaler\’s</item>
+    </string-array>
+    <string-array name="Select_business_delivery_type">
+        <item>Select your business delivery type</item>
+        <item>Pickup Only</item>
+        <item>Home Delivery Only</item>
+        <item>Both Pickup and Home Delivery</item>
     </string-array>
 </resources>

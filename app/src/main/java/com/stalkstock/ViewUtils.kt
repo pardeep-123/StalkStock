@@ -13,8 +13,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.android.libraries.maps.CameraUpdateFactory
+import com.google.android.libraries.maps.GoogleMap
+import com.google.android.libraries.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 import com.stalkstock.R
+import com.stalkstock.utils.extention.checkStringNull
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
 
@@ -76,7 +83,27 @@ fun showSnackBar(activity: Activity, messageToShow: String): Snackbar?{
 }
 
 
-
+fun updateCamera(mGoogleMap: GoogleMap, latitude:String, longitude:String, zoom: Float) {
+//        Thread(Runnable {
+    // Moving CameraPosition to last clicked position
+    try {
+        if (!checkStringNull(latitude)) {
+            GlobalScope.launch(Dispatchers.Main) {
+                mGoogleMap.moveCamera(
+                    CameraUpdateFactory.newLatLng(
+                        LatLng(
+                            latitude.toDouble(),
+                            longitude.toDouble()
+                        )
+                    )
+                )
+                mGoogleMap!!.animateCamera(CameraUpdateFactory.zoomTo(zoom))
+            }
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
 
 fun <T> Context.OpenActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
     var intent = Intent(this, it)

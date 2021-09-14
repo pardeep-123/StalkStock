@@ -24,6 +24,34 @@ class VendorViewModel : ViewModel() {
 
 
     @SuppressLint("CheckResult")
+    fun vendorChangeOrderStatus(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.vendorChangeOrderStatus(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        vendorChangeOrderStatus(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
     fun getVendorBusinessDetailApi(
         activity: Activity,
         showLoader: Boolean

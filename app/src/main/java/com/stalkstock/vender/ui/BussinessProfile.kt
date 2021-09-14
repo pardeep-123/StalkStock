@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_bussiness_profile.*
 class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
 
     val viewModel: VendorViewModel by viewModels()
-    var mData:VendorBusinessDetailResponse.Body? = null
+    var mData: VendorBusinessDetailResponse.Body? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +37,7 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                         EditBussinessProfile::class.java
                     ).putExtra("data", mData)
                 )
-            }
-            else
-            {
+            } else {
                 AppUtils.showNoInternetAlert(this,
                     getString(R.string.no_internet_connection),
                     object : OnNoInternetConnectionListener {
@@ -61,6 +59,7 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
         viewModel.getVendorBusinessDetailApi(this, true)
         viewModel.mResponse.observe(this, this)
     }
+
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -77,6 +76,10 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                         business_license.setText(vendorDetail.buisnessLicense)
                         businessemailid.setText(mResponse.body.email)
                         businesstypes.setText(vendorDetail.buisnessTypeName)
+                        var array =
+                            this.resources.getStringArray(R.array.Select_business_delivery_type)
+                        val get = array.get(vendorDetail.deliveryType + 1)
+                        txtbusinessDeliverytypes.setText(get)
                         businessmobile.setText(mResponse.body.email)
                         businesstelephonenumber.setText(vendorDetail.buisnessPhone)
                         businesswebsitename.setText(vendorDetail.website)

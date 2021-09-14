@@ -1,6 +1,5 @@
 package com.stalkstock.driver;
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -9,10 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.CommunicationListner
@@ -21,16 +18,14 @@ import com.stalkstock.driver.fragment.AccountFragment
 import com.stalkstock.driver.fragment.HomeFragment
 import com.stalkstock.driver.fragment.MyRequestFragment
 import com.stalkstock.driver.fragment.PaymentFragment
-import com.stalkstock.driver.models.DriverProfileDetailResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
-import com.stalkstock.utils.others.clearPrefrences
 import com.stalkstock.utils.others.getPrefrence
 import com.tamam.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_home.*
 import okhttp3.RequestBody
-import java.util.HashMap
+import java.util.*
 
 
 class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
@@ -60,8 +55,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         tv_cart = findViewById(R.id.tv_cart)
         tv_account = findViewById(R.id.tv_account)
 
-        if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0)!=null) {
-            if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0)== 1)
+        if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) != null) {
+            if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) == 1)
                 iv_notification.isChecked = true
             else
                 iv_notification.isChecked = false
@@ -107,7 +102,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         tv4.setTextColor(resources.getColor(R.color.colorIcon))
         tv5.setTextColor(resources.getColor(R.color.colorIcon))
     }
-
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
@@ -179,15 +173,17 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
     }
 
     override fun getYourFragmentActive(value: Int) {
-        iv_im.visibility = View.GONE
-        iv_notification.visibility = View.GONE
-        tv_titele.visibility = View.VISIBLE
-        tv_titele.text = "My Requests"
-        iv_home.setImageDrawable(resources.getDrawable(R.drawable.home_black_icon1))
-        iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_green_icon1))
-        iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
-        iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a14dooler1))
-        switchFragment(MyRequestFragment())
+        if (value == 1) {
+            iv_im.visibility = View.GONE
+            iv_notification.visibility = View.GONE
+            tv_titele.visibility = View.VISIBLE
+            tv_titele.text = "My Requests"
+            iv_home.setImageDrawable(resources.getDrawable(R.drawable.home_black_icon1))
+            iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_green_icon1))
+            iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
+            iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a14dooler1))
+            switchFragment(MyRequestFragment())
+        }
     }
 
     override fun onChanged(it: RestObservable?) {

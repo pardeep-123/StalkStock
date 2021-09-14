@@ -1,259 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/past_details"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        tools:ignore="MissingConstraints">
-
-        <androidx.cardview.widget.CardView
+        <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="2dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="10dp">
-
-            <LinearLayout
-                android:id="@+id/past_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:background="#fff"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tom Martin"
-                    android:textColor="#000"
-                    android:textSize="22sp"
-                    >
-                </com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Order Number"
-                        android:textColor="#000000"
-                        android:textStyle="normal"
-                        android:textSize="22sp"                >
-                    </com.stalkstock.utils.custom.TitiliumRegularTextView>
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:text="153633KLL"
-                        android:textColor="#000000"
-                        android:textStyle="normal"
-                        android:textSize="22sp">
-                    </com.stalkstock.utils.custom.TitiliumRegularTextView>
-
-                </LinearLayout>
-                <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="160dp"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:textSize="16sp"
-                    android:text="Offline Payment"
-                    android:textColor="#fff"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_shape1"></com.stalkstock.utils.custom.TitiliumBoldButton>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="2dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="10dp">
+            android:text="James Author"
+            android:textColor="#000"
+            android:textSize="17sp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fff"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
 
-            android:orientation="vertical">
-
-            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="James Author"
-                android:textColor="#000"
-                android:textSize="22sp"
-                >
-            </com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Order Number"
-                    android:textColor="#000000"
-                    android:textStyle="normal"
-                    android:textSize="22sp"                    >
-                </TextView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="153633KLL"
-                    android:textColor="#000000"
-                    android:textStyle="normal"
-                    android:textSize="22sp">
-                </TextView>
+                android:text="Order Number"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"></TextView>
 
-            </LinearLayout>
-            <RelativeLayout
+            <TextView
+                android:id="@+id/txtOrderNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.stalkstock.utils.custom.TitiliumSemiBoldButton
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="160dp"
-                    android:layout_height="40dp"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="153633KLL"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"></TextView>
 
-                    android:text="Paid Online"
-                    android:textColor="#fff"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_shape1"></com.stalkstock.utils.custom.TitiliumSemiBoldButton>
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:text="Refund"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_toLeftOf="@+id/refundmoney"
-                    android:gravity="center"
-
-                     android:layout_marginRight="10dp"
-                    android:textColor="#E60F0F"
-                    android:textStyle="normal"
-                    android:textSize="22sp">
-                </com.stalkstock.utils.custom.TitiliumRegularTextView>
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:gravity="center_horizontal"
-                    android:id="@+id/refundmoney"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                     android:layout_marginTop="@dimen/_8sdp"
-                    android:text="$11.96"
-                    android:layout_marginBottom="@dimen/_10sdp"
-
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#DD1212"
-                    android:textStyle="normal"
-                    android:textSize="22sp">
-                </com.stalkstock.utils.custom.TitiliumRegularTextView>
-
-
-            </RelativeLayout>
         </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="2dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="10dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
 
-            android:orientation="vertical">
-            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="James Author"
-                android:textColor="#000"
-                android:textSize="22sp"
-                >
-            </com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
-            <LinearLayout
+            <com.stalkstock.utils.custom.TitiliumSemiBoldButton
+                android:id="@+id/btnModeOfPayment"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/current_button"
+                android:text="Paid Online"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtRefund"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Order Number"
-                    android:textColor="#000000"
-                    android:textStyle="normal"
-                    android:textSize="22sp">
-                </TextView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="153633KLL"
-                    android:textColor="#000000"
-                    android:textStyle="normal"
-                    android:textSize="22sp">
-                </TextView>
+                android:layout_alignRight="@+id/refundmoney"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="Refund"
+                android:textColor="#E60F0F"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
 
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtRefundmoney"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.stalkstock.utils.custom.TitiliumSemiBoldButton
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="160dp"
-                    android:layout_height="40dp"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="$11.96"
+                android:textColor="#DD1212"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
 
-                    android:text="Paid Online"
-                    android:textColor="#fff"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_shape1"/>
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:text="Refund Complete"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#8BC34A"
-                    android:textStyle="normal"
-                    android:textSize="22sp"/>
-
-
-
-            </RelativeLayout>
-        </LinearLayout>
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtRefundComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="Refund Complete"
+                android:textColor="#8BC34A"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone"></com.stalkstock.utils.custom.TitiliumRegularTextView>
 
 
-        </androidx.cardview.widget.CardView>
+        </RelativeLayout>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
