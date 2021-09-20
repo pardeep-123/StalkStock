@@ -196,8 +196,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
             hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
             hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
             hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
-            hashMap[GlobalVariables.PARAM.device_token] =
-                getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
+            hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
             //Api will call here
 
             viewModel.postuserloginApi(this, true, hashMap)

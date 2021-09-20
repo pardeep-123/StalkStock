@@ -16,7 +16,7 @@ import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.VendorBusinessDetailResponse
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_bussiness_profile.*
 
 class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {

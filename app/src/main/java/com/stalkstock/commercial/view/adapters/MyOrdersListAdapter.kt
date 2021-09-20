@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.adapters.myorders
+package com.stalkstock.commercial.view.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -36,18 +36,18 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<ModelPojo.MyO
 
         fun initalize(list: ArrayList<ModelPojo.MyOrdersListModel>, position: Int){
 
-            image.setImageResource(list.get(position).image)
-            brandname.text = list.get(position).brandName
-            city.text = list.get(position).cityname
-            country.text = list.get(position).countryname
-            description.text = list.get(position).description
-            date.text = list.get(position).date
-            time.text = list.get(position).time
-            price.text = list.get(position).price
-            status.text = list.get(position).status
+            image.setImageResource(list[position].image)
+            brandname.text = list[position].brandName
+            city.text = list[position].cityname
+            country.text = list[position].countryname
+            description.text = list[position].description
+            date.text = list[position].date
+            time.text = list[position].time
+            price.text = list[position].price
+            status.text = list[position].status
 
             itemView.setOnClickListener {
-                listner!!.onMyOrdersItemClickListner(list, position)
+                listner.onMyOrdersItemClickListner(list, position)
             }
 
             if((status.text as String?).equals("Pending",true)){
@@ -56,9 +56,6 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<ModelPojo.MyO
                 time.visibility=View.VISIBLE
                 itemView.comma2.visibility= View.VISIBLE
             }else{
-/*
-                status.setTextColor(Color.parseColor("#459972"))
-*/
                 status.setTextColor(Color.parseColor("#7DB733"))
                 date.visibility=  View.GONE
                 time.visibility=View.GONE

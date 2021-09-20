@@ -21,7 +21,7 @@ import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*

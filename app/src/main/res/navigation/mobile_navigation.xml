@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.live.stalkstockcommercial.ui.view.fragments.myorders.MyOrdersFragment"
+        android:name="com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment"
         android:label="@string/title_myOrders"
         tools:layout="@layout/fragment_my_orders" />
 

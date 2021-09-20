@@ -26,7 +26,7 @@ import com.stalkstock.consumer.model.RecentSearchListResponse
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.adapter.RecentSearchAdapter
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_search_screen.*
 import kotlinx.android.synthetic.main.activity_search_screen.view.*
 import okhttp3.RequestBody

@@ -18,7 +18,6 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.stalkstock.R
@@ -30,7 +29,7 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.extention.checkObjectNull
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.others.CommonMethods
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget

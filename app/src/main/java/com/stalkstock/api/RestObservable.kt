@@ -10,7 +10,7 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.utils.others.clearPrefrences
 
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 
 import okhttp3.ResponseBody
 import java.io.IOException

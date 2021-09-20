@@ -29,7 +29,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.clearPrefrences
 import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.fragment_account_consumer.*
 import okhttp3.RequestBody
 import java.util.*

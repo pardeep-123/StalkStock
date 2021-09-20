@@ -17,7 +17,7 @@ import com.stalkstock.consumer.activities.ThanksActivity
 import com.stalkstock.consumer.model.*
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.toolbar.*
 

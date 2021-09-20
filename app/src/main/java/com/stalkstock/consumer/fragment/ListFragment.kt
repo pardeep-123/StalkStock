@@ -18,7 +18,7 @@ import com.stalkstock.consumer.adapter.MyordersAdapter
 import com.stalkstock.consumer.model.OrderListModel
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -43,14 +43,11 @@ class ListFragment : Fragment(), Observer<RestObservable> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-       /* adapter = MyordersAdapter(mActivity,mOrderArrayList)
-        myorder_recycle!!.setAdapter(adapter)*/
 
         viewModel.homeResponse.observe(mActivity, this)
         adapter = MyordersAdapter(mActivity,mOrderArrayList)
-        view.myorder_recycle.setAdapter(adapter)
+        view.myorder_recycle.adapter = adapter
         view.myorder_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -58,11 +55,7 @@ class ListFragment : Fragment(), Observer<RestObservable> {
                     if (currentOffset > 1 && mOrderArrayList.size > 9)
                         getOrderList()
                 }
-            }
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
+            } })
 
         return view
     }
@@ -79,10 +72,9 @@ class ListFragment : Fragment(), Observer<RestObservable> {
             mOrderArrayList.clear()
         }
         val hashMap = HashMap<String, String>()
-        hashMap.put("offset", currentOffset.toString())
-        hashMap.put("limit", "10")
+        hashMap["offset"] = currentOffset.toString()
+        hashMap["limit"] = "10"
         viewModel.getOrderListAPI(mActivity, true, hashMap)
-
 
     }
 

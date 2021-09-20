@@ -24,7 +24,7 @@ import com.stalkstock.vender.Model.ModelVendorProductList
 import com.stalkstock.vender.adapter.TestAdapter
 import com.stalkstock.vender.ui.*
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_home_two_fragment.*
 import okhttp3.RequestBody
 import com.stalkstock.consumer.activities.FilterActivity

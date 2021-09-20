@@ -48,14 +48,13 @@
             >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-
                 android:id="@+id/iv_orderTab"
+                android:layout_width="wrap_content"
 
-                android:src="@drawable/list_black_icon1"
-                />
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:src="@drawable/list_black_icon1" />
 
         </RelativeLayout>
 

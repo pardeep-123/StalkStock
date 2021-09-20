@@ -18,7 +18,7 @@ import com.stalkstock.api.Status
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_forgot_password.btn_signin
 import kotlinx.android.synthetic.main.activity_forgot_password.emailEdittext
 import kotlinx.android.synthetic.main.toolbar.*

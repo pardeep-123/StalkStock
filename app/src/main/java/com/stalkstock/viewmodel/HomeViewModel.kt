@@ -11,7 +11,7 @@ import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.consumer.model.PlaceOrderModel
 import com.stalkstock.utils.others.Util
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody

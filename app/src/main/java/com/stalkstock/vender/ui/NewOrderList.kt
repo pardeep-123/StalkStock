@@ -14,7 +14,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.VendorOrderListResponse
 import com.stalkstock.vender.adapter.NewOrderAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_new_order_list.*
 import java.util.*
 import kotlin.collections.ArrayList

@@ -25,7 +25,7 @@ import com.stalkstock.vender.Model.OrderDetailVendorResponse
 import com.stalkstock.vender.Model.VendorCommonModel
 import com.stalkstock.vender.adapter.MyVendorOrderProductAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_order_details.*
 import java.util.*
 
@@ -45,22 +45,27 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
 
         if (intent.hasExtra("key")) {
             val stringExtra = intent.getStringExtra("key")
-            if (stringExtra.equals("New")) {
-                mStatus = 0
-                text_detailes4.setTextColor(resources.getColor(R.color.red_bid))
-                text_detailes4.visibility = View.VISIBLE
-                text_detailes4.text = stringExtra
-            } else if (stringExtra.equals("In Progress")) {
-                text_detailes2.visibility = View.VISIBLE
-                mStatus = 1
-                text_detailes2.text = stringExtra
-            } else if (stringExtra.equals("Ready For Pickup")) {
-                text_detailes3.visibility = View.VISIBLE
-                text_detailes3.text = stringExtra
-                mStatus = 3
-            } else if (stringExtra.equals("Delivered")) {
-                text_detailes4.visibility = View.VISIBLE
-                text_detailes4.text = stringExtra
+            when {
+                stringExtra.equals("New") -> {
+                    mStatus = 0
+                    text_detailes4.setTextColor(resources.getColor(R.color.red_bid))
+                    text_detailes4.visibility = View.VISIBLE
+                    text_detailes4.text = stringExtra
+                }
+                stringExtra.equals("In Progress") -> {
+                    text_detailes2.visibility = View.VISIBLE
+                    mStatus = 1
+                    text_detailes2.text = stringExtra
+                }
+                stringExtra.equals("Ready For Pickup") -> {
+                    text_detailes3.visibility = View.VISIBLE
+                    text_detailes3.text = stringExtra
+                    mStatus = 3
+                }
+                stringExtra.equals("Delivered") -> {
+                    text_detailes4.visibility = View.VISIBLE
+                    text_detailes4.text = stringExtra
+                }
             }
         }
 
@@ -120,8 +125,7 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
         dialogSuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogSuccessful.setContentView(R.layout.dialog_spinner)
         dialogSuccessful.setCancelable(true)
-        Objects.requireNonNull(dialogSuccessful.window)!!
-            .setLayout(
+        Objects.requireNonNull(dialogSuccessful.window)!!.setLayout(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT
             )
@@ -137,7 +141,7 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
             dialogSuccessful.dismiss()
         }
         ltStatus2.setOnClickListener {
-            changeStatus("2") //Packed
+            changeStatus("3") //Packed
             dialogSuccessful.dismiss()
         }
         ltStatus3.setOnClickListener {
@@ -156,8 +160,8 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
     private fun changeStatus(s: String) {
         val hashMap = HashMap<String, String>()
         if (intent.hasExtra("orderId")) {
-            hashMap.put("orderId", intent.getStringExtra("orderId").toString())
-            hashMap.put("status",s)
+            hashMap["orderId"] = intent.getStringExtra("orderId").toString()
+            hashMap["status"] = s
             viewModel.vendorChangeOrderStatus(this, true, hashMap)
             viewModel.mResponse.observe(this, this)
         }
@@ -181,7 +185,7 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
 
     private fun getOrderDetail(orderId: String) {
         val hashMap = HashMap<String, String>()
-        hashMap.put("orderId", orderId)
+        hashMap["orderId"] = orderId
         viewModel.orderDetailVendorApi(this, true, hashMap)
         viewModel.mResponse.observe(this, this)
     }

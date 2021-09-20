@@ -2,7 +2,6 @@ package com.stalkstock.vender.vendorviewmodel
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
@@ -10,7 +9,7 @@ import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.utils.others.Util
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody

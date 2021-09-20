@@ -9,7 +9,7 @@ import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.utils.others.Util
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
@@ -180,6 +180,34 @@ class DriverViewModel : ViewModel() {
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             restApiInterface.driveronlineOffline(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        driveronlineOffline(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    //accept reject order
+    @SuppressLint("CheckResult")
+    fun driverAcceptRejectOrder(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.driverAcceptRejectOrder(hashMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

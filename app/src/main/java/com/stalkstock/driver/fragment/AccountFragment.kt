@@ -17,7 +17,6 @@ import com.stalkstock.advertiser.activities.*
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.ManageAddress
-import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.driver.DriverInformationActivity
 import com.stalkstock.driver.HomeActivity
@@ -27,7 +26,7 @@ import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.clearPrefrences
 import com.stalkstock.utils.others.savePrefrence
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.fragment_account2.*
 import kotlinx.android.synthetic.main.fragment_account2.lin_editProfile
 import kotlinx.android.synthetic.main.fragment_account2.toggle1

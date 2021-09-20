@@ -36,7 +36,6 @@ class MainConsumerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         context = this
         home = findViewById(R.id.home)
         list = findViewById(R.id.list)
@@ -54,7 +53,6 @@ class MainConsumerActivity : BaseActivity() {
         tv_cart = findViewById(R.id.tv_cart)
         tv_account = findViewById(R.id.tv_account)
         if (savedInstanceState == null) {
-            // backgroundChange(home,list,cart,profile);
             switchFragment(HomeCounsumerFragment())
         }
         home.setOnClickListener(View.OnClickListener {

@@ -15,7 +15,7 @@ import com.stalkstock.consumer.model.ModelHelpContent
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_help.*
 import kotlinx.android.synthetic.main.toolbar.*
 

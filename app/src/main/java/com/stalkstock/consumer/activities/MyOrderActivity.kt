@@ -13,7 +13,7 @@ import com.stalkstock.consumer.adapter.MyordersAdapter
 import com.stalkstock.consumer.model.ModelProductVendorList
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_my_order.*
 import java.util.HashMap
 
@@ -32,10 +32,10 @@ class MyOrderActivity : AppCompatActivity(), Observer<RestObservable> {
             public void onClick(View view) {
 onBackPressed();            }
         });*/
-        ivBackButton.setOnClickListener({ onBackPressed() })
+        ivBackButton.setOnClickListener { onBackPressed() }
 //        adapter = MyordersAdapter(this, mOrderArrayList)
-        myorder_recycle.setLayoutManager(LinearLayoutManager(this))
-        myorder_recycle.setAdapter(adapter)
+        myorder_recycle.layoutManager = LinearLayoutManager(this)
+        myorder_recycle.adapter = adapter
     }
 
     override fun onResume() {

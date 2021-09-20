@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.stalkstock.R
+import com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment
 import kotlinx.android.synthetic.main.bottom_layout.*
 
 
@@ -56,8 +57,8 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
                         iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
                         iv_accountTab.setImageResource(R.drawable.user_black_icon)
                         val f = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-                        if (f !is com.live.stalkstockcommercial.ui.view.fragments.myorders.MyOrdersFragment) {
-                            switchFragment(R.id.nav_host_fragment, com.live.stalkstockcommercial.ui.view.fragments.myorders.MyOrdersFragment())
+                        if (f !is com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment) {
+                            switchFragment(R.id.nav_host_fragment, com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment())
                         } else {
                         }
                     }
@@ -140,8 +141,8 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
             textColorChange(tv_order!!,tv_home!!, tv_cart!!, tv_account!!)
 
             val f = supportFragmentManager.findFragmentById(R.id.rl_content_frame)
-            if (f !is com.live.stalkstockcommercial.ui.view.fragments.myorders.MyOrdersFragment) {
-                switchFragment(R.id.rl_content_frame, com.live.stalkstockcommercial.ui.view.fragments.myorders.MyOrdersFragment())
+            if (f !is MyOrdersFragment) {
+                switchFragment(R.id.rl_content_frame, MyOrdersFragment())
             } else {
             }
         }

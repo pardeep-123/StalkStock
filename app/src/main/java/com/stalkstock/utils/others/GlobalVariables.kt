@@ -195,6 +195,7 @@ class GlobalVariables {
         const val driverOrderRequestAPI = "driver/driverOrderRequest"
         const val getDocumentDetail = "driver/getDocumentDetail"
         const val editDriverProfileDetail = "driver/editDriverProfileDetail"
+        const val acceptRejectOrder = "driver/acceptRejectOrder"    //1=> accept 2=> reject
 
     }
 
@@ -203,7 +204,7 @@ class GlobalVariables {
         val password = "password"
         val device_type = "device_type"
         val device_token = "device_token"
-        val android_device_type = "1"
+        val android_device_type = "0"
         val phone = "phone"
         val image = "image"
         val firstname = "firstName"

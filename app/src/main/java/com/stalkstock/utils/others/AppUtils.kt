@@ -1,4 +1,4 @@
-package com.tamam.utils.others
+package com.stalkstock.utils.others
 
 import android.app.Activity
 import android.content.Context
@@ -8,6 +8,7 @@ import android.graphics.Matrix
 import android.graphics.Paint
 import android.net.ConnectivityManager
 import android.text.format.DateFormat
+import android.util.Log
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.R
 import com.tapadoo.alerter.Alerter
@@ -129,15 +130,22 @@ object AppUtils {
 
     fun changeDateFormat(dateString: String, from: String, to: String): String {
         //dd.MMM.yyyy
+        Log.e("dateChanged","======dateString==1=$dateString")
+        Log.e("dateChanged","======dateString==2=$from")
+        Log.e("dateChanged","======dateString==3=$to")
 
-        val sdf = SimpleDateFormat(from, Locale.US);
-//        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        val date = sdf.parse(dateString);
+        val sdf = SimpleDateFormat(from,Locale.getDefault());
+        //val sdf = SimpleDateFormat(from, Locale.US);
 
-        // var  dateFormat =  SimpleDateFormat("yyyy-MM-dd");
-        var dateFormat = SimpleDateFormat(to, Locale.US);
-        var dateString = dateFormat.format(date)
-        return dateString
+        val dateFormat = SimpleDateFormat(to, Locale.getDefault())
+
+        sdf.timeZone = TimeZone.getTimeZone("GMT")
+        dateFormat.timeZone = TimeZone.getTimeZone("GMT")
+        //var dateFormat = SimpleDateFormat(to, Locale.US);
+        val newDate = dateFormat.format(sdf.parse(dateString)!!)
+
+        Log.e("dateChanged","======dateString===$dateString")
+        return newDate
     }
 
 }

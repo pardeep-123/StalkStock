@@ -37,7 +37,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CurrentLocationActivity
 import com.stalkstock.vender.ui.MessageActivity
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import com.viewpagerindicator.CirclePageIndicator
 import okhttp3.RequestBody
 import com.stalkstock.consumer.activities.FilterActivity

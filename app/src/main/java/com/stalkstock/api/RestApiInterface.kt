@@ -21,7 +21,6 @@ interface RestApiInterface {
     vendor:-business@yopmail.com    123456
     consumer:-anikaesash@mailinator.com 123456
     driver:-testdriver1@yopmail.com 123456
-
     */
     /*
 1=>user
@@ -270,6 +269,12 @@ interface RestApiInterface {
     @Multipart
     @PUT(URL.onlineOffline)
     fun driveronlineOffline(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<UserCommonModel>
+
+    @Multipart
+    @PUT(URL.acceptRejectOrder)
+    fun driverAcceptRejectOrder(
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<UserCommonModel>
 

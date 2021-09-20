@@ -26,7 +26,7 @@ import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.vender.Model.UpdateVendorProfileModel
 import com.stalkstock.vender.Model.VendorProfileDetail
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget

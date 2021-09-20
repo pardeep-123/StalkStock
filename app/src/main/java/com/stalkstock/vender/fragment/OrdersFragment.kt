@@ -21,8 +21,7 @@ import com.stalkstock.vender.adapter.CurrentAdapter
 import com.stalkstock.vender.adapter.PastAdapter
 import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
-import com.tamam.utils.others.AppUtils
-import kotlinx.android.synthetic.main.activity_new_order_list.*
+import com.stalkstock.utils.others.AppUtils
 import java.util.*
 import kotlin.collections.ArrayList
 

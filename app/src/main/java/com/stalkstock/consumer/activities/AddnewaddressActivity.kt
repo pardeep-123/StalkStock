@@ -28,7 +28,7 @@ import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.GPSTracker
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_addnewaddress.*
 import okhttp3.RequestBody
 import java.util.*
@@ -175,11 +175,9 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
     }
 
     fun getAddress(latitude: Double, longitude: Double) {
-        val geocoder: Geocoder
-        val addresses: List<Address>
-        geocoder = Geocoder(this, Locale.getDefault())
+        val geocoder = Geocoder(this, Locale.getDefault())
 
-        addresses = geocoder.getFromLocation(
+        val addresses: List<Address> = geocoder.getFromLocation(
             latitude,
             longitude,
             1

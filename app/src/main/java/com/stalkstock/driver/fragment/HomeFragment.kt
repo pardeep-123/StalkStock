@@ -61,13 +61,13 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private lateinit var mGoogleMap: GoogleMap
     lateinit var mapFragment: SupportMapFragment
+     var orderID: String = ""
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_h_ome, container, false)
     }
 
@@ -81,18 +81,14 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             throw RuntimeException("home frag not Attached")
         }
         mactivity = context as HomeActivity
-
     }
 
     var listner: CommunicationListner? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mapFragment = getChildFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        /*     val mapFragment =
-                 mactivity!!.fragmentManager.findFragmentById(R.id.map1) as MapFragment
-             mapFragment.getMapAsync(this)*/
 
         btn_declin.setOnClickListener {
             rl_top.visibility = View.VISIBLE
@@ -103,18 +99,14 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             rl_top.visibility = View.GONE
             rl_tv.visibility = View.VISIBLE
         }
-
         ca_tv1.setOnClickListener {
             dialogconfirmation()
-
         }
 
         btn_signup.setOnClickListener {
             dialo()
         }
-
         MyApplication.getSocketManager().onRegister(this)
-
     }
 
     override fun onLocationGet(latitude: String?, longitude: String?) {
@@ -122,12 +114,9 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         mLongitude = longitude!!
         if (mGoogleMap != null)
             updateCamera(mGoogleMap, mLatitude, mLongitude, 12F)
-        //        completeAddress(latitude!!.toDouble(), longitude!!.toDouble())
 
     }
-
     val viewModel: DriverViewModel by viewModels()
-
 
     override fun onMapReady(p0: GoogleMap?) {
         this.mGoogleMap = p0!!
@@ -135,16 +124,11 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         if (mactivity != null) {
             CurrentLocationActivity(requireActivity())
         }
-/*
-        if (mModel != null)
-            updateCamera(mGoogleMap, mModel!!.currentLatitude, mModel!!.currentLongitude, 4F)
-*/
         enabaleMyLocationIfPermitted()
         mGoogleMap.setOnMyLocationButtonClickListener(this)
         mGoogleMap.setOnMyLocationClickListener(this)
         setZoomControlPOsition()
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -152,7 +136,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         val map = HashMap<String, RequestBody>()
         viewModel.driverOrderRequestAPI(mactivity!!, true, map)
         viewModel.mResponse.observe(this, this)
-
     }
 
     private fun enabaleMyLocationIfPermitted() {
@@ -177,36 +160,29 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             mGoogleMap.isMyLocationEnabled = true
             mGoogleMap.uiSettings.isMyLocationButtonEnabled = true
         }
-
     }
 
     override fun onMyLocationButtonClick(): Boolean {
-//        updateCamera(mGoogleMap, mModel!!.currentLatitude, mModel!!.currentLongitude, 10F)
         return false
     }
 
-    override fun onMyLocationClick(p0: Location) {
-//        updateCamera(mGoogleMap,p0.latitude.toString(),p0.longitude.toString(),7F)
-    }
+    override fun onMyLocationClick(p0: Location) {}
 
     private fun setZoomControlPOsition() {
         val locationButton =
             (mapFragment.requireView().findViewById<View>(Integer.parseInt("1"))
-                .getParent() as View).findViewById<View>(
+                .parent as View).findViewById<View>(
                 Integer.parseInt("2")
             )
-        val rlp = locationButton.getLayoutParams() as RelativeLayout.LayoutParams
-// position on right bottom
+        val rlp = locationButton.layoutParams as RelativeLayout.LayoutParams
         rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
         rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         val margin = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 10f,
-            resources.displayMetrics
-        ).toInt()
+            resources.displayMetrics).toInt()
         val marginBottom = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 120f,
-            resources.displayMetrics
-        ).toInt()
+            resources.displayMetrics).toInt()
         rlp.setMargins(margin, margin, margin, marginBottom)
     }
 
@@ -218,10 +194,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
 
     var mLatitude = ""
     var mLongitude = ""
-    /*  fun checkgps() {
 
-
-      }*/
 
     fun checkgps() {
         val homeActivity = activity as HomeActivity
@@ -231,15 +204,12 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         } else {
             mLatitude = gpsTracker!!.latitude.toString()
             mLongitude = gpsTracker!!.longitude.toString()
-            if (mLatitude.equals("0.0") && mLongitude.equals("0.0"))
+            if (mLatitude == "0.0" && mLongitude == "0.0")
                 checkgps()
             else {
-                val sydney: LatLng
 
-                //sydney  = LatLng(getPrefrence(Constant.lat,"0.0").toDouble(), getPrefrence(Constant.long,"0.0").toDouble())
                 updateDriverLocationSocket()
-                sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
-                //marker.visible()
+                val sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
 
                 mGoogleMap!!.addMarker(
                     MarkerOptions()
@@ -251,13 +221,10 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                                         resources,
                                         R.drawable.black_map_circle
                                     ), 70, 120, false
-                                )
-                            )
-                        )
-                )
+                                ))))
 
 
-                val zoomLevel = 12.0f //This goes up to 21
+                val zoomLevel = 12.0f
                 mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel))
                 if (ActivityCompat.checkSelfPermission(
                         homeActivity,
@@ -267,19 +234,11 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+
                     return
                 }
                 mGoogleMap!!.isMyLocationEnabled = false
-            }
-        }
-    }
+            } } }
 
     private fun updateDriverLocationSocket() {
         val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
@@ -298,9 +257,9 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // mMap!!.isMyLocationEnabled = false
             checkgps()
-        } else {//condition for Marshmello and above
+        } else {
+            //condition for Marshmello and above
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -326,7 +285,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) == PackageManager.PERMISSION_GRANTED
                 ) {
-
                     checkgps()
                 }
             }
@@ -361,28 +319,21 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         dialog.window!!.setGravity(Gravity.CENTER)
 
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.tv_order.setText("Order ID : " + currentOrder.body.orderNo)
-        dialog.txtEstEarning.setText("$" + currentOrder.body.total.toString())
-        dialog.txtDatePopup.setText(currentOrder.body.updatedAt.substring(0, 10))
-        dialog.txtRestLocation.setText(currentOrder.body.vendorDetail.shopAddress)
-        dialog.txtDestinationLocation.setText(currentOrder.body.orderAddress.geoLocation)
-        dialog.txtAddressPopup.setText(currentOrder.body.orderAddress.geoLocation)
-        dialog.tv_name.setText(currentOrder.body.firstName + " " + currentOrder.body.lastName)
+        dialog.tv_order.text = "Order ID : " + currentOrder.body.orderNo
+        dialog.txtEstEarning.text = "$" + currentOrder.body.total.toString()
+        dialog.txtDatePopup.text = currentOrder.body.updatedAt.substring(0, 10)
+        dialog.txtRestLocation.text = currentOrder.body.vendorDetail.shopAddress
+        dialog.txtDestinationLocation.text = currentOrder.body.orderAddress.geoLocation
+        dialog.txtAddressPopup.text = currentOrder.body.orderAddress.geoLocation
+        dialog.tv_name.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
         Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.iv_sub)
         Glide.with(this).load(currentOrder.body.image).into(dialog.iv_profile)
-        /*
-        *                 tv_orderHome.setText("Order ID : "+offeredOrder.body.orderNo)
-                txtDateHome.setText(offeredOrder.body.updatedAt.substring(0,10))
-                tv_nameHome.setText(offeredOrder.body.firstName+" "+offeredOrder.body.lastName)
-                txtAddressHome.setText(offeredOrder.body.orderAddress.geoLocation)
-                Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage)
-                Glide.with(this).load(offeredOrder.body.image).into(iv_profileHome)
-*/
 
         dialog.btn_accept.setOnClickListener {
             dialog.dismiss()
             dialo()
         }
+
         dialog.btn_decline.setOnClickListener {
             dialog.dismiss()
             rl_top.visibility = View.VISIBLE
@@ -402,6 +353,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
+
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
         dialog.window!!.setGravity(Gravity.CENTER)
@@ -410,41 +362,27 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
 
         dialog.btn_accept1.setOnClickListener {
             dialog.dismiss()
-            listner!!.getYourFragmentActive(1)
+            val map = HashMap<String, RequestBody>()
+            map["status"] = mactivity!!.mUtils.createPartFromString("1") //1 online, 0- offline
+            map["acceptedLong"] = mactivity!!.mUtils.createPartFromString(mLongitude)
+            map["acceptedLat"] = mactivity!!.mUtils.createPartFromString(mLatitude)
+            map["orderId"] = mactivity!!.mUtils.createPartFromString(orderID)
+            Log.e("adsfdfas=====","$orderID")
+            Log.e("adsfdfas=====","")
+
+            viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
         }
         dialog.btn_decline1.setOnClickListener {
             dialog.dismiss()
+            val map = HashMap<String, RequestBody>()
+            map["status"] = mactivity!!.mUtils.createPartFromString("2") //1 online, 0- offline
+            map["orderId"] = mactivity!!.mUtils.createPartFromString(orderID)
+
+            viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
             listner!!.getYourFragmentActive(0)
         }
-
-
         dialog.show()
 
-        /*  val  dialog = Dialog(requireContext())
-          dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-          dialog.setContentView(R.layout.accept_request_alert)
-
-          dialog.window!!.setLayout(
-              WindowManager.LayoutParams.MATCH_PARENT,
-              WindowManager.LayoutParams.WRAP_CONTENT
-          )
-          dialog.setCancelable(false)
-          dialog.setCanceledOnTouchOutside(false)
-          dialog.window!!.setGravity(Gravity.CENTER)
-
-          dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-          dialog.btn_accept1.setOnClickListener {
-              dialog.dismiss()
-              listner!!.getYourFragmentActive(1)
-          }
-          dialog.btn_decline1.setOnClickListener{
-              dialog.dismiss()
-              listner!!.getYourFragmentActive(1)
-          }
-
-
-          dialog.show()*/
     }
 
     override fun onSocketCall(event: String?, vararg args: Any?) {
@@ -464,16 +402,15 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                 val offeredOrder =
                     gson.fromJson(mObject.toString(), NewOrderResponse::class.java) ?: return
                 ca_tv1.visibility = View.VISIBLE
-                tv_orderHome.setText("Order ID : " + offeredOrder.body.orderNo)
-                txtDateHome.setText(offeredOrder.body.updatedAt.substring(0, 10))
-                tv_nameHome.setText(offeredOrder.body.firstName + " " + offeredOrder.body.lastName)
-                txtAddressHome.setText(offeredOrder.body.orderAddress.geoLocation)
+                tv_orderHome.text = "Order ID : " + offeredOrder.body.orderNo
+                txtDateHome.text = offeredOrder.body.updatedAt.substring(0, 10)
+                tv_nameHome.text = offeredOrder.body.firstName + " " + offeredOrder.body.lastName
+                txtAddressHome.text = offeredOrder.body.orderAddress.geoLocation
                 Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage)
                 Glide.with(this).load(offeredOrder.body.image).into(iv_profileHome)
                 currentOrder = offeredOrder
 
-            }
-        }
+            } }
     }
 
     override fun onSocketConnect(vararg args: Any?) {
@@ -494,11 +431,15 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOrder = mResponse
                         if (currentOrder.body.orderNo != null) {
+
+                            Log.e("adsfdfas","$currentOrder")
+
+                            orderID = currentOrder.body.id.toString()
                             ca_tv1.visibility = View.VISIBLE
-                            tv_orderHome.setText("Order ID : " + currentOrder.body.orderNo)
-                            txtDateHome.setText(currentOrder.body.updatedAt.substring(0, 10))
-                            tv_nameHome.setText(currentOrder.body.firstName + " " + currentOrder.body.lastName)
-                            txtAddressHome.setText(currentOrder.body.orderAddress.geoLocation)
+                            tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
+                            txtDateHome.text = currentOrder.body.updatedAt.substring(0, 10)
+                            tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
+                            txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
                             Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
                                 .into(imgVendorImage)
                             Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
@@ -520,13 +461,11 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                         it.error!!.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
             }
         }
     }
-
 
 }

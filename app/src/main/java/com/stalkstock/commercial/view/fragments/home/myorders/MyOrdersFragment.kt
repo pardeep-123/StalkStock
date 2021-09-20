@@ -1,9 +1,8 @@
-package com.live.stalkstockcommercial.ui.view.fragments.myorders
+package com.stalkstock.commercial.view.fragments.home.myorders
 
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +11,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
 import com.live.stalkstockcommercial.ui.models.ModelPojo
 import com.live.stalkstockcommercial.ui.view.activities.OrderDetailActivity
-import com.live.stalkstockcommercial.ui.view.adapters.myorders.MyOrdersListAdapter
+import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.CommunicationListner
 import kotlinx.android.synthetic.main.fragment_my_orders.*
-import java.lang.RuntimeException
 
 class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.OnMyOrdersRecyclerViewItemClickListner{
-   // var listner: CommunicationListner?=null
     var handler: Handler?=null
     var list:ArrayList<ModelPojo.MyOrdersListModel>?=null
 
@@ -27,22 +23,14 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_orders, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
-        //listner!!.getYourFragmentActive(2)
-//        handler= Handler(Looper.myLooper()!!)
-//        handler!!.postDelayed({
             createAdapterList()
-//        },60)
     }
-    private  fun init(){
 
-    }
     private  fun createAdapterList(){
         if(list!=null){
             list!!.clear()
@@ -56,12 +44,10 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
         val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
         rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
 
-
     }
 
     override fun onClick(p0: View?) {
         when(p0!!.id){
-
 
         }
     }
@@ -78,17 +64,10 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-//        if(context is CommunicationListner){
-//            listner= context as CommunicationListner
-//        }else{
-//            throw RuntimeException("Orders Frag not Attched")
-//
-//        }
     }
 
     override fun onDetach() {
         super.onDetach()
-       // listner= null
         list= null
         handler= null
         requireContext().cacheDir.deleteRecursively()

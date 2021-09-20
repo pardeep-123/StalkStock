@@ -21,14 +21,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Orders"
                 android:layout_centerInParent="true"
+                android:text="My Orders"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="16sp" />
 
         </RelativeLayout>
         <View

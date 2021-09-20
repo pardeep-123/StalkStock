@@ -30,7 +30,7 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_productdetails.*
 import okhttp3.RequestBody
 import java.util.*

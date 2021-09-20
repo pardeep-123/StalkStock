@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.common.extentions.changeDateFormatExt
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.VendorOrderListResponse
 import com.stalkstock.vender.ui.OrderDetails
-import com.tamam.utils.others.AppUtils.changeDateFormat
+import com.stalkstock.utils.others.AppUtils.changeDateFormat
 import kotlinx.android.synthetic.main.neworderlist.view.*
 
 class NewOrderAdapter(

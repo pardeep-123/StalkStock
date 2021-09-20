@@ -37,9 +37,6 @@ object ServiceGenerator {
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 
-
-
-
     @JvmStatic
     fun <S> createService(serviceClass: Class<S>): S {
         val retrofit = getRetrofit()
@@ -62,7 +59,6 @@ object ServiceGenerator {
                     .header("auth_key", getPrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY ,""))
                     .header("Accept", "application/json")
                     .header("security_key", SECURITY_KEY)
-
                     .build()
             } else {
                 request = chain.request().newBuilder()

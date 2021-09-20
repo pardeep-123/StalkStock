@@ -26,7 +26,7 @@ import com.stalkstock.utils.others.clearPrefrences
 import com.stalkstock.vender.Model.VendorProfileDetail
 import com.stalkstock.vender.ui.*
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.account_fragment.*
 import okhttp3.RequestBody
 import java.util.HashMap

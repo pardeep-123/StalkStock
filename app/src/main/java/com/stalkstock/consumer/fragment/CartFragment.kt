@@ -26,7 +26,7 @@ import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.fragment_cart.*
 import okhttp3.RequestBody
 import java.text.DecimalFormat

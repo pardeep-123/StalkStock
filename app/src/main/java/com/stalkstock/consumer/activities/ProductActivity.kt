@@ -21,7 +21,7 @@ import com.stalkstock.consumer.model.ModelProductVendorList
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_product.*
 import okhttp3.RequestBody
 import java.util.HashMap

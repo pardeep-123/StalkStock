@@ -18,7 +18,7 @@ import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_orderdeatils.*
 import java.util.HashMap
 

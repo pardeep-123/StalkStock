@@ -18,7 +18,7 @@ import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelProductDetail
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import okhttp3.RequestBody
 import java.util.HashMap

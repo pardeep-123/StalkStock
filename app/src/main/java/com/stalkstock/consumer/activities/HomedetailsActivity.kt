@@ -28,7 +28,7 @@ import com.stalkstock.utils.SliderItemTitleModel
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CheckLocationActivity
 import com.stalkstock.viewmodel.HomeViewModel
-import com.tamam.utils.others.AppUtils
+import com.stalkstock.utils.others.AppUtils
 import okhttp3.RequestBody
 import java.util.*
 
