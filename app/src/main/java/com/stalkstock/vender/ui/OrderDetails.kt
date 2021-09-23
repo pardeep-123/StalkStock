@@ -71,49 +71,6 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
 
         ltStatusChange.setOnClickListener { dialogSpinner() }
 
-        /*val intent = intent
-        val text = intent.getStringExtra("ke")
-        val settext = findViewById<TextView>(R.id.text_details)
-        if (intent.getStringExtra("ke") != null) {
-            settext.text = text
-            settext.visibility = View.VISIBLE
-        }
-        val intent1 = getIntent()
-        val text1 = intent1.getStringExtra("value")
-        val settext2 = findViewById<TextView>(R.id.text_detailes2)
-        if (intent1.getStringExtra("value") != null) {
-            settext2.text = text1
-            settext2.visibility = View.VISIBLE
-            mStatus = 1
-        }
-        val intent2 = getIntent()
-        val text2 = intent2.getStringExtra("val")
-        val settext3 = findViewById<TextView>(R.id.text_detailes3)
-        if (intent2.getStringExtra("val") != null) {
-            settext3.text = text2
-            settext3.visibility = View.VISIBLE
-            mStatus = 3
-        }
-        val intent3 = getIntent()
-        val text4 = intent3.getStringExtra("valu")
-        val settext4 = findViewById<TextView>(R.id.text_detailes4)
-        if (intent3.getStringExtra("valu") != null) {
-            settext4.text = text4
-            settext4.visibility = View.VISIBLE
-        }
-        try {
-            val intent5 = getIntent()
-            val text5 = intent5.getStringExtra("key")
-            val settext5 = findViewById<TextView>(R.id.text_detailes4)
-            if (intent5.getStringExtra("key") != null) {
-                settext5.text = text5
-                settext5.setTextColor(resources.getColor(R.color.red_bid))
-                settext5.visibility = View.VISIBLE
-                mStatus = 0
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }*/
         order_details_backarrow.setOnClickListener { onBackPressed() }
         if (intent.hasExtra("orderId"))
             getOrderDetail(intent.getStringExtra("orderId")!!)
@@ -141,7 +98,7 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
             dialogSuccessful.dismiss()
         }
         ltStatus2.setOnClickListener {
-            changeStatus("3") //Packed
+            changeStatus("2") //Packed
             dialogSuccessful.dismiss()
         }
         ltStatus3.setOnClickListener {

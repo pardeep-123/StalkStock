@@ -362,21 +362,20 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
 
         dialog.btn_accept1.setOnClickListener {
             dialog.dismiss()
-            val map = HashMap<String, RequestBody>()
-            map["status"] = mactivity!!.mUtils.createPartFromString("1") //1 online, 0- offline
-            map["acceptedLong"] = mactivity!!.mUtils.createPartFromString(mLongitude)
-            map["acceptedLat"] = mactivity!!.mUtils.createPartFromString(mLatitude)
-            map["orderId"] = mactivity!!.mUtils.createPartFromString(orderID)
+            val map = HashMap<String, String>()
+            map["status"] = "1"//1 online, 0- offline
+            map["acceptedLong"] = mLongitude
+            map["acceptedLat"] = mLatitude
+            map["orderId"] =orderID
             Log.e("adsfdfas=====","$orderID")
-            Log.e("adsfdfas=====","")
 
             viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
         }
         dialog.btn_decline1.setOnClickListener {
             dialog.dismiss()
-            val map = HashMap<String, RequestBody>()
-            map["status"] = mactivity!!.mUtils.createPartFromString("2") //1 online, 0- offline
-            map["orderId"] = mactivity!!.mUtils.createPartFromString(orderID)
+            val map = HashMap<String, String>()
+            map["status"] = "2" //1 online, 0- offline
+            map["orderId"] =orderID
 
             viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
             listner!!.getYourFragmentActive(0)

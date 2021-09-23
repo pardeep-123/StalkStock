@@ -196,6 +196,10 @@ class GlobalVariables {
         const val getDocumentDetail = "driver/getDocumentDetail"
         const val editDriverProfileDetail = "driver/editDriverProfileDetail"
         const val acceptRejectOrder = "driver/acceptRejectOrder"    //1=> accept 2=> reject
+        const val walletBalance = "walletBalance"
+        const val bankAccountList = "bankAccountList"
+        const val addBankAccount = "add/bank/account"
+        const val transferFunds = "transferFund"
 
     }
 

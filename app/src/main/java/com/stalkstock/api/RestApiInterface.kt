@@ -13,6 +13,7 @@ import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
+import retrofit2.http.Body
 
 
 interface RestApiInterface {
@@ -275,7 +276,7 @@ interface RestApiInterface {
     @Multipart
     @PUT(URL.acceptRejectOrder)
     fun driverAcceptRejectOrder(
-        @PartMap map: HashMap<String, RequestBody>
+        @PartMap map: HashMap<String, String>
     ): Observable<UserCommonModel>
 
     @POST(URL.driverOrderRequestAPI)
@@ -321,82 +322,20 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<EditDriverResponse>
 
-//@GET(URL.GETPROFILE)
-//fun getProfile(): Observable<GetProfileResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.EDITPROFILE)
-//    fun    editprofile(@FieldMap map :HashMap<String,String>
-//    ): Observable<EditProfileResponse>
-//
-//    @FormUrlEncoded
-//    @PUT(URL.CHANGEPASSWORD)
-//    fun    changepassword(@FieldMap map :HashMap<String,String>
-//    ): Observable<ChangePasswordResponse>
-//
-//    @GET(URL.LOGOUT)
-//    fun logout(): Observable<BaseResponse>
-//
-//    @GET(URL.TERMCONDITION)
-//    fun termcondition(): Observable<TermConditionResponse>
-//
-//    @GET(URL.PRIVACYPOLICY)
-//    fun privacypolicy(): Observable<PrivacyPolicyResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.NOTIFICATIONSSTATUS)
-//    fun    notificationsstatus(@FieldMap map :HashMap<String,String>
-//    ): Observable<NotificationsStatusResponse>
-//
-//    @GET(URL.GETNOTIFICATIONS)
-//    fun getnotifications(): Observable<GetNotificationsResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.DELETENOTIFICATION)
-//    fun    deletenotification(@Field("id") id: String
-//    ): Observable<BaseResponse>
-//
-//    @GET(URL.GETCURRENTORDERASSIGN)
-//    fun getcurrentorder(): Observable<CurrentOrderResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.STARTJOB)
-//    fun    startjob(@FieldMap map :HashMap<String,String>
-//    ): Observable<StartJobResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.STOPJOB)
-//    fun    stopjob(@FieldMap map :HashMap<String,String>
-//    ): Observable<StopJobResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.JOBHISTORY)
-//    fun    jobhistory(@FieldMap map :HashMap<String,String>
-//    ): Observable<JobHistoryResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.RESTARTJOB)
-//    fun    restartjob(@FieldMap map :HashMap<String,String>
-//    ): Observable<RestartJobResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.COMPLETEJOB)
-//    fun    completejob(@FieldMap map :HashMap<String,String>
-//    ): Observable<CompleteJobResponse>
-//
-//    @FormUrlEncoded
-//    @POST(URL.PAYMENT)
-//    fun    payment(@FieldMap map :HashMap<String,String>
-//    ): Observable<PaymentResponse>
-//
-//
-//
-//
-//    @Multipart
-//    @POST("upload")
-//    fun uploadImage(
-//        @Part images: ArrayList<MultipartBody.Part?>
-//    ): Observable<ImageResponse>
 
+    @POST(URL.walletBalance)
+    fun checkWalletBalance(): Observable<WalletData>
+
+    @POST(URL.bankAccountList)
+    fun checkBankList(): Observable<BankDataList>
+
+
+    @FormUrlEncoded
+    @POST(URL.addBankAccount)
+    fun addBankAccount(@FieldMap map: HashMap<String, String>): Observable<AddBankData>
+
+    @FormUrlEncoded
+    @POST(URL.transferFunds)
+    fun transferFunds(@FieldMap map: HashMap<String, String>): Observable<TransferFundsData>
 
 }

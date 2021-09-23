@@ -130,12 +130,22 @@ object AppUtils {
 
     fun changeDateFormat(dateString: String, from: String, to: String): String {
         //dd.MMM.yyyy
-        Log.e("dateChanged","======dateString==1=$dateString")
-        Log.e("dateChanged","======dateString==2=$from")
-        Log.e("dateChanged","======dateString==3=$to")
+        Log.e("dateChanged","======dateString==22=$dateString")
+        Log.e("dateChanged","======dateString==22=$from")
+        Log.e("dateChanged","======dateString==322=$to")
 
         val sdf = SimpleDateFormat(from,Locale.getDefault());
         //val sdf = SimpleDateFormat(from, Locale.US);
+
+        val dateStr = "Jul 16, 2013 12:08:59 AM"
+        val df = SimpleDateFormat("MMM dd, yyyy HH:mm:ss a", Locale.ENGLISH)
+        df.timeZone = TimeZone.getTimeZone("UTC")
+        val date = df.parse(dateStr)
+        df.timeZone = TimeZone.getDefault()
+
+
+        val formattedDate = df.format(date!!)
+
 
         val dateFormat = SimpleDateFormat(to, Locale.getDefault())
 
@@ -144,7 +154,9 @@ object AppUtils {
         //var dateFormat = SimpleDateFormat(to, Locale.US);
         val newDate = dateFormat.format(sdf.parse(dateString)!!)
 
-        Log.e("dateChanged","======dateString===$dateString")
+        Log.e("dateChanged","======dateString==22=$dateString")
+        Log.e("dateChanged","======formattedDate==22=")
+        Log.e("dateChanged","======formattedDate==22=$formattedDate")
         return newDate
     }
 

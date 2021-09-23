@@ -46,8 +46,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         super.onCreate(savedInstanceState);
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(Color.WHITE);
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            window.statusBarColor = Color.WHITE;
         }
 
         tv_home = findViewById(R.id.tv_home)
@@ -56,10 +56,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         tv_account = findViewById(R.id.tv_account)
 
         if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) != null) {
-            if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) == 1)
-                iv_notification.isChecked = true
-            else
-                iv_notification.isChecked = false
+            iv_notification.isChecked = getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) == 1
         }
 
         iv_notification.setOnCheckedChangeListener { compoundButton, b ->
@@ -167,7 +164,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
 
     private fun switchFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        //fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit)
         fragmentTransaction.replace(R.id.rl_main, fragment)
         fragmentTransaction.commit()
     }
@@ -195,7 +191,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(
                             this,
-                            mResponse.message.toString()
+                            mResponse.message
                         )
                     }
                 }
@@ -210,7 +206,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                         it.error!!.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {

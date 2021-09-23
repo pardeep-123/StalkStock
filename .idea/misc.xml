@@ -6,9 +6,13 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_my_order.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/bottom_layout.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_payment.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_popup.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout/accept_request_alert.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_add_bank_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_add_bank_account2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_main_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_my_order.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_order_details.xml" value="0.18020833333333333" />
@@ -16,7 +20,10 @@
         <entry key="app/src/main/res/layout/fragment_h_ome.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_my_orders.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.18" />
         <entry key="app/src/main/res/layout/home_popup.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/item_cards.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/payment_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.33" />
       </map>
     </option>

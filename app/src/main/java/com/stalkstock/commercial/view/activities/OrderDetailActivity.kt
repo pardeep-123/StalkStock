@@ -45,7 +45,7 @@ class OrderDetailActivity : AppCompatActivity() {
             tv_free.text= "Fee"
             rv_hp_charges.visibility= View.GONE
             rl_charges.visibility= View.GONE
-            tv_total.text= "$81.50".toString()
+            tv_total.text= "$81.50"
 
         }else{
             rl_visa.visibility= View.GONE

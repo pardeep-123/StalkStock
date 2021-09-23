@@ -9,13 +9,15 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.driver.models.CardModel
+import com.stalkstock.driver.models.BankBody
 import kotlinx.android.synthetic.main.item_cards.view.*
 
-class CardAdapter(var context: Context, var arrayList: ArrayList<CardModel>) :
+class CardAdapter(var context: Context, var list: List<BankBody>) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     var rememberPosition: Int? = null
+
+    var defaultCardId = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_cards, parent, false)
@@ -27,7 +29,7 @@ class CardAdapter(var context: Context, var arrayList: ArrayList<CardModel>) :
     }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+        return list.size
     }
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,27 +40,29 @@ class CardAdapter(var context: Context, var arrayList: ArrayList<CardModel>) :
 
         fun bind(pos: Int) {
 
-            val cardModel = arrayList[pos]
+            val cardModel = list[pos]
 
-            cardModel.cardImage?.let { ivCard.setImageResource(it) }
-            tvCardName.text = cardModel.cardName
+            //cardModel.cardImage?.let { ivCard.setImageResource(it) }
+            tvCardName.text= "**** ".repeat(3)+cardModel.bankAccount.substring(cardModel.bankAccount.length-4,cardModel.bankAccount.length)
 
-            if (cardModel.cardSelect) {
+            if (cardModel.isDefault==1) {
                 rememberPosition = pos
-                rbCardSelected.isChecked = cardModel.cardSelect
-            }else{
-                rbCardSelected.isChecked = cardModel.cardSelect
+                rbCardSelected.isChecked = true
+                defaultCardId = cardModel.id.toString()
             }
-
+            else{
+                rbCardSelected.isChecked = false
+            }
             rbCardSelected.setOnClickListener {
-                if (rememberPosition != null){
-                    arrayList[rememberPosition!!].cardSelect = false
+                if (list[pos].isDefault==0){
+                    (list.indices).map { list[it].isDefault = 0 }
+                    list[pos].isDefault = 1
+                    defaultCardId = list[pos].id.toString()
+
+
+                    notifyDataSetChanged()
                 }
-
-                cardModel.cardSelect = true
-                notifyDataSetChanged()
             }
-
         }
     }
 }

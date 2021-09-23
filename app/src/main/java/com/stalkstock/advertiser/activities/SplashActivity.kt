@@ -7,7 +7,6 @@ package com.stalkstock.advertiser.activities
  import android.util.Log
  import android.view.WindowManager
  import androidx.appcompat.app.AppCompatActivity
- import com.google.android.gms.wallet.WalletConstants
  import com.stalkstock.MyApplication
  import com.stalkstock.R
  import com.stalkstock.commercial.view.activities.MainCommercialActivity
@@ -17,9 +16,6 @@ package com.stalkstock.advertiser.activities
  import com.stalkstock.utils.others.GlobalVariables
  import com.stalkstock.utils.others.getPrefrence
  import com.stalkstock.vender.ui.BottomnavigationScreen
- import com.stripe.android.Stripe
- import com.stripe.android.model.PaymentMethodCreateParams
-
 
 class SplashActivity : AppCompatActivity() {
     val mContext : Context = this
@@ -40,8 +36,6 @@ class SplashActivity : AppCompatActivity() {
                 selectLoginOrHome()
             }
         }.start()
-
-
     }
 
     private fun selectLoginOrHome() {
@@ -71,8 +65,8 @@ class SplashActivity : AppCompatActivity() {
                     finishAffinity()
                 }
             }
-
         }
+
         else{
             startActivity(Intent(mContext, SelectuserActivity::class.java))
             finishAffinity()

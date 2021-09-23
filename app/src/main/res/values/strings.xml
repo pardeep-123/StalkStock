@@ -240,6 +240,22 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_registration_expdate">Please enter registration expiration date</string>
     <string name="enter_valid_date">Enter date in \"yyyy-mm-dd\" format</string>
     <string name="select_your_business_delivery_type">Select your business delivery type</string>
+    <string name="enter_account_name">Please enter account name</string>
+    <string name="enter_bank_name">Please enter Bank name</string>
+    <string name="enter_account_number">Please enter account name</string>
+    <string name="enter_routing_number">Please enter routing number</string>
+    <string name="enter_minimum_routing_number">Please enter minimum 9 characters in routing number</string>
+    <string name="enter_bank_account_number">Please enter bank account number</string>
+    <string name="enter_minimum_bank_account_number">Please enter minimum 16 characters in account number</string>
+    <string name="please_confirm_bank_account_number">Please confirm your bank account number</string>
+    <string name="enter_account_amount">Please enter amount</string>
+    <string name="insufficient_balance">Insufficient balance</string>
+
+
+
+
+
+
     <string-array name="Select_Category">
         <item>Select category</item>
         <item>Vegetables</item>

@@ -13,10 +13,11 @@
         android:background="@drawable/alert_dialog_shape"
         android:orientation="vertical">
         <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tvAmount"
             android:gravity="center"
             android:textSize="30sp"
             android:textColor="@color/green_colour"
-            android:text="$ 10.00"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

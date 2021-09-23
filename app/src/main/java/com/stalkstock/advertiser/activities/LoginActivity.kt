@@ -157,18 +157,22 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     4=>commercial
     5=>advertiser* */
 
-        if (MyApplication.instance.getString("usertype").equals("4")) {
-            startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
-        } else if (MyApplication.instance.getString("usertype").equals("1")) {
-            startActivity(Intent(mContext, SignupConsumerActivity::class.java))
-        } else if (MyApplication.instance.getString("usertype").equals("5")) {
-            startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
-        } else if (MyApplication.instance.getString("usertype").equals("3")) {
-//           startActivity(Intent(mContext, SignupActivity::class.java))
-//            startActivity(Intent(mContext, SignUpVendor::class.java))
-            startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
-        } else if (MyApplication.instance.getString("usertype").equals("2")) {
-            startActivity(Intent(mContext, SignupActivity::class.java))
+        when {
+            MyApplication.instance.getString("usertype").equals("4") -> {
+                startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
+            }
+            MyApplication.instance.getString("usertype").equals("1") -> {
+                startActivity(Intent(mContext, SignupConsumerActivity::class.java))
+            }
+            MyApplication.instance.getString("usertype").equals("5") -> {
+                startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
+            }
+            MyApplication.instance.getString("usertype").equals("3") -> {
+                startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
+            }
+            MyApplication.instance.getString("usertype").equals("2") -> {
+                startActivity(Intent(mContext, SignupActivity::class.java))
+            }
         }
     }
 

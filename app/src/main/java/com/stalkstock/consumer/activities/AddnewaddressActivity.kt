@@ -35,9 +35,7 @@ import java.util.*
 
 
 class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObservable> {
-    /*  AddnewaddressActivity context;
-      ImageView back;
-      Button btn_signup;*/
+
 
     private var target: LatLng? = null
     var city = ""
@@ -57,8 +55,7 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        /* btn_signup = findViewById(R.id.btn_signup);
-         back = findViewById(R.id.back);*/
+
         btn_signup.setOnClickListener {
             addNewAddressAPI()
         }
@@ -94,13 +91,7 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
         mLongitude = getLongitude().toString()
 
 
-        val sydney: LatLng
-
-        //sydney  = LatLng(getPrefrence(Constant.lat,"0.0").toDouble(), getPrefrence(Constant.long,"0.0").toDouble())
-
-        sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
-        //marker.visible()
-
+        val sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
         getAddress(mLatitude.toDouble(), mLongitude.toDouble())
         pinMarker = mMap!!.addMarker(
             MarkerOptions()
@@ -118,7 +109,7 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
                 )
         )
 
-        val zoomLevel = 16.0f //This goes up to 21
+        val zoomLevel = 16.0f
         mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel))
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -128,13 +119,7 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return
         }
         mMap!!.isMyLocationEnabled = true
@@ -148,22 +133,10 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
     override fun onMapReady(googleMap: GoogleMap?) {
         mMap = googleMap!!
         checkLocationPermission()
-/*
-        val position = pinMarker!!.position
-        val clatitude = position.latitude
-        val cLong = position.longitude
-        Log.e("current LatLong>>",clatitude.toString()+"------"+cLong.toString())
-*/
 
         mMap!!.setOnCameraMoveListener {
             target = mMap!!.cameraPosition.target
             pinMarker!!.position = target
-/*
-            Log.e(
-                "current LatLong>>",
-                target.latitude.toString() + "------" + target.longitude.toString()
-            )
-*/
         }
         mMap!!.setOnCameraIdleListener {
 
@@ -174,34 +147,29 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
 
     }
 
-    fun getAddress(latitude: Double, longitude: Double) {
+    private fun getAddress(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
 
         val addresses: List<Address> = geocoder.getFromLocation(
             latitude,
             longitude,
             1
-        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-
+        )
         address =
-            addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-        tv_ll.setText(address)
+            addresses[0].getAddressLine(0)
+        tv_ll.text = address
 
-        if (addresses[0].getLocality() != null)
-            city = addresses[0].getLocality()
-        if (addresses[0].getAdminArea() != null)
-            state = addresses[0].getAdminArea()
-        if (addresses[0].getCountryName() != null)
-            country = addresses[0].getCountryName()
-        if (addresses[0].getPostalCode() != null)
-            postalCode = addresses[0].getPostalCode()
-        if (addresses[0].getFeatureName() != null) {
-            knownName = addresses[0].getFeatureName() // Only if available else return NULL
-//            tv_ll.setText(knownName)
+        if (addresses[0].locality != null)
+            city = addresses[0].locality
+        if (addresses[0].adminArea != null)
+            state = addresses[0].adminArea
+        if (addresses[0].countryName != null)
+            country = addresses[0].countryName
+        if (addresses[0].postalCode != null)
+            postalCode = addresses[0].postalCode
+        if (addresses[0].featureName != null) {
+            knownName = addresses[0].featureName
         }
-
-
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -210,13 +178,12 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(this, mResponse.message.toString())
+                        AppUtils.showSuccessAlert(this, mResponse.message)
                         Handler(Looper.getMainLooper()).postDelayed({
                             finish()
-                            //Do something after 100ms
                         }, 2000)
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
             }
@@ -225,12 +192,8 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
-            }
-        }
-    }
-
+            } } }
 }

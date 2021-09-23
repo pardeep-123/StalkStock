@@ -58,11 +58,11 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
 
     private fun signupUserAPI() {
         val map = HashMap<String, RequestBody>()
-        map.put("first_name", mUtils.createPartFromString(edtConsumerFirstname.text.toString()))
-        map.put("last_name", mUtils.createPartFromString(edtConsumerLastname.text.toString()))
-        map.put("email", mUtils.createPartFromString(emailEdittext.text.toString()))
-        map.put("mobile", mUtils.createPartFromString(edtConsumerPhone.text.toString()))
-        map.put("password", mUtils.createPartFromString(edtConsumerPassword.text.toString()))
+        map["first_name"] = mUtils.createPartFromString(edtConsumerFirstname.text.toString())
+        map["last_name"] = mUtils.createPartFromString(edtConsumerLastname.text.toString())
+        map["email"] = mUtils.createPartFromString(emailEdittext.text.toString())
+        map["mobile"] = mUtils.createPartFromString(edtConsumerPhone.text.toString())
+        map["password"] = mUtils.createPartFromString(edtConsumerPassword.text.toString())
         viewModel.getusersignupApi(this, true, map, firstimage, mUtils)
         viewModel.homeResponse.observe(this, this)
 
