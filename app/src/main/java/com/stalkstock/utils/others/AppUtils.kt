@@ -8,7 +8,6 @@ import android.graphics.Matrix
 import android.graphics.Paint
 import android.net.ConnectivityManager
 import android.text.format.DateFormat
-import android.util.Log
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.R
 import com.tapadoo.alerter.Alerter
@@ -122,42 +121,19 @@ object AppUtils {
     fun timeInString(timeStamp:Long):String{
         val cal = Calendar.getInstance(Locale.ENGLISH)
         cal.timeInMillis = timeStamp * 1000L
-        val date =
-            DateFormat.format("HH:mm", cal).toString()
+        val date = DateFormat.format("HH:mm", cal).toString()
         return date
-//        return DateFormat.format("hh:mm aa", Date(timeStamp)).toString()
     }
 
     fun changeDateFormat(dateString: String, from: String, to: String): String {
         //dd.MMM.yyyy
-        Log.e("dateChanged","======dateString==22=$dateString")
-        Log.e("dateChanged","======dateString==22=$from")
-        Log.e("dateChanged","======dateString==322=$to")
-
-        val sdf = SimpleDateFormat(from,Locale.getDefault());
-        //val sdf = SimpleDateFormat(from, Locale.US);
-
-        val dateStr = "Jul 16, 2013 12:08:59 AM"
-        val df = SimpleDateFormat("MMM dd, yyyy HH:mm:ss a", Locale.ENGLISH)
+        val df = SimpleDateFormat(from, Locale.US)
         df.timeZone = TimeZone.getTimeZone("UTC")
-        val date = df.parse(dateStr)
+        val date = df.parse(dateString)
         df.timeZone = TimeZone.getDefault()
+        val spf = SimpleDateFormat(to)
 
-
-        val formattedDate = df.format(date!!)
-
-
-        val dateFormat = SimpleDateFormat(to, Locale.getDefault())
-
-        sdf.timeZone = TimeZone.getTimeZone("GMT")
-        dateFormat.timeZone = TimeZone.getTimeZone("GMT")
-        //var dateFormat = SimpleDateFormat(to, Locale.US);
-        val newDate = dateFormat.format(sdf.parse(dateString)!!)
-
-        Log.e("dateChanged","======dateString==22=$dateString")
-        Log.e("dateChanged","======formattedDate==22=")
-        Log.e("dateChanged","======formattedDate==22=$formattedDate")
-        return newDate
+        return spf.format(date!!)
     }
 
 }

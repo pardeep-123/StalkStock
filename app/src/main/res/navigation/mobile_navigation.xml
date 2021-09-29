@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_messages" />
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.live.stalkstockcommercial.ui.view.fragments.account.AccountFragment"
+        android:name="com.stalkstock.commercial.view.fragments.home.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/account" />
 </navigation>

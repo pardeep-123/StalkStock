@@ -14,7 +14,6 @@ import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -41,12 +40,11 @@ import com.stalkstock.utils.others.AppUtils
 import com.viewpagerindicator.CirclePageIndicator
 import okhttp3.RequestBody
 import com.stalkstock.consumer.activities.FilterActivity
+import com.stalkstock.driver.models.SuggestedBody
+import com.stalkstock.driver.models.SuggestedDataListed
 import java.util.*
 import kotlin.collections.ArrayList
 
-/**
- * A simple [Fragment] subclass.
- */
 class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable> {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var mLat: Double = 0.0
@@ -79,6 +77,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
     private var currentModel: ArrayList<UserBannerModel.Body> = ArrayList()
     var arrayListCategory: ArrayList<ModelCategoryList.Body> = ArrayList()
+    var listSuggested: ArrayList<SuggestedBody> = ArrayList()
     var statusClick = 1
     var tickClick = 1
     var clickMsg = 0
@@ -116,7 +115,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewFrag = inflater.inflate(R.layout.fragment_home_consumer, container, false)
         category_recycle = viewFrag!!.findViewById(R.id.category_recycle)
         viewPagerDetail = viewFrag!!.findViewById(R.id.viewPagerDetail)
@@ -126,11 +124,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         notification = viewFrag!!.findViewById(R.id.notification)
         fillter = viewFrag!!.findViewById(R.id.fillter)
         etSearch = viewFrag!!.findViewById(R.id.etSearch)
-        iv_msg = viewFrag!!.findViewById<ImageView>(R.id.iv_msg)
-        bt_sort = viewFrag!!.findViewById<Button>(R.id.bt_sort)
-        bt_pickup = viewFrag!!.findViewById<Button>(R.id.bt_pickup)
-        tv_delivery = viewFrag!!.findViewById<Button>(R.id.tv_delivery)
-
+        iv_msg = viewFrag!!.findViewById(R.id.iv_msg)
+        bt_sort = viewFrag!!.findViewById(R.id.bt_sort)
+        bt_pickup = viewFrag!!.findViewById(R.id.bt_pickup)
+        tv_delivery = viewFrag!!.findViewById(R.id.tv_delivery)
 
         iv_msg.setOnClickListener {
             if (clickMsg == 0) {
@@ -141,11 +138,11 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             }
         }
         adapter = CategoryAdapter(this, requireContext(), arrayListCategory)
-        category_recycle.setLayoutManager(GridLayoutManager(activity, 4))
-        category_recycle.setAdapter(adapter)
+        category_recycle.layoutManager = GridLayoutManager(activity, 4)
+        category_recycle.adapter = adapter
         detailAdapter = View_detailAdapter(requireContext(), currentModel)
-        viewPagerDetail.setAdapter(detailAdapter)
-        indicator.setFillColor(resources.getColor(R.color.theme_green))
+        viewPagerDetail.adapter = detailAdapter
+        indicator.fillColor = resources.getColor(R.color.theme_green)
         indicator.setViewPager(viewPagerDetail)
 
         viewPagerDetail.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -164,7 +161,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                             currentOffset += 5
                             getAdsBannerAPI()
                         }
-                        //Next Activity here
                     }
                     counterPageScroll++;
                 } else {
@@ -182,33 +178,26 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             }
 
         })
-
-        adapter3 = SuggestedAdapter(activity)
-        suggested_recycle.setLayoutManager(
-            LinearLayoutManager(
-                activity,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+        adapter3 = SuggestedAdapter(listSuggested)
+        suggested_recycle.layoutManager = LinearLayoutManager(
+            activity,
+            LinearLayoutManager.HORIZONTAL,
+            false
         )
-        suggested_recycle.setAdapter(adapter3)
-        notification.setOnClickListener(View.OnClickListener {
+        suggested_recycle.adapter = adapter3
+        notification.setOnClickListener {
             val intent = Intent(activity, Notification_firstActivity::class.java)
             startActivity(intent)
-        })
-        fillter.setOnClickListener(View.OnClickListener {
+        }
+        fillter.setOnClickListener {
 
             val intent = Intent(requireContext(), FilterActivity::class.java)
-            intent.putExtra("from","HomeCounsumerFragment")
+            intent.putExtra("from", "HomeCounsumerFragment")
             resultLauncher.launch(intent)
-        })
-        etSearch.setOnClickListener({
+        }
+        etSearch.setOnClickListener {
             mActivity.openSearchFragment()
-            /*val intent = Intent(activity, SearchScreen::class.java)
-            intent.putExtra("currentDeliveryType", currentDeliveryType.toString())
-            intent.putExtra("whichScreen", "0")
-            startActivity(intent)*/
-        })
+        }
         bt_sort.setOnClickListener {
             bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
             bt_sort.setTextColor(mActivity.getColor(R.color.white))
@@ -242,6 +231,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         }
 
         getAdsBannerAPI()
+        getSuggestedBanner()
         getCategories()
 
         if (mActivity != null) {
@@ -250,15 +240,24 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         return viewFrag
     }
 
+    private fun getSuggestedBanner() {
+        val map = HashMap<String, String>()
+        map["offset"] = suggestionOffSet.toString()
+        map["limit"] = "10"
+        map["type"] = "popular"
+        viewModel.getSuggestedProduct((activity as MainConsumerActivity), false,map)
+    }
+
     private fun getCategories() {
         val mainConsumerActivity = activity as MainConsumerActivity
         viewModel.getCategoryListAPI(mainConsumerActivity, false)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
-    }
 
+    }
 
     private var reset = false
     private var currentOffset = 0
+    private var suggestionOffSet = 0
 
     private fun getAdsBannerAPI() {
         val mainConsumerActivity = activity as MainConsumerActivity
@@ -267,11 +266,8 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             currentModel.clear()
         }
         val map = HashMap<String, RequestBody>()
-        map.put(
-            "offset",
-            mainConsumerActivity.mUtils.createPartFromString(currentOffset.toString())
-        )
-        map.put("limit", mainConsumerActivity.mUtils.createPartFromString("5"))
+        map["offset"] = mainConsumerActivity.mUtils.createPartFromString(currentOffset.toString())
+        map["limit"] = mainConsumerActivity.mUtils.createPartFromString("5")
         viewModel.userBannerListAPI(mainConsumerActivity, false, map)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
     }
@@ -281,11 +277,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         clickMsg = 0
     }
 
-    fun completeAddress(latitude: Double, longitude: Double) {
+    private fun completeAddress(latitude: Double, longitude: Double) {
         try {
-            val geocoder: Geocoder
             val addresses: List<Address>
-            geocoder = Geocoder(mActivity, Locale.getDefault())
+            val geocoder = Geocoder(mActivity, Locale.getDefault())
 
             addresses = geocoder.getFromLocation(
                 latitude,
@@ -306,14 +301,14 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         }
 
 
-        tv_address.setText(stAddress)
+        tv_address.text = stAddress
 
     }
 
     override fun onLocationGet(latitude: String?, longitude: String?) {
         mLat = latitude!!.toDouble()
         mLong = longitude!!.toDouble()
-        completeAddress(latitude!!.toDouble(), longitude!!.toDouble())
+        completeAddress(latitude.toDouble(), longitude.toDouble())
 
     }
 
@@ -419,18 +414,18 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             ic_pickup,
             ic_dining
         )
-        tv_default.setOnClickListener(View.OnClickListener {
+        tv_default.setOnClickListener {
             tickClick = 1
             tickVisible(tickClick)
-        })
-        tv_most.setOnClickListener(View.OnClickListener {
+        }
+        tv_most.setOnClickListener {
             tickClick = 2
             tickVisible(tickClick)
-        })
-        tv_rating.setOnClickListener(View.OnClickListener {
+        }
+        tv_rating.setOnClickListener {
             tickClick = 3
             tickVisible(tickClick)
-        })
+        }
         tickVisible(tickClick)
         logoutUpdatedDialog2.show()
     }
@@ -438,23 +433,27 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     val viewModel: HomeViewModel by viewModels()
 
 
-    fun tickVisible(tickClick: Int) {
-        if (tickClick == 1) {
-            iv_tick_popuplar!!.visibility = View.VISIBLE
-            iv_tick_most!!.visibility = View.GONE
-            iv_tick_rating!!.visibility = View.GONE
-        } else if (tickClick == 2) {
-            iv_tick_popuplar!!.visibility = View.GONE
-            iv_tick_most!!.visibility = View.VISIBLE
-            iv_tick_rating!!.visibility = View.GONE
-        } else if (tickClick == 3) {
-            iv_tick_popuplar!!.visibility = View.GONE
-            iv_tick_most!!.visibility = View.GONE
-            iv_tick_rating!!.visibility = View.VISIBLE
+    private fun tickVisible(tickClick: Int) {
+        when (tickClick) {
+            1 -> {
+                iv_tick_popuplar!!.visibility = View.VISIBLE
+                iv_tick_most!!.visibility = View.GONE
+                iv_tick_rating!!.visibility = View.GONE
+            }
+            2 -> {
+                iv_tick_popuplar!!.visibility = View.GONE
+                iv_tick_most!!.visibility = View.VISIBLE
+                iv_tick_rating!!.visibility = View.GONE
+            }
+            3 -> {
+                iv_tick_popuplar!!.visibility = View.GONE
+                iv_tick_most!!.visibility = View.GONE
+                iv_tick_rating!!.visibility = View.VISIBLE
+            }
         }
     }
 
-    fun iconAndTextColorChange(
+    private fun iconAndTextColorChange(
         status: Int,
         t1: TextView,
         t2: TextView,
@@ -466,78 +465,70 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         iv2: ImageView,
         iv3: ImageView
     ) {
-        if (status == 1) {
-            rl1.background = resources.getDrawable(R.drawable.strokegreen)
-            t1.setTextColor(resources.getColor(R.color.green_colour))
-            //  iv1.setColorFilter(getResources().getColor(R.color.green_colour), PorterDuff.Mode.SRC_OVER);
-            iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
-            rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
-            t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-            //iv2.setColorFilter(getResources().getColor(R.color.dark_gray), PorterDuff.Mode.SRC_OVER);
-            iv2.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.sort_popup_gray_color
+        when (status) {
+            1 -> {
+                rl1.background = resources.getDrawable(R.drawable.strokegreen)
+                t1.setTextColor(resources.getColor(R.color.green_colour))
+                iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
+                rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
+                t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
+                iv2.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
                 )
-            )
-            rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
-            t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-            //iv3.setColorFilter(getResources().getColor(R.color.dark_gray), PorterDuff.Mode.SRC_OVER);
-            iv3.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.sort_popup_gray_color
+                rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
+                t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
+                iv3.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
                 )
-            )
-            //            iv_tick_popuplar.setVisibility(View.VISIBLE);
-//            iv_tick_most.setVisibility(View.GONE);
-//            iv_tick_rating.setVisibility(View.GONE);
-        } else if (status == 2) {
-            rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
-            t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-            //iv1.setColorFilter(getResources().getColor(R.color.dark_gray), PorterDuff.Mode.SRC_OVER);
-            iv1.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.sort_popup_gray_color
+            }
+            2 -> {
+                rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
+                t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
+                iv1.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
                 )
-            )
-            rl2.background = resources.getDrawable(R.drawable.strokegreen)
-            t2.setTextColor(resources.getColor(R.color.green_colour))
-            //iv2.setColorFilter(getResources().getColor(R.color.green_colour), PorterDuff.Mode.SRC_OVER);
-            iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
-            rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
-            t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-            //iv3.setColorFilter(getResources().getColor(R.color.dark_gray), PorterDuff.Mode.SRC_OVER);
-            iv3.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.sort_popup_gray_color
+                rl2.background = resources.getDrawable(R.drawable.strokegreen)
+                t2.setTextColor(resources.getColor(R.color.green_colour))
+                iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
+                rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
+                t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
+                iv3.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
                 )
-            )
-        } else if (status == 3) {
-            rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
-            t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-            // iv1.setColorFilter(getResources().getColor(R.color.dark_gray), PorterDuff.Mode.SRC_OVER);
-            iv1.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.sort_popup_gray_color
+            }
+            3 -> {
+                rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
+                t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
+                iv1.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
                 )
-            )
-            rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
-            t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-            //   iv2.setColorFilter(getResources().getColor(R.color.dark_gray), PorterDuff.Mode.SRC_OVER);
-            iv2.setColorFilter(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.sort_popup_gray_color
+                rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
+                t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
+                iv2.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
                 )
-            )
-            rl3.background = resources.getDrawable(R.drawable.strokegreen)
-            t3.setTextColor(resources.getColor(R.color.green_colour))
-            //iv3.setColorFilter(getResources().getColor(R.color.green_colour), PorterDuff.Mode.SRC_OVER);
-            iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
+                rl3.background = resources.getDrawable(R.drawable.strokegreen)
+                t3.setTextColor(resources.getColor(R.color.green_colour))
+                iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
+            }
         }
     }
 
@@ -551,6 +542,16 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
+                    }
+                }
+                if (it.data is SuggestedDataListed) {
+                    val mResponse: SuggestedDataListed = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        suggestionOffSet += 10
+                        listSuggested.addAll(mResponse.body)
+                        adapter3.notifyItemRangeInserted(0,listSuggested.size)
+                    } else {
+                        AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
 
@@ -577,13 +578,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
-//                        AppUtils.showErrorAlert(this, "No more addresses")
                     } else
                         Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
                             .show()
-//
-
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {

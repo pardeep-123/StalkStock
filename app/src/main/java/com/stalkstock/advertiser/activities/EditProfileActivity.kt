@@ -53,7 +53,6 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         tv_heading.text = "Edit Profile"
         iv_back.setOnClickListener(this)
@@ -65,28 +64,22 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
 
     override fun onClick(p0: View?) {
         when(p0?.id){
-            R.id.iv_back->{
-                finish()
-            }
+            R.id.iv_back->{ finish() }
             R.id.btn_update_profile->{
                 updateProfileAPI()
-                /*updateDailogMethod()*/
             }R.id.image->{
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
-            selectImage(image,"1")
-            }
-        }
+            selectImage(image)
+            } }
     }
 
 
-    private fun selectImage(ivProduct: ImageView, type:String) {
+    private fun selectImage(ivProduct: ImageView) {
         Album.image(this)
             .singleChoice()
             .camera(true)
             .columnCount(4)
-            //.selectCount(1)
-            //.checkedList(mAlbumFiles)
             .widget(
                 Widget.newDarkBuilder(this)
                     .title(getString(R.string.app_name))
@@ -95,10 +88,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                /*if (type.equals("1"))
-                {*/
                     firstimage = result[0].path
-                /*}*/
             }
             .onCancel {
 
@@ -122,19 +112,20 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
 
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        if(MyApplication.instance.getString("usertype").equals("4")){
+        when {
+            MyApplication.instance.getString("usertype").equals("4") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else  if(MyApplication.instance.getString("usertype").equals("5")){
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
+            MyApplication.instance.getString("usertype").equals("5") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else  if(MyApplication.instance.getString("usertype").equals("2")){
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
+            MyApplication.instance.getString("usertype").equals("2") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        }else{
-
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
         }
-
             successfulUpdatedDialog.btn_ok.setOnClickListener {
             successfulUpdatedDialog.dismiss()
             finish()
@@ -151,8 +142,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
 
     private fun updateProfileAPI() {
         val map = HashMap<String, RequestBody>()
-        map.put("firstName", mUtils.createPartFromString(edtFirstName.text.toString()))
-        map.put("lastName", mUtils.createPartFromString(edtLastName.text.toString()))
+        map["firstName"] = mUtils.createPartFromString(edtFirstName.text.toString())
+        map["lastName"] = mUtils.createPartFromString(edtLastName.text.toString())
         viewModel.editDriverProfileDetail(this, true, map, firstimage, mUtils)
 
     }
@@ -164,8 +155,6 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                     val mResponse: EditDriverResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         updateDailogMethod()
-
-//                        AppUtils.showSuccessAlert(this, mResponse.message.toString())
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
@@ -174,19 +163,14 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                     val mResponse: DriverProfileDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setData(mResponse)
-
-                    } else {
-//                        AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
                 }
-
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {

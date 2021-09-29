@@ -5,13 +5,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.stalkstock.R
+import com.stalkstock.commercial.view.fragments.home.account.AccountFragment
 import com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment
 import kotlinx.android.synthetic.main.bottom_layout.*
 
 
 class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
 
-    var listner: CommunicationListner? = null
 
     var tv_home: TextView? = null
      var tv_order:TextView? = null
@@ -21,80 +21,6 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_commercial)
-      //  val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-      //  val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-      //  val appBarConfiguration = AppBarConfiguration(setOf(
-         //   R.id.navigation_home, R.id.navigation_orders, R.id.navigation_messages, R.id.navigation_account
-      //  ))
-       // setupActionBarWithNavController(navController, appBarConfiguration)
-       // navView.setupWithNavController(navController)
-
-
-        /*navView.setOnNavigationItemSelectedListener(object :
-            BottomNavigationView.OnNavigationItemSelectedListener {
-            override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                when (item.getItemId()) {
-                    R.id.navigation_home -> {
-                        iv_homeTab.setImageResource(R.drawable.home_green_icon)
-                        iv_orderTab.setImageResource(R.drawable.list_black_icon)
-                        iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
-                        iv_accountTab.setImageResource(R.drawable.user_black_icon)
-
-                        val f = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-                        if (f !is com.stalkstock.commercial.view.fragments.home.HomeFragmentCommercial) {
-                            switchFragment(R.id.nav_host_fragment, com.stalkstock.commercial.view.fragments.home.HomeFragmentCommercial())
-                        } else {
-                        }
-                    }
-
-                    R.id.navigation_orders -> {
-
-                        iv_homeTab.setImageResource(R.drawable.home_black_icon)
-                        iv_orderTab.setImageResource(R.drawable.list_green_icon)
-                        iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
-                        iv_accountTab.setImageResource(R.drawable.user_black_icon)
-                        val f = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-                        if (f !is com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment) {
-                            switchFragment(R.id.nav_host_fragment, com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment())
-                        } else {
-                        }
-                    }
-                    R.id.navigation_messages -> {
-
-                        iv_homeTab.setImageResource(R.drawable.home_black_icon)
-                        iv_orderTab.setImageResource(R.drawable.list_black_icon)
-                        iv_messageTab.setImageResource(R.drawable.chat_green_icon)
-                        iv_accountTab.setImageResource(R.drawable.user_black_icon)
-                        val f = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-
-                        if (f !is com.live.stalkstockcommercial.ui.view.fragments.messages.MessagesFragment) {
-                            switchFragment(R.id.nav_host_fragment, com.live.stalkstockcommercial.ui.view.fragments.messages.MessagesFragment())
-                        } else {
-                        }
-
-                    }
-                    R.id.navigation_account -> {
-
-                        iv_homeTab.setImageResource(R.drawable.home_black_icon)
-                        iv_orderTab.setImageResource(R.drawable.list_black_icon)
-                        iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
-                        iv_accountTab.setImageResource(R.drawable.user_green_icon)
-
-                        val f = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-
-                        if (f !is com.live.stalkstockcommercial.ui.view.fragments.account.AccountFragment) {
-                            switchFragment(R.id.nav_host_fragment, com.live.stalkstockcommercial.ui.view.fragments.account.AccountFragment())
-                        } else {
-                        }
-                    }
-
-                }
-                return true
-            }
-        })*/
 
         tv_home = findViewById(R.id.tv_home)
         tv_order = findViewById(R.id.tv_order)
@@ -173,8 +99,8 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
 
             val f = supportFragmentManager.findFragmentById(R.id.rl_content_frame)
 
-            if (f !is com.live.stalkstockcommercial.ui.view.fragments.account.AccountFragment) {
-                switchFragment(R.id.rl_content_frame, com.live.stalkstockcommercial.ui.view.fragments.account.AccountFragment())
+            if (f !is AccountFragment) {
+                switchFragment(R.id.rl_content_frame, AccountFragment())
             } else {
             }
         }
@@ -191,13 +117,7 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
     }
 
 
-    //    private void backgroundChange(ImageView rl1, ImageView rl2, ImageView rl3 , ImageView rl4) {
-//        rl1.setBackground(getResources().getDrawable(R.drawable.tab_background_for_profile));
-////        rl2.setBackground(getResources().getDrawable(R.drawable.tab_background_for_profile));
-////        rl3.setBackground(getResources().getDrawable(R.drawable.tab_background_for_profile));
-////        rl4.setBackground(getResources().getDrawable(R.drawable.tab_background_for_profile));
-//
-//    }
+
     fun textColorChange(
         tv1: TextView,
 
@@ -213,32 +133,5 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
     }
 
     override fun getYourFragmentActive(value: Int) {
-      /*  when(value){
-            1->{
-                iv_homeTab.setImageResource(R.drawable.home_green_icon)
-                iv_orderTab.setImageResource(R.drawable.list_black_icon)
-                iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
-                iv_accountTab.setImageResource(R.drawable.user_black_icon)
-            }
-            2->{
-                iv_homeTab.setImageResource(R.drawable.home_black_icon)
-                iv_orderTab.setImageResource(R.drawable.list_green_icon)
-                iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
-                iv_accountTab.setImageResource(R.drawable.user_black_icon)
-            }
-            3->{
-                iv_homeTab.setImageResource(R.drawable.home_black_icon)
-                iv_orderTab.setImageResource(R.drawable.list_black_icon)
-                iv_messageTab.setImageResource(R.drawable.chat_green_icon)
-                iv_accountTab.setImageResource(R.drawable.user_black_icon)
-            }
-            4->{
-                iv_homeTab.setImageResource(R.drawable.home_black_icon)
-                iv_orderTab.setImageResource(R.drawable.list_black_icon)
-                iv_messageTab.setImageResource(R.drawable.chat_grey_icon)
-                iv_accountTab.setImageResource(R.drawable.user_green_icon)
-            }
-
-        }*/
     }
 }

@@ -19,9 +19,10 @@ import retrofit2.http.Body
 interface RestApiInterface {
 
     /*
-    vendor:-business@yopmail.com    123456
-    consumer:-anikaesash@mailinator.com 123456
-    driver:-testdriver1@yopmail.com 123456
+    vendor:-business@yopmail.com    123456   //promote my goods and services
+    consumer:-anikaesash@mailinator.com 123456   // purchase items for my household
+    driver:-testdriver1@yopmail.com 123456      // offer delivery services
+
     */
     /*
 1=>user
@@ -337,5 +338,17 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(URL.transferFunds)
     fun transferFunds(@FieldMap map: HashMap<String, String>): Observable<TransferFundsData>
+
+    @FormUrlEncoded
+    @POST(URL.addUserCards)
+    fun addUserCards(@FieldMap map: HashMap<String, String>): Observable<AddCardData>
+
+    @FormUrlEncoded
+    @POST(URL.getCardList)
+    fun getCardList(@FieldMap map: HashMap<String, String>): Observable<UserCardList>
+
+    @FormUrlEncoded
+    @POST(URL.getSuggestedProduct)
+    fun getSuggestedProduct(@FieldMap map: HashMap<String, String>): Observable<SuggestedDataListed>
 
 }

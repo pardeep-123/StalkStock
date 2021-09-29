@@ -34,9 +34,7 @@ import kotlinx.android.synthetic.main.fragment_account_consumer.*
 import okhttp3.RequestBody
 import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
 
     private var from = ""
@@ -51,41 +49,37 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val views = inflater.inflate(R.layout.fragment_account_consumer, container, false)
         profile = views!!.findViewById(R.id.profile)
-        tv_changepass = views!!.findViewById(R.id.tv_changepass)
-        tv_logout = views!!.findViewById(R.id.tv_logout)
-        edi_icon = views!!.findViewById(R.id.ivEdit)
-        tv_help = views!!.findViewById(R.id.tv_help)
-        tv_manage = views!!.findViewById(R.id.tv_manage)
-        tv_business_profile = views!!.findViewById(R.id.tv_business_profile)
-        profile.setOnClickListener(View.OnClickListener {
+        tv_changepass = views.findViewById(R.id.tv_changepass)
+        tv_logout = views.findViewById(R.id.tv_logout)
+        edi_icon = views.findViewById(R.id.ivEdit)
+        tv_help = views.findViewById(R.id.tv_help)
+        tv_manage = views.findViewById(R.id.tv_manage)
+        tv_business_profile = views.findViewById(R.id.tv_business_profile)
+        profile.setOnClickListener {
             val intent = Intent(activity, EditprofileConsumerActivity::class.java)
             startActivity(intent)
-        })
-        tv_help.setOnClickListener(View.OnClickListener {
+        }
+        tv_help.setOnClickListener {
             val intent = Intent(activity, HelpActivity::class.java)
             startActivity(intent)
-        })
-        tv_changepass.setOnClickListener({
+        }
+        tv_changepass.setOnClickListener {
             val intent = Intent(activity, ChangePasswordActivity::class.java)
             startActivity(intent)
-        })
-        tv_logout.setOnClickListener(View.OnClickListener { LogoutAlert() })
-        tv_manage.setOnClickListener(View.OnClickListener {
+        }
+        tv_logout.setOnClickListener { LogoutAlert() }
+        tv_manage.setOnClickListener {
             val intent = Intent(activity, ManagePaymentsActivity::class.java)
             startActivity(intent)
-
-//                Intent intent=new Intent(getActivity(), PaymentActivity.class);
-//                startActivity(intent);
-        })
-        tv_business_profile.setOnClickListener(View.OnClickListener {
+        }
+        tv_business_profile.setOnClickListener {
             val intent = Intent(activity, ManageAddress::class.java)
             startActivity(intent)
-        })
-        val toggle1 = views!!.findViewById<ImageView>(R.id.toggle1)
-        val toggle_off2 = views!!.findViewById<ImageView>(R.id.toggle_off2)
+        }
+        val toggle1 = views.findViewById<ImageView>(R.id.toggle1)
+        val toggle_off2 = views.findViewById<ImageView>(R.id.toggle_off2)
         toggle1.setOnClickListener {
             toggle_off2.visibility = View.VISIBLE
             toggle1.visibility = View.GONE
@@ -117,7 +111,7 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
     private fun notificationOnOffAPI(s: String) {
         val map = HashMap<String, RequestBody>()
         val mainConsumerActivity = activity as MainConsumerActivity
-        map.put("status", mainConsumerActivity.mUtils.createPartFromString(s))
+        map["status"] = mainConsumerActivity.mUtils.createPartFromString(s)
         viewModel.notification_on_offAPI(mainConsumerActivity, true, map)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
 
@@ -152,7 +146,6 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
         val mainConsumerActivity = activity as MainConsumerActivity
         viewModel.logout(mainConsumerActivity, true)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
-
         from = "logout"
 
     }
@@ -163,31 +156,28 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        if (from.equals("logout")) {
+                        if (from == "logout") {
                             val intent = Intent(activity, LoginActivity::class.java)
-                            // intent.putExtra("is_open","1");
                             startActivity(intent)
                             requireActivity().finishAffinity()
                             clearPrefrences()
                         } else
                             AppUtils.showSuccessAlert(
                                 requireActivity(),
-                                mResponse.message.toString()
+                                mResponse.message
                             )
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
                 if (it.data is ModelGetProfileDetail) {
                     val mResponse: ModelGetProfileDetail = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setData(mResponse)
-
-                    } else {
-//                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                    else {
                     }
                 }
-
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -195,7 +185,6 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
                 } else {
                     Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
                         .show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -204,40 +193,25 @@ class ProfileConsumerFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: ModelGetProfileDetail) {
-        imgUserProfile.loadImage(mResponse.body.userDetail.image)
-        txtUserEmail.setText(mResponse.body.email)
-        txtUserPhone.setText(mResponse.body.mobile.toString())
-        txtUserName.setText(mResponse.body.userDetail.first_name + " " + mResponse.body.userDetail.last_name)
-//        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
+        (imgUserProfile as ImageView).loadImage(mResponse.body.userDetail.image)
+        txtUserEmail.text = mResponse.body.email
+        txtUserPhone.text = mResponse.body.mobile
+        txtUserName.text = mResponse.body.userDetail.first_name + " " + mResponse.body.userDetail.last_name
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "1")
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.AUTH_KEY, mResponse.body.token)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.token, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.id, mResponse.body.id)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.role, mResponse.body.role)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.verified, mResponse.body.verified)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.status, mResponse.body.status)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.email, mResponse.body.email)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.mobile, mResponse.body.mobile)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.notification, mResponse.body.notification)
-        if (mResponse.body.notification.equals("on")) {
+        if (mResponse.body.notification == "on") {
             toggle_off2.visibility = View.VISIBLE
             toggle1.visibility = View.GONE
-        } else {
+        }
+        else {
             toggle_off2.visibility = View.GONE
             toggle1.visibility = View.VISIBLE
         }
-/*
-        savePrefrence(
-            GlobalVariables.SHARED_PREF_USER.remember_token,
-            mResponse.body.remember_token
-        )
-*/
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.created, mResponse.body.created)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.updated, mResponse.body.updated)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.createdAt, mResponse.body.createdAt)
-//        savePrefrence(GlobalVariables.SHARED_PREF_USER.updatedAt, mResponse.body.updatedAt)
     }
-
 }

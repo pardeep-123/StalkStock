@@ -437,7 +437,6 @@
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -451,7 +450,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD8c46gsZPEYwRqSxm3tSg5zg5Yc7Jr7Gc" />

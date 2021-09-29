@@ -200,6 +200,9 @@ class GlobalVariables {
         const val bankAccountList = "bankAccountList"
         const val addBankAccount = "add/bank/account"
         const val transferFunds = "transferFund"
+        const val addUserCards = "user/add/Card"
+        const val getCardList = "user/getUserCardList"
+        const val getSuggestedProduct = "user/home/suggested/Product"
 
     }
 
@@ -249,7 +252,7 @@ class GlobalVariables {
         const val TimeFormat1 = "hh:mm a"
         const val DateTimeFormat = "dd MMM,yyyy hh:mm a"
         const val DateTimeFormat2 = "MMM dd,yyyy hh:mm a"
-        const val DateTimeFormat1 = "yyyy-MM-dd'T'hh:mm"
+        const val DateTimeFormat1 = "yyyy-MM-dd'T'hh:mm"  //Fri Sep 17 01:40:00 GMT+05:30 2021
     }
 
     object Job_state {

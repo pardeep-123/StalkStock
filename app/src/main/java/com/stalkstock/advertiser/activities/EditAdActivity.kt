@@ -64,7 +64,7 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener {
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type.equals("1"))
+                if (type == "1")
                 {
                     firstimage = result[0].path
                 }

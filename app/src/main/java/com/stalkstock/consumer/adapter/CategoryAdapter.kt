@@ -19,16 +19,12 @@ class CategoryAdapter(
     var arrayList: ArrayList<ModelCategoryList.Body>
 ) :
     RecyclerView.Adapter<CategoryAdapter.RecyclerViewHolder>() {
-    var inflater: LayoutInflater
+    var inflater: LayoutInflater = LayoutInflater.from(mContext)
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var img: ImageView
-        var name: TextView
+        var img: ImageView = view.findViewById(R.id.img)
+        var name: TextView = view.findViewById(R.id.starCount)
 
-        init {
-            img = view.findViewById(R.id.img)
-            name = view.findViewById(R.id.starCount)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -48,7 +44,4 @@ class CategoryAdapter(
         return arrayList.size
     }
 
-    init {
-        inflater = LayoutInflater.from(mContext)
-    }
 }

@@ -35,6 +35,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
     var tv_order: TextView? = null
     var tv_cart: TextView? = null
     var tv_account: TextView? = null
+
     override fun getContentId(): Int {
         return R.layout.activity_home
     }
@@ -44,12 +45,10 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         : Bundle?
     ) {
         super.onCreate(savedInstanceState);
-        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             window.statusBarColor = Color.WHITE;
         }
-
         tv_home = findViewById(R.id.tv_home)
         tv_order = findViewById(R.id.tv_order)
         tv_cart = findViewById(R.id.tv_cart)
@@ -60,19 +59,13 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         }
 
         iv_notification.setOnCheckedChangeListener { compoundButton, b ->
-            if (b) {
-                changeOnlineStatus("1")
-            } else {
-                changeOnlineStatus("0")
-            }
-        }
-
+            if (b) { changeOnlineStatus("1") }
+            else { changeOnlineStatus("0") } }
         rl_home.setOnClickListener(this)
         rl_plus.setOnClickListener(this)
         rl_profile1.setOnClickListener(this)
         rl_payment.setOnClickListener(this)
         switchFragment(HomeFragment())
-
     }
 
     val viewModel: DriverViewModel by viewModels()
@@ -80,7 +73,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
     private fun changeOnlineStatus(s: String) {
         val map = HashMap<String, RequestBody>()
         map.put("type", mUtils.createPartFromString(s)) //1 online, 0- offline
-
         viewModel.driveronlineOffline(this, true, map)
         viewModel.mResponse.observe(this, this)
     }
@@ -88,13 +80,11 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
 
     fun textColorChange(
         tv1: TextView,
-
         tv3: TextView,
         tv4: TextView,
         tv5: TextView
     ) {
         tv1.setTextColor(resources.getColor(R.color.green))
-
         tv3.setTextColor(resources.getColor(R.color.colorIcon))
         tv4.setTextColor(resources.getColor(R.color.colorIcon))
         tv5.setTextColor(resources.getColor(R.color.colorIcon))
@@ -110,9 +100,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_black_icon1))
                 iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
                 iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a14dooler1))
-
                 textColorChange(tv_home!!, tv_order!!, tv_cart!!, tv_account!!)
-
                 switchFragment(HomeFragment())
             }
             R.id.rl_plus -> {
@@ -124,10 +112,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_green_icon1))
                 iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
                 iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a14dooler1))
-
                 textColorChange(tv_order!!, tv_home!!, tv_cart!!, tv_account!!)
-
-
                 switchFragment(MyRequestFragment())
             }
             R.id.rl_payment -> {
@@ -140,10 +125,9 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
                 iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a13doller1))
                 textColorChange(tv_cart!!, tv_order!!, tv_home!!, tv_account!!)
-
-
                 switchFragment(PaymentFragment())
             }
+
             R.id.rl_profile1 -> {
                 iv_im.visibility = View.GONE
                 iv_notification.visibility = View.GONE
@@ -154,12 +138,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_black_icon1))
                 iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a14dooler1))
                 textColorChange(tv_account!!, tv_cart!!, tv_order!!, tv_home!!)
-
                 switchFragment(AccountFragment())
-            }
-
-
-        }
+            } }
     }
 
     private fun switchFragment(fragment: Fragment) {
@@ -191,10 +171,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(
                             this,
-                            mResponse.message
-                        )
-                    }
-                }
+                            mResponse.message)
+                    } }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -206,12 +184,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                         it.error!!.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
-                }
-            }
+                }}
             it.status == Status.LOADING -> {
-            }
-        }
-    }
-
-
+            } } }
 }

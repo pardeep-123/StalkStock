@@ -76,60 +76,7 @@
                     android:background="#80E9E8E8"
 
                     app:layout_constraintTop_toTopOf="parent">
-                    <!--
 
-
-                                    <de.hdodenhof.circleimageview.CircleImageView
-                                        android:id="@+id/civAccount"
-                                        android:layout_width="@dimen/value_60dp"
-                                        android:layout_height="@dimen/value_60dp"
-                                        android:layout_marginLeft="@dimen/value_10dp"
-                                        android:src="@drawable/chat_img_1"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:id="@+id/tvName"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/value_10dp"
-                                        android:text="Oskar"
-                                        android:textColor="@color/black_color"
-                                        android:textSize="@dimen/value_18dp"
-                                        android:typeface="monospace"
-                                        app:layout_constraintStart_toEndOf="@id/civAccount"
-                                        app:layout_constraintTop_toTopOf="@id/civAccount" />
-
-                                    <TextView
-                                        android:id="@+id/tvEmail"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/value_10dp"
-                                        android:text="oskar@gmail.com"
-                                        app:layout_constraintStart_toEndOf="@id/civAccount"
-                                        app:layout_constraintTop_toBottomOf="@id/tvName" />
-
-                                    <TextView
-                                        android:id="@+id/tvNumber"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/value_10dp"
-                                        android:text="123 456 789"
-                                        app:layout_constraintStart_toEndOf="@id/civAccount"
-                                        app:layout_constraintTop_toBottomOf="@id/tvEmail" />
-
-                                    <ImageView
-                                        android:id="@+id/ivEditProfile"
-                                        android:layout_width="@dimen/value_18dp"
-                                        android:layout_height="@dimen/value_18dp"
-                                        android:layout_marginRight="@dimen/value_10dp"
-                                        android:src="@drawable/edi_icon"
-                                        app:layout_constraintBottom_toBottomOf="@id/tvName"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintTop_toTopOf="@id/tvName" />
-
-                    -->
 
                     <RelativeLayout
                         android:id="@+id/profile"

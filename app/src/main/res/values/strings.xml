@@ -250,10 +250,14 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_confirm_bank_account_number">Please confirm your bank account number</string>
     <string name="enter_account_amount">Please enter amount</string>
     <string name="insufficient_balance">Insufficient balance</string>
-
-
-
-
+    <string name="enter_card_name">Please enter card number</string>
+    <string name="enter_char_card_name">Please enter 16 characters in card number</string>
+    <string name="select_expiry_month">Please select expiry month</string>
+    <string name="select_expiry_year">Please select expiry year</string>
+    <string name="enter_cvv_number">Please enter CVV number</string>
+    <string name="enter_valid_cvv">Please enter valid CVV number</string>
+    <string name="enter_card_holder_name">Please enter card holder name</string>
+    <string name="no_card_found">No Card Found</string>
 
 
     <string-array name="Select_Category">

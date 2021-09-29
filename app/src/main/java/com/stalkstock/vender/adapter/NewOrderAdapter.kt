@@ -35,21 +35,17 @@ class NewOrderAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.tvName.setText(mOrderArrayList[position].firstName+" "+mOrderArrayList[0].lastName)
-        holder.itemView.tvOrderNumber.setText(mOrderArrayList[position].orderNo)
-        holder.itemView.tvDate.setText(
-            changeDateFormat(
-                mOrderArrayList[position].updatedAt,
-                GlobalVariables.DATEFORMAT.DateTimeFormat1,
-                GlobalVariables.DATEFORMAT.DateFormat1
-            )
+        holder.itemView.tvName.text = mOrderArrayList[position].firstName+" "+mOrderArrayList[0].lastName
+        holder.itemView.tvOrderNumber.text = mOrderArrayList[position].orderNo
+        holder.itemView.tvDate.text = changeDateFormat(
+            mOrderArrayList[position].updatedAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat1,
+            GlobalVariables.DATEFORMAT.DateFormat1
         )
-        holder.itemView.tvTime.setText(
-            changeDateFormat(
-                mOrderArrayList[position].updatedAt,
-                GlobalVariables.DATEFORMAT.DateTimeFormat1,
-                GlobalVariables.DATEFORMAT.TimeFormat1
-            )
+        holder.itemView.tvTime.text = changeDateFormat(
+            mOrderArrayList[position].updatedAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat1,
+            GlobalVariables.DATEFORMAT.TimeFormat1
         )
     }
     override fun getItemCount(): Int {
