@@ -106,16 +106,16 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
     private fun setData(mResponse: ModelProductDetail) {
         currentProductModel = mResponse
         adduploadimages.loadImage(mResponse.body.productImage[0].image)
-        product_Bacongrill.setText(mResponse.body.brandName)
-        businessnamee1.setText(mResponse.body.productTag[0].tag)
-        businessmobile.setText(mResponse.body.country)
-        businesstelephonenumber.setText(mResponse.body.productMeasurement.name)
-        businesswebsitename.setText("$" + mResponse.body.mrp.toString())
-        businesscity.setText(mResponse.body.description)
+        product_Bacongrill.text = mResponse.body.brandName
+        businessnamee1.text = mResponse.body.productTag[0].tag
+        businessmobile.text = mResponse.body.country
+        businesstelephonenumber.text = mResponse.body.productMeasurement.name
+        businesswebsitename.text = "$" + mResponse.body.mrp.toString()
+        businesscity.text = mResponse.body.description
 
         if (mResponse.body.availability == 1) {
-            businesstypes.setText("Available")
+            businesstypes.text = "Available"
         } else
-            businesstypes.setText("Not Available")
+            businesstypes.text = "Not Available"
     }
 }

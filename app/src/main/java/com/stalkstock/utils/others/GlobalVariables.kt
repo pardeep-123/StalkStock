@@ -203,6 +203,8 @@ class GlobalVariables {
         const val addUserCards = "user/add/Card"
         const val getCardList = "user/getUserCardList"
         const val getSuggestedProduct = "user/home/suggested/Product"
+        const val getNotificationList = "notificationList"
+        const val deleteCard = "user/deleteUserCard"
 
     }
 

@@ -1,5 +1,6 @@
 package com.stalkstock.consumer.adapter
 
+import android.content.Intent
 import com.stalkstock.driver.models.SuggestedBody
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,11 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.stalkstock.consumer.activities.ProductDetailsActivity
 import kotlinx.android.synthetic.main.row_suggestedforyou.view.*
 import java.util.ArrayList
 
 class SuggestedAdapter(var listSuggested: ArrayList<SuggestedBody>) :
     RecyclerView.Adapter<SuggestedAdapter.RecyclerViewHolder>() {
+
+    var deliverType = ""
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var img: ImageView = view.findViewById(R.id.ivImage)
@@ -31,7 +35,13 @@ class SuggestedAdapter(var listSuggested: ArrayList<SuggestedBody>) :
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         holder.itemView.tvTitle.text  = listSuggested[position].name
         Glide.with(holder.itemView.context).load(listSuggested[position].productImage[0].image).into(holder.itemView.ivImage)
-    }
+
+        holder.itemView.setOnClickListener {
+             val intent = Intent(holder.itemView.context, ProductDetailsActivity::class.java)
+                 intent.putExtra("product_id",listSuggested[position].productImage[0].productId.toString())
+                 intent.putExtra("deliveryType",deliverType)
+                 holder.itemView.context.startActivity(intent)
+        } }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
@@ -44,5 +54,4 @@ class SuggestedAdapter(var listSuggested: ArrayList<SuggestedBody>) :
     override fun getItemCount(): Int {
         return listSuggested.size
     }
-
 }

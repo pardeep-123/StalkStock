@@ -11,7 +11,6 @@ import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.consumer.adapter.FilterAdapter
 import com.stalkstock.consumer.fragment.HomeCounsumerFragment
-import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentHighPrice
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentLowPrice
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentSortBy
@@ -48,7 +47,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
             if (fromWhichActivity.equals("HomedetailsActivity"))
                 returnIntent = Intent(this, HomedetailsActivity::class.java)
             if (fromWhichActivity.equals("ProductdetailsActivity"))
-                returnIntent = Intent(this, ProductdetailsActivity::class.java)
+                returnIntent = Intent(this, ProductDetailsActivity::class.java)
             if (fromWhichActivity.equals("ProductActivity"))
                 returnIntent = Intent(this, ProductActivity::class.java)
             if (!fromWhichActivity.isEmpty()) {

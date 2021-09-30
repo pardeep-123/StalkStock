@@ -16,19 +16,13 @@ class NotificationListActivity : AppCompatActivity(), View.OnClickListener {
     val mContext : Context =this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
         setContentView(R.layout.activity_notification_list)
         tv_heading.text = "Notifications"
         iv_back.setOnClickListener(this)
-        setAdapter()
+
     }
 
-    fun setAdapter() {
-        val adapter = NotificationsAdapter(mContext)
-        rv_notification.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
-        rv_notification.adapter = adapter
-    }
+
 
     override fun onClick(p0: View?) {
         when(p0?.id) {

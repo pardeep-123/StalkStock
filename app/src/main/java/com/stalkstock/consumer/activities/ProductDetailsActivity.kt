@@ -19,7 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.Notification_firstActivity
+import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.ProductsdetailsAdapter
@@ -35,8 +35,8 @@ import kotlinx.android.synthetic.main.activity_productdetails.*
 import okhttp3.RequestBody
 import java.util.*
 
-class ProductdetailsActivity : BaseActivity(), Observer<RestObservable> {
-    var context: ProductdetailsActivity? = null
+class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
+    var context: ProductDetailsActivity? = null
     lateinit var adapter: ProductsdetailsAdapter
     lateinit var productdetails_recycle: RecyclerView
     private var currentProductID = ""
@@ -102,7 +102,7 @@ class ProductdetailsActivity : BaseActivity(), Observer<RestObservable> {
             }
 
         notification.setOnClickListener {
-            val intent = Intent(context, Notification_firstActivity::class.java)
+            val intent = Intent(context, NotificationFirstActivity::class.java)
             startActivity(intent)
         }
         search.setOnClickListener {

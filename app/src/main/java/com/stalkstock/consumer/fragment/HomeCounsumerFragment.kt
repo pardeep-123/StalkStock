@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.Notification_firstActivity
+import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelCategoryList
@@ -51,7 +51,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     private var mLong: Double = 0.0
     var stAddress = ""
 
-//    var currentDeliveryType = 0 // 0- pickup,1-deelivery , 2 -all
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
@@ -151,7 +150,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
 //                replace 6 with last position
                 if (position == currentModel.size && positionOffset == 0f && !isLastPageSwiped) {
                     if (counterPageScroll != 0) {
@@ -163,19 +161,16 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                         }
                     }
                     counterPageScroll++;
-                } else {
+                }
+                else {
                     counterPageScroll = 0;
                 }
-
-
             }
 
             override fun onPageSelected(position: Int) {
             }
 
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
+            override fun onPageScrollStateChanged(state: Int) {}
 
         })
         adapter3 = SuggestedAdapter(listSuggested)
@@ -186,11 +181,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         )
         suggested_recycle.adapter = adapter3
         notification.setOnClickListener {
-            val intent = Intent(activity, Notification_firstActivity::class.java)
+            val intent = Intent(activity, NotificationFirstActivity::class.java)
             startActivity(intent)
         }
         fillter.setOnClickListener {
-
             val intent = Intent(requireContext(), FilterActivity::class.java)
             intent.putExtra("from", "HomeCounsumerFragment")
             resultLauncher.launch(intent)
@@ -598,9 +592,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         currentModel.addAll(mResponse.body)
         detailAdapter.notifyDataSetChanged()
         reset = false
-
     }
-
 
     fun startSubCat(toString: String) {
         val intent = Intent(context, HomedetailsActivity::class.java)

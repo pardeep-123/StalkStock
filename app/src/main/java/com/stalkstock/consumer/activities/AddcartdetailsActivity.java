@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 
 import com.stalkstock.R;
-import com.stalkstock.advertiser.activities.Notification_firstActivity;
+import com.stalkstock.advertiser.activities.NotificationFirstActivity;
 import com.stalkstock.consumer.adapter.ProductsdetailsAdapter;
 import com.stalkstock.vender.ui.SearchScreen;
 
@@ -58,7 +58,7 @@ public class AddcartdetailsActivity extends AppCompatActivity {
         ivnotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Notification_firstActivity.class);
+                Intent intent = new Intent(context, NotificationFirstActivity.class);
                 startActivity(intent);
             }
         });

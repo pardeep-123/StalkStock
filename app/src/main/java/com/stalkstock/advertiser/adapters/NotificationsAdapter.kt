@@ -1,36 +1,32 @@
 package com.stalkstock.advertiser.adapters
 
-import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
+import com.stalkstock.consumer.model.NotificationListBody
 
 class NotificationsAdapter(
-    val context: Context?
+    val list: MutableList<NotificationListBody>
     ) : RecyclerView.Adapter<NotificationsAdapter.AdsHolder>() {
+
     override fun onBindViewHolder(holder: AdsHolder, position: Int) {
-            holder.bindItems(position)
+        holder.tvText.text = list[position].message
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdsHolder {
-        return AdsHolder(LayoutInflater.from(context).inflate(R.layout.notification_card, parent, false)
-        )
+        return AdsHolder(LayoutInflater.from(parent.context).inflate(R.layout.notification_card, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return list.size
     }
 
     inner class AdsHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Holds the TextView that will add each animal to
-
-
-        fun bindItems(position: Int) {
-
-        }
-
+       var tvText = view.findViewById<TextView>(R.id.tvText)
     }
 }
 

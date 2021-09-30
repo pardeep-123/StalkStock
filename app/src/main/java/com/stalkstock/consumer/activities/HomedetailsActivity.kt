@@ -17,7 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.Notification_firstActivity
+import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelSubCategoriesList
@@ -202,7 +202,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             inprogress_view2.setBackgroundColor(resources.getColor(R.color.theme_green))
         })
         ivNotification.setOnClickListener {
-            val intent = Intent(context, Notification_firstActivity::class.java)
+            val intent = Intent(context, NotificationFirstActivity::class.java)
             startActivity(intent)
         }
         search.setOnClickListener {

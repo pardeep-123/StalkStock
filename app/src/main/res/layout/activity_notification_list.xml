@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,10 +23,7 @@
             android:layout_height="1dp"
             android:background="@color/light_grey" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_notification"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
 </RelativeLayout>

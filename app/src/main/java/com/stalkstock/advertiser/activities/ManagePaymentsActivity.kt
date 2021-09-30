@@ -6,18 +6,20 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.driver.models.AddCardData
+import com.stalkstock.consumer.adapter.UserCardAdapter
+import com.stalkstock.consumer.model.DeleteCardData
+import com.stalkstock.driver.models.UserCardBody
 import com.stalkstock.driver.models.UserCardList
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.others.GlobalVariables
@@ -31,9 +33,10 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
     Observer<RestObservable> {
     val mContext:Context=this
     var from = ""
+    var deleteCardPos= 0
     val viewModel: DriverViewModel by viewModels()
-
-
+     lateinit var adapter : UserCardAdapter
+     private var listCards  = mutableListOf<UserCardBody>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,22 +56,40 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 val intents = Intent(this@ManagePaymentsActivity,ThankyouActivity2::class.java)
                 startActivity(intents) }
             else{ onBackPressed() }}
-
         if(MyApplication.instance.getString("usertype").equals("5")){
             btn_checkout.visibility=View.VISIBLE
         }
 
+
+        adapter = UserCardAdapter(listCards)
+        rvCards.adapter =adapter
+        adapter.onPerformClick(object :UserCardAdapter.CardClicked{
+            override fun clicked(position: Int, id: Int) {
+                Log.e("ivDeleteCard","=====2222====")
+
+                val map = HashMap<String, String>()
+                map["cardId"] = "$id"
+                deleteCardPos = position
+
+                if(listCards.isEmpty()) tvNoCards.visibility = View.VISIBLE
+                viewModel.deleteCard(this@ManagePaymentsActivity, true, map)
+
+            }
+
+        })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         callCardList()
-
-
-
     }
 
     private fun callCardList() {
 
         val map = HashMap<String, String>()
         map["offset"] = "0"
-        map["limit"] = "10"
+        map["limit"] = "20"
         viewModel.getCardList(this, true, map)
         viewModel.mResponse.observe(this, this)
     }
@@ -102,6 +123,18 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                     val mResponse: UserCardList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         tvNoCards.visibility = View.GONE
+                        listCards.clear()
+                        listCards.addAll(mResponse.body)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+                if (it.data is DeleteCardData) {
+                    val mResponse: DeleteCardData = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        listCards.removeAt(deleteCardPos)
+                        adapter.notifyItemRemoved(deleteCardPos)
+                        adapter.notifyItemRangeChanged(deleteCardPos,listCards.size)
+                        if(listCards.isEmpty()) tvNoCards.visibility = View.VISIBLE
                     }
                 }
 

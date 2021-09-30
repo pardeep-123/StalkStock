@@ -65,7 +65,7 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
             requireContext().startActivity(Intent(requireContext(), HelpActivity::class.java))
         }
         tv_notification.setOnClickListener {
-            requireContext().startActivity(Intent(requireContext(), Notification_firstActivity::class.java))
+            requireContext().startActivity(Intent(requireContext(), NotificationFirstActivity::class.java))
         }
         lin_editProfile.setOnClickListener {
             requireContext().startActivity(Intent(requireContext(), EditProfileActivity::class.java))

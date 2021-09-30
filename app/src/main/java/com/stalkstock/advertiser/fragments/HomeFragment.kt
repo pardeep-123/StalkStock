@@ -10,7 +10,7 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.Notification_firstActivity
+import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.advertiser.adapters.MyAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
         v.iv_notification.setOnClickListener{
-            val intent = Intent(activity, Notification_firstActivity::class.java)
+            val intent = Intent(activity, NotificationFirstActivity::class.java)
             startActivity(intent)
         }
 

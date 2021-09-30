@@ -260,7 +260,7 @@
         <!-- <activity android:name=".commercial.view.activities.Chat" /> -->
         <!-- <activity android:name=".commercial.view.activities.OrderDetailActivity" /> -->
         <!-- consumer -->
-        <activity android:name=".consumer.activities.ProductdetailsActivity"
+        <activity android:name=".consumer.activities.ProductDetailsActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
         <activity android:name=".commercial.view.activities.Verification"
@@ -341,7 +341,7 @@
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".advertiser.activities.Notification_firstActivity"
+            android:name=".advertiser.activities.NotificationFirstActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />

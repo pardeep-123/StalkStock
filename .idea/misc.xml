@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/layout-sw620dp/bottom_layout.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_payment.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_popup.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/row_productdetsils.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout/accept_request_alert.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/account.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_add_bank_account.xml" value="0.25" />
@@ -21,7 +22,11 @@
         <entry key="app/src/main/res/layout/activity_main_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_manage_payments.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_my_order.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_notification_first.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_notification_list.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_order_details.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_orderdeatils.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_account_consumer.xml" value="0.18020833333333333" />
@@ -32,6 +37,8 @@
         <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.18" />
         <entry key="app/src/main/res/layout/home_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/item_cards.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/layout_sort_popup.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/notification_card.xml" value="0.33" />
         <entry key="app/src/main/res/layout/payment_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.33" />
         <entry key="app/src/main/res/layout/row_suggestedforyou.xml" value="0.18020833333333333" />

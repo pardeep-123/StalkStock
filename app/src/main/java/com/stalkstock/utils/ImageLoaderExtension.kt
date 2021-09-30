@@ -1,7 +1,6 @@
 package com.stalkstock.utils
 
 
-import android.content.Context
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -15,30 +14,34 @@ fun ImageView.loadImage(categoryImg: String) {
     circularProgressDrawable.centerRadius = 30f
     circularProgressDrawable.start()
 
-    if (categoryImg.contains(IMAGE_URL)) {
-        Glide.with(this)
-            .load(categoryImg)
-            .placeholder(circularProgressDrawable)
-            .error(R.drawable.place_holder)
-            .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(this)
+    when {
+        categoryImg.contains(IMAGE_URL) -> {
+            Glide.with(this)
+                .load(categoryImg)
+                .placeholder(circularProgressDrawable)
+                .error(R.drawable.place_holder)
+                .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(this)
 
-    } else if (categoryImg.contains("localStalk")) {
-        val removePrefix = categoryImg.removePrefix("localStalk")
-        Glide.with(this)
-            .load(removePrefix)
-            .error(R.drawable.place_holder)
+        }
+        categoryImg.contains("localStalk") -> {
+            val removePrefix = categoryImg.removePrefix("localStalk")
+            Glide.with(this)
+                .load(removePrefix)
+                .error(R.drawable.place_holder)
 
-            .placeholder(circularProgressDrawable)
-            .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(this)
-    } else {
-        Glide.with(this)
-            .load("$IMAGE_URL$categoryImg")
-            .error(R.drawable.place_holder)
+                .placeholder(circularProgressDrawable)
+                .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(this)
+        }
+        else -> {
+            Glide.with(this)
+                .load("$IMAGE_URL$categoryImg")
+                .error(R.drawable.place_holder)
 
-            .placeholder(circularProgressDrawable)
-            .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(this)
+                .placeholder(circularProgressDrawable)
+                .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(this)
+        }
     }
 }

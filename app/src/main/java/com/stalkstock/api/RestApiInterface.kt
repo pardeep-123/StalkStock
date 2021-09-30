@@ -351,4 +351,14 @@ interface RestApiInterface {
     @POST(URL.getSuggestedProduct)
     fun getSuggestedProduct(@FieldMap map: HashMap<String, String>): Observable<SuggestedDataListed>
 
+    @FormUrlEncoded
+    @POST(URL.getNotificationList)
+    fun getNotificationList(@FieldMap map: HashMap<String, String>): Observable<NotificationListData>
+
+   // @DELETE(URL.deleteCard)
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = URL.deleteCard, hasBody = true)
+    fun deleteCard(@FieldMap map: HashMap<String, String>): Observable<DeleteCardData>
+
 }

@@ -1,21 +1,19 @@
 package com.stalkstock.consumer.adapter
 
-import com.stalkstock.consumer.activities.ProductdetailsActivity
+import com.stalkstock.consumer.activities.ProductDetailsActivity
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.widget.TextView
 import com.stalkstock.R
 import android.view.ViewGroup
-import android.content.Intent
 import android.view.View
-import com.stalkstock.consumer.activities.AddcartdetailsActivity
 import com.stalkstock.consumer.model.UserVendorsProductList
 import com.stalkstock.utils.loadImage
 import kotlinx.android.synthetic.main.row_productdetsils.view.*
 import java.util.ArrayList
 
 class ProductsdetailsAdapter(
-    var context: ProductdetailsActivity,
+    var context: ProductDetailsActivity,
     var currentModel: ArrayList<UserVendorsProductList.Body.SellerProduct>
 ) : RecyclerView.Adapter<ProductsdetailsAdapter.RecyclerViewHolder>() {
     var inflater: LayoutInflater

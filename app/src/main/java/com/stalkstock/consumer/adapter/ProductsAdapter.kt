@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.consumer.activities.ProductActivity
-import com.stalkstock.consumer.activities.ProductdetailsActivity
+import com.stalkstock.consumer.activities.ProductDetailsActivity
 import com.stalkstock.consumer.model.ModelProductVendorList.Body.ProductSeller
 import com.stalkstock.utils.loadImage
 import kotlinx.android.synthetic.main.row_product.view.*
@@ -38,7 +38,7 @@ class ProductsAdapter(
         holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ProductdetailsActivity::class.java)
+            val intent = Intent(context, ProductDetailsActivity::class.java)
             intent.putExtra("product_id",currentModel[position].id.toString())
             intent.putExtra("deliveryType",currentDelivery_type)
             context.startActivity(intent)
