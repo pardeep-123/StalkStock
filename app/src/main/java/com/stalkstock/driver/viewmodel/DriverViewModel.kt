@@ -203,7 +203,7 @@ class DriverViewModel : ViewModel() {
     fun driverAcceptRejectOrder(
         activity: Activity,
         showLoader: Boolean,
-        hashMap: HashMap<String, String>
+        hashMap: HashMap<String, RequestBody>
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             restApiInterface.driverAcceptRejectOrder(hashMap)
@@ -246,6 +246,32 @@ class DriverViewModel : ViewModel() {
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
                         driverOrderRequestAPI(activity, showLoader, hashMap)
+                    }
+                })
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun orderHistoryDriver(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.orderHistoryDriver(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        orderHistoryDriver(activity, showLoader, hashMap)
                     }
                 })
         }

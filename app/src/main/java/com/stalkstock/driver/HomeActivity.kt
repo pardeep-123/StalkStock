@@ -72,7 +72,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
 
     private fun changeOnlineStatus(s: String) {
         val map = HashMap<String, RequestBody>()
-        map.put("type", mUtils.createPartFromString(s)) //1 online, 0- offline
+        map["type"] = mUtils.createPartFromString(s) //1 online, 0- offline
         viewModel.driveronlineOffline(this, true, map)
         viewModel.mResponse.observe(this, this)
     }

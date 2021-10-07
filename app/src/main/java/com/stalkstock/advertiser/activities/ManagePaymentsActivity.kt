@@ -60,25 +60,18 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             btn_checkout.visibility=View.VISIBLE
         }
 
-
         adapter = UserCardAdapter(listCards)
         rvCards.adapter =adapter
         adapter.onPerformClick(object :UserCardAdapter.CardClicked{
             override fun clicked(position: Int, id: Int) {
                 Log.e("ivDeleteCard","=====2222====")
-
                 val map = HashMap<String, String>()
                 map["cardId"] = "$id"
                 deleteCardPos = position
-
                 if(listCards.isEmpty()) tvNoCards.visibility = View.VISIBLE
                 viewModel.deleteCard(this@ManagePaymentsActivity, true, map)
-
             }
-
-        })
-
-    }
+        })}
 
     override fun onResume() {
         super.onResume()
@@ -102,11 +95,11 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 val intent = Intent(mContext, AddNewCardActivity::class.java)
                 startActivity(intent)
             }
-            R.id.layout_delete->{ reportuser() }
-            R.id.layout_delete1->{ reportuser() }
+            R.id.layout_delete->{ reportUser() }
+            R.id.layout_delete1->{ reportUser() }
         }}
 
-    fun reportuser() {
+    private fun reportUser() {
         val customView = LayoutInflater.from(mContext).inflate(R.layout.delete_successfully_alert, null)
         val customDialog = Dialog(mContext)
         customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -135,9 +128,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                         adapter.notifyItemRemoved(deleteCardPos)
                         adapter.notifyItemRangeChanged(deleteCardPos,listCards.size)
                         if(listCards.isEmpty()) tvNoCards.visibility = View.VISIBLE
-                    }
-                }
-
+                    } }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {

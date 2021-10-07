@@ -277,8 +277,14 @@ interface RestApiInterface {
     @Multipart
     @PUT(URL.acceptRejectOrder)
     fun driverAcceptRejectOrder(
-        @PartMap map: HashMap<String, String>
+        @PartMap map: HashMap<String, RequestBody>
     ): Observable<UserCommonModel>
+
+    @Multipart
+    @POST(URL.orderHistoryDriver)
+    fun orderHistoryDriver(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<OrderHistoryData>
 
     @POST(URL.driverOrderRequestAPI)
     fun driverOrderRequestAPI(): Observable<NewOrderResponse>

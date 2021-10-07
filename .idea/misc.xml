@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_my_order.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/bottom_layout.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_h_ome.xml" value="0.1" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_payment.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_popup.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/row_productdetsils.xml" value="0.1234375" />
@@ -30,10 +31,12 @@
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_account_consumer.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_h_ome.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_home_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_my_orders.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/fragment_my_request.xml" value="0.1638888888888889" />
         <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.18" />
         <entry key="app/src/main/res/layout/home_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/item_cards.xml" value="0.18020833333333333" />
@@ -41,6 +44,7 @@
         <entry key="app/src/main/res/layout/notification_card.xml" value="0.33" />
         <entry key="app/src/main/res/layout/payment_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/row_request.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_suggestedforyou.xml" value="0.18020833333333333" />
       </map>
     </option>

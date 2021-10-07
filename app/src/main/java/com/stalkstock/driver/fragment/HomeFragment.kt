@@ -47,6 +47,7 @@ import com.stalkstock.vender.Utils.CurrentLocationActivity
 import kotlinx.android.synthetic.main.accept_request_alert.*
 import kotlinx.android.synthetic.main.fragment_h_ome.*
 import kotlinx.android.synthetic.main.home_popup.*
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
 import java.util.*
@@ -362,20 +363,20 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
 
         dialog.btn_accept1.setOnClickListener {
             dialog.dismiss()
-            val map = HashMap<String, String>()
-            map["status"] = "1"//1 online, 0- offline
-            map["acceptedLong"] = mLongitude
-            map["acceptedLat"] = mLatitude
-            map["orderId"] =orderID
-            Log.e("adsfdfas=====","$orderID")
+            val map = HashMap<String, RequestBody>()
 
+            Log.e("adsfdfas=====","$orderID")
+            map["status"] = RequestBody.create(MultipartBody.FORM, "1")
+            map["acceptedLong"] = RequestBody.create(MultipartBody.FORM, mLongitude)
+            map["acceptedLat"] = RequestBody.create(MultipartBody.FORM, mLatitude)
+            map["orderId"] = RequestBody.create(MultipartBody.FORM, orderID)
             viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
         }
         dialog.btn_decline1.setOnClickListener {
             dialog.dismiss()
-            val map = HashMap<String, String>()
-            map["status"] = "2" //1 online, 0- offline
-            map["orderId"] =orderID
+            val map = HashMap<String, RequestBody>()
+            map["status"] = RequestBody.create(MultipartBody.FORM, "2")
+            map["orderId"] = RequestBody.create(MultipartBody.FORM, orderID)
 
             viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
             listner!!.getYourFragmentActive(0)
