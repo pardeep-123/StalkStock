@@ -17,6 +17,8 @@ class GlobalVariables {
             const val USER_LOCATION = "user_location"
             const val UNREAD_NOTIFICATION = "unread_notification"
             const val JOB_STATE = "job_state"
+
+            const val ADV_TOKEN = "auth_token"
         }
     }
     class FilterVariables {
@@ -127,6 +129,45 @@ class GlobalVariables {
         }
     }
 
+    class SHARED_PREF_ADVERTISER{
+        companion object{
+            const val AUTH_KEY = "auth_key"
+            const val id = "id"
+            const val role = "role"
+            const val verified = "verified"
+            const val status = "status"
+            const val email = "email"
+            const val mobile = "mobile"
+            const val deviceToken = "deviceToken"
+            const val deviceType = "deviceType"
+            const val notification = "notification"
+            const val remember_token = "remember_token"
+            const val created = "created"
+            const val updated = "updated"
+            const val createdAt = "createdAt"
+            const val updatedAt = "updatedAt"
+            const val firstName = "firstName"
+            const val lastName = "lastName"
+            const val image = "image"
+            const val buisnessPhone = "buisnessPhone"
+            const val buisnessName = "buisnessName"
+            const val buisnessLogo = "buisnessLogo"
+            const val buisnessTypeId = "buisnessTypeId"
+            const val buisnessLicense = "buisnessLicense"
+            const val website = "website"
+            const val city = "city"
+            const val state = "state"
+            const val country = "country"
+            const val postalCode = "postalCode"
+            const val buisnessAddress = "buisnessAddress"
+            const val addressLine2 = "addressLine2"
+            const val buisnessDescription = "buisnessDescription"
+            const val userId = "userId"
+            const val token = "token"
+            const val advertiserId = "advertiserId"
+        }
+    }
+
 
     object URL {
 
@@ -206,6 +247,13 @@ class GlobalVariables {
         const val getNotificationList = "notificationList"
         const val deleteCard = "user/deleteUserCard"
 
+        const val ADVERTISERSIGNUP = "advertiser/signup"
+        const val advertiserProfile = "advertiser/getProfileDetail"
+        const val editAdvertiserProfileDetail = "advertiser/editAdvertiserProfileDetail"
+        const val getBuisnessDetail = "advertiser/getBuisnessDetail"
+        const val editAdvertiserBuisnessDetail = "advertiser/editAdvertiserBuisnessDetail"
+        const val buisnessType = "buisnessType"
+
     }
 
     object PARAM {
@@ -242,6 +290,12 @@ class GlobalVariables {
         val registrationNumber = "registrationNumber"
         val licenceExpiryDate = "licenceExpiryDate"
         val registrationExpiryDate = "registrationExpiryDate"
+
+        val buisnessName = "buisnessName"
+        val buisnessDescription = "buisnessDescription"
+        val buisnessAddress = "buisnessAddress"
+        val token = "token"
+
 
     }
 

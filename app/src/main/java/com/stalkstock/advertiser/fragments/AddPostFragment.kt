@@ -55,7 +55,7 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             val dpd = DatePickerDialog(requireActivity()!!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
                 // Display Selected date in textbox
-                c12.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
+                c12.text = "$dayOfMonth/$monthOfYear/$year"
             }, year, month, day)
 
             dpd.show()
@@ -68,7 +68,7 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             val dpd = DatePickerDialog(requireActivity() !!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
                 // Display Selected date in textbox
-                c123.setText("" + dayOfMonth + "/" + monthOfYear + "/" + year)
+                c123.text = "$dayOfMonth/$monthOfYear/$year"
             }, year, month, day)
 
             dpd.show()

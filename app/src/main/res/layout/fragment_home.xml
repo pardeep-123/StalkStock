@@ -184,10 +184,10 @@
                         android:id="@+id/tv_approved"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16sp"
                         android:gravity="center"
+                        android:text="Approved Ads"
                         android:textColor="@color/black"
-                        android:text="Approved Ads"/>
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -201,20 +201,21 @@
                         android:id="@+id/tv_expire"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16sp"
                         android:gravity="center"
+                        android:text="Expired Ads"
                         android:textColor="@color/black"
-                        android:text="Expired Ads"/>
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
 
             </LinearLayout>
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/rl_b"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rl_b" />
 
         </RelativeLayout>
 

@@ -16,6 +16,9 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.advertiser.model.EditProfileResponse
+import com.stalkstock.advertiser.model.AdvertiserProfileDetailResponse
+import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.driver.models.DriverProfileDetailResponse
@@ -29,12 +32,10 @@ import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import kotlinx.android.synthetic.main.activity_edit_profile.btn_update_profile
-import kotlinx.android.synthetic.main.activity_edit_profile.edtFirstName
-import kotlinx.android.synthetic.main.activity_edit_profile.edtLastName
-import kotlinx.android.synthetic.main.activity_edit_profile.edtMobile
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.emailEdittext
 import kotlinx.android.synthetic.main.activity_edit_profile.image
+import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
@@ -47,6 +48,11 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
     val mContext: Context =this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage=""
+
+    val userType = MyApplication.instance.getString("usertype")
+
+    private val viewModelAdvertiser: AdvertiserViewModel by viewModels()
+
     override fun getContentId(): Int {
         return R.layout.activity_edit_profile
     }
@@ -58,15 +64,41 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         iv_back.setOnClickListener(this)
         btn_update_profile.setOnClickListener(this)
         image.setOnClickListener(this)
-        viewModel.mResponse.observe(this, this)
-        getprofileAPI()
+
+
+
+        if (userType.equals("5")){
+            viewModelAdvertiser.mResponse.observe(this,this)
+            getUserProfile()
+        }
+        else{
+            viewModel.mResponse.observe(this, this)
+            getprofileAPI()
+        }
+
+
+    }
+
+    private fun getUserProfile() {
+
+        val map = HashMap<String, String>()
+
+        viewModelAdvertiser.getUserProfile(this, true,map)
+        viewModelAdvertiser.mResponse.observe(this, this)
     }
 
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.iv_back->{ finish() }
             R.id.btn_update_profile->{
-                updateProfileAPI()
+
+                if (userType.equals("5")){
+                    setValidationEditprofile()
+                }
+                else{
+                    updateProfileAPI()
+                }
+
             }R.id.image->{
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
@@ -74,6 +106,37 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             } }
     }
 
+    private fun setValidationEditprofile() {
+        when {
+//            firstimage.isEmpty() -> {
+//                Toast.makeText(
+//                    this,
+//                    resources.getString(R.string.please_select_image),
+//                    Toast.LENGTH_LONG
+//                ).show()
+//
+//            }
+            edtFirstName.text.toString().isEmpty() -> {
+                et_firstName.requestFocus()
+                et_firstName.error = resources.getString(R.string.please_enter_first_name)
+            }
+            edtLastName.text.toString().isEmpty() -> {
+                et_lastName.requestFocus()
+                et_lastName.error = resources.getString(R.string.please_enter_last_name)
+            }
+            edtMobile.text.toString().isEmpty() -> {
+                edtMobile.requestFocus()
+                edtMobile.error = resources.getString(R.string.please_enter_mobile_number)
+            }
+            emailEdittext.text.toString().isEmpty() -> {
+                emailEdittext.requestFocus()
+                emailEdittext.error = resources.getString(R.string.please_enter_email)
+            }
+            else -> {
+                editProfile()
+            }
+        }
+    }
 
     private fun selectImage(ivProduct: ImageView) {
         Album.image(this)
@@ -148,6 +211,15 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
 
     }
 
+    private fun editProfile() {
+        val map = HashMap<String, RequestBody>()
+        map["firstName"] = mUtils.createPartFromString(edtFirstName.text.toString())
+        map["lastName"] = mUtils.createPartFromString(edtLastName.text.toString())
+
+        viewModelAdvertiser.editUserProfile(this,true,map,firstimage,mUtils)
+    }
+
+
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -165,6 +237,33 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                         setData(mResponse)
                     }
                 }
+
+                if (it.data is AdvertiserProfileDetailResponse) {
+                    val mResponse: AdvertiserProfileDetailResponse = it.data
+                    val data = it.data
+
+                    if (data.code==200){
+
+                        setUserData(mResponse)
+                    }
+                }
+
+                if (it.data is EditProfileResponse){
+                    val mResponse: EditProfileResponse = it.data
+                    val data = it.data
+                    if (mResponse.code == GlobalVariables.URL.code ){
+                        savePrefrence(
+                            GlobalVariables.SHARED_PREF_ADVERTISER.firstName,
+                            data.body.advertiserDetail.firstName
+                        )
+                        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.lastName, data.body.advertiserDetail.lastName)
+                        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image, data.body.advertiserDetail.image)
+                        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email, data.body.email)
+                        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile, data.body.mobile)
+                      updateDailogMethod()
+                    }
+
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -176,6 +275,22 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    private fun setUserData(mResponse: AdvertiserProfileDetailResponse) {
+        image.loadImage(mResponse.body.advertiserDetail.image)
+        edtFirstName.setText(mResponse.body.advertiserDetail.firstName)
+        edtLastName.setText(mResponse.body.advertiserDetail.lastName)
+        edtMobile.setText(mResponse.body.mobile)
+        emailEdittext.setText(mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "2")
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.id, mResponse.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.role, mResponse.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email, mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile, mResponse.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken, mResponse.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceType, mResponse.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.notification, mResponse.body.notification)
     }
 
     private fun setData(mResponse: DriverProfileDetailResponse) {
@@ -193,4 +308,6 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
     }
+
+
 }

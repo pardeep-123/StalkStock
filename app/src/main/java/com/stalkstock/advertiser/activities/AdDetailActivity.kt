@@ -36,7 +36,7 @@ class AdDetailActivity : AppCompatActivity(), View.OnClickListener {
         setSlider()
     }
 
-    fun setSlider(){
+    private fun setSlider(){
         view_pager.adapter = PreviewPagerAdapter(mContext)
         circle_indicator.setViewPager(view_pager)
     }
@@ -52,8 +52,8 @@ class AdDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun showDotsPopup(anchorview: View) {
-        val layout = getLayoutInflater().inflate(R.layout.dots_alert, null)
+    private fun showDotsPopup(anchorView: View) {
+        val layout = layoutInflater.inflate(R.layout.dots_alert, null)
         val editTxt: TextView = layout.findViewById(R.id.editTxt)
         val deleteTxt: TextView = layout.findViewById(R.id.deleteTxt)
         editTxt.setOnClickListener {
@@ -62,11 +62,11 @@ class AdDetailActivity : AppCompatActivity(), View.OnClickListener {
             filterPopUp.dismiss()
         }
         deleteTxt.setOnClickListener {
-            deleteDailogMethod()
+            deleteDialogMethod()
             filterPopUp.dismiss()
         }
 
-        anchorview.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        anchorView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         filterPopUp = PopupWindow(mContext)
         filterPopUp.setContentView(layout)
         filterPopUp.isOutsideTouchable = true
@@ -75,13 +75,13 @@ class AdDetailActivity : AppCompatActivity(), View.OnClickListener {
         filterPopUp.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            filterPopUp.showAsDropDown(anchorview, 0, 0, Gravity.RIGHT)
+            filterPopUp.showAsDropDown(anchorView, 0, 0, Gravity.RIGHT)
         }
 
-        filterPopUp.setFocusable(true)
+        filterPopUp.isFocusable = true
     }
 
-    private fun deleteDailogMethod() {
+    private fun deleteDialogMethod() {
         successfulUpdatedDialog = Dialog(mContext, R.style.Theme_Dialog)
         successfulUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         successfulUpdatedDialog.setContentView(R.layout.update_successfully_alert)

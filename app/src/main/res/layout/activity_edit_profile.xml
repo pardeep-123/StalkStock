@@ -35,11 +35,13 @@
                 android:layout_gravity="center"
                 android:alpha="0.7"
                 android:background="@drawable/dummy_profile" />
+
             <ImageView
+                android:id="@+id/ivEditImage"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:background="@drawable/camera" />
         </RelativeLayout>
 
@@ -137,12 +139,12 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_bg"
+                android:focusable="false"
                 android:gravity="center_vertical"
                 android:hint="@string/enter_your_email_address"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:focusable="false"
                 android:minHeight="45dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="12dp"
@@ -174,6 +176,7 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_bg"
+                android:focusable="false"
                 android:gravity="center_vertical"
                 android:hint="@string/enter_mobile"
                 android:imeOptions="actionNext"
@@ -182,7 +185,6 @@
                 android:minHeight="45dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="12dp"
-                android:focusable="false"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="13sp" />

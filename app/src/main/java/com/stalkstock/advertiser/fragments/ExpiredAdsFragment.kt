@@ -19,7 +19,7 @@ class ExpiredAdsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         v= inflater.inflate(R.layout.fragment_expired_ads, container, false)
         mContext = activity as Context

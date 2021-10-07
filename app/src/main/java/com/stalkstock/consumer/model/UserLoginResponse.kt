@@ -24,6 +24,7 @@ data class UserLoginResponse(
         val userDetail: UserDetail,
         val vendorDetail: VendorDetail,
         val driverDetail: DriverDetail,
+        val advertiserDetail: AdvertiserDetail,
         val verified: Int // 1
     ) {
         data class VendorDetail(
@@ -117,6 +118,33 @@ data class UserLoginResponse(
             val vehicleMake: String, // asasas
             val vehicleModel: String, // dfdfd
             val vehicleType: String // Scooter
+        )
+
+        data class AdvertiserDetail(
+            val id: Int,
+            val name: String,
+            val firstName: String,
+            val lastName: String,
+            val image: String,
+            val buisnessLogo: String,
+            val buisnessPhone: String,
+            val buisnessName: String,
+            val buisnessTypeId: Int,
+            val buisnessLicense: String,
+            val website: String,
+            val city: String,
+            val state:String,
+            val country: String,
+            val postalCode: String,
+            val buisnessAddress: String,
+            val addressLine2: String,
+            val buisnessDescription: String,
+            val created: Int,
+            val updated: Int,
+            val createdAt: String,
+            val updatedAt: String,
+            val userId: Int
+
         )
     }
 }

@@ -267,6 +267,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/relBusinessLicense"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp">
@@ -475,6 +476,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relAddressLine"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp">
@@ -508,6 +510,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relCity"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp">
@@ -520,8 +523,8 @@
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center_vertical"
                     android:hint="@string/enter_city"
-                    android:paddingLeft="15dp"
                     android:imeOptions="actionNext"
+                    android:paddingLeft="15dp"
                     android:paddingTop="5dp"
                     android:paddingRight="12dp"
                     android:paddingBottom="5dp"
@@ -542,6 +545,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relState"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp">
@@ -576,6 +580,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relZip"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp">
@@ -645,6 +650,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/relCountry"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="15dp">
@@ -684,6 +690,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/relBillingInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
@@ -755,6 +762,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relConfirmPass"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp">

@@ -8,27 +8,50 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.*
+import com.stalkstock.advertiser.model.AdvertiserProfileDetailResponse
+import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
+import com.stalkstock.consumer.model.UserCommonModel
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.clearPrefrences
+import com.stalkstock.utils.others.getPrefrence
+import com.stalkstock.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
 import kotlinx.android.synthetic.main.logout_alert.*
 import kotlinx.android.synthetic.main.toolbar2.view.*
 
-class AccountFragment : Fragment(), View.OnClickListener {
+class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservable> {
 
     lateinit var v: View
     var click = ""
     lateinit var mContext:Context
     lateinit var logoutUpdatedDialog:Dialog
+
+
+    val homeViewModel: HomeViewModel by lazy {
+        ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_account, container, false)
         mContext = activity as Context
         v.tv_heading.text = "Account"
+
+
+
         v.tv_business_profile.setOnClickListener(this)
         v.tv_manage.setOnClickListener(this)
         v.tv_changepass.setOnClickListener(this)
@@ -38,16 +61,16 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
 
         val toggle1 =
-            v!!.findViewById<ImageView>(R.id.toggle1)
-        val toggle_off2 =
-            v!!.findViewById<ImageView>(R.id.toggle_off2)
+            v.findViewById<ImageView>(R.id.toggle1)
+        val toggleOff2 =
+            v.findViewById<ImageView>(R.id.toggle_off2)
 
         toggle1.setOnClickListener {
-            toggle_off2.visibility = View.VISIBLE
+            toggleOff2.visibility = View.VISIBLE
             toggle1.visibility = View.GONE
         }
-        toggle_off2.setOnClickListener {
-            toggle_off2.visibility = View.GONE
+        toggleOff2.setOnClickListener {
+            toggleOff2.visibility = View.GONE
             toggle1.visibility = View.VISIBLE
         }
         // v.toggle.setOnClickListener(this)
@@ -86,11 +109,11 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.tv_logout -> {
-                logoutDailogMethod()
+                logoutDialogMethod()
             }
         }
     }
-    private fun logoutDailogMethod() {
+    private fun logoutDialogMethod() {
         logoutUpdatedDialog = Dialog(mContext, R.style.Theme_Dialog)
         logoutUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         logoutUpdatedDialog.setContentView(R.layout.logout_alert)
@@ -109,6 +132,8 @@ class AccountFragment : Fragment(), View.OnClickListener {
             logoutUpdatedDialog.dismiss()
         }
         logoutUpdatedDialog.btn_yes.setOnClickListener {
+            logoutApi()
+
             logoutUpdatedDialog.dismiss()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
@@ -119,5 +144,40 @@ class AccountFragment : Fragment(), View.OnClickListener {
         logoutUpdatedDialog.show()
     }
 
+    private fun logoutApi() {
+        homeViewModel.logout(requireActivity(),true)
+        homeViewModel.homeResponse.observe(requireActivity(),this)
+    }
 
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+
+                if (it.data is UserCommonModel){
+                    val data = it.data
+                    if (data.code == 200){
+                        clearPrefrences()
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(requireActivity(), it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        v.tvUserName.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.firstName,"")
+        v.tvUserEmailId.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email,"")
+        v.tvUserPhone.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile,"")
+        Glide.with(requireActivity()).load(getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image,"")).into(v.ivUserProfile)
+    }
 }

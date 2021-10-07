@@ -224,11 +224,12 @@
 
 
             </LinearLayout>
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
-                 android:layout_width="match_parent"
-                android:layout_below="@+id/rl_b"
-                android:layout_height="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rl_b" />
 
         </RelativeLayout>
 
