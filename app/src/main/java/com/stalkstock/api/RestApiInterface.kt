@@ -1,5 +1,6 @@
 package com.stalkstock.api
 
+import com.stalkstock.advertiser.model.*
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
@@ -366,5 +367,39 @@ interface RestApiInterface {
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = URL.deleteCard, hasBody = true)
     fun deleteCard(@FieldMap map: HashMap<String, String>): Observable<DeleteCardData>
+
+    /*-------------------------------------Advertiser API's-----------------------------*/
+
+    @Multipart
+    @POST(URL.ADVERTISERSIGNUP)
+    fun advertiserSignUp(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part?
+    ): Observable<AdvertiserSignUpResponse>
+
+    @FormUrlEncoded
+    @POST(URL.advertiserProfile)
+    fun getUserProfile(
+        @FieldMap map: HashMap<String, String>): Observable<AdvertiserProfileDetailResponse>
+
+    @Multipart
+    @PUT(URL.editAdvertiserProfileDetail)
+    fun editAdvertiserProfileDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
+    ): Observable<EditProfileResponse>
+
+    @FormUrlEncoded
+    @POST(URL.getBuisnessDetail)
+    fun getBusinessProfile(
+        @FieldMap map: HashMap<String, String>): Observable<BuisnessDetailResponse>
+
+    @Multipart
+    @PUT(URL.editAdvertiserBuisnessDetail)
+    fun editAdvertiserBuisnessDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
+    ): Observable<EditBuisnessDetail>
+
+    @GET(URL.buisnessType)
+    fun getBuisnessType(): Observable<BusinessTypeResponse>
 
 }

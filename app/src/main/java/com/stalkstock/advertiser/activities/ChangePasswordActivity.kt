@@ -113,6 +113,7 @@ class ChangePasswordActivity : BaseActivity(), View.OnClickListener, Observer<Re
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        updateDailogMethod()
                         AppUtils.showSuccessAlert(this, mResponse.message.toString())
                         Handler(Looper.getMainLooper()).postDelayed({
                             finish()

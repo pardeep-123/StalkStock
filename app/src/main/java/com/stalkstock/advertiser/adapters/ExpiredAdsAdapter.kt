@@ -29,14 +29,14 @@ class ExpiredAdsAdapter(
 
     inner class AdsHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Holds the TextView that will add each animal to
-        val rel_approved = itemView.findViewById(R.id.rel_approved) as RelativeLayout
-        val rel_expired = itemView.findViewById(R.id.rel_expired) as RelativeLayout
-        val rel_pending = itemView.findViewById(R.id.rel_pending) as RelativeLayout
+        private val relApproved = itemView.findViewById(R.id.rel_approved) as RelativeLayout
+        private val relExpired = itemView.findViewById(R.id.rel_expired) as RelativeLayout
+        private val relPending = itemView.findViewById(R.id.rel_pending) as RelativeLayout
 
         fun bindItems(position: Int) {
-            rel_approved.visibility = View.GONE
-            rel_expired.visibility = View.VISIBLE
-            rel_pending.visibility = View.GONE
+            relApproved.visibility = View.GONE
+            relExpired.visibility = View.VISIBLE
+            relPending.visibility = View.GONE
             itemView.setOnClickListener{
                 context?.startActivity(Intent(context, AdDetailActivity::class.java))
             }

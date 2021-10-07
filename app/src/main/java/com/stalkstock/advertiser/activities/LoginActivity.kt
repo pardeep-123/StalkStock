@@ -7,7 +7,6 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.stalkstock.api.Status
 import com.stalkstock.MyApplication
@@ -165,7 +164,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 startActivity(Intent(mContext, SignupConsumerActivity::class.java))
             }
             MyApplication.instance.getString("usertype").equals("5") -> {
-                startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
+
+                startActivity(Intent(mContext, SignUpActivity::class.java))
             }
             MyApplication.instance.getString("usertype").equals("3") -> {
                 startActivity(Intent(mContext, SignupAdvertiserNCommercialNVendor::class.java))
@@ -177,34 +177,53 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     }
 
 
-    fun SetValidation() {
+    private fun SetValidation() {
         // Check for a valid email address.
-        if (emailEdittext.getText().toString().isEmpty()) {
+        if (emailEdittext.text.toString().isEmpty()) {
             emailEdittext.requestFocus()
-            emailEdittext.setError(resources.getString(R.string.please_enter_email))
+            emailEdittext.error = resources.getString(R.string.please_enter_email)
 
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.text.toString()).matches()) {
             emailEdittext.requestFocus()
-            emailEdittext.setError(resources.getString(R.string.please_enter_valid_email))
+            emailEdittext.error = resources.getString(R.string.please_enter_valid_email)
 
         }
         // Check for a valid password.
-        else if (passwordEdittext.getText().toString().isEmpty()) {
+        else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
-            passwordEdittext.setError(resources.getString(R.string.please_enter_password))
+            passwordEdittext.error = resources.getString(R.string.please_enter_password)
         } else {
             /***
              * Data willl set here to sent in api call
              */
-            val hashMap = HashMap<String, String>()
-            hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
-            hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
-            //Api will call here
+            val userType = MyApplication.instance.getString("usertype")
+            if (userType.equals("5")){
 
-            viewModel.postuserloginApi(this, true, hashMap)
-            viewModel.homeResponse.observe(this, this)
+                val hashMap = HashMap<String, String>()
+                hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
+                hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
+                hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
+                hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
+
+                viewModel.postuserloginApi(this, true, hashMap)
+                viewModel.homeResponse.observe(this, this)
+
+            }
+            else{
+                val hashMap = HashMap<String, String>()
+                hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
+                hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
+                hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
+                hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
+                //Api will call here
+
+                viewModel.postuserloginApi(this, true, hashMap)
+                viewModel.homeResponse.observe(this, this)
+
+            }
+
+            }
+
 
 //            if(!getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "").isNullOrEmpty()){
 //                viewModel.postuserloginApi(this, true,hashMap)
@@ -214,7 +233,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
 //            }
         }
 
-    }
+
 
     override fun onChanged(it: RestObservable?) {
         when {
@@ -230,6 +249,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                         else if(mResponse.body.role == 2)
                         {
                             setDataDriver(mResponse)
+                        }
+                        else if (mResponse.body.role == 5){
+
+                            setDataAdvertiser(mResponse)
                         }
                         goingToHome()
                     } else {
@@ -248,6 +271,39 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    private fun setDataAdvertiser(data: UserLoginResponse) {
+        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)
+        MyApplication.instance.setString("usertype",data.body.role.toString())
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.token, data.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken, data.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.id, data.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.role, data.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.verified, data.body.verified)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.status, data.body.status)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.firstName,
+            data.body.advertiserDetail.firstName
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.lastName, data.body.advertiserDetail.lastName)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image, data.body.advertiserDetail.image)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email, data.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile, data.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken, data.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceType, data.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.notification, data.body.notification)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.remember_token, data.body.remember_token)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.created, data.body.created)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.updated, data.body.updated)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.createdAt, data.body.createdAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.updatedAt, data.body.updatedAt)
+
     }
 
     private fun setDataDriver(mResponse: UserLoginResponse) {
@@ -430,10 +486,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         savePrefrence(GlobalVariables.SHARED_PREF_USER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.notification, mResponse.body.notification)
-        savePrefrence(
-            GlobalVariables.SHARED_PREF_USER.remember_token,
-            mResponse.body.remember_token
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF_USER.remember_token, mResponse.body.remember_token)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.created, mResponse.body.created)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.updated, mResponse.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.createdAt, mResponse.body.createdAt)

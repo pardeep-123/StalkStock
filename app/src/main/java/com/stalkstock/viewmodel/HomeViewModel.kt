@@ -24,7 +24,7 @@ class HomeViewModel : ViewModel() {
         return homeResponse
     }
 
-    val restApiInterface = MyApplication.getinstance().provideAuthservice()
+    private val restApiInterface = MyApplication.getinstance().provideAuthservice()
 
 
     @SuppressLint("CheckResult")
@@ -1133,5 +1133,6 @@ class HomeViewModel : ViewModel() {
     }
 
 
+    }
 
-}
+

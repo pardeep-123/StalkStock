@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v= inflater.inflate(R.layout.fragment_home, container, false)
 
         mContext = activity as Context
@@ -39,9 +39,9 @@ class HomeFragment : Fragment() {
         v.viewPager.adapter = adapter
         v.viewPager.setCurrentItem(0)
 
-        var rlPending=v.findViewById<RelativeLayout>(R.id.rl_pending)
-        var rlApproved=v.findViewById<RelativeLayout>(R.id.rl_approved)
-        var relExpired=v.findViewById<RelativeLayout>(R.id.rel_expired)
+        val rlPending=v.findViewById<RelativeLayout>(R.id.rl_pending)
+        val rlApproved=v.findViewById<RelativeLayout>(R.id.rl_approved)
+        val relExpired=v.findViewById<RelativeLayout>(R.id.rel_expired)
 
         v.viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(v.tabLayout))
         v.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -58,7 +58,6 @@ class HomeFragment : Fragment() {
                     tv_expire.setTextColor(resources.getColor(R.color.black))
 
                 }else if (tab.position==1){
-
 
                     rlPending.background=resources.getDrawable(R.drawable.tab_background)
                     rlApproved.background=resources.getDrawable(R.drawable.tab_background_selected)

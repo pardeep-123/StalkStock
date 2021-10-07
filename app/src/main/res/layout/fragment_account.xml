@@ -42,6 +42,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/ivUserProfile"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/dummy_profile" />
@@ -57,7 +58,7 @@
                 android:paddingLeft="10dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-
+                    android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jamie Row"
@@ -65,6 +66,7 @@
                     android:textSize="17sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/tvUserEmailId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -73,6 +75,7 @@
                     android:textSize="13sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/tvUserPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
