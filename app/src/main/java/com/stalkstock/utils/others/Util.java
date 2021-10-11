@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.stalkstock.R;
+
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -336,6 +338,30 @@ public class Util {
 
 
         return days;
+    }
+    public static String orderStatus(int orderStatus,Context ctx) {
+
+        if(orderStatus==1)
+        {
+            return ctx.getString(R.string.in_progress);
+        }
+        else if (orderStatus==2)
+        {
+            return ctx.getString(R.string.packed);
+        }
+        else if (orderStatus==3)
+        {
+            return ctx.getString(R.string.onWay);
+        }
+        else if (orderStatus==4)
+        {
+            return ctx.getString(R.string.completed);
+        }
+        else
+        {
+            return ctx.getString(R.string.error_);
+        }
+
     }
 
 

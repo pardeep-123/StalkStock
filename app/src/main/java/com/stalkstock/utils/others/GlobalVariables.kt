@@ -313,6 +313,7 @@ class GlobalVariables {
         const val DateTimeFormat = "dd MMM,yyyy hh:mm a"
         const val DateTimeFormat2 = "MMM dd,yyyy hh:mm a"
         const val DateTimeFormat1 = "yyyy-MM-dd'T'hh:mm"  //Fri Sep 17 01:40:00 GMT+05:30 2021
+        const val DateTimeFormat3 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" // 2021-10-07T05:19:07.000Z
     }
 
     object Job_state {

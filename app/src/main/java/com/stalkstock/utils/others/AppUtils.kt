@@ -19,7 +19,6 @@ import java.util.*
 
 object AppUtils {
 
-
     @JvmStatic
     fun showErrorAlert(context: Activity, msg: String) {
         Alerter.create(context)
@@ -127,6 +126,7 @@ object AppUtils {
 
     fun changeDateFormat(dateString: String, from: String, to: String): String {
         //dd.MMM.yyyy
+        //
         val df = SimpleDateFormat(from, Locale.US)
         df.timeZone = TimeZone.getTimeZone("UTC")
         val date = df.parse(dateString)
