@@ -277,6 +277,33 @@ class DriverViewModel : ViewModel() {
         }
     }
 
+
+    @SuppressLint("CheckResult")
+    fun changeDiverOrder(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.changeDiverOrder(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        changeDiverOrder(activity, showLoader, hashMap)
+                    }
+                })
+        }
+    }
+
     @SuppressLint("CheckResult")
     fun checkWalletBalance(
         activity: Activity,

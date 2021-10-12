@@ -44,8 +44,7 @@ fun Context.hideKeyboard(view: View?) {
 fun Activity.setAutoComplete(model: LocationModel, listner: GetLatLongInterface) {
     val autocompleteSessionToken = AutocompleteSessionToken.newInstance()
     val mAdapter: PlaceAutocompleteAdapterNew
-    val placesClient: PlacesClient
-    placesClient = Places.createClient(applicationContext)
+    val placesClient: PlacesClient = Places.createClient(applicationContext)
     mAdapter = PlaceAutocompleteAdapterNew(this, placesClient, autocompleteSessionToken)
     model.autoTvLocation!!.setAdapter(mAdapter)
     model.autoTvLocation!!.threshold = 0
@@ -87,7 +86,7 @@ fun Activity.getLocationFromAddress(
             AlerterError("Please select other Location")
 
         } else {
-            location = address.get(0)
+            location = address[0]
             listner.getLatLongListner(location!!.latitude.toString(), location.longitude.toString())
             GlobalScope.launch(Dispatchers.Main) {
                 setDataFields(address, model)
@@ -116,47 +115,36 @@ fun setDataFields(address: List<Address>, model: LocationModel) {
         if (split.size > 2) {
             val s = split[split.size - 2]
             val split1 = s.split(" ")
-            if (checkStringNull(split1[0]))
-                state = split1[1]
+            state = if (checkStringNull(split1[0]))
+                split1[1]
             else
-                state = split1[0]
+                split1[0]
         }
     }
     if (model.etCity == null) {
-        model.autoTvLocation!!.setText(city + "," + state)
+        model.autoTvLocation!!.setText("$city,$state")
         model.autoTvLocation!!.setSelection(model.autoTvLocation!!.text.length)
         model.autoTvLocation!!.dismissDropDown()
     }
-    /*if (country != null) {
-       tvCountry.setText(country)
-       tvCountry.setEnabled(false)
-   } else {
-       tvCountry.setText("")
-       tvCountry.setEnabled(true)
-   }*/
+
     if (model.etZipcode != null) {
         if (zipcode != null) {
             model.etZipcode!!.setText(zipcode)
             model.etZipcode!!.setSelection(model.etZipcode!!.text!!.length);
-//            etZipcode.isEnabled = false
         } else {
             model.etZipcode!!.setText("")
-//            etZipcode.isEnabled = true
         }
     }
     if (model.etState != null) {
         if (state != null) {
             model.etState!!.setText(state)
             model.etState!!.setSelection(state.length);
-//            model.etState!!.setEnabled(false)
         } else {
             if (country != null) {
                 model.etState!!.setText(country)
                 model.etState!!.setSelection(country.length);
-//                model.etState!!.setEnabled(false)
             } else {
                 model.etState!!.setText("")
-//                model.etState!!.setEnabled(true)
             }
         }
     }
@@ -164,38 +152,13 @@ fun setDataFields(address: List<Address>, model: LocationModel) {
         if (city != null) {
             model.etCity!!.setText(city)
             model.etCity!!.setSelection(city.length);
-//            model.etCity!!.setEnabled(false)
         } else {
             if (country != null) {
                 model.etCity!!.setText(country)
                 model.etCity!!.setSelection(country.length);
-//                model.etCity!!.setEnabled(false)
             } else {
                 model.etCity!!.setText("")
-//                model.etCity!!.setEnabled(true)
             }
         }
     }
 }
-
-    /*fun updateCamera(mGoogleMap: GoogleMap, latitude:String, longitude:String, zoom: Float) {
-//        Thread(Runnable {
-        // Moving CameraPosition to last clicked position
-        try {
-            if (!checkStringNull(latitude)) {
-                GlobalScope.launch(Dispatchers.Main) {
-                    mGoogleMap.moveCamera(
-                        CameraUpdateFactory.newLatLng(
-                            LatLng(
-                               latitude.toDouble(),
-                               longitude.toDouble()
-                            )
-                        )
-                    )
-                    mGoogleMap!!.animateCamera(CameraUpdateFactory.zoomTo(zoom))
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-}*/

@@ -15,9 +15,11 @@ import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import com.stalkstock.R;
 
@@ -360,6 +362,36 @@ public class Util {
         else
         {
             return ctx.getString(R.string.error_);
+        }
+
+    }
+    public static String driverBtnStatus(int orderStatus, Button btn) {
+
+        if(orderStatus==1)
+        {
+            btn.setEnabled(false);
+            btn.setBackground(ContextCompat.getDrawable(btn.getContext(),R.drawable.btn_shape_gray));
+            return btn.getContext().getString(R.string.in_progress);
+        }
+        else if (orderStatus==2)
+        {
+            return btn.getContext().getString(R.string.picked_up);
+        }
+        else if (orderStatus==3)
+        {
+            return btn.getContext().getString(R.string.delivered);
+        }
+        else if (orderStatus==4)
+        {
+            btn.setEnabled(false);
+            btn.setBackground(ContextCompat.getDrawable(btn.getContext(),R.drawable.btn_shape_gray));
+            return btn.getContext().getString(R.string.completed);
+        }
+        else
+        {
+            btn.setEnabled(false);
+            btn.setBackground(ContextCompat.getDrawable(btn.getContext(),R.drawable.btn_shape_gray));
+            return btn.getContext().getString(R.string.error_);
         }
 
     }

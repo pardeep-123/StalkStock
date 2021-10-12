@@ -337,6 +337,12 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
 
         dialog.btn_decline.setOnClickListener {
             dialog.dismiss()
+            val map = HashMap<String, RequestBody>()
+            map["status"] = RequestBody.create(MultipartBody.FORM, "2")
+            map["orderId"] = RequestBody.create(MultipartBody.FORM, orderID)
+
+            viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
+            listner!!.getYourFragmentActive(0)
             rl_top.visibility = View.VISIBLE
             rl_tv.visibility = View.GONE
         }
@@ -374,12 +380,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         }
         dialog.btn_decline1.setOnClickListener {
             dialog.dismiss()
-            val map = HashMap<String, RequestBody>()
-            map["status"] = RequestBody.create(MultipartBody.FORM, "2")
-            map["orderId"] = RequestBody.create(MultipartBody.FORM, orderID)
-
-            viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
-            listner!!.getYourFragmentActive(0)
         }
         dialog.show()
 

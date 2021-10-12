@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/btn_shape.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/btn_shape1.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/btn_shape_gray.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_my_order.xml" value="0.13515625" />
@@ -31,8 +34,8 @@
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/completed_popup.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/current_popup.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/completed_popup.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/current_popup.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_account_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_h_ome.xml" value="0.18020833333333333" />
