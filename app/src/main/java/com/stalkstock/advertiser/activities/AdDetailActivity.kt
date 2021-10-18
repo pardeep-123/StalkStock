@@ -72,6 +72,18 @@ class AdDetailActivity : BaseActivity(), View.OnClickListener, Observer<RestObse
             adsList = intent.extras?.get("model") as BusinessAdsList.Body
             initdata(adsList)
         }
+        else if(intent.hasExtra("approvedAds")&& intent.hasExtra("intentfrom"))
+        {
+            adsList = intent.extras?.get("approvedAds") as BusinessAdsList.Body
+            initdata(adsList)
+        }
+
+        else if(intent.hasExtra("expiredAds")&& intent.hasExtra("intentfrom"))
+        {
+            adsList = intent.extras?.get("expiredAds") as BusinessAdsList.Body
+            initdata(adsList)
+        }
+
         else{
             title = adsList.title
             content = adsList.description
