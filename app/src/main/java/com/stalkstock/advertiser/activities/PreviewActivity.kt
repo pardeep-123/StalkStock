@@ -41,9 +41,12 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
     lateinit var adLink: String
     lateinit var budget: String
     lateinit var description: String
-    private var editImage = ArrayList<String>()
+    lateinit var images: String
+//    private var editImage = ArrayList<String>()
+    lateinit var editImage: String
     var image = ArrayList<String>()
-    var adsList = ArrayList<String>()
+//    var adsList = ArrayList<String>()
+    lateinit var adsList :String
     var id: Int = 0
     var intentFrom = ""
 
@@ -75,15 +78,17 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
                 budget = intent.getStringExtra("budget").toString()
                 description = intent.getStringExtra("description").toString()
                 title = intent.getStringExtra("title").toString()
-                adsList = intent.getStringArrayListExtra("adsList") as ArrayList<String>
+//                adsList = intent.getStringArrayListExtra("adsList") as ArrayList<String>
+                adsList = intent.getStringExtra("adsList").toString()
                 intentFrom = intent.getStringExtra("intentFrom").toString()
                 id = intent.getIntExtra("id",0)
                 action = intent.getStringExtra("action").toString()
                 actionContent = intent.getStringExtra("actionContent").toString()
                 imglist.clear()
-                for(i in 0 until adsList.size) {
-                    imglist.add(adsList[i])
-                }
+//                for(i in 0 until adsList.size) {
+//                    imglist.add(adsList[i])
+//                }
+                imglist.add(adsList)
             }
             intentFrom == "edit" -> {
                 title = intent.getStringExtra("title").toString()
@@ -93,20 +98,32 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
                 budget = intent.getStringExtra("budget").toString()
                 description = intent.getStringExtra("description").toString()
                 title = intent.getStringExtra("title").toString()
-                image = intent.getStringArrayListExtra("image") as ArrayList<String>
-                editImage = intent.getStringArrayListExtra("editImage") as ArrayList<String>
+              //  image = intent.getStringArrayListExtra("image") as ArrayList<String>
+//                editImage = intent.getStringArrayListExtra("editImage") as ArrayList<String>
+                editImage = intent.getStringExtra("editImage").toString()
+                images = intent.getStringExtra("image").toString()
                 intentFrom = intent.getStringExtra("intentFrom").toString()
                 id = intent.getIntExtra("id",0)
                 action = intent.getStringExtra("action").toString()
                 actionContent = intent.getStringExtra("actionTitle").toString()
                 imglist.clear()
-                for(i in 0 until image.size) {
-                    imglist.add(image[i])
+//                for(i in 0 until image.size) {
+//                    imglist.add(image[i])
+//                }
+
+                if (editImage.isEmpty()){
+                    imglist.add(images)
+                }
+                else{
+                    imglist.add(editImage)
                 }
 
-                for(i in 0 until editImage.size) {
-                    imglist.add(editImage[i])
-                }
+
+
+
+//                for(i in 0 until editImage.size) {
+//                    imglist.add(editImage[i])
+//                }
             }
             else -> {
 
@@ -133,7 +150,7 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
 
     private fun setSlider(){
         view_pager.adapter = PreviewPagerAdapter(mContext,imglist)
-        circle_indicator.setViewPager(view_pager)
+       // circle_indicator.setViewPager(view_pager)
     }
 
     override fun onClick(p0: View?) {

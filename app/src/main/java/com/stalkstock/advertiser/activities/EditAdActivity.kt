@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
@@ -28,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_edit_ad.*
 import kotlinx.android.synthetic.main.activity_edit_ad.btn_manage_payment
 import kotlinx.android.synthetic.main.activity_edit_ad.btn_preview
 import kotlinx.android.synthetic.main.delete_successfully_alert.*
+import kotlinx.android.synthetic.main.row_productdetsils.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
@@ -43,6 +46,7 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
     lateinit var adLink: String
     lateinit var budget: String
     var action = 0
+    var image = ""
     lateinit var actionSelectedTitle: String
     lateinit var description: String
     lateinit var  adapter : AddImageAdapter
@@ -69,6 +73,7 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
         action = intent.getIntExtra("action",0)
 
         imagelist = intent.getStringArrayListExtra("image") as ArrayList<String>
+        image = imagelist[0]
         id = intent.getIntExtra("id",0)
 
         val parser = SimpleDateFormat("yyyy-MM-dd")
@@ -82,7 +87,8 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
         etEditBudget.setText(budget)
         etEditDestinationLink.setText(adLink)
         etEditAdsDescription.setText(description)
-        Glide.with(this).load(imagelist[imagelist.size-1]).into(imagslideid)
+//        Glide.with(this).load(imagelist[imagelist.size-1]).into(imagslideid)
+        Glide.with(this).load(imagelist[0]).into(imagslideid)
 
         when(action){
             0 ->
@@ -135,7 +141,9 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
         cbJoinnow.setOnClickListener(this)
         cbsinupnow.setOnClickListener(this)
 
-        setEditImageAdapter()
+        ivEditImagePicker.setOnClickListener(this)
+
+      //  setEditImageAdapter()
 
          btn_manage_payment.setOnClickListener {
             val intent = Intent(this, ManagePaymentsActivity::class.java)
@@ -164,19 +172,47 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                Glide.with(this).load(result[0].path).into(ivProduct)
+                //Glide.with(this).load(result[0].path).into(ivProduct)
                 if (type == "1")
                 {
+
                     firstimage = result[0].path
                     imagelist.add(firstimage)
                     editImageList.add(firstimage)
                     adapter.notifyDataSetChanged()
+                    updateUi()
+                }
+               else{
+                    firstimage = result[0].path
+                    Glide.with(this).load(result[0].path).into(imagslideid)
+//                    recyclerViewEditAds.visibility = VISIBLE
+//                    delete123.visibility = VISIBLE
+//                    ivEditImagePicker.visibility = GONE
+//                    firstimage = result[0].path
+//                    imagelist.add(firstimage)
+//                    editImageList.add(firstimage)
+//                    adapter.notifyDataSetChanged()
+//                    updateUi()
                 }
             }
             .onCancel {
 
             }
             .start()
+    }
+
+    private fun updateUi() {
+        if(imagelist.isNotEmpty()){
+            Glide.with(this).load(imagelist.last()).into(imagslideid)
+        }
+        else{
+            recyclerViewEditAds.visibility = GONE
+            delete123.visibility = GONE
+            ivEditImagePicker.visibility = VISIBLE
+            imagelist.clear()
+            editImageList.clear()
+            imagslideid.setImageResource(0)
+        }
     }
 
     override fun onClick(p0: View?) {
@@ -191,16 +227,18 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
             R.id.cStartDate ->
             {
                 showEditFromDatePickerDialog(this)
-
             }
             R.id.cEndDate -> {
-
                 if (cStartDate.text.isNotEmpty()){
                     showEditToDatePickerDialog(this)
                 }
                 else{
                     Toast.makeText(this,"Please select start date", Toast.LENGTH_SHORT).show()
                 }
+            }
+
+            R.id.ivEditImagePicker ->{
+                selectImage(ivEditImagePicker,"2")
             }
 
             R.id.btn_preview -> {
@@ -319,8 +357,10 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
                 intent.putExtra("budget",etEditBudget.text.toString().trim())
                 intent.putExtra("description",etEditAdsDescription.text.toString().trim())
                 intent.putExtra("intentFrom","edit")
-                intent.putExtra("image",imagelist)
-                intent.putExtra("editImage",editImageList)
+//                intent.putExtra("image",imagelist)
+//                intent.putExtra("editImage",editImageList)
+                intent.putExtra("editImage",firstimage)
+                intent.putExtra("image",image)
                 intent.putExtra("id",id)
                 intent.putExtra("action",actionselected)
                 intent.putExtra("actionTitle", actionSelectedTitle)
@@ -336,7 +376,16 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
         customDialog = Dialog(mContext)
         customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         customDialog.setContentView(customView)
-        customDialog.btn_yes.setOnClickListener { customDialog.dismiss() }
+        customDialog.btn_yes.setOnClickListener { customDialog.dismiss()
+            if (editImageList.isNotEmpty()){
+            editImageList.removeAt(editImageList.size-1)
+            adapter.notifyDataSetChanged()
+            updateUi()
+        }
+            imagelist.removeAt(imagelist.size-1)
+            adapter.notifyDataSetChanged()
+            updateUi()
+        }
         customDialog.btn_no.setOnClickListener { customDialog.dismiss() }
         customDialog.show() }
 

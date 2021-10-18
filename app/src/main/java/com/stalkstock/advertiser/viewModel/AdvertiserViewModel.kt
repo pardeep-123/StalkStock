@@ -294,19 +294,28 @@ class AdvertiserViewModel: ViewModel() {
         activity: Activity,
         showLoader: Boolean,
         hashMap: HashMap<String, RequestBody>,
-        firstImage: ArrayList<String>,
+//        firstImage: ArrayList<String>,
+        firstImage: String,
         mUtils: Util
 
     ){
-        var imagelist = ArrayList<MultipartBody.Part>()
-        imagelist.clear()
-        for(i in 0 until firstImage.size)
-        {
-        imagelist.add(multipart(firstImage[i],mUtils))
-        }
+//        var imagelist = ArrayList<MultipartBody.Part>()
+//        imagelist.clear()
+//        for(i in 0 until firstImage.size)
+//        {
+//        imagelist.add(multipart(firstImage[i],mUtils))
+//        }
 
-        if (AppUtils.isNetworkConnected(MyApplication.getinstance())){
-            restApiInterface.editBuisnessAd(hashMap,imagelist)
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            var image: MultipartBody.Part? = null
+            if (firstImage.isNotEmpty()) {
+                val file = File(firstImage)
+                image = mUtils.prepareFilePart("image", file)
+            }
+
+//        if (AppUtils.isNetworkConnected(MyApplication.getinstance())){
+//            restApiInterface.editBuisnessAd(hashMap,imagelist)
+            restApiInterface.editBuisnessAd(hashMap,image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { mResponse.value = RestObservable.loading(activity,showLoader) }
@@ -340,20 +349,29 @@ class AdvertiserViewModel: ViewModel() {
         activity: Activity,
         showLoader: Boolean,
         hashMap: HashMap<String, RequestBody>,
-        firstImage: ArrayList<String>,
+//        firstImage: ArrayList<String>,
+        firstImage: String,
         mUtils: Util
 
     ) {
-
-        var imagelist = ArrayList<MultipartBody.Part>()
-        imagelist.clear()
-        for(i in 0 until firstImage.size)
-        {
-            imagelist.add(multipart(firstImage[i],mUtils))
-        }
+//
+//        var imagelist = ArrayList<MultipartBody.Part>()
+//        imagelist.clear()
+//        for(i in 0 until firstImage.size)
+//        {
+//            imagelist.add(multipart(firstImage[i],mUtils))
+//        }
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
-            restApiInterface.addBusinessAds(hashMap,imagelist)
+            var image: MultipartBody.Part? = null
+            if (firstImage.isNotEmpty()) {
+                val file = File(firstImage)
+                image = mUtils.prepareFilePart("image", file)
+            }
+
+//        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+//            restApiInterface.addBusinessAds(hashMap,imagelist)
+            restApiInterface.addBusinessAds(hashMap,image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
