@@ -47,6 +47,7 @@
                         android:layout_height="200dp" />
 
                     <me.relex.circleindicator.CircleIndicator
+                        android:visibility="gone"
                         android:id="@+id/circle_indicator"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"

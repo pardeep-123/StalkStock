@@ -430,13 +430,17 @@ interface RestApiInterface {
     @Multipart
     @PUT(URL.editBuisnessAd)
     fun editBuisnessAd(
-        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
+//        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
+//    ): Observable<EditAdsResponse>
+        @PartMap map: HashMap<String, RequestBody>, @Part image:  MultipartBody.Part?
     ): Observable<EditAdsResponse>
 
     @Multipart
     @POST(URL.addBuisnessAd)
     fun addBusinessAds(
-        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
+//        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
+//    ): Observable<AddBusinesssAdsResponse>
+        @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
     ): Observable<AddBusinesssAdsResponse>
 
 }

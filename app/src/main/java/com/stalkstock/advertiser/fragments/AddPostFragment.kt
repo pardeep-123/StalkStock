@@ -52,10 +52,10 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
     lateinit var mContext: Context
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage=""
-    var cStartD: Long = 0L
-    var cEndD: Long = 0L
+
     lateinit var  adapter :AddImageAdapter
     var adsList = ArrayList<String>()
+
     var actionselected = ""
 
     lateinit var actionSelectedTitle: String
@@ -86,7 +86,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
             intent.putExtra("from","add_post")
             startActivity(intent)
         }
-        setAddImageAdapter()
+//        setAddImageAdapter()
     }
 
 
@@ -198,7 +198,12 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
         customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         customDialog.setContentView(customView)
         customDialog.btn_yes.setOnClickListener {
-
+       if(adsList.isNotEmpty())
+       {
+           adsList.removeAt(adsList.size-1)
+           adapter.notifyDataSetChanged()
+           updateUi()
+       }
             customDialog.dismiss() }
         customDialog.btn_no.setOnClickListener { customDialog.dismiss() }
         customDialog.show()
@@ -254,12 +259,26 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 intent.putExtra("adLink",etAdsLink.text.toString().trim())
                 intent.putExtra("budget",etEnterBudget.text.toString().trim())
                 intent.putExtra("description",etEnterDescription.text.toString().trim())
-                intent.putExtra("adsList",adsList)
+//                intent.putExtra("adsList",adsList)
+                intent.putExtra("adsList",firstimage)
                 intent.putExtra("action",actionselected)
                 intent.putExtra("actionContent",actionSelectedTitle)
                 intent.putExtra("intentFrom","add")
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun updateUi()
+    {
+        if(adsList.isNotEmpty()){
+        Glide.with(requireContext()).load(adsList.last()).into(ivAddImage)
+        }
+        else{
+            ivAdsCamera.visibility = VISIBLE
+            ivDelete.visibility = GONE
+            ivAddImage.setImageResource(0)
+            //adsList.clear()
         }
     }
 
@@ -277,15 +296,17 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                Glide.with(requireContext()).load(result[0].path).into(ivProduct)
-                ivAdsCamera.visibility = GONE
-                ivDelete.visibility = VISIBLE
+                Glide.with(this).load(result[0].path).into(ivAddImage)
+//                ivAdsCamera.visibility = GONE
+//                ivDelete.visibility = VISIBLE
 
                 if (type == "1")
                 {
                     firstimage = result[0].path
-                    adsList.add(firstimage)
-                    adapter.notifyDataSetChanged()
+                   // adsList.add(firstimage)
+
+//                    adapter.notifyDataSetChanged()
+//                    updateUi()
                 }
             }
             .onCancel {

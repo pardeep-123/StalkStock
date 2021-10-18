@@ -112,7 +112,7 @@ class AdDetailActivity : BaseActivity(), View.OnClickListener, Observer<RestObse
 
     private fun setSlider(){
         view_pager.adapter = PreviewPagerAdapter(mContext,imglist )
-        circle_indicator.setViewPager(view_pager)
+       // circle_indicator.setViewPager(view_pager)
     }
 
     override fun onClick(p0: View?) {
