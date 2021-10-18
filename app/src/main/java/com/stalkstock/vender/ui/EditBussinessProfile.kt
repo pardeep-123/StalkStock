@@ -144,6 +144,8 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         editboxbusinessstate.setText(vendorDetail.state)
         editboxbusinesscode.setText(vendorDetail.postalCode)
         business_type = vendorDetail.buisnessTypeId
+        mLatitude = vendorDetail.latitude
+        mLongitude = vendorDetail.longitude
         business_delivery_type = vendorDetail.deliveryType + 1
         mCountryName = vendorDetail.country
         spinner_type.setSelection(vendorDetail.buisnessTypeId)
@@ -207,18 +209,18 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
     fun setValidation() {
 
-        if (editboxbusinessname.getText().toString().isEmpty()) {
+        if (editboxbusinessname.text.toString().isEmpty()) {
             editboxbusinessname.requestFocus()
-            editboxbusinessname.setError(resources.getString(R.string.please_enter_first_name))
-        } else if (editlastboxbusinessname.getText().toString().isEmpty()) {
+            editboxbusinessname.error = resources.getString(R.string.please_enter_first_name)
+        } else if (editlastboxbusinessname.text.toString().isEmpty()) {
             editlastboxbusinessname.requestFocus()
-            editlastboxbusinessname.setError(resources.getString(R.string.please_enter_last_name))
-        } else if (ediboxbusinessname2.getText().toString().isEmpty()) {
+            editlastboxbusinessname.error = resources.getString(R.string.please_enter_last_name)
+        } else if (ediboxbusinessname2.text.toString().isEmpty()) {
             ediboxbusinessname2.requestFocus()
-            ediboxbusinessname2.setError(resources.getString(R.string.please_enter_business_name))
-        } else if (editboxbusinessabout.getText().toString().isEmpty()) {
+            ediboxbusinessname2.error = resources.getString(R.string.please_enter_business_name)
+        } else if (editboxbusinessabout.text.toString().isEmpty()) {
             editboxbusinessabout.requestFocus()
-            editboxbusinessabout.setError(resources.getString(R.string.please_enter_business_description))
+            editboxbusinessabout.error = resources.getString(R.string.please_enter_business_description)
         } else if (business_type == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
         } else if (business_delivery_type == 0) {
@@ -226,47 +228,47 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                 this,
                 resources.getString(R.string.please_enter_business_delivery_type)
             )
-        } else if (editboxbusinesslicense.getText().toString().isEmpty()) {
+        } else if (editboxbusinesslicense.text.toString().isEmpty()) {
             editboxbusinesslicense.requestFocus()
-            editboxbusinesslicense.setError(resources.getString(R.string.please_enter_business_license))
-        } else if (editboxbusinessEmail.getText().toString().isEmpty()) {
+            editboxbusinesslicense.error = resources.getString(R.string.please_enter_business_license)
+        } else if (editboxbusinessEmail.text.toString().isEmpty()) {
             editboxbusinessEmail.requestFocus()
-            editboxbusinessEmail.setError(resources.getString(R.string.please_enter_email))
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(editboxbusinessEmail.getText().toString())
+            editboxbusinessEmail.error = resources.getString(R.string.please_enter_email)
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(editboxbusinessEmail.text.toString())
                 .matches()
         ) {
             editboxbusinessEmail.requestFocus()
-            editboxbusinessEmail.setError(resources.getString(R.string.please_enter_valid_email))
-        } else if (editboxbusinessmobile.getText().toString().isEmpty()) {
+            editboxbusinessEmail.error = resources.getString(R.string.please_enter_valid_email)
+        } else if (editboxbusinessmobile.text.toString().isEmpty()) {
             editboxbusinessmobile.requestFocus()
-            editboxbusinessmobile.setError(resources.getString(R.string.please_enter_mobile_number))
-        } else if (editboxbusinessmobile.getText()
-                .toString().length < 10 || editboxbusinessmobile.getText()
+            editboxbusinessmobile.error = resources.getString(R.string.please_enter_mobile_number)
+        } else if (editboxbusinessmobile.text
+                .toString().length < 10 || editboxbusinessmobile.text
                 .toString().length > 13
         ) {
             editboxbusinessmobile.requestFocus()
-            editboxbusinessmobile.setError(resources.getString(R.string.please_enter_valid_number))
-        } else if (editboxbusinessmobilenumber.getText().toString().isEmpty()) {
+            editboxbusinessmobile.error = resources.getString(R.string.please_enter_valid_number)
+        } else if (editboxbusinessmobilenumber.text.toString().isEmpty()) {
             editboxbusinessmobilenumber.requestFocus()
-            editboxbusinessmobilenumber.setError(resources.getString(R.string.please_enter_business_phone_number))
-        } else if (editboxbusinessmobilenumber.getText().toString().length < 6) {
+            editboxbusinessmobilenumber.error = resources.getString(R.string.please_enter_business_phone_number)
+        } else if (editboxbusinessmobilenumber.text.toString().length < 6) {
             editboxbusinessmobilenumber.requestFocus()
-            editboxbusinessmobilenumber.setError(resources.getString(R.string.please_enter_valid_number))
-        } else if (editboxbusinesswebsite.getText().toString().isEmpty()) {
+            editboxbusinessmobilenumber.error = resources.getString(R.string.please_enter_valid_number)
+        } else if (editboxbusinesswebsite.text.toString().isEmpty()) {
             editboxbusinesswebsite.requestFocus()
-            editboxbusinesswebsite.setError(resources.getString(R.string.please_enter_website))
-        } else if (autoTvLocation.getText().toString().isEmpty()) {
+            editboxbusinesswebsite.error = resources.getString(R.string.please_enter_website)
+        } else if (autoTvLocation.text.toString().isEmpty()) {
             autoTvLocation.requestFocus()
-            autoTvLocation.setError(resources.getString(R.string.please_enter_business_address))
-        } else if (editboxbusinesscity.getText().toString().isEmpty()) {
+            autoTvLocation.error = resources.getString(R.string.please_enter_business_address)
+        } else if (editboxbusinesscity.text.toString().isEmpty()) {
             editboxbusinesscity.requestFocus()
-            editboxbusinesscity.setError(resources.getString(R.string.please_enter_city))
-        } else if (editboxbusinessstate.getText().toString().isEmpty()) {
+            editboxbusinesscity.error = resources.getString(R.string.please_enter_city)
+        } else if (editboxbusinessstate.text.toString().isEmpty()) {
             editboxbusinessstate.requestFocus()
-            editboxbusinessstate.setError(resources.getString(R.string.please_enter_state))
-        } else if (editboxbusinesscode.getText().toString().isEmpty()) {
+            editboxbusinessstate.error = resources.getString(R.string.please_enter_state)
+        } else if (editboxbusinesscode.text.toString().isEmpty()) {
             editboxbusinesscode.requestFocus()
-            editboxbusinesscode.setError(resources.getString(R.string.please_enter_postal_code))
+            editboxbusinesscode.error = resources.getString(R.string.please_enter_postal_code)
         } else {
             val hashMap = HashMap<String, RequestBody>()
             hashMap[GlobalVariables.PARAM.firstname] =

@@ -31,10 +31,10 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import android.location.Geocoder
 import android.location.Location
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.stalkstock.driver.models.DefaultDataModel
 import java.util.*
-
 
 class MyRequestFragment : Fragment(), Observer<RestObservable> {
 
@@ -118,6 +118,8 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
         dialog.tvName.text = "${historyDataBody.firstName} ${historyDataBody.lastName}"
         dialog.tvMyAddress.text = historyDataBody.vendorDetail.shopAddress
         Glide.with(dialog.ivProfile.context).load(historyDataBody.image).placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder)).into(dialog.ivProfile)
+        Glide.with(dialog.ivShopLogo2.context).load(historyDataBody.vendorDetail.shopLogo).placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder)).into(dialog.ivShopLogo2)
+        Glide.with(dialog.ivShopLogo.context).load(historyDataBody.vendorDetail.shopLogo).placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder)).into(dialog.ivShopLogo)
         dialog.tvUserAddress.text = historyDataBody.orderAddress.street_address
         dialog.tvUserAddress2.text = historyDataBody.orderAddress.street_address
         dialog.tvDistance.text = " ${calculatedDistance(historyDataBody)} km"
@@ -147,6 +149,10 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
 
         val locationB = Location("point B")
 
+        Log.e("historyData--distance","==${historyData.orderAddress.latitude}==")
+        Log.e("historyData--distance","==${historyData.orderAddress.longitude}==")
+        Log.e("historyData--distance","==${historyData.vendorDetail.latitude}==")
+        Log.e("historyData--distance","==${historyData.vendorDetail.longitude}==")
         locationB.latitude = historyData.orderAddress.latitude.toDouble()
         locationB.longitude = historyData.orderAddress.longitude.toDouble()
 

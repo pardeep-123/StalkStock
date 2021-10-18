@@ -388,24 +388,24 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
+
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/addbusinessmobilenumber"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
-                        android:singleLine="true"
-
                         android:background="@drawable/edittextshape"
-                        android:paddingLeft="15dp"
-                        android:inputType="number"
                         android:hint="@string/enter_business_telephone_number"
+                        android:inputType="number"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="#000"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="15dp"
-                        android:textColor="#000"/>
+                        android:textSize="15dp" />
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Business Telephone Number"
@@ -428,7 +428,7 @@
 
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
-                        android:paddingLeft="15dp"
+                        android:paddingStart="15dp"
                         android:inputType="text"
                         android:hint="@string/enter_website"
                          android:textColorHint="@color/light_grey"
@@ -438,7 +438,7 @@
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="Website"
@@ -456,14 +456,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:singleLine="true"
-
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edittextshape"
-                        android:paddingLeft="15dp"
+                        android:paddingStart="15dp"
                         android:inputType="text"
                         android:hint="@string/enter_your_street_address"
                          android:textColorHint="@color/light_grey"
-
                         android:textSize="15dp"
                         android:textColor="#000"/>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView

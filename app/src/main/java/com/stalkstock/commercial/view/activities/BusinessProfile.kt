@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.fragments.account
+package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
 import android.os.Bundle

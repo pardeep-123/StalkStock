@@ -15,6 +15,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -39,6 +40,7 @@ import com.stalkstock.driver.HomeActivity
 import com.stalkstock.driver.models.NewOrderResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.`interface`.GetLatLongInterface
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GPSTracker
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.getPrefrence
@@ -321,13 +323,14 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
 
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.tv_order.text = "Order ID : " + currentOrder.body.orderNo
-        dialog.txtEstEarning.text = "$" + currentOrder.body.total.toString()
-        dialog.txtDatePopup.text = currentOrder.body.updatedAt.substring(0, 10)
+        dialog.txtEstEarning.text = "$ " + currentOrder.body.shippingCharges
+        dialog.txtDatePopup.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
         dialog.txtRestLocation.text = currentOrder.body.vendorDetail.shopAddress
         dialog.txtDestinationLocation.text = currentOrder.body.orderAddress.geoLocation
         dialog.txtAddressPopup.text = currentOrder.body.orderAddress.geoLocation
         dialog.tv_name.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
-        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.iv_sub)
+        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.iv_sub as ImageView)
+        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.ivShopLogo as ImageView)
         Glide.with(this).load(currentOrder.body.image).into(dialog.iv_profile)
 
         dialog.btn_accept.setOnClickListener {
@@ -404,9 +407,10 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                 ca_tv1.visibility = View.VISIBLE
                 tv_orderHome.text = "Order ID : " + offeredOrder.body.orderNo
                 txtDateHome.text = offeredOrder.body.updatedAt.substring(0, 10)
+            //    txtDateHome.text = AppUtils.changeDateFormat(historyDataBody.createdAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
                 tv_nameHome.text = offeredOrder.body.firstName + " " + offeredOrder.body.lastName
                 txtAddressHome.text = offeredOrder.body.orderAddress.geoLocation
-                Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage)
+                Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage as ImageView)
                 Glide.with(this).load(offeredOrder.body.image).into(iv_profileHome)
                 currentOrder = offeredOrder
 
@@ -437,11 +441,14 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                             orderID = currentOrder.body.id.toString()
                             ca_tv1.visibility = View.VISIBLE
                             tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
-                            txtDateHome.text = currentOrder.body.updatedAt.substring(0, 10)
+                          //  txtDateHome.text = currentOrder.body.updatedAt.substring(0, 10)
+                               txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
+
+
                             tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
                             txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
                             Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
-                                .into(imgVendorImage)
+                                .into(imgVendorImage as ImageView)
                             Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
                         } else {
                             ca_tv1.visibility = View.GONE

@@ -37,7 +37,8 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                         EditBussinessProfile::class.java
                     ).putExtra("data", mData)
                 )
-            } else {
+            }
+            else {
                 AppUtils.showNoInternetAlert(this,
                     getString(R.string.no_internet_connection),
                     object : OnNoInternetConnectionListener {

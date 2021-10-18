@@ -62,7 +62,6 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         tv_heading.text = "Edit Business Profile"
 
@@ -73,8 +72,6 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
         iv_back.setOnClickListener(this)
         btn_update.setOnClickListener(this)
         image.setOnClickListener(this)
-
-        //CommonMethods.hideKeyboard(this@EditBusinessProfileActivity, btn_update)
 
         val foodAdapter2 = ArrayAdapter.createFromResource(
             this,
@@ -146,14 +143,7 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
 
     private fun setValidation() {
         when {
-//            firstimage.isEmpty() -> {
-//                Toast.makeText(
-//                    this,
-//                    resources.getString(R.string.please_select_image),
-//                    Toast.LENGTH_LONG
-//                ).show()
-//
-//            }
+
             etFirstName.text.toString().isEmpty() -> {
                 etFirstName.requestFocus()
                 etFirstName.error = resources.getString(R.string.please_enter_first_name)
@@ -262,14 +252,18 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
-        if (MyApplication.instance.getString("usertype").equals("4")) {
+        when {
+            MyApplication.instance.getString("usertype").equals("4") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        } else if (MyApplication.instance.getString("usertype").equals("5")) {
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
+            MyApplication.instance.getString("usertype").equals("5") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        } else {
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
+            else -> {
 
+            }
         }
         successfulUpdatedDialog.btn_ok.setOnClickListener {
             successfulUpdatedDialog.dismiss()
@@ -288,7 +282,7 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
                         updateDailogMethod()
 
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
                 if (it.data is BuisnessDetailResponse) {

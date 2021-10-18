@@ -777,7 +777,7 @@
                             android:text="Edit Business Profile"
                             android:textAllCaps="false"
                             android:textColor="#fff"
-                            android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                            android:textSize="16dp" />
                     </RelativeLayout>
 
                 </LinearLayout>
