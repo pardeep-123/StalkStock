@@ -389,7 +389,6 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         )
     }
 
-
 }
 
 
