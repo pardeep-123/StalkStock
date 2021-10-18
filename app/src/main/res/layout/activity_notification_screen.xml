@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentEnd="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,10 +34,10 @@
                     android:id="@+id/noti_backarrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:padding="10dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/back_arrow"></ImageView>
+                    android:src="@drawable/back_arrow" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:textSize="16dp"
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
-                android:background="#BDBCBC"></View>
+                android:background="#BDBCBC" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                         android:text="Notification Settings"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                        android:textSize="16dp" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

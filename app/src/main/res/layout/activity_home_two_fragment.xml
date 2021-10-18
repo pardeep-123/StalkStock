@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/hometwo"
@@ -39,35 +40,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/notification"
+                    android:layout_marginEnd="15dp"
+                    android:layout_toStartOf="@+id/notification"
                     android:src="@drawable/chat_grey_icon1"
-                    android:tint="#ED1F24"></ImageView>
+                    app:tint="#ED1F24" />
 
 
                 <ImageView
                     android:id="@+id/notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@+id/filter"
-                    android:src="@drawable/notification_icon1"></ImageView>
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@+id/filter"
+                    android:src="@drawable/notification_icon1" />
 
                 <ImageView
                     android:id="@+id/filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/filter_icn1"></ImageView>
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/filter_icn1" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/dark_gray"></View>
+                android:background="@color/dark_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,26 +79,7 @@
                 android:orientation="vertical">
 
 
-                <!--
-                            <RelativeLayout
-                                android:id="@+id/edit_search"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                     android:layout_width="match_parent"
-                                    android:layout_height="45dp"
-                                    android:background="@drawable/searchshape"
-                                    android:drawableRight="@drawable/ic_audioicon"
-                                    android:drawableLeft="@drawable/ic_searchicon"
-                                    android:layout_gravity="center_vertical"
-                                    android:gravity="center_vertical"
-                                    android:drawablePadding="12dp"
-                                    android:paddingLeft="10dp"
-                                    android:paddingRight="10dp"
-                                    android:hint="Search.."/>
 
-                            </RelativeLayout>
-                -->
 
                 <RelativeLayout
                     android:id="@+id/edit_search"
@@ -113,16 +95,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:src="@drawable/search_icon" />
 
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
                          />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -130,8 +112,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_toRightOf="@+id/search"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/search"
                         android:text="Search.."
                         android:textSize="17sp" />
 

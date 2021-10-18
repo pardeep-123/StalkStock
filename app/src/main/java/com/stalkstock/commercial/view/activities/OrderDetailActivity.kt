@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.activities
+package com.stalkstock.commercial.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

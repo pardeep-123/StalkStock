@@ -1071,9 +1071,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getOrderDetailAPI(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
 
@@ -1100,10 +1098,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getSuggestedProduct(activity, showLoader,hashMap)
                     }
-                })
-        }
-    }
-
+                }) } }
 
     @SuppressLint("CheckResult")
     fun getNotificationList(

@@ -21,6 +21,7 @@ class GlobalVariables {
             const val ADV_TOKEN = "auth_token"
         }
     }
+
     class FilterVariables {
         companion object{
             var currentLowPrice = 0
@@ -168,22 +169,21 @@ class GlobalVariables {
         }
     }
 
-
     object URL {
 
-       // const val BASE_URL: String = "http://3.13.214.27:8800/api/"
-        const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
-        //const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
-        const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
+        const val BASE_URL: String = "http://3.13.214.27:8800/api/"
+       // const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
+        const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
+       // const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
 
-           // const val SOCKET_URL: String = "http://3.13.214.27:8800"
-            const val SOCKET_URL: String = "http://192.168.1.156:8800"  //local
-//            const val IMAGE_URL: String = "http://202.164.42.227:8992/images/users/"
+            const val SOCKET_URL: String = "http://3.13.214.27:8800"
+          //  const val SOCKET_URL: String = "http://192.168.1.156:8800"  //local
+         //   const val IMAGE_URL: String = "http://202.164.42.227:8992/images/users/"
 
 
         const val SECURITY_KEY: String = "stalkandstock1123"
 
-        //            const val GETSTORES = "getStores"
+        //    const val GETSTORES = "getStores"
         const val USERLOGIN = "user/login"
         const val logout = "logout"
         const val getProfileDetail = "user/getProfileDetail"
@@ -329,6 +329,5 @@ class GlobalVariables {
         const val STOP_JOBSTATUS = "stop_job"
         const val RESTART_JOB = "restart_job"
     }
-
 
 }

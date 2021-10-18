@@ -36,6 +36,7 @@ import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.CommunicationListner
+import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.driver.HomeActivity
 import com.stalkstock.driver.models.NewOrderResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
@@ -94,6 +95,12 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         mapFragment.getMapAsync(this)
 
         btn_declin.setOnClickListener {
+            val map = HashMap<String, RequestBody>()
+            map["status"] = RequestBody.create(MultipartBody.FORM, "2")
+            map["orderId"] = RequestBody.create(MultipartBody.FORM, orderID)
+
+            viewModel.driverAcceptRejectOrder(mactivity!!, true, map)
+            listner!!.getYourFragmentActive(0)
             rl_top.visibility = View.VISIBLE
             rl_tv.visibility = View.GONE
         }
@@ -338,6 +345,11 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             dialo()
         }
 
+        dialog.iv_cross.setOnClickListener {
+            dialog.dismiss()
+
+        }
+
         dialog.btn_decline.setOnClickListener {
             dialog.dismiss()
             val map = HashMap<String, RequestBody>()
@@ -407,7 +419,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                 ca_tv1.visibility = View.VISIBLE
                 tv_orderHome.text = "Order ID : " + offeredOrder.body.orderNo
                 txtDateHome.text = offeredOrder.body.updatedAt.substring(0, 10)
-            //    txtDateHome.text = AppUtils.changeDateFormat(historyDataBody.createdAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
                 tv_nameHome.text = offeredOrder.body.firstName + " " + offeredOrder.body.lastName
                 txtAddressHome.text = offeredOrder.body.orderAddress.geoLocation
                 Glide.with(this).load(offeredOrder.body.vendorDetail.shopLogo).into(imgVendorImage as ImageView)
@@ -435,16 +446,10 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOrder = mResponse
                         if (currentOrder.body.orderNo != null) {
-
-                            Log.e("adsfdfas","$currentOrder")
-
                             orderID = currentOrder.body.id.toString()
                             ca_tv1.visibility = View.VISIBLE
                             tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
-                          //  txtDateHome.text = currentOrder.body.updatedAt.substring(0, 10)
-                               txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
-
-
+                            txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
                             tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
                             txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
                             Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
@@ -455,6 +460,14 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                         }
                     } else {
                         ca_tv1.visibility = View.GONE
+                    }
+                }
+                if (it.data is UserCommonModel) {
+                    val mResponse: UserCommonModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        ca_tv1.visibility = View.GONE
+                        Toast.makeText(mactivity!!, mResponse.message, Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }

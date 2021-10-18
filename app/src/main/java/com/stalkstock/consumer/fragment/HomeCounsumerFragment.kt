@@ -29,7 +29,7 @@ import com.stalkstock.consumer.activities.HomedetailsActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.adapter.CategoryAdapter
 import com.stalkstock.consumer.adapter.SuggestedAdapter
-import com.stalkstock.consumer.adapter.View_detailAdapter
+import com.stalkstock.consumer.adapter.ViewDetailAdapter
 import com.stalkstock.consumer.model.UserBannerModel
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.others.GlobalVariables
@@ -53,7 +53,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
     var currentLowPrice = ""
     var currentHighPrice = "10000"
-    var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
+    var currentSortBy = "high_to_low" //sort by high_to_low => high to low low_to_high =>low to high
 
     var viewFrag: View? = null
     lateinit var adapter: CategoryAdapter
@@ -61,7 +61,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     lateinit var suggested_recycle: RecyclerView
     lateinit var viewPagerDetail: ViewPager
     lateinit var indicator: CirclePageIndicator
-    lateinit var detailAdapter: View_detailAdapter
+    lateinit var detailAdapter: ViewDetailAdapter
     lateinit var adapter3: SuggestedAdapter
     lateinit var notification: ImageView
     lateinit var fillter: ImageView
@@ -115,6 +115,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         savedInstanceState: Bundle?
     ): View? {
         viewFrag = inflater.inflate(R.layout.fragment_home_consumer, container, false)
+
         category_recycle = viewFrag!!.findViewById(R.id.category_recycle)
         viewPagerDetail = viewFrag!!.findViewById(R.id.viewPagerDetail)
         suggested_recycle = viewFrag!!.findViewById(R.id.suggested_recycle)
@@ -127,7 +128,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         bt_sort = viewFrag!!.findViewById(R.id.bt_sort)
         bt_pickup = viewFrag!!.findViewById(R.id.bt_pickup)
         tv_delivery = viewFrag!!.findViewById(R.id.tv_delivery)
-
         iv_msg.setOnClickListener {
             if (clickMsg == 0) {
                 clickMsg = 1
@@ -139,7 +139,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         adapter = CategoryAdapter(this, requireContext(), arrayListCategory)
         category_recycle.layoutManager = GridLayoutManager(activity, 4)
         category_recycle.adapter = adapter
-        detailAdapter = View_detailAdapter(requireContext(), currentModel)
+        detailAdapter = ViewDetailAdapter(requireContext(), currentModel)
         viewPagerDetail.adapter = detailAdapter
         indicator.fillColor = resources.getColor(R.color.theme_green)
         indicator.setViewPager(viewPagerDetail)
@@ -179,6 +179,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             LinearLayoutManager.HORIZONTAL,
             false
         )
+
         suggested_recycle.adapter = adapter3
         notification.setOnClickListener {
             val intent = Intent(activity, NotificationFirstActivity::class.java)
@@ -303,7 +304,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         mLat = latitude!!.toDouble()
         mLong = longitude!!.toDouble()
         completeAddress(latitude.toDouble(), longitude.toDouble())
-
     }
 
     private fun popupSort() {
@@ -426,7 +426,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
     val viewModel: HomeViewModel by viewModels()
 
-
     private fun tickVisible(tickClick: Int) {
         when (tickClick) {
             1 -> {
@@ -535,7 +534,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                         currentOffset += 5
                         setData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
                 if (it.data is SuggestedDataListed) {
@@ -554,16 +553,16 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setDataCategody(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
 
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(mActivity, mResponse.message.toString())
+                        AppUtils.showSuccessAlert(mActivity, mResponse.message)
                     } else {
-                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
             }

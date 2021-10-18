@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
+import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.model.UserCommonModel
@@ -30,13 +31,11 @@ import okhttp3.RequestBody
 import com.stalkstock.consumer.activities.FilterActivity
 import java.util.HashMap
 
-//Vendor Home
 class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservable> {
     var mcontext: Context? = null
     private var testAdapter: TestAdapter? = null
     lateinit var recyclerview: RecyclerView
     var clickMsg = 0
-
     private var reset = false
     private var currentOffset = 0
     private var currentModel: ArrayList<ModelVendorProductList.Body.Product> = ArrayList()
@@ -50,38 +49,33 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         mcontext = activity
         recyclerview = view.findViewById(R.id.recyclerview)
         testAdapter = TestAdapter(mcontext!!,currentModel)
-        recyclerview.setLayoutManager(LinearLayoutManager(mcontext))
-        recyclerview.setAdapter(testAdapter)
+        recyclerview.layoutManager = LinearLayoutManager(mcontext)
+        recyclerview.adapter = testAdapter
 
         recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+
                 if (!recyclerView.canScrollVertically(1)) {
                     if (currentOffset > 1 && currentModel.size>4)
                         getVendorProducts()
-                }
+                } } })
 
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
-        val imageView = view.findViewById<ImageView>(R.id.notification)
-        val imageView1 = view.findViewById<ImageView>(R.id.filter)
+        val notification = view.findViewById<ImageView>(R.id.notification)
+        val filter = view.findViewById<ImageView>(R.id.filter)
         val iv_msg = view.findViewById<ImageView>(R.id.iv_msg)
         val editText = view.findViewById<RelativeLayout>(R.id.edit_search)
         val button = view.findViewById<Button>(R.id.addproductbutton)
         button.setOnClickListener(this)
-        imageView.setOnClickListener(this)
-        imageView1.setOnClickListener(this)
+        notification.setOnClickListener(this)
+        filter.setOnClickListener(this)
         editText.setOnClickListener(this)
         iv_msg.setOnClickListener {
+
             if (clickMsg == 0) {
                 clickMsg = 1
                 val intent = Intent(requireActivity(), MessageActivity::class.java)
                 startActivity(intent)
-            } else {
             }
         }
 
@@ -106,8 +100,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         if (activity!=null)
         {
             val mActivity = activity as BottomnavigationScreen
-            map.put("offset", mActivity.mUtils.createPartFromString(currentOffset.toString()))
-            map.put("limit", mActivity.mUtils.createPartFromString("5"))
+            map["offset"] = mActivity.mUtils.createPartFromString(currentOffset.toString())
+            map["limit"] = mActivity.mUtils.createPartFromString("5")
             viewModel.getVendorProductListAPI(mActivity, true, map)
             viewModel.homeResponse.observe(this, this)
         }
@@ -115,10 +109,9 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     }
 
     override fun onClick(view: View) {
-        val id = view.id
-        when (id) {
+        when (view.id) {
             R.id.notification -> {
-                val intent = Intent(activity, NotificationScreen::class.java)
+                val intent = Intent(activity, NotificationFirstActivity::class.java)
                 startActivity(intent)
             }
             R.id.filter -> {
@@ -147,18 +140,18 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                         currentOffset += 5
                         setData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
 
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showSuccessAlert(requireActivity(), mResponse.message)
                         reset = true
                         getVendorProducts()
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
             }
@@ -167,12 +160,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                     Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
-//                        AppUtils.showErrorAlert(this, "No more addresses")
                     } else
-                        Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//
-
-//                    showAlerterRed()
+                        Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
             it.status == Status.LOADING -> {
@@ -181,7 +170,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     }
 
     private fun setData(mResponse: ModelVendorProductList) {
-        txtHomeTotal.setText("Total:${mResponse.body.total}")
+        txtHomeTotal.text = "Total:${mResponse.body.product.size}"
         currentModel.addAll(mResponse.body.product)
         testAdapter!!.notifyDataSetChanged()
         reset = false

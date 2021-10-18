@@ -20,9 +20,6 @@ public class NotificationSetting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(NotificationSetting.this, BottomnavigationScreen.class));
-
-
-
             }
         });
     }

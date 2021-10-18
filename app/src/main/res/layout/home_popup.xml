@@ -18,31 +18,42 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp">
 
+
+            <ImageView
+                android:id="@+id/iv_cross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/cross_green" />
+
             <com.stalkstock.utils.custom.TitiliumRegularTextView
-
                 android:id="@+id/tv_order"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Order ID : ADS777558"
                 android:textColor="@color/black"
+                android:layout_below="@id/iv_cross"
                 android:textSize="@dimen/value_12sp" />
 
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/tv_status"
+                android:layout_toStartOf="@id/tv_status"
                 android:text="Status : "
+                android:layout_below="@id/iv_cross"
+
                 android:textColor="@color/black" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/iv_cross"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:text="Pending"
                 android:textColor="@color/orange_colour" />
 

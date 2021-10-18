@@ -51,25 +51,27 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
                     text_detailes4.setTextColor(resources.getColor(R.color.red_bid))
                     text_detailes4.visibility = View.VISIBLE
                     text_detailes4.text = stringExtra
+                    ltStatusChange.setOnClickListener { dialogSpinner() }
                 }
                 stringExtra.equals("In Progress") -> {
                     text_detailes2.visibility = View.VISIBLE
                     mStatus = 1
                     text_detailes2.text = stringExtra
+                    ltStatusChange.setOnClickListener { dialogSpinner() }
                 }
                 stringExtra.equals("Ready For Pickup") -> {
                     text_detailes3.visibility = View.VISIBLE
                     text_detailes3.text = stringExtra
                     mStatus = 3
+                    ltStatusChange.setOnClickListener { dialogSpinner() }
                 }
                 stringExtra.equals("Delivered") -> {
                     text_detailes4.visibility = View.VISIBLE
                     text_detailes4.text = stringExtra
+                    ltStatusChange.setOnClickListener {  }
                 }
             }
         }
-
-        ltStatusChange.setOnClickListener { dialogSpinner() }
 
         order_details_backarrow.setOnClickListener { onBackPressed() }
         if (intent.hasExtra("orderId"))
@@ -153,21 +155,19 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is OrderDetailVendorResponse) {
                     val mResponse: OrderDetailVendorResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        tvName.setText(mResponse.body.firstName + " " + mResponse.body.lastName)
-                        tvOrderNumber.setText(mResponse.body.orderNo)
-                        tvOrderNumber2.setText(mResponse.body.orderNo)
+                        tvName.text = mResponse.body.firstName + " " + mResponse.body.lastName
+                        tvOrderNumber.text = mResponse.body.orderNo
+                        tvOrderNumber2.text = mResponse.body.orderNo
                         mRecyclerView.adapter =
                             MyVendorOrderProductAdapter(this, mResponse.body.orderItems)
-                        tvDateTime.setText(
-                            AppUtils.changeDateFormat(
-                                mResponse.body.updatedAt,
-                                GlobalVariables.DATEFORMAT.DateTimeFormat1,
-                                GlobalVariables.DATEFORMAT.DateTimeFormat2
-                            )
+                        tvDateTime.text = AppUtils.changeDateFormat(
+                            mResponse.body.updatedAt,
+                            GlobalVariables.DATEFORMAT.DateTimeFormat1,
+                            GlobalVariables.DATEFORMAT.DateTimeFormat2
                         )
                         if (!checkObjectNull(mResponse.body.orderAddress)) {
                             if (!checkStringNull(mResponse.body.orderAddress.geoLocation))
-                                tvDeliveryLocation.setText(mResponse.body.orderAddress.geoLocation)
+                                tvDeliveryLocation.text = mResponse.body.orderAddress.geoLocation
                             else {
                                 tvDeliveryLocation.visibility = View.GONE
                                 tv_deli_to!!.visibility = View.GONE

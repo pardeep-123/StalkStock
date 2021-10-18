@@ -46,16 +46,16 @@ class OrdersFragment : Fragment(), Observer<RestObservable> {
         val btnPast = view.findViewById<Button>(R.id.btnPast)
         recyclerview1 = view.findViewById(R.id.currentrecyclerview)
         currentAdapter = CurrentAdapter(mContext)
-        recyclerview1.setLayoutManager(LinearLayoutManager(mContext))
-        recyclerview1.setAdapter(currentAdapter)
+        recyclerview1.layoutManager = LinearLayoutManager(mContext)
+        recyclerview1.adapter = currentAdapter
         btnCurrent.setOnClickListener {
             btnCurrent.background = resources.getDrawable(R.drawable.current_button)
             btnPast.background = resources.getDrawable(R.drawable.past_button2)
             btnCurrent.setTextColor(resources.getColor(R.color.white))
             btnPast.setTextColor(resources.getColor(R.color.balck))
             currentAdapter = CurrentAdapter(mContext)
-            recyclerview1.setLayoutManager(LinearLayoutManager(mContext))
-            recyclerview1.setAdapter(currentAdapter)
+            recyclerview1.layoutManager = LinearLayoutManager(mContext)
+            recyclerview1.adapter = currentAdapter
         }
         btnPast.setOnClickListener {
             btnPast.background = resources.getDrawable(R.drawable.current_button)
@@ -67,8 +67,8 @@ class OrdersFragment : Fragment(), Observer<RestObservable> {
             val bottomnavigationScreen = activity as BottomnavigationScreen
 
             pastAdapter = PastAdapter(bottomnavigationScreen, mOrderArrayList)
-            recyclerview1.setLayoutManager(LinearLayoutManager(mContext))
-            recyclerview1.setAdapter(pastAdapter)
+            recyclerview1.layoutManager = LinearLayoutManager(mContext)
+            recyclerview1.adapter = pastAdapter
 
             recyclerview1.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -79,9 +79,6 @@ class OrdersFragment : Fragment(), Observer<RestObservable> {
                     }
                 }
 
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                }
             })
 
         }
@@ -103,9 +100,9 @@ class OrdersFragment : Fragment(), Observer<RestObservable> {
             mOrderArrayList.clear()
         }
         val hashMap = HashMap<String, String>()
-        hashMap.put("offset", currentOffset.toString())
-        hashMap.put("limit", "10")
-        hashMap.put("type", "1")    // 0=>current 1=>past
+        hashMap["offset"] = currentOffset.toString()
+        hashMap["limit"] = "10"
+        hashMap["type"] = "1"    // 0=>current 1=>past
         val mActivity = activity as BottomnavigationScreen
         viewModel.orderListVendorApi(mActivity, true, hashMap)
         viewModel.mResponse.observe(mActivity, this)
@@ -121,7 +118,6 @@ class OrdersFragment : Fragment(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOffset += 10
                         mOrderArrayList.addAll(mResponse.body)
-//                        newOrderAdapter!!.notifyData(mOrderArrayList)
                         pastAdapter!!.notifyDataSetChanged()
                         reset = false
                     } else {
@@ -134,13 +130,9 @@ class OrdersFragment : Fragment(), Observer<RestObservable> {
                     Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
-//                        AppUtils.showErrorAlert(this, "No more addresses")
                     } else
                         Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
                             .show()
-//
-
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {

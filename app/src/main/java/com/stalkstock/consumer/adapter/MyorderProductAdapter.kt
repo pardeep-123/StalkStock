@@ -24,8 +24,8 @@ class MyorderProductAdapter(
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
-        holder.itemView.name_text.setText(mOrderArrayList[position].product.name)
-        holder.itemView.tvPrice.setText("$"+mOrderArrayList[position].total)
+        holder.itemView.name_text.text = mOrderArrayList[position].product.name
+        holder.itemView.tvPrice.text = "$"+mOrderArrayList[position].total
 
     }
 

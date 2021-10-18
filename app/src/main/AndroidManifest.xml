@@ -179,7 +179,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/> <!-- commercial -->
         <activity
-            android:name="com.live.stalkstockcommercial.ui.view.activities.OrderDetailActivity"
+            android:name=".commercial.view.activities.OrderDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
