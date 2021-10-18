@@ -64,7 +64,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             ), this
         )
 
-        business_imageset.setOnClickListener(View.OnClickListener { askCameraPermissons() })
+        business_imageset.setOnClickListener { askCameraPermissons() }
         imageView.setOnClickListener { onBackPressed() }
         val spinner = findViewById<Spinner>(R.id.spinner)
         val spinner_type = findViewById<Spinner>(R.id.spinner_type)
@@ -95,28 +95,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         foodadapter3.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner_delivery_type.adapter = foodadapter3
 
-        button.setOnClickListener { /*  LayoutInflater inflater= LayoutInflater.from(EditBussinessProfile.this);
-                View v= inflater.inflate(R.layout.businessprofilealertbox,null);
-                final AlertDialog deleteDialog = new AlertDialog.Builder(EditBussinessProfile.this).create();
-                deleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                deleteDialog.setView(v);
-                Button btncontinue= v.findViewById(R.id.done_button);
-
-                btncontinue.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                                        Intent intent = new Intent(ChatBox.this, MessageFragment.class);
-//                                        startActivity(intent);
-                      onBackPressed();
-
-
-
-                        deleteDialog.dismiss();
-
-                    }
-                });
-
-                deleteDialog.show();*/
+        button.setOnClickListener {
             val logoutUpdatedDialog2 = Dialog(this@EditBussinessProfile)
             logoutUpdatedDialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
             logoutUpdatedDialog2.setContentView(R.layout.businessprofilealertbox)
@@ -129,8 +108,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             logoutUpdatedDialog2.window!!.setGravity(Gravity.CENTER)
             logoutUpdatedDialog2.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             val btncontinue = logoutUpdatedDialog2.findViewById<Button>(R.id.done_button)
-            btncontinue.setOnClickListener { //                                        Intent intent = new Intent(ChatBox.this, MessageFragment.class);
-//                                        startActivity(intent);
+            btncontinue.setOnClickListener {
                 onBackPressed()
                 logoutUpdatedDialog2.dismiss()
             }
@@ -156,7 +134,6 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         editboxbusinessabout.setText(vendorDetail.shopDescription)
         editboxbusinesslicense.setText(vendorDetail.buisnessLicense)
         editboxbusinessEmail.setText(body.email)
-//        businesstypes.setText(vendorDetail.buisnessTypeName)
         editboxbusinessmobile.setText(body.mobile)
         editboxbusinessmobilenumber.setText(vendorDetail.buisnessPhone)
         editboxbusinesswebsite.setText(vendorDetail.website)
@@ -166,15 +143,14 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         editboxbusinesscity.setText(vendorDetail.city)
         editboxbusinessstate.setText(vendorDetail.state)
         editboxbusinesscode.setText(vendorDetail.postalCode)
-        /*if (vendorDetail.buisnessTypeId.equals("1"))*/
         business_type = vendorDetail.buisnessTypeId
         business_delivery_type = vendorDetail.deliveryType + 1
         mCountryName = vendorDetail.country
         spinner_type.setSelection(vendorDetail.buisnessTypeId)
         spinner_delivery_type.setSelection(business_delivery_type)
         val appThemeList = resources.getStringArray(R.array.Select_country)
-        for (i in 0 until appThemeList.size) {
-            if (appThemeList[i].toLowerCase().equals(vendorDetail.country.toLowerCase())) {
+        for (i in appThemeList.indices) {
+            if (appThemeList[i].equals(vendorDetail.country, ignoreCase = true)) {
                 spinner.setSelection(i)
                 break
             }
@@ -182,7 +158,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
     }
 
     private fun askCameraPermissons() {
-        mAlbumFiles = ArrayList<AlbumFile>()
+        mAlbumFiles = ArrayList()
         mAlbumFiles.clear()
         selectImage(business_imageset, "1")
     }
@@ -230,14 +206,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
     }
 
     fun setValidation() {
-        /*if (firstimage.isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.please_select_image),
-                Toast.LENGTH_LONG
-            ).show()
 
-        } else */
         if (editboxbusinessname.getText().toString().isEmpty()) {
             editboxbusinessname.requestFocus()
             editboxbusinessname.setError(resources.getString(R.string.please_enter_first_name))

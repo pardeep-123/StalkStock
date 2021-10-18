@@ -287,6 +287,12 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<OrderHistoryData>
 
+    @Multipart
+    @PUT(URL.changeDiverOrder)
+    fun changeDiverOrder(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<DefaultDataModel>
+
     @POST(URL.driverOrderRequestAPI)
     fun driverOrderRequestAPI(): Observable<NewOrderResponse>
 

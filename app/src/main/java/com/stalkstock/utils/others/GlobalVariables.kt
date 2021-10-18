@@ -165,15 +165,14 @@ class GlobalVariables {
             const val userId = "userId"
             const val token = "token"
             const val advertiserId = "advertiserId"
-
         }
     }
 
 
     object URL {
 
-        const val BASE_URL: String = "http://3.13.214.27:8800/api/"
-//        const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
+       // const val BASE_URL: String = "http://3.13.214.27:8800/api/"
+        const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
         //const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
         const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
 
@@ -251,6 +250,7 @@ class GlobalVariables {
         const val getNotificationList = "notificationList"
         const val deleteCard = "user/deleteUserCard"
         const val orderHistoryDriver = "driver/orderHistoryDriver"
+        const val changeDiverOrder = "driver/changeOrderStatus"
 
         const val ADVERTISERSIGNUP = "advertiser/signup"
         const val advertiserProfile = "advertiser/getProfileDetail"
@@ -319,6 +319,7 @@ class GlobalVariables {
         const val DateTimeFormat = "dd MMM,yyyy hh:mm a"
         const val DateTimeFormat2 = "MMM dd,yyyy hh:mm a"
         const val DateTimeFormat1 = "yyyy-MM-dd'T'hh:mm"  //Fri Sep 17 01:40:00 GMT+05:30 2021
+        const val DateTimeFormat3 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" // 2021-10-07T05:19:07.000Z
     }
 
     object Job_state {

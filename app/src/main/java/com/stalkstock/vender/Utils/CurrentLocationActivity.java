@@ -31,10 +31,6 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 
-/**
- * Created by AIM on 11/28/2018.
- */
-
 abstract public class CurrentLocationActivity extends Fragment implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -49,7 +45,6 @@ abstract public class CurrentLocationActivity extends Fragment implements
     protected Location mCurrentLocation;
     protected LocationRequest mLocationRequest;
     protected LocationSettingsRequest mLocationSettingsRequest;
-    //private Activity mContext;
     private int REQUEST_PERMISSIONS_LOCATION = 2;
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
 
@@ -152,8 +147,6 @@ abstract public class CurrentLocationActivity extends Fragment implements
     @Override
     public void onStart() {
         super.onStart();
-//        if (mGoogleApiClient != null)
-//            connectGoogleClient();
     }
 
     @Override
@@ -229,12 +222,9 @@ abstract public class CurrentLocationActivity extends Fragment implements
 
     @Override
     public void onLocationChanged(Location location) {
-        //Log.e("location", "change " + location.getLatitude());
         mCurrentLocation = location;
         if (mCurrentLocation != null) {
-            //AppController.Companion.getInstance().setString(UtilJava.CURRENT_LAT, String.valueOf(mCurrentLocation.getLatitude()));
-          //  AppController.mInstance.setString(UtilJava.CURRENT_LONG, String.valueOf(mCurrentLocation.getLongitude()));
-           // Log.e("current","lat "+AppController.mInstance.getString(UtilJava.CURRENT_LAT));
+
         }
     }
 
@@ -256,9 +246,6 @@ abstract public class CurrentLocationActivity extends Fragment implements
             }
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             if (mCurrentLocation != null) {
-                //AppController.mInstance.setString(UtilJava.CURRENT_LAT, String.valueOf(mCurrentLocation.getLatitude()));
-              //  AppController.mInstance.setString(UtilJava.CURRENT_LONG, String.valueOf(mCurrentLocation.getLongitude()));
-              //  Log.e("current","lat "+AppController.mInstance.getString(UtilJava.CURRENT_LAT));
                 onLocationGet(String.valueOf(mCurrentLocation.getLatitude()), String.valueOf(mCurrentLocation.getLongitude()));
             }
 
@@ -297,7 +284,6 @@ abstract public class CurrentLocationActivity extends Fragment implements
 
     public void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
             return;
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this
@@ -314,7 +300,6 @@ abstract public class CurrentLocationActivity extends Fragment implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            // Check for the integer request code originally supplied to startResolutionForResult().
             case REQUEST_CHECK_SETTINGS:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
