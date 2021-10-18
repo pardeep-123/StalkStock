@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,21 +14,34 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.*
 import com.stalkstock.advertiser.model.AdvertiserProfileDetailResponse
+import com.stalkstock.advertiser.model.NotificationResponse
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.model.UserCommonModel
+import com.stalkstock.consumer.model.UserLoginResponse
+import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.clearPrefrences
 import com.stalkstock.utils.others.getPrefrence
+import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_account.view.*
 import kotlinx.android.synthetic.main.logout_alert.*
 import kotlinx.android.synthetic.main.toolbar2.view.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.util.HashMap
+import android.content.SharedPreferences
+
+
+
 
 class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservable> {
 
@@ -36,6 +50,10 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
     lateinit var mContext:Context
     lateinit var logoutUpdatedDialog:Dialog
 
+
+    val viewModel: AdvertiserViewModel by lazy {
+        ViewModelProvider(this).get(AdvertiserViewModel::class.java)
+    }
 
     val homeViewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -50,32 +68,38 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
         mContext = activity as Context
         v.tv_heading.text = "Account"
 
-
-
-        v.tv_business_profile.setOnClickListener(this)
-        v.tv_manage.setOnClickListener(this)
-        v.tv_changepass.setOnClickListener(this)
-        v.tv_help.setOnClickListener(this)
-        v.tv_logout.setOnClickListener(this)
-        v.lin_editProfile.setOnClickListener(this)
-
-
-        val toggle1 =
-            v.findViewById<ImageView>(R.id.toggle1)
-        val toggleOff2 =
-            v.findViewById<ImageView>(R.id.toggle_off2)
-
-        toggle1.setOnClickListener {
-            toggleOff2.visibility = View.VISIBLE
-            toggle1.visibility = View.GONE
-        }
-        toggleOff2.setOnClickListener {
-            toggleOff2.visibility = View.GONE
-            toggle1.visibility = View.VISIBLE
-        }
-        // v.toggle.setOnClickListener(this)
         return v
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        tv_business_profile.setOnClickListener(this)
+        tv_manage.setOnClickListener(this)
+        tv_changepass.setOnClickListener(this)
+       tv_help.setOnClickListener(this)
+       tv_logout.setOnClickListener(this)
+        lin_editProfile.setOnClickListener(this)
+
+        toggle1.setOnClickListener {
+            toggle_off2.visibility = View.VISIBLE
+            toggle1.visibility = View.GONE
+            notificationOnOffAPI("on")
+        }
+        toggle_off2.setOnClickListener {
+            toggle_off2.visibility = View.GONE
+            toggle1.visibility = View.VISIBLE
+            notificationOnOffAPI("off")
+        }
+    }
+
+    private fun notificationOnOffAPI(s: String) {
+
+            val map = HashMap<String, String>()
+        map["status"] = s
+        viewModel.getNotification(requireActivity(), true, map)
+        viewModel.mResponse.observe(requireActivity(),this)
+
+        }
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
@@ -83,15 +107,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 val intent = Intent(activity, BusinessProfileActivity::class.java)
                 startActivity(intent)
             }
-//            R.id.toggle -> {
-////                if (click.equals("")) {
-////                    v.toggle.setImageResource(R.drawable.toggle_on1)
-////                    click = "1"
-////                } else {
-////                    v.toggle.setImageResource(R.drawable.toggle_off1)
-////                    click = ""
-////                }
-//            }
+
             R.id.lin_editProfile -> {
                 val intent = Intent(activity, EditProfileActivity::class.java)
                 startActivity(intent)
@@ -132,12 +148,9 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
             logoutUpdatedDialog.dismiss()
         }
         logoutUpdatedDialog.btn_yes.setOnClickListener {
+            logoutUpdatedDialog.dismiss()
             logoutApi()
 
-            logoutUpdatedDialog.dismiss()
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            activity?.finishAffinity()
 
         }
 
@@ -156,7 +169,20 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 if (it.data is UserCommonModel){
                     val data = it.data
                     if (data.code == 200){
+                        val intent = Intent(activity, LoginActivity::class.java)
+                        startActivity(intent)
+                        activity?.finishAffinity()
                         clearPrefrences()
+                    }
+                }
+
+                if (it.data is NotificationResponse){
+                    val data: NotificationResponse= it.data
+
+                    if (data.code == GlobalVariables.URL.code){
+
+                        saveStatus(data)
+
                     }
                 }
             }
@@ -172,9 +198,25 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
         }
     }
 
+    private fun saveStatus(data: NotificationResponse) {
+
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.notification, data.body.notification)
+
+
+    }
+
     override fun onResume() {
         super.onResume()
 
+        val notify =  getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.notification, "")
+        if (notify == "on"){
+            toggle_off2.visibility = View.VISIBLE
+            toggle1.visibility = View.GONE
+        }
+        else{
+            toggle_off2.visibility = View.GONE
+            toggle1.visibility = View.VISIBLE
+        }
         v.tvUserName.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.firstName,"")
         v.tvUserEmailId.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email,"")
         v.tvUserPhone.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile,"")

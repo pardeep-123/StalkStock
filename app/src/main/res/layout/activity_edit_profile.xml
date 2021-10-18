@@ -6,18 +6,18 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="@color/white"
+    android:focusable="true"
     tools:context=".advertiser.fragments.AddPostFragment">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitEnd"
         android:layout_alignParentRight="true"
+        android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:gravity="center_horizontal"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -89,6 +89,7 @@
                 android:textColor="@color/light_grey"
                 android:textSize="13sp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="60dp"
@@ -124,6 +125,7 @@
                 android:text="Last Name"
                 android:textColor="@color/light_grey"
                 android:textSize="13sp" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -146,8 +148,8 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:minHeight="45dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="12dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="13sp" />
@@ -156,13 +158,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
                 android:text="@string/email"
                 android:textColor="@color/light_grey"
                 android:textSize="13sp" />
+
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="60dp"
@@ -183,8 +187,8 @@
                 android:inputType="phone"
                 android:maxLines="1"
                 android:minHeight="45dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="12dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="13sp" />
@@ -193,19 +197,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
                 android:text="@string/mobile"
                 android:textColor="@color/light_grey"
                 android:textSize="13sp" />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="bottom">
+
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_update_profile"
                 android:layout_width="match_parent"
@@ -218,10 +224,9 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
+
         </LinearLayout>
 
-
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -219,6 +219,14 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_website">Please enter website</string>
     <string name="please_enter_business_address">Please enter business address</string>
 
+    <string name="please_enter_title">Please enter title</string>
+    <string name="please_enter_description">Please enter description</string>
+    <string name="please_enter_budget">Please enter budget</string>
+    <string name="please_enter_link">Please enter link</string>
+    <string name="please_enter_start_date">Please enter start date</string>
+    <string name="please_enter_end_date">Please enter end date</string>
+    <string name="please_enter_action">Please enter action</string>
+
     <string name="please_enter_city">Please enter city</string>
     <string name="please_enter_state">Please enter state/province/region</string>
     <string name="please_enter_postal_code">Please enter postal/zip code</string>

@@ -41,10 +41,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivUserProfile"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/dummy_profile" />
             </LinearLayout>
 
@@ -131,11 +131,10 @@
                 android:id="@+id/toggle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-
+                android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/toggle_off"/>
+                android:src="@drawable/toggle_off" />
 
             <ImageView
                 android:id="@+id/toggle_off2"

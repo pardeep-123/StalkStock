@@ -4,53 +4,50 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.advertiser.adapters.BusinessTypeAdapter
 import com.stalkstock.advertiser.model.BuisnessDetailResponse
 import com.stalkstock.advertiser.model.BusinessTypeResponse
 import com.stalkstock.advertiser.model.EditBuisnessDetail
+import com.stalkstock.advertiser.model.BussinessTypeList
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.driver.models.DriverProfileDetailResponse
-import com.stalkstock.driver.models.EditDriverResponse
 import com.stalkstock.utils.BaseActivity
-import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.*
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
-import kotlinx.android.synthetic.main.activity_edit_business_profile.emailEdittext
-import kotlinx.android.synthetic.main.activity_edit_business_profile.image
 import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner
 import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner_type
-import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.spiner_layout_text.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
 import java.util.HashMap
 
-class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observer<RestObservable> {
+class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
     lateinit var successfulUpdatedDialog: Dialog
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
-    var firstimage=""
+    var buisnessLogo = ""
+    var businessType = ""
+    var country = ""
+    var selectedId = ""
+    var businessTypeArray: ArrayList<BusinessTypeResponse.Body> = ArrayList()
 
     val viewModel: AdvertiserViewModel by lazy {
         ViewModelProvider(this).get(AdvertiserViewModel::class.java)
@@ -68,42 +65,43 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
 
         getBusinessTypeApi()
 
-        getBusinessProfileApi()
-
         iv_back.setOnClickListener(this)
         btn_update.setOnClickListener(this)
-        image.setOnClickListener(this)
-
+        imageBusiness.setOnClickListener(this)
+        viewModel.mResponse.observe(this, this)
         //CommonMethods.hideKeyboard(this@EditBusinessProfileActivity, btn_update)
 
-        val foodAdapter2 = ArrayAdapter.createFromResource(
-            this,
-            R.array.Select_business_type,
-            R.layout.spinner_layout_for_vehicle
-        )
-        foodAdapter2.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner_type.adapter = foodAdapter2
+        spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                val category: BussinessTypeList = parent.selectedItem as BussinessTypeList
+                selectedId = category.itemId.toString()
+            }
 
-        val foodadapter = ArrayAdapter.createFromResource(
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+        }
+
+        val countryAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.Select_country,
             R.layout.spinner_layout_for_vehicle
         )
-        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner.adapter = foodadapter
+        countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = countryAdapter
 
     }
 
     private fun getBusinessTypeApi() {
-       viewModel.getBusinessType(this,true)
-        viewModel.mResponse.observe(this,this)
+        viewModel.getBusinessType(this, true)
     }
 
     private fun getBusinessProfileApi() {
         val map = HashMap<String, String>()
-
-        viewModel.getBusinessDetail(this, true,map)
-        viewModel.mResponse.observe(this, this)
+        viewModel.getBusinessDetail(this, true, map)
     }
 
     override fun onClick(p0: View?) {
@@ -111,19 +109,20 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
             R.id.iv_back -> {
                 finish()
             }
+
             R.id.btn_update -> {
                 setValidation()
 
             }
-            R.id.image ->{
+            R.id.imageBusiness -> {
                 mAlbumFiles = java.util.ArrayList()
                 mAlbumFiles.clear()
-                selectImage(image)
+                selectImage(imageBusiness)
             }
         }
     }
 
-    private fun selectImage(image: CircleImageView) {
+    private fun selectImage(imageBusiness: ImageView) {
         Album.image(this)
             .singleChoice()
             .camera(true)
@@ -135,8 +134,8 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                Glide.with(this).load(result[0].path).into(image)
-                firstimage = result[0].path
+                Glide.with(this).load(result[0].path).into(imageBusiness)
+                buisnessLogo = result[0].path
             }
             .onCancel {
 
@@ -146,7 +145,7 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
 
     private fun setValidation() {
         when {
-//            firstimage.isEmpty() -> {
+//            buisnessLogo.isEmpty() -> {
 //                Toast.makeText(
 //                    this,
 //                    resources.getString(R.string.please_select_image),
@@ -177,17 +176,16 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
             }
             etBusinessLicense.text.toString().isEmpty() -> {
                 etBusinessLicense.requestFocus()
-                etBusinessLicense.error = resources.getString(R.string.please_enter_business_license)
-            }
-
-            spinner_type.selectedItemPosition == 0 ->{
-                AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
+                etBusinessLicense.error =
+                    resources.getString(R.string.please_enter_business_license)
             }
 
             etBusinessPhone.text.toString().isEmpty() -> {
                 etBusinessPhone.requestFocus()
-                etBusinessPhone.error = resources.getString(R.string.please_enter_business_phone_number)
+                etBusinessPhone.error =
+                    resources.getString(R.string.please_enter_business_phone_number)
             }
+
             etWebsite.text.toString().isEmpty() -> {
                 etWebsite.requestFocus()
                 etWebsite.error = resources.getString(R.string.please_enter_website)
@@ -236,15 +234,16 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
         map["buisnessAddress"] = mUtils.createPartFromString(etSreetAddress.text.toString())
         map["addressLine2"] = mUtils.createPartFromString(etFloor.text.toString())
         map["buisnessDescription"] = mUtils.createPartFromString(etDecription.text.toString())
-        map["buisnessTypeId"] = mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
+        map["buisnessTypeId"] = mUtils.createPartFromString(selectedId)
         map["buisnessTypeName"] = mUtils.createPartFromString(spinner_type.selectedItem.toString())
         map["buisnessName"] = mUtils.createPartFromString(etBusinessName.text.toString())
         map["buisnessPhone"] = mUtils.createPartFromString(etBusinessPhone.text.toString())
-        map["buisnessLogo"] = mUtils.createPartFromString("")
+        map["firstName"]=mUtils.createPartFromString(etFirstName.text.toString())
+        map["lastName"]=mUtils.createPartFromString(etLastName.text.toString())
 
-        viewModel.editBusinessProfile(this,true,map,firstimage,mUtils)
+        viewModel.editBusinessProfile(this, true, map, buisnessLogo, mUtils)
+        viewModel.mResponse.observe(this, this)
     }
-
 
     private fun updateDailogMethod() {
         successfulUpdatedDialog = Dialog(mContext, R.style.Theme_Dialog)
@@ -262,14 +261,18 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
         successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
-        if (MyApplication.instance.getString("usertype").equals("4")) {
+        when {
+            MyApplication.instance.getString("usertype").equals("4") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        } else if (MyApplication.instance.getString("usertype").equals("5")) {
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
+            MyApplication.instance.getString("usertype").equals("5") -> {
 
-            successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
-        } else {
+                successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
+            }
+            else -> {
 
+            }
         }
         successfulUpdatedDialog.btn_ok.setOnClickListener {
             successfulUpdatedDialog.dismiss()
@@ -286,11 +289,11 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
                     val mResponse: EditBuisnessDetail = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         updateDailogMethod()
-
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
                 }
+
                 if (it.data is BuisnessDetailResponse) {
                     val mResponse: BuisnessDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
@@ -298,13 +301,29 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
                     }
                 }
 
-                if (it.data is BusinessTypeResponse){
+                if (it.data is BusinessTypeResponse) {
                     val mResponse: BusinessTypeResponse = it.data
 
-                       if (mResponse.code == GlobalVariables.URL.code){
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        var size = mResponse.body.size
+                        businessTypeArray.clear()
+                        businessTypeArray.addAll(mResponse.body)
 
+                        val list : ArrayList<BussinessTypeList> = ArrayList()
+                        if(businessTypeArray.isNotEmpty())
+                        {
+                            for(i in 0 until businessTypeArray.size)
+                            {
+                                list.add(BussinessTypeList(businessTypeArray[i].id,businessTypeArray[i].name))
+                            }
                         }
-                      }
+
+                        val businessTypeAdapter = BusinessTypeAdapter(this, list," Select any ")
+                        spinner_type.adapter = businessTypeAdapter
+                        getBusinessProfileApi()
+
+                    }
+                }
 
             }
             it.status == Status.ERROR -> {
@@ -320,7 +339,10 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
     }
 
     private fun setData(mResponse: BuisnessDetailResponse) {
-        image.loadImage(mResponse.body.advertiserDetail.image)
+
+        country = mResponse.body.advertiserDetail.country
+
+        Glide.with(this).load(mResponse.body.advertiserDetail.buisnessLogo).into(imageBusiness)
         etFirstName.setText(mResponse.body.advertiserDetail.firstName)
         etLastName.setText(mResponse.body.advertiserDetail.lastName)
         etBusinessName.setText(mResponse.body.advertiserDetail.buisnessName)
@@ -338,14 +360,42 @@ class EditBusinessProfileActivity :BaseActivity(), View.OnClickListener, Observe
         etState.setText(mResponse.body.advertiserDetail.state)
         etZipCode.setText(mResponse.body.advertiserDetail.postalCode)
 
+        val businessType = mResponse.body.advertiserDetail.buisnessTypeName
+        val obj = businessTypeArray.find { it.name == businessType }
+        spinner_type.setSelection(businessTypeArray.indexOf(obj))
+
+        val countryName: kotlin.Array<String> = resources.getStringArray(R.array.Select_country)
+        for(i in countryName.indices)
+        {
+            if(country == countryName[i])
+            {
+                spinner.setSelection(countryName.indexOf(countryName[i]))
+            }
+        }
+
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "2")
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.id, mResponse.body.id)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.role, mResponse.body.role)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email, mResponse.body.email)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile, mResponse.body.mobile)
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken, mResponse.body.deviceToken)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken,
+            mResponse.body.deviceToken
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceType, mResponse.body.deviceType)
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.notification, mResponse.body.notification)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.notification,
+            mResponse.body.notification
+        )
     }
+
+
 }
+
+
+
+
+
+
+
 

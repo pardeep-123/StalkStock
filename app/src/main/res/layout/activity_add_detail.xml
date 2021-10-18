@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
         android:layout_alignParentRight="true"
-        android:scaleType="fitEnd"
-        />
+        android:scaleType="fitEnd" />
 
     <LinearLayout
         android:id="@+id/layout"
@@ -29,8 +28,8 @@
         android:id="@+id/v_View"
         android:background="@color/grey"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_below="@+id/layout"
-        />
+        android:layout_below="@+id/layout" />
+
     <RelativeLayout
         android:id="@+id/layoutApp"
         android:layout_below="@+id/layout"
@@ -54,6 +53,7 @@
             android:textSize="13sp"
             android:lines="1"
             android:hint="@string/enter_driver_license_number">
+
         </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -66,6 +66,7 @@
         </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/layoutApp1"
         android:layout_below="@+id/layoutApp"
@@ -89,6 +90,7 @@
             android:textSize="13sp"
             android:lines="1"
             android:hint="@string/enter_expiration_date">
+
         </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -101,6 +103,7 @@
         </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/layoutApp2"
         android:layout_below="@+id/layoutApp1"
@@ -124,6 +127,7 @@
             android:lines="1"
             android:textSize="13sp"
             android:hint="@string/enter_registration_number">
+
         </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -133,9 +137,11 @@
             android:background="#ffffff"
             android:textSize="13sp"
             android:textColor="@color/light_grey">
+
         </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/layoutApp3"
         android:layout_below="@+id/layoutApp2"
@@ -159,6 +165,7 @@
             android:lines="1"
             android:textSize="13sp"
             android:hint="@string/enter_regi_expiration_date">
+
         </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -168,6 +175,7 @@
             android:background="#ffffff"
             android:textSize="13sp"
             android:textColor="@color/light_grey">
+
         </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
     </RelativeLayout>
@@ -183,8 +191,6 @@
         android:layout_marginBottom="@dimen/_30sdp"
         android:text="Continue"
         android:textColor="@color/white"
-        android:textAllCaps="false"
-
-        />
+        android:textAllCaps="false" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,7 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <include layout="@layout/toolbar" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -28,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="20dp"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,129 +45,180 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_margin="10dp"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="5dp"
                     android:background="@color/white">
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/imagslideid"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
-                            android:adjustViewBounds="true"
                             android:layout_gravity="center"
+                            android:adjustViewBounds="true"
                             android:alpha="0.8"
                             android:background="@drawable/ad_img"
-                            android:scaleType="centerCrop"
-                            />
+                            android:scaleType="centerCrop" />
+
                         <ImageView
                             android:id="@+id/delete123"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_margin="8dp"
                             android:layout_alignParentRight="true"
-                            android:src="@drawable/dlt_green"
-                            />
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/dlt_green" />
+
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewEditAds"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp"
-                        android:background="@color/white">
+                        android:layout_marginStart="5dp"
+                        android:nestedScrollingEnabled="true"
+                        android:overScrollMode="always" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:adjustViewBounds="true"
-                            android:layout_gravity="center"
-                            android:alpha="0.8"
-                            android:background="@drawable/ad_img"
-                            android:scaleType="centerCrop"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:adjustViewBounds="true"
-                            android:layout_gravity="center"
-                            android:alpha="0.8"
-                            android:background="@drawable/ad_img"
-                            android:scaleType="centerCrop"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_margin="5dp"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="5dp"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:adjustViewBounds="true"
-                            android:layout_gravity="center"
-                            android:alpha="0.8"
-                            android:background="@drawable/ad_img"
-                            android:scaleType="centerCrop"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+               <!--     <RelativeLayout
+                        android:id="@+id/relImagePicker"
+                        android:layout_toRightOf="@+id/recyclerViewEditAds"
+                        android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/transparent_round_bg"
-                        android:gravity="center">
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/transparent_round_bg">
+
                         <ImageView
                             android:id="@+id/click"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
+                            android:layout_height="match_parent" />
+
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_gravity="center"
                             android:layout_centerInParent="true"
+                            android:layout_gravity="center"
                             android:background="@drawable/camera" />
 
-                    </RelativeLayout>
+                    </RelativeLayout>-->
+
+                </RelativeLayout>
+
+                </androidx.core.widget.NestedScrollView>
 
 
-                </LinearLayout>
+
+
+                <!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:weightSum="4">-->
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        app:cardCornerRadius="5dp"-->
+<!--                        app:cardElevation="5dp"-->
+<!--                        android:background="@color/white">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="70dp"-->
+<!--                            android:adjustViewBounds="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:alpha="0.8"-->
+<!--                            android:background="@drawable/ad_img"-->
+<!--                            android:scaleType="centerCrop"-->
+<!--                            />-->
+
+<!--                    </androidx.cardview.widget.CardView>-->
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        app:cardCornerRadius="5dp"-->
+<!--                        app:cardElevation="5dp"-->
+<!--                        android:background="@color/white">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="70dp"-->
+<!--                            android:adjustViewBounds="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:alpha="0.8"-->
+<!--                            android:background="@drawable/ad_img"-->
+<!--                            android:scaleType="centerCrop"-->
+<!--                            />-->
+
+<!--                    </androidx.cardview.widget.CardView>-->
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        app:cardCornerRadius="5dp"-->
+<!--                        app:cardElevation="5dp"-->
+<!--                        android:background="@color/white">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="70dp"-->
+<!--                            android:adjustViewBounds="true"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:alpha="0.8"-->
+<!--                            android:background="@drawable/ad_img"-->
+<!--                            android:scaleType="centerCrop"-->
+<!--                            />-->
+
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_height="70dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        android:background="@drawable/transparent_round_bg"-->
+<!--                        android:gravity="center">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/click"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent" />-->
+<!--                        <ImageView-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_centerInParent="true"-->
+<!--                            android:background="@drawable/camera" />-->
+
+<!--                    </RelativeLayout>-->
+
+
+<!--                </LinearLayout>-->
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -171,15 +226,16 @@
                     android:layout_marginTop="10dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etEditTitle"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
+                        android:hint="@string/enter_your_ad_title"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:maxLines="1"
-                        android:hint="@string/enter_your_ad_title"
 
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
@@ -213,18 +269,18 @@
                         >
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            android:id="@+id/c1"
+                            android:id="@+id/cStartDate"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/edit_text_bg"
+                            android:drawableRight="@drawable/calendar_icon"
                             android:gravity="center_vertical"
+                            android:hint="Select ad start date"
                             android:imeOptions="actionNext"
                             android:inputType="textPersonName"
-                            android:maxLines="1"
-                            android:hint="Select ad start date"
 
-                            android:drawableRight="@drawable/calendar_icon"
+                            android:maxLines="1"
                             android:minHeight="45dp"
                             android:paddingLeft="15dp"
                             android:paddingRight="12dp"
@@ -252,7 +308,7 @@
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="match_parent"
-                            android:id="@+id/c2"
+                            android:id="@+id/cEndDate"
                             android:layout_height="45dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/edit_text_bg"
@@ -309,6 +365,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbLearnmore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -331,6 +388,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbShopnow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -354,6 +412,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbGetnow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -386,6 +445,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbJoinnow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -409,6 +469,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbsinupnow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -434,17 +495,18 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etEditDestinationLink"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
+                        android:hint="@string/enter_your_ad_destination_link"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
-                        android:hint="@string/enter_your_ad_destination_link"
 
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
@@ -468,16 +530,17 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etEditBudget"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
+                        android:hint="@string/enter_your_daily_advertising_budget"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:hint="@string/enter_your_daily_advertising_budget"
 
                         android:paddingLeft="15dp"
                         android:paddingRight="12dp"
@@ -502,6 +565,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etEditAdsDescription"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
@@ -575,15 +639,15 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/ivCheckbox"
+                        android:id="@+id/ivCheckboxTermsCondition"
                         />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                         android:id="@+id/tv_terms_conditions"
-                        android:layout_toRightOf="@+id/ivCheckbox"
                         android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/ivCheckboxTermsCondition"
                         android:drawablePadding="3dp"
                         android:gravity="start"
                         android:text="@string/i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements"

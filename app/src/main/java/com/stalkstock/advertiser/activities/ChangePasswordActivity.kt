@@ -58,6 +58,7 @@ class ChangePasswordActivity : BaseActivity(), View.OnClickListener, Observer<Re
     val viewModel: HomeViewModel by viewModels()
 
     private fun changePasswordAPI() {
+
         val hashMap = HashMap<String, RequestBody>()
         hashMap["oldPassword"] = mUtils.createPartFromString(passwordEdittext.text.toString())
         hashMap["newPassword"] = mUtils.createPartFromString(newpasswordEdittext.text.toString())

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.live.stalkstockcommercial.ui.paymnet.SelectPayment
+import com.stalkstock.commercial.view.activities.SelectPayment
 import com.live.stalkstockcommercial.ui.product.AddedProduct
 import com.live.stalkstockcommercial.ui.product.RequestProductAdapter
 import com.live.stalkstockcommercial.ui.view.activities.Chat

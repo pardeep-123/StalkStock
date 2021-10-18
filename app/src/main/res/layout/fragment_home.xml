@@ -11,9 +11,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true" />
+        android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,28 +26,28 @@
             android:layout_alignParentTop="true">
 
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:gravity="center">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                android:gravity="center">-->
 
-                <ImageView
-                    android:id="@+id/iv_loc"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:src="@drawable/location_icon" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_loc"-->
+<!--                    android:layout_width="17dp"-->
+<!--                    android:layout_height="17dp"-->
+<!--                    android:src="@drawable/location_icon" />-->
 
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:layout_width="wrap_content"
-                    android:layout_toRightOf="@+id/iv_loc"
-                    android:layout_height="wrap_content"
-                    android:text="New York 920..."
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+<!--                <com.stalkstock.utils.custom.TitiliumRegularTextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/iv_loc"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="New York 920..."-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="13sp" />-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
             <ImageView
                 android:layout_width="35dp"
@@ -73,10 +73,10 @@
 
 
                 <ImageView
-                    android:visibility="invisible"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/user_black_icon" />
+                    android:src="@drawable/user_black_icon"
+                    android:visibility="invisible" />
 
             </RelativeLayout>
 

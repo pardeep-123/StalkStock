@@ -40,7 +40,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
-    var business_type = ""
+    var businessType = ""
     var country = ""
 
     override fun getContentId(): Int {
@@ -50,12 +50,9 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
         // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-
-          relAddressLine.visibility = View.GONE
-
+        relAddressLine.visibility = View.GONE
 
         tv_heading.text = getString(R.string.sign_up)
         tv_signin.setOnClickListener(this)
@@ -67,24 +64,21 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         spinner.onItemSelectedListener = this
         spinner_type.onItemSelectedListener = this
 
-
-        val foodAdapter = ArrayAdapter.createFromResource(
+        val countryAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.Select_country,
             R.layout.spinner_layout_for_vehicle
         )
-        foodAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner.adapter = foodAdapter
+        countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = countryAdapter
 
-
-        val foodAdapter2 = ArrayAdapter.createFromResource(
+        val businessTypeAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.Select_business_type,
             R.layout.spinner_layout_for_vehicle
         )
-        foodAdapter2.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner_type.adapter = foodAdapter2
-
+        businessTypeAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner_type.adapter = businessTypeAdapter
     }
 
     override fun onClick(p0: View?) {
@@ -99,13 +93,10 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             }
             R.id.btn_signup -> {
                 setValidation()
-
-
             }
             R.id.iv_back -> {
                 finish()
             }
-
             R.id.image -> {
                 mAlbumFiles = java.util.ArrayList()
                 mAlbumFiles.clear()
@@ -127,7 +118,6 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 }
             }
         }
-
     }
 
     private fun selectImage(ivProduct: ImageView, type: String) {
@@ -145,12 +135,11 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type.equals("1")) {
+                if (type == "1") {
                     firstimage = result[0].path
                 }
             }
             .onCancel {
-
             }
             .start()
     }
@@ -162,7 +151,6 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 resources.getString(R.string.please_select_image),
                 Toast.LENGTH_LONG
             ).show()
-
         } else if (et_firstName.text.toString().isEmpty()) {
             et_firstName.requestFocus()
             et_firstName.error = resources.getString(R.string.please_enter_first_name)
@@ -237,17 +225,14 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessDescription] =
-                mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessDescription] = mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
             hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.businessPhone] =
-                mUtils.createPartFromString(et_businessPhone.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.businessPhone] = mUtils.createPartFromString(et_businessPhone.text.toString().trim())
             hashMap[GlobalVariables.PARAM.website] = mUtils.createPartFromString(et_website.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessAddress] =
-                mUtils.createPartFromString(et_businessAddress.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessAddress] = mUtils.createPartFromString(et_businessAddress.text.toString().trim())
             hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
             hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
             hashMap[GlobalVariables.PARAM.postalCode] = mUtils.createPartFromString(et_zipCode.text.toString().trim())
@@ -256,9 +241,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
 
             viewModel.postAdvertiserSignUpApi(this, true, hashMap,firstimage,mUtils)
             viewModel.mResponse.observe(this, this)
-
         }
-
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -266,13 +249,9 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             it!!.status == Status.SUCCESS -> {
                 if (it.data is AdvertiserSignUpResponse) {
                     val data = it.data
-
                     if (data.code==200){
-
                         setData(data)
-
                         startActivity(Intent(this,MainActivity::class.java))
-
                     }
                 }
             }
@@ -342,8 +321,6 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             GlobalVariables.SHARED_PREF_ADVERTISER.postalCode,
             data.body.advertiserDetail.postalCode
         )
-
-
         savePrefrence(
             GlobalVariables.SHARED_PREF_ADVERTISER.buisnessAddress,
             data.body.advertiserDetail.buisnessAddress
@@ -356,7 +333,6 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             GlobalVariables.SHARED_PREF_ADVERTISER.buisnessDescription,
             data.body.advertiserDetail.buisnessDescription
         )
-
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.userId, data.body.advertiserDetail.userId)
     }
 
@@ -372,7 +348,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         } else if (p0?.id == R.id.spinner_type) {
             var array = this.resources.getStringArray(R.array.Select_business_type)
 
-            business_type = p2.toString()
+            businessType = p2.toString()
         }
     }
 }

@@ -815,10 +815,8 @@
                 android:id="@+id/total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:paddingBottom="20dp">
 

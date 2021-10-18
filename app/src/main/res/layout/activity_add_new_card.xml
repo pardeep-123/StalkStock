@@ -13,15 +13,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
         android:layout_alignParentRight="true"
-        android:scaleType="fitEnd"
-        />
+        android:scaleType="fitEnd" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/toolbar" />
 
+        <include layout="@layout/toolbar" />
 
         <View
             android:layout_width="match_parent"
@@ -35,11 +34,13 @@
             android:layout_margin="20dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,16 +95,19 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="13sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="3">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -130,12 +134,15 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -163,13 +170,16 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -199,7 +209,9 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <RelativeLayout
@@ -227,6 +239,7 @@
                     android:textSize="13sp" />
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -259,10 +272,10 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
+
             </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 

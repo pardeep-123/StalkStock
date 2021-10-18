@@ -1,82 +1,264 @@
 package com.stalkstock.advertiser.fragments
 
 import android.app.DatePickerDialog
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.interfaces.OnClick
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.ManagePaymentsActivity
 import com.stalkstock.advertiser.activities.NewActivity
+import com.stalkstock.advertiser.activities.PreviewActivity
+import com.stalkstock.advertiser.adapters.AddImageAdapter
+import com.stalkstock.advertiser.adapters.PendingAdsAdapter
+import com.stalkstock.advertiser.dialogClass.FromDatePickerFragment
+import com.stalkstock.advertiser.dialogClass.ToDatePickerFragment
+import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_edit_ad.*
+import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.delete_successfully_alert.*
 import kotlinx.android.synthetic.main.fragment_add_post.*
+import kotlinx.android.synthetic.main.fragment_add_post.btn_preview
+import kotlinx.android.synthetic.main.fragment_add_post.ivCheckbox
 import kotlinx.android.synthetic.main.fragment_add_post.view.*
+import kotlinx.android.synthetic.main.fragment_pending_ads.view.*
 import kotlinx.android.synthetic.main.toolbar2.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
-class AddPostFragment : Fragment(), View.OnClickListener {
+class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
 
     lateinit var v:View
+    lateinit var mContext: Context
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage=""
+    var cStartD: Long = 0L
+    var cEndD: Long = 0L
+    lateinit var  adapter :AddImageAdapter
+    var adsList = ArrayList<String>()
+    var actionselected = ""
+
+    lateinit var actionSelectedTitle: String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v= inflater.inflate(R.layout.fragment_add_post, container, false)
         v.tv_heading.text= "Post Ad"
-        v.btn_preview.setOnClickListener(this)
-        v.image1.setOnClickListener(this)
-        v.c12.setOnClickListener(this)
-        v.c123.setOnClickListener(this)
+        mContext = activity as Context
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btn_preview.setOnClickListener(this)
+        ivAdsCamera.setOnClickListener(this)
+        c123.setOnClickListener(this)
+        tvFromDate.setOnClickListener(this)
+
+        cbGetNow.setOnClickListener(this)
+        cbShopNow.setOnClickListener(this)
+        cbSignup.setOnClickListener(this)
+        cbLearnMore.setOnClickListener(this)
+        cbJoinNow.setOnClickListener(this)
+        ivDelete.setOnClickListener(this)
 
         v.btn_manage_payment.setOnClickListener {
             val intent = Intent(activity, ManagePaymentsActivity::class.java)
             intent.putExtra("from","add_post")
             startActivity(intent)
         }
-        return v
+        setAddImageAdapter()
+    }
+
+
+    private fun setAddImageAdapter() {
+         adapter = AddImageAdapter(mContext,adsList,this)
+       addPostRecyclerView.layoutManager = LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false)
+        addPostRecyclerView.adapter = adapter
     }
 
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.btn_preview->{
-                val intent = Intent(activity, NewActivity::class.java)
-                startActivity(intent)
-            } R.id.c12->{
-            val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
+                checkAdPostValidation()
 
-            val dpd = DatePickerDialog(requireActivity()!!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-                // Display Selected date in textbox
-                c12.text = "$dayOfMonth/$monthOfYear/$year"
-            }, year, month, day)
-
-            dpd.show()
-            }R.id.c123->{
-            val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-
-            val dpd = DatePickerDialog(requireActivity() !!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-                // Display Selected date in textbox
-                c123.text = "$dayOfMonth/$monthOfYear/$year"
-            }, year, month, day)
-
-            dpd.show()
+            } R.id.tvFromDate->{
+            showFromDatePickerDialog(view)
             }
-            R.id.image1->{
+
+            R.id.c123->{
+                if (tvFromDate.text.isNotEmpty()){
+                    showToDatePickerDialog(view)
+                }
+                else{
+                    Toast.makeText(requireActivity(),"Please select start date", Toast.LENGTH_SHORT).show()
+                }
+
+
+            }
+
+
+            R.id.ivAdsCamera->{
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
-            selectImage(image1,"1")
+            selectImage(ivAddImage,"1")
+
+            }
+
+            R.id.ivDelete ->{
+                reportuser()
+            }
+
+            R.id.cbLearnMore ->{
+                cbLearnMore.isChecked = true
+                cbGetNow.isChecked = false
+                cbShopNow.isChecked = false
+                cbJoinNow.isChecked = false
+                cbSignup.isChecked = false
+                actionselected = "0"
+                actionSelectedTitle = "LearnMore"
+            }
+
+            R.id.cbGetNow ->{
+                cbLearnMore.isChecked = false
+                cbGetNow.isChecked = true
+                cbShopNow.isChecked = false
+                cbJoinNow.isChecked = false
+                cbSignup.isChecked = false
+                actionselected = "2"
+                actionSelectedTitle = "GetNow"
+            }
+
+            R.id.cbSignup ->{
+                cbLearnMore.isChecked = false
+                cbGetNow.isChecked = false
+                cbShopNow.isChecked = false
+                cbJoinNow.isChecked = false
+                cbSignup.isChecked = true
+                actionselected = "4"
+                actionSelectedTitle = "Signup"
+            }
+
+            R.id.cbShopNow ->{
+                cbLearnMore.isChecked = false
+                cbGetNow.isChecked = false
+                cbShopNow.isChecked = true
+                cbJoinNow.isChecked = false
+                cbSignup.isChecked = false
+                actionselected = "1"
+                actionSelectedTitle = "ShopNow"
+            }
+
+            R.id.cbJoinNow ->{
+                cbLearnMore.isChecked = false
+                cbGetNow.isChecked = false
+                cbShopNow.isChecked = false
+                cbJoinNow.isChecked = true
+                cbSignup.isChecked = false
+                actionselected = "3"
+                actionSelectedTitle = "JoinNow"
+            }
+        }
+    }
+
+    private fun showFromDatePickerDialog(view: View?) {
+        val newFragment: DialogFragment = FromDatePickerFragment()
+        newFragment.show(childFragmentManager, "datePicker")
+    }
+
+    private fun showToDatePickerDialog(view: View?) {
+        val newFragment: DialogFragment = ToDatePickerFragment()
+        newFragment.show(childFragmentManager, "datePicker")
+    }
+
+    private fun reportuser() {
+        val customDialog: Dialog
+        val customView = LayoutInflater.from(mContext).inflate(R.layout.delete_successfully_alert1, null)
+        // Build the dialog
+        customDialog = Dialog(mContext)
+        customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        customDialog.setContentView(customView)
+        customDialog.btn_yes.setOnClickListener {
+
+            customDialog.dismiss() }
+        customDialog.btn_no.setOnClickListener { customDialog.dismiss() }
+        customDialog.show()
+    }
+
+    private fun checkAdPostValidation() {
+        when {
+
+            firstimage.isEmpty() -> {
+                Toast.makeText(
+                    requireActivity(),
+                    resources.getString(R.string.please_select_image),
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+            etAddTitle.text.toString().isEmpty() -> {
+                etAddTitle.requestFocus()
+                etAddTitle.error = resources.getString(R.string.please_enter_title)
+            }
+            etEnterBudget.text.toString().isEmpty() -> {
+                etEnterBudget.requestFocus()
+                etEnterBudget.error = resources.getString(R.string.please_enter_budget)
+            }
+            etAdsLink.text.toString().isEmpty() -> {
+                etAdsLink.requestFocus()
+                etAdsLink.error = resources.getString(R.string.please_enter_link)
+            }
+            etEnterDescription.text.toString().isEmpty() -> {
+                etEnterDescription.requestFocus()
+                etEnterDescription.error = resources.getString(R.string.please_enter_description)
+            }
+            tvFromDate.text.toString().isEmpty() -> {
+                tvFromDate.requestFocus()
+                tvFromDate.error = resources.getString(R.string.please_enter_start_date)
+            }
+            c123.text.toString().isEmpty() -> {
+                c123.requestFocus()
+                c123.error = resources.getString(R.string.please_enter_end_date)
+            }
+            !ivCheckbox.isChecked->{
+                Toast.makeText(requireActivity(),"Please select terms and condition", Toast.LENGTH_SHORT).show()
+            }
+         actionselected.trim().isEmpty()-> {
+                Toast.makeText(requireActivity(),"Please select an action", Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {
+                val intent = Intent(activity, PreviewActivity::class.java)
+                intent.putExtra("title",etAddTitle.text.toString().trim())
+                intent.putExtra("startDate",tvFromDate.text.toString().trim())
+                intent.putExtra("endDate",c123.text.toString().trim())
+                intent.putExtra("adLink",etAdsLink.text.toString().trim())
+                intent.putExtra("budget",etEnterBudget.text.toString().trim())
+                intent.putExtra("description",etEnterDescription.text.toString().trim())
+                intent.putExtra("adsList",adsList)
+                intent.putExtra("action",actionselected)
+                intent.putExtra("actionContent",actionSelectedTitle)
+                intent.putExtra("intentFrom","add")
+                startActivity(intent)
             }
         }
     }
@@ -96,9 +278,14 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(requireContext()).load(result[0].path).into(ivProduct)
-                if (type.equals("1"))
+                ivAdsCamera.visibility = GONE
+                ivDelete.visibility = VISIBLE
+
+                if (type == "1")
                 {
                     firstimage = result[0].path
+                    adsList.add(firstimage)
+                    adapter.notifyDataSetChanged()
                 }
             }
             .onCancel {
@@ -107,5 +294,14 @@ class AddPostFragment : Fragment(), View.OnClickListener {
             .start()
     }
 
+    override fun onclick(positon: Int) {
+        mAlbumFiles = java.util.ArrayList()
+        mAlbumFiles.clear()
+        selectImage(ivAddImage,"1")
+    }
+
 
 }
+
+
+

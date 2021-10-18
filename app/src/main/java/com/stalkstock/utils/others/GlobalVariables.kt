@@ -165,14 +165,15 @@ class GlobalVariables {
             const val userId = "userId"
             const val token = "token"
             const val advertiserId = "advertiserId"
+
         }
     }
 
 
     object URL {
 
-       // const val BASE_URL: String = "http://3.13.214.27:8800/api/"
-        const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
+        const val BASE_URL: String = "http://3.13.214.27:8800/api/"
+//        const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
         //const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
         const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
 
@@ -257,6 +258,11 @@ class GlobalVariables {
         const val getBuisnessDetail = "advertiser/getBuisnessDetail"
         const val editAdvertiserBuisnessDetail = "advertiser/editAdvertiserBuisnessDetail"
         const val buisnessType = "buisnessType"
+        const val buisnessAdList = "advertiser/buisnessAdList"
+        const val editBuisnessAd = "advertiser/editBuisnessAd"
+        const val deleteBuisnessAd = "advertiser/deleteBuisnessAd"
+        const val buisnessAdView = "advertiser/buisnessAdView"
+        const val addBuisnessAd = "advertiser/addBuisnessAd"
 
     }
 
