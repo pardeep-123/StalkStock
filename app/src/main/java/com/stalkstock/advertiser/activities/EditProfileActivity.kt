@@ -65,8 +65,6 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         btn_update_profile.setOnClickListener(this)
         image.setOnClickListener(this)
 
-
-
         if (userType.equals("5")){
             viewModelAdvertiser.mResponse.observe(this,this)
             getUserProfile()
@@ -75,14 +73,11 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             viewModel.mResponse.observe(this, this)
             getprofileAPI()
         }
-
-
     }
 
     private fun getUserProfile() {
 
         val map = HashMap<String, String>()
-
         viewModelAdvertiser.getUserProfile(this, true,map)
         viewModelAdvertiser.mResponse.observe(this, this)
     }
@@ -91,15 +86,14 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         when(p0?.id){
             R.id.iv_back->{ finish() }
             R.id.btn_update_profile->{
-
                 if (userType.equals("5")){
                     setValidationEditprofile()
                 }
                 else{
                     updateProfileAPI()
                 }
-
-            }R.id.image->{
+            }
+            R.id.image->{
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
             selectImage(image)
@@ -193,10 +187,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             successfulUpdatedDialog.dismiss()
             finish()
         }
-
         successfulUpdatedDialog.show()
     }
-
 
     private fun getprofileAPI() {
         val map = HashMap<String, String>()
@@ -215,10 +207,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         val map = HashMap<String, RequestBody>()
         map["firstName"] = mUtils.createPartFromString(edtFirstName.text.toString())
         map["lastName"] = mUtils.createPartFromString(edtLastName.text.toString())
-
         viewModelAdvertiser.editUserProfile(this,true,map,firstimage,mUtils)
     }
-
 
     override fun onChanged(it: RestObservable?) {
         when {
@@ -241,9 +231,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                 if (it.data is AdvertiserProfileDetailResponse) {
                     val mResponse: AdvertiserProfileDetailResponse = it.data
                     val data = it.data
-
                     if (data.code==200){
-
                         setUserData(mResponse)
                     }
                 }
@@ -260,9 +248,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image, data.body.advertiserDetail.image)
                         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email, data.body.email)
                         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile, data.body.mobile)
-                      updateDailogMethod()
+                        updateDailogMethod()
                     }
-
                 }
             }
             it.status == Status.ERROR -> {
@@ -278,7 +265,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
     }
 
     private fun setUserData(mResponse: AdvertiserProfileDetailResponse) {
-        image.loadImage(mResponse.body.advertiserDetail.image)
+        Glide.with(this).load(mResponse.body.advertiserDetail.image).into(image)
         edtFirstName.setText(mResponse.body.advertiserDetail.firstName)
         edtLastName.setText(mResponse.body.advertiserDetail.lastName)
         edtMobile.setText(mResponse.body.mobile)
@@ -308,6 +295,5 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
     }
-
 
 }

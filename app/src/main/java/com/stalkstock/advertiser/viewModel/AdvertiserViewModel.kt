@@ -156,7 +156,7 @@ class AdvertiserViewModel: ViewModel() {
             var image: MultipartBody.Part? = null
             if (firstImage.isNotEmpty()) {
                 val file = File(firstImage)
-                image = mUtils.prepareFilePart("image", file)
+                image = mUtils.prepareFilePart("buisnessLogo", file)
             }
             restApiInterface.editAdvertiserBuisnessDetail(hashMap, image)
                 .subscribeOn(Schedulers.io())
@@ -205,4 +205,171 @@ class AdvertiserViewModel: ViewModel() {
 
     }
 
+    @SuppressLint("CheckResult")
+    fun getNotification(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ){
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.notificationOnOffAPI(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getNotification(activity, showLoader,hashMap)
+                    }
+                })
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun getAdsList(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+
+    ){
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())){
+            restApiInterface.getAddList(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity,showLoader) }
+                .subscribe({
+                    mResponse.value = RestObservable.success(it)},
+                    {mResponse.value = RestObservable.error(activity, it)}
+                )
+        }
+        else{
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getAdsList(activity, showLoader,hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun deleteBusinessAds(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+
+    ){
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())){
+            restApiInterface.deleteBuisnessAd(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity,showLoader) }
+                .subscribe({
+                    mResponse.value = RestObservable.success(it)},
+                    {mResponse.value = RestObservable.error(activity, it)}
+                )
+        }
+        else{
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        deleteBusinessAds(activity, showLoader,hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun editAds(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>,
+        firstImage: ArrayList<String>,
+        mUtils: Util
+
+    ){
+        var imagelist = ArrayList<MultipartBody.Part>()
+        imagelist.clear()
+        for(i in 0 until firstImage.size)
+        {
+        imagelist.add(multipart(firstImage[i],mUtils))
+        }
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())){
+            restApiInterface.editBuisnessAd(hashMap,imagelist)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity,showLoader) }
+                .subscribe({
+                    mResponse.value = RestObservable.success(it)},
+                    {mResponse.value = RestObservable.error(activity, it)}
+                )
+        }
+        else{
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        editAds(activity, showLoader,hashMap,firstImage,mUtils)
+                    }
+                })
+        }
+
+    }
+
+    fun multipart(image:String,mUtils: Util):MultipartBody.Part{
+        var imagem: MultipartBody.Part? = null
+        if (image.isNotEmpty()) {
+            val file = File(image)
+            imagem = mUtils.prepareFilePart("image", file)
+        }
+        return imagem!!
+    }
+    @SuppressLint("CheckResult")
+    fun addAds(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>,
+        firstImage: ArrayList<String>,
+        mUtils: Util
+
+    ) {
+
+        var imagelist = ArrayList<MultipartBody.Part>()
+        imagelist.clear()
+        for(i in 0 until firstImage.size)
+        {
+            imagelist.add(multipart(firstImage[i],mUtils))
+        }
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.addBusinessAds(hashMap,imagelist)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe({
+                    mResponse.value = RestObservable.success(it)
+                },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                       addAds(activity,showLoader,hashMap,firstImage,mUtils)
+                    }
+                })
+        }
+    }
 }

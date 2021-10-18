@@ -402,10 +402,41 @@ interface RestApiInterface {
     @Multipart
     @PUT(URL.editAdvertiserBuisnessDetail)
     fun editAdvertiserBuisnessDetail(
-        @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
+        @PartMap map: HashMap<String, RequestBody>, @Part buisnessLogo: MultipartBody.Part?
     ): Observable<EditBuisnessDetail>
 
     @GET(URL.buisnessType)
     fun getBuisnessType(): Observable<BusinessTypeResponse>
+
+    @FormUrlEncoded
+    @PUT(URL.notification_on_off)
+    fun notificationOnOffAPI(
+       @FieldMap map: HashMap<String, String>
+    ): Observable<NotificationResponse>
+
+    @Multipart
+    @POST(URL.buisnessAdList)
+    fun getAddList(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<BusinessAdsList>
+
+
+    @Multipart
+    @POST(URL.deleteBuisnessAd)
+    fun deleteBuisnessAd(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<DeleteAdsResponse>
+
+    @Multipart
+    @PUT(URL.editBuisnessAd)
+    fun editBuisnessAd(
+        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
+    ): Observable<EditAdsResponse>
+
+    @Multipart
+    @POST(URL.addBuisnessAd)
+    fun addBusinessAds(
+        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
+    ): Observable<AddBusinesssAdsResponse>
 
 }

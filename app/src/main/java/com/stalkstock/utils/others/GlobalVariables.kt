@@ -171,13 +171,13 @@ class GlobalVariables {
 
     object URL {
 
-        const val BASE_URL: String = "http://3.13.214.27:8800/api/"
-       // const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
-        const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
-       // const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
+       // const val BASE_URL: String = "http://3.13.214.27:8800/api/"
+        const val BASE_URL: String = "http://192.168.1.156:8800/api/"  //local
+        //const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
+        const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
 
-            const val SOCKET_URL: String = "http://3.13.214.27:8800"
-           // const val SOCKET_URL: String = "http://192.168.1.156:8800"  //local
+           // const val SOCKET_URL: String = "http://3.13.214.27:8800"
+            const val SOCKET_URL: String = "http://192.168.1.156:8800"  //local
 //            const val IMAGE_URL: String = "http://202.164.42.227:8992/images/users/"
 
 
@@ -258,6 +258,11 @@ class GlobalVariables {
         const val getBuisnessDetail = "advertiser/getBuisnessDetail"
         const val editAdvertiserBuisnessDetail = "advertiser/editAdvertiserBuisnessDetail"
         const val buisnessType = "buisnessType"
+        const val buisnessAdList = "advertiser/buisnessAdList"
+        const val editBuisnessAd = "advertiser/editBuisnessAd"
+        const val deleteBuisnessAd = "advertiser/deleteBuisnessAd"
+        const val buisnessAdView = "advertiser/buisnessAdView"
+        const val addBuisnessAd = "advertiser/addBuisnessAd"
 
     }
 

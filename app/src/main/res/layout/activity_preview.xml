@@ -28,7 +28,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,6 +72,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tvAdsTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -97,6 +99,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tvAdsDescription"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -115,6 +118,7 @@
                     android:orientation="horizontal">
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvAction"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -123,6 +127,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                       android:id="@+id/tvDestinationLink"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -149,6 +154,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tvFromDate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -175,6 +181,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                        android:id="@+id/tvToDate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -201,6 +208,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                       android:id="@+id/tvBudget"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

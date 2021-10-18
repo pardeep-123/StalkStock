@@ -1,8 +1,10 @@
-package com.live.stalkstockcommercial.ui.paymnet
+package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.live.stalkstockcommercial.ui.paymnet.AddNewCard
+import com.live.stalkstockcommercial.ui.paymnet.PaymentStatus
 import com.stalkstock.R
 import kotlinx.android.synthetic.main.select_payment.*
 
@@ -39,7 +41,7 @@ class SelectPayment : AppCompatActivity() {
         }
         ivBackPayment.setOnClickListener { onBackPressed() }
         btn_preview.setOnClickListener {
-            startActivity(Intent(this,AddNewCard::class.java))
+            startActivity(Intent(this, AddNewCard::class.java))
 
             /* if(card.isNotEmpty()){
              onBackPressed()}
@@ -48,7 +50,7 @@ class SelectPayment : AppCompatActivity() {
                  startActivity(Intent(this,AddNewCard::class.java))
              }*/
         }
-        btn_checkout.setOnClickListener { startActivity(Intent(this,PaymentStatus::class.java)) }
+        btn_checkout.setOnClickListener { startActivity(Intent(this, PaymentStatus::class.java)) }
     }
 
 }

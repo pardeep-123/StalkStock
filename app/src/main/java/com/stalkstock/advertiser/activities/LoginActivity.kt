@@ -39,7 +39,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 //        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv_forgot_password.setOnClickListener(this)
@@ -48,17 +47,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         signup.setOnClickListener(this)
         back.setOnClickListener(this)
 
-
-
         iv_fb.setOnClickListener {
 //            goingToHome()
-
-
         }
         iv_gmail.setOnClickListener {
 //            goingToHome()
-
-
         }
 
         iv_twitter.setOnClickListener {
@@ -68,7 +61,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
 
     override fun onClick(v: View?) {
         when (v?.id) {
-
             R.id.tv_forgot_password -> {
                 startActivity(Intent(mContext, ForgotPasswordActivity::class.java))
             }
@@ -77,19 +69,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 startActivity(Intent(this@LoginActivity, SelectuserActivity::class.java))
                 finishAffinity()
             }
-
             R.id.tv_signup -> {
                 goingToSignUp()
-
             }
-
-
             R.id.signup -> {
                 goingToSignUp()
-
             }
-
-
             R.id.btn_signin -> {
                 val userType = MyApplication.instance.getString("usertype")
                 if(userType.equals("4"))
@@ -104,15 +89,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 else {
                     emailEdittext.text.toString()
                     passwordEdittext.text.toString()
-                    SetValidation()
+                    setValidation()
                 }
-
             }
-
-
         }
     }
-
 
     override fun onBackPressed() {
         //  super.onBackPressed()
@@ -121,27 +102,32 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         finishAffinity()
     }
 
-    fun goingToHome() {
-        if (MyApplication.instance.getString("usertype").equals("5")) {
-            startActivity(Intent(mContext, MainActivity::class.java))
-            finishAffinity()
-        } else if (MyApplication.instance.getString("usertype").equals("1")) {
-            startActivity(Intent(mContext, MainConsumerActivity::class.java))
-            finishAffinity()
-        } else if (MyApplication.instance.getString("usertype").equals("4")) {
-            startActivity(Intent(mContext, MainCommercialActivity::class.java))
-            finishAffinity()
-        } else if (MyApplication.instance.getString("usertype").equals("3")) {
-            startActivity(Intent(mContext, BottomnavigationScreen::class.java))
-            finishAffinity()
-        } else if (MyApplication.instance.getString("usertype").equals("2")) {
-            startActivity(Intent(mContext, HomeActivity::class.java))
-            finishAffinity()
+    private fun goingToHome() {
+        when {
+            MyApplication.instance.getString("usertype").equals("5") -> {
+                startActivity(Intent(mContext, MainActivity::class.java))
+                finishAffinity()
+            }
+            MyApplication.instance.getString("usertype").equals("1") -> {
+                startActivity(Intent(mContext, MainConsumerActivity::class.java))
+                finishAffinity()
+            }
+            MyApplication.instance.getString("usertype").equals("4") -> {
+                startActivity(Intent(mContext, MainCommercialActivity::class.java))
+                finishAffinity()
+            }
+            MyApplication.instance.getString("usertype").equals("3") -> {
+                startActivity(Intent(mContext, BottomnavigationScreen::class.java))
+                finishAffinity()
+            }
+            MyApplication.instance.getString("usertype").equals("2") -> {
+                startActivity(Intent(mContext, HomeActivity::class.java))
+                finishAffinity()
+            }
         }
     }
 
-
-    fun goingToSignUp() {
+    private fun goingToSignUp() {
         /* OLD
 * 1-adv
 * 2-commercial
@@ -176,17 +162,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         }
     }
 
-
-    private fun SetValidation() {
+    private fun setValidation() {
         // Check for a valid email address.
         if (emailEdittext.text.toString().isEmpty()) {
             emailEdittext.requestFocus()
             emailEdittext.error = resources.getString(R.string.please_enter_email)
-
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.text.toString()).matches()) {
             emailEdittext.requestFocus()
             emailEdittext.error = resources.getString(R.string.please_enter_valid_email)
-
         }
         // Check for a valid password.
         else if (passwordEdittext.text.toString().isEmpty()) {
@@ -198,16 +181,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
              */
             val userType = MyApplication.instance.getString("usertype")
             if (userType.equals("5")){
-
                 val hashMap = HashMap<String, String>()
                 hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
                 hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
                 hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
                 hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
-
                 viewModel.postuserloginApi(this, true, hashMap)
                 viewModel.homeResponse.observe(this, this)
-
             }
             else{
                 val hashMap = HashMap<String, String>()
@@ -216,14 +196,10 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
                 hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
                 //Api will call here
-
                 viewModel.postuserloginApi(this, true, hashMap)
                 viewModel.homeResponse.observe(this, this)
-
             }
-
             }
-
 
 //            if(!getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "").isNullOrEmpty()){
 //                viewModel.postuserloginApi(this, true,hashMap)
@@ -233,8 +209,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
 //            }
         }
 
-
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -242,21 +216,19 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                     val mResponse: UserLoginResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         MyApplication.instance.setString("globalID",mResponse.body.id.toString())
-                        if (mResponse.body.role == 1)
-                            setData(mResponse)
-                        else if (mResponse.body.role == 3)
-                            setDataVendor(mResponse)
-                        else if(mResponse.body.role == 2)
-                        {
-                            setDataDriver(mResponse)
-                        }
-                        else if (mResponse.body.role == 5){
-
-                            setDataAdvertiser(mResponse)
+                        when (mResponse.body.role) {
+                            1 -> setData(mResponse)
+                            3 -> setDataVendor(mResponse)
+                            2 -> {
+                                setDataDriver(mResponse)
+                            }
+                            5 -> {
+                                setDataAdvertiser(mResponse)
+                            }
                         }
                         goingToHome()
                     } else {
-//                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                       //  Toast.makeText(this, mResponse.message.toString())
                     }
                 }
             }
@@ -276,10 +248,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     private fun setDataAdvertiser(data: UserLoginResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)
         MyApplication.instance.setString("usertype",data.body.role.toString())
-        savePrefrence(
-            GlobalVariables.SHARED_PREF.USER_TYPE,
-            MyApplication.instance.getString("usertype").toString()
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.token, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken, data.body.deviceToken)
@@ -287,10 +256,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.role, data.body.role)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.verified, data.body.verified)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.status, data.body.status)
-        savePrefrence(
-            GlobalVariables.SHARED_PREF_ADVERTISER.firstName,
-            data.body.advertiserDetail.firstName
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.firstName, data.body.advertiserDetail.firstName)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.lastName, data.body.advertiserDetail.lastName)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image, data.body.advertiserDetail.image)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email, data.body.email)
@@ -303,16 +269,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.updated, data.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.createdAt, data.body.createdAt)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.updatedAt, data.body.updatedAt)
-
     }
 
     private fun setDataDriver(mResponse: UserLoginResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
         MyApplication.instance.setString("usertype",mResponse.body.role.toString())
-        savePrefrence(
-            GlobalVariables.SHARED_PREF.USER_TYPE,
-            MyApplication.instance.getString("usertype").toString()
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.DRIVER_DATA, modelToString(mResponse.body.driverDetail))
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.token, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, mResponse.body.id)
@@ -324,10 +286,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
-        savePrefrence(
-            GlobalVariables.SHARED_PREF_DRIVER.remember_token,
-            mResponse.body.remember_token
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.remember_token, mResponse.body.remember_token)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.created, mResponse.body.created)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updated, mResponse.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.createdAt, mResponse.body.createdAt)
@@ -337,10 +296,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     private fun setDataVendor(data: UserLoginResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)
         MyApplication.instance.setString("usertype",data.body.role.toString())
-        savePrefrence(
-            GlobalVariables.SHARED_PREF.USER_TYPE,
-            MyApplication.instance.getString("usertype").toString()
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.AUTH_KEY, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.token, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.id, data.body.id)
@@ -352,10 +308,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.deviceToken, data.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.deviceType, data.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.notification, data.body.notification)
-        savePrefrence(
-            GlobalVariables.SHARED_PREF_VENDOR.remember_token,
-            data.body.remember_token
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.remember_token, data.body.remember_token)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.created, data.body.created)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.updated, data.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.createdAt, data.body.createdAt)

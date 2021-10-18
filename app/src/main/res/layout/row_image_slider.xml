@@ -13,7 +13,6 @@
         android:layout_height="200dp"
         android:adjustViewBounds="true"
         android:layout_gravity="center"
-        android:background="@drawable/ad_img"
         android:scaleType="centerCrop"
         />
 </androidx.cardview.widget.CardView>

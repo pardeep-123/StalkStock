@@ -39,8 +39,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:checked="true"
-            app:trackTint="@color/switch_track_selector"
-            android:thumb="@drawable/custom_switch" />
+            android:thumb="@drawable/custom_switch"
+            app:trackTint="@color/switch_track_selector" />
 
         <View
             android:layout_width="match_parent"

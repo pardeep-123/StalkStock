@@ -62,10 +62,10 @@ class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Obser
 
                     if (data.code==200){
 
-                        businessnamee.text = data.body.advertiserDetail.firstName
+                        businessnamee.text = data.body.advertiserDetail.firstName+" "+data.body.advertiserDetail.lastName
                         businessnamee1.text = data.body.advertiserDetail.buisnessName
                         businessaboutdetails.text = data.body.advertiserDetail.buisnessDescription
-                        Glide.with(this).load(data.body.advertiserDetail.image).into(imageset)
+                        Glide.with(this).load(data.body.advertiserDetail.buisnessLogo).into(imageset)
                         businesstypes.text = data.body.advertiserDetail.buisnessTypeName
                         business_license.text = data.body.advertiserDetail.buisnessLicense
                         businessemailid.text = data.body.email
@@ -78,7 +78,6 @@ class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Obser
                         tvState.text = data.body.advertiserDetail.state
                         tvZipCode.text = data.body.advertiserDetail.postalCode
                         tvCountry.text = data.body.advertiserDetail.country
-                        Glide.with(this).load(data.body.advertiserDetail.image).into(imageset)
 
 
                     }

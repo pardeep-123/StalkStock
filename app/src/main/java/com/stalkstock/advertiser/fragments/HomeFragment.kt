@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
             v.tabLayout.tabCount
         )
         v.viewPager.adapter = adapter
-        v.viewPager.setCurrentItem(0)
+        v.viewPager.currentItem = 0
 
         val rlPending=v.findViewById<RelativeLayout>(R.id.rl_pending)
         val rlApproved=v.findViewById<RelativeLayout>(R.id.rl_approved)

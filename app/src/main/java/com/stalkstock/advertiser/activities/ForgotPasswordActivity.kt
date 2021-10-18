@@ -11,7 +11,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -30,13 +29,12 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_forgot_password)
-        this.getWindow()
+        this.window
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         iv_back.setOnClickListener(this)
@@ -49,24 +47,20 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
                 finish()
             }
             R.id.btn_signin -> {
-
-                if (emailEdittext.getText().toString().isEmpty()) {
+                if (emailEdittext.text.toString().isEmpty()) {
                     emailEdittext.requestFocus()
-                    emailEdittext.setError(resources.getString(R.string.please_enter_email))
+                    emailEdittext.error = resources.getString(R.string.please_enter_email)
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString())
                         .matches()
                 ) {
                     emailEdittext.requestFocus()
-                    emailEdittext.setError(resources.getString(R.string.please_enter_valid_email))
+                    emailEdittext.error = resources.getString(R.string.please_enter_valid_email)
                 } else {
                     val hashMap = HashMap<String, String>()
                     hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
                     viewModel.postforgotpasswordApi(this, true, hashMap)
                     viewModel.homeResponse.observe(this, this)
-
                 }
-
-
             }
         }
     }

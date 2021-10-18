@@ -32,28 +32,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tv_account = findViewById(R.id.tv_account)
 
         if (savedInstanceState == null) {
-            val f =
-                supportFragmentManager.findFragmentById(R.id.rl_main)
-
+            val f = supportFragmentManager.findFragmentById(R.id.rl_main)
             switchFragment(R.id.rl_main,HomeFragment())
-
         }
-
     }
 
-
-    fun textColorChange(
-        tv1: TextView,
-
-         tv4: TextView,
-        tv5: TextView
-    ) {
+    private fun textColorChange(tv1: TextView, tv4: TextView, tv5: TextView) {
         tv1.setTextColor(resources.getColor(R.color.green))
-
          tv4.setTextColor(resources.getColor(R.color.colorIcon))
         tv5.setTextColor(resources.getColor(R.color.colorIcon))
     }
-
 
     override fun onClick(p0: View?) {
         when(p0?.id){
@@ -83,7 +71,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                 }
 
-
                // switchFragment(R.id.rl_main,AddPostFragment())
             }
             R.id.rl_profile->{
@@ -98,7 +85,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     switchFragment(R.id.rl_main, AccountFragment())
                 } else {
                 }
-
 
                // switchFragment(R.id.rl_main,AccountFragment())
             }

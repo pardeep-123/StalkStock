@@ -1,5 +1,6 @@
 package com.stalkstock.api
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.stalkstock.utils.others.getPrefrence
@@ -68,6 +69,7 @@ object ServiceGenerator {
                     .build()
             }
 
+            Log.d("access",getPrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY,""))
             chain.proceed(request)
         }
     }
