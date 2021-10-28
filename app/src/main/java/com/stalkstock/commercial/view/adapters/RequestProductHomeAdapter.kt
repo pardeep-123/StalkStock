@@ -1,19 +1,17 @@
 package com.stalkstock.commercial.view.adapters
 
 import android.content.Context
-import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.stalkstock.commercial.view.activities.AddedProduct
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.AddedProduct
 import com.stalkstock.commercial.view.model.BidingDetailResponse
 import kotlinx.android.synthetic.main.request_product_adapter.view.*
 
-
-class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>,var orderList: ArrayList<BidingDetailResponse.OrderItem>) : RecyclerView.Adapter<RequestProductAdapter.MyViewHolder>() {
+class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductData>, var orderList: ArrayList<BidingDetailResponse.OrderItem>) : RecyclerView.Adapter<RequestProductHomeAdapter.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
@@ -38,11 +36,10 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
     }
 
     override fun getItemCount(): Int {
-        return orderList.size
+        return list.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
+    override fun onBindViewHolder(holder: RequestProductHomeAdapter.MyViewHolder, position: Int) {
 
 
 
@@ -83,14 +80,25 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
 
         }*/
 //        else{
-            var pos=position
+        var pos=position
 
-            holder.itemView.tvType.text = orderList[pos].product.name
-            holder.itemView.tvQuantity.text = orderList[pos].qty.toString()
-            holder.itemView.tvQuantityType.text = orderList[pos].product.measurementName
+        holder.itemView.tvType.text = list[pos].name
+        holder.itemView.tvQuantity.text =  list[pos].quantity
+        holder.itemView.tvQuantityType.text =  list[pos].unit
 //        holder.itemView.tvCount.text=
-            holder.tvCount.text=pos.toString()+"."
+        holder.tvCount.text=pos.toString()+"."
 //        }
+
+
+            holder.itemView.rl_delete.setOnClickListener {
+                list.removeAt(pos)
+                notifyItemRemoved(pos)
+                notifyItemRangeChanged(pos,list.size)
+            }
+
+           holder.itemView.rl_edit.setOnClickListener{
+
+           }
 
 
         if(list[position].edit)
@@ -107,12 +115,12 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
             holder.itemView.rl_edit.visibility = View.GONE
             holder.itemView.viewEdit.visibility = View.GONE
             holder.itemView.rl_delete.visibility = View.GONE
-         }
+        }
 
         if(list[position].delete)
         {
             holder.itemView.ivDelete.visibility = View.VISIBLE
-             holder.itemView.viewDelete.visibility = View.VISIBLE
+            holder.itemView.viewDelete.visibility = View.VISIBLE
 
             holder.itemView.rl_edit.visibility = View.VISIBLE
             holder.itemView.rl_delete.visibility = View.VISIBLE
@@ -138,5 +146,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
 
 
     }
+
+
 
 }

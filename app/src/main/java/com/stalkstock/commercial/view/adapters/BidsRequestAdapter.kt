@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.fragments.home
+package com.stalkstock.commercial.view.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.RequestDetail
 
 class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : RecyclerView.Adapter<BidsRequestAdapter.MyViewHolder>() {
 

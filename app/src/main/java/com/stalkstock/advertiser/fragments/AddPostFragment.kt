@@ -79,7 +79,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
         cbSignup.setOnClickListener(this)
         cbLearnMore.setOnClickListener(this)
         cbJoinNow.setOnClickListener(this)
-        ivDelete.setOnClickListener(this)
+      /*  ivDelete.setOnClickListener(this)*/
 
         v.btn_manage_payment.setOnClickListener {
             val intent = Intent(activity, ManagePaymentsActivity::class.java)

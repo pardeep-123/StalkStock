@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.live.stalkstockcommercial.ui.paymnet.AddNewCard
-import com.live.stalkstockcommercial.ui.paymnet.PaymentStatus
 import com.stalkstock.R
 import kotlinx.android.synthetic.main.select_payment.*
 

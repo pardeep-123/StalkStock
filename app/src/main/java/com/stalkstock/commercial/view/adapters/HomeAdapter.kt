@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.fragments.home
+package com.stalkstock.commercial.view.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.stalkstock.commercial.view.activities.RequestDetail
 import com.stalkstock.R
-import com.stalkstock.advertiser.fragments.HomeFragment
-import com.stalkstock.commercial.view.fragments.home.HomeFragmentCommercial
+import com.stalkstock.commercial.view.model.BidingListResponse
+import com.stalkstock.commercial.view.model.BodyX
+import com.stalkstock.utils.custom.TitiliumBoldTextView
+import com.stalkstock.utils.custom.TitiliumRegularTextView
+import java.text.SimpleDateFormat
 
-class HomeAdapter(var list: ArrayList<HomeFragmentCommercial.HomeData>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
+class HomeAdapter(var list: ArrayList<BodyX>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
@@ -40,21 +44,30 @@ class HomeAdapter(var list: ArrayList<HomeFragmentCommercial.HomeData>) : Recycl
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        val formatter = SimpleDateFormat("MMM dd, yyyy '|' HH:mm")
+        val output: String = formatter.format(parser.parse(list[position].createdAt))
 
-
+        holder.tvRequest.text = "Request ID:"+" "+list[position].requestNo
+        holder.tvBid.text = "BID:"+" "+list[position].bidCount
+        holder.tvCreatedDate.text = output
 
        // holder.itemView.setOnClickListener { clickDoctor.clicked(position) }
 
 
         holder.itemView.setOnClickListener {
-
-            context.startActivity(Intent(context,RequestDetail::class.java))
+            val intent = Intent(context, RequestDetail::class.java)
+            intent.putExtra("bidId",list[position].id)
+            context.startActivity(intent)
         }
 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        var tvRequest: TitiliumBoldTextView = itemView.findViewById(R.id.tvRequest)
+        var tvBid: TitiliumBoldTextView = itemView.findViewById(R.id.tvBid)
+        var tvCreatedDate: TitiliumRegularTextView = itemView.findViewById(R.id.tvCreatedDate)
 
     }
 

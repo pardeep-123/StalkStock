@@ -60,6 +60,7 @@
              android:layout_marginTop="@dimen/_10sdp"
             />
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvRequestId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Request Id:#1234567"

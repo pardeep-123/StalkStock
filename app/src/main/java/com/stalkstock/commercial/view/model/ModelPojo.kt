@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.models
+package com.stalkstock.commercial.view.model
 
 sealed class ModelPojo {
     data class MyOrdersListModel(var image:Int,

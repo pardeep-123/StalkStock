@@ -8,17 +8,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:elevation="0dp"
-    android:layout_height="wrap_content"
-    >
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="wrap_content">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_15sdp"
-        android:background="@drawable/item_border"
-
-    >
-
+        android:background="@drawable/item_border">
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvRequest"
@@ -29,9 +25,7 @@
             android:textSize="@dimen/value_14dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
-            android:typeface="serif"
-            />
+            android:typeface="serif" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvBid"
@@ -41,12 +35,10 @@
              android:textColor="@color/orange_colour"
             android:textSize="@dimen/value_15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-             />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvCreatedDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="June 10, 2020 | 03:23"
@@ -54,13 +46,9 @@
             android:textSize="@dimen/value_12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvRequest"
+            android:layout_marginTop="@dimen/value_10dp" />
 
-            android:layout_marginTop="@dimen/value_10dp"
-             />
-
-
-
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
+       <!-- <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bid Received"
@@ -74,13 +62,9 @@
             android:background="@color/red_bid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvRequest"
-
             android:layout_marginTop="@dimen/value_10dp"
-            android:typeface="serif"
-            />
-
-
-
+            android:typeface="serif" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </RelativeLayout>

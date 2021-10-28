@@ -166,7 +166,6 @@ comsumer ==user
 
                 <com.stalkstock.utils.custom.TitiliumRegularButton
                     android:id="@+id/commercial"
-
                     android:paddingLeft="10dp"
                     android:paddingTop="3dp"
                     android:paddingRight="10dp"

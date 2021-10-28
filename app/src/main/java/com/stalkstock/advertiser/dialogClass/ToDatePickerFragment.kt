@@ -17,7 +17,7 @@ class ToDatePickerFragment : DialogFragment() , DatePickerDialog.OnDateSetListen
         val getFromdate: String = tvFromDates.text.toString().trim()
         val getFrom = getFromdate.split("/").toTypedArray()
         val year: Int = getFrom[0].toInt()
-        val month: Int = getFrom[1].toInt()
+        val month: Int = getFrom[1].toInt()-1
         val day: Int = getFrom[2].toInt()
         val c = Calendar.getInstance()
         c.set(year,month,day+1)
@@ -29,6 +29,7 @@ class ToDatePickerFragment : DialogFragment() , DatePickerDialog.OnDateSetListen
     }
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         var tvEndDate = requireActivity().findViewById<TextView>(R.id.c123)
+        var month = month +1
         tvEndDate.text = "$year/$month/$dayOfMonth"
 
     }

@@ -113,12 +113,11 @@
                     android:id="@+id/tvType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bacon Grill"
                     android:layout_centerInParent="true"
-                     android:textSize="@dimen/value_12dp"
+                    android:text="Bacon Grill"
                     android:textColor="@color/black_color"
 
-                    />
+                    android:textSize="@dimen/value_12dp" />
 
                 <View
                     android:id="@+id/viewQuantity"
@@ -139,12 +138,11 @@
                     android:id="@+id/tvQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
-                     android:textSize="@dimen/value_12dp"
                     android:layout_centerInParent="true"
+                    android:text="10"
                     android:textColor="@color/black_color"
 
-                    />
+                    android:textSize="@dimen/value_12dp" />
 
 
                 <View
@@ -187,13 +185,13 @@
                 android:layout_weight="0.9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:id="@+id/ivEdit"
                     android:layout_width="@dimen/value_16dp"
                     android:layout_height="@dimen/value_16dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/edi_icon"
-                    />
+                    android:background="@drawable/edi_icon" />
 
                 <View
                     android:id="@+id/viewDelete"

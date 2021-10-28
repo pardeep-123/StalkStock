@@ -229,17 +229,16 @@
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageset"
-                        android:layout_width="match_parent"
+                        android:id="@+id/imageSet"
+                        android:layout_width="wrap_content"
                         android:layout_height="120dp"
+                        android:layout_centerInParent="true"
                         android:layout_marginTop="20dp"
-                        android:gravity="center"
                         android:src="@drawable/logo_business"
-
                         app:civ_border_color="#8C8D8E"
                         app:civ_border_overlay="true"
                         app:civ_border_width="1dp" />
@@ -318,14 +317,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:id="@+id/businessnamee1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Sea Eat"
-                            android:textSize="@dimen/_14sdp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="@dimen/_14sdp" />
 
                     </RelativeLayout>
 
@@ -646,13 +646,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:id="@+id/tvBusinessAddr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/full_address"
-                            android:textSize="@dimen/_14sdp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="@dimen/_14sdp" />
 
                     </RelativeLayout>
 
@@ -683,13 +685,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:id="@+id/tvAddrLine2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="H.N 152"
-                            android:textSize="@dimen/_14sdp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="@dimen/_14sdp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -721,6 +725,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:id="@+id/tvCityC"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Mohali"
@@ -758,6 +763,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:id="@+id/tvStateC"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Punjab"
@@ -797,6 +803,7 @@
                          android:layout_width="0dp"
                          android:layout_height="wrap_content">
                          <com.stalkstock.utils.custom.TitiliumRegularTextView
+                             android:id="@+id/tvZipCodeC"
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:text="135102"
@@ -833,6 +840,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
+                            android:id="@+id/tvCountryC"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Afghanistan"

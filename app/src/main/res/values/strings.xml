@@ -206,6 +206,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="error_">Error!</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="please_enter_email">Please enter email</string>
+    <string name="please_enter_product_name">please enter product name</string>
+    <string name="please_enter_quantity">please enter quantity</string>
     <string name="please_enter_valid_email">Please enter valid email</string>
     <string name="please_enter_password">Please enter password</string>
     <string name="please_enter_first_name">Please enter first name</string>
@@ -273,6 +275,10 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="no_address_added">No Address Added</string>
     <string name="onWay">On the way</string>
     <string name="delivered">Delivered</string>
+    <string name="please_select_product">Please select Product</string>
+    <string name="please_select_sub_category">Please select SubCategory</string>
+    <string name="please_select_category">Please select Category</string>
+    <string name="please_select_quantity">Please select quantity</string>
 
     <string-array name="Select_Category">
         <item>Select category</item>

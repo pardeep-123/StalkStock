@@ -1,6 +1,7 @@
 package com.stalkstock.api
 
 import com.stalkstock.advertiser.model.*
+import com.stalkstock.commercial.view.model.*
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
@@ -442,5 +443,54 @@ interface RestApiInterface {
 //    ): Observable<AddBusinesssAdsResponse>
         @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
     ): Observable<AddBusinesssAdsResponse>
+
+    /*-------------------------------------Commercial API's-----------------------------*/
+
+    @Multipart
+    @POST(URL.COMMERCIALSIGNUP)
+    fun commercialSignUp(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part?
+    ): Observable<CommercialSignUpResponse>
+
+    @FormUrlEncoded
+    @POST(URL.getCommercialProfileDetail)
+    fun getCommercialUserProfile(
+        @FieldMap map: HashMap<String, String>): Observable<CommercialProfileDetailResponse>
+
+    @Multipart
+    @PUT(URL.editCommercialProfileDetail)
+    fun editCommercialProfileDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
+    ): Observable<EditCommercialProfileResponse>
+
+    @FormUrlEncoded
+    @POST(URL.getCommercialBuisnessDetail)
+    fun getCommercialBusinessDetail(
+        @FieldMap map: HashMap<String, String>): Observable<GetCommercialBuisnessDetail>
+
+    @Multipart
+    @PUT(URL.editCommercialBuisnessDetail)
+    fun editCommercialBusinessDetail(
+        @PartMap map: HashMap<String, RequestBody>, @Part buisnessLogo: MultipartBody.Part?
+    ): Observable<EditCommercialBuisnessDetail>
+
+    @FormUrlEncoded
+    @POST(URL.bidinglist)
+    fun getBidinglist(
+        @FieldMap map: HashMap<String, String>): Observable<BidingListResponse>
+
+    @Multipart
+    @POST(URL.bidingDetail)
+    fun getBidingDetail(
+        @PartMap map: HashMap<String, Int>
+    ): Observable<BidingDetailResponse>
+
+
+    @POST(URL.sendBidingRequest)
+    fun sendBidingRequest(@Body body: SendRequestData): Observable<Sendbidresponse>
+
+
+
 
 }

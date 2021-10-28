@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
 
     android:background="@color/white"
@@ -78,6 +78,16 @@
 
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view_botm"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_ok"
              android:layout_width="match_parent"
@@ -92,7 +102,8 @@
              android:text="Notification Settings"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:visibility="gone"/>
 
 
     </RelativeLayout>
