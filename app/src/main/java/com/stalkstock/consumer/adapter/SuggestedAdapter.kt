@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.consumer.activities.ProductDetailsActivity
@@ -19,10 +17,7 @@ class SuggestedAdapter(var listSuggested: ArrayList<SuggestedBody>) :
 
     var deliverType = ""
 
-    class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var img: ImageView = view.findViewById(R.id.ivImage)
-        var name: TextView = view.findViewById(R.id.tvTitle)
-    }
+    class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,7 +36,8 @@ class SuggestedAdapter(var listSuggested: ArrayList<SuggestedBody>) :
                  intent.putExtra("product_id",listSuggested[position].productImage[0].productId.toString())
                  intent.putExtra("deliveryType",deliverType)
                  holder.itemView.context.startActivity(intent)
-        } }
+        }
+    }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()

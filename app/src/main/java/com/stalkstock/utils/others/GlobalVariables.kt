@@ -17,7 +17,6 @@ class GlobalVariables {
             const val USER_LOCATION = "user_location"
             const val UNREAD_NOTIFICATION = "unread_notification"
             const val JOB_STATE = "job_state"
-
             const val ADV_TOKEN = "auth_token"
         }
     }
@@ -25,7 +24,7 @@ class GlobalVariables {
     class FilterVariables {
         companion object{
             var currentLowPrice = 0
-             var currentHighPrice = 100000
+             var currentHighPrice = 10000
              var currentSortBy = ""
         }
     }
@@ -185,6 +184,7 @@ class GlobalVariables {
 
         //    const val GETSTORES = "getStores"
         const val USERLOGIN = "user/login"
+        const val terms = "termAndCondition"
         const val logout = "logout"
         const val getProfileDetail = "user/getProfileDetail"
         const val getProfileDetailVendor = "vendor/getProfileDetail"
@@ -246,12 +246,11 @@ class GlobalVariables {
         const val transferFunds = "transferFund"
         const val addUserCards = "user/add/Card"
         const val getCardList = "user/getUserCardList"
-        const val getSuggestedProduct = "user/home/suggested/Product"
+        const val getSuggestedProduct = "user/home/suggested/Product"    //default, rating,popular
         const val getNotificationList = "notificationList"
         const val deleteCard = "user/deleteUserCard"
         const val orderHistoryDriver = "driver/orderHistoryDriver"
         const val changeDiverOrder = "driver/changeOrderStatus"
-
         const val ADVERTISERSIGNUP = "advertiser/signup"
         const val advertiserProfile = "advertiser/getProfileDetail"
         const val editAdvertiserProfileDetail = "advertiser/editAdvertiserProfileDetail"
@@ -300,12 +299,10 @@ class GlobalVariables {
         val registrationNumber = "registrationNumber"
         val licenceExpiryDate = "licenceExpiryDate"
         val registrationExpiryDate = "registrationExpiryDate"
-
         val buisnessName = "buisnessName"
         val buisnessDescription = "buisnessDescription"
         val buisnessAddress = "buisnessAddress"
         val token = "token"
-
 
     }
 

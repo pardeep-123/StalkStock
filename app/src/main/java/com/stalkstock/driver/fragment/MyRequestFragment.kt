@@ -149,10 +149,6 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
 
         val locationB = Location("point B")
 
-        Log.e("historyData--distance","==${historyData.orderAddress.latitude}==")
-        Log.e("historyData--distance","==${historyData.orderAddress.longitude}==")
-        Log.e("historyData--distance","==${historyData.vendorDetail.latitude}==")
-        Log.e("historyData--distance","==${historyData.vendorDetail.longitude}==")
         locationB.latitude = historyData.orderAddress.latitude.toDouble()
         locationB.longitude = historyData.orderAddress.longitude.toDouble()
 
@@ -180,6 +176,7 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
 
                         Toast.makeText(ctx, mResponse.message, Toast.LENGTH_SHORT).show()
+                        callCurrentOrders("0")
                     }
                     else {
                         Toast.makeText(ctx, mResponse.message, Toast.LENGTH_SHORT).show()

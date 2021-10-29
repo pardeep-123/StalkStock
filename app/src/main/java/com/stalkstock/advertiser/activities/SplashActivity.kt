@@ -2,8 +2,11 @@ package com.stalkstock.advertiser.activities
 
  import android.content.Context
  import android.content.Intent
+ import android.content.pm.PackageInfo
+ import android.content.pm.PackageManager
  import android.os.Bundle
  import android.os.CountDownTimer
+ import android.util.Base64
  import android.util.Log
  import android.view.WindowManager
  import androidx.appcompat.app.AppCompatActivity
@@ -16,11 +19,12 @@ package com.stalkstock.advertiser.activities
  import com.stalkstock.utils.others.GlobalVariables
  import com.stalkstock.utils.others.getPrefrence
  import com.stalkstock.vender.ui.BottomnavigationScreen
+ import java.security.MessageDigest
+ import java.security.NoSuchAlgorithmException
 
 class SplashActivity : AppCompatActivity() {
     val mContext : Context = this
 
-    val PUBLISHABLE_KEY = "pk_test_TYooMQauvdEDq54NiTphI7jx"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,8 @@ class SplashActivity : AppCompatActivity() {
                 selectLoginOrHome()
             }
         }.start()
+
+        printHashKey()
     }
 
     private fun selectLoginOrHome() {
@@ -72,4 +78,25 @@ class SplashActivity : AppCompatActivity() {
             finishAffinity()
         }
     }
+
+
+     fun printHashKey() {
+        try {
+            val info: PackageInfo = packageManager.getPackageInfo(
+               packageName,
+                PackageManager.GET_SIGNATURES
+            )
+            for (signature in info.signatures) {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val hashKey = String(Base64.encode(md.digest(), 0))
+                Log.i("THIS", "printHashKey() Hash Key: $hashKey")
+            }
+        } catch (e: NoSuchAlgorithmException) {
+            Log.e("THIS", "printHashKey()", e)
+        } catch (e: java.lang.Exception) {
+            Log.e("THIS", "printHashKey()", e)
+        }
+    }
+
 }

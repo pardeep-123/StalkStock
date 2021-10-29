@@ -24,7 +24,6 @@ class CategoryAdapter(
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var img: ImageView = view.findViewById(R.id.img)
         var name: TextView = view.findViewById(R.id.starCount)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -43,5 +42,4 @@ class CategoryAdapter(
     override fun getItemCount(): Int {
         return arrayList.size
     }
-
 }

@@ -43,17 +43,15 @@ class MyordersAdapter(
         holder.itemView.tvDate.text = changeDateFormat(mOrderArrayList[position].updatedAt,DateTimeFormat1,DateTimeFormat)
         holder.itemView.tvPrice.text = "$"+mOrderArrayList[position].total
 
-
         when(mOrderArrayList[position].orderStatus)
         {
-            0->{            holder.itemView.tvStatus.text = "Pending"
-               }
-            1->{            holder.itemView.tvStatus.text = "In Progress"}
-            3->{            holder.itemView.tvStatus.text = "Packed"}
-            4->{            holder.itemView.tvStatus.text = "Completed"}
-            5->{            holder.itemView.tvStatus.text = "Cancelled"}
-            6->{            holder.itemView.tvStatus.text = "Rejected"}
-            else->{         holder.itemView.tvStatus.text = "Error"}
+            0->{holder.itemView.tvStatus.text = "Pending" }
+            1->{holder.itemView.tvStatus.text = "In Progress"}
+            3->{holder.itemView.tvStatus.text = "Packed"}
+            4->{holder.itemView.tvStatus.text = "Completed"}
+            5->{holder.itemView.tvStatus.text = "Cancelled"}
+            6->{holder.itemView.tvStatus.text = "Rejected"}
+            else->{holder.itemView.tvStatus.text = "Error"}
         }
         holder.itemView.tvStatus.setTextColor(ContextCompat.getColor(holder.itemView.context,getStatusColor(mOrderArrayList[position].orderStatus)))
 

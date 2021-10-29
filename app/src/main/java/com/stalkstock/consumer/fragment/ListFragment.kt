@@ -19,13 +19,11 @@ import com.stalkstock.consumer.model.OrderListModel
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-/**
- * A simple [Fragment] subclass.
- */
 class ListFragment : Fragment(), Observer<RestObservable> {
     var adapter: MyordersAdapter? = null
     lateinit var mActivity:MainConsumerActivity
@@ -44,7 +42,6 @@ class ListFragment : Fragment(), Observer<RestObservable> {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-
         viewModel.homeResponse.observe(mActivity, this)
         adapter = MyordersAdapter(mActivity,mOrderArrayList)
         view.myorder_recycle.adapter = adapter
@@ -60,8 +57,8 @@ class ListFragment : Fragment(), Observer<RestObservable> {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         reset = true
         getOrderList()
     }
@@ -90,6 +87,7 @@ class ListFragment : Fragment(), Observer<RestObservable> {
                         adapter!!.notifyData(mOrderArrayList)
                         adapter!!.notifyDataSetChanged()
                         reset = false
+                        tvNoOrders.visibility = if(mOrderArrayList.isEmpty()) View.VISIBLE else View.GONE
                     } else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
@@ -97,10 +95,9 @@ class ListFragment : Fragment(), Observer<RestObservable> {
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
-                    Toast.makeText(mActivity, it.data as String, Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-                }
+                    Toast.makeText(mActivity, it.data as String, Toast.LENGTH_SHORT).show() }
+                else
+                { Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show() }
             }
             it.status == Status.LOADING -> {
             }

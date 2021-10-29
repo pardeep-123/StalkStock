@@ -59,7 +59,6 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         tv_heading.text = "Edit Business Profile"
 
@@ -69,7 +68,6 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         btn_update.setOnClickListener(this)
         imageBusiness.setOnClickListener(this)
         viewModel.mResponse.observe(this, this)
-        //CommonMethods.hideKeyboard(this@EditBusinessProfileActivity, btn_update)
 
         spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -364,7 +362,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         val obj = businessTypeArray.find { it.name == businessType }
         spinner_type.setSelection(businessTypeArray.indexOf(obj))
 
-        val countryName: kotlin.Array<String> = resources.getStringArray(R.array.Select_country)
+        val countryName: Array<String> = resources.getStringArray(R.array.Select_country)
         for(i in countryName.indices)
         {
             if(country == countryName[i])

@@ -102,14 +102,6 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
 
     private fun setValidationEditprofile() {
         when {
-//            firstimage.isEmpty() -> {
-//                Toast.makeText(
-//                    this,
-//                    resources.getString(R.string.please_select_image),
-//                    Toast.LENGTH_LONG
-//                ).show()
-//
-//            }
             edtFirstName.text.toString().isEmpty() -> {
                 et_firstName.requestFocus()
                 et_firstName.error = resources.getString(R.string.please_enter_first_name)

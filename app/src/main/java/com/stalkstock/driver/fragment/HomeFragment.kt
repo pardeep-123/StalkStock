@@ -362,7 +362,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             rl_tv.visibility = View.GONE
         }
 
-
         dialog.show()
     }
 

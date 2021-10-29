@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-
     >
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:scaleType="fitEnd"
         />
 
@@ -65,9 +64,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/value_20dp"
                     android:paddingRight="@dimen/value_20dp"
-
                     >
-
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clCard"
@@ -122,7 +119,7 @@
                             android:id="@+id/ivEditProfile"
                             android:layout_width="@dimen/value_18dp"
                             android:layout_height="@dimen/value_18dp"
-                            android:layout_marginRight="@dimen/value_10dp"
+                            android:layout_marginEnd="@dimen/value_10dp"
                             android:src="@drawable/edi_icon"
                             app:layout_constraintBottom_toBottomOf="@id/tvName"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -155,8 +152,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_5sdp"
                             android:src="@drawable/toggle_off"/>
 
                         <ImageView
@@ -164,25 +161,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_5sdp"
                             android:src="@drawable/toggle_on"
                             android:visibility="gone" />
-<!--
-                        <Switch
-                            android:id="@+id/switchNotification"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/value_10dp"
-                            android:src="@drawable/toggle_off1"
-                            app:layout_constraintBottom_toBottomOf="@id/tvNotification"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/tvNotification" />
--->
 
                     </RelativeLayout>
-
-
-
 
                     <View
                         android:id="@+id/viewNotification"
@@ -313,9 +297,6 @@
 
             </RelativeLayout>
         </ScrollView>
-
-
     </LinearLayout>
-
 
 </RelativeLayout>

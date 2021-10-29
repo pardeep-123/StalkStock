@@ -54,7 +54,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewModel.mResponse.observe(mHomeDriverActivity, this)
         return inflater.inflate(R.layout.fragment_account2, container, false)
     }
@@ -164,25 +163,23 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setData(mResponse)
                     } else {
-//                        AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
                 }
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        if (from.equals("logout")) {
+                        if (from == "logout") {
                             val intent = Intent(activity, LoginActivity::class.java)
-                            // intent.putExtra("is_open","1");
                             startActivity(intent)
                             requireActivity().finishAffinity()
                             clearPrefrences()
                         } else
                             AppUtils.showSuccessAlert(
                                 requireActivity(),
-                                mResponse.message.toString()
+                                mResponse.message
                             )
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
 
@@ -192,7 +189,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
                     Toast.makeText(mHomeDriverActivity, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(mHomeDriverActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -202,9 +198,9 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
 
     private fun setData(mResponse: DriverProfileDetailResponse) {
         image.loadImage(mResponse.body.driverDetail.image)
-        tvName.setText(mResponse.body.driverDetail.firstName+" "+mResponse.body.driverDetail.lastName)
-        tvMobile.setText(mResponse.body.mobile)
-        tvEmail.setText(mResponse.body.email)
+        tvName.text = mResponse.body.driverDetail.firstName+" "+mResponse.body.driverDetail.lastName
+        tvMobile.text = mResponse.body.mobile
+        tvEmail.text = mResponse.body.email
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "2")
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, mResponse.body.id)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.role, mResponse.body.role)
@@ -213,7 +209,7 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
-        if (mResponse.body.notification.equals("on")) {
+        if (mResponse.body.notification == "on") {
             toggle_off2.visibility = View.VISIBLE
             toggle1.visibility = View.GONE
         } else {

@@ -42,8 +42,6 @@ inline fun <reified T> getprefObject(key: String): T {
     return Gson().fromJson(getPrefrence(key, ""), T::class.java)
 }
 
-
-//fun defaultPrefs(context: Context): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 fun clearPrefrences() {
     val preference = MyApplication.getinstance().applicationContext.getSharedPreferences(
         GlobalVariables.SHARED_PREF.SHARED_NAME, 0

@@ -2,18 +2,14 @@ package com.stalkstock.vender.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.stalkstock.R;
 import com.stalkstock.vender.ui.NewOrderList;
 
@@ -34,18 +30,11 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.currentorderlist, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-
-
-
-
-
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-    }
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) { }
 
     @Override
     public int getItemCount() {
@@ -70,63 +59,48 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.ViewHold
               imagetwo=itemView.findViewById(R.id.inprogress_img);
               imgethree=itemView.findViewById(R.id.redy_img);
 
-            button1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    button1.setBackground(context.getResources().getDrawable(R.drawable.current_button));
-                    button2.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
-                    button3.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
-
-                    imageone.setImageResource(R.drawable.right_arrow_icon);
-                    imagetwo.setImageResource(R.drawable.right_grey_icon);
-                    imgethree.setImageResource(R.drawable.right_grey_icon);
-
-                    textView.setTextColor(context.getResources().getColor(R.color.white));
-                    textView2.setTextColor(context.getResources().getColor(R.color.balck));
-                    textView3.setTextColor(context.getResources().getColor(R.color.balck));
-                    Intent intent4 = new Intent(context, NewOrderList.class);
-                    intent4.putExtra("key",message);
-                    context.startActivity(intent4);
-                }
+            button1.setOnClickListener(view -> {
+                button1.setBackground(context.getResources().getDrawable(R.drawable.current_button));
+                button2.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+                button3.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+                imageone.setImageResource(R.drawable.right_arrow_icon);
+                imagetwo.setImageResource(R.drawable.right_grey_icon);
+                imgethree.setImageResource(R.drawable.right_grey_icon);
+                textView.setTextColor(context.getResources().getColor(R.color.white));
+                textView2.setTextColor(context.getResources().getColor(R.color.balck));
+                textView3.setTextColor(context.getResources().getColor(R.color.balck));
+                Intent intent4 = new Intent(context, NewOrderList.class);
+                intent4.putExtra("key",message);
+                context.startActivity(intent4);
             });
-            button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    button2.setBackground(context.getResources().getDrawable(R.drawable.current_button));
-                    button3.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
-                    button1.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+            button2.setOnClickListener(view -> {
+                button2.setBackground(context.getResources().getDrawable(R.drawable.current_button));
+                button3.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+                button1.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+                imagetwo.setImageResource(R.drawable.right_arrow_icon);
+                imgethree.setImageResource(R.drawable.right_grey_icon);
+                imageone.setImageResource(R.drawable.right_grey_icon);
+                textView2.setTextColor(context.getResources().getColor(R.color.white));
+                textView3.setTextColor(context.getResources().getColor(R.color.balck));
+                textView.setTextColor(context.getResources().getColor(R.color.balck));
+                Intent intent5 = new Intent(context, NewOrderList.class);
+                intent5.putExtra("key",message1);
+                context.startActivity(intent5);
 
-                    imagetwo.setImageResource(R.drawable.right_arrow_icon);
-                    imgethree.setImageResource(R.drawable.right_grey_icon);
-                    imageone.setImageResource(R.drawable.right_grey_icon);
-
-                    textView2.setTextColor(context.getResources().getColor(R.color.white));
-                    textView3.setTextColor(context.getResources().getColor(R.color.balck));
-                    textView.setTextColor(context.getResources().getColor(R.color.balck));
-                    Intent intent5 = new Intent(context, NewOrderList.class);
-                    intent5.putExtra("key",message1);
-                    context.startActivity(intent5);
-
-                }
             });
-            button3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    button3.setBackground(context.getResources().getDrawable(R.drawable.current_button));
-                    button2.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
-                    button1.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
-
-                    imgethree.setImageResource(R.drawable.right_arrow_icon);
-                    imagetwo.setImageResource(R.drawable.right_grey_icon);
-                    imageone.setImageResource(R.drawable.right_grey_icon);
-
-                    textView3.setTextColor(context.getResources().getColor(R.color.white));
-                    textView2.setTextColor(context.getResources().getColor(R.color.balck));
-                    textView.setTextColor(context.getResources().getColor(R.color.balck));
-                    Intent intent6 = new Intent(context, NewOrderList.class);
-                    intent6.putExtra("key",message2);
-                    context.startActivity(intent6);
-                }
+            button3.setOnClickListener(view -> {
+                button3.setBackground(context.getResources().getDrawable(R.drawable.current_button));
+                button2.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+                button1.setBackground(context.getResources().getDrawable(R.drawable.cureentbackground));
+                imgethree.setImageResource(R.drawable.right_arrow_icon);
+                imagetwo.setImageResource(R.drawable.right_grey_icon);
+                imageone.setImageResource(R.drawable.right_grey_icon);
+                textView3.setTextColor(context.getResources().getColor(R.color.white));
+                textView2.setTextColor(context.getResources().getColor(R.color.balck));
+                textView.setTextColor(context.getResources().getColor(R.color.balck));
+                Intent intent6 = new Intent(context, NewOrderList.class);
+                intent6.putExtra("key",message2);
+                context.startActivity(intent6);
             });
 
         }

@@ -1,6 +1,5 @@
 package com.stalkstock.commercial.view.fragments.home.myorders
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -34,21 +33,22 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
     private  fun createAdapterList(){
         if(list!=null){
             list!!.clear()
-        }else{
+        }
+        else{
             list= ArrayList()
         }
+
         list!!.add(ModelPojo.MyOrdersListModel(R.drawable.mc_img,"McDonald's","New York","USA","Beef Fresh Meet 250gm","01 May 2020","06:17 PM","$80.50","Pending"))
         list!!.add(ModelPojo.MyOrdersListModel(R.drawable.mkfc_image,"KFC","New York","USA","Creamy nachos, Maharaja mac","01 May 2020","06:17 PM","$36.00","Delivered"))
+
         rv_myOrders.adapter= MyOrdersListAdapter(requireActivity(), list!!, this@MyOrdersFragment)
 
         val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
         rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
-
     }
 
     override fun onClick(p0: View?) {
         when(p0!!.id){
-
         }
     }
 
@@ -56,14 +56,9 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
         list: ArrayList<ModelPojo.MyOrdersListModel>,
         position: Int
     ) {
-
         requireContext().OpenActivity(OrderDetailActivity::class.java){
             putString("fragment",position.toString())
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
     }
 
     override fun onDetach() {
@@ -72,8 +67,5 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
         handler= null
         requireContext().cacheDir.deleteRecursively()
         Runtime.getRuntime().gc()
-
-
     }
-
 }

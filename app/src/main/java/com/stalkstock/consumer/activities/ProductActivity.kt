@@ -60,43 +60,41 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
         notification = findViewById(R.id.notification)
         search = findViewById(R.id.search)
         fillter = findViewById(R.id.fillter)
-        notification.setOnClickListener(View.OnClickListener {
+        notification.setOnClickListener {
             val intent = Intent(context, NotificationFirstActivity::class.java)
             startActivity(intent)
-        })
-        search.setOnClickListener(View.OnClickListener {
+        }
+        search.setOnClickListener {
             val intent = Intent(this, MainConsumerActivity::class.java)
             intent.putExtra("is_open", "2")
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-           /* val intent = Intent(context, SearchScreen::class.java)
-            startActivity(intent)*/
-        })
-        fillter.setOnClickListener(View.OnClickListener {
+
+        }
+        fillter.setOnClickListener {
             val intent = Intent(context, FilterActivity::class.java)
             intent.putExtra("from", "ProductActivity")
             resultLauncher.launch(intent)
-        })
+        }
 
         currentProductID = intent.getStringExtra("product_id")!!
         currentDelivery_type = intent.getStringExtra("delivery_type")!!
-        txtTitle.setText(intent.getStringExtra("title"))!!
+        txtTitle.text = intent.getStringExtra("title")
         getProductAsVendor()
-        back.setOnClickListener(View.OnClickListener { finish() })
+        back.setOnClickListener { finish() }
         adapter = ProductsAdapter(this,currentModel,currentDelivery_type)
-        product_recycle.setLayoutManager(LinearLayoutManager(context))
-        product_recycle.setAdapter(adapter)
+        product_recycle.layoutManager = LinearLayoutManager(context)
+        product_recycle.adapter = adapter
 
 
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    // There are no request codes
                     val data: Intent? = result.data
                     currentLowPrice = data!!.getStringExtra("lowPrice")!!
-                    currentHighPrice = data!!.getStringExtra("highPrice")!!
-                    currentSortBy = data!!.getStringExtra("sortBy")!!
+                    currentHighPrice = data.getStringExtra("highPrice")!!
+                    currentSortBy = data.getStringExtra("sortBy")!!
 
                     reset = true
                     getProductAsVendor()
@@ -109,14 +107,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
                 if (!recyclerView.canScrollVertically(1)) {
                     if (currentOffset > 1 && currentModel.size > 4)
                         getProductAsVendor()
-                }
-
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
+                } } })
     }
 
     val viewModel: HomeViewModel by viewModels()
@@ -127,11 +118,11 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
             currentModel.clear()
         }
         val hashMap = HashMap<String, RequestBody>()
-        hashMap.put("offset", mUtils.createPartFromString(currentOffset.toString()))
-        hashMap.put("limit", mUtils.createPartFromString("5"))
-        hashMap.put("sortBy", mUtils.createPartFromString(currentSortBy))
-        hashMap.put("lowPrice", mUtils.createPartFromString(currentLowPrice))
-        hashMap.put("highPrice", mUtils.createPartFromString(currentHighPrice))
+        hashMap["offset"] = mUtils.createPartFromString(currentOffset.toString())
+        hashMap["limit"] = mUtils.createPartFromString("5")
+        hashMap["sortBy"] = mUtils.createPartFromString(currentSortBy)
+        hashMap["lowPrice"] = mUtils.createPartFromString(currentLowPrice)
+        hashMap["highPrice"] = mUtils.createPartFromString(currentHighPrice)
         hashMap["product_id"] = mUtils.createPartFromString(currentProductID)
         hashMap["deliveryType"] = mUtils.createPartFromString(currentDelivery_type)
         viewModel.userGetVendorAsPerProductAPI(this, true, hashMap)
@@ -149,7 +140,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
                         currentOffset += 5
                         setAdapterVendorList(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
             }
@@ -158,7 +149,6 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -168,7 +158,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
 
     private fun setAdapterVendorList(mResponse: ModelProductVendorList) {
         currentModel.addAll(mResponse.body.productSeller)
-        adapter!!.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
         reset = false
     }
 }

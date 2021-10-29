@@ -17,12 +17,8 @@ class RecentSearchAdapter(
     var searchFragment: SearchFragment
 ) :
     RecyclerView.Adapter<RecentSearchAdapter.ViewHolder>() {
-    var inflater: LayoutInflater
+    var inflater: LayoutInflater = LayoutInflater.from(context)
 
-    //String message="New Orders";
-    //    String message2="In Progress";
-    //
-    //    String message3="Ready for Pickup";
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -32,22 +28,14 @@ class RecentSearchAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.tvSearchTag.setText(mRecentArrayList[position].search)
-        holder.itemView.ivCross.setOnClickListener {
-            searchFragment.deleteRecentSearchAPI(mRecentArrayList[position].id.toString())
-        }
-        holder.itemView.tvSearchTag.setOnClickListener {
-            searchFragment.setSearchTag(mRecentArrayList[position].search)
-        }
+        holder.itemView.tvSearchTag.text = mRecentArrayList[position].search
+        holder.itemView.ivCross.setOnClickListener { searchFragment.deleteRecentSearchAPI(mRecentArrayList[position].id.toString()) }
+        holder.itemView.tvSearchTag.setOnClickListener { searchFragment.setSearchTag(mRecentArrayList[position].search) }
     }
     override fun getItemCount(): Int {
         return mRecentArrayList.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    init {
-        inflater = LayoutInflater.from(context)
-    }
 }

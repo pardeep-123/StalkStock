@@ -11,7 +11,7 @@ import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.activities.AddnewaddressActivity
-import com.stalkstock.consumer.adapter.MangeaddressAdapter
+import com.stalkstock.consumer.adapter.ManageAddressAdapter
 import com.stalkstock.consumer.model.ModelUserAddressList
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.BaseActivity
@@ -31,7 +31,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
     private var reset = false
     private var currentOffset = 0
     private var currentModel: ArrayList<ModelUserAddressList.Body> = ArrayList()
-    var adapter: MangeaddressAdapter? = null
+    var adapter: ManageAddressAdapter? = null
 
     override fun onResume() {
         super.onResume()
@@ -80,7 +80,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
         }
 */
 
-        adapter = MangeaddressAdapter(this, currentModel)
+        adapter = ManageAddressAdapter(this, currentModel)
         mangeaddress_recycle.layoutManager = LinearLayoutManager(this)
         mangeaddress_recycle.adapter = adapter
         mangeaddress_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {

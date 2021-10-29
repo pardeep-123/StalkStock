@@ -11,7 +11,7 @@ import android.widget.AdapterView
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
 import com.google.android.libraries.places.api.net.PlacesClient
-import com.mender.utlis.ProgressHUD
+import com.stalkstock.utils.others.ProgressHUD
 import com.stalkstock.utils.`interface`.GetLatLongInterface
 import com.stalkstock.utils.commonmodel.LocationModel
 import com.stalkstock.utils.helper.PlaceAutocompleteAdapterNew
@@ -22,10 +22,10 @@ import java.io.IOException
 
 var mProgressDialog: ProgressHUD? = null
 fun Context.showLoader() {
-    mProgressDialog = ProgressHUD.create(this,"Please wait..",indeterminate = true,
-        cancelable = false,
-        show = true,
-        cancelListener = null)
+    mProgressDialog = ProgressHUD.create(
+        this, cancelable = false, show = true,
+        cancelListener = null
+    )
     mProgressDialog!!.show()
 }
 

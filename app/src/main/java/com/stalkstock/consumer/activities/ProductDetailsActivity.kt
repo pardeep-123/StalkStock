@@ -71,11 +71,6 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                     if (currentOffset > 1 && currentModel.size > 4)
                         getProductAsPerVendor()
                 }
-
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
             }
         })
         back = findViewById(R.id.back)
@@ -90,11 +85,10 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    // There are no request codes
                     val data: Intent? = result.data
                     currentLowPrice = data!!.getStringExtra("lowPrice")!!
-                    currentHighPrice = data!!.getStringExtra("highPrice")!!
-                    currentSortBy = data!!.getStringExtra("sortBy")!!
+                    currentHighPrice = data.getStringExtra("highPrice")!!
+                    currentSortBy = data.getStringExtra("sortBy")!!
                     reset = true
                     getProductAsPerVendor()
 
@@ -111,21 +105,20 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            /*val intent = Intent(context, SearchScreen::class.java)
-            startActivity(intent)*/
+
         }
         fillter.setOnClickListener {
             val intent = Intent(context, FilterActivity::class.java)
             intent.putExtra("from", "ProductdetailsActivity")
             resultLauncher.launch(intent)
         }
-        back.setOnClickListener(View.OnClickListener { finish() })
+        back.setOnClickListener { finish() }
 
         btnCheckOut.setOnClickListener { openStartInfoApp() }
         adapter = ProductsdetailsAdapter(this, currentModel)
-        productdetails_recycle.setLayoutManager(LinearLayoutManager(context))
-        productdetails_recycle.setAdapter(adapter)
-        nsc_top.postDelayed(Runnable { nsc_top.scrollTo(0, 0) }, 400)
+        productdetails_recycle.layoutManager = LinearLayoutManager(context)
+        productdetails_recycle.adapter = adapter
+        nsc_top.postDelayed({ nsc_top.scrollTo(0, 0) }, 400)
     }
 
     val viewModel: HomeViewModel by viewModels()
@@ -136,11 +129,11 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
             currentModel.clear()
         }
         val hashMap = HashMap<String, RequestBody>()
-        hashMap.put("offset", mUtils.createPartFromString(currentOffset.toString()))
-        hashMap.put("limit", mUtils.createPartFromString("5"))
-        hashMap.put("sortBy", mUtils.createPartFromString(currentSortBy))
-        hashMap.put("lowPrice", mUtils.createPartFromString(currentLowPrice))
-        hashMap.put("highPrice", mUtils.createPartFromString(currentHighPrice))
+        hashMap["offset"] = mUtils.createPartFromString(currentOffset.toString())
+        hashMap["limit"] = mUtils.createPartFromString("5")
+        hashMap["sortBy"] = mUtils.createPartFromString(currentSortBy)
+        hashMap["lowPrice"] = mUtils.createPartFromString(currentLowPrice)
+        hashMap["highPrice"] = mUtils.createPartFromString(currentHighPrice)
         hashMap["product_id"] = mUtils.createPartFromString(currentProductID)
         hashMap["deliveryType"] = mUtils.createPartFromString(currentDelivery_type)
         viewModel.userGetVendorProductListAPI(this, true, hashMap)
@@ -158,7 +151,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                         currentOffset += 5
                         setAdapterData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
 
@@ -169,7 +162,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                         reset = true
                         getProductAsPerVendor()
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
 
@@ -179,7 +172,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                         reset = true
                         getProductAsPerVendor()
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
             }
@@ -188,7 +181,6 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -197,11 +189,11 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun setAdapterData(mResponse: UserVendorsProductList) {
-        kfc.setText(mResponse.body.product.productVendor.shopName)
-        deliveryTime.setText(mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)")
-        starCount.setText(mResponse.body.product.productVendor.ratingCount + " Rating, " + mResponse.body.product.productVendor.totalRating.toString())
+        kfc.text = mResponse.body.product.productVendor.shopName
+        deliveryTime.text = mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)"
+        starCount.text = mResponse.body.product.productVendor.ratingCount + " Rating, " + mResponse.body.product.productVendor.totalRating.toString()
         star.rating = mResponse.body.product.productVendor.ratingCount.toFloat()
-        shopLocation.setText(mResponse.body.product.productVendor.ShopAddress)
+        shopLocation.text = mResponse.body.product.productVendor.ShopAddress
         img.loadImage(mResponse.body.product.productVendor.shopLogo)
 
         currentModel.addAll(mResponse.body.sellerProduct)
@@ -214,13 +206,13 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
 
         if (currentItemCount > 0) {
             all.visibility = View.VISIBLE
-            item_count.setText(currentItemCount.toString() + " Items")
+            item_count.text = "$currentItemCount Items"
 
         } else {
             all.visibility = View.GONE
         }
 
-        adapter!!.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
         reset = false
     }
 

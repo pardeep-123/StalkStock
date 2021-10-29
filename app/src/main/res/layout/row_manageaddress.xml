@@ -9,7 +9,7 @@
         android:padding="10dp">
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/text"
-            android:drawableLeft="@drawable/home_green_icon"
+            android:drawableStart="@drawable/home_green_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home"
@@ -24,34 +24,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="43-D San Francisco, near church USA"/>
+
         <RelativeLayout
             android:id="@+id/edit"
             android:layout_width="110dp"
             android:layout_height="45dp"
-            android:text="View More"
             android:layout_below="@+id/location"
             android:layout_marginTop="15dp"
-            android:textColor="@color/theme_green"
             android:background="@drawable/background_box_new"
-            >
+            android:text="View More"
+            android:textColor="@color/theme_green">
+
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EDIT"
                 android:layout_centerInParent="true"
-                android:textSize="18sp"
+                android:text="EDIT"
                 android:textColor="@color/theme_green"
-                />
+                android:textSize="18sp" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/delete"
             android:layout_width="110dp"
             android:layout_height="45dp"
             android:layout_below="@+id/location"
-            android:layout_toRightOf="@+id/edit"
+            android:layout_toEndOf="@+id/edit"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:textColor="@color/theme_green"
             android:background="@drawable/background_box_new"
             >

@@ -2,6 +2,7 @@ package com.stalkstock.vender.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,7 +36,7 @@ class NewOrderList : AppCompatActivity(), Observer<RestObservable> {
         appbar_name.text = text
         mcontext = this@NewOrderList
         newOrderAdapter = NewOrderAdapter(mcontext, text,mOrderArrayList)
-        neworder_recyclerview.setAdapter(newOrderAdapter)
+        neworder_recyclerview.adapter = newOrderAdapter
         orderlist_backarrow.setOnClickListener { onBackPressed() }
         neworder_recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -44,9 +45,6 @@ class NewOrderList : AppCompatActivity(), Observer<RestObservable> {
                     if (currentOffset > 1 && mOrderArrayList.size > 9)
                         getOrderList()
                 }
-            }
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
             }
         })
         viewModel.mResponse.observe(this, this)
@@ -64,16 +62,20 @@ class NewOrderList : AppCompatActivity(), Observer<RestObservable> {
             mOrderArrayList.clear()
         }
         val hashMap = HashMap<String, String>()
-        hashMap.put("offset", currentOffset.toString())
-        hashMap.put("limit", "10")
-            if (appbar_name.text.toString().equals("New Orders")) {
-                hashMap.put("status", "0")
-            } else if (appbar_name.text.toString().equals("In Progress")) {
-                hashMap.put("status", "1")
-            } else if (appbar_name.text.toString().equals("Ready for Pickup")) {
-                hashMap.put("status", "2")
+        hashMap["offset"] = currentOffset.toString()
+        hashMap["limit"] = "10"
+        when {
+            appbar_name.text.toString() == "New Orders" -> {
+                hashMap["status"] = "0"
             }
-        hashMap.put("type", "0")    // 0=>current 1=>past
+            appbar_name.text.toString() == "In Progress" -> {
+                hashMap["status"] = "1"
+            }
+            appbar_name.text.toString() == "Ready for Pickup" -> {
+                hashMap["status"] = "2"
+            }
+        }
+        hashMap["type"] = "0"    // 0=>current 1=>past
         viewModel.orderListVendorApi(this, true, hashMap)
     }
 
@@ -86,9 +88,11 @@ class NewOrderList : AppCompatActivity(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOffset += 10
                         mOrderArrayList.addAll(mResponse.body)
-//                        newOrderAdapter!!.notifyData(mOrderArrayList)
                         newOrderAdapter!!.notifyDataSetChanged()
                         reset = false
+
+                        tvNoOrders.visibility = if(mOrderArrayList.isEmpty()) View.VISIBLE else View.GONE
+
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message)
                     }

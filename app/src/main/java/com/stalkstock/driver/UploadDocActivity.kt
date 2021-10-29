@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.stalkstock.R
@@ -33,8 +32,8 @@ class UploadDocActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(Color.WHITE);
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            window.statusBarColor = Color.WHITE
         }
 
         tv_heading.text = "Upload Documents"
@@ -47,24 +46,24 @@ class UploadDocActivity : BaseActivity() {
         ivCamera1.setOnClickListener {
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
-            selectImage(ivCamera, "1")
+            selectImage("1")
         }
 
         iv_camera2.setOnClickListener {
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
-            selectImage(ivCamera2, "2")
+            selectImage("2")
         }
 
         iv_camera3.setOnClickListener {
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
-            selectImage(ivCamera3, "3")
+            selectImage("3")
         }
         iv_camera4.setOnClickListener {
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
-            selectImage(ivCamera4, "4")
+            selectImage("4")
         }
 
         if (intent.hasExtra("driverData"))
@@ -75,13 +74,11 @@ class UploadDocActivity : BaseActivity() {
 
     }
 
-    private fun selectImage(ivProduct: ImageView, type: String) {
+    private fun selectImage(type: String) {
         Album.image(this)
             .singleChoice()
             .camera(true)
             .columnCount(4)
-            //.selectCount(1)
-            //.checkedList(mAlbumFiles)
             .widget(
                 Widget.newDarkBuilder(this)
                     .title(getString(R.string.app_name))
@@ -89,24 +86,27 @@ class UploadDocActivity : BaseActivity() {
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                if (type.equals("1")) {
-                    mLicenseimage1 = result[0].path
-                    Glide.with(this).load(result[0].path).into(ivCamera)
-                    ivCamera1.visibility = View.GONE
-                }else if (type.equals("2")) {
-                    mLicenseimage2 = result[0].path
-                    Glide.with(this).load(result[0].path).into(ivCamera2)
-                    iv_camera2.visibility = View.GONE
-                }
-                else if (type.equals("3")) {
-                    mRegistrationImage = result[0].path
-                    Glide.with(this).load(result[0].path).into(ivCamera3)
-                    iv_camera3.visibility = View.GONE
-                }
-                else if (type.equals("4")) {
-                    mInsuranceImage = result[0].path
-                    Glide.with(this).load(result[0].path).into(ivCamera4)
-                    iv_camera4.visibility = View.GONE
+                when (type) {
+                    "1" -> {
+                        mLicenseimage1 = result[0].path
+                        Glide.with(this).load(result[0].path).into(ivCamera)
+                        ivCamera1.visibility = View.GONE
+                    }
+                    "2" -> {
+                        mLicenseimage2 = result[0].path
+                        Glide.with(this).load(result[0].path).into(ivCamera2)
+                        iv_camera2.visibility = View.GONE
+                    }
+                    "3" -> {
+                        mRegistrationImage = result[0].path
+                        Glide.with(this).load(result[0].path).into(ivCamera3)
+                        iv_camera3.visibility = View.GONE
+                    }
+                    "4" -> {
+                        mInsuranceImage = result[0].path
+                        Glide.with(this).load(result[0].path).into(ivCamera4)
+                        iv_camera4.visibility = View.GONE
+                    }
                 }
             }
             .onCancel {
@@ -117,42 +117,48 @@ class UploadDocActivity : BaseActivity() {
 
     private fun validations()
     {
-        if (mLicenseimage1.isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.please_select_license_frontphoto),
-                Toast.LENGTH_LONG
-            ).show()
+        when {
+            mLicenseimage1.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_select_license_frontphoto),
+                    Toast.LENGTH_LONG
+                ).show()
 
-        }else if (mLicenseimage2.isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.please_select_license_backphoto),
-                Toast.LENGTH_LONG
-            ).show()
+            }
+            mLicenseimage2.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_select_license_backphoto),
+                    Toast.LENGTH_LONG
+                ).show()
 
-        }else if (mRegistrationImage.isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.please_select_registration_photo),
-                Toast.LENGTH_LONG
-            ).show()
+            }
+            mRegistrationImage.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_select_registration_photo),
+                    Toast.LENGTH_LONG
+                ).show()
 
-        }else if (mInsuranceImage.isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.please_select_insurance_photo),
-                Toast.LENGTH_LONG
-            ).show()
+            }
+            mInsuranceImage.isEmpty() -> {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_select_insurance_photo),
+                    Toast.LENGTH_LONG
+                ).show()
 
-        }else{
-            startActivity(Intent(this, UploadActivity::class.java)
-                .putExtra("driverData",mHashMap)
-                .putExtra("profileImage",mFirstImage)
-                .putExtra("license1",mLicenseimage1)
-                .putExtra("license2",mLicenseimage2)
-                .putExtra("registration",mRegistrationImage)
-                .putExtra("insurance",mInsuranceImage))
+            }
+            else -> {
+                startActivity(Intent(this, UploadActivity::class.java)
+                    .putExtra("driverData",mHashMap)
+                    .putExtra("profileImage",mFirstImage)
+                    .putExtra("license1",mLicenseimage1)
+                    .putExtra("license2",mLicenseimage2)
+                    .putExtra("registration",mRegistrationImage)
+                    .putExtra("insurance",mInsuranceImage))
+            }
         }
     }
 }

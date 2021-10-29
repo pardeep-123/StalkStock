@@ -45,7 +45,7 @@ class NotificationFirstActivity : AppCompatActivity(), View.OnClickListener,
         val map = HashMap<String, String>()
         map["offset"] = "0"
         map["limit"] = "100"
-        viewModel.getNotificationList(this, false,map)
+        viewModel.getNotificationList(this, true,map)
         viewModel.homeResponse.observe(this, this)
 
     }

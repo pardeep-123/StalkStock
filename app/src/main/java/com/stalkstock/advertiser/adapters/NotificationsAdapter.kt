@@ -1,6 +1,5 @@
 package com.stalkstock.advertiser.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,5 +27,6 @@ class NotificationsAdapter(
     inner class AdsHolder(view: View) : RecyclerView.ViewHolder(view) {
        var tvText = view.findViewById<TextView>(R.id.tvText)
     }
+
 }
 

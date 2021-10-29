@@ -30,11 +30,11 @@ import kotlinx.android.synthetic.main.toolbar.*
 import java.util.HashMap
 
 class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
-    Observer<RestObservable> {
-    val mContext:Context=this
-    var from = ""
-    var deleteCardPos= 0
-    val viewModel: DriverViewModel by viewModels()
+     Observer<RestObservable> {
+     val mContext:Context=this
+     var from = ""
+     var deleteCardPos= 0
+     val viewModel: DriverViewModel by viewModels()
      lateinit var adapter : UserCardAdapter
      private var listCards  = mutableListOf<UserCardBody>()
 
@@ -57,8 +57,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 startActivity(intents) }
             else{ onBackPressed() }}
         if(MyApplication.instance.getString("usertype").equals("5")){
-            btn_checkout.visibility=View.VISIBLE
-        }
+            btn_checkout.visibility=View.VISIBLE }
 
         adapter = UserCardAdapter(listCards)
         rvCards.adapter =adapter
@@ -71,7 +70,9 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 if(listCards.isEmpty()) tvNoCards.visibility = View.VISIBLE
                 viewModel.deleteCard(this@ManagePaymentsActivity, true, map)
             }
-        })}
+        })
+
+    }
 
     override fun onResume() {
         super.onResume()
@@ -79,7 +80,6 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun callCardList() {
-
         val map = HashMap<String, String>()
         map["offset"] = "0"
         map["limit"] = "20"

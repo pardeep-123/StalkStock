@@ -106,7 +106,6 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
                 AppUtils.showErrorAlert(this, getString(R.string.enter_valid_cvv))
                 return false
             }
-
             else ->return true
         }
     }
@@ -126,25 +125,17 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-
                 if (it.data is AddCardData) {
                     val mResponse: AddCardData = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         onBackPressed()
-                    }
-                }
-
+                    } }
             }
             it.status == Status.ERROR -> {
-                if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
-                }
+                if (it.data != null) { Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show() }
                 else
-                {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-                } }
-            it.status == Status.LOADING -> {
-            }
+                { Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show() } }
+            it.status == Status.LOADING -> { }
         }
     }
 }

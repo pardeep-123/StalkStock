@@ -18,7 +18,7 @@ class ProductsAdapter(
     var currentModel: ArrayList<ProductSeller>,
     var currentDelivery_type: String?
 ) : RecyclerView.Adapter<ProductsAdapter.RecyclerViewHolder>() {
-    var inflater: LayoutInflater
+    var inflater: LayoutInflater = LayoutInflater.from(context)
 
     class RecyclerViewHolder(view: View?) : RecyclerView.ViewHolder(
         view!!
@@ -30,12 +30,13 @@ class ProductsAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.itemView.starCount.setText(currentModel[position].name)
-        holder.itemView.txtLocation.setText(currentModel[position].productVendor.geoLocation)
-        holder.itemView.txtVendor.setText(currentModel[position].productVendor.shopName)
-        holder.itemView.price.setText(currentModel[position].mrp+"/"+currentModel[position].measurement.name)
+        holder.itemView.starCount.text = currentModel[position].name
+        holder.itemView.txtLocation.text = currentModel[position].productVendor.geoLocation
+        holder.itemView.txtVendor.text = currentModel[position].productVendor.shopName
+        holder.itemView.price.text = currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
-        holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
+
+        if(currentModel[position].productImage.isNotEmpty()) holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
@@ -49,7 +50,4 @@ class ProductsAdapter(
         return currentModel.size
     }
 
-    init {
-        inflater = LayoutInflater.from(context)
-    }
 }

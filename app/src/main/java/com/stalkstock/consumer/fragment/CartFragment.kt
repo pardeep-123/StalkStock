@@ -1,5 +1,7 @@
 package com.stalkstock.consumer.fragment
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +32,7 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.fragment_cart.*
 import okhttp3.RequestBody
+import java.lang.Exception
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -45,6 +48,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
     var views: View? = null
     lateinit var btnPaymentMethod: Button
     lateinit var recyceler: RecyclerView
+    lateinit var ctx: Context
     var currentCartModel: ArrayList<ModelCartData.Body.CartData> = ArrayList()
     var mVendorId = ""
     var mTotalQuantity = 0
@@ -59,6 +63,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        ctx = container!!.context
         views = inflater.inflate(R.layout.fragment_cart, container, false)
         btnPaymentMethod = views!!.findViewById(R.id.btnPaymentMethod)
         tvChange = views!!.findViewById(R.id.tvChange)
@@ -154,24 +159,31 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                         if (mResponse.code == GlobalVariables.URL.code) {
                             getCartData()
                         } else {
-                            AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                            AppUtils.showErrorAlert(ctx as Activity, mResponse.message)
                         }
                     }
                 }
                 it.status == Status.ERROR -> {
                     if (it.data != null) {
-                        Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(ctx, it.data as String, Toast.LENGTH_SHORT).show()
                     } else {
                         if (it.error!!.toString().contains("Data not found")) {
-                            val intent = Intent(requireActivity(), MainConsumerActivity::class.java)
-                            intent.putExtra("is_open", "4")
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                            Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT)
-                                .show()
+                            try{
+                                val intent = Intent(ctx, MainConsumerActivity::class.java)
+                                intent.putExtra("is_open", "4")
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                                Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            catch (e:Exception)
+                            {
+                                e.printStackTrace()
+                            }
+
                         } else
-                            Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT)
+                            Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
@@ -181,8 +193,6 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         }
 
     private fun setDataCart(mResponse: ModelCartData) {
-
-        Log.e("asdfadsfdas","=====234234==")
 
         if (mResponse.body.shopDetail.deliveryType == 0) {
             ltPickup.visibility = View.VISIBLE

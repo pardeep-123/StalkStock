@@ -222,11 +222,9 @@
             />
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_account"
-
             android:textColor="@color/colorIcon"
             android:text="ACCOUNT"
             android:textSize="10sp"
-
             android:gravity="center"
             android:includeFontPadding="false"
             android:layout_width="0dp"

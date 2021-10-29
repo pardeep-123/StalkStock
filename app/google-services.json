@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "767500973053",
+    "project_id": "stalk-and-stock",
+    "storage_bucket": "stalk-and-stock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767500973053:android:833c324a20d7f8c48a9f94",
+        "android_client_info": {
+          "package_name": "com.stalkstock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767500973053-s9rthlok03j9l6hrhp9ukqaduc9mtkcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stalkstock",
+            "certificate_hash": "2fa7cce15e03636d84ae3fe5cfd9a282451432cc"
+          }
+        },
+        {
+          "client_id": "767500973053-u17dr7kbn38n5kln529rdt9a78c0f884.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDMzpTmxqQsQaC_Uft2c-w-E044lrIZLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767500973053-u17dr7kbn38n5kln529rdt9a78c0f884.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

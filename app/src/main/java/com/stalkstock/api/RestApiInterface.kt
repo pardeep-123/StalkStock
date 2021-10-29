@@ -4,6 +4,7 @@ import com.stalkstock.advertiser.model.*
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
+import com.stalkstock.consumer.TermsData
 import com.stalkstock.consumer.model.*
 import com.stalkstock.driver.models.*
 import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
@@ -19,18 +20,21 @@ import retrofit2.http.Body
 
 interface RestApiInterface {
 
+
     /*
     vendor:-business@yopmail.com    123456   //promote my goods and services
     consumer:-anikaesash@mailinator.com 123456   // purchase items for my household
+    consumer:-user01@yopmail.com 123456   // purchase items for my household
     driver:-testdriver1@yopmail.com 123456      // offer delivery services
-
     */
+
     /*
 1=>user
 2=>driver
 3=>vendor
 4=>commercial
-5=>advertiser* */
+5=>advertiser
+*/
 
     /*-------------------------------------Common API's-----------------------------*/
 
@@ -121,6 +125,9 @@ interface RestApiInterface {
     fun userlogin(
         @FieldMap map: HashMap<String, String>
     ): Observable<UserLoginResponse>
+
+    @GET(URL.terms)
+    fun termsAndCondition(): Observable<TermsData>
 
     @FormUrlEncoded
     @POST(URL.getProfileDetail)

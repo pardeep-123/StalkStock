@@ -112,9 +112,7 @@ class AdvertiserViewModel: ViewModel() {
                     override fun onRetryApi() {
                         editUserProfile(activity, showLoader, hashMap,firstImage,mUtils)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")

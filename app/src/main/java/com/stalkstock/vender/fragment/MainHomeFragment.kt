@@ -131,7 +131,6 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     }
 
     override fun onChanged(it: RestObservable?) {
-        val bottomnavigationScreen = activity as BottomnavigationScreen
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is ModelVendorProductList) {

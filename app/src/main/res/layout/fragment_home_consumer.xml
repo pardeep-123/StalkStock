@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,10 +34,8 @@
                     android:textSize="16sp"
                     android:visibility="gone" />
 
-
                 <ImageView
                     android:id="@+id/sdgd"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -71,8 +70,8 @@
                     android:layout_marginEnd="15dp"
                     android:layout_toStartOf="@+id/notification"
                     android:src="@drawable/chat_grey_icon1"
-                    app:tint="#ED1F24" />
-
+                    app:tint="#ED1F24"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/notification"
@@ -91,9 +90,7 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/filter_icn1" />
 
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/etSearcha"
@@ -112,7 +109,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/location_icon">
-
                 </ImageView>
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -129,12 +125,10 @@
 
             </RelativeLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="15sp"
-
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15sp"
                 android:orientation="horizontal">
@@ -168,7 +162,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-
                         android:background="@drawable/btn_shape"
                         android:gravity="center"
                         android:text="PICKUP"
@@ -188,7 +181,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-
                         android:background="@drawable/btn_shape_gray"
                         android:gravity="center"
                         android:text="DELIVERY"
@@ -196,7 +188,6 @@
                         android:textColor="@color/green_ss"
                         android:textSize="14sp" />
                 </RelativeLayout>
-
 
             </LinearLayout>
 
@@ -230,7 +221,6 @@
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-
                 android:layout_marginLeft="15sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15sp"
@@ -244,7 +234,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:src="@drawable/search_icon" />
-
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -309,5 +298,4 @@
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

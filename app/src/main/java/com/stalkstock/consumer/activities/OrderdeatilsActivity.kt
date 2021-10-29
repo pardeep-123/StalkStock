@@ -1,6 +1,5 @@
 package com.stalkstock.consumer.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.ManagePaymentsActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.MyorderProductAdapter
@@ -30,11 +28,8 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orderdeatils)
 
-        tvStatus.setOnClickListener({
-            val intent = Intent(applicationContext, ManagePaymentsActivity::class.java)
-            startActivity(intent)
-        })
-        arrowBack.setOnClickListener({ onBackPressed() })
+
+        arrowBack.setOnClickListener { onBackPressed() }
 
         if (intent.hasExtra("orderId"))
             getOrderDetail(intent.getStringExtra("orderId")!!)
@@ -42,7 +37,7 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun getOrderDetail(orderId:String) {
         val hashMap = HashMap<String, String>()
-        hashMap.put("orderId", orderId)
+        hashMap["orderId"] = orderId
         viewModel.getOrderDetailAPI(this, true, hashMap)
         viewModel.homeResponse.observe(this, this)
     }
@@ -55,26 +50,24 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
                     val mResponse: OrderDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         img.loadImage(mResponse.body.orderVendor.shopLogo)
-                        kfc.setText(mResponse.body.orderVendor.shopName)
+                        kfc.text = mResponse.body.orderVendor.shopName
                         if (mResponse.body.orderStatus == 0)
-                            tvStatus.setText("Pending")
-                        tvText.setText("Your order from "+mResponse.body.orderVendor.shopName+" is on the way")
+                            tvStatus.text = "Pending"
+                        tvText.text = "Your order from "+mResponse.body.orderVendor.shopName+" is on the way"
                         mRecyclerView.adapter = MyorderProductAdapter(this,mResponse.body.orderItems)
-                        tvItemTotal.setText("$"+mResponse.body.netAmount)
-                        tvRestCharges.setText("$"+mResponse.body.shopCharges)
-                        tvDeliveryFee.setText("$"+mResponse.body.shippingCharges)
-                        tvTotalAmount.setText("$"+mResponse.body.total)
-                        tvOrderNumber.setText(mResponse.body.orderNo)
-                        tvDateTime.setText(
-                            AppUtils.changeDateFormat(
-                                mResponse.body.updatedAt,
-                                GlobalVariables.DATEFORMAT.DateTimeFormat1,
-                                GlobalVariables.DATEFORMAT.DateTimeFormat2
-                            )
+                        tvItemTotal.text = "$"+mResponse.body.netAmount
+                        tvRestCharges.text = "$"+mResponse.body.shopCharges
+                        tvDeliveryFee.text = "$"+mResponse.body.shippingCharges
+                        tvTotalAmount.text = "$"+mResponse.body.total
+                        tvOrderNumber.text = mResponse.body.orderNo
+                        tvDateTime.text = AppUtils.changeDateFormat(
+                            mResponse.body.updatedAt,
+                            GlobalVariables.DATEFORMAT.DateTimeFormat1,
+                            GlobalVariables.DATEFORMAT.DateTimeFormat2
                         )
                         if (!checkObjectNull(mResponse.body.orderAddress)){
                         if (!checkStringNull(mResponse.body.orderAddress.geoLocation))
-                        tvDeliveryLocation.setText(mResponse.body.orderAddress.geoLocation)
+                            tvDeliveryLocation.text = mResponse.body.orderAddress.geoLocation
                         else {
                             tvDeliveryLocation.visibility = View.GONE
                             textDelivery.visibility = View.GONE

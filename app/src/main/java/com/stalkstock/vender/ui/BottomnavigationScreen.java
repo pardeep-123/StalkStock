@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -44,12 +47,16 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
     TextView tv_home,tv_order,tv_cart,tv_payment,tv_account,tv_bid;
 
 
+   public MutableLiveData<String> muteClick =new MutableLiveData<String>("");
+    LiveData<String> liveClick = muteClick;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottomnavigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomnavigation);
         bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
@@ -65,70 +72,6 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
         tv_cart.setText("MESSAGES");
         tv_account.setText("ACCOUNT");
 
-
-      /*  loadFragment(new MainHomeFragment());
-
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-//                findViewById(R.id.bottomnavigation);
-//        bottomNavigationView.setItemIconTintList(null);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-
-
-
-
-        try {
-
-            try {
-                if(getIntent().getStringExtra("type").equals("my"))
-                {
-                    Fragment fragment = null;
-                    fragment = new AccountFragment();
-                 //   loadFragment( fragment);
-                    bottomNavigationView.setSelectedItemId(R.id.usericon);
-                }
-            }catch (Exception e)
-            {
-                Fragment fragment = null;
-                fragment = new AccountFragment();
-               // loadFragment( fragment);
-            }
-            // change to whichever id should be default
-        }catch (Exception e)
-        {
-        }
-
-        try {
-
-            try {
-                if(getIntent().getStringExtra("data").equals("m"))
-                {
-                    Fragment fragment = null;
-                    fragment = new MessageFragment();
-                 //   loadFragment( fragment);
-                    bottomNavigationView.setSelectedItemId(R.id.action_chat);
-                }
-            }catch (Exception e)
-            {
-                Fragment fragment = null;
-                fragment = new MessageFragment();
-                //loadFragment( fragment);
-            }
-            // change to whichever id should be default
-        }catch (Exception e)
-        {
-        }*/
-
-
-//        if (savedInstanceState == null) {
-//            Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//
-//            if (f instanceof MainHomeFragment) {
-//               // switchFragment(R.id.rl_content_frame, new MainHomeFragment());
-//                loadFragment(new MainHomeFragment());
-//            } else {
-//            }
-//
-//        }
         loadFragment(new MainHomeFragment());
         try {
             home_tab=findViewById(R.id.home_tab);
@@ -150,136 +93,67 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
             tv_bid=findViewById(R.id.tv_bid);
 
 
-            home_tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv_homeTab.setImageResource(R.drawable.home_green_icon1);
-                    iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                    //iv_messageTab.setImageResource(R.drawable.chat_grey_icon1);
-                    iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
-                    iv_paymentTab.setImageResource(R.drawable.a14dooler1);
-                    iv_accountTab.setImageResource(R.drawable.user_black_icon1);
+            home_tab.setOnClickListener(view -> {
+                iv_homeTab.setImageResource(R.drawable.home_green_icon1);
+                iv_orderTab.setImageResource(R.drawable.list_black_icon1);
+                iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
+                iv_paymentTab.setImageResource(R.drawable.a14dooler1);
+                iv_accountTab.setImageResource(R.drawable.user_black_icon1);
 
-                    textColorChange(tv_home,tv_order,tv_bid,tv_payment,tv_account);
+                textColorChange(tv_home,tv_order,tv_bid,tv_payment,tv_account);
 
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof MainHomeFragment) {
-//                        switchFragment(R.id.rl_content_frame, new MainHomeFragment());
-//                    } else {
-//                    }
+                loadFragment(new MainHomeFragment());
 
-                    loadFragment(new MainHomeFragment());
-
-                }
             });
-            order_tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv_homeTab.setImageResource(R.drawable.home_black_icon1);
-                    iv_orderTab.setImageResource(R.drawable.list_green_icon1);
-                 //   iv_messageTab.setImageResource(R.drawable.chat_grey_icon1);
-                    iv_paymentTab.setImageResource(R.drawable.a14dooler1);
-                    iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
-                    iv_accountTab.setImageResource(R.drawable.user_black_icon1);
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof OrdersFragment) {
-//                        switchFragment(R.id.rl_content_frame, new OrdersFragment());
-//                    } else {
-//                    }
-                    textColorChange(tv_order,tv_home,tv_bid,tv_payment,tv_account);
+            order_tab.setOnClickListener(view -> {
+                iv_homeTab.setImageResource(R.drawable.home_black_icon1);
+                iv_orderTab.setImageResource(R.drawable.list_green_icon1);
+                iv_paymentTab.setImageResource(R.drawable.a14dooler1);
+                iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
+                iv_accountTab.setImageResource(R.drawable.user_black_icon1);
 
-                    loadFragment(new OrdersFragment());
+                textColorChange(tv_order,tv_home,tv_bid,tv_payment,tv_account);
 
-                }
-            });
-          /*  message_tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv_homeTab.setImageResource(R.drawable.home_black_icon1);
-                    iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                    iv_messageTab.setImageResource(R.drawable.chat_green_icon1);
-                    iv_paymentTab.setImageResource(R.drawable.a14dooler1);
-                    iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
-                    iv_accountTab.setImageResource(R.drawable.user_black_icon1);
+                loadFragment(new OrdersFragment());
 
-                    textColorChange(tv_bid,tv_order,tv_home,tv_payment,tv_account);
-
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof MessageFragment) {
-//                        switchFragment(R.id.rl_content_frame, new MessageFragment());
-//                    } else {
-//                    }
-
-                    loadFragment(new MessageFragment());
-
-                }
-            });*/
-
-            bid_tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv_homeTab.setImageResource(R.drawable.home_black_icon1);
-                    iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                //    iv_messageTab.setImageResource(R.drawable.chat_grey_icon1);
-                    iv_paymentTab.setImageResource(R.drawable.a14dooler1);
-                    iv_bidTab.setImageResource(R.drawable.ic_bid_green);
-                    iv_accountTab.setImageResource(R.drawable.user_black_icon1);
-
-                    textColorChange(tv_bid,tv_order,tv_home,tv_payment,tv_account);
-
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof MessageFragment) {
-//                        switchFragment(R.id.rl_content_frame, new MessageFragment());
-//                    } else {
-//                    }
-
-                    loadFragment(new BidFragment());
-
-                }
             });
 
-            payment_tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv_homeTab.setImageResource(R.drawable.home_black_icon1);
-                    iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                //    iv_messageTab.setImageResource(R.drawable.chat_grey_icon1);
-                    iv_paymentTab.setImageResource(R.drawable.a13doller1);
-                    iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
-                    iv_accountTab.setImageResource(R.drawable.user_black_icon1);
 
-                    textColorChange(tv_payment,tv_bid,tv_order,tv_home,tv_account);
+            bid_tab.setOnClickListener(view -> {
+                iv_homeTab.setImageResource(R.drawable.home_black_icon1);
+                iv_orderTab.setImageResource(R.drawable.list_black_icon1);
+                iv_paymentTab.setImageResource(R.drawable.a14dooler1);
+                iv_bidTab.setImageResource(R.drawable.ic_bid_green);
+                iv_accountTab.setImageResource(R.drawable.user_black_icon1);
 
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof MessageFragment) {
-//                        switchFragment(R.id.rl_content_frame, new MessageFragment());
-//                    } else {
-//                    }
+                textColorChange(tv_bid,tv_order,tv_home,tv_payment,tv_account);
+                loadFragment(new BidFragment());
 
-                    loadFragment(new PaymentFragment());
-
-                }
             });
-            account_tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    iv_homeTab.setImageResource(R.drawable.home_black_icon1);
-                    iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                 //   iv_messageTab.setImageResource(R.drawable.chat_grey_icon1);
-                    iv_paymentTab.setImageResource(R.drawable.a14dooler1);
-                    iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
-                    iv_accountTab.setImageResource(R.drawable.user_green_icon1);
 
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof AccountFragment) {
-//                        switchFragment(R.id.rl_content_frame, new AccountFragment());
-//                    } else {
-//                    }
-                    textColorChange(tv_account,tv_bid,tv_order,tv_payment,tv_home);
+            payment_tab.setOnClickListener(view -> {
+                iv_homeTab.setImageResource(R.drawable.home_black_icon1);
+                iv_orderTab.setImageResource(R.drawable.list_black_icon1);
+                iv_paymentTab.setImageResource(R.drawable.a13doller1);
+                iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
+                iv_accountTab.setImageResource(R.drawable.user_black_icon1);
 
-                    loadFragment(new AccountFragment());
+                textColorChange(tv_payment,tv_bid,tv_order,tv_home,tv_account);
 
-                }
+
+                loadFragment(new PaymentFragment());
+
+            });
+            account_tab.setOnClickListener(view -> {
+                iv_homeTab.setImageResource(R.drawable.home_black_icon1);
+                iv_orderTab.setImageResource(R.drawable.list_black_icon1);
+                iv_paymentTab.setImageResource(R.drawable.a14dooler1);
+                iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
+                iv_accountTab.setImageResource(R.drawable.user_green_icon1);
+                textColorChange(tv_account,tv_bid,tv_order,tv_payment,tv_home);
+
+                loadFragment(new AccountFragment());
+
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -291,34 +165,21 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
             try {
                 if(getIntent().getStringExtra("type").equals("my"))
                 {
-//                    Fragment fragment = null;
-//                    fragment = new AccountFragment();
-//                    //   loadFragment( fragment);
-//                    bottomNavigationView.setSelectedItemId(R.id.usericon);
-
                     iv_homeTab.setImageResource(R.drawable.home_black_icon1);
                     iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                  //  iv_messageTab.setImageResource(R.drawable.chat_grey_icon1);
                     iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
                     iv_paymentTab.setImageResource(R.drawable.a14dooler1);
                     iv_accountTab.setImageResource(R.drawable.user_green_icon1);
 
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof AccountFragment) {
-//                        switchFragment(R.id.rl_content_frame, new AccountFragment());
-//                    } else {
-//                    }
+
                     textColorChange(tv_account,tv_bid,tv_order,tv_payment,tv_home);
 
                     loadFragment(new AccountFragment());
                 }
             }catch (Exception e)
             {
-//                Fragment fragment = null;
-//                fragment = new AccountFragment();
-                // loadFragment( fragment);
+
             }
-            // change to whichever id should be default
         }catch (Exception e)
         {
         }
@@ -328,23 +189,11 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
             try {
                 if(getIntent().getStringExtra("data").equals("m"))
                 {
-//                    Fragment fragment = null;
-//                    fragment = new MessageFragment();
-//                    //   loadFragment( fragment);
-//                    bottomNavigationView.setSelectedItemId(R.id.action_chat);
                     iv_homeTab.setImageResource(R.drawable.home_black_icon1);
                     iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                 //   iv_messageTab.setImageResource(R.drawable.chat_green_icon1);
                     iv_paymentTab.setImageResource(R.drawable.a14dooler1);
                     iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
                     iv_accountTab.setImageResource(R.drawable.user_black_icon1);
-
-
-//                    Fragment f = getSupportFragmentManager().findFragmentById(R.id.rl_content_frame);
-//                    if (f instanceof MessageFragment) {
-//                        switchFragment(R.id.rl_content_frame, new MessageFragment());
-//                    } else {
-//                    }
                     textColorChange(tv_bid,tv_order,tv_home,tv_payment,tv_account);
 
                     loadFragment(new MessageFragment());
@@ -353,23 +202,26 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
                 }
             }catch (Exception e)
             {
-//                Fragment fragment = null;
-//                fragment = new MessageFragment();
-                //loadFragment( fragment);
+
             }
-            // change to whichever id should be default
         }catch (Exception e)
         {
             e.printStackTrace();
         }
+
+        liveClick.observe(this, s -> {
+            if(s.equals("payments"))
+            {
+                payment_tab.performClick();
+            }
+            if(s.equals("bids"))
+            {
+                bid_tab.performClick();
+            }
+        });
+
     }
 
-
-    protected void switchFragment(Integer main_frame, Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(main_frame, fragment);
-        fragmentTransaction.commit();
-    }
     private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,fragment).commit();
@@ -386,9 +238,6 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
                 break;
             case R.id.listicon:
                 fragment = new OrdersFragment();
-              //  Intent intent2= new Intent(BottomnavigationScreen.this, Orders.class);
-              //  startActivity(intent2);
-
                 break;
 
             case R.id.action_chat:

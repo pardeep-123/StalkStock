@@ -1,13 +1,21 @@
 package com.stalkstock.advertiser.activities
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.stalkstock.api.Status
 import com.stalkstock.MyApplication
 import com.stalkstock.R
@@ -23,24 +31,30 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.driver.SignupActivity
 import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.FacebookHelper
+import com.stalkstock.utils.FacebookHelper.*
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
+class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable>,
+    FacebookHelperCallback {
 
     val viewModel: HomeViewModel by viewModels()
-
     val mContext: Context = this
-    override fun getContentId(): Int {
-        return R.layout.activity_login
-    }
+    var facebookHelper: FacebookHelper? = null
+    var isFb = ""
+    private var googleSignInClient: GoogleSignInClient? = null
+    private val RC_SIGN_IN = 9001
+    var social_image=""
+    var social_id=""
+    var social_email=""
+    var social_name=""
+
+    override fun getContentId(): Int { return R.layout.activity_login }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv_forgot_password.setOnClickListener(this)
         tv_signup.setOnClickListener(this)
         btn_signin.setOnClickListener(this)
@@ -48,14 +62,51 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         back.setOnClickListener(this)
 
         iv_fb.setOnClickListener {
-//            goingToHome()
+            isFb = "fb"
+            facebookHelper!!.login(this)
+            iv_fb.isEnabled = false
         }
         iv_gmail.setOnClickListener {
-//            goingToHome()
+            iv_gmail.isEnabled = false
+            val signInIntent = googleSignInClient!!.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
         }
+        facebookHelper = FacebookHelper(this)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
 
-        iv_twitter.setOnClickListener {
-//            goingToHome()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        iv_gmail.isEnabled = true
+        iv_fb.isEnabled = true
+
+        if (requestCode == RC_SIGN_IN ) {
+            try {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                handleSignInResult(task)
+            }
+            catch (e: Exception) {e.printStackTrace() }
+        }
+        else {
+            if (isFb == "fb"){
+                facebookHelper!!.onResult(requestCode, resultCode, data)
+            }
+        }
+    }
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+
+            // Signed in successfully, show authenticated UI.
+            callGoogleApi(account)
+        } catch (e: ApiException) {
+            Log.w("TAG", "signInResult:failed code=" + e.statusCode)
+            e.printStackTrace()
         }
     }
 
@@ -65,7 +116,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 startActivity(Intent(mContext, ForgotPasswordActivity::class.java))
             }
             R.id.back -> {
-                // super.onBackPressed();
                 startActivity(Intent(this@LoginActivity, SelectuserActivity::class.java))
                 finishAffinity()
             }
@@ -81,11 +131,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 {
                     startActivity(Intent(mContext, MainCommercialActivity::class.java))
                     finishAffinity()
-                }/*else if(userType.equals("2"))
-                {
-                    startActivity(Intent(mContext, HomeActivity::class.java))
-                    finishAffinity()
-                }*/
+                }
                 else {
                     emailEdittext.text.toString()
                     passwordEdittext.text.toString()
@@ -96,8 +142,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     }
 
     override fun onBackPressed() {
-        //  super.onBackPressed()
-        // super.onBackPressed();
         startActivity(Intent(this@LoginActivity, SelectuserActivity::class.java))
         finishAffinity()
     }
@@ -128,19 +172,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     }
 
     private fun goingToSignUp() {
-        /* OLD
-* 1-adv
-* 2-commercial
-* 3-consumer
-* 4-vendor
-* 5-driver
-* */
-        /*
-    1=>user
-    2=>driver
-    3=>vendor
-    4=>commercial
-    5=>advertiser* */
 
         when {
             MyApplication.instance.getString("usertype").equals("4") -> {
@@ -163,7 +194,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     }
 
     private fun setValidation() {
-        // Check for a valid email address.
         if (emailEdittext.text.toString().isEmpty()) {
             emailEdittext.requestFocus()
             emailEdittext.error = resources.getString(R.string.please_enter_email)
@@ -171,14 +201,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
             emailEdittext.requestFocus()
             emailEdittext.error = resources.getString(R.string.please_enter_valid_email)
         }
-        // Check for a valid password.
         else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = resources.getString(R.string.please_enter_password)
         } else {
-            /***
-             * Data willl set here to sent in api call
-             */
+
             val userType = MyApplication.instance.getString("usertype")
             if (userType.equals("5")){
                 val hashMap = HashMap<String, String>()
@@ -195,18 +222,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                 hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
                 hashMap[GlobalVariables.PARAM.device_type] = GlobalVariables.PARAM.android_device_type
                 hashMap[GlobalVariables.PARAM.device_token] = getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "666666")
-                //Api will call here
                 viewModel.postuserloginApi(this, true, hashMap)
                 viewModel.homeResponse.observe(this, this)
             }
             }
 
-//            if(!getPrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, "").isNullOrEmpty()){
-//                viewModel.postuserloginApi(this, true,hashMap)
-//                viewModel.homeResponse.observe(this, this)
-//            }else{
-//                Toast.makeText(this, "Device token is required ", Toast.LENGTH_SHORT).show()
-//            }
         }
 
     override fun onChanged(it: RestObservable?) {
@@ -227,8 +247,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                             }
                         }
                         goingToHome()
-                    } else {
-                       //  Toast.makeText(this, mResponse.message.toString())
                     }
                 }
             }
@@ -237,7 +255,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -445,5 +462,64 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         savePrefrence(GlobalVariables.SHARED_PREF_USER.createdAt, mResponse.body.createdAt)
         savePrefrence(GlobalVariables.SHARED_PREF_USER.updatedAt, mResponse.body.updatedAt)
     }
+
+    override fun onSuccessFacebook(bundle: Bundle?) {
+        LoginManager.getInstance().logOut()
+        iv_fb.isEnabled = true
+        iv_gmail.isEnabled = true
+        val firstName = bundle!!.getString(FIRST_NAME)
+        val lastName = bundle.getString(LAST_NAME)
+        social_name= "$firstName $lastName"
+        social_id = bundle.getString(FACEBOOK_ID)!!
+        social_image=bundle.getString(PROFILE_PIC)!!
+
+        if (bundle.getString(EMAIL)!=null){
+            social_email =  bundle.getString(EMAIL)!!
+            api("1",social_name,social_email,social_id,social_image)
+        }
+
+    }
+
+    override fun onCancelFacebook() {
+        iv_fb.isEnabled = true
+        iv_gmail.isEnabled = true
+        Log.e("facebook", "facebook:onCancel")
+    }
+    override fun onErrorFacebook(ex: FacebookException?) {
+
+        iv_fb.isEnabled = true
+        iv_gmail.isEnabled = true
+        Log.d("facebook", "facebook:onError", ex)
+    }
+
+    private fun callGoogleApi(account: GoogleSignInAccount?) {
+         Log.e("TAG", "firebaseAuthWithGoogle:" + account!!.id)
+         Log.e("TAG", "firebaseAuthWithGoogle:" + account.displayName)
+         social_id = account.id!!
+         social_email = account.email!!
+         social_name = account.displayName!!
+         social_image = account.photoUrl!!.toString()
+         socialLogin(account,"2")
+    }
+    private fun socialLogin(socialAuthId: GoogleSignInAccount?, socialType:String){
+
+        if(socialAuthId!!.email==null){
+            api(
+                socialType,
+                socialAuthId.displayName!!,
+                socialAuthId.email!!,
+                socialAuthId.id!!,
+                social_image)
+        }
+        else{
+            api(socialType,socialAuthId.displayName!!,
+                socialAuthId.email!!,socialAuthId.id!!,
+                social_image)
+        }
+        googleSignInClient!!.signOut()
+        LoginManager.getInstance().logOut()
+    }
+
+    private fun api(socialType: String, displayName: String, email: String, uid: String, socialImage: Any) {}
 
 }

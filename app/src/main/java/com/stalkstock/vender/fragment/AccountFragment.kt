@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.ChangePasswordActivity
 import com.stalkstock.advertiser.activities.HelpActivity
@@ -20,7 +21,6 @@ import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.model.UserCommonModel
-import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.clearPrefrences
 import com.stalkstock.vender.Model.VendorProfileDetail
@@ -78,7 +78,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
     private fun notificationOnOffAPI(s: String) {
         val map = HashMap<String, RequestBody>()
         val mainConsumerActivity = activity as BottomnavigationScreen
-        map.put("status", mainConsumerActivity.mUtils.createPartFromString(s))
+        map["status"] = mainConsumerActivity.mUtils.createPartFromString(s)
         viewModel.notification_on_offAPI(mainConsumerActivity, true, map)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
 
@@ -101,8 +101,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
 
 
     override fun onClick(view: View) {
-        val id = view.id
-        when (id) {
+        when (view.id) {
             R.id.profileediticon -> {
                 val intent = Intent(activity, EditProfile::class.java)
                 startActivity(intent)
@@ -116,19 +115,18 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 startActivity(intent3)
             }
             R.id.bidproduct -> {
-                val intent4 = Intent(activity, BidProduct::class.java)
-                startActivity(intent4)
+                (view.context as BottomnavigationScreen).muteClick.value = "bids"
+
             }
             R.id.subscription -> {
                 val intent5 = Intent(activity, Subscription::class.java)
                 startActivity(intent5)
             }
             R.id.payments -> {
-                val intent6 = Intent(activity, PaymentAccounts::class.java)
-                startActivity(intent6)
+
+                (view.context as BottomnavigationScreen).muteClick.value = "payments"
             }
             R.id.chnagepassword -> {
-//                val intent7 = Intent(activity, ChangePassword::class.java)
                 val intent7 = Intent(activity, ChangePasswordActivity::class.java)
                 startActivity(intent7)
             }
@@ -137,40 +135,6 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 startActivity(intent)
             }
             R.id.ll_1 -> {
-                //showDialog()
-
-                /* LayoutInflater inflate= LayoutInflater.from(getActivity());
-                View v= inflate.inflate(R.layout.logout_alert_box,null);
-                final AlertDialog deleteDialog = new AlertDialog.Builder(getActivity()).create();
-                deleteDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                deleteDialog.setView(v);
-                final Button btnyes= v.findViewById(R.id.logout_yesbtn);
-                final Button buttonno=v.findViewById(R.id.logout_nobtn);
-                btnyes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        btnyes.setBackground(getResources().getDrawable(R.drawable.logoutshape));
-                        buttonno.setBackground(getResources().getDrawable(R.drawable.buttonshape));
-                        btnyes.setTextColor(getResources().getColor(R.color.white));
-                        buttonno.setTextColor(getResources().getColor(R.color.balck));
-
-                        deleteDialog.dismiss();
-                    }
-                });
-                buttonno.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        buttonno.setBackground(getResources().getDrawable(R.drawable.current_button));
-                        btnyes.setBackground(getResources().getDrawable(R.drawable.past_button));
-                        buttonno.setTextColor(getResources().getColor(R.color.white));
-                        btnyes.setTextColor(getResources().getColor(R.color.balck));
-                        Intent intent9 = new Intent(getActivity(), LoginScreen.class);
-                        startActivity(intent9);
-                        requireActivity().finish();
-                        deleteDialog.dismiss();
-                    }
-                });
-                deleteDialog.show();*/
                 val logoutUpdatedDialog2 = Dialog(requireContext())
                 logoutUpdatedDialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 logoutUpdatedDialog2.setContentView(R.layout.logout_alert_box)
@@ -202,7 +166,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 logoutUpdatedDialog2.show()
             }
         }
-    } //    private void showDialog() {
+    }
 
     private fun logoutAPI() {
         val mainConsumerActivity = activity as BottomnavigationScreen
@@ -219,19 +183,18 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        if (from.equals("logout")) {
+                        if (from == "logout") {
                             val intent = Intent(activity, LoginActivity::class.java)
-                            // intent.putExtra("is_open","1");
                             startActivity(intent)
                             requireActivity().finishAffinity()
                             clearPrefrences()
                         } else
                             AppUtils.showSuccessAlert(
                                 requireActivity(),
-                                mResponse.message.toString()
+                                mResponse.message
                             )
                     } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
                 if (it.data is VendorProfileDetail) {
@@ -240,7 +203,6 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                         setData(mResponse)
 
                     } else {
-//                        AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
                 }
 
@@ -251,7 +213,6 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
                 } else {
                     Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
                         .show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -260,10 +221,11 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
     }
 
     private fun setData(mResponse: VendorProfileDetail) {
-        imguser.loadImage(mResponse.body.vendorDetail.image)
-        profileusename.setText(mResponse.body.vendorDetail.firstName + " " + mResponse.body.vendorDetail.lastName)
-        emaildID.setText(mResponse.body.email)
-        if (mResponse.body.notification.equals("on")) {
+
+        Glide.with(this).load(mResponse.body.vendorDetail.image).into(imguser as ImageView)
+        profileusename.text = mResponse.body.vendorDetail.firstName + " " + mResponse.body.vendorDetail.lastName
+        emaildID.text = mResponse.body.email
+        if (mResponse.body.notification == "on") {
             toggle_off2.visibility = View.VISIBLE
             toggle1.visibility = View.GONE
         } else {

@@ -1,4 +1,4 @@
-package com.stalkstock.driver;
+package com.stalkstock.driver
 
 import android.os.Bundle
 import android.widget.Toast

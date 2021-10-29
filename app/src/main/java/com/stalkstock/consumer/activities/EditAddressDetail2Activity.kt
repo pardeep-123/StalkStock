@@ -56,11 +56,8 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
         mMap = p0
 
         if (mLatitude != "") {
-            val sydney: LatLng
-            sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
+            val sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
 
-
-//            getAddress(mLatitude.toDouble(), mLongitude.toDouble())
             pinMarker = mMap!!.addMarker(
                 MarkerOptions()
                     .position(sydney)
@@ -89,8 +86,7 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
             mLatitude = target!!.latitude.toString()
             mLongitude = target!!.longitude.toString()
             if (pinMarker == null) {
-                val sydney: LatLng
-                sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
+                val sydney = LatLng(mLatitude.toDouble(), mLongitude.toDouble())
 
                 pinMarker = mMap!!.addMarker(
                     MarkerOptions()
@@ -106,9 +102,7 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
                                     70,
                                     120,
                                     false
-                                )
-                            )
-                        )
+                                )))
                 )
 
                 val zoomLevel = 16.0f //This goes up to 21
@@ -116,12 +110,6 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
 
             }
             pinMarker!!.position = target
-/*
-            Log.e(
-                "current LatLong>>",
-                target.latitude.toString() + "------" + target.longitude.toString()
-            )
-*/
         }
         mMap!!.setOnCameraIdleListener {
 
@@ -129,7 +117,6 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
                 getAddress(target!!.latitude, target!!.longitude)
 
         }
-
     }
 
     private var target: LatLng? = null
@@ -141,42 +128,37 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
     var postalCode = ""
     var knownName = ""
 
-    fun getAddress(latitude: Double, longitude: Double) {
-        val geocoder: Geocoder
-        val addresses: List<Address>
-        geocoder = Geocoder(this, Locale.getDefault())
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
 
-        addresses = geocoder.getFromLocation(
+        val addresses: List<Address> = geocoder.getFromLocation(
             latitude,
             longitude,
             1
-        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-
+        )
         geoLocation =
-            addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-        tvLocation.setText(geoLocation)
+            addresses[0].getAddressLine(0)
+        tvLocation.text = geoLocation
 
-        if (addresses[0].getLocality() != null) {
-            city = addresses[0].getLocality()
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
             edtCity.setText(city)
         }
-        if (addresses[0].getAdminArea() != null) {
-            state = addresses[0].getAdminArea()
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
             edtState.setText(state)
         }
-        if (addresses[0].getCountryName() != null) {
-            country = addresses[0].getCountryName()
+        if (addresses[0].countryName != null) {
+            country = addresses[0].countryName
             spinner.setSelection(foodadapter.getPosition(country))
         }
-        if (addresses[0].getPostalCode() != null) {
-            postalCode = addresses[0].getPostalCode()
+        if (addresses[0].postalCode != null) {
+            postalCode = addresses[0].postalCode
             edtPostalCode.setText(postalCode)
         }
-        if (addresses[0].getFeatureName() != null) {
-            knownName = addresses[0].getFeatureName() // Only if available else return NULL
+        if (addresses[0].featureName != null) {
+            knownName = addresses[0].featureName
             edtStreetAddress.setText(knownName)
-//            tv_ll.setText(knownName)
         }
 
 
@@ -199,7 +181,6 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
         } else {
             2
         }
-
 
         ivBackAddress.setOnClickListener { onBackPressed() }
         btnEdit.setOnClickListener { saveAddressAPI() }
@@ -257,25 +238,15 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
             )
 
         }
-//        tvTagHome.setOnClickListener {
-//           // changeColor(tvTagHome,tvTagWork,tvTagHotel,tvTagOther)
-//        }
-//        tvTagWork.setOnClickListener {
-//           // changeColor(tvTagWork,tvTagHome,tvTagHotel,tvTagOther)
-//        }
+
         tvTagHotel.setOnClickListener {
-            // changeColor(tvTagHotel,tvTagHome,tvTagWork,tvTagOther)
         }
-//        tvTagOther.setOnClickListener {
-//           // changeColor(tvTagOther,tvTagHotel,tvTagHome,tvTagWork)
-//        }
+
 
         if (MyApplication.instance.getString("usertype").equals("4")) {
             rl_work.visibility = View.GONE
             tvTagHome.text = "Business"
             iv_home_edit.setImageResource(R.drawable.ic_work_for_edit)
-        } else {
-
         }
 
         foodadapter = ArrayAdapter.createFromResource(
@@ -316,79 +287,65 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
 
     private fun setData(body: ModelUserAddressList.Body) {
         currentAddressId= body.id.toString()
-        tvLocation.setText(body.geoLocation)
+        tvLocation.text = body.geoLocation
         edtFloor.setText(body.address_line2)
         edtStreetAddress.setText(body.street_address)
         edtCity.setText(body.city)
         edtState.setText(body.state)
-        edtPostalCode.setText(body.zipcode.toString())
+        edtPostalCode.setText(body.zipcode)
         mLatitude = body.latitude
         mLongitude = body.longitude
 
         if (body.country != null && body.country != "")
             spinner.setSelection(foodadapter.getPosition(body.country))
-//        val selectCountry = R.array.Select_country
         edtDeliveryInstructions.setText(body.special_instruction)
 
-        if (body.type.equals("1")) {
-            selectedAddressType = "1"
-            changeColorRelative(
-                rl_home,
-                iv_home_edit,
-                tvTagHome,
-                rl_work,
-                iv_work_edit,
-                tvTagWork,
-                rl_other,
-                iv_loca_edit,
-                tvTagOther
-            )
+        when (body.type) {
+            "1" -> {
+                selectedAddressType = "1"
+                changeColorRelative(
+                    rl_home,
+                    iv_home_edit,
+                    tvTagHome,
+                    rl_work,
+                    iv_work_edit,
+                    tvTagWork,
+                    rl_other,
+                    iv_loca_edit,
+                    tvTagOther
+                )
 
-        } else if (body.type.equals("2")) {
-            selectedAddressType = "2"
-            changeColorRelative(
-                rl_work,
-                iv_work_edit,
-                tvTagWork,
-                rl_home,
-                iv_home_edit,
-                tvTagHome,
-                rl_other,
-                iv_loca_edit,
-                tvTagOther
-            )
-        } else if (body.type.equals("3")) {
-            selectedAddressType = "3"
-            changeColorRelative(
-                rl_other,
-                iv_loca_edit,
-                tvTagOther,
-                rl_home,
-                iv_home_edit,
-                tvTagHome,
-                rl_work,
-                iv_work_edit,
-                tvTagWork
-            )
+            }
+            "2" -> {
+                selectedAddressType = "2"
+                changeColorRelative(
+                    rl_work,
+                    iv_work_edit,
+                    tvTagWork,
+                    rl_home,
+                    iv_home_edit,
+                    tvTagHome,
+                    rl_other,
+                    iv_loca_edit,
+                    tvTagOther
+                )
+            }
+            "3" -> {
+                selectedAddressType = "3"
+                changeColorRelative(
+                    rl_other,
+                    iv_loca_edit,
+                    tvTagOther,
+                    rl_home,
+                    iv_home_edit,
+                    tvTagHome,
+                    rl_work,
+                    iv_work_edit,
+                    tvTagWork
+                ) }
         }
     }
 
-    private fun changeColor(
-        textview1: TextView,
-        textview2: TextView,
-        textview3: TextView,
-        textview4: TextView
-    ) {
-        //textview1.setBackgroundColor(Color.parseColor("#7DBB00"))
-//        textview1.setTextColor(Color.parseColor("#FFFFFF"))
-//        textview2.setBackgroundColor(Color.parseColor("#C3C3C3"))
-//        textview2.setTextColor(Color.parseColor("#000000"))
-//        textview3.setBackgroundColor(Color.parseColor("#C3C3C3"))
-//        textview3.setTextColor(Color.parseColor("#000000"))
-//        textview4.setBackgroundColor(Color.parseColor("#C3C3C3"))
-//        textview4.setTextColor(Color.parseColor("#000000"))
-
-    }
 
 
     private fun changeColorRelative(
@@ -400,28 +357,19 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
         tv2: TextView,
         rl3: RelativeLayout,
         im3: ImageView,
-        tv3: TextView /*,rl4: RelativeLayout, im4: ImageView,tv4:TextView*/
+        tv3: TextView
     ) {
         rl.setBackgroundColor(Color.parseColor("#7DBB00"))
-        im.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
+        im.setColorFilter(resources.getColor(R.color.white), PorterDuff.Mode.SRC_IN)
         tv.setTextColor(Color.parseColor("#FFFFFF"))
 
         rl2.setBackgroundColor(Color.parseColor("#C3C3C3"))
-        im2.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+        im2.setColorFilter(resources.getColor(R.color.black), PorterDuff.Mode.SRC_IN)
         tv2.setTextColor(Color.parseColor("#000000"))
 
         rl3.setBackgroundColor(Color.parseColor("#C3C3C3"))
-        im3.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+        im3.setColorFilter(resources.getColor(R.color.black), PorterDuff.Mode.SRC_IN)
         tv3.setTextColor(Color.parseColor("#000000"))
-
-
-        // im.setTextColor(Color.parseColor("#FFFFFF"))
-        /*  textview2.setBackgroundColor(Color.parseColor("#C3C3C3"))
-          textview2.setTextColor(Color.parseColor("#000000"))
-          textview3.setBackgroundColor(Color.parseColor("#C3C3C3"))
-          textview3.setTextColor(Color.parseColor("#000000"))
-          textview4.setBackgroundColor(Color.parseColor("#C3C3C3"))
-          textview4.setTextColor(Color.parseColor("#000000"))*/
 
     }
 
@@ -449,13 +397,13 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(this, mResponse.message.toString())
+                        AppUtils.showSuccessAlert(this, mResponse.message)
                         Handler(Looper.getMainLooper()).postDelayed({
                             finish()
                             //Do something after 100ms
                         }, 2000)
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
             }
@@ -464,7 +412,6 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {

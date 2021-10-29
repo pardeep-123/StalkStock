@@ -1,7 +1,6 @@
 package com.stalkstock.consumer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -9,13 +8,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.stalkstock.R;
-import com.stalkstock.consumer.adapter.MangeaddressAdapter;
+import com.stalkstock.consumer.adapter.ManageAddressAdapter;
 
 
 public class ManageaddressActivity extends AppCompatActivity {
     ManageaddressActivity context;
     RecyclerView mangeaddress_recycle;
-    MangeaddressAdapter adapter;
+    ManageAddressAdapter adapter;
     Button btn_signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

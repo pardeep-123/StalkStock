@@ -33,27 +33,22 @@ import okhttp3.RequestBody
 import java.util.*
 
 class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
+
     private var whichApi = ""
     private var currentSubCatID = ""
     private lateinit var titleAdapter: TitleAdapter
-
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-
     private var reset = false
     private var currentOffset = 0
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
-
     private var mLat: Double = 0.0
     private var mLong: Double = 0.0
     var stAddress = ""
-
     private var currentCatId = ""
     var currentDeliveryType = "0" // 0- pickup,1-deelivery , 2 -all
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
-
-
     var context: HomedetailsActivity? = null
     lateinit var detail_recycle: RecyclerView
     lateinit var adapter: HomedetailAdapter
@@ -75,27 +70,21 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     lateinit var inprogress_view1: View
     lateinit var inprogress_view2: View
     lateinit var rv_title: RecyclerView
-    override fun getContentId(): Int {
-        return R.layout.activity_homedetails
-    }
 
-    override fun onPermissionGranted() {
-    }
+    override fun getContentId(): Int { return R.layout.activity_homedetails }
+
+    override fun onPermissionGranted() {}
 
     override fun onLocationGet(latitude: String?, longitude: String?) {
         mLat = latitude!!.toDouble()
         mLong = longitude!!.toDouble()
-        completeAddress(latitude!!.toDouble(), longitude!!.toDouble())
+        completeAddress(latitude.toDouble(), longitude.toDouble()) }
 
-    }
-
-    fun completeAddress(latitude: Double, longitude: Double) {
+    private fun completeAddress(latitude: Double, longitude: Double) {
         try {
-            val geocoder: Geocoder
-            val addresses: List<Address>
-            geocoder = Geocoder(this, Locale.getDefault())
+            val geocoder = Geocoder(this, Locale.getDefault())
 
-            addresses = geocoder.getFromLocation(
+            val addresses: List<Address> = geocoder.getFromLocation(
                 latitude,
                 longitude,
                 1
@@ -114,10 +103,9 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
         }
 
 
-        txtLocation.setText(stAddress)
+        txtLocation.text = stAddress
 
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,9 +129,9 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
         fillter = findViewById(R.id.fillter)
         search = findViewById(R.id.search)
         oll = findViewById(R.id.oll)
-        oll.setOnClickListener(View.OnClickListener { onBackPressed() })
+        oll.setOnClickListener { onBackPressed() }
         checkPermissionLocation()
-        meat.setOnClickListener(View.OnClickListener {
+        meat.setOnClickListener {
             chat.setTextColor(resources.getColor(R.color.theme_green))
             group.setTextColor(resources.getColor(R.color.home_grey))
             fish_text.setTextColor(resources.getColor(R.color.home_grey))
@@ -152,55 +140,44 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             inprogress_view.setBackgroundColor(resources.getColor(R.color.home_grey))
             inprogress_view1.setBackgroundColor(resources.getColor(R.color.home_grey))
             inprogress_view2.setBackgroundColor(resources.getColor(R.color.home_grey))
-        })
-        dairy.setOnClickListener(View.OnClickListener {
+        }
+        dairy.setOnClickListener {
             chat.setTextColor(resources.getColor(R.color.home_grey))
             group.setTextColor(resources.getColor(R.color.theme_green))
             fish_text.setTextColor(resources.getColor(R.color.home_grey))
             food_text.setTextColor(resources.getColor(R.color.home_grey))
-
-            /*  request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view.setBackgroundColor(getResources().getColor(R.color.theme_green));
-                    inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));*/request_view.setBackgroundColor(
-            resources.getColor(R.color.home_grey)
-        )
+            request_view.setBackgroundColor(
+                resources.getColor(R.color.home_grey)
+            )
             inprogress_view.setBackgroundColor(resources.getColor(R.color.theme_green))
             inprogress_view1.setBackgroundColor(resources.getColor(R.color.home_grey))
             inprogress_view2.setBackgroundColor(resources.getColor(R.color.home_grey))
-        })
-        fish.setOnClickListener(View.OnClickListener {
+        }
+        fish.setOnClickListener {
             chat.setTextColor(resources.getColor(R.color.home_grey))
             group.setTextColor(resources.getColor(R.color.home_grey))
             fish_text.setTextColor(resources.getColor(R.color.theme_green))
             food_text.setTextColor(resources.getColor(R.color.home_grey))
-
-            /*  request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view1.setBackgroundColor(getResources().getColor(R.color.theme_green));
-                    inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));*/request_view.setBackgroundColor(
-            resources.getColor(R.color.home_grey)
-        )
+            request_view.setBackgroundColor(
+                resources.getColor(R.color.home_grey)
+            )
             inprogress_view.setBackgroundColor(resources.getColor(R.color.home_grey))
             inprogress_view1.setBackgroundColor(resources.getColor(R.color.theme_green))
             inprogress_view2.setBackgroundColor(resources.getColor(R.color.home_grey))
-        })
-        food.setOnClickListener(View.OnClickListener {
+        }
+        food.setOnClickListener {
             chat.setTextColor(resources.getColor(R.color.home_grey))
             group.setTextColor(resources.getColor(R.color.home_grey))
             fish_text.setTextColor(resources.getColor(R.color.home_grey))
             food_text.setTextColor(resources.getColor(R.color.theme_green))
 
-            /* request_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view1.setBackgroundColor(getResources().getColor(R.color.home_grey));
-                    inprogress_view1.setBackgroundColor(getResources().getColor(R.color.theme_green));*/request_view.setBackgroundColor(
-            resources.getColor(R.color.home_grey)
-        )
+            request_view.setBackgroundColor(
+                resources.getColor(R.color.home_grey)
+            )
             inprogress_view.setBackgroundColor(resources.getColor(R.color.home_grey))
             inprogress_view1.setBackgroundColor(resources.getColor(R.color.home_grey))
             inprogress_view2.setBackgroundColor(resources.getColor(R.color.theme_green))
-        })
+        }
         ivNotification.setOnClickListener {
             val intent = Intent(context, NotificationFirstActivity::class.java)
             startActivity(intent)
@@ -211,10 +188,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            /*val intent = Intent(context, SearchScreen::class.java)
-            intent.putExtra("currentDeliveryType", currentDeliveryType.toString())
-            intent.putExtra("whichScreen", "0")
-            startActivity(intent)*/
+
         }
         fillter.setOnClickListener {
             val intent = Intent(this, FilterActivity::class.java)
@@ -222,26 +196,9 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             resultLauncher.launch(intent)
         }
         adapter = HomedetailAdapter(this, currentModel, currentDeliveryType, null)
-        detail_recycle.setLayoutManager(LinearLayoutManager(context))
-        detail_recycle.setAdapter(adapter)
-        detail_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!recyclerView.canScrollVertically(1)) {
-                    if (currentOffset > 1 && currentModel.size > 4) {
-                        currentOffset += 5
-                        getProductAsPerCatSub()
-                    }
-                }
+        detail_recycle.adapter = adapter
 
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
         setTitleAdapter()
-
 
         currentCatId = intent.getStringExtra("catId")!!
         currentDeliveryType = intent.getStringExtra("currentDeliveryType")!!
@@ -252,17 +209,14 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    // There are no request codes
                     val data: Intent? = result.data
                     currentLowPrice = data!!.getStringExtra("lowPrice")!!
                     currentHighPrice = data!!.getStringExtra("highPrice")!!
                     currentSortBy = data!!.getStringExtra("sortBy")!!
-
                     reset = true
                     getProductAsPerCatSub()
                 }
             }
-
         getSubCategories()
     }
 
@@ -283,8 +237,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
 
     private fun setTitleAdapter() {
         titleAdapter = TitleAdapter(this, listSub)
-        rv_title!!.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
         rv_title!!.adapter = titleAdapter
     }
 
@@ -314,25 +267,23 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             it.status == Status.ERROR -> {
                 if (it.data != null) {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
-                    if (whichApi.equals("subCat"))
+                    if (whichApi == "subCat")
                         finish()
-                    else if (whichApi.equals("productList")) {
+                    else if (whichApi == "productList") {
                         currentModel.clear()
                         adapter!!.notifyDataSetChanged()
                     }
                 } else {
                     Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-                    if (whichApi.equals("subCat"))
+                    if (whichApi == "subCat")
                         finish()
-                    else if (whichApi.equals("productList")) {
+                    else if (whichApi == "productList") {
                         currentModel.clear()
                         adapter!!.notifyDataSetChanged()
                     }
-//                    showAlerterRed()
                 }
             }
-            it.status == Status.LOADING -> {
-            }
+            it.status == Status.LOADING -> { }
         }
     }
 
@@ -363,41 +314,26 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     }
 
     fun setSelectedSubCategoryID(sliderItemTitleModel: SliderItemTitleModel) {
-        val get = listSubCategoryBody.get(listSub.indexOf(sliderItemTitleModel))
+        val get = listSubCategoryBody[listSub.indexOf(sliderItemTitleModel)]
         currentSubCatID = get.id.toString()
 
         getProductAsPerCatSub()
     }
 
-    /*Params Can be used in API:-
-    offset:0
-limit:10
-categoryId:38
-sortBy:high_to_low ----sort by high_to_low => high to low low_to_high =>low to high
-lowPrice:0
-highPrice:60
-subCategoryId :
-latitude:30.862749
-deliveryType =0 pickup , 1 deli 2- all
-longitude:75.901640
-search:c78 ----not compulsory
-    * */
     private fun getProductAsPerCatSub() {
         if (reset) {
             currentOffset = 0
             currentModel.clear()
         }
         val map = HashMap<String, RequestBody>()
-        map.put("offset", mUtils.createPartFromString(currentOffset.toString()))
-        map.put("limit", mUtils.createPartFromString("5"))
-        map.put("subCategoryId", mUtils.createPartFromString(currentSubCatID))
-        map.put("categoryId", mUtils.createPartFromString(currentCatId))
-        map.put("sortBy", mUtils.createPartFromString(currentSortBy))
-        map.put("lowPrice", mUtils.createPartFromString(currentLowPrice))
-        map.put("deliveryType", mUtils.createPartFromString(currentDeliveryType))
-        map.put("highPrice", mUtils.createPartFromString(currentHighPrice))
-//        map.put("latitude", mUtils.createPartFromString(mLat.toString()))
-//        map.put("longitude", mUtils.createPartFromString(mLong.toString()))
+        map["offset"] = mUtils.createPartFromString("0")
+        map["limit"] = mUtils.createPartFromString("50")
+        map["subCategoryId"] = mUtils.createPartFromString(currentSubCatID)
+        map["categoryId"] = mUtils.createPartFromString(currentCatId)
+        map["sortBy"] = mUtils.createPartFromString(currentSortBy)
+        map["lowPrice"] = mUtils.createPartFromString(currentLowPrice)
+        map["deliveryType"] = mUtils.createPartFromString(currentDeliveryType)
+        map["highPrice"] = mUtils.createPartFromString(currentHighPrice)
         viewModel.getProductAccToCategorySubcategoryAPI(this, true, map)
         viewModel.homeResponse.observe(this, this)
         whichApi = "productList"

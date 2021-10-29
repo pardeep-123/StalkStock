@@ -29,27 +29,23 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_search_screen.*
 import kotlinx.android.synthetic.main.activity_search_screen.view.*
+import kotlinx.android.synthetic.main.row_manageaddress.view.*
 import okhttp3.RequestBody
 import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class SearchFragment() : Fragment(), Observer<RestObservable> {
+class SearchFragment : Fragment(), Observer<RestObservable> {
 
     val viewModel: HomeViewModel by viewModels()
     private var reset = false
     private var currentOffset = 0
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
     private var recentSearchList: ArrayList<RecentSearchListResponse.Body> = ArrayList()
-//    var currentDeliveryType = "0" // 0- pickup,1-deelivery , 2 -all
-    var mWhichScreen  = "1"  // 0 userHomeScreen 1 for vendor
     lateinit var adapter: HomedetailAdapter
     lateinit var mRecentSearchAdapter: RecentSearchAdapter
     private var mProductId = ""
     private var mProductName = ""
     lateinit var mActivity: MainConsumerActivity
-    private var mWhichApi = 0 // 0 search api 1 add search api 2 search list 3 delete search api
+    private var mWhichApi = 0
     private lateinit var viewFrag:View
 
     override fun onAttach(context: Context) {
@@ -61,7 +57,6 @@ class SearchFragment() : Fragment(), Observer<RestObservable> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         viewFrag = inflater.inflate(R.layout.activity_search_screen, container, false)
         viewFrag.id_backarrow.visibility = View.GONE
         return viewFrag
@@ -70,25 +65,21 @@ class SearchFragment() : Fragment(), Observer<RestObservable> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = HomedetailAdapter(mActivity, currentModel, mActivity.currentDeliveryType.toString(),this)
-        view.detail_recycle.setAdapter(adapter)
+        view.detail_recycle.adapter = adapter
         view.detail_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!recyclerView.canScrollVertically(1)) {
                     if (currentOffset > 1 && currentModel.size > 4) {
                         currentOffset += 5
-                        getProductAsPerCatSub()
+                        //getProductAsPerCatSub()
                     }
                 }
-
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
             }
         })
+
     mRecentSearchAdapter = RecentSearchAdapter(mActivity, recentSearchList,this)
-    view.searchRecycle.setAdapter(mRecentSearchAdapter)
+        view.searchRecycle.adapter = mRecentSearchAdapter
     view.editTextSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             getProductAsPerCatSub()
@@ -96,6 +87,11 @@ class SearchFragment() : Fragment(), Observer<RestObservable> {
         }
         false
     })
+    view.search.setOnClickListener{
+        if(view.editTextSearch.text.toString().isNotEmpty()) getProductAsPerCatSub()
+
+    }
+    getProductAsPerCatSub()
     viewModel.homeResponse.observe(mActivity, this)
     }
 
@@ -105,24 +101,26 @@ class SearchFragment() : Fragment(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: ModelProductListAsPerSubCat) {
-        currentModel.addAll(mResponse.body)
+        currentModel.clear()
+
+
+       // currentModel.addAll(mResponse.body)
+
+        val list  =mResponse.body.sortedBy { it.mrp.toFloat() }
+        if(GlobalVariables.FilterVariables.currentSortBy=="low_to_high")
+        {
+            currentModel.addAll(list)
+        }
+        else
+        {
+            currentModel.addAll(list.reversed())
+        }
+
+        tvNoProducts.visibility =if(currentModel.isEmpty()) View.VISIBLE else View.GONE
         adapter!!.notifyDataSetChanged()
         reset = false
     }
 
-    /*Params Can be used in API:-
-    offset:0
-limit:10
-categoryId:38
-sortBy:high_to_low ----sort by high_to_low => high to low low_to_high =>low to high
-lowPrice:0
-highPrice:60
-subCategoryId :
-latitude:30.862749
-deliveryType =0 pickup , 1 deli 2- all
-longitude:75.901640
-search:c78 ----not compulsory
-    * */
     private fun getProductAsPerCatSub() {
         mWhichApi = 0
         if (reset) {
@@ -130,15 +128,11 @@ search:c78 ----not compulsory
             currentModel.clear()
         }
         val map = HashMap<String, RequestBody>()
-        map.put("offset", mActivity.mUtils.createPartFromString(currentOffset.toString()))
-        map.put("limit", mActivity.mUtils.createPartFromString("5"))
-        map.put("search", mActivity.mUtils.createPartFromString(viewFrag.editTextSearch.text.toString()))
-        map.put("deliveryType", mActivity.mUtils.createPartFromString(mActivity.currentDeliveryType.toString()))
-//        map.put("latitude", mUtils.createPartFromString(mLat.toString()))
-//        map.put("longitude", mUtils.createPartFromString(mLong.toString()))
+        map["offset"] = mActivity.mUtils.createPartFromString("0")
+        map["limit"] = mActivity.mUtils.createPartFromString("50")
+        map["search"] = mActivity.mUtils.createPartFromString(viewFrag.editTextSearch.text.toString())
+        map["deliveryType"] = mActivity.mUtils.createPartFromString(mActivity.currentDeliveryType.toString())
         viewModel.getProductAccToCategorySubcategoryAPI(mActivity, true, map)
-
-//        whichApi = "productList"
     }
 
     fun addRecentSearchApi(productId: String, name: String)
@@ -147,11 +141,11 @@ search:c78 ----not compulsory
         mProductId = productId
         mProductName = name
         val map = HashMap<String, String>()
-        map.put("productId",productId)
+        map["productId"] = productId
         viewModel.addRecentSearchAPI(mActivity, true, map)
     }
 
-    fun getRecentSearchAPI()
+    private fun getRecentSearchAPI()
     {
         mWhichApi = 2
         val map = HashMap<String, String>()
@@ -162,7 +156,7 @@ search:c78 ----not compulsory
     {
         mWhichApi = 3
         val map = HashMap<String, String>()
-        map.put("searchId",searchId)
+        map["searchId"] = searchId
         viewModel.deleteRecentSearchAPI(mActivity, true, map)
     }
 
@@ -176,7 +170,7 @@ search:c78 ----not compulsory
                         currentOffset += 5
                         setData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(mActivity, mResponse.message.toString())
+                        AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
                 if (it.data is AddRecentSearchResponse)
@@ -207,8 +201,7 @@ search:c78 ----not compulsory
                     if (mResponse.code == GlobalVariables.URL.code)
                     {
                         getRecentSearchAPI()
-                    }
-                }
+                    } }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -216,16 +209,14 @@ search:c78 ----not compulsory
                   if (mWhichApi == 0){
                     currentModel.clear()
                     adapter!!.notifyDataSetChanged()
-                  }
-                } else {
+                  } }
+                else {
                     Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
                     if (mWhichApi == 0){
                     currentModel.clear()
                     adapter!!.notifyDataSetChanged()
                     }
-//                    showAlerterRed()
-                }
-            }
+                } }
             it.status == Status.LOADING -> {
             }
         }

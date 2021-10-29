@@ -13,22 +13,16 @@ import com.stalkstock.consumer.activities.EditAddressDetail2Activity
 import com.stalkstock.consumer.model.ModelUserAddressList
 import java.util.*
 
-class MangeaddressAdapter(var context: ManageAddress, var body: List<ModelUserAddressList.Body>) :
-    RecyclerView.Adapter<MangeaddressAdapter.RecyclerViewHolder>() {
+class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserAddressList.Body>) :
+    RecyclerView.Adapter<ManageAddressAdapter.RecyclerViewHolder>() {
     var inflater: LayoutInflater
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var delete: RelativeLayout
-        var edit: RelativeLayout
-        var textType: TextView
-        var location: TextView
+        var delete: RelativeLayout = view.findViewById(R.id.delete)
+        var edit: RelativeLayout = view.findViewById(R.id.edit)
+        var textType: TextView = view.findViewById(R.id.text)
+        var location: TextView = view.findViewById(R.id.location)
 
-        init {
-            delete = view.findViewById(R.id.delete)
-            edit = view.findViewById(R.id.edit)
-            textType = view.findViewById(R.id.text)
-            location = view.findViewById(R.id.location)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -38,27 +32,28 @@ class MangeaddressAdapter(var context: ManageAddress, var body: List<ModelUserAd
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
-        val get = body.get(position)
-        if (get.type.equals("1"))
-        {
-            holder.textType.setText("Home")
-            holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home_green_icon, 0, 0, 0);
-        }
-        else if(get.type.equals("2")){
-            holder.textType.setText("Work")
-            holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.work_icon, 0, 0, 0);
-        }
-        else{
-            holder.textType.setText("Other")
-            holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.location_icon_for_edit, 0, 0, 0);
+        val get = body[position]
+        when (get.type) {
+            "1" -> {
+                holder.textType.text = "Home"
+                holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home_green_icon, 0, 0, 0);
+            }
+            "2" -> {
+                holder.textType.text = "Work"
+                holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.work_icon, 0, 0, 0);
+            }
+            else -> {
+                holder.textType.text = "Other"
+                holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.location_icon_for_edit, 0, 0, 0);
+            }
         }
 
-        holder.location.setText(get.address_line2)
+        holder.location.text = get.address_line2
 
-        holder.delete.setOnClickListener { openStartInfoApp(body.get(position)) }
+        holder.delete.setOnClickListener { openStartInfoApp(body[position]) }
         holder.edit.setOnClickListener {
-            var intent: Intent =Intent(context, EditAddressDetail2Activity::class.java)
-            intent.putExtra("key","edit");
+            val intent =Intent(context, EditAddressDetail2Activity::class.java)
+            intent.putExtra("key","edit")
             intent.putExtra("body",body[position])
             context.startActivity(intent);
 

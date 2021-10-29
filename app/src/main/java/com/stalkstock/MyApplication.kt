@@ -74,7 +74,7 @@ class MyApplication : Application(), AppLifecycleDelegates {
         initializePreferences()
         initializePreferencesToken()
         if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), resources.getString(R.string.maps_api_key))
+            Places.initialize(applicationContext, resources.getString(R.string.maps_api_key))
         }
         Album.initialize(
             AlbumConfig.newBuilder(this)

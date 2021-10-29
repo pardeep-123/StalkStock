@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,13 +7,11 @@
     tools:context=".utils.TermsConditionActivity">
 
     <ImageView
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
-
-
     <RelativeLayout
         android:id="@+id/toollll"
         android:layout_width="match_parent"
@@ -33,7 +30,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/back_arrow"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:padding="10dp"/>
 
     </RelativeLayout>
@@ -41,7 +38,6 @@
     <View
         android:id="@+id/ssd"
         android:layout_below="@+id/toollll"
-
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/light_grey"/>
@@ -54,17 +50,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <com.stalkstock.utils.custom.TitiliumRegularTextView
-                android:textSize="14dp"
-                android:layout_margin="15dp"
+            <TextView
+                android:id="@+id/tvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dummy_text_long"
-                android:textColor="@color/dark_gray"
-                android:justificationMode="inter_word"
-                  />
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:textSize="14dp" />
 
 
         </RelativeLayout>

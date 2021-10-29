@@ -1,6 +1,5 @@
 package com.stalkstock.consumer.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,20 +12,14 @@ import java.util.*
 
 class TitleAdapter(var context: HomedetailsActivity, var arrayList: ArrayList<SliderItemTitleModel>) :
     RecyclerView.Adapter<TitleAdapter.RecyclerViewHolder>() {
-    var inflater: LayoutInflater
+    var inflater: LayoutInflater = LayoutInflater.from(context)
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var tv_item_title: TextView
-        var tv_item_title_bold: TextView
-        var view_simple: View
-        var view_bold: View
+        var tv_item_title: TextView = view.findViewById(R.id.tv_item_title)
+        var tv_item_title_bold: TextView = view.findViewById(R.id.tv_item_title_bold)
+        var view_simple: View = view.findViewById(R.id.view_simple)
+        var view_bold: View = view.findViewById(R.id.view_bold)
 
-        init {
-            tv_item_title = view.findViewById(R.id.tv_item_title)
-            tv_item_title_bold = view.findViewById(R.id.tv_item_title_bold)
-            view_simple = view.findViewById(R.id.view_simple)
-            view_bold = view.findViewById(R.id.view_bold)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -47,16 +40,16 @@ class TitleAdapter(var context: HomedetailsActivity, var arrayList: ArrayList<Sl
             holder.view_bold.visibility = View.VISIBLE
             holder.tv_item_title.visibility = View.GONE
             holder.view_simple.visibility = View.GONE
-        } else {
         }
         holder.itemView.setOnClickListener {
-            for (i in arrayList.indices) {
-                arrayList[i].isSelected = "false"
+            if(arrayList[position].isSelected!="true") {
+                for (i in arrayList.indices) {
+                    arrayList[i].isSelected = "false"
+                }
+                arrayList[position].isSelected = "true"
+                notifyDataSetChanged()
+                context.setSelectedSubCategoryID(arrayList[position])
             }
-            arrayList[position].isSelected = "true"
-            notifyDataSetChanged()
-
-            context.setSelectedSubCategoryID(arrayList[position])
         }
     }
 
@@ -64,7 +57,4 @@ class TitleAdapter(var context: HomedetailsActivity, var arrayList: ArrayList<Sl
         return arrayList.size
     }
 
-    init {
-        inflater = LayoutInflater.from(context)
-    }
 }

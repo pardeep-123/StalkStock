@@ -46,7 +46,6 @@ class AccountFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-
     }
 
     private fun init() {
@@ -78,14 +77,10 @@ class AccountFragment : Fragment(), View.OnClickListener {
         tvManagePayment.setOnClickListener {
             startActivity(Intent(tvPassword.context , ManagePaymentsActivity::class.java))
         }
-
-
     }
 
     override fun onClick(p0: View?) {
-        when (p0!!.id) {
-
-        }
+        when (p0!!.id) { }
     }
 
     private fun logoutDailogMethod() {
@@ -111,9 +106,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
             activity?.finishAffinity()
-
         }
-
         logoutUpdatedDialog.show()
     }
     override fun onAttach(context: Context) {

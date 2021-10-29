@@ -44,14 +44,13 @@ class UploadActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(Color.WHITE);
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            window.statusBarColor = Color.WHITE;
         }
 
         tv_heading.text = "Upload Documents"
         iv_back.setOnClickListener {finish()}
         btn_continue.setOnClickListener {
-//            startActivity(Intent(this,AddDetailActivity::class.java))
             startActivity(Intent(this, AddDetailActivity::class.java)
                 .putExtra("driverData",mHashMap)
                 .putExtra("profileImage",mProfileImage)

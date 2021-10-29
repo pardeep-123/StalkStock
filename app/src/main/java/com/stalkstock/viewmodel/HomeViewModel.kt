@@ -56,6 +56,30 @@ class HomeViewModel : ViewModel() {
     }
 
     @SuppressLint("CheckResult")
+    fun termsAndCondition(
+        activity: Activity,
+        showLoader: Boolean
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.termsAndCondition()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        termsAndCondition(activity, showLoader)
+                    }
+                }) } }
+
+    @SuppressLint("CheckResult")
     fun logout(
         activity: Activity,
         showLoader: Boolean
@@ -77,9 +101,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         logout(activity, showLoader)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -105,9 +127,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getProfileDetail(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -371,10 +391,10 @@ class HomeViewModel : ViewModel() {
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
-            var image: ArrayList<MultipartBody.Part> = ArrayList()
+            val image: ArrayList<MultipartBody.Part> = ArrayList()
             if (profileImage.size > 0) {
                 for (i in profileImage) {
-                    var file = File(i)
+                    val file = File(i)
                     image.add(mUtils.prepareFilePart("image", file))
                 }
             }
@@ -394,9 +414,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         editProductAPI(activity, showLoader, hashMap,profileImage, mUtils)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -424,7 +442,6 @@ class HomeViewModel : ViewModel() {
                     }
                 })
         }
-
     }
 
     @SuppressLint("CheckResult")
@@ -478,9 +495,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getProductAccToCategorySubcategoryAPI(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -506,9 +521,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         addRecentSearchAPI(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -533,9 +546,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getRecentSearchAPI(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -560,9 +571,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         deleteRecentSearchAPI(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -588,9 +597,7 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         userBannerListAPI(activity, showLoader, hashMap)
                     }
-                })
-        }
-
+                }) }
     }
 
     @SuppressLint("CheckResult")
@@ -866,10 +873,10 @@ class HomeViewModel : ViewModel() {
         mUtils: Util
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
-            var image: ArrayList<MultipartBody.Part> = ArrayList()
+            val image: ArrayList<MultipartBody.Part> = ArrayList()
             if (profileImage.size > 0) {
                 for (i in profileImage) {
-                    var file = File(i)
+                    val file = File(i)
                     image.add(mUtils.prepareFilePart("image", file))
                 }
             }
@@ -1126,8 +1133,6 @@ class HomeViewModel : ViewModel() {
                 })
         }
     }
-
-
     }
 
 

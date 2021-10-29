@@ -12,6 +12,8 @@ import com.stalkstock.R
 import com.stalkstock.consumer.model.UserBannerModel
 import com.stalkstock.utils.loadImage
 import java.util.ArrayList
+import android.app.SearchManager
+import android.content.Intent
 
 class ViewDetailAdapter(var mcontext: Context, var currentModel: ArrayList<UserBannerModel.Body>) : PagerAdapter() {
     var layoutInflater: LayoutInflater? = null
@@ -34,6 +36,12 @@ class ViewDetailAdapter(var mcontext: Context, var currentModel: ArrayList<UserB
         val view = layoutInflater!!.inflate(R.layout.row_viewpager, container, false)
         val img = view.findViewById<View>(R.id.img) as ImageView
         img.loadImage(currentModel[position].image)
+        img.setOnClickListener {
+            val intent = Intent(Intent.ACTION_WEB_SEARCH)
+            intent.putExtra(SearchManager.QUERY, currentModel[position].title)
+
+            img.context.startActivity(intent)
+        }
         container.addView(view)
         return view
     }

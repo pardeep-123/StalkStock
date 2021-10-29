@@ -16,7 +16,6 @@ import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.driver.models.CheckEmailResponse
-import com.stalkstock.driver.models.DriverSignUpResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.extention.checkStringNull
@@ -42,13 +41,12 @@ import kotlinx.android.synthetic.main.activity_signup3.tv_signin
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 
-
 class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener,
     Observer<RestObservable> {
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
-    var mVehicleType = ""
-    var mCountryName = ""
+    private var mVehicleType = ""
+    private var mCountryName = ""
 
     override fun getContentId(): Int {
         return R.layout.activity_signup3
@@ -56,9 +54,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         tv_heading.text = getString(R.string.sign_up)
-
         tv_signin.setOnClickListener(this)
         iv_back.setOnClickListener(this)
         image.setOnClickListener(this)
@@ -67,7 +63,6 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         btn_signup.setOnClickListener(this)
 
         CommonMethods.hideKeyboard(this, btn_signup)
-        // addItemsOnSpinner2();
         val foodadapter = ArrayAdapter.createFromResource(
             this,
             R.array.Select_Vehicle_type,
@@ -94,38 +89,29 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            R.id.tv_signin -> {
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
+
             R.id.total -> {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            R.id.btn_signup -> {
-                setValidation()
-
+            R.id.btn_signup -> { setValidation()
             }
-            R.id.iv_back -> {
-                finish()
+            R.id.iv_back -> { finish()
             }
             R.id.image -> {
                 mAlbumFiles = java.util.ArrayList()
                 mAlbumFiles.clear()
                 selectImage(image, "1")
-            }
-        }
-    }
+            } } }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         if (p0?.id == R.id.spinner_country) {
             val array = this.resources.getStringArray(R.array.Select_country)
-            mCountryName = array.get(p2)
+            mCountryName = array[p2]
         } else if (p0?.id == R.id.spinner) {
             val array = this.resources.getStringArray(R.array.Select_Vehicle_type)
-            mVehicleType = array.get(p2)
-        }
-    }
+            mVehicleType = array[p2]
+        } }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -136,23 +122,12 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             .singleChoice()
             .camera(true)
             .columnCount(4)
-            //.selectCount(1)
-            //.checkedList(mAlbumFiles)
-            .widget(
-                Widget.newDarkBuilder(this)
-                    .title(getString(R.string.app_name))
-                    .build()
-            )
+            .widget(Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build())
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type.equals("1")) {
-                    firstimage = result[0].path
-                }
-            }
-            .onCancel {
-
-            }
+                if (type == "1") { firstimage = result[0].path } }
+            .onCancel {}
             .start()
     }
 
@@ -164,78 +139,64 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                 Toast.LENGTH_LONG
             ).show()
 
-        } else if (et_firstName.getText().toString().isEmpty()) {
+        } else if (et_firstName.text.toString().isEmpty()) {
             et_firstName.requestFocus()
-            et_firstName.setError(resources.getString(R.string.please_enter_first_name))
-        } else if (et_lastName.getText().toString().isEmpty()) {
+            et_firstName.error = resources.getString(R.string.please_enter_first_name)
+        } else if (et_lastName.text.toString().isEmpty()) {
             et_lastName.requestFocus()
-            et_lastName.setError(resources.getString(R.string.please_enter_last_name))
-        } else if (emailEdittext.getText().toString().isEmpty()) {
+            et_lastName.error = resources.getString(R.string.please_enter_last_name)
+        } else if (emailEdittext.text.toString().isEmpty()) {
             emailEdittext.requestFocus()
-            emailEdittext.setError(resources.getString(R.string.please_enter_email))
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString())
+            emailEdittext.error = resources.getString(R.string.please_enter_email)
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.text.toString())
                 .matches()
         ) {
             emailEdittext.requestFocus()
-            emailEdittext.setError(resources.getString(R.string.please_enter_valid_email))
-        } else if (et_mobileNo.getText().toString().isEmpty()) {
+            emailEdittext.error = resources.getString(R.string.please_enter_valid_email)
+        } else if (et_mobileNo.text.toString().isEmpty()) {
             et_mobileNo.requestFocus()
-            et_mobileNo.setError(resources.getString(R.string.please_enter_mobile_number))
-        } else if (et_mobileNo.getText().toString().length < 10 || et_mobileNo.getText()
+            et_mobileNo.error = resources.getString(R.string.please_enter_mobile_number)
+        } else if (et_mobileNo.text.toString().length < 10 || et_mobileNo.text
                 .toString().length > 13
         ) {
             et_mobileNo.requestFocus()
-            et_mobileNo.setError(resources.getString(R.string.please_enter_valid_number))
+            et_mobileNo.error = resources.getString(R.string.please_enter_valid_number)
         } else if (checkStringNull(mVehicleType)) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.please_select_vehicletype),
                 Toast.LENGTH_LONG
             ).show()
-        } else if (checkStringNull(et_vehiclemake.getText().toString())) {
+        } else if (checkStringNull(et_vehiclemake.text.toString())) {
             et_vehiclemake.requestFocus()
-            et_vehiclemake.setError(resources.getString(R.string.please_enter_vehicle_make))
-        } else if (checkStringNull(et_vehiclemodel.getText().toString())) {
+            et_vehiclemake.error = resources.getString(R.string.please_enter_vehicle_make)
+        } else if (checkStringNull(et_vehiclemodel.text.toString())) {
             et_vehiclemodel.requestFocus()
-            et_vehiclemodel.setError(resources.getString(R.string.please_enter_vehicle_model))
-        } else if (checkStringNull(et_city.getText().toString())) {
+            et_vehiclemodel.error = resources.getString(R.string.please_enter_vehicle_model)
+        } else if (checkStringNull(et_city.text.toString())) {
             et_city.requestFocus()
-            et_city.setError(resources.getString(R.string.please_enter_city))
-        } else if (checkStringNull(et_state.getText().toString())) {
+            et_city.error = resources.getString(R.string.please_enter_city)
+        } else if (checkStringNull(et_state.text.toString())) {
             et_state.requestFocus()
-            et_state.setError(resources.getString(R.string.please_enter_state))
+            et_state.error = resources.getString(R.string.please_enter_state)
         } else if (checkStringNull(mCountryName)) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.please_select_countryname),
                 Toast.LENGTH_LONG
             ).show()
-        } else if (passwordEdittext.getText().toString().isEmpty()) {
+        } else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
-            passwordEdittext.setError(resources.getString(R.string.please_enter_password))
-        } else if (repasswordEdittext.getText().toString().isEmpty()) {
+            passwordEdittext.error = resources.getString(R.string.please_enter_password)
+        } else if (repasswordEdittext.text.toString().isEmpty()) {
             repasswordEdittext.requestFocus()
-            repasswordEdittext.setError(resources.getString(R.string.please_reenter_password))
-        } else if (!passwordEdittext.getText().toString()
-                .equals(repasswordEdittext.getText().toString())
+            repasswordEdittext.error = resources.getString(R.string.please_reenter_password)
+        } else if (passwordEdittext.text.toString() != repasswordEdittext.text.toString()
         ) {
             repasswordEdittext.requestFocus()
-            repasswordEdittext.setError(resources.getString(R.string.new_confirm_password_dont_match))
+            repasswordEdittext.error = resources.getString(R.string.new_confirm_password_dont_match)
         } else {
 
-            /* val hashMap = HashMap<String, RequestBody>()
-         hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.vehicleType] = mUtils.createPartFromString(mVehicleType)
-           hashMap[GlobalVariables.PARAM.vehicleMake] = mUtils.createPartFromString(et_vehiclemake.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.vehicleModel] =
-               mUtils.createPartFromString(et_vehiclemodel.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
-           hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(mCountryName)
-           hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())*/
             val hashMap = HashMap<String, String>()
             hashMap[GlobalVariables.PARAM.firstname] = et_firstName.text.toString().trim()
             hashMap[GlobalVariables.PARAM.lastname] = et_lastName.text.toString().trim()
@@ -243,29 +204,22 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             hashMap[GlobalVariables.PARAM.mobile] = et_mobileNo.text.toString().trim()
             hashMap[GlobalVariables.PARAM.vehicleType] = mVehicleType
             hashMap[GlobalVariables.PARAM.vehicleMake] = et_vehiclemake.text.toString().trim()
-            hashMap[GlobalVariables.PARAM.vehicleModel] =
-                et_vehiclemodel.text.toString().trim()
+            hashMap[GlobalVariables.PARAM.vehicleModel] = et_vehiclemodel.text.toString().trim()
             hashMap[GlobalVariables.PARAM.city] = et_city.text.toString().trim()
             hashMap[GlobalVariables.PARAM.state] = et_state.text.toString().trim()
             hashMap[GlobalVariables.PARAM.country] = mCountryName
             hashMap[GlobalVariables.PARAM.password] = passwordEdittext.text.toString().trim()
 
             checkEmailAndMobileExistAPI()
-/*
-            startActivity(Intent(this, UploadDocActivity::class.java)
-                .putExtra("driverData",hashMap)
-                .putExtra("profileImage",firstimage))
-*/
         }
 
     }
 
     val viewModel: DriverViewModel by viewModels()
-
     lateinit var hashMap:HashMap<String,RequestBody>
 
     private fun checkEmailAndMobileExistAPI() {
-        hashMap = HashMap<String, RequestBody>()
+        hashMap = HashMap()
         hashMap[GlobalVariables.PARAM.email] =
             mUtils.createPartFromString(emailEdittext.text.toString())
         hashMap[GlobalVariables.PARAM.mobile] =
@@ -278,17 +232,13 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is CheckEmailResponse) {
-                    val data = it.data as CheckEmailResponse
+                    val data = it.data
                     if (data.code == 200) {
                         startActivity(
                             Intent(this, UploadDocActivity::class.java)
                                 .putExtra("driverData", hashMap)
                                 .putExtra("profileImage", firstimage)
-                        )
-                    }
-
-
-                }
+                        ) } }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {

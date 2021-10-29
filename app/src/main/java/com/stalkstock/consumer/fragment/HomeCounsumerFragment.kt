@@ -53,7 +53,8 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
     var currentLowPrice = ""
     var currentHighPrice = "10000"
-    var currentSortBy = "high_to_low" //sort by high_to_low => high to low low_to_high =>low to high
+    var currentSortBy = "high_to_low"
+    var currentType = "default"
 
     var viewFrag: View? = null
     lateinit var adapter: CategoryAdapter
@@ -84,8 +85,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     private var isLastPageSwiped = false
     private var counterPageScroll = 0
 
-
-    lateinit var iv_msg: ImageView
     lateinit var bt_sort: Button
     lateinit var bt_pickup: Button
     lateinit var tv_delivery: Button
@@ -101,13 +100,11 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK ) {
-                    // There are no request codes
                     val data: Intent? = result.data
                     currentLowPrice = data!!.getStringExtra("lowPrice")!!
-                    currentHighPrice = data!!.getStringExtra("highPrice")!!
-                    currentSortBy = data!!.getStringExtra("sortBy")!!
-                }
-            }
+                    currentHighPrice = data.getStringExtra("highPrice")!!
+                    currentSortBy = data.getStringExtra("sortBy")!!
+                } }
     }
 
     override fun onCreateView(
@@ -115,7 +112,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         savedInstanceState: Bundle?
     ): View? {
         viewFrag = inflater.inflate(R.layout.fragment_home_consumer, container, false)
-
         category_recycle = viewFrag!!.findViewById(R.id.category_recycle)
         viewPagerDetail = viewFrag!!.findViewById(R.id.viewPagerDetail)
         suggested_recycle = viewFrag!!.findViewById(R.id.suggested_recycle)
@@ -124,18 +120,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         notification = viewFrag!!.findViewById(R.id.notification)
         fillter = viewFrag!!.findViewById(R.id.fillter)
         etSearch = viewFrag!!.findViewById(R.id.etSearch)
-        iv_msg = viewFrag!!.findViewById(R.id.iv_msg)
         bt_sort = viewFrag!!.findViewById(R.id.bt_sort)
         bt_pickup = viewFrag!!.findViewById(R.id.bt_pickup)
         tv_delivery = viewFrag!!.findViewById(R.id.tv_delivery)
-        iv_msg.setOnClickListener {
-            if (clickMsg == 0) {
-                clickMsg = 1
-                val intent = Intent(mActivity, MessageActivity::class.java)
-                startActivity(intent)
-            } else {
-            }
-        }
         adapter = CategoryAdapter(this, requireContext(), arrayListCategory)
         category_recycle.layoutManager = GridLayoutManager(activity, 4)
         category_recycle.adapter = adapter
@@ -143,27 +130,24 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         viewPagerDetail.adapter = detailAdapter
         indicator.fillColor = resources.getColor(R.color.theme_green)
         indicator.setViewPager(viewPagerDetail)
-
         viewPagerDetail.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-//                replace 6 with last position
                 if (position == currentModel.size && positionOffset == 0f && !isLastPageSwiped) {
                     if (counterPageScroll != 0) {
-                        isLastPageSwiped = true;
+                        isLastPageSwiped = true
                         if (currentModel.size>4)
                         {
                             currentOffset += 5
                             getAdsBannerAPI()
-                        }
-                    }
-                    counterPageScroll++;
+                        } }
+                    counterPageScroll++
                 }
                 else {
-                    counterPageScroll = 0;
+                    counterPageScroll = 0
                 }
             }
 
@@ -210,7 +194,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             bt_pickup.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
             bt_pickup.setTextColor(mActivity.getColor(R.color.white))
             tv_delivery.background =
-                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             tv_delivery.setTextColor(mActivity.getColor(R.color.green_ss))
             mActivity.currentDeliveryType = 0
         }
@@ -218,7 +202,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             bt_sort.setTextColor(mActivity.getColor(R.color.green_ss))
             bt_pickup.background =
-                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+            mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             bt_pickup.setTextColor(mActivity.getColor(R.color.green_ss))
             tv_delivery.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
             tv_delivery.setTextColor(mActivity.getColor(R.color.white))
@@ -239,7 +223,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val map = HashMap<String, String>()
         map["offset"] = suggestionOffSet.toString()
         map["limit"] = "10"
-        map["type"] = "popular"
+        map["type"] = currentType  // default,rating,popular
         viewModel.getSuggestedProduct((activity as MainConsumerActivity), false,map)
     }
 
@@ -247,7 +231,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val mainConsumerActivity = activity as MainConsumerActivity
         viewModel.getCategoryListAPI(mainConsumerActivity, false)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
-
     }
 
     private var reset = false
@@ -258,8 +241,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val mainConsumerActivity = activity as MainConsumerActivity
         if (reset) {
             currentOffset = 0
-            currentModel.clear()
-        }
+            currentModel.clear()}
         val map = HashMap<String, RequestBody>()
         map["offset"] = mainConsumerActivity.mUtils.createPartFromString(currentOffset.toString())
         map["limit"] = mainConsumerActivity.mUtils.createPartFromString("5")
@@ -277,27 +259,15 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             val addresses: List<Address>
             val geocoder = Geocoder(mActivity, Locale.getDefault())
 
-            addresses = geocoder.getFromLocation(
-                latitude,
-                longitude,
-                1
-            ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            addresses = geocoder.getFromLocation(latitude, longitude, 1)
 
+            val address: String = addresses[0].getAddressLine(0)
 
-            val address: String =
-                addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-
-            if (address != null) {
-
-                stAddress = address
-            }
+            if (address != null) { stAddress = address }
         } catch (e: Exception) {
             stAddress = "No location found"
         }
-
-
         tv_address.text = stAddress
-
     }
 
     override fun onLocationGet(latitude: String?, longitude: String?) {
@@ -310,10 +280,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val logoutUpdatedDialog2 = Dialog(requireContext())
         logoutUpdatedDialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
         logoutUpdatedDialog2.setContentView(R.layout.layout_sort_popup)
-        logoutUpdatedDialog2.window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        logoutUpdatedDialog2.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         logoutUpdatedDialog2.setCancelable(false)
         logoutUpdatedDialog2.setCanceledOnTouchOutside(false)
         logoutUpdatedDialog2.window!!.setGravity(Gravity.BOTTOM)
@@ -410,14 +377,17 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         )
         tv_default.setOnClickListener {
             tickClick = 1
+            currentType = "default"
             tickVisible(tickClick)
         }
         tv_most.setOnClickListener {
             tickClick = 2
+            currentType = "popular"
             tickVisible(tickClick)
         }
         tv_rating.setOnClickListener {
             tickClick = 3
+            currentType = "rating"
             tickVisible(tickClick)
         }
         tickVisible(tickClick)
@@ -429,21 +399,22 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     private fun tickVisible(tickClick: Int) {
         when (tickClick) {
             1 -> {
-                iv_tick_popuplar!!.visibility = View.VISIBLE
-                iv_tick_most!!.visibility = View.GONE
-                iv_tick_rating!!.visibility = View.GONE
+                iv_tick_popuplar.visibility = View.VISIBLE
+                iv_tick_most.visibility = View.GONE
+                iv_tick_rating.visibility = View.GONE
             }
             2 -> {
-                iv_tick_popuplar!!.visibility = View.GONE
-                iv_tick_most!!.visibility = View.VISIBLE
-                iv_tick_rating!!.visibility = View.GONE
+                iv_tick_popuplar.visibility = View.GONE
+                iv_tick_most.visibility = View.VISIBLE
+                iv_tick_rating.visibility = View.GONE
             }
             3 -> {
-                iv_tick_popuplar!!.visibility = View.GONE
-                iv_tick_most!!.visibility = View.GONE
-                iv_tick_rating!!.visibility = View.VISIBLE
+                iv_tick_popuplar.visibility = View.GONE
+                iv_tick_most.visibility = View.GONE
+                iv_tick_rating.visibility = View.VISIBLE
             }
         }
+        getSuggestedBanner()
     }
 
     private fun iconAndTextColorChange(
@@ -465,59 +436,29 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
                 rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv2.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.sort_popup_gray_color
-                    )
-                )
+                iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
                 rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv3.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.sort_popup_gray_color
-                    )
-                )
+                iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
             }
             2 -> {
                 rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv1.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.sort_popup_gray_color
-                    )
-                )
+                iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
                 rl2.background = resources.getDrawable(R.drawable.strokegreen)
                 t2.setTextColor(resources.getColor(R.color.green_colour))
                 iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
                 rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv3.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.sort_popup_gray_color
-                    )
-                )
+                iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
             }
             3 -> {
                 rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv1.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.sort_popup_gray_color
-                    )
-                )
+                iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
                 rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv2.setColorFilter(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.sort_popup_gray_color
-                    )
-                )
+                iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
                 rl3.background = resources.getDrawable(R.drawable.strokegreen)
                 t3.setTextColor(resources.getColor(R.color.green_colour))
                 iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
@@ -540,10 +481,11 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 if (it.data is SuggestedDataListed) {
                     val mResponse: SuggestedDataListed = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        suggestionOffSet += 10
+                        listSuggested.clear()
                         listSuggested.addAll(mResponse.body)
-                        adapter3.notifyItemRangeInserted(0,listSuggested.size)
-                    } else {
+                        adapter3.notifyDataSetChanged()
+                    }
+                    else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
@@ -552,7 +494,8 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     val mResponse: ModelCategoryList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setDataCategody(mResponse)
-                    } else {
+                    }
+                    else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
@@ -561,10 +504,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(mActivity, mResponse.message)
-                    } else {
-                        AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
-                }
+                    else {
+                        AppUtils.showErrorAlert(mActivity, mResponse.message)
+                    } }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -572,13 +515,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
                     } else
-                        Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
-                            .show()
-                }
-            }
+                        Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT).show()
+                } }
             it.status == Status.LOADING -> {
-            }
-        }
+            } }
     }
 
     private fun setDataCategody(mResponse: ModelCategoryList) {
@@ -601,6 +541,5 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         intent.putExtra("currentLowPrice", currentLowPrice)
         intent.putExtra("currentSortBy", currentSortBy)
         startActivity(intent)
-
     }
 }

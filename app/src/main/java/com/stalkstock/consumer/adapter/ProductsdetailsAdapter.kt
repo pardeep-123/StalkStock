@@ -16,14 +16,11 @@ class ProductsdetailsAdapter(
     var context: ProductDetailsActivity,
     var currentModel: ArrayList<UserVendorsProductList.Body.SellerProduct>
 ) : RecyclerView.Adapter<ProductsdetailsAdapter.RecyclerViewHolder>() {
-    var inflater: LayoutInflater
+    var inflater: LayoutInflater = LayoutInflater.from(context)
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var add: TextView
+        var add: TextView = view.findViewById(R.id.add)
 
-        init {
-            add = view.findViewById(R.id.add)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -32,11 +29,12 @@ class ProductsdetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.itemView.starCount.setText(currentModel[position].name)
+        holder.itemView.starCount.text = currentModel[position].name
         holder.itemView.location_text.visibility = View.GONE
-        holder.itemView.price.setText("$"+currentModel[position].mrp+"/"+currentModel[position].measurement.name)
+        holder.itemView.price.text = "$"+currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
-        holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
+
+        if(currentModel[position].productImage.isNotEmpty()) holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
 
         val cart = currentModel[position].cart
         var currentQty = 0
@@ -44,8 +42,9 @@ class ProductsdetailsAdapter(
             holder.add.visibility = View.GONE
             currentQty = cart.quantity
             holder.itemView.ltPlusMinus.visibility = View.VISIBLE
-            holder.itemView.count.setText(cart.quantity.toString())
-        } else {
+            holder.itemView.count.text = cart.quantity.toString()
+        }
+        else {
             holder.add.visibility = View.VISIBLE
             holder.itemView.ltPlusMinus.visibility = View.GONE
         }
@@ -57,18 +56,10 @@ class ProductsdetailsAdapter(
         holder.itemView.plus.setOnClickListener {
             val i = currentQty + 1
             context.addToCartAPI(currentModel[position].id.toString(), i.toString())
-/*
-            val intent = Intent(context, AddcartdetailsActivity::class.java)
-            context.startActivity(intent)
-*/
         }
         holder.add.setOnClickListener {
             val i = currentQty + 1
             context.addToCartAPI(currentModel[position].id.toString(), i.toString())
-/*
-            val intent = Intent(context, AddcartdetailsActivity::class.java)
-            context.startActivity(intent)
-*/
         }
     }
 
@@ -76,7 +67,4 @@ class ProductsdetailsAdapter(
         return currentModel.size
     }
 
-    init {
-        inflater = LayoutInflater.from(context)
-    }
 }

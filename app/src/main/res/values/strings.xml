@@ -15,6 +15,12 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="app_name">STALK + STOCK</string>
 <!--    <string name="maps_api_key">AIzaSyD8c46gsZPEYwRqSxm3tSg5zg5Yc7Jr7Gc</string>-->
     <string name="maps_api_key">AIzaSyDG3ftTHL_IMGAd8c8vU-q0Oi-oURgTeKE</string>
+
+    <string name="facebook_app_id">150987940516952</string>
+    <string name="fb_login_protocol_scheme">fb150987940516952</string>
+    <string name="default_notification_channel_id" translatable="false">Stalk_fcm_default_channel</string>
+    <string name="default_notification_channel_name" translatable="true">Stalk</string>
+
     <string name="add_or_change_profile_photo_or_logo">Add/Change Profile Photo or Logo</string>
     <string name="log_in">Log In</string>
     <string name="email">Email</string>
@@ -269,6 +275,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="enter_valid_cvv">Please enter valid CVV number</string>
     <string name="enter_card_holder_name">Please enter card holder name</string>
     <string name="no_card_found">No Card Found</string>
+    <string name="no_orders_found">No Order Found</string>
+    <string name="no_products_found">No Products Found</string>
     <string name="add_new">Add New</string>
     <string name="no_address_added">No Address Added</string>
     <string name="onWay">On the way</string>

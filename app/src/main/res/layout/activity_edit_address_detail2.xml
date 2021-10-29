@@ -9,7 +9,6 @@
     android:layout_height="match_parent"
     tools:context=".consumer.activities.EditAddressDetail2Activity">
 
-
     <RelativeLayout
         android:id="@+id/toolbar_myorders"
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/value_10dp"
+            android:layout_marginStart="@dimen/value_10dp"
             android:src="@drawable/back_arrow"
             />
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -33,13 +32,11 @@
             android:text="Edit Address Details"
             android:textColor="@color/black_color"
             android:gravity="center"
-
             />
 
     </RelativeLayout>
 
     <View
-
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/dark_gray"
@@ -56,12 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
             <RelativeLayout
                 android:id="@+id/clBottom"
@@ -75,7 +70,7 @@
                     android:id="@+id/tvSelectLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/value_10dp"
+                    android:layout_marginStart="@dimen/value_10dp"
                     android:layout_marginBottom="@dimen/value_4dp"
                     android:text="Select Delivery Location"
                     android:textColor="@color/black_color"
@@ -95,7 +90,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvYourLocation"
                     android:layout_below="@+id/viewAddress"
-                    android:layout_marginLeft="@dimen/value_10dp"
+                    android:layout_marginStart="@dimen/value_10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Location"
@@ -104,24 +99,20 @@
                      />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
-
                     android:id="@+id/tvLocation"
                     android:layout_below="@+id/tvYourLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/value_10dp"
+                    android:layout_marginStart="@dimen/value_10dp"
                     android:gravity="center"
                     android:text="The Castro"
                      android:layout_marginBottom="@dimen/value_10dp"
                     android:textSize="@dimen/value_12dp"
                     android:textColor="@color/black_color"
                     android:drawablePadding="@dimen/value_5dp"
-                    android:drawableLeft="@drawable/cart_check"
+                    android:drawableStart="@drawable/cart_check"
                     app:layout_constraintStart_toStartOf="parent"
                     />
-
-
-
 
                 <RelativeLayout
                     android:id="@+id/rl_street"
@@ -142,8 +133,8 @@
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -152,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="Street Address"
@@ -178,8 +169,8 @@
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -188,7 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/address_line2_optional"
@@ -214,8 +205,8 @@
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -224,7 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/city"
@@ -250,8 +241,8 @@
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -260,7 +251,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/state_province_region"
@@ -286,8 +277,8 @@
                         android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -296,7 +287,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/postal_zipcode"
@@ -317,23 +308,24 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/edit_text_bg">
+
                         <Spinner
                             android:id="@+id/spinner"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:gravity="center_vertical"
                             android:entries="@array/Select_country"
+                            android:gravity="center_vertical"
+                            android:paddingEnd="20dp"
                             android:prompt="@string/select_country"
-                            android:paddingRight="20dp"
+                            android:textColor="#000"
                             android:textColorHint="#F8F6F6"
-                            android:textSize="13sp"
-                            android:textColor="#000"/>
+                            android:textSize="13sp" />
 
                     </RelativeLayout>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="@string/country"
@@ -341,9 +333,7 @@
                         android:textSize="13sp"
                         />
 
-
                 </RelativeLayout>
-
 
                 <RelativeLayout
                     android:id="@+id/rl_delivery"
@@ -363,8 +353,8 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />
@@ -373,7 +363,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="Special Instructions (Optional)"
@@ -393,8 +383,8 @@
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/tvTagTitle"
                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="Location Tag"
+                        android:layout_height="wrap_content"
+                        android:text="Location Tag"
                         android:textSize="@dimen/value_10dp"
                         />
 
@@ -403,7 +393,6 @@
                     <LinearLayout
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="@dimen/value_10dp"
-
                         android:layout_below="@+id/tvTagTitle"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -412,7 +401,6 @@
 
                         <RelativeLayout
                             android:padding="@dimen/value_4dp"
-
                             android:layout_gravity="center_vertical"
                             android:id="@+id/rl_home"
                             android:layout_width="wrap_content"
@@ -423,20 +411,18 @@
                                 android:id="@+id/iv_home_edit"
                                 android:src="@drawable/home_edit_address"
                                 android:layout_width="15dp"
-                                android:tint="@color/black"
                                 android:layout_centerVertical="true"
-                                android:layout_height="15dp"/>
+                                android:layout_height="15dp"
+                                app:tint="@color/black" />
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/tvTagHome"
-                                android:layout_marginLeft="5dp"
-                                android:layout_toRightOf="@+id/iv_home_edit"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/iv_home_edit"
                                 android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Home"
                                 android:layout_centerVertical="true"
-
-
                                 android:textSize="@dimen/value_12dp"
                                 />
 
@@ -446,8 +432,7 @@
 
                         <RelativeLayout
                             android:padding="@dimen/value_4dp"
-                            android:layout_marginLeft="@dimen/value_10dp"
-
+                            android:layout_marginStart="@dimen/value_10dp"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/rl_work"
                             android:layout_width="wrap_content"
@@ -458,23 +443,21 @@
                             android:id="@+id/iv_work_edit"
                             android:src="@drawable/ic_work_for_edit"
                             android:layout_width="15dp"
-                            android:tint="@color/black"
                             android:layout_centerVertical="true"
-                            android:layout_height="15dp"/>
+                            android:layout_height="15dp"
+                            app:tint="@color/black" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/tvTagWork"
-
-                                android:layout_toRightOf="@+id/iv_work_edit"
+                                android:layout_toEndOf="@+id/iv_work_edit"
                                 android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Work"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_centerVertical="true"
-
-                                  android:textSize="@dimen/value_12dp"
+                                android:textSize="@dimen/value_12dp"
                                 />
 
                         </RelativeLayout>
@@ -487,10 +470,9 @@
                             android:layout_height="wrap_content"
                             android:text="Home"
                             android:layout_gravity="center_vertical"
-
                             android:visibility="gone"
-                            android:layout_marginLeft="@dimen/value_10dp"
-                             android:background="@color/light_grey"
+                            android:layout_marginStart="@dimen/value_10dp"
+                            android:background="@color/light_grey"
                             android:padding="@dimen/value_4dp"
                             android:textSize="@dimen/value_12dp"
                             />
@@ -498,43 +480,34 @@
 
                         <RelativeLayout
                             android:padding="@dimen/value_4dp"
-                            android:layout_marginLeft="@dimen/value_10dp"
-
+                            android:layout_marginStart="@dimen/value_10dp"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/rl_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/green_colour">
 
-
                             <ImageView
                                 android:id="@+id/iv_loca_edit"
                                 android:src="@drawable/location_icon_for_edit"
                                 android:layout_width="15dp"
-                                android:tint="@color/white_color"
                                 android:layout_centerVertical="true"
-                                android:layout_height="15dp"/>
-
-
+                                android:layout_height="15dp"
+                                app:tint="@color/white_color" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/tvTagOther"
-                                android:layout_toRightOf="@+id/iv_loca_edit"
+                                android:layout_toEndOf="@+id/iv_loca_edit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Other"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_centerVertical="true"
-
                                 android:layout_gravity="center_vertical"
-                                 android:textSize="@dimen/value_12dp"
+                                android:textSize="@dimen/value_12dp"
                                 android:textColor="@color/white_color"
                                 />
-
                         </RelativeLayout>
-
-
-
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -557,491 +530,8 @@
 
             </RelativeLayout>
 
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-        <!--<androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/toolbar_myorders">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/value_1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/dark_gray"
-            />
-        <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
-            android:id="@+id/actHome"
-            android:layout_width="@dimen/value_0dp"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Edit Address Details"
-            android:textColor="@color/black_color"
-             android:gravity="center"
-             android:padding="@dimen/value_15dp"
-            />
-        <ImageView
-            android:id="@+id/ivBackAddress"
-            android:padding="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/actHome"
-            app:layout_constraintBottom_toBottomOf="@id/actHome"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/value_10dp"
-            android:src="@drawable/back_arrow"
-             />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-     <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_myorders"
-        app:layout_constraintBottom_toTopOf="@id/clBottom"/>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clBottom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:paddingTop="@dimen/value_5dp"
-                android:paddingLeft="@dimen/value_15dp"
-                android:paddingRight="@dimen/value_15dp"
-                >
-
-
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:id="@+id/tvSelectLocation"
-                    android:layout_width="211dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/value_10dp"
-                    android:layout_marginBottom="@dimen/value_4dp"
-                    android:text="Select Delivery Location"
-                    android:textColor="@color/black_color"
-                    android:textSize="@dimen/value_14dp"
-
-                    app:layout_constraintBottom_toTopOf="@id/viewAddress"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <View
-                    android:id="@+id/viewAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    app:layout_constraintBottom_toTopOf="@id/tvYourLocation"
-                    android:background="#D3D3D3"
-                    android:layout_marginBottom="@dimen/value_4dp"
-                    android:layout_marginTop="@dimen/value_10dp"
-                    />
-
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:id="@+id/tvYourLocation"
-                    android:layout_marginLeft="@dimen/value_10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Location"
-                    app:layout_constraintBottom_toTopOf="@id/tvLocation"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:textSize="@dimen/value_12dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    />
-
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-
-                    android:id="@+id/tvLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/value_10dp"
-                    android:gravity="center"
-
-                    android:text="The Castro"
-                    app:layout_constraintBottom_toTopOf="@id/clAddressDetail"
-                    android:layout_marginBottom="@dimen/value_10dp"
-                    android:textSize="@dimen/value_12dp"
-                    android:textColor="@color/black_color"
-                    android:drawablePadding="@dimen/value_5dp"
-                    android:drawableLeft="@drawable/cart_check"
-                    app:layout_constraintStart_toStartOf="parent"
-                     />
-
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_marginBottom="@dimen/_4sdp"
-                    android:id="@+id/clAddressDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toTopOf="@id/btnEdit"
-                    >
-
-
-                    <RelativeLayout
-                        android:id="@+id/rlStreetAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        app:layout_constraintBottom_toTopOf="@id/rlAddressLine2"
-                        >
-
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/light_grey"
-                            android:hint="@string/enter_your_street_address"
-                            android:paddingLeft="@dimen/value_10dp"
-                            android:paddingRight="@dimen/value_10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                             android:textSize="13sp"
-                            android:layout_height="45dp"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/edittextshape"
-                             android:layout_margin="@dimen/value_10dp">
-                        </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            android:textColor="@color/light_grey"
-                            style="@style/Textfield1"
-                            android:text="Street Address"
-                            android:layout_marginLeft="@dimen/value_45dp"
-                            android:textStyle="bold"
-                            android:background="#ffffff">
-                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/rlAddressLine2"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        app:layout_constraintBottom_toTopOf="@id/rlCity"
-                        >
-
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/light_grey"
-                            android:hint="@string/enter_unit_apt_suite_floor"
-                            android:paddingLeft="@dimen/value_10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:paddingRight="@dimen/value_10dp"
-                            android:textSize="13sp"
-                            android:layout_height="45dp"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/edittextshape"
-                             android:layout_margin="@dimen/value_10dp">
-                        </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            android:textColor="@color/light_grey"
-
-                            style="@style/Textfield1"
-                            android:text="Address Line 2 (Optional)"
-                            android:layout_marginLeft="@dimen/value_45dp"
-                            android:background="#ffffff">
-                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-                    </RelativeLayout>
-                     <RelativeLayout
-                        android:id="@+id/rlCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        app:layout_constraintBottom_toTopOf="@id/rlState"
-                        >
-
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/light_grey"
-                            android:textSize="13sp"
-                            android:layout_height="45dp"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/edittextshape"
-                            android:paddingLeft="@dimen/value_10dp"
-                            android:paddingRight="@dimen/value_10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:hint="@string/enter_city"
-
-                            android:layout_margin="@dimen/value_10dp">
-                        </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            style="@style/Textfield1"
-                            android:text="City"
-                            android:layout_marginLeft="@dimen/value_45dp"
-                            android:textColor="@color/light_grey"
-                            android:background="#ffffff">
-                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/rlState"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        app:layout_constraintBottom_toTopOf="@id/rlPostal"
-                        >
-
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/light_grey"
-                             android:paddingLeft="@dimen/value_10dp"
-                            android:paddingRight="@dimen/value_10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                             android:textSize="13sp"
-                            android:layout_height="45dp"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/edittextshape"
-                            android:hint="@string/enter_state_province_region"
-                            android:layout_margin="@dimen/value_10dp">
-                        </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            style="@style/Textfield1"
-                            android:text="State/Province/Region"
-                            android:layout_marginLeft="@dimen/value_45dp"
-                            android:textColor="@color/light_grey"
-                            android:background="#ffffff">
-                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/rlPostal"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        app:layout_constraintBottom_toTopOf="@id/rlss"
-                        >
-
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/light_grey"
-                             android:hint="@string/enter_postal_zipcode"
-                            android:paddingLeft="@dimen/value_10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:paddingRight="@dimen/value_10dp"
-                             android:textSize="13sp"
-                            android:layout_height="45dp"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/edittextshape"
-                            android:inputType="number"
-                            android:layout_margin="@dimen/value_10dp">
-                        </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            style="@style/Textfield1"
-                            android:text="Postal/Zip code"
-                            android:layout_marginLeft="@dimen/value_45dp"
-                            android:textColor="@color/light_grey"
-                            android:background="#ffffff">
-                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:id="@+id/rlss"
-                        app:layout_constraintBottom_toTopOf="@id/rlSpecialInstruction"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        >
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:background="@drawable/edit_text_bg">
-                            <Spinner
-                                android:id="@+id/spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:gravity="center_vertical"
-                                android:entries="@array/Select_country"
-                                android:prompt="@string/select_country"
-                                android:paddingRight="20dp"
-                                android:textColorHint="#F8F6F6"
-                                android:textSize="13sp"
-                                android:textColor="#000"/>
-
-                        </RelativeLayout>
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginTop="5dp"
-                            android:background="#fff"
-                            android:text="@string/country"
-                            android:textColor="@color/light_grey"
-                            android:textSize="13sp"
-                            />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/rlSpecialInstruction"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        app:layout_constraintBottom_toTopOf="@id/tvTagTitle">
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/light_grey"
-                             android:paddingLeft="@dimen/value_10dp"
-                            android:singleLine="true"
-                            android:ellipsize="end"
-                            android:paddingRight="@dimen/value_10dp"
-                             android:textSize="13sp"
-                            android:layout_height="45dp"
-                            android:layout_width="match_parent"
-                            android:background="@drawable/edittextshape"
-                            android:hint="@string/enter_delivery_instructions_eg_gate_code"
-                            android:layout_margin="@dimen/value_10dp">
-
-                        </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-                        <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            style="@style/Textfield1"
-                            android:text="Special Instructions (Optional)"
-                            android:layout_marginLeft="@dimen/value_45dp"
-                            android:textColor="@color/light_grey"
-                            android:background="#ffffff">
-                        </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-                    </RelativeLayout>
-
-
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tvTagTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/tvTagHome"
-                        android:layout_marginBottom="@dimen/value_5dp"
-                        android:text="Location Tag"
-                        android:textSize="@dimen/value_10dp"
-                        />
-
-
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tvTagHome"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="Home"
-                        android:layout_marginBottom="@dimen/value_10dp"
-                        android:background="@color/light_grey"
-                        android:padding="@dimen/value_4dp"
-                        android:textSize="@dimen/value_12dp"
-                        />
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tvTagWork"
-                         android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/tvTagHome"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="Work"
-                        android:layout_marginLeft="@dimen/value_10dp"
-                        android:layout_marginBottom="@dimen/value_10dp"
-                        android:background="@color/light_grey"
-                        android:padding="@dimen/value_4dp"
-                        android:textSize="@dimen/value_12dp"
-                        />
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tvTagHotel"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/tvTagWork"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="Home"
-                        android:visibility="gone"
-                        android:layout_marginLeft="@dimen/value_10dp"
-                        android:layout_marginBottom="@dimen/value_10dp"
-                        android:background="@color/light_grey"
-                        android:padding="@dimen/value_4dp"
-                        android:textSize="@dimen/value_12dp"
-                        />
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:id="@+id/tvTagOther"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/tvTagHotel"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:text="Other"
-                        android:layout_marginLeft="@dimen/value_10dp"
-                        android:layout_marginBottom="@dimen/value_10dp"
-                        android:background="@color/green_colour"
-                        android:padding="@dimen/value_4dp"
-                        android:textSize="@dimen/value_12dp"
-                        android:textColor="@color/white_color"
-                        />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:id="@+id/btnEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/value_35dp"
-                    android:layout_marginBottom="@dimen/value_20dp"
-                    android:layout_marginRight="@dimen/value_35dp"
-                    android:background="@drawable/button_round_corners"
-                    android:text="Save Address"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white_color"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
     </ScrollView>
 
-
--->
 
 </LinearLayout>

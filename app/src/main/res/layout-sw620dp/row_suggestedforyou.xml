@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/ivImage"
         android:layout_width="210dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
@@ -12,15 +13,14 @@
         android:src="@drawable/ad_img"/>
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-         android:gravity="center"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textSize="22sp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-
-
         android:textColor="@color/home_grey"
         android:text="Six core elements"/>
 
