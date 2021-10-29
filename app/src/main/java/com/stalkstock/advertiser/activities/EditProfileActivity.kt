@@ -21,6 +21,8 @@ import com.stalkstock.advertiser.model.AdvertiserProfileDetailResponse
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.model.CommercialProfileDetailResponse
+import com.stalkstock.commercial.view.model.EditCommercialProfileResponse
 import com.stalkstock.driver.models.DriverProfileDetailResponse
 import com.stalkstock.driver.models.EditDriverResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
@@ -29,6 +31,7 @@ import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -44,6 +47,7 @@ import java.util.HashMap
 class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
 
     val viewModel: DriverViewModel by viewModels()
+    val homeModel: HomeViewModel by viewModels()
     lateinit var successfulUpdatedDialog:Dialog
     val mContext: Context =this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
@@ -69,10 +73,20 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             viewModelAdvertiser.mResponse.observe(this,this)
             getUserProfile()
         }
+        else if (userType.equals("4")){
+            homeModel.homeResponse.observe(this,this)
+            getCommercialUserProfile()
+        }
         else{
             viewModel.mResponse.observe(this, this)
             getprofileAPI()
         }
+    }
+
+    private fun getCommercialUserProfile() {
+        val map = HashMap<String, String>()
+        homeModel.getCommercialUserProfile(this, true,map)
+        homeModel.homeResponse.observe(this, this)
     }
 
     private fun getUserProfile() {
@@ -87,6 +101,10 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             R.id.iv_back->{ finish() }
             R.id.btn_update_profile->{
                 if (userType.equals("5")){
+                    setValidationEditprofile()
+                }
+
+                else if (userType.equals("4")){
                     setValidationEditprofile()
                 }
                 else{
@@ -199,7 +217,13 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
         val map = HashMap<String, RequestBody>()
         map["firstName"] = mUtils.createPartFromString(edtFirstName.text.toString())
         map["lastName"] = mUtils.createPartFromString(edtLastName.text.toString())
-        viewModelAdvertiser.editUserProfile(this,true,map,firstimage,mUtils)
+        if (userType.equals("5")){
+            viewModelAdvertiser.editUserProfile(this,true,map,firstimage,mUtils)
+        }
+       else {
+            homeModel.editCommercialUserProfile(this,true,map,firstimage,mUtils)
+        }
+
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -243,6 +267,30 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                         updateDailogMethod()
                     }
                 }
+                if (it.data is CommercialProfileDetailResponse) {
+                    val mResponse: CommercialProfileDetailResponse = it.data
+                    val data = it.data
+                    if (data.code==200){
+                        setCommercialData(mResponse)
+                    }
+                }
+
+                if (it.data is EditCommercialProfileResponse){
+                    val mResponse: EditCommercialProfileResponse = it.data
+                    val data = it.data
+                    if (mResponse.code == GlobalVariables.URL.code ){
+                        savePrefrence(
+                            GlobalVariables.SHARED_PREF_ADVERTISER.firstName,
+                            data.body.commercialDetail.firstName
+                        )
+                        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.lastName, data.body.commercialDetail.lastName)
+                        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.image, data.body.commercialDetail.image)
+                        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.email, data.body.email)
+                        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.mobile, data.body.mobile)
+                        updateDailogMethod()
+                    }
+                }
+
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -254,6 +302,22 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    private fun setCommercialData(mResponse: CommercialProfileDetailResponse) {
+        Glide.with(this).load(mResponse.body.commercialDetail.image).into(image)
+        edtFirstName.setText(mResponse.body.commercialDetail.firstName)
+        edtLastName.setText(mResponse.body.commercialDetail.lastName)
+        edtMobile.setText(mResponse.body.mobile)
+        emailEdittext.setText(mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "2")
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.id, mResponse.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.role, mResponse.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.email, mResponse.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.mobile, mResponse.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.deviceToken, mResponse.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.deviceType, mResponse.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.notification, mResponse.body.notification)
     }
 
     private fun setUserData(mResponse: AdvertiserProfileDetailResponse) {

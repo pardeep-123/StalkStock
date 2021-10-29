@@ -606,6 +606,7 @@
                         android:layout_height="wrap_content">
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
+                            android:id="@+id/businessaddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/business_address"

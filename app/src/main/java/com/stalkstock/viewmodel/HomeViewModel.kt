@@ -2,13 +2,17 @@ package com.stalkstock.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
+import com.stalkstock.commercial.view.model.SendRequestData
 import com.stalkstock.consumer.model.PlaceOrderModel
 import com.stalkstock.utils.others.Util
 import com.stalkstock.utils.others.AppUtils
@@ -16,6 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.json.JSONArray
 import java.io.File
 
 class HomeViewModel : ViewModel() {
@@ -399,7 +404,7 @@ class HomeViewModel : ViewModel() {
                 }
             }
 
-            restApiInterface.editProductAPI(hashMap,image)
+            restApiInterface.editProductAPI(hashMap, image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
@@ -412,7 +417,7 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        editProductAPI(activity, showLoader, hashMap,profileImage, mUtils)
+                        editProductAPI(activity, showLoader, hashMap, profileImage, mUtils)
                     }
                 }) }
     }
@@ -442,6 +447,7 @@ class HomeViewModel : ViewModel() {
                     }
                 })
         }
+
     }
 
     @SuppressLint("CheckResult")
@@ -1078,7 +1084,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getOrderDetailAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
 
@@ -1097,15 +1104,16 @@ class HomeViewModel : ViewModel() {
                     { homeResponse.value = RestObservable.success(it) },
                     { homeResponse.value = RestObservable.error(activity, it) }
                 )
-        }
-        else {
+        } else {
             AppUtils.showNoInternetAlert(activity,
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        getSuggestedProduct(activity, showLoader,hashMap)
+                        getSuggestedProduct(activity, showLoader, hashMap)
                     }
-                }) } }
+                })
+        }
+    }
 
     @SuppressLint("CheckResult")
     fun getNotificationList(
@@ -1122,17 +1130,266 @@ class HomeViewModel : ViewModel() {
                     { homeResponse.value = RestObservable.success(it) },
                     { homeResponse.value = RestObservable.error(activity, it) }
                 )
-        }
-        else {
+        } else {
             AppUtils.showNoInternetAlert(activity,
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        getNotificationList(activity, showLoader,hashMap)
+                        getNotificationList(activity, showLoader, hashMap)
                     }
                 })
         }
     }
+
+
+    /*-------------------------------------Commercial ViewModel-----------------------------*/
+
+    @SuppressLint("CheckResult")
+    fun commrercialSignupApi(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>,
+        firstImage: String,
+        mUtils: Util
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            var image: MultipartBody.Part? = null
+            if (firstImage.isNotEmpty()) {
+                val file = File(firstImage)
+                image = mUtils.prepareFilePart("image", file)
+            }
+
+            restApiInterface.commercialSignUp(hashMap, image)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        commrercialSignupApi(activity, showLoader, hashMap, firstImage, mUtils)
+                    }
+                })
+        }
     }
+
+
+    @SuppressLint("CheckResult")
+    fun getCommercialUserProfile(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getCommercialUserProfile(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getCommercialUserProfile(activity, showLoader, hashMap)
+                    }
+                })
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun editCommercialUserProfile(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>,
+        firstImage: String,
+        mUtils: Util
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            var image: MultipartBody.Part? = null
+            if (firstImage.isNotEmpty()) {
+                val file = File(firstImage)
+                image = mUtils.prepareFilePart("image", file)
+            }
+            restApiInterface.editCommercialProfileDetail(hashMap, image)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        editCommercialUserProfile(activity, showLoader, hashMap, firstImage, mUtils)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun getCommercialBusinessProfile(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getCommercialBusinessDetail(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getCommercialBusinessProfile(activity, showLoader, hashMap)
+                    }
+                })
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun editCommercialBusinessProfile(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>,
+        firstImage: String,
+        mUtils: Util
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            var image: MultipartBody.Part? = null
+            if (firstImage.isNotEmpty()) {
+                val file = File(firstImage)
+                image = mUtils.prepareFilePart("buisnessLogo", file)
+            }
+            restApiInterface.editCommercialBusinessDetail(hashMap, image)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        editCommercialBusinessProfile(
+                            activity,
+                            showLoader,
+                            hashMap,
+                            firstImage,
+                            mUtils
+                        )
+                    }
+                })
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun sendBidingRequest(
+        activity: Activity,addressId:Int,data:JSONArray, showLoader: Boolean
+    ) {
+        val jsonParser = JsonParser()
+        val gsonObject = jsonParser.parse(data.toString()) as JsonArray
+        val dataObj= SendRequestData(addressId, gsonObject)
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.sendBidingRequest(dataObj)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        sendBidingRequest(activity,addressId,data, showLoader)
+                    }
+                })
+        }
+    }
+
+        @SuppressLint("CheckResult")
+        fun getBidingList(
+            activity: Activity,
+            showLoader: Boolean,
+            hashMap: HashMap<String, String>
+        ) {
+            if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+                restApiInterface.getBidinglist(hashMap)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        homeResponse.value = RestObservable.loading(activity, showLoader)
+                    }
+                    .subscribe(
+                        { homeResponse.value = RestObservable.success(it) },
+                        { homeResponse.value = RestObservable.error(activity, it) }
+                    )
+            } else {
+                AppUtils.showNoInternetAlert(activity,
+                    activity.getString(R.string.no_internet_connection),
+                    object : OnNoInternetConnectionListener {
+                        override fun onRetryApi() {
+                            getBidingList(activity, showLoader, hashMap)
+                        }
+                    })
+            }
+        }
+
+            @SuppressLint("CheckResult")
+            fun getBidingDetail(
+                activity: Activity,
+                showLoader: Boolean,
+                hashMap: HashMap<String, Int>
+            ) {
+                if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+                    restApiInterface.getBidingDetail(hashMap)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe {
+                            homeResponse.value = RestObservable.loading(activity, showLoader)
+                        }
+                        .subscribe(
+                            { homeResponse.value = RestObservable.success(it) },
+                            { homeResponse.value = RestObservable.error(activity, it) }
+                        )
+                } else {
+                    AppUtils.showNoInternetAlert(activity,
+                        activity.getString(R.string.no_internet_connection),
+                        object : OnNoInternetConnectionListener {
+                            override fun onRetryApi() {
+                                getBidingDetail(activity, showLoader, hashMap)
+                            }
+                        })
+                }
+            }
+
+        }
+
+
 
 

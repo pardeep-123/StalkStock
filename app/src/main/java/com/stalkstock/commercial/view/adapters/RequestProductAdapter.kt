@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.product
+package com.stalkstock.commercial.view.adapters
 
 import android.content.Context
 import android.graphics.Typeface
@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.stalkstock.commercial.view.activities.AddedProduct
 import com.stalkstock.R
+import com.stalkstock.commercial.view.model.BidingDetailResponse
 import kotlinx.android.synthetic.main.request_product_adapter.view.*
 
 
-class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>) : RecyclerView.Adapter<RequestProductAdapter.MyViewHolder>() {
+class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>,var orderList: ArrayList<BidingDetailResponse.OrderItem>) : RecyclerView.Adapter<RequestProductAdapter.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
@@ -36,7 +38,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return orderList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -53,7 +55,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
         }
 
 
-        if (position==0){
+/*        if (position==0){
 
             val type = Typeface.createFromAsset(context.getAssets(), "fonts/TitilliumWeb_Bold.ttf")
 
@@ -75,20 +77,20 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
              holder.itemView.tvQuantity.setTypeface(type)
             holder.itemView.tvQuantity.setTextColor(context.resources.getColor(R.color.black))
 
-
-
             holder.itemView.tvQuantityType.setText("U.O.M.")
             holder.itemView.tvQuantityType.setTextColor(context.resources.getColor(R.color.black))
             holder.itemView.tvQuantityType.setTypeface(type)
 
-
-        }else{
+        }*/
+//        else{
             var pos=position
 
-
+            holder.itemView.tvType.text = orderList[pos].product.name
+            holder.itemView.tvQuantity.text = orderList[pos].qty.toString()
+            holder.itemView.tvQuantityType.text = orderList[pos].product.measurementName
 //        holder.itemView.tvCount.text=
             holder.tvCount.text=pos.toString()+"."
-        }
+//        }
 
 
         if(list[position].edit)
@@ -133,6 +135,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var tvCount=itemView.findViewById<TextView>(R.id.tvCount)
+
 
     }
 

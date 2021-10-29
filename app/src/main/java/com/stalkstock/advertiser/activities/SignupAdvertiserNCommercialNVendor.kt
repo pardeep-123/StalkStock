@@ -16,6 +16,8 @@ import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.activities.MainCommercialActivity
+import com.stalkstock.commercial.view.model.CommercialSignUpResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
@@ -225,7 +227,32 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         ) {
             repasswordEdittext.requestFocus()
             repasswordEdittext.setError(resources.getString(R.string.new_confirm_password_dont_match))
-        } else {
+        }
+        else if (MyApplication.instance.getString("usertype").equals("4")) {
+            val hashMap = HashMap<String, RequestBody>()
+            hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessDescription] = mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
+            hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.businessPhone] = mUtils.createPartFromString(et_businessPhone.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.website] = mUtils.createPartFromString(et_website.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessAddress] = mUtils.createPartFromString(et_businessAddress.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.postalCode] = mUtils.createPartFromString(et_zipCode.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(spinner.selectedItem.toString())
+            hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())
+
+
+            viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)
+            viewModel.homeResponse.observe(this, this)
+        }
+
+        else {
 
             val hashMap = HashMap<String, RequestBody>()
             hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
@@ -248,8 +275,9 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
             hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())
 
-            viewModel.postvendorsignupApi(this, true, hashMap,firstimage,mUtils)
-            viewModel.homeResponse.observe(this, this)
+                viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
+                viewModel.homeResponse.observe(this, this)
+
 
         }
 
@@ -265,7 +293,21 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                         startActivity(Intent(this, BottomnavigationScreen::class.java))
                         //startActivity(Intent(mContext, Verification::class.java))
 //                finish()
-                    } else {
+                    }
+                     else {
+                        startActivity(Intent(mContext, LoginActivity::class.java))
+                        finish()
+                    }
+                }
+
+                if (it.data is CommercialSignUpResponse) {
+                    val data = it.data as CommercialSignUpResponse
+                    if (data.code == 200) {
+                        setCommercialData(data)
+                        startActivity(Intent(this, MainCommercialActivity::class.java))
+                    }
+
+                    else {
                         startActivity(Intent(mContext, LoginActivity::class.java))
                         finish()
                     }
@@ -282,6 +324,76 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             }
         }
     }
+
+    private fun setCommercialData(data: CommercialSignUpResponse) {
+        savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.authKey)
+        savePrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, data.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.AUTH_KEY, data.body.authKey)
+        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.token, data.body.token)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.deviceToken, data.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.id, data.body.id)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.role, data.body.role)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.verified, data.body.verified)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.status, data.body.status)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.email, data.body.email)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.mobile, data.body.mobile)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.deviceToken, data.body.deviceToken)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.deviceType, data.body.deviceType)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.notification, data.body.notification)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.remember_token,
+            data.body.remember_token
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.created, data.body.created)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.updated, data.body.updated)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.createdAt, data.body.createdAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.updatedAt, data.body.updatedAt)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.advertiserId, data.body.commercialDetail.id)
+
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.firstName,
+            data.body.commercialDetail.firstName
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.lastName, data.body.commercialDetail.lastName)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.image, data.body.commercialDetail.image)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessPhone,
+            data.body.commercialDetail.buisnessPhone
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessLogo, data.body.commercialDetail.buisnessLogo)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessTypeId,
+            data.body.commercialDetail.buisnessTypeId
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessName, data.body.commercialDetail.buisnessName)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessLicense,
+            data.body.commercialDetail.buisnessLicense
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.website, data.body.commercialDetail.website)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.city, data.body.commercialDetail.city)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.state, data.body.commercialDetail.state)
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.country, data.body.commercialDetail.country)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.postalCode,
+            data.body.commercialDetail.postalCode
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessAddress,
+            data.body.commercialDetail.buisnessAddress
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.addressLine2,
+            data.body.commercialDetail.addressLine2
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessDescription,
+            data.body.commercialDetail.buisnessDescription
+        )
+        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.userId, data.body.commercialDetail.userId)
+    }
+
 
     private fun setData(data: VendorSignupResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)

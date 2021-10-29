@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.live.stalkstockcommercial.ui.models.ModelPojo
+import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.R
 import kotlinx.android.synthetic.main.item_orders.view.*
 

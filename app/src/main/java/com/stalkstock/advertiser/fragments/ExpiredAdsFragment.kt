@@ -50,6 +50,8 @@ class ExpiredAdsFragment : Fragment(), Observer<RestObservable> {
         val map = HashMap<String, RequestBody>()
         map["type"] = createPartFromString("2")
         viewModel.getAdsList(requireActivity(),true,map)
+        viewModel.mResponse.observe(requireActivity(),this)
+
     }
 
     override fun onChanged(it: RestObservable?) {

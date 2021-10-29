@@ -209,7 +209,7 @@
                         android:textSize="15sp" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
-                       android:id="@+id/tvBudget"
+                        android:id="@+id/tvBudget"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

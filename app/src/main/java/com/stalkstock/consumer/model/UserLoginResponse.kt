@@ -25,6 +25,7 @@ data class UserLoginResponse(
         val vendorDetail: VendorDetail,
         val driverDetail: DriverDetail,
         val advertiserDetail: AdvertiserDetail,
+        val commercialDetail: CommercialDetail,
         val verified: Int // 1
     ) {
         data class VendorDetail(
@@ -145,6 +146,34 @@ data class UserLoginResponse(
             val updatedAt: String,
             val userId: Int
 
+        )
+
+        data class CommercialDetail(
+            val addressLine2: String,
+            val buisnessAddress: String,
+            val buisnessDescription: String,
+            val buisnessLicense: String,
+            val buisnessLogo: String,
+            val buisnessName: String,
+            val buisnessPhone: String,
+            val buisnessTypeId: Int,
+            val city: String,
+            val country: String,
+            val created: Int,
+            val createdAt: String,
+            val firstName: String,
+            val id: Int,
+            val image: String,
+            val lastName: String,
+            val latitude: String,
+            val longitude: String,
+            val name: String,
+            val postalCode: String,
+            val state: String,
+            val updated: Int,
+            val updatedAt: String,
+            val userId: Int,
+            val website: String
         )
     }
 }

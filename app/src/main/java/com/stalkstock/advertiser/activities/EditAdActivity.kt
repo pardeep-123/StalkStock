@@ -126,7 +126,6 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
                 actionselected = "4"
                 actionSelectedTitle = "SignUp Now"
             }
-
         }
 
         iv_back.setOnClickListener(this)

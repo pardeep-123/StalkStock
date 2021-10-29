@@ -1,10 +1,9 @@
-package com.live.stalkstockcommercial.ui.paymnet
+package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import kotlinx.android.synthetic.main.payment_status.*
 
 class PaymentStatus : AppCompatActivity() {

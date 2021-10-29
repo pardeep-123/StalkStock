@@ -8,19 +8,13 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/value_20dp"
     android:padding="@dimen/value_10dp"
-    android:background="@drawable/white_radius_popup"
-
-    >
-
-
+    android:background="@drawable/white_radius_popup">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductUnit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        />
-
+        android:orientation="vertical" />
 
 </LinearLayout>

@@ -51,7 +51,7 @@ class ApprovedAdsFragment : Fragment(), Observer<RestObservable> {
         val map = HashMap<String, RequestBody>()
         map["type"] = createPartFromString("1")
         viewModel.getAdsList(requireActivity(),true,map)
-
+        viewModel.mResponse.observe(requireActivity(),this)
     }
 
     override fun onChanged(it: RestObservable?) {

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
-import com.live.stalkstockcommercial.ui.models.ModelPojo
+import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.commercial.view.activities.OrderDetailActivity
 import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.R

@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
 
@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:id="@+id/actHome"
             android:layout_width="@dimen/value_0dp"
             android:layout_height="match_parent"
@@ -44,61 +44,53 @@
             android:id="@+id/ivBusinessEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/value_10dp"
+            android:layout_marginStart="@dimen/value_10dp"
             android:padding="10dp"
             android:src="@drawable/back_arrow"
-             app:layout_constraintBottom_toBottomOf="@id/actHome"
+            app:layout_constraintBottom_toBottomOf="@id/actHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/actHome" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <RelativeLayout
-
         android:layout_below="@+id/toolbar_myorders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/value_15dp"
         android:layout_marginTop="@dimen/value_25dp"
         android:background="@drawable/item_border"
-
         android:layout_marginEnd="@dimen/value_15dp">
+
         <RelativeLayout
             android:id="@+id/clBidId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/value_5dp"
-             >
-
+            android:padding="@dimen/value_5dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvRequest"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/value_10dp"
+                android:layout_marginStart="@dimen/value_10dp"
+                android:layout_marginTop="10dp"
                 android:text="Request ID:#123456"
                 android:textColor="@color/black_color"
                 android:textSize="@dimen/value_14dp"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/tvCreatedDateB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/value_10dp"
+                android:layout_marginStart="@dimen/value_10dp"
                 android:layout_marginTop="@dimen/value_10dp"
                 android:text="June 10, 2020 | 03:23"
                 android:textColor="#ACACAC"
                 android:textSize="@dimen/value_12dp"
-
                 android:layout_marginBottom="10dp"
-
                 android:layout_below="@+id/tvRequest" />
-
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvChat"
@@ -115,19 +107,17 @@
                 android:textColor="@color/green_colour"
                 android:textSize="@dimen/value_14dp"
                   android:visibility="gone"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-           />
-
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
-
 
         <View
             android:layout_below="@+id/clBidId"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#F2F2F2"/>
+
         <!--single-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cvBidder"
@@ -142,11 +132,9 @@
             app:cardElevation="@dimen/value_1dp"
             android:layout_below="@+id/clBidId" >
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/civImage"
@@ -160,7 +148,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
@@ -170,7 +157,7 @@
                     android:text="Jamie Jai"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/value_14dp"
-                      app:layout_constraintStart_toEndOf="@id/civImage"
+                    app:layout_constraintStart_toEndOf="@id/civImage"
                     app:layout_constraintTop_toTopOf="@id/civImage" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -184,7 +171,6 @@
                     android:textSize="@dimen/value_12dp"
                      app:layout_constraintBottom_toBottomOf="@id/civImage"
                     app:layout_constraintStart_toEndOf="@id/civImage" />
-
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvPrices"
@@ -207,58 +193,57 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="@dimen/value_10dp"
                     android:background="@drawable/cart_check"
-                    android:visibility="gone"
-                    />
-
+                    android:visibility="gone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         </androidx.cardview.widget.CardView>
-
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvshoping"
             android:layout_below="@+id/cvBidder"
             android:layout_marginTop="15dp"
             android:layout_marginStart="@dimen/value_15dp"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
              android:text="Shopping List"
             android:textColor="@color/black_color"
             android:textSize="17sp"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+       <include
+           android:visibility="gone"
+           android:id="@+id/layShpList"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/tvshoping"
+           android:layout_marginStart="@dimen/value_15dp"
+           android:layout_marginTop="15dp"
+           android:layout_marginEnd="@dimen/value_15dp"
+           layout="@layout/request_product_adapter"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRequestProducts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/layShpList"
             android:layout_marginStart="@dimen/value_15dp"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="@dimen/value_15dp"
             android:orientation="vertical"
-            android:layout_below="@+id/tvshoping"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRequestBids"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rvRequestProducts"
             android:layout_marginStart="@dimen/value_15dp"
             android:layout_marginTop="@dimen/value_15dp"
             android:layout_marginEnd="@dimen/value_15dp"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
-
-            android:layout_below="@+id/rvRequestProducts"  />
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </RelativeLayout>
 
@@ -274,9 +259,6 @@
         android:visibility="gone"
         android:textAllCaps="false"
         android:textColor="@color/white"
-
-        android:layout_alignParentBottom="true"
-        />
-
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

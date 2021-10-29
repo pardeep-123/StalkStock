@@ -47,19 +47,20 @@
                     android:background="@drawable/post_ad_shape"
                     android:elevation="5dp"
                     android:gravity="center">
-                    <ImageView
-                        android:id="@+id/image1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
 
                     <ImageView
+                        android:id="@+id/ivAddImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:id="@+id/ivAdsCamera"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
+                        android:layout_centerInParent="true"
+
                         android:layout_gravity="center"
                         android:alpha=".5"
-
-                        android:layout_centerInParent="true"
                         android:background="@drawable/ic_camera_alt_black_24dp" />
 
                 </RelativeLayout>
@@ -78,6 +79,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etAddTitle"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="10dp"
@@ -119,7 +121,7 @@
                         >
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            android:id="@+id/c12"
+                            android:id="@+id/tvFromDate"
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
                             android:layout_marginTop="10dp"
@@ -205,6 +207,7 @@
                     android:orientation="horizontal"
                     android:weightSum="0.9">
                     <LinearLayout
+                        android:id="@+id/liLearnMore"
                         android:layout_width="0dp"
                         android:layout_weight="0.3"
                         android:layout_height="wrap_content"
@@ -212,6 +215,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbLearnMore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -231,6 +235,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/liShopNow"
                         android:layout_width="0dp"
                         android:layout_weight="0.3"
                         android:layout_height="wrap_content"
@@ -238,6 +243,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbShopNow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -257,6 +263,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/liGetNow"
                         android:layout_width="0dp"
                         android:layout_weight="0.3"
                         android:layout_height="wrap_content"
@@ -264,6 +271,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbGetNow"
                             android:layout_width="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_height="wrap_content"
@@ -292,6 +300,7 @@
                     android:gravity=""
                     android:weightSum="0.9">
                     <LinearLayout
+                        android:id="@+id/liJoinNow"
                         android:layout_width="0dp"
                         android:layout_weight="0.3"
                         android:layout_height="wrap_content"
@@ -299,6 +308,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbJoinNow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -318,6 +328,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/liSignUpNow"
                         android:layout_width="0dp"
                         android:layout_weight="0.8"
                         android:layout_height="wrap_content"
@@ -325,6 +336,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/cbSignup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -353,6 +365,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etAdsLink"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="10dp"
@@ -386,6 +399,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etEnterBudget"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="10dp"
@@ -419,6 +433,7 @@
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/etEnterDescription"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"

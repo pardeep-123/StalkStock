@@ -217,7 +217,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
             toggle_off2.visibility = View.GONE
             toggle1.visibility = View.VISIBLE
         }
-        v.tvUserName.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.firstName,"")
+        v.tvUserName.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.firstName,"") + " " + getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.lastName,"")
         v.tvUserEmailId.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.email,"")
         v.tvUserPhone.text = getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.mobile,"")
         Glide.with(requireActivity()).load(getPrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image,"")).into(v.ivUserProfile)

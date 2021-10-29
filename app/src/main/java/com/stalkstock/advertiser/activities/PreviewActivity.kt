@@ -141,7 +141,7 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
         tvBudget.text = budget
         tvDestinationLink.text = adLink
         tvAdsDescription.text = description
-        tvAction.text = actionContent
+//        tvAction.text = actionContent
 
         iv_back.setOnClickListener(this)
         btn_submit.setOnClickListener(this)

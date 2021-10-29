@@ -1,161 +1,472 @@
-package com.live.stalkstockcommercial.ui.product
+package com.stalkstock.commercial.view.activities
 
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
-import com.live.stalkstockcommercial.ui.view.fragments.home.AdapterProductUnit
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import com.stalkstock.commercial.view.adapters.AdapterProductUnit
 import com.stalkstock.R
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
+import com.stalkstock.commercial.view.adapters.RequestProductHomeAdapter
+import com.stalkstock.commercial.view.model.BidingDetailResponse
+import com.stalkstock.commercial.view.model.CategoryList
+import com.stalkstock.commercial.view.model.Sendbidresponse
+import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.common.model.ModelMeasurementList
+import com.stalkstock.common.model.ModelSubCategoriesList
+import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
+import com.stalkstock.consumer.model.ModelUserAddressList
+import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.dialog_home.*
+import kotlinx.android.synthetic.main.added_product.back
+import okhttp3.RequestBody
+import org.json.JSONArray
+import org.json.JSONObject
 
+class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
+    private val homeModel: HomeViewModel by viewModels()
 
-class AddedProduct : AppCompatActivity() {
+    private var reset = false
+    private var currentOffsets = 0
+    private var currentOffset = 0
+    private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
+    private var listProduct: ArrayList<String> = ArrayList()
+    val listC : ArrayList<CategoryList> = ArrayList()
+    private var currentCatId = ""
+    var currentDeliveryType = "0"
+    var currentLowPrice = ""
+    var currentHighPrice = "10000"
+    var currentSortBy = "high_to_low"
 
+    private var address: ArrayList<ModelUserAddressList.Body> = ArrayList()
+    var addressId: Int = 0
+
+    var productCategoryList: ArrayList<ModelCategoryList.Body> = ArrayList()
+    private var listSubCategoryBody: ArrayList<ModelSubCategoriesList.Body> = ArrayList()
+    private var listSub: ArrayList<String> = ArrayList()
+    private lateinit var subCatAdapter: ArrayAdapter<String>
+    private lateinit var productAdapter: ArrayAdapter<String>
+    private lateinit var adapterMeasurements: AdapterProductUnit
+    var currentMeasurementId = ""
+    var quantity: String = ""
+    var type: String = ""
+    var categoryId:String = ""
+    var subCategoryId:String = ""
+    var productId: String = ""
+    lateinit var category: CategoryList
 
     var list : ArrayList<RequestProductData> = ArrayList()
+    var orderList: ArrayList<BidingDetailResponse.OrderItem> = ArrayList()
 
     lateinit var detailDialog: Dialog
     var listProductUnit : ArrayList<ProductUnitData> = ArrayList()
+    private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
 
+    override fun getContentId(): Int {
+        return R.layout.added_product }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.added_product)
 
-
-        list.add(RequestProductData("Meat", "Bacon Grill", "10", "Kg", edit = true, delete = true))
-        list.add(RequestProductData("Meat", "Bacon Normal", "8", "Kg", edit = true, delete = true))
-
-        rvRequestProducts.adapter = RequestProductAdapter(list)
-
+        getCategoryListApi()
 
         rlUnitMesurment.setOnClickListener {
-            setUnitList()
-        }
+            setUnitList() }
 
+        etUnitMeasurement.setOnClickListener {
+            setUnitList() }
 
+        tvUnitMeasurement.setOnClickListener {
+            setUnitList() }
 
         btnSubmit.setOnClickListener {
-            startActivity(Intent(this, AddThanks::class.java))
-//            finish()
-
-        }
-        etUnitMeasurement.setOnClickListener {
-            setUnitList()
-        }
-        tvUnitMeasurement.setOnClickListener {
-            setUnitList()
-        }
+            addBidingRequestApi() }
 
         back.setOnClickListener {
-            onBackPressed()
+            onBackPressed() }
+
+        spinnerProduct.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+            { if (position!==0){
+                val categories = productCategoryList[spinnerProduct!!.selectedItemPosition-1]
+                categoryId = categories.id.toString()
+                getProductList()
+            }
+                else{
+
+
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
         }
+
+        listSub.add("Select Sub Category")
+        spinnerSubProduct.isEnabled = false
+        subCatAdapter = ArrayAdapter(this, R.layout.spiner_layout_text, listSub)
+        spinnerSubProduct!!.adapter = subCatAdapter
+
+
+        listProduct.add("Select Product")
+        spinnerGetProduct.isEnabled = false
+        productAdapter = ArrayAdapter(this, R.layout.spiner_layout_text, listProduct)
+        spinnerGetProduct!!.adapter = productAdapter
+
+        spinnerSubProduct.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position!==0){
+                    val products = listSubCategoryBody[spinnerSubProduct.selectedItemPosition - 1]
+                    subCategoryId = products.id.toString()
+
+                    getProductAsSubCategory()
+                }
+
+                else{
+
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
+        spinnerGetProduct.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position!==0){
+                     val product = currentModel[spinnerGetProduct.selectedItemPosition-1]
+                    productId = product.id.toString()
+
+                    getAddressApi()
+                }
+
+                else{
+
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
+        adapterMeasurements = AdapterProductUnit(this,listProductUnit)
+        getMeasurementApi()
 
         tvAddMore.setOnClickListener {
-            card_added.visibility = View.VISIBLE
+        showDataList() }
+
+        btnSave.setOnClickListener{
+            showDataList()
         }
+    }
 
-//
-//        var  listAr=ArrayList<String>()
-//       /* <item>Select Category</item>
-//        <item>Vegetables</item>
-//        <item>Fruits</item>
-//        <item>Grains, Beans and Nuts</item>
-//        <item>Meat and Poultry</item>
-//        <item>Fish and Seafood</item>
-//        <item>Dairy</item>
-//        <item>Other (Please Specify Below)</item>*/
-//        listAr.add("Select Category")
-//         listAr.add("Vegetables")
-//        listAr.add("Fruits")
-//        listAr.add("Grains, Beans and Nuts")
-//        listAr.add("Meat and Poultry")
-//        listAr.add("Dairy")
-//        listAr.add("Other (Please Specify Below)")
-//
-//        val adapter = ArrayAdapter.createFromResource(
-//            this,
-//            R.array.Select_Category, R.layout.spinner_item_text
-//        )
-//        adapter.setDropDownViewResource(R.layout.spinner_item_text);
-//       // var adapterss: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.spinner_item_text,listAr)
-//       // adapterss.setDropDownViewResource(R.layout.spinner_item_text);
-//        spinner.adapter=adapter
+    private fun getAddressApi() {
+        if (reset) {
+            currentOffsets = 0
+            address.clear()
+        }
+        val map = java.util.HashMap<String, RequestBody>()
+        map.put("offset", mUtils.createPartFromString(currentOffsets.toString()))
+        map.put("limit", mUtils.createPartFromString("5"))
+        homeModel.getUserAddressListAPI(this, true, map)
+        homeModel.homeResponse.observe(this, this)
+    }
 
+    private fun getProductAsSubCategory() {
+        if (reset) {
+            currentOffset = 0
+            currentModel.clear()
+        }
+        val map = java.util.HashMap<String, RequestBody>()
+        map.put("offset", mUtils.createPartFromString(currentOffset.toString()))
+        map.put("limit", mUtils.createPartFromString("5"))
+        map.put("subCategoryId", mUtils.createPartFromString(subCategoryId))
+        map.put("categoryId", mUtils.createPartFromString(categoryId))
+        map.put("sortBy", mUtils.createPartFromString(currentSortBy))
+        map.put("lowPrice", mUtils.createPartFromString(currentLowPrice))
+        map.put("deliveryType", mUtils.createPartFromString(currentDeliveryType))
+        map.put("highPrice", mUtils.createPartFromString(currentHighPrice))
+        homeModel.getProductAccToCategorySubcategoryAPI(this, true, map)
+        homeModel.homeResponse.observe(this, this)
+//        whichApi = "productList"
+    }
 
-        val foodadapter = ArrayAdapter.createFromResource(
-            this, R.array.Select_Category, R.layout.spinner_layout
-        )
-        foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner.adapter = foodadapter
+    private fun showDataList() {
+        type = productId
+        quantity = etEnterQuantity.text.toString()
+
+        when {
+            spinnerProduct.selectedItemPosition==0 -> {
+                spinnerProduct.requestFocus()
+                AppUtils.showErrorAlert(this, getString(R.string.please_select_category))
+            }
+
+            spinnerSubProduct.selectedItemPosition==0 -> {
+                spinnerSubProduct.requestFocus()
+                AppUtils.showErrorAlert(this, getString(R.string.please_select_sub_category))
+            }
+            spinnerGetProduct.selectedItemPosition==0 -> {
+                spinnerGetProduct.requestFocus()
+                AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
+            }
+
+            etEnterQuantity.text!!.isEmpty() -> {
+                etEnterQuantity.requestFocus()
+                etEnterQuantity.error = resources.getString(R.string.please_enter_quantity)
+            }
+
+            etUnitMeasurement.text!!.isEmpty() -> {
+                etUnitMeasurement.requestFocus()
+                etUnitMeasurement.error = resources.getString(R.string.please_select_quantity)
+            }
+            else -> {
+                list.add(RequestProductData(spinnerGetProduct.selectedItem.toString(), type, quantity, etUnitMeasurement.text.toString(), edit = true, delete = true))
+                val adapter = RequestProductHomeAdapter(list,orderList)
+                rvRequestProducts.adapter = adapter
+                adapter.notifyDataSetChanged()
+
+                if (list.size == 0){
+                    card_added.visibility = View.GONE
+                } else{
+                    card_added.visibility = View.VISIBLE
+                }
+                spinnerSubProduct.setSelection(0)
+                spinnerProduct.setSelection(0)
+                spinnerGetProduct.setSelection(0)
+
+                etEnterQuantity.setText("")
+                etUnitMeasurement.setText("")
+               /* getCategoryListApi()*/
+
+            }
+        }
+    }
+
+    private fun setUnitList() {
+       setDialog()
+    }
+
+    private fun getCategoryListApi() {
+       homeModel.getCategoryListAPI(this,true)
+        homeModel.homeResponse.observe(this,this)
+    }
+
+    private fun getProductList() {
+        val map = HashMap<String, RequestBody>()
+        map["category_id"]= mUtils.createPartFromString(categoryId)
+        homeModel.getSubCategoryListAPI(this,true,map)
+    }
+
+    private fun getMeasurementApi() {
+     homeModel.measurementListAPI(this,true)
+     homeModel.homeResponse.observe(this,this)
+    }
+
+    private fun addBidingRequestApi() {
+        val jsonArray = JSONArray()
+        val student1 = JSONObject()
+        val quantity = etEnterQuantity.text.toString()
+        if(list.size==0){
+            student1.put("productId",productId)
+            student1.put("qty",quantity.toInt())
+            jsonArray.put(student1)
+        }
+        else{
+            for (i in 0 until list.size) {
+                student1.put("productId",list[i].type)
+                student1.put("qty",list[i].quantity)
+                jsonArray.put(student1)
+            }
+            Log.i("list",list.toString())
+        }
+        homeModel.sendBidingRequest(this, addressId,jsonArray,true)
+        homeModel.homeResponse.observe(this, this)
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
     }
 
-    private fun setUnitList() {
-
-        listProductUnit.clear()
-        listProductUnit.add(ProductUnitData("Volume","Teaspoon (t or tsp.)",false))
-        listProductUnit.add(ProductUnitData("","Tablespoon ( T, tbl.,tbs., or tbsp.)",false))
-        listProductUnit.add(ProductUnitData("","Fluid ounce ( fl oz )",false))
-        listProductUnit.add(ProductUnitData("","Gill (about 1/2 cup)",false))
-        listProductUnit.add(ProductUnitData("","Cup (c)",false))
-        listProductUnit.add(ProductUnitData("","Pint (p,pt or ft pt)",false))
-        listProductUnit.add(ProductUnitData("","Quart (q, qt, or fl qt)",false))
-        listProductUnit.add(ProductUnitData("","Gallon (g or gal)",false))
-        listProductUnit.add(ProductUnitData("","Milliliter, milliliter (cc, mL, ml)",false))
-        listProductUnit.add(ProductUnitData("","Liter, liter (L, l)",false))
-        listProductUnit.add(ProductUnitData("","Deciliter,deciliter (dL, dl)",false))
-        listProductUnit.add(ProductUnitData("Mass and Weight","Pound (lb or #)",false))
-         listProductUnit.add(ProductUnitData("","Ounce (oz)",false))
-        listProductUnit.add(ProductUnitData("","Milligram/milligramme (mg)",false))
-        listProductUnit.add(ProductUnitData("","Gram/gramme (g)",false))
-        listProductUnit.add(ProductUnitData("","Kilogram/kilogramme (kg)",false))
-        listProductUnit.add(ProductUnitData("Other","Individual Units",true))
-
-        setDialog(listProductUnit)
-    }
-
-    private fun setDialog(
-
-        listProductUnit: ArrayList<ProductUnitData>
-    ) {
-
+    private fun setDialog(){
         detailDialog = Dialog(this)
         detailDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         detailDialog.setContentView(R.layout.dialog_home)
 
-        detailDialog.window!!.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        detailDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         detailDialog.setCancelable(true)
         detailDialog.setCanceledOnTouchOutside(true)
         detailDialog.window!!.setGravity(Gravity.CENTER)
 
         detailDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-
-        detailDialog.rvProductUnit.adapter = AdapterProductUnit(listProductUnit)
+        detailDialog.rvProductUnit.adapter = adapterMeasurements
         detailDialog.llDialog.setOnClickListener { detailDialog.dismiss() }
 
         detailDialog.show()
     }
 
     data class RequestProductData(var name:String ="",var type:String ="",
-                                  var quantity:String ="",var unit:String ="",var edit:Boolean =false,var delete:Boolean =false)
+                                  var quantity:String = "",var unit:String ="",var edit:Boolean =false,var delete:Boolean =false)
 
-    data class ProductUnitData(var title:String =  "",var unit:String =  "",var selected:Boolean =  false)
+    data class ProductUnitData(var id:Int =  0,var name:String =  "",var status:Int =  0)
 
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is Sendbidresponse) {
+                    val mResponse: Sendbidresponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        val intent = Intent(this, AddThanks::class.java)
+                        intent.putExtra("requestNo", it.data.body.requestNo)
+                        startActivity(intent)
+                    }
+                }
 
+                if (it.data is ModelUserAddressList) {
+                    val mResponse: ModelUserAddressList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOffset += 5
+                        address.addAll(mResponse.body)
+                        addressId = address[0].id
+
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                }
+
+                if (it.data is ModelProductListAsPerSubCat) {
+                    val mResponse: ModelProductListAsPerSubCat = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOffset += 5
+                        setData(mResponse)
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                }
+
+                if (it.data is ModelCategoryList) {
+                    val mResponse: ModelCategoryList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+
+                        productCategoryList.clear()
+                        productCategoryList.addAll(mResponse.body)
+
+                        listC.clear()
+                        listC.add(CategoryList(0,0,"Select category",""))
+                        if(productCategoryList.isNotEmpty())
+                        {
+                            for(i in 0 until productCategoryList.size)
+                            {
+                                listC.add(
+                                    CategoryList(productCategoryList[i].id,productCategoryList[i].status,
+                                        productCategoryList[i].name,productCategoryList[i].image))
+                            }
+
+                        }
+
+                        val categoryList = CategoryCommercialAdapter(this,"Select category", listC)
+                        spinnerProduct.adapter = categoryList
+                    }
+                }
+
+                if (it.data is ModelSubCategoriesList) {
+                    val mResponse: ModelSubCategoriesList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        spinnerSubProduct.isEnabled = true
+                        listSubCategoryBody.clear()
+                        listSubCategoryBody.addAll(mResponse.body)
+                        listSub.clear()
+                        listSub.add("Select Sub Category")
+                        if(listSubCategoryBody.isNotEmpty()) {
+                            for (i in 0 until listSubCategoryBody.size) {
+                                listSub.add(listSubCategoryBody[i].name)
+                            }
+
+                            subCatAdapter.notifyDataSetChanged()
+                        }
+
+                    }
+                    else AppUtils.showErrorAlert(this, mResponse.message)
+                }
+
+                if (it.data is ModelMeasurementList) {
+                    val mResponse: ModelMeasurementList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        setDataMeasurements(mResponse) }
+                    else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show() }
+                else {
+                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+            it.status == Status.LOADING -> {
+
+            }
+        }
+    }
+
+    private fun setData(mResponse: ModelProductListAsPerSubCat) {
+        currentModel.clear()
+        currentModel.addAll(mResponse.body)
+        reset = false
+        spinnerGetProduct.isEnabled = true
+
+        listProduct.clear()
+        listProduct.add("Select Product")
+        for (i in 0 until currentModel.size) {
+            listProduct.add(currentModel[i].name) }
+
+        productAdapter.notifyDataSetChanged()
+    }
+
+    private fun setDataMeasurements(mResponse: ModelMeasurementList) {
+        listProductUnit.clear()
+        currentModelMeasurements.clear()
+        currentModelMeasurements = mResponse.body as ArrayList<ModelMeasurementList.Body>
+
+        for (i in currentModelMeasurements) {
+            listProductUnit.add(ProductUnitData(i.id, i.name, i.status)) }
+        adapterMeasurements.notifyDataSetChanged()
+    }
+
+    fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
+        for (i in 0 until currentModelMeasurements.size) {
+            listProductUnit[i] = ProductUnitData(
+                currentModelMeasurements[i].id,
+                currentModelMeasurements[i].name,
+                currentModelMeasurements[i].status)
+        }
+        val productUnitData1 =ProductUnitData(productUnitData.id, productUnitData.name, productUnitData.status)
+        listProductUnit[position] = productUnitData1
+        adapterMeasurements.notifyDataSetChanged()
+        etUnitMeasurement.setText(productUnitData.name)
+        detailDialog.dismiss()
+        currentMeasurementId = currentModelMeasurements[position].id.toString()
+    }
+
+    override fun onClick(v: View?) {
+
+    }
 }

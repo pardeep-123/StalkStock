@@ -3,18 +3,16 @@ package com.live.stalkstockcommercial.ui.view.fragments.messages
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
-import com.live.stalkstockcommercial.ui.models.ModelPojo
+import com.stalkstock.commercial.view.model.ModelPojo
 import com.live.stalkstockcommercial.ui.view.activities.Chat
 import com.live.stalkstockcommercial.ui.view.adapters.messages.MessagesListAdapter
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.CommunicationListner
 import kotlinx.android.synthetic.main.fragment_messages.*
 import kotlinx.android.synthetic.main.fragment_my_orders.*
 

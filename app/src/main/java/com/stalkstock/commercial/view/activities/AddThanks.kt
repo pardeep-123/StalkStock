@@ -1,10 +1,9 @@
-package com.live.stalkstockcommercial.ui.product
+package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import kotlinx.android.synthetic.main.add_thanks.*
 
 class AddThanks : AppCompatActivity() {
@@ -14,6 +13,7 @@ class AddThanks : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_thanks)
 
+        tvRequestId.text = "Request Id:"+" "+intent.getStringExtra("requestNo")
 
         iv_backArrow.setOnClickListener { onBackPressed() }
         btnGo.setOnClickListener {
