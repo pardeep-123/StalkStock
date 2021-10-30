@@ -23,7 +23,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-        rangeSeekBar.setMaxThumbValue(10000)
+        rangeSeekBar.setMaxThumbValue(1000)
         rangeSeekBar.seekBarChangeListener = this
         fromWhichActivity = intent.getStringExtra("from")!!
 
@@ -49,7 +49,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         btn_clear.setOnClickListener {
 
             currentLowPrice = 0
-            currentHighPrice = 10000
+            currentHighPrice = 1000
             currentSortBy = ""
             var returnIntent = Intent()
             if (fromWhichActivity == "HomeCounsumerFragment")

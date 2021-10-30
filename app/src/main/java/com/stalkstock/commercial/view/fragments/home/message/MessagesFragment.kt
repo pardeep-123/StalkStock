@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
 import com.stalkstock.commercial.view.model.ModelPojo
-import com.live.stalkstockcommercial.ui.view.activities.Chat
+import com.stalkstock.commercial.view.activities.Chat
 import com.live.stalkstockcommercial.ui.view.adapters.messages.MessagesListAdapter
 import com.stalkstock.R
 import kotlinx.android.synthetic.main.fragment_messages.*

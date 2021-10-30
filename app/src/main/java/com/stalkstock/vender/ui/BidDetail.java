@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.live.stalkstockcommercial.ui.view.activities.Chat;
+import com.stalkstock.commercial.view.activities.Chat;
 import com.stalkstock.R;
 
 public class BidDetail extends AppCompatActivity {

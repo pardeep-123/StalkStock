@@ -27,9 +27,7 @@ public class FacebookHelper implements FacebookCallback<LoginResult>, GraphReque
 
     public interface FacebookHelperCallback {
         void onSuccessFacebook(Bundle bundle);
-
         void onCancelFacebook();
-
         void onErrorFacebook(FacebookException ex);
     }
 
@@ -60,6 +58,7 @@ public class FacebookHelper implements FacebookCallback<LoginResult>, GraphReque
     private void getFaceBookProfile(LoginResult loginResult) {
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), this);
         Bundle parameters = new Bundle();
+
         Log.e("profile_getAccessToken", loginResult.getAccessToken().getToken() + "");
         Log.e("profile_getAccessToken", loginResult.getAccessToken().getUserId() + "");
 

@@ -47,38 +47,22 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
             currentModel.clear()
         }
         val map = HashMap<String, RequestBody>()
-        map.put("offset", mUtils.createPartFromString(currentOffset.toString()))
-        map.put("limit", mUtils.createPartFromString("5"))
+        map["offset"] = mUtils.createPartFromString(currentOffset.toString())
+        map["limit"] = mUtils.createPartFromString("5")
         viewModel.getUserAddressListAPI(this, true, map)
         viewModel.homeResponse.observe(this, this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         back.setOnClickListener {
-            onBackPressed()
-        }
-
-/*
-        btnDelete.setOnClickListener {
-            openStartInfoApp()
-        }
-*/
+            onBackPressed() }
 
         btn_signup.setOnClickListener {
             val intent = Intent(this, AddnewaddressActivity::class.java)
             intent.putExtra("key", "add")
             startActivity(intent)
         }
-
-/*
-        btnEdit.setOnClickListener {
-            val intent = Intent(this, EditAddressDetail2Activity::class.java)
-            intent.putExtra("key", "edit")
-            startActivity(intent)
-        }
-*/
 
         adapter = ManageAddressAdapter(this, currentModel)
         mangeaddress_recycle.layoutManager = LinearLayoutManager(this)
@@ -89,17 +73,9 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                 if (!recyclerView.canScrollVertically(1)) {
                     if (currentOffset > 1 && currentModel.size > 4)
                         getAddresses()
-                }
-
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
+                }}
         })
-
     }
-
 
     override fun onChanged(it: RestObservable?) {
         when {
@@ -110,18 +86,18 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                         currentOffset += 5
                         setData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
 
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(this, mResponse.message.toString())
+                        AppUtils.showSuccessAlert(this, mResponse.message)
                         reset = true
                         getAddresses()
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
             }
@@ -130,12 +106,8 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
-//                        AppUtils.showErrorAlert(this, "No more addresses")
                     } else
                         Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//
-
-//                    showAlerterRed()
                 }
             }
             it.status == Status.LOADING -> {
@@ -154,6 +126,5 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
         viewModel.deleteUserAddressAPI(this, true, get.id)
         viewModel.homeResponse.observe(this, this)
     }
-
 
 }

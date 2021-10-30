@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ca_tv"
     android:layout_width="match_parent"
@@ -72,9 +73,9 @@
                     android:id="@+id/ivShopLogo"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_centerVertical="true" />
+                    android:layout_marginBottom="@dimen/_5sdp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/txtDatePopup"

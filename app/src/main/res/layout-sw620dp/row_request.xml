@@ -48,8 +48,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="@string/in_progress"
-                android:textSize="22sp"
-                android:textColor="@color/orange_colour" />
+                android:textColor="@color/orange_colour"
+                android:textSize="22sp" />
 
             <RelativeLayout
                 android:id="@+id/rl"
@@ -62,20 +62,21 @@
                 android:layout_marginRight="@dimen/_10sdp">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/ivShopLogo"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/subway" />
+                    android:visibility="invisible"  />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvDateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:textSize="22sp"
-
                     android:text="10:30am, 20 June 2020"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/dark_gray"
+                    android:textSize="22sp" />
             </RelativeLayout>
 
             <View
@@ -103,7 +104,6 @@
 
                 <RelativeLayout
                     android:layout_toRightOf="@id/iv_profile"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true">
@@ -119,17 +119,16 @@
                         />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvAddress"
                         android:layout_width="wrap_content"
-                        android:includeFontPadding="false"
-                        android:textSize="22sp"
-
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:layout_below="@id/tv_name"
-                         android:layout_marginLeft="@dimen/_10sdp"
-                         android:text="8753, Mauricio Walks, Mohali Stadium"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="10dp"
+                        android:includeFontPadding="false"
+                        android:text="8753, Mauricio Walks, Mohali Stadium"
                         android:textColor="@color/black"
-                         />
+                        android:textSize="22sp" />
 
                 </RelativeLayout>
 

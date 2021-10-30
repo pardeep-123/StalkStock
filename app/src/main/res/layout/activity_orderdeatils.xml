@@ -160,7 +160,8 @@
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Restaurant Charges"/>
+                        android:text="Restaurant Charges"
+                        />
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvRestCharges"
                         android:layout_width="wrap_content"
@@ -249,14 +250,14 @@
                         android:text="Total"
                         android:textColor="@color/black"
                         />
+
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:textColor="@color/black"
                         android:text="$4.50"
-                        />
+                        android:textColor="@color/black" />
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView

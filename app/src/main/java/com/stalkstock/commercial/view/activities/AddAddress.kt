@@ -20,7 +20,6 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
 
    var dataSet = 2
 
-
     override fun onMapReady(p0: GoogleMap?) {
         p0?.apply {
             val sydney = LatLng(30.7121687,76.6928878)
@@ -37,7 +36,6 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
                 CameraUpdateFactory
                     .newLatLngZoom(sydney,12f))
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +49,7 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
         } else {
             2
         }
+
         ivBackAddress.setOnClickListener { onBackPressed() }
         btnEdit.setOnClickListener { onBackPressed() }
        // setData(dataSet)
@@ -71,13 +70,10 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
         }
     }*/
 
-
     lateinit var fusedLocationClient: FusedLocationProviderClient
     lateinit var mapFragment : SupportMapFragment
 
     var mapBool = true
-
-
 
     private fun setMapInit(bool:Boolean){
         if (bool){
@@ -90,7 +86,5 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
                 mapFragment.getMapAsync(this)
           }
         } }
-
-
 
 }

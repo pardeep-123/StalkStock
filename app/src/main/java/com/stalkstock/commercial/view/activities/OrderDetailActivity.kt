@@ -14,25 +14,17 @@ class OrderDetailActivity : AppCompatActivity() {
 
         when(intent.extras!!.getString("fragment")){
             "0"->{
-               // replaceFragment(OrderDetailFragment())
                 tvStatus.text = "Pending"
                 tv_delivered_by.visibility=View.GONE
                 tv_delivered_by_value.visibility=View.GONE
-
-
                 tv_delivered_to.visibility=View.VISIBLE
                 tv_delivered_to_value.visibility=View.VISIBLE
-                tv_delivered_to.setText("DELIVERED BY")
+                tv_delivered_to.text = "DELIVERED BY"
             }
             "1"->{
                 tvStatus.text = "Delivered"
                 tvStatus.setTextColor(resources.getColor(R.color.themeColor))
-
-            }
-        }
-
-
-
+            } }
         ivBackDetail.setOnClickListener { onBackPressed() }
     }
 
@@ -46,11 +38,9 @@ class OrderDetailActivity : AppCompatActivity() {
             rv_hp_charges.visibility= View.GONE
             rl_charges.visibility= View.GONE
             tv_total.text= "$81.50"
-
-        }else{
+        }
+        else{
             rl_visa.visibility= View.GONE
         }
     }
-
-    // function for replacing any fragment over this activity
 }

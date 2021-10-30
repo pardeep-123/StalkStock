@@ -65,7 +65,6 @@
                     android:layout_height="wrap_content"
                     android:text="Name of Account"
                     android:textSize="13sp"
-
                     android:textColor="@color/light_grey" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etAccountName"
@@ -120,7 +119,6 @@
                     android:hint="Enter routing number"
                     android:textColorHint="@color/light_grey"
                     android:textSize="13sp"
-
                     android:inputType="number"
                     android:textColor="#000"
                     android:background="@drawable/shape_edit_new_home">
@@ -132,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:text="Bank Account"
                     android:textSize="13sp"
-
                     android:textColor="@color/light_grey" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etBankAccount"
@@ -142,7 +139,6 @@
                     android:paddingStart="@dimen/_10sdp"
                     android:hint="Enter bank account"
                     android:textSize="13sp"
-
                     android:textColorHint="@color/light_grey"
                     android:inputType="number"
                     android:textColor="#000"
@@ -157,7 +153,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/confirm_bank_account"
                     android:textSize="13sp"
-
                     android:textColor="@color/light_grey"
                     />
 
@@ -171,7 +166,6 @@
                     android:textColor="#000"
                     android:textSize="13sp"
                     android:textColorHint="@color/light_grey"
-
                     android:hint="@string/confirm_bank_account2"
                     android:inputType="number"
                     android:background="@drawable/shape_edit_new_home">

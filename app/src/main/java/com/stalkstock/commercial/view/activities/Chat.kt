@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.activities
+package com.stalkstock.commercial.view.activities
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.live.stalkstockcommercial.ui.view.activities.ChatAdapter
 import com.stalkstock.R
 import com.stalkstock.utils.others.CommonMethods
 import com.yanzhenjie.album.Album
@@ -34,11 +35,8 @@ class Chat : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-
         init()
-
         setAdapter()
-
         CommonMethods.hideKeyboard(this@Chat,rvChat)
     }
 
@@ -50,7 +48,6 @@ class Chat : AppCompatActivity(), View.OnClickListener {
         chatList.add(ChatData("Hello","11:58 PM","a","other"))
         chatList.add(ChatData("Hiii","11:59 PM","b","me"))
 
-
         chatAdapter = ChatAdapter(chatList)
         rvChat.adapter = chatAdapter
     }
@@ -60,8 +57,6 @@ class Chat : AppCompatActivity(), View.OnClickListener {
             .singleChoice()
             .camera(true)
             .columnCount(4)
-            //.selectCount(1)
-            //.checkedList(mAlbumFiles)
             .widget(
                 Widget.newDarkBuilder(this)
                     .title(getString(R.string.app_name))
@@ -69,8 +64,7 @@ class Chat : AppCompatActivity(), View.OnClickListener {
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-              //  Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type.equals("1"))
+                if (type == "1")
                 {
                     firstimage = result[0].path
                 }
@@ -100,7 +94,7 @@ class Chat : AppCompatActivity(), View.OnClickListener {
                 selectImage(ivAttach,"1")
             }
             R.id.iv_dotMenu->{
-                if(click.equals("")){
+                if(click == ""){
                     clDots.visibility = View.VISIBLE
                     click = "1"
                 }else{
@@ -113,7 +107,6 @@ class Chat : AppCompatActivity(), View.OnClickListener {
                 if(etMessage.text.toString().isNotEmpty())
                 {
                     chatList.add(ChatData(etMessage.text.toString(),"17:00 PM","a","me"))
-
                     chatAdapter.notifyItemInserted(chatList.size-1)
                     rvChat.smoothScrollToPosition(chatList.size-1)
                     etMessage.text.clear()
@@ -152,16 +145,13 @@ class Chat : AppCompatActivity(), View.OnClickListener {
 
         tvMsg.text = "Are you sure you want to clear this Chat?"
 
-
         btn_yes.setOnClickListener { dialogSuccessful.dismiss()
-        finish()}
+            finish()}
 
         btn_no.setOnClickListener { dialogSuccessful.dismiss() }
 
         dialogSuccessful.show()
     }
-
-
 
     data class ChatData(var message: String = "", var time : String = "", var image: String = "",var type : String = "")
 

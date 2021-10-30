@@ -24,7 +24,7 @@ class GlobalVariables {
     class FilterVariables {
         companion object{
             var currentLowPrice = 0
-             var currentHighPrice = 10000
+             var currentHighPrice = 1000
              var currentSortBy = ""
         }
     }

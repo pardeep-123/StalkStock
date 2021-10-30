@@ -249,11 +249,10 @@
             android:id="@+id/rangeSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginRight="@dimen/_4sdp"
             android:backgroundTint="@android:color/transparent"
-            app:rsb_max="350"
+            app:rsb_max="1000"
             app:rsb_maxThumbDrawable="@drawable/custom_switch"
             app:rsb_minRange="0"
             app:rsb_minThumbDrawable="@drawable/custom_switch"

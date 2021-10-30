@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.Chat
 import kotlinx.android.synthetic.main.chat_adapter.view.*
 
 class ChatAdapter(var chatList: ArrayList<Chat.ChatData>) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {

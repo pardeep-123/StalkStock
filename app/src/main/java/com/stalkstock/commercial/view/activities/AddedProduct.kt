@@ -109,10 +109,7 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                 categoryId = categories.id.toString()
                 getProductList()
             }
-                else{
-
-
-                }
+                else{ }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -136,13 +133,9 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                 if (position!==0){
                     val products = listSubCategoryBody[spinnerSubProduct.selectedItemPosition - 1]
                     subCategoryId = products.id.toString()
-
                     getProductAsSubCategory()
                 }
-
-                else{
-
-                }
+                else{ }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -154,13 +147,9 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                 if (position!==0){
                      val product = currentModel[spinnerGetProduct.selectedItemPosition-1]
                     productId = product.id.toString()
-
                     getAddressApi()
                 }
-
-                else{
-
-                }
+                else{ }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -169,12 +158,9 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         adapterMeasurements = AdapterProductUnit(this,listProductUnit)
         getMeasurementApi()
 
-        tvAddMore.setOnClickListener {
-        showDataList() }
+        tvAddMore.setOnClickListener { showDataList() }
 
-        btnSave.setOnClickListener{
-            showDataList()
-        }
+        btnSave.setOnClickListener{ showDataList() }
     }
 
     private fun getAddressApi() {
@@ -183,8 +169,8 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
             address.clear()
         }
         val map = java.util.HashMap<String, RequestBody>()
-        map.put("offset", mUtils.createPartFromString(currentOffsets.toString()))
-        map.put("limit", mUtils.createPartFromString("5"))
+        map["offset"] = mUtils.createPartFromString(currentOffsets.toString())
+        map["limit"] = mUtils.createPartFromString("5")
         homeModel.getUserAddressListAPI(this, true, map)
         homeModel.homeResponse.observe(this, this)
     }
@@ -195,17 +181,16 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
             currentModel.clear()
         }
         val map = java.util.HashMap<String, RequestBody>()
-        map.put("offset", mUtils.createPartFromString(currentOffset.toString()))
-        map.put("limit", mUtils.createPartFromString("5"))
-        map.put("subCategoryId", mUtils.createPartFromString(subCategoryId))
-        map.put("categoryId", mUtils.createPartFromString(categoryId))
-        map.put("sortBy", mUtils.createPartFromString(currentSortBy))
-        map.put("lowPrice", mUtils.createPartFromString(currentLowPrice))
-        map.put("deliveryType", mUtils.createPartFromString(currentDeliveryType))
-        map.put("highPrice", mUtils.createPartFromString(currentHighPrice))
+        map["offset"] = mUtils.createPartFromString(currentOffset.toString())
+        map["limit"] = mUtils.createPartFromString("5")
+        map["subCategoryId"] = mUtils.createPartFromString(subCategoryId)
+        map["categoryId"] = mUtils.createPartFromString(categoryId)
+        map["sortBy"] = mUtils.createPartFromString(currentSortBy)
+        map["lowPrice"] = mUtils.createPartFromString(currentLowPrice)
+        map["deliveryType"] = mUtils.createPartFromString(currentDeliveryType)
+        map["highPrice"] = mUtils.createPartFromString(currentHighPrice)
         homeModel.getProductAccToCategorySubcategoryAPI(this, true, map)
         homeModel.homeResponse.observe(this, this)
-//        whichApi = "productList"
     }
 
     private fun showDataList() {
@@ -253,10 +238,7 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
 
                 etEnterQuantity.setText("")
                 etUnitMeasurement.setText("")
-               /* getCategoryListApi()*/
-
-            }
-        }
+            } }
     }
 
     private fun setUnitList() {
@@ -308,16 +290,13 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         detailDialog = Dialog(this)
         detailDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         detailDialog.setContentView(R.layout.dialog_home)
-
         detailDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         detailDialog.setCancelable(true)
         detailDialog.setCanceledOnTouchOutside(true)
         detailDialog.window!!.setGravity(Gravity.CENTER)
-
         detailDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         detailDialog.rvProductUnit.adapter = adapterMeasurements
         detailDialog.llDialog.setOnClickListener { detailDialog.dismiss() }
-
         detailDialog.show()
     }
 
@@ -376,9 +355,7 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                                 listC.add(
                                     CategoryList(productCategoryList[i].id,productCategoryList[i].status,
                                         productCategoryList[i].name,productCategoryList[i].image))
-                            }
-
-                        }
+                            } }
 
                         val categoryList = CategoryCommercialAdapter(this,"Select category", listC)
                         spinnerProduct.adapter = categoryList
@@ -397,7 +374,6 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                             for (i in 0 until listSubCategoryBody.size) {
                                 listSub.add(listSubCategoryBody[i].name)
                             }
-
                             subCatAdapter.notifyDataSetChanged()
                         }
 
@@ -467,6 +443,5 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
     }
 
     override fun onClick(v: View?) {
-
     }
 }

@@ -38,15 +38,12 @@ class RequestAdapter(var listRequest: MutableList<HistoryDataBody>) : RecyclerVi
                     this.text = this.context.getString(R.string.onWay)
                     this.setTextColor(this.context.getColorStateList(R.color.dark_green_colour))
                 }
-
                 4 -> {
                     this.text = this.context.getString(R.string.completed)
                     this.setTextColor(this.context.getColorStateList(R.color.dark_green_colour))
                 }
-
             }
         }
-
 
         holder.tvDateTime.text = AppUtils.changeDateFormat(listRequest[position].createdAt,
             GlobalVariables.DATEFORMAT.DateTimeFormat3,
@@ -60,12 +57,7 @@ class RequestAdapter(var listRequest: MutableList<HistoryDataBody>) : RecyclerVi
             setOnClickListener {
                 if(listRequest[position].orderStatus==4) clickInterFace.onClick(position)
                 else clickInterFace.onClick(position)
-            }
-
-
-        }
-
-    }
+            } } }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdsHolder {
         return AdsHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_request, parent, false))

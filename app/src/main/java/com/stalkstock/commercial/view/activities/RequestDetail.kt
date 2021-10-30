@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.stalkstock.commercial.view.adapters.RequestProductAdapter
-import com.live.stalkstockcommercial.ui.view.activities.Chat
+import com.stalkstock.commercial.view.activities.Chat
 import com.stalkstock.commercial.view.adapters.BidsRequestAdapter
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable

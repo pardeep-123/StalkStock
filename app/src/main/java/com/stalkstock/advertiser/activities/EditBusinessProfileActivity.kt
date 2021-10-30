@@ -77,19 +77,6 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         imageBusiness.setOnClickListener(this)
         viewModel.mResponse.observe(this, this)
 
-        spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View, position: Int, id: Long
-            ) {
-                val category =   businessTypeArray[spinner_type!!.selectedItemPosition]
-                selectedId = category.id.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-
-            }
-        }
 
         val countryAdapter = ArrayAdapter.createFromResource(
             this,
@@ -371,14 +358,29 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
 
                         val businessTypeAdapter = BusinessTypeAdapter(this, list," Select any ")
                         spinner_type.adapter = businessTypeAdapter
+
+                        spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>,
+                                view: View, position: Int, id: Long
+                            ) {
+                                if(businessTypeArray.isNotEmpty()) {
+                                    val category = businessTypeArray[spinner_type!!.selectedItemPosition]
+                                    selectedId = category.id.toString()
+                                }
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+
+                            }
+                        }
+
                         if (MyApplication.instance.getString("usertype").equals("4")){
                             getCommercialBusinessResponse()
                         }
                         else{
                             getBusinessProfileApi()
                         }
-
-
                     }
                 }
 
@@ -403,24 +405,21 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         etLastName.setText(mResponse.body.commercialDetail.lastName)
         etBusinessName.setText(mResponse.body.commercialDetail.buisnessName)
         etDecription.setText(mResponse.body.commercialDetail.buisnessDescription)
-
         etBusinessPhone.setText(mResponse.body.commercialDetail.buisnessPhone)
         etEmail.setText(mResponse.body.email)
         etPhone.setText(mResponse.body.mobile)
         etBusinessLicense.setText(mResponse.body.commercialDetail.buisnessLicense)
         etWebsite.setText(mResponse.body.commercialDetail.website)
-
         etSreetAddress.setText(mResponse.body.commercialDetail.buisnessAddress)
         etFloor.setText(mResponse.body.commercialDetail.addressLine2)
         etCity.setText(mResponse.body.commercialDetail.city)
         etState.setText(mResponse.body.commercialDetail.state)
         etZipCode.setText(mResponse.body.commercialDetail.postalCode)
-
         val businessType = mResponse.body.commercialDetail.buisnessTypeName
         val obj = businessTypeArray.find { it.name == businessType }
         spinner_type.setSelection(businessTypeArray.indexOf(obj))
 
-        val countryName: kotlin.Array<String> = resources.getStringArray(R.array.Select_country)
+        val countryName: Array<String> = resources.getStringArray(R.array.Select_country)
         for(i in countryName.indices)
         {
             if(country == countryName[i])
@@ -461,13 +460,11 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         etLastName.setText(mResponse.body.advertiserDetail.lastName)
         etBusinessName.setText(mResponse.body.advertiserDetail.buisnessName)
         etDecription.setText(mResponse.body.advertiserDetail.buisnessDescription)
-
         etBusinessPhone.setText(mResponse.body.advertiserDetail.buisnessPhone)
         etEmail.setText(mResponse.body.email)
         etPhone.setText(mResponse.body.mobile)
         etBusinessLicense.setText(mResponse.body.advertiserDetail.buisnessLicense)
         etWebsite.setText(mResponse.body.advertiserDetail.website)
-
         etSreetAddress.setText(mResponse.body.advertiserDetail.buisnessAddress)
         etFloor.setText(mResponse.body.advertiserDetail.addressLine2)
         etCity.setText(mResponse.body.advertiserDetail.city)
@@ -484,8 +481,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
             if(country == countryName[i])
             {
                 spinner.setSelection(countryName.indexOf(countryName[i]))
-            }
-        }
+            }}
 
         savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, "2")
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.id, mResponse.body.id)
