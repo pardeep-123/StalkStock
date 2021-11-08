@@ -1,59 +1,61 @@
-package com.stalkstock.vender.adapter;
+package com.stalkstock.vender.adapter
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.stalkstock.R
+import com.stalkstock.consumer.adapter.CartAdapter
+import com.stalkstock.consumer.fragment.CartFragment
+import com.stalkstock.consumer.model.ModelCartData
+import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.vender.ui.BidFragment
+import kotlinx.android.synthetic.main.row_cart.view.*
+import kotlin.collections.ArrayList
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class AccpetAdapter(
+    var mContext: Context,
+    var arrayList: ArrayList<VendorBiddingListResponse.BidData>
+) :
+    RecyclerView.Adapter<AccpetAdapter.RecyclerViewHolder>() {
+    var inflater: LayoutInflater
 
-import com.stalkstock.R;
-import com.stalkstock.vender.ui.BidDetail;
+    class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-public class AccpetAdapter extends RecyclerView.Adapter<AccpetAdapter.ViewHolder> {
-    Context context;
-    LayoutInflater inflater;
-
-    public  AccpetAdapter(Context context){
-        this.context=context;
-        inflater = LayoutInflater.from(context);
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.bidprdouctaccpetlist, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return 1;
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        LinearLayout linearLayout;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            linearLayout=itemView.findViewById(R.id.accpetbid);
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, BidDetail.class);
-                    context.startActivity(intent);
-                }
-            });
+        init {
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
+        val v = inflater.inflate(R.layout.bidprdouctaccpetlist, parent, false)
+        return RecyclerViewHolder(v)
+    }
+
+    override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
+        /* holder.itemView.name_text.setText(arrayList[position].product.name)
+         holder.itemView.count.setText(arrayList[position].quantity.toString())
+         holder.itemView.tvPrice.setText("$" + arrayList[position].product.mrp.toString())
+         holder.itemView.minus.setOnClickListener {
+             val i = currentQty - 1
+             context.addToCartAPI(arrayList[position].productId.toString(), i.toString())
+         }
+         holder.itemView.plus.setOnClickListener {
+             val i = currentQty + 1
+             context.addToCartAPI(arrayList[position].productId.toString(), i.toString())
+ *//*
+            val intent = Intent(context, AddcartdetailsActivity::class.java)
+            context.startActivity(intent)
+*//*
+        }*/
+
+    }
+
+    override fun getItemCount(): Int {
+        return arrayList.size
+    }
+
+    init {
+        inflater = LayoutInflater.from(mContext)
     }
 }

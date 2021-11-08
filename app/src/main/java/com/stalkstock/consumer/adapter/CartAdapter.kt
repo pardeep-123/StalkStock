@@ -4,14 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.consumer.fragment.CartFragment
 import com.stalkstock.consumer.model.ModelCartData
 import kotlinx.android.synthetic.main.row_cart.view.*
-import kotlin.collections.ArrayList
 
 class CartAdapter(
     var context: CartFragment,

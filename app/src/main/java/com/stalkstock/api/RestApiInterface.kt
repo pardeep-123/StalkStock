@@ -273,6 +273,24 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<OrderDetailVendorResponse>
 
+    @Multipart
+    @POST(URL.VENDORBIDDINGLIST)
+    fun vendorBiddingList(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<VendorBiddingListResponse>
+
+  @FormUrlEncoded
+    @POST(URL.VENDORBIDDINGDETAIL)
+    fun vendorBiddingDetail(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<VendorBiddingListResponse>
+
+@FormUrlEncoded
+    @POST(URL.VENDORACCEPTBID)
+    fun vendorAcceptBid(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<CommonResponseModel>
+
 
     /*-------------------------------------Driver API's-----------------------------*/
 

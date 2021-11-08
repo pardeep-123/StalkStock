@@ -310,6 +310,10 @@ class GlobalVariables {
         const val getCommercialBuisnessDetail = "commercial/getBuisnessDetail"
         const val bidinglist = "commercial/biding/list"
         const val sendBidingRequest = "sendBidingRequest"
+        const val VENDORBIDDINGLIST="bidingAcceptRequestList"
+        const val VENDORBIDDINGDETAIL="vendor/biding/Detail"
+        const val VENDORACCEPTBID="vendor/accept/biding"
+
    /*     {
             "addressId": 42,
             "bidItem": [

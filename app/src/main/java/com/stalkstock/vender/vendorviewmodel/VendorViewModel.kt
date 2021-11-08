@@ -106,7 +106,13 @@ class VendorViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        updateVendorBusinessDetailApi(activity, showLoader, hashMap, firstimage, mUtils)
+                        updateVendorBusinessDetailApi(
+                            activity,
+                            showLoader,
+                            hashMap,
+                            firstimage,
+                            mUtils
+                        )
                     }
                 })
         }
@@ -168,5 +174,92 @@ class VendorViewModel : ViewModel() {
         }
 
     }
+
+
+    @SuppressLint("CheckResult")
+    fun vendorBiddingList(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.vendorBiddingList(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        vendorBiddingList(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun vendorBiddingDetail(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.vendorBiddingDetail(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        vendorBiddingDetail(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun vendorAcceptBid(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.vendorAcceptBid(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        vendorAcceptBid(activity, showLoader, hashMap)
+                    }
+                })
+        }
+
+    }
+
 
 }

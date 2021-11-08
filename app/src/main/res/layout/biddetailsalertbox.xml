@@ -21,17 +21,19 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         >
+
         <com.stalkstock.utils.custom.TitiliumBoldEditText
+            android:id="@+id/edtSellingPrice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
             android:background="@drawable/edittextshape"
-            android:paddingLeft="15dp"
             android:hint="Enter your selling price"
             android:inputType="number"
-             android:textColorHint="@color/light_grey"
-            android:textSize="15dp"
-            android:textColor="#000"/>
+            android:paddingLeft="15dp"
+            android:textColor="#000"
+            android:textColorHint="@color/light_grey"
+            android:textSize="15dp" />
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,17 +50,19 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
        >
+
         <com.stalkstock.utils.custom.TitiliumBoldEditText
+            android:id="@+id/edtSellngDesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
             android:background="@drawable/edittextshape"
-            android:paddingLeft="15dp"
             android:hint="Enter your terms of sale"
             android:inputType="textMultiLine"
-             android:textColorHint="@color/light_grey"
-            android:textSize="15dp"
-            android:textColor="#000"/>
+            android:paddingLeft="15dp"
+            android:textColor="#000"
+            android:textColorHint="@color/light_grey"
+            android:textSize="15dp" />
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

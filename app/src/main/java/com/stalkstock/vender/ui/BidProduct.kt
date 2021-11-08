@@ -1,58 +1,51 @@
-package com.stalkstock.vender.ui;
+package com.stalkstock.vender.ui
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.content.Context;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageView;
-import com.stalkstock.R;
-import com.stalkstock.vender.adapter.AccpetAdapter;
-import com.stalkstock.vender.adapter.RequestAdapter;
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
+import com.stalkstock.vender.adapter.AccpetAdapter
+import androidx.recyclerview.widget.RecyclerView
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import com.stalkstock.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.vender.adapter.RequestAdapter
+import kotlinx.android.synthetic.main.activity_bid_product.*
 
-public class BidProduct extends AppCompatActivity {
-    Context mContext;
-    RequestAdapter requestAdapter;
-    AccpetAdapter accpetAdapter;
-    RecyclerView bidrecyclerview1;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bid_product);
-        bidrecyclerview1 = findViewById(R.id.bidrecyclerview);
-        mContext = BidProduct.this;
-        requestAdapter = new RequestAdapter(mContext);
-        bidrecyclerview1.setLayoutManager(new LinearLayoutManager(mContext));
-        bidrecyclerview1.setAdapter(requestAdapter);
-        ImageView backarrow = findViewById(R.id.bidproductbackarrow);
-        final Button btnRequest = findViewById(R.id.btnrequest);
-        final Button btnAccpet = findViewById(R.id.btnaccpet);
-
-        backarrow.setOnClickListener(view -> onBackPressed());
-
-        btnRequest.setOnClickListener(v -> {
-            btnRequest.setBackground(getResources().getDrawable(R.drawable.current_button));
-            btnAccpet.setBackground(getResources().getDrawable(R.drawable.past_button2));
-            btnRequest.setTextColor(getResources().getColor(R.color.white));
-            btnAccpet.setTextColor(getResources().getColor(R.color.balck));
-            requestAdapter = new RequestAdapter(mContext);
-            bidrecyclerview1.setLayoutManager(new LinearLayoutManager(mContext));
-            bidrecyclerview1.setAdapter(requestAdapter);
-
-        });
-        btnAccpet.setOnClickListener(v -> {
-            btnAccpet.setBackground(getResources().getDrawable(R.drawable.current_button));
-            btnRequest.setBackground(getResources().getDrawable(R.drawable.past_button2));
-            btnAccpet.setTextColor(getResources().getColor(R.color.white));
-            btnRequest.setTextColor(getResources().getColor(R.color.balck));
-            accpetAdapter = new AccpetAdapter(mContext);
-            bidrecyclerview1.setLayoutManager(new LinearLayoutManager(mContext));
-            bidrecyclerview1.setAdapter(accpetAdapter);
-        });
-
-
+class BidProduct : AppCompatActivity() {
+    var mContext: Context? = null
+    var requestAdapter: RequestAdapter? = null
+    var accpetAdapter: AccpetAdapter? = null
+    var arrayList= ArrayList<VendorBiddingListResponse.BidData>()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_bid_product)
+        mContext = this@BidProduct
+                requestAdapter = RequestAdapter(mContext!!,arrayList);
+        bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
+        bidrecyclerview.setAdapter(requestAdapter)
+        val backarrow = findViewById<ImageView>(R.id.bidproductbackarrow)
+        val btnRequest = findViewById<Button>(R.id.btnrequest)
+        val btnAccpet = findViewById<Button>(R.id.btnaccpet)
+        backarrow.setOnClickListener { view: View? -> onBackPressed() }
+        btnRequest.setOnClickListener { v: View? ->
+            btnRequest.background = resources.getDrawable(R.drawable.current_button)
+            btnAccpet.background = resources.getDrawable(R.drawable.past_button2)
+            btnRequest.setTextColor(resources.getColor(R.color.white))
+            btnAccpet.setTextColor(resources.getColor(R.color.balck))
+             requestAdapter =  RequestAdapter(mContext!!,arrayList);
+            bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
+            bidrecyclerview.setAdapter(requestAdapter)
+        }
+        btnAccpet.setOnClickListener { v: View? ->
+            btnAccpet.background = resources.getDrawable(R.drawable.current_button)
+            btnRequest.background = resources.getDrawable(R.drawable.past_button2)
+            btnAccpet.setTextColor(resources.getColor(R.color.white))
+            btnRequest.setTextColor(resources.getColor(R.color.balck))
+            bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
+            bidrecyclerview.setAdapter(accpetAdapter)
+        }
     }
 }

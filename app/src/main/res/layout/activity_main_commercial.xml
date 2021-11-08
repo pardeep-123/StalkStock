@@ -13,11 +13,10 @@
         android:src="@drawable/bg_fit" />
 
     <FrameLayout
-        android:layout_above="@+id/ly_bottom"
         android:id="@+id/rl_content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_above="@+id/ly_bottom" />
 
     <LinearLayout
         android:id="@+id/ly_bottom"

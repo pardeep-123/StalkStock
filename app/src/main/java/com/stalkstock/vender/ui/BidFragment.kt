@@ -1,57 +1,75 @@
-package com.stalkstock.vender.ui;
+package com.stalkstock.vender.ui
 
-import android.content.Context;
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-
-import com.stalkstock.R;
-import com.stalkstock.vender.adapter.AccpetAdapter;
-import com.stalkstock.vender.adapter.RequestAdapter;
+import android.content.Context
+import com.stalkstock.vender.adapter.AccpetAdapter
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.stalkstock.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.Util
+import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.vender.adapter.RequestAdapter
+import com.stalkstock.vender.vendorviewmodel.VendorViewModel
+import kotlinx.android.synthetic.main.activity_bid_product.*
+import okhttp3.RequestBody
+import java.util.HashMap
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple [Fragment] subclass.
  */
-public class BidFragment extends Fragment {
+class BidFragment : Fragment(), Observer<RestObservable> {
+    var mContext: Context? = null
+    var requestAdapter: RequestAdapter? = null
+    var accpetAdapter: AccpetAdapter? = null
+    var arrayList=ArrayList<VendorBiddingListResponse.BidData>()
+   // var bidrecyclerview: RecyclerView? = null
+    var views: View? = null
+    val viewModel: VendorViewModel by viewModels()
 
-    public BidFragment() {
-        // Required empty public constructor
+    val type="0"
+
+
+    lateinit var mUtils: Util
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        views = inflater.inflate(R.layout.activity_bid_product, container, false)
+
+        return views
     }
 
-    Context mContext;
-    RequestAdapter requestAdapter;
-    AccpetAdapter accpetAdapter;
-    RecyclerView bidrecyclerview1;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        mUtils = Util()
+        val bidproductbackarrow = views?.findViewById<ImageView>(R.id.bidproductbackarrow)
+        bidproductbackarrow?.visibility = View.GONE
+        // bidrecyclerview = views?.findViewById(R.id.bidrecyclerview)
+        mContext = requireActivity()
+        requestAdapter = RequestAdapter(mContext!!,arrayList)
+        bidrecyclerview?.layoutManager = LinearLayoutManager(mContext)
+        bidrecyclerview?.adapter = requestAdapter
 
-    View  views;
+        getBidList(type)
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        views= inflater.inflate(R.layout.activity_bid_product, container, false);
+//        val backarrow = views?.findViewById<ImageView>(R.id.bidproductbackarrow)
+//        val btnrequest = views?.findViewById<Button>(R.id.btnrequest)
+//        val btnaccpet = views?.findViewById<Button>(R.id.btnaccpet)
 
-        ImageView bidproductbackarrow=views.findViewById(R.id.bidproductbackarrow);
-        bidproductbackarrow.setVisibility(View.GONE);
-
-
-        bidrecyclerview1 = views.findViewById(R.id.bidrecyclerview);
-        mContext = requireActivity();
-        requestAdapter = new RequestAdapter(mContext);
-        bidrecyclerview1.setLayoutManager(new LinearLayoutManager(mContext));
-        bidrecyclerview1.setAdapter(requestAdapter);
-        ImageView backarrow =views. findViewById(R.id.bidproductbackarrow);
-        final Button btnRequest = views.findViewById(R.id.btnrequest);
-        final Button btnAccpet =views. findViewById(R.id.btnaccpet);
 
 //        backarrow.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -60,33 +78,80 @@ public class BidFragment extends Fragment {
 //
 //            }
 //        });
-
-        btnRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnRequest.setBackground(getResources().getDrawable(R.drawable.current_button));
-                btnAccpet.setBackground(getResources().getDrawable(R.drawable.past_button2));
-                btnRequest.setTextColor(getResources().getColor(R.color.white));
-                btnAccpet.setTextColor(getResources().getColor(R.color.balck));
-                requestAdapter = new RequestAdapter(mContext);
-                bidrecyclerview1.setLayoutManager(new LinearLayoutManager(mContext));
-                bidrecyclerview1.setAdapter(requestAdapter);
-
-            }
-        });
-        btnAccpet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnAccpet.setBackground(getResources().getDrawable(R.drawable.current_button));
-                btnRequest.setBackground(getResources().getDrawable(R.drawable.past_button2));
-                btnAccpet.setTextColor(getResources().getColor(R.color.white));
-                btnRequest.setTextColor(getResources().getColor(R.color.balck));
-                accpetAdapter = new AccpetAdapter(mContext);
-                bidrecyclerview1.setLayoutManager(new LinearLayoutManager(mContext));
-                bidrecyclerview1.setAdapter(accpetAdapter);
-            }
-        });
-
-        return  views;
+        btnrequest.setOnClickListener {
+            getBidList("0")
+            btnrequest.background = resources.getDrawable(R.drawable.current_button)
+            btnaccpet.background = resources.getDrawable(R.drawable.past_button2)
+            btnrequest.setTextColor(resources.getColor(R.color.white))
+            btnaccpet.setTextColor(resources.getColor(R.color.balck))
+            requestAdapter = RequestAdapter(mContext!!,arrayList)
+            bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
+            bidrecyclerview.setAdapter(requestAdapter)
+        }
+        btnaccpet.setOnClickListener {
+            getBidList("1")
+            btnaccpet.background = resources.getDrawable(R.drawable.current_button)
+            btnrequest.background = resources.getDrawable(R.drawable.past_button2)
+            btnaccpet.setTextColor(resources.getColor(R.color.white))
+            btnrequest.setTextColor(resources.getColor(R.color.balck))
+            accpetAdapter = AccpetAdapter(mContext!!,arrayList)
+            bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
+            bidrecyclerview.setAdapter(accpetAdapter)
+        }
     }
+
+    private fun getBidList(type: String) {
+        val hashMap = HashMap<String, RequestBody>()
+        hashMap["type"] = mUtils.createPartFromString(type)
+     //   hashMap["type"] = "0"    // 0=>new request 1=>accepted
+        val mActivity = activity as BottomnavigationScreen
+        viewModel.vendorBiddingList(mActivity, true, hashMap)
+        viewModel.mResponse.observe(mActivity, this)
+    }
+
+    override fun onChanged(it: RestObservable?) {
+        val bottomnavigationScreen = activity as BottomnavigationScreen
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is VendorBiddingListResponse) {
+                    val mResponse: VendorBiddingListResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        if(mResponse.body.size==0){
+                            tvNoBid.visibility=View.VISIBLE
+                            bidrecyclerview.visibility=View.GONE
+                        }else{
+                            if(type=="0"){
+                                arrayList.clear()
+                                arrayList.addAll(it.data.body)
+                                requestAdapter?.notifyDataSetChanged()
+                            }else{
+                                arrayList.clear()
+                                arrayList.addAll(it.data.body)
+                                accpetAdapter?.notifyDataSetChanged()
+                            }
+                        }
+
+                        Log.i("====",mResponse.message)
+
+                    } else {
+                        AppUtils.showErrorAlert(bottomnavigationScreen, mResponse.message)
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+
+                    Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
+
 }
+
+
