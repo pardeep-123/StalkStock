@@ -38,7 +38,8 @@
         <entry key="app/src/main/res/layout/activity_add_bank_account2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_business_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_add_new_card.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/activity_bid_product.xml" value="0.10462962962962963" />
+        <entry key="app/src/main/res/layout/activity_bid_detail.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_bid_product.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_bussiness_profile.xml" value="0.10729166666666666" />
         <entry key="app/src/main/res/layout/activity_edit_address_detail2.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_edit_business_profile.xml" value="0.24182358771060455" />
@@ -56,6 +57,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_main_commercial.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_main_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_manage_payments.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_my_order.xml" value="0.18020833333333333" />
@@ -73,6 +75,7 @@
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_search_screen.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_terms_condition.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/biddetailsalertbox.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/bottom_layout2.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.18020833333333333" />

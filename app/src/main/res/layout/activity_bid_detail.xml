@@ -377,21 +377,20 @@
                 android:layout_marginLeft="@dimen/_35sdp"
                 android:layout_marginRight="@dimen/_35sdp"
                 android:layout_marginBottom="@dimen/_20sdp">
+
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/placebid_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:layout_alignParentBottom="true"
+                    android:layout_weight="1"
                     android:background="@drawable/buttonshape"
                     android:backgroundTint="#8BC34A"
-                    android:textAllCaps="false"
                     android:text="Place Bid"
-                    android:layout_weight="1"
+                    android:textAllCaps="false"
                     android:textColor="#fff"
-                    android:textSize="15dp"
-                    >
-                </com.stalkstock.utils.custom.TitiliumBoldButton>
+                    android:textSize="15dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
             </RelativeLayout>
         </LinearLayout>
 
