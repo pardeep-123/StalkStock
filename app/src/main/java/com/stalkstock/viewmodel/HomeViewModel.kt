@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.MyApplication
@@ -21,6 +22,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.File
 
 class HomeViewModel : ViewModel() {
@@ -1388,7 +1390,33 @@ class HomeViewModel : ViewModel() {
                 }
             }
 
+    @SuppressLint("CheckResult")
+    fun orderPlace(
+        activity: Activity, data: HashMap<String,Any>, showLoader: Boolean
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.orderPlace(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        orderPlace(activity,data, showLoader)
+                    }
+                })
         }
+    }
+
+
+}
 
 
 

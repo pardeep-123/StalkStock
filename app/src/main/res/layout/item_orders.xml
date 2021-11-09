@@ -42,18 +42,17 @@
         />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:id="@+id/tv_countryname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tv_cityname"
-        android:layout_toRightOf="@+id/tv_cityname"
         android:layout_below="@+id/tv_brandName"
-
+        android:layout_alignTop="@+id/tv_cityname"
+        android:visibility="gone"
         android:layout_marginLeft="@dimen/value_5dp"
+        android:layout_toRightOf="@+id/tv_cityname"
         android:text="USA"
-        android:textSize="@dimen/value_12sp"
         android:textColor="@color/dark_gray"
-        android:id="@+id/tv_countryname"
-        />
+        android:textSize="@dimen/value_12sp" />
 
     <View
         android:layout_width="match_parent"

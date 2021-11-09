@@ -20,7 +20,7 @@ import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.CommunicationListner
 import com.stalkstock.commercial.view.model.BidingListResponse
-import com.stalkstock.commercial.view.model.BodyX
+
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
@@ -30,7 +30,7 @@ import java.util.HashMap
 class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestObservable> {
   //  var listner: CommunicationListner? = null
    private val homeModel: HomeViewModel by viewModels()
-    var list: ArrayList<BodyX> = ArrayList()
+    var list: ArrayList<BidingListResponse.BodyX> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

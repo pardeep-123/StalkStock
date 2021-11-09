@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.R
+import com.stalkstock.commercial.view.model.MyOrdersList
 import kotlinx.android.synthetic.main.item_orders.view.*
 
-class MyOrdersListAdapter(var context: Context, var list:ArrayList<ModelPojo.MyOrdersListModel>, var listner: OnMyOrdersRecyclerViewItemClickListner):RecyclerView.Adapter<MyOrdersListAdapter.MyViewHolder>() {
+class MyOrdersListAdapter(var context: Context, var list:ArrayList<MyOrdersList>, var listner: OnMyOrdersRecyclerViewItemClickListner):RecyclerView.Adapter<MyOrdersListAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_orders, parent, false), listner)
     }
@@ -34,17 +35,23 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<ModelPojo.MyO
         val price = itemView.tv_priceOrders
         val status = itemView.tv_statusValueorders
 
-        fun initalize(list: ArrayList<ModelPojo.MyOrdersListModel>, position: Int){
+        fun initalize(list: ArrayList<MyOrdersList>, position: Int){
 
-            image.setImageResource(list[position].image)
+           /* image.setImageResource(list[position].image)*/
             brandname.text = list[position].brandName
             city.text = list[position].cityname
-            country.text = list[position].countryname
+//            country.text = list[position].countryname
             description.text = list[position].description
             date.text = list[position].date
             time.text = list[position].time
-            price.text = list[position].price
-            status.text = list[position].status
+            price.text = "$"+list[position].price
+            if (list[position].status==1){
+                status.text = "Delivered"
+            }
+            else{
+                status.text = "Pending"
+            }
+
 
             itemView.setOnClickListener {
                 listner.onMyOrdersItemClickListner(list, position)
@@ -67,6 +74,6 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<ModelPojo.MyO
     }
 
     interface OnMyOrdersRecyclerViewItemClickListner{
-        fun onMyOrdersItemClickListner(list: ArrayList<ModelPojo.MyOrdersListModel>, position: Int)
+        fun onMyOrdersItemClickListner(list: ArrayList<MyOrdersList>, position: Int)
     }
 }

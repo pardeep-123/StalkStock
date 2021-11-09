@@ -30,6 +30,8 @@ import java.util.HashMap
 
 class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
     private val homeModel: HomeViewModel by viewModels()
+
+     var detail = ArrayList<BidsData>()
     var list : ArrayList<AddedProduct.RequestProductData> = ArrayList()
     var listBids : ArrayList<BidsData> = ArrayList()
     var bidsreq : ArrayList<BidingDetailResponse.VendorBidingRequest> = ArrayList()
@@ -50,10 +52,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
 
         getBidingDetilsApi()
 
-  /*      list.add(AddedProduct.RequestProductData("Item Brand", "Item Name", "Quantity", "Unit of Measurement",false,false))
+        list.add(AddedProduct.RequestProductData("Item Brand", "Item Name", "Quantity", "Unit of Measurement",false,false))
         list.add(AddedProduct.RequestProductData("Meat", "Bacon Grill", "10", "Kg",false,false))
         list.add(AddedProduct.RequestProductData("Meat", "Bacon Normal", "8", "Kg",false,false))
-*/
 //        rvRequestProducts.adapter = RequestProductAdapter(list)
 
     /*    listBids.add(BidsData("Jamie jai","McDonald's","$80.50","Accept"))
@@ -72,6 +73,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 cvBidder.visibility = VISIBLE
                 rvRequestBids.visibility = GONE
                 btnAccepts.visibility = VISIBLE
+
+                detail.add(BidsData(items.firstname,items.lastname,items.detail,items.rs,items.accept,items.image,items.vendorId,items.bidId))
+
                 tvName.setText(items.firstname+" "+items.lastname)
                 tvPrices.setText(items.rs)
                 tvDetail.setText(items.detail)
@@ -93,7 +97,15 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
             }
             else
             {
-                startActivity(Intent(this, SelectPayment::class.java))
+                val intent = Intent(this,SelectPayment::class.java)
+                intent.putExtra("firstname",detail[0].firstname)
+                intent.putExtra("lastname",detail[0].lastname)
+                intent.putExtra("bidId",detail[0].bidId)
+                intent.putExtra("vendorId",detail[0].vendorId)
+                intent.putExtra("rs",detail[0].rs)
+
+                startActivity(intent)
+
             }
             }
 
@@ -106,7 +118,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    data class BidsData(var firstname: String = "",var lastname: String = "",var detail: String = "",var rs: String = "",var accept: String = "",var image: String = "")
+    data class BidsData(var firstname: String = "",var lastname: String = "",var detail: String = "",
+                        var rs: String = "",var accept: String = "",var image: String = "",var vendorId: Int = 0,
+    var bidId: Int = 0)
 
     override fun onChanged(it: RestObservable?) {
         when {
@@ -120,7 +134,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                             it.data.body.vendorBidingRequest.vendorDetail.shopName,
                             it.data.body.vendorBidingRequest.amount,
                             "Accept",
-                            it.data.body.vendorBidingRequest.vendorDetail.image
+                            it.data.body.vendorBidingRequest.vendorDetail.image,
+                            it.data.body.vendorBidingRequest.vendorId,
+                            it.data.body.vendorBidingRequest.bidId
                             ))
 
                         orderItemList.addAll(it.data.body.orderItems)

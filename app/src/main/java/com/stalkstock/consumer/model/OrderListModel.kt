@@ -26,9 +26,14 @@ data class OrderListModel(
         val role: Int, // 1
         val shopCharges: String, // 0.00
         val total: String, // 114.00
+        val cardId: Int,
         val updatedAt: String, // 2021-07-09T11:14:42.000Z
         val vendorCommission: String, // 0.00
-        val vendorId: Int // 78
+        val vendorId: Int ,// 78
+        val transactionDetail: String,
+        val transactionId: String
+
+
     ) {
         data class OrderItem(
             val id: Int, // 6
@@ -42,7 +47,7 @@ data class OrderListModel(
         }
 
         data class OrderVendor(
-            val ShopAddress: String, // fndidk
+            val ShopAddress: String,
             val geoLocation: String,
             val id: Int, // 14
             val latitude: String, // 0.00000000

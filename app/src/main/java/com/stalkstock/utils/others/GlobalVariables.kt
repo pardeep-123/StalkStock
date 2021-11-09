@@ -264,6 +264,9 @@ class GlobalVariables {
         const val VENDOREDITBUSINESSDETAIL = "vendor/editVendorBuisnessDetail"
         const val VENDORORDERLISTDETAIL = "vendor/orderList"
         const val VENDORORDERDETAIL = "vendor/orderDetail"
+        const val VENDORBIDDINGLIST="bidingAcceptRequestList"
+        const val VENDORBIDDINGDETAIL="vendor/biding/Detail"
+        const val VENDORACCEPTBID="vendor/accept/biding"
         const val code = 200
         const val FORGOTPASSWORD = "forgotPassword"
         const val GETPROFILE = "get_profile"
@@ -291,6 +294,7 @@ class GlobalVariables {
         const val deleteCard = "user/deleteUserCard"
         const val orderHistoryDriver = "driver/orderHistoryDriver"
         const val changeDiverOrder = "driver/changeOrderStatus"
+
         const val ADVERTISERSIGNUP = "advertiser/signup"
         const val advertiserProfile = "advertiser/getProfileDetail"
         const val editAdvertiserProfileDetail = "advertiser/editAdvertiserProfileDetail"
@@ -310,9 +314,7 @@ class GlobalVariables {
         const val getCommercialBuisnessDetail = "commercial/getBuisnessDetail"
         const val bidinglist = "commercial/biding/list"
         const val sendBidingRequest = "sendBidingRequest"
-        const val VENDORBIDDINGLIST="bidingAcceptRequestList"
-        const val VENDORBIDDINGDETAIL="vendor/biding/Detail"
-        const val VENDORACCEPTBID="vendor/accept/biding"
+        const val orderPlace = "commercial/order/place"
 
    /*     {
             "addressId": 42,

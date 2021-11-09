@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.commercial.view.activities.RequestDetail
 import com.stalkstock.R
 import com.stalkstock.commercial.view.model.BidingListResponse
-import com.stalkstock.commercial.view.model.BodyX
+
 import com.stalkstock.utils.custom.TitiliumBoldTextView
 import com.stalkstock.utils.custom.TitiliumRegularTextView
 import java.text.SimpleDateFormat
 
-class HomeAdapter(var list: ArrayList<BodyX>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
+class HomeAdapter(var list: ArrayList<BidingListResponse.BodyX>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
@@ -51,6 +51,7 @@ class HomeAdapter(var list: ArrayList<BodyX>) : RecyclerView.Adapter<HomeAdapter
         holder.tvRequest.text = "Request ID:"+" "+list[position].requestNo
         holder.tvBid.text = "BID:"+" "+list[position].bidCount
         holder.tvCreatedDate.text = output
+        /*holder.tvBidStatus.text = list[position].*/
 
        // holder.itemView.setOnClickListener { clickDoctor.clicked(position) }
 
@@ -68,6 +69,7 @@ class HomeAdapter(var list: ArrayList<BodyX>) : RecyclerView.Adapter<HomeAdapter
         var tvRequest: TitiliumBoldTextView = itemView.findViewById(R.id.tvRequest)
         var tvBid: TitiliumBoldTextView = itemView.findViewById(R.id.tvBid)
         var tvCreatedDate: TitiliumRegularTextView = itemView.findViewById(R.id.tvCreatedDate)
+       /* var tvBidStatus: TitiliumRegularTextView = itemView.findViewById(R.id.tvBidStatus)*/
 
     }
 

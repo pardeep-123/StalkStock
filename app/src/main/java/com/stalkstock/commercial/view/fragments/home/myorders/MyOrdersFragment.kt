@@ -2,21 +2,40 @@ package com.stalkstock.commercial.view.fragments.home.myorders
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
 import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.commercial.view.activities.OrderDetailActivity
 import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.R
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.model.ModelProductList
+import com.stalkstock.commercial.view.model.MyOrdersList
+import com.stalkstock.consumer.model.ModelProductVendorList
+import com.stalkstock.consumer.model.OrderListModel
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_my_orders.*
+import java.util.HashMap
 
-class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.OnMyOrdersRecyclerViewItemClickListner{
+class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObservable>,MyOrdersListAdapter.OnMyOrdersRecyclerViewItemClickListner{
     var handler: Handler?=null
-    var list:ArrayList<ModelPojo.MyOrdersListModel>?=null
+    var list = ArrayList<MyOrdersList>()
+    val viewModel: HomeViewModel by viewModels()
+    private var reset = false
+    private var currentOffset = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +46,27 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            createAdapterList()
+
+        myOrderApi()
+
+//            createAdapterList()
     }
 
-    private  fun createAdapterList(){
+    private fun myOrderApi() {
+
+        if (reset) {
+            currentOffset = 0
+//            currentModel.clear()
+        }
+        val hashMap = HashMap<String, String>()
+        hashMap.put("offset", currentOffset.toString())
+        hashMap.put("limit", "10")
+        viewModel.getOrderListAPI(requireActivity(), true, hashMap)
+        viewModel.homeResponse.observe(requireActivity(), this)
+
+    }
+
+ /*   private  fun createAdapterList(){
         if(list!=null){
             list!!.clear()
         }
@@ -45,7 +81,7 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
 
         val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
         rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
-    }
+    }*/
 
     override fun onClick(p0: View?) {
         when(p0!!.id){
@@ -53,7 +89,7 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
     }
 
     override fun onMyOrdersItemClickListner(
-        list: ArrayList<ModelPojo.MyOrdersListModel>,
+        list: ArrayList<MyOrdersList>,
         position: Int
     ) {
         requireContext().OpenActivity(OrderDetailActivity::class.java){
@@ -63,9 +99,44 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , MyOrdersListAdapter.
 
     override fun onDetach() {
         super.onDetach()
-        list= null
         handler= null
         requireContext().cacheDir.deleteRecursively()
         Runtime.getRuntime().gc()
     }
+
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+
+                if (it.data is OrderListModel) {
+                    val mResponse: OrderListModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOffset += 10
+
+                        list.add(MyOrdersList(mResponse.body[0].orderVendor.shopName,mResponse.body[0].orderVendor.ShopAddress,"USA",mResponse.body[0].orderItems[0].product.name,mResponse.body[0].createdAt,"06:17 PM",
+                            mResponse.body[0].total,mResponse.body[0].orderStatus))
+                        Log.i("lita",list.toString())
+                        rv_myOrders.adapter= MyOrdersListAdapter(requireActivity(), list!!, this@MyOrdersFragment)
+
+                        val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
+                        rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
+                    } else {
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(requireActivity(), it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT).show()
+//                    showAlerterRed()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
+
+
 }
