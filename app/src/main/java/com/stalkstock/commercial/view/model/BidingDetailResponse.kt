@@ -14,7 +14,7 @@ data class BidingDetailResponse(
         val orderItems: List<OrderItem>,
         val requestNo: String,
         val userId: Int,
-        val vendorBidingRequest: Any,
+        val vendorBidingRequest: VendorBidingRequest,
         val vendorId: Int
     )
     data class OrderItem(
@@ -32,5 +32,23 @@ data class BidingDetailResponse(
         val measurementId: Int,
         val measurementName: String,
         val name: String
+    )
+
+    data class VendorBidingRequest(
+        val amount: String,
+        val bidId: Int,
+        val description: String,
+        val requestStatus: Int,
+        val vendorDetail: VendorDetail,
+        val vendorId: Int
+    )
+
+    data class VendorDetail(
+        val firstName: String,
+        val id: Int,
+        val image: String,
+        val lastName: String,
+        val shopLogo: String,
+        val shopName: String
     )
 }

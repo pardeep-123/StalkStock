@@ -4,9 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.RequestDetail
+import com.stalkstock.commercial.view.model.BidingDetailResponse
+import de.hdodenhof.circleimageview.CircleImageView
 
 class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : RecyclerView.Adapter<BidsRequestAdapter.MyViewHolder>() {
 
@@ -19,7 +23,7 @@ class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : Recy
 
     interface ClickItem {
 
-        fun clicked(position: Int)
+        fun clicked(position: Int,items: RequestDetail.BidsData)
     }
 
     fun onPerformClick(clickItem: ClickItem)
@@ -34,17 +38,27 @@ class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : Recy
 
     override fun getItemCount(): Int {
         return listBids.size
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
+        holder.tvPrice.setText("Rs"+ " "+listBids[position].rs)
+        holder.tvDetail.setText(listBids[position].detail)
+        holder.tvName.setText(listBids[position].firstname+" "+listBids[position].lastname)
+        Glide.with(context).load(listBids[position].image).into(holder.civImage)
 
-         holder.itemView.setOnClickListener { clickItem.clicked(position) }
+         holder.itemView.setOnClickListener {
+            val item = listBids[position]
+             clickItem.clicked(position,item) }
 
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+       val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
+        val tvName: TextView = itemView.findViewById(R.id.tvName)
+        val tvDetail: TextView = itemView.findViewById(R.id.tvDetail)
+        val civImage: CircleImageView = itemView.findViewById(R.id.civImage)
 
     }
 
