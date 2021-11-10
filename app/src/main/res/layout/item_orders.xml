@@ -7,12 +7,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/mc_img"
         android:layout_marginLeft="@dimen/value_15dp"
-        android:layout_marginTop="@dimen/value_24dp"
+        android:layout_marginTop="@dimen/value_18dp"
         android:id="@+id/iv_brandImage"
         />
     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -115,6 +114,7 @@
         android:layout_alignTop="@+id/tv_dateOrders"
         android:layout_marginLeft="@dimen/value_5dp"
         android:id="@+id/tv_timeorders"
+        android:visibility="gone"
         />
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView

@@ -43,7 +43,7 @@ class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : Recy
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.tvPrice.setText("Rs"+ " "+listBids[position].rs)
+        holder.tvPrice.setText("$"+ " "+listBids[position].rs)
         holder.tvDetail.setText(listBids[position].detail)
         holder.tvName.setText(listBids[position].firstname+" "+listBids[position].lastname)
         Glide.with(context).load(listBids[position].image).into(holder.civImage)

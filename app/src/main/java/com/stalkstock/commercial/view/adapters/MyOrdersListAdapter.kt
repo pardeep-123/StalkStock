@@ -9,9 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.R
 import com.stalkstock.commercial.view.model.MyOrdersList
+import com.stalkstock.consumer.model.OrderListModel
+import com.stalkstock.utils.loadImage
+import kotlinx.android.synthetic.main.activity_orderdeatils.*
 import kotlinx.android.synthetic.main.item_orders.view.*
+import java.text.SimpleDateFormat
 
-class MyOrdersListAdapter(var context: Context, var list:ArrayList<MyOrdersList>, var listner: OnMyOrdersRecyclerViewItemClickListner):RecyclerView.Adapter<MyOrdersListAdapter.MyViewHolder>() {
+class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListModel.Body>, var listner: OnMyOrdersRecyclerViewItemClickListner):RecyclerView.Adapter<MyOrdersListAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_orders, parent, false), listner)
     }
@@ -35,17 +39,22 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<MyOrdersList>
         val price = itemView.tv_priceOrders
         val status = itemView.tv_statusValueorders
 
-        fun initalize(list: ArrayList<MyOrdersList>, position: Int){
+        fun initalize(list: ArrayList<OrderListModel.Body>, position: Int){
+
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val formatter = SimpleDateFormat("MMM dd, yyyy '|' HH:mm")
+            val output: String = formatter.format(parser.parse(list[position].createdAt))
 
            /* image.setImageResource(list[position].image)*/
-            brandname.text = list[position].brandName
-            city.text = list[position].cityname
+            image.loadImage(list[position].orderVendor.shopLogo)
+            brandname.text = list[position].orderVendor.shopName
+            city.text = list[position].orderVendor.ShopAddress
 //            country.text = list[position].countryname
-            description.text = list[position].description
-            date.text = list[position].date
-            time.text = list[position].time
-            price.text = "$"+list[position].price
-            if (list[position].status==1){
+            description.text = list[position].orderItems[0].product.name
+            date.text = output
+          /*  time.text = list[position].time*/
+            price.text = "$"+list[position].total
+            if (list[position].orderStatus==1){
                 status.text = "Delivered"
             }
             else{
@@ -60,7 +69,7 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<MyOrdersList>
             if((status.text as String?).equals("Pending",true)){
                 status.setTextColor(Color.parseColor("#fb862e"))
                 date.visibility=  View.VISIBLE
-                time.visibility=View.VISIBLE
+               /* time.visibility=View.VISIBLE*/
                 itemView.comma2.visibility= View.VISIBLE
             }else{
                 status.setTextColor(Color.parseColor("#7DB733"))
@@ -74,6 +83,6 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<MyOrdersList>
     }
 
     interface OnMyOrdersRecyclerViewItemClickListner{
-        fun onMyOrdersItemClickListner(list: ArrayList<MyOrdersList>, position: Int)
+        fun onMyOrdersItemClickListner(list: ArrayList<OrderListModel.Body>, position: Int)
     }
 }

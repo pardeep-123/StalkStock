@@ -30,6 +30,8 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
     var bidId = 0
     var vendorId = 0
     var rs = ""
+    var payment = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,17 +82,25 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
     }
 
     private fun placeOrderApi() {
+
+        if (type=="sec"){
+            payment = 1
+        }
+        else{
+            payment = 0
+        }
+
+
         val data = HashMap<String,Any>()
         data.put("vendorId",vendorId)
         data.put("netAmount",rs)
         data.put("shippingCharges",0)
         data.put("shopCharges",0)
-        data.put("paymentMethod",0)
+        data.put("paymentMethod",payment)
         data.put("total",rs)
         data.put("isSelfpickup",1)
         data.put("cardId",card)
         data.put("bidId",bidId)
-
 
         homeModel.orderPlace(this, data,true)
         homeModel.homeResponse.observe(this, this)

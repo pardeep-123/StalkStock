@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.Window
 import android.view.WindowManager
 import android.widget.AdapterView
@@ -37,6 +39,7 @@ import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.dialog_home.*
 import kotlinx.android.synthetic.main.added_product.back
 import okhttp3.RequestBody
+import org.bouncycastle.crypto.modes.GOFBBlockCipher
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -158,9 +161,34 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         adapterMeasurements = AdapterProductUnit(this,listProductUnit)
         getMeasurementApi()
 
-        tvAddMore.setOnClickListener { showDataList() }
+        tvAddMore.setOnClickListener {
+            showDataList()
 
-        btnSave.setOnClickListener{ showDataList() }
+                btnSave.visibility = VISIBLE
+                btnSubmit.visibility = GONE
+
+
+           }
+
+        btnSave.setOnClickListener{
+
+            if (list.size==0){
+                showDataList()
+            }
+
+            else if ( spinnerProduct.selectedItemPosition==0 &&  spinnerSubProduct.selectedItemPosition==0
+                && spinnerGetProduct.selectedItemPosition==0 && etEnterQuantity.text!!.isEmpty()
+                && etUnitMeasurement.text!!.isEmpty()) {
+                btnSave.visibility = GONE
+                btnSubmit.visibility = VISIBLE
+
+            }
+            else{
+                btnSave.visibility = GONE
+                btnSubmit.visibility = VISIBLE
+                showDataList()
+            }
+            }
     }
 
     private fun getAddressApi() {

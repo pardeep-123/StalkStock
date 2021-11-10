@@ -1,5 +1,6 @@
 package com.stalkstock.consumer.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.stalkstock.consumer.model.OrderDetailResponse
 import kotlinx.android.synthetic.main.row_myorderdetailproduct.view.*
 
 class MyorderProductAdapter(
-    var context: OrderdeatilsActivity,
+    var context: Context,
     var mOrderArrayList: List<OrderDetailResponse.Body.OrderItem>
 ) : RecyclerView.Adapter<MyorderProductAdapter.RecyclerViewHolder>() {
 
@@ -25,7 +26,7 @@ class MyorderProductAdapter(
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
         holder.itemView.name_text.text = mOrderArrayList[position].product.name
-        holder.itemView.tvPrice.text = "$"+mOrderArrayList[position].total
+        holder.itemView.tvPrice.text = "$"+mOrderArrayList[position].product.mrp
 
     }
 

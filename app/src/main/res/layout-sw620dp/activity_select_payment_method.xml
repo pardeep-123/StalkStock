@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:text="CREDIT/DEBIT CARD"
                     android:gravity="center_vertical"
-                    android:drawableLeft="@drawable/paypal_img"
+                    android:drawableLeft="@drawable/paypal"
                     android:drawablePadding="@dimen/_10sdp"
                     android:layout_centerInParent="true"
                     android:layout_alignParentLeft="true"
