@@ -24,8 +24,8 @@ class MyVendorOrderProductAdapter(
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
 
-        holder.itemView.name_text.setText(mOrderArrayList[position].product.name)
-        holder.itemView.tvQuantity.setText("Quantity : "+mOrderArrayList[position].qty)
+        holder.itemView.name_text.text = mOrderArrayList[position].product.name
+        holder.itemView.tvQuantity.text = "Quantity : "+mOrderArrayList[position].qty
 
     }
 

@@ -29,12 +29,10 @@
                         android:id="@+id/id_backarrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/back_arrow"
-                        android:padding="10dp"
-                        android:layout_marginStart="10dp"
                         android:layout_centerVertical="true"
-                        >
-                    </ImageView>
+                        android:layout_marginStart="10dp"
+                        android:padding="10dp"
+                        android:src="@drawable/back_arrow"></ImageView>
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:textSize="16sp"

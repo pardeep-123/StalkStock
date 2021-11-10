@@ -19,6 +19,7 @@ import com.stalkstock.api.Status
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.Util
+import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.VendorBiddingListResponse
 import com.stalkstock.vender.adapter.RequestAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
@@ -33,12 +34,12 @@ class BidFragment : Fragment(), Observer<RestObservable> {
     var mContext: Context? = null
     var requestAdapter: RequestAdapter? = null
     var accpetAdapter: AccpetAdapter? = null
-    var arrayList=ArrayList<VendorBiddingListResponse.BidData>()
-   // var bidrecyclerview: RecyclerView? = null
+    var arrayList=ArrayList<BidData>()
+    // var bidrecyclerview: RecyclerView? = null
     var views: View? = null
     val viewModel: VendorViewModel by viewModels()
 
-    val type="0"
+    var type="0"
 
 
     lateinit var mUtils: Util
@@ -79,31 +80,29 @@ class BidFragment : Fragment(), Observer<RestObservable> {
 //            }
 //        });
         btnrequest.setOnClickListener {
+            type="0"
             getBidList("0")
             btnrequest.background = resources.getDrawable(R.drawable.current_button)
             btnaccpet.background = resources.getDrawable(R.drawable.past_button2)
             btnrequest.setTextColor(resources.getColor(R.color.white))
             btnaccpet.setTextColor(resources.getColor(R.color.balck))
-            requestAdapter = RequestAdapter(mContext!!,arrayList)
-            bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
-            bidrecyclerview.setAdapter(requestAdapter)
+
         }
         btnaccpet.setOnClickListener {
+            type="1"
             getBidList("1")
             btnaccpet.background = resources.getDrawable(R.drawable.current_button)
             btnrequest.background = resources.getDrawable(R.drawable.past_button2)
             btnaccpet.setTextColor(resources.getColor(R.color.white))
             btnrequest.setTextColor(resources.getColor(R.color.balck))
-            accpetAdapter = AccpetAdapter(mContext!!,arrayList)
-            bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
-            bidrecyclerview.setAdapter(accpetAdapter)
+
         }
     }
 
     private fun getBidList(type: String) {
         val hashMap = HashMap<String, RequestBody>()
         hashMap["type"] = mUtils.createPartFromString(type)
-     //   hashMap["type"] = "0"    // 0=>new request 1=>accepted
+        //   hashMap["type"] = "0"    // 0=>new request 1=>accepted
         val mActivity = activity as BottomnavigationScreen
         viewModel.vendorBiddingList(mActivity, true, hashMap)
         viewModel.mResponse.observe(mActivity, this)
@@ -116,18 +115,32 @@ class BidFragment : Fragment(), Observer<RestObservable> {
                 if (it.data is VendorBiddingListResponse) {
                     val mResponse: VendorBiddingListResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+
+                        //Toast.makeText(requireContext(), mResponse.body.size.toString(), Toast.LENGTH_SHORT).show()
                         if(mResponse.body.size==0){
+
                             tvNoBid.visibility=View.VISIBLE
                             bidrecyclerview.visibility=View.GONE
                         }else{
+
+                            tvNoBid.visibility=View.GONE
+                            bidrecyclerview.visibility=View.VISIBLE
                             if(type=="0"){
                                 arrayList.clear()
                                 arrayList.addAll(it.data.body)
-                                requestAdapter?.notifyDataSetChanged()
+                                requestAdapter = RequestAdapter(mContext!!,arrayList)
+                                bidrecyclerview.layoutManager = LinearLayoutManager(mContext)
+                                bidrecyclerview.adapter = requestAdapter
+
+                                //requestAdapter?.notifyDataSetChanged()
                             }else{
                                 arrayList.clear()
                                 arrayList.addAll(it.data.body)
-                                accpetAdapter?.notifyDataSetChanged()
+                                accpetAdapter = AccpetAdapter(mContext!!,arrayList)
+                                bidrecyclerview.layoutManager = LinearLayoutManager(mContext)
+                                bidrecyclerview.adapter = accpetAdapter
+
+                                //accpetAdapter?.notifyDataSetChanged()
                             }
                         }
 
@@ -151,6 +164,12 @@ class BidFragment : Fragment(), Observer<RestObservable> {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        getBidList(type)
+    }
+
 
 }
 

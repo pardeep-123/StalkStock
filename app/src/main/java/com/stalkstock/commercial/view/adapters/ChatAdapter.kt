@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial.ui.view.activities
+package com.stalkstock.commercial.view.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.commercial.view.activities.Chat
+import com.stalkstock.vender.Model.MessageList
 import kotlinx.android.synthetic.main.chat_adapter.view.*
 
-class ChatAdapter(var chatList: ArrayList<Chat.ChatData>) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
+class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
@@ -45,9 +45,7 @@ class ChatAdapter(var chatList: ArrayList<Chat.ChatData>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-
-
-        if(chatList[position].type=="other")
+        /*if(chatList[position].type=="other")
         {
             holder.itemView.clOther.visibility = View.VISIBLE
             holder.itemView.clMe.visibility = View.GONE
@@ -63,7 +61,7 @@ class ChatAdapter(var chatList: ArrayList<Chat.ChatData>) : RecyclerView.Adapter
             holder.itemView.tvMessageMe.text = chatList[position].message
             holder.itemView.tvTimeMe.text = chatList[position].time
         }
-
+*/
 
 
 

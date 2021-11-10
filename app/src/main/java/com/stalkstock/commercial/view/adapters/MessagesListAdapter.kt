@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.commercial.view.activities.Chat
 import com.stalkstock.R
+import com.stalkstock.vender.Model.MessageList
 import kotlinx.android.synthetic.main.item_messages.view.*
 
-class MessagesListAdapter(var context: Context, var list:ArrayList<ModelPojo.MessageListModel>, var listner:OnMessageRecyclerViewListAdapter):RecyclerView.Adapter<MessagesListAdapter.MyViewHolder>() {
+class MessagesListAdapter(var context: Context, var list:ArrayList<MessageList>):RecyclerView.Adapter<MessagesListAdapter.MyViewHolder>() {
 
 
 
@@ -32,12 +33,12 @@ class MessagesListAdapter(var context: Context, var list:ArrayList<ModelPojo.Mes
         val message = itemView.tv_messageTemplate
         val time = itemView.tv_timeOFMessage
         val numberOfMessages = itemView.tv_numberOfMessages
-        fun initalize(list: ArrayList<ModelPojo.MessageListModel>, position: Int){
-            image.setImageResource(list.get(position).image)
-            name.text = list.get(position).name
-            message.text = list.get(position).message
-            time.text = list.get(position).time
-            numberOfMessages.text = list.get(position).numberOFMessages.toString()
+        fun initalize(list: ArrayList<MessageList>, position: Int){
+//            image.setImageResource(list.get(position).image)
+//            name.text = list.get(position).name
+//            message.text = list.get(position).message
+//            time.text = list.get(position).time
+//            numberOfMessages.text = list.get(position).numberOFMessages.toString()
            //logic for showing  number of messages in red dot ..
             if(numberOfMessages.text.equals("0") or numberOfMessages.text.isNullOrEmpty()){
                 numberOfMessages.visibility= View.GONE

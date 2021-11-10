@@ -1,24 +1,28 @@
 package com.stalkstock.vender.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.consumer.adapter.CartAdapter
-import com.stalkstock.consumer.fragment.CartFragment
-import com.stalkstock.consumer.model.ModelCartData
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.Util
+import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.VendorBiddingListResponse
-import com.stalkstock.vender.ui.BidFragment
+import com.stalkstock.vender.ui.BidDetail
+import kotlinx.android.synthetic.main.bidproductlist.view.*
 import kotlinx.android.synthetic.main.row_cart.view.*
-import kotlin.collections.ArrayList
 
 class RequestAdapter(
     var mContext: Context,
-    var arrayList: ArrayList<VendorBiddingListResponse.BidData>
+    var arrayList: ArrayList<BidData>
 ) :
     RecyclerView.Adapter<RequestAdapter.RecyclerViewHolder>() {
+
+    var mUtil=Util()
     var inflater: LayoutInflater
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -33,21 +37,25 @@ class RequestAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-       /* holder.itemView.name_text.setText(arrayList[position].product.name)
-        holder.itemView.count.setText(arrayList[position].quantity.toString())
-        holder.itemView.tvPrice.setText("$" + arrayList[position].product.mrp.toString())
-        holder.itemView.minus.setOnClickListener {
-            val i = currentQty - 1
-            context.addToCartAPI(arrayList[position].productId.toString(), i.toString())
+        holder.itemView.bidid.text = "BID:"+arrayList[position].bidCount
+        holder.itemView.requestid.text = "Request Id: "+arrayList[position].requestNo.toString()
+        holder.itemView.biddate.text= AppUtils.changeDateFormat(
+            arrayList[position].createdAt.toString(),
+            GlobalVariables.DATEFORMAT.DateTimeFormat1,
+            GlobalVariables.DATEFORMAT.DateTimeFormat2
+        )
+//            mUtil.toDate(arrayList[position].createdAt.toString(),"MMM,dd,yyyy")
+//        holder.itemView.bidtime.text=mUtil.toDate(arrayList[position].createdAt.toString(),"hh:mm")
+//         holder.itemView.biddate.bidtime=
+
+
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(mContext, BidDetail::class.java)
+            intent.putExtra("bidId",arrayList[position].id.toString())
+            mContext.startActivity(intent)
+
         }
-        holder.itemView.plus.setOnClickListener {
-            val i = currentQty + 1
-            context.addToCartAPI(arrayList[position].productId.toString(), i.toString())
-*//*
-            val intent = Intent(context, AddcartdetailsActivity::class.java)
-            context.startActivity(intent)
-*//*
-        }*/
 
     }
 

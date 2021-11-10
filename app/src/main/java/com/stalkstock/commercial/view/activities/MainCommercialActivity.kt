@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.stalkstock.R
 import com.stalkstock.commercial.view.fragments.home.account.AccountFragment
+import com.stalkstock.commercial.view.fragments.home.message.MessagesFragment
 import com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment
 import kotlinx.android.synthetic.main.bottom_layout.*
 
@@ -65,8 +66,8 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
             iv_accountTab.setImageResource(R.drawable.user_black_icon1)
             textColorChange(tv_cart!!,tv_order!!,tv_home!! , tv_account!!)
             val f = supportFragmentManager.findFragmentById(R.id.rl_content_frame)
-            if (f !is com.live.stalkstockcommercial.ui.view.fragments.messages.MessagesFragment) {
-                switchFragment(R.id.rl_content_frame, com.live.stalkstockcommercial.ui.view.fragments.messages.MessagesFragment())
+            if (f !is MessagesFragment) {
+                switchFragment(R.id.rl_content_frame, MessagesFragment())
             }}
 
         account_tab.setOnClickListener {

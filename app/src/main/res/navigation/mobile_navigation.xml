@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_messages"
-        android:name="com.live.stalkstockcommercial.ui.view.fragments.messages.MessagesFragment"
+        android:name="com.stalkstock.commercial.view.fragments.home.message.MessagesFragment"
         android:label="@string/title_message"
         tools:layout="@layout/fragment_messages" />
     <fragment

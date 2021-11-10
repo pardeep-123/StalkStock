@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -559,6 +560,19 @@ public class Util {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public String toDate(String dateAt,String format) {
+        SimpleDateFormat input = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat output = new SimpleDateFormat(format, Locale.getDefault());
+
+        Date d = null;
+        try {
+            d = input.parse(dateAt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return output.format(d);
     }
 
 }

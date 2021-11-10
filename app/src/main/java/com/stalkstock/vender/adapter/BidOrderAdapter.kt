@@ -14,6 +14,7 @@ import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.Util
 import com.stalkstock.vender.Model.BidData
+import com.stalkstock.vender.Model.OrderItem
 import com.stalkstock.vender.Model.VendorBiddingListResponse
 import com.stalkstock.vender.ui.BidFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -23,15 +24,16 @@ import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.biddate
 import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.bidtime
 import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.requestid
 import kotlinx.android.synthetic.main.bidproductlist.view.*
+import kotlinx.android.synthetic.main.item_view_bid_order_adapter.view.*
 import kotlinx.android.synthetic.main.row_cart.view.*
 import kotlinx.android.synthetic.main.row_cart.view.name_text
 import kotlin.collections.ArrayList
 
-class AccpetAdapter(
+class BidOrderAdapter(
     var mContext: Context,
-    var arrayList: ArrayList<BidData>
+    var arrayList: ArrayList<OrderItem>
 ) :
-    RecyclerView.Adapter<AccpetAdapter.RecyclerViewHolder>() {
+    RecyclerView.Adapter<BidOrderAdapter.RecyclerViewHolder>() {
 
     var mUtil= Util()
     var inflater: LayoutInflater
@@ -43,25 +45,17 @@ class AccpetAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        val v = inflater.inflate(R.layout.bidprdouctaccpetlist, parent, false)
+        val v = inflater.inflate(R.layout.item_view_bid_order_adapter, parent, false)
         return RecyclerViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.itemView.requestid.text = "Request Id: "+arrayList[position].requestNo
-        holder.itemView.bidPrice.text = arrayList[position].vendorBidingRequest.amount
-        holder.itemView.bidCount.text = "Bid: "+arrayList[position].bidCount.toString()
-        Glide.with(mContext).load(arrayList[position].commercialDetail.image).into(holder.itemView.bidimguser as CircleImageView)
-        holder.itemView.bidusername.text =arrayList[position].commercialDetail.firstName +" "+arrayList[position].commercialDetail.lastName
-        holder.itemView.biddate.text= AppUtils.changeDateFormat(
-            arrayList[position].createdAt.toString(),
-            GlobalVariables.DATEFORMAT.DateTimeFormat1,
-            GlobalVariables.DATEFORMAT.DateTimeFormat2
-        )
-//            mUtil.toDate(arrayList[position].createdAt.toString(),"MMM,dd,yyyy")
-//        holder.itemView.bidtime.text=mUtil.toDate(arrayList[position].createdAt.toString(),"hh:mm")
 
-
+        holder.itemView.tvSNo.text= (position+1).toString()+"."
+        holder.itemView.tvCategory.text= arrayList[position].product.categoryName
+        holder.itemView.tvProduct.text= arrayList[position].product.name
+        holder.itemView.tvQuantity.text= arrayList[position].qty.toString()
+        holder.itemView.tvQuantityType.text= arrayList[position].product.measurementName
     }
 
     override fun getItemCount(): Int {

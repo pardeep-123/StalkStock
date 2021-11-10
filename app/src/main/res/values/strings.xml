@@ -236,7 +236,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_start_date">Please enter start date</string>
     <string name="please_enter_end_date">Please enter end date</string>
     <string name="please_enter_action">Please enter action</string>
-
+    <string name="please_enter_sale_price">Please enter sale price</string>
+    <string name="please_enter_sale_terms">Please enter description</string>
     <string name="please_enter_city">Please enter city</string>
     <string name="please_enter_state">Please enter state/province/region</string>
     <string name="please_enter_postal_code">Please enter postal/zip code</string>

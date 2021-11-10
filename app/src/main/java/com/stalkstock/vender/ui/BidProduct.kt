@@ -1,16 +1,15 @@
 package com.stalkstock.vender.ui
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import com.stalkstock.vender.adapter.AccpetAdapter
-import androidx.recyclerview.widget.RecyclerView
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import com.stalkstock.R
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.R
+import com.stalkstock.vender.Model.BidData
+import com.stalkstock.vender.adapter.AccpetAdapter
 import com.stalkstock.vender.adapter.RequestAdapter
 import kotlinx.android.synthetic.main.activity_bid_product.*
 
@@ -18,7 +17,7 @@ class BidProduct : AppCompatActivity() {
     var mContext: Context? = null
     var requestAdapter: RequestAdapter? = null
     var accpetAdapter: AccpetAdapter? = null
-    var arrayList= ArrayList<VendorBiddingListResponse.BidData>()
+    var arrayList= ArrayList<BidData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bid_product)

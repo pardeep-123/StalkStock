@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
@@ -34,6 +35,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
      val mContext:Context=this
      var from = ""
      var deleteCardPos= 0
+    var rvCards:RecyclerView?=null
      val viewModel: DriverViewModel by viewModels()
      lateinit var adapter : UserCardAdapter
      private var listCards  = mutableListOf<UserCardBody>()
@@ -41,6 +43,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_payments)
+        rvCards= findViewById(R.id.rvCards)
         tv_heading.text = "Manage Payments"
         if (intent.getStringExtra("from")!=null){
             from = intent.getStringExtra("from")!!
@@ -60,7 +63,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             btn_checkout.visibility=View.VISIBLE }
 
         adapter = UserCardAdapter(listCards)
-        rvCards.adapter =adapter
+        rvCards?.adapter =adapter
         adapter.onPerformClick(object :UserCardAdapter.CardClicked{
             override fun clicked(position: Int, id: Int) {
                 Log.e("ivDeleteCard","=====2222====")

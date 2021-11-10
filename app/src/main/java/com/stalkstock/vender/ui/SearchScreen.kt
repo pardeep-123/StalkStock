@@ -43,6 +43,9 @@ class SearchScreen : BaseActivity(), Observer<RestObservable> {
     override fun onResume() {
         super.onResume()
         getRecentSearchAPI()
+        id_backarrow.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setData(mResponse: ModelProductListAsPerSubCat) {

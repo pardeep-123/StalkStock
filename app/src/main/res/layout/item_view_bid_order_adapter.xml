@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_marginStart="@dimen/_4sdp"
+    android:layout_marginEnd="@dimen/_4sdp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        >
-
+        android:layout_height="40dp">
 
         <View
             android:id="@+id/viewUp"
@@ -31,11 +31,8 @@
             android:layout_width="0.5dp"
             android:layout_alignParentRight="true"
             android:layout_height="match_parent"
-
-
             android:background="@color/black_color"
             />
-
 
         <View
             android:id="@+id/viewDown"
@@ -45,77 +42,49 @@
             android:background="@color/black_color"
             />
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+
             <RelativeLayout
-                android:visibility="gone"
-                android:layout_weight="0.9"
+                android:layout_weight="0.3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
-
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:id="@+id/tvCount"
+                    android:id="@+id/tvSNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:text="1."
-                    android:layout_centerInParent="true"
-                     android:textSize="@dimen/value_12dp"
-                     android:textColor="@color/black_color"
-                    />
-
-                <View
-                    android:id="@+id/viewName"
-                    android:layout_width="0.5dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="match_parent"
-                    android:background="@color/black_color"
-                    />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:visibility="gone"
-                android:layout_weight="1.3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:id="@+id/tvName"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Meat"
-                     android:textSize="@dimen/value_12dp"
                     android:textColor="@color/black_color"
-
-                    />
+                    android:textSize="10sp" />
 
                 <View
-                    android:id="@+id/viewType"
-                    android:layout_alignParentRight="true"
+                    android:id="@+id/viewSNo"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/black_color" />
 
-                    android:background="@color/black_color"
-                    />
 
             </RelativeLayout>
+
+
             <RelativeLayout
                 android:layout_weight="1.3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
-                    android:id="@+id/tvType"
+                    android:id="@+id/tvCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="Bacon Grill"
-
+                    android:maxLines="1"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/value_12dp" />
 
@@ -124,13 +93,38 @@
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
+                    android:background="@color/black_color" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_weight="1.3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Bacon Grill"
+                    android:maxLines="1"
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/value_12dp" />
+
+                <View
+                    android:id="@+id/viewyProduct"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
                     android:background="@color/black_color"
                     />
 
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_weight="0.9"
+                android:layout_weight="0.8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
@@ -141,7 +135,6 @@
                     android:layout_centerInParent="true"
                     android:text="10"
                     android:textColor="@color/black_color"
-
                     android:textSize="@dimen/value_12dp" />
 
 
@@ -156,7 +149,7 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_weight="0.9"
+                android:layout_weight="0.8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
@@ -164,60 +157,21 @@
                     android:id="@+id/tvQuantityType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kg"
                     android:layout_centerInParent="true"
-                     android:textSize="@dimen/value_12dp"
                     android:layout_marginRight="@dimen/value_12dp"
+                    android:text="Kg"
                     android:textColor="@color/black_color"
-                    />
+                    android:textSize="@dimen/value_12dp" />
 
                 <View
                     android:id="@+id/viewEdit"
                     android:layout_width="0.5dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_height="match_parent"
-                    android:background="@color/black_color"
-                    />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/rl_edit"
-                android:layout_weight="0.9"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/ivEdit"
-                    android:layout_width="@dimen/value_16dp"
-                    android:layout_height="@dimen/value_16dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/edi_icon" />
-
-                <View
-                    android:id="@+id/viewDelete"
-                    android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@color/black_color"
-                    />
+                    android:background="@color/black_color" />
 
             </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/rl_delete"
-                android:layout_weight="0.9"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/ivDelete"
-                    android:layout_width="@dimen/value_12dp"
-                    android:layout_height="@dimen/value_15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/dlt_icon_red"
-                    />
 
-
-            </RelativeLayout>
         </LinearLayout>
 
     </RelativeLayout>

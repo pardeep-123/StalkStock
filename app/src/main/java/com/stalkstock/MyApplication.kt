@@ -41,7 +41,7 @@ class MyApplication : Application(), AppLifecycleDelegates {
 
         fun getSocketManager(): SocketManager {
             if (mSocketManager == null) {
-                mSocketManager = SocketManager.getSocket()
+                mSocketManager = SocketManager.socket
                 return mSocketManager!!
             } else {
                 return mSocketManager!!

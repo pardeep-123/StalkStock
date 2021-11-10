@@ -281,16 +281,16 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<VendorBiddingListResponse>
 
-  @FormUrlEncoded
+  @Multipart
     @POST(URL.VENDORBIDDINGDETAIL)
     fun vendorBiddingDetail(
-        @FieldMap map: HashMap<String, String>
-    ): Observable<VendorBiddingListResponse>
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<VendorBidDetailResponse>
 
-@FormUrlEncoded
+  @Multipart
     @POST(URL.VENDORACCEPTBID)
     fun vendorAcceptBid(
-        @FieldMap map: HashMap<String, String>
+        @PartMap map: HashMap<String, RequestBody>
     ): Observable<CommonResponseModel>
 
 

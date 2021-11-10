@@ -114,7 +114,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
         }
 
         tvChat.setOnClickListener {
-            startActivity(Intent(this, Chat::class.java))
+            val intent= Intent(this,Chat::class.java)
+            intent.putExtra("id",bidId.toString())
+            startActivity(intent)
         }
     }
 

@@ -3,31 +3,28 @@ package com.stalkstock.commercial.view.fragments.home.myorders
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
-import com.stalkstock.commercial.view.model.ModelPojo
-import com.stalkstock.commercial.view.activities.OrderDetailActivity
-import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.commercial.view.model.ModelProductList
+import com.stalkstock.commercial.view.activities.OrderDetailActivity
+import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.commercial.view.model.MyOrdersList
-import com.stalkstock.consumer.model.ModelProductVendorList
 import com.stalkstock.consumer.model.OrderListModel
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_my_orders.*
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObservable>,MyOrdersListAdapter.OnMyOrdersRecyclerViewItemClickListner{
     var handler: Handler?=null

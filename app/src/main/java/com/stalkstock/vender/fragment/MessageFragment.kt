@@ -1,45 +1,107 @@
-package com.stalkstock.vender.fragment;
+package com.stalkstock.vender.fragment
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context
+import com.stalkstock.vender.adapter.MessageAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.stalkstock.vender.Model.MessageList
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import com.stalkstock.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.google.gson.GsonBuilder
+import com.stalkstock.MyApplication
+import com.stalkstock.driver.models.NewOrderResponse
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.getPrefrence
+import com.stalkstock.utils.socket.SocketManager
+import kotlinx.android.synthetic.main.fragment_h_ome.*
+import org.json.JSONArray
+import org.json.JSONObject
+import java.lang.reflect.Array
+import java.util.ArrayList
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+class MessageFragment : Fragment(), SocketManager.SocketInterface {
+    var mcontext: Context? = null
+    private var messageAdapter: MessageAdapter? = null
+    var messagerecyclerview: RecyclerView? = null
+    private var messageLists=  ArrayList<MessageList>()
 
- import com.stalkstock.R;
-import com.stalkstock.vender.Model.MessageList;
-import com.stalkstock.vender.adapter.MessageAdapter;
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-import java.util.ArrayList;
-import java.util.List;
+        val view = inflater.inflate(R.layout.chat_fragment, container, false)
+        mcontext = activity
+        return view
+    }
 
-public class MessageFragment extends Fragment {
-    Context mcontext;
-    private MessageAdapter messageAdapter;
-    RecyclerView messagerecyclerview;
-    private List<MessageList> messageLists;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        MyApplication.getSocketManager().onRegister(this)
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.chat_fragment, container,false);
-        mcontext=getActivity();
-        messagerecyclerview=view.findViewById(R.id.messagerecyclerview);
-        messageAdapter = new MessageAdapter(mcontext);
-        messagerecyclerview.setLayoutManager(new LinearLayoutManager(mcontext));
-        messagerecyclerview.setAdapter(messageAdapter) ;
-        messageLists = new ArrayList<>();
-        messageLists.add(new MessageList(R.drawable.chat_img,"John","11.02 PM","Hello , How are you"));
-        messageLists.add(new MessageList(R.drawable.chat_img_2,"John","11.02 PM","Hello , How are you"));
-        messageLists.add(new MessageList(R.drawable.chat_img_3,"John","11.02 PM","Hello , How are you"));
-        return view;
+        messagerecyclerview = view.findViewById(R.id.messagerecyclerview)
+        messagerecyclerview?.layoutManager = LinearLayoutManager(mcontext)
+        messagerecyclerview?.adapter = messageAdapter
 
+        getMessageList()
+    }
+
+    private fun getMessageList() {
+        val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("userId", userId)
+        jsonObject.put("offset", "1")
+        jsonObject.put("limit", "10")
+        Log.e(SocketManager.GET_USER_LIST, jsonObject.toString())
+        SocketManager.socket?.sendDataToServer(SocketManager.GET_USER_LIST, jsonObject)
+    }
+
+    override fun onSocketCall(event: String?, vararg args: Any?) {
+        if (event != null) {
+            Log.e("onSocketCall", event)
+        }
+        when (event) {
+            SocketManager.GET_USER_LIST -> {
+                val mObject = args[0] as JSONArray
+                Log.i("====",mObject.length().toString())
+                if (mObject.length()>0) {
+
+                    messageLists.clear()
+                    for (i in 0 until mObject.length()) {
+                        val jsonobj = mObject.getJSONObject(i)
+                        val gson = GsonBuilder().create()
+                        val data = gson.fromJson(jsonobj.toString(), MessageList::class.java)
+                        messageLists.add(data)
+                        messageAdapter = MessageAdapter(mcontext!!,messageLists)
+                        messagerecyclerview?.adapter = messageAdapter
+                    }
+                } else {
+                 //   tvNotFound.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+    override fun onSocketConnect(vararg args: Any?) {
 
     }
+
+    override fun onSocketDisconnect(vararg args: Any?) {
+
+    }
+
+    override fun onError(event: String?, vararg args: Any?) {
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        MyApplication.getSocketManager().unRegister(this)
+    }
+
+
 }

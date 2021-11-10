@@ -67,7 +67,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
     lateinit var mapFragment: SupportMapFragment
      var orderID: String = ""
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -258,7 +257,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         jsonObject.put("latitude", mLatitude)
         jsonObject.put("longitude", mLongitude)
         Log.e(SocketManager.UPDATE_DRIVER_LOCATION, jsonObject.toString())
-        SocketManager.getSocket().sendDataToServer(SocketManager.UPDATE_DRIVER_LOCATION, jsonObject)
+        SocketManager.socket?.sendDataToServer(SocketManager.UPDATE_DRIVER_LOCATION, jsonObject)
     }
 
     fun checkLocationPermission() {
@@ -428,13 +427,18 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
     }
 
     override fun onSocketConnect(vararg args: Any?) {
+
     }
 
     override fun onSocketDisconnect(vararg args: Any?) {
+        TODO("Not yet implemented")
     }
+
 
     override fun onError(event: String?, vararg args: Any?) {
     }
+
+
 
     override fun onChanged(it: RestObservable?) {
         when {

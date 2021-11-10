@@ -209,7 +209,7 @@ class VendorViewModel : ViewModel() {
     fun vendorBiddingDetail(
         activity: Activity,
         showLoader: Boolean,
-        hashMap: HashMap<String, String>
+        hashMap: HashMap<String, RequestBody>
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
@@ -237,7 +237,7 @@ class VendorViewModel : ViewModel() {
     fun vendorAcceptBid(
         activity: Activity,
         showLoader: Boolean,
-        hashMap: HashMap<String, String>
+        hashMap: HashMap<String, RequestBody>
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {

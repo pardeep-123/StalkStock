@@ -26,8 +26,7 @@
             android:layout_marginLeft="@dimen/value_15dp"
             android:text="Jamie Jai"
             android:textColor="@color/black_color"
-            android:textSize="@dimen/value_14sp"
-              />
+            android:textSize="@dimen/value_14sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_messageTemplate"
@@ -46,14 +45,13 @@
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_timeOFMessage"
             android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/value_15dp"
             android:layout_marginRight="15dp"
             android:text="2:30 PM"
             android:textColor="@color/dark_green_colour"
-            android:textSize="@dimen/value_12sp"
-             />
+            android:textSize="@dimen/value_12sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_numberOfMessages"

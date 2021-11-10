@@ -43,7 +43,7 @@ import okhttp3.RequestBody
 
 class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener,
     Observer<RestObservable> {
-    private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
+    private var mAlbumFiles: ArrayList<AlbumFile> = ArrayList()
     var firstimage = ""
     private var mVehicleType = ""
     private var mCountryName = ""

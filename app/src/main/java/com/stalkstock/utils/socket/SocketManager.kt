@@ -1,508 +1,371 @@
-package com.stalkstock.utils.socket;
+package com.stalkstock.utils.socket
 
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import com.stalkstock.MyApplication
+import com.stalkstock.utils.others.GlobalVariables
+import io.socket.client.IO
+import io.socket.client.Socket
+import io.socket.emitter.Emitter
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.URISyntaxException
+import java.util.*
 
-import androidx.annotation.RequiresApi;
+class SocketManager  {
+    private var mSocket: Socket? = null
 
-import com.stalkstock.MyApplication;
-import com.stalkstock.utils.others.GlobalVariables;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-
-public class SocketManager {
-
-    private static SocketManager mSocketClass = null;
-    private static final String TAG = SocketManager.class.getCanonicalName();
-    private Socket mSocket;
     // Enter ON Method Name here
-    private String mOnMethodName = "server_response";
-    private SocketInterface mSocketInterface = null;
-    private List<SocketInterface> observerList;
-    public static final String CONNECT_USER = "connectUser";
-    public static final String CONNECT_LISTNER = "connectListener";
+    private val mOnMethodName = "server_response"
+    private var mSocketInterface: SocketInterface? = null
+    private var observerList: MutableList<SocketInterface>? = null
+    var isConnect = false
 
-    public static final String SEND_MESSAGE = "send_message";
-    public static final String RECIEVE_MESSAGE = "new_message";
-
-    public static final String GET_CHAT = "get_message";
-    public static final String GET_USER_LIST = "chat_listing";
-    public static final String VendorOrderListener = "vendorOrder";
-
-    public static final String driverOrderRequest = "driverOrderRequest";
-
-    public static final String UPDATE_DRIVER_LOCATION = "update_driver_location";
-    public static final String UPDATE_LOCATION_LISTENER = "get_driver_location";
-
-    public static final String TRACK_ORDER = "track_order";
-    public static final String TRACK_ORDER_LISTENER = "track_order";
-
-    public static final String CALL_STATUS = "call_status";
-
-
-
-    private SocketManager() {
-        try {
-            IO.Options options = new IO.Options();
-            options.reconnection = true;
-            options.reconnectionAttempts = Integer.MAX_VALUE;
-            Log.e("Constants.BASE_URL", GlobalVariables.URL.SOCKET_URL);
-            mSocket = IO.socket(GlobalVariables.URL.SOCKET_URL, options);
-            if (observerList == null || observerList.size() == 0) {
-                observerList = new ArrayList<>();
-            }
-            onDisconnect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+    fun isConnected(): Boolean {
+        return mSocket != null && mSocket?.connected()!!
     }
 
-    public static SocketManager getSocket() {
-        if (mSocketClass == null)
-            mSocketClass = new SocketManager();
-        return mSocketClass;
+    fun updateSocketInterface(mSocketInterface: SocketInterface?) {
+        this.mSocketInterface = mSocketInterface
     }
 
-    public Boolean isConnected = false;
-
-    public boolean isConnected() {
-        return mSocket != null && mSocket.connected();
-    }
-
-    public void updateSocketInterface(SocketInterface mSocketInterface) {
-        this.mSocketInterface = mSocketInterface;
-    }
-
-    public void onRegister(SocketInterface observer) {
-        if (observerList != null && !observerList.contains(observer)) {
-            observerList.add(observer);
+    fun onRegister(observer: SocketInterface) {
+        if (observerList != null && !observerList!!.contains(observer)) {
+            observerList!!.add(observer)
         } else {
-            observerList = new ArrayList<>();
-            observerList.add(observer);
+            observerList = ArrayList()
+            observerList?.add(observer)
         }
     }
 
-    public void unRegister(SocketInterface observer) {
+    fun unRegister(observer: SocketInterface) {
         if (observerList != null) {
-            for (int i = 0; i < observerList.size(); i++) {
-                SocketInterface model = observerList.get(i);
-                if (model == observer) {
-                    observerList.remove(model);
+            for (i in observerList!!.indices) {
+                val model = observerList!![i]
+                if (model === observer) {
+                    observerList!!.remove(model)
                 }
             }
         }
     }
-
 
     /**
      * Default Listener
      * Define what you want to do when connection is established
      */
-    private Emitter.Listener onConnect = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                @Override
-                public void run() {
-                    Log.e(TAG, "connect run");
-                    isConnected = true;
-//                    if (mSocketInterface!=null)
+    private val onConnect = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            Log.e(TAG, "connect run")
+            isConnect = true
+            //                    if (mSocketInterface!=null)
 //                        mSocketInterface.onSocketConnect(args);
-                    try {
-                        String user_id = MyApplication.instance.getString("globalID");
-                        if (user_id != null) {
-                            if (!user_id.equals("0")) {
-                                JSONObject jsonObject = new JSONObject();
-                                jsonObject.put("userId", user_id);
-                                sendDataToServer(CONNECT_USER, jsonObject);
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketConnect(args);
+            try {
+                val user_id = MyApplication.instance.getString("globalID")
+                if (user_id != null) {
+                    if (user_id != "0") {
+                        val jsonObject = JSONObject()
+                        jsonObject.put("userId", user_id)
+                        sendDataToServer(CONNECT_USER, jsonObject)
                     }
                 }
-            });
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            for (observer in observerList!!) {
+                observer.onSocketConnect(*args)
+            }
         }
-    };
+    }
+
     /**
      * Default Listener
      * Define what you want to do when connection is disconnected
      */
-    private Emitter.Listener onDisconnect = new Emitter.Listener() {
+    private val onDisconnect = Emitter.Listener { args ->
         /**
          *
          * @param args args
          */
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    Log.i(TAG, "disconnected");
-                    Log.e(TAG, "disconnect");
-                    isConnected = false;
-                    if (mSocketInterface!=null)
-                        mSocketInterface.onSocketDisconnect(args);
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketDisconnect(args);
-                    }
-                }
-            });
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            Log.i(TAG, "disconnected")
+            Log.e(TAG, "disconnect")
+            isConnect = false
+            if (mSocketInterface != null) mSocketInterface!!.onSocketDisconnect(*args)
+            for (observer in observerList!!) {
+                observer.onSocketDisconnect(*args)
+            }
         }
-    };
+    }
 
     /**
      * Default Listener
      * Define what you want to do when there's a connection error
      */
-    private Emitter.Listener onConnectError = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    for (SocketInterface observer : observerList) {
-                        observer.onError("ERROR", args);
-                    }
-                    Log.e(TAG, "Run" + args[0]);
-                    Log.e(TAG, "Error connecting");
+    private val onConnectError =
+        Emitter.Listener { args -> // Get a handler that can be used to post to the main thread
+            Handler(Looper.getMainLooper()).post {
+                for (observer in observerList!!) {
+                    observer.onError("ERROR", *args)
                 }
-            });
+                Log.e(TAG, "Run" + args[0])
+                Log.e(TAG, "Error connecting")
+            }
         }
-    };
 
     /**
      * Call this method in onCreate and onResume
      */
-    public void onConnect() {
-        if (!mSocket.connected()) {
-
-            mSocket.on(Socket.EVENT_CONNECT, onConnect);
-            mSocket.on(Socket.EVENT_DISCONNECT, onDisconnect);
-            mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
-            mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
-            mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
-            mSocket.on(CONNECT_LISTNER, onConnectUserListner);
-            mSocket.on(RECIEVE_MESSAGE, onRecieveListner);
-
-            mSocket.on(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener);
-            mSocket.on(TRACK_ORDER, onTrackOrderListener);
-            mSocket.on(SEND_MESSAGE, onSendListner);
-            mSocket.on(GET_CHAT, OnGetchatListener);
-            mSocket.on(GET_USER_LIST, OnGetUserListener);
-//            mSocket.on(VendorOrderListener, OnVendorOrderListener);
-            mSocket.on(driverOrderRequest, OnVendorOrderListener);
-            mSocket.on(CALL_STATUS, OnCallStatusListener);
-            mSocket.connect();
+    fun onConnect() {
+        if (!mSocket!!.connected()) {
+            mSocket!!.on(Socket.EVENT_CONNECT, onConnect)
+            mSocket!!.on(Socket.EVENT_DISCONNECT, onDisconnect)
+            mSocket!!.on(Socket.EVENT_CONNECT_ERROR, onConnectError)
+            mSocket!!.on(Socket.EVENT_CONNECT_ERROR, onConnectError)
+            mSocket!!.on(Socket.EVENT_CONNECT_ERROR, onConnectError)
+            mSocket!!.on(CONNECT_LISTNER, onConnectUserListner)
+            mSocket!!.on(RECIEVE_MESSAGE, onRecieveListner)
+            mSocket!!.on(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener)
+            mSocket!!.on(TRACK_ORDER, onTrackOrderListener)
+            mSocket!!.on(SEND_MESSAGE, onSendListner)
+            mSocket!!.on(GET_CHAT, OnGetchatListener)
+            mSocket!!.on(GET_USER_LIST, OnGetUserListener)
+            //            mSocket.on(VendorOrderListener, OnVendorOrderListener);
+            mSocket!!.on(driverOrderRequest, OnVendorOrderListener)
+            mSocket!!.on(CALL_STATUS, OnCallStatusListener)
+            mSocket!!.connect()
         }
     }
 
     /**
      * Call this method in onPause and onDestroy
      */
-    public void onDisconnect() {
-        isConnected = false;
-        mSocket.disconnect();
-        mSocket.off(Socket.EVENT_CONNECT, onConnect);
-        mSocket.off(Socket.EVENT_DISCONNECT, onDisconnect);
-        mSocket.off(Socket.EVENT_CONNECT_ERROR, onConnectError);
-        mSocket.off(Socket.EVENT_CONNECT_ERROR, onConnectError);
-        mSocket.off(CONNECT_LISTNER, onConnectUserListner);
-        mSocket.off(RECIEVE_MESSAGE, onRecieveListner);
-        mSocket.off(SEND_MESSAGE, onSendListner);
-        mSocket.off(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener);
-        mSocket.off(TRACK_ORDER, onTrackOrderListener);
-
-        mSocket.off(GET_USER_LIST, OnGetUserListener);
-//        mSocket.off(VendorOrderListener, OnVendorOrderListener);
-        mSocket.off(driverOrderRequest, OnVendorOrderListener);
-        mSocket.off(GET_CHAT, OnGetchatListener);
-        mSocket.off(CALL_STATUS, OnCallStatusListener);
+    fun onDisconnect() {
+        isConnect = false
+        mSocket!!.disconnect()
+        mSocket!!.off(Socket.EVENT_CONNECT, onConnect)
+        mSocket!!.off(Socket.EVENT_DISCONNECT, onDisconnect)
+        mSocket!!.off(Socket.EVENT_CONNECT_ERROR, onConnectError)
+        mSocket!!.off(Socket.EVENT_CONNECT_ERROR, onConnectError)
+        mSocket!!.off(CONNECT_LISTNER, onConnectUserListner)
+        mSocket!!.off(RECIEVE_MESSAGE, onRecieveListner)
+        mSocket!!.off(SEND_MESSAGE, onSendListner)
+        mSocket!!.off(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener)
+        mSocket!!.off(TRACK_ORDER, onTrackOrderListener)
+        mSocket!!.off(GET_USER_LIST, OnGetUserListener)
+        //        mSocket.off(VendorOrderListener, OnVendorOrderListener);
+        mSocket!!.off(driverOrderRequest, OnVendorOrderListener)
+        mSocket!!.off(GET_CHAT, OnGetchatListener)
+        mSocket!!.off(CALL_STATUS, OnCallStatusListener)
     }
 
-    private Emitter.Listener OnUPDATE_MY_LOCATIONListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("LISTNERGETLIST", data.toString());
-//                    if (mSocketInterface != null) {
+    private val OnUPDATE_MY_LOCATIONListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("LISTNERGETLIST", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(UPDATE_LOCATION_LISTENER, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(UPDATE_LOCATION_LISTENER, *args)
+            }
         }
-    };
-
-    private Emitter.Listener onTrackOrderListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("LISTNERGETLIST", data.toString());
-//                    if (mSocketInterface != null) {
+    }
+    private val onTrackOrderListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("LISTNERGETLIST", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(TRACK_ORDER_LISTENER, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(TRACK_ORDER_LISTENER, *args)
+            }
         }
-    };
-
+    }
 
     /*
      * On Method call backs from server
      * */
-    private Emitter.Listener socketServer = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    if (mSocketInterface != null)
-                        Log.e("response_socket", args.toString());
-                    mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(CONNECT_LISTNER, args);
-                    }
+    private val socketServer =
+        Emitter.Listener { args -> // Get a handler that can be used to post to the main thread
+            Handler(Looper.getMainLooper()).post {
+                val data = args[0] as JSONObject
+                if (mSocketInterface != null) Log.e("response_socket", args.toString())
+                mSocketInterface!!.onSocketCall(CONNECT_LISTNER, *args)
+                for (observer in observerList!!) {
+                    observer.onSocketCall(CONNECT_LISTNER, *args)
                 }
-            });
+            }
         }
-    };
-
-    private Emitter.Listener onConnectUserListner = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-//                    JSONObject data = (JSONObject) args[0];
-                    Log.e("LISTNERCONNECT", args[0].toString());
-
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(CONNECT_LISTNER, args);
-                    }
+    private val onConnectUserListner = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post { //                    JSONObject data = (JSONObject) args[0];
+            Log.e("LISTNERCONNECT", args[0].toString())
+            for (observer in observerList!!) {
+                observer.onSocketCall(CONNECT_LISTNER, *args)
+            }
+        }
+    }
+    private val onRecieveListner =
+        Emitter.Listener { args -> // Get a handler that can be used to post to the main thread
+            Handler(Looper.getMainLooper()).post {
+                val data = args[0] as JSONObject
+                Log.e("LISTNER_RecieveMessage", args[0].toString())
+                for (observer in observerList!!) {
+                    observer.onSocketCall(RECIEVE_MESSAGE, *args)
                 }
-            });
+            }
         }
-    };
-
-    private Emitter.Listener onRecieveListner = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("LISTNER_RecieveMessage", args[0].toString());
-
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(RECIEVE_MESSAGE, args);
-                    }
-                }
-            });
-        }
-    };
-
-    private Emitter.Listener onSendListner = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("LISTNER_SendMessage", args[0].toString());
-//                    if (mSocketInterface != null) {
+    private val onSendListner = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("LISTNER_SendMessage", args[0].toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(SEND_MESSAGE, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(SEND_MESSAGE, *args)
+            }
         }
-    };
-
-    private Emitter.Listener OnSesndMessageListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONArray data = (JSONArray) args[0];
-                    Log.e("LISTNERsend message", data.toString());
-//                    if (mSocketInterface != null) {
+    }
+    private val OnSesndMessageListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONArray
+            Log.e("LISTNERsend message", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(SEND_MESSAGE, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(SEND_MESSAGE, *args)
+            }
         }
-    };
-
-
-    private Emitter.Listener OnGetchatListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONArray data = (JSONArray) args[0];
-                    Log.e("LISTNERGETLIST", data.toString());
-//                    if (mSocketInterface != null) {
+    }
+    private val OnGetchatListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("LISTNERGETLIST", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(GET_CHAT, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(GET_CHAT, *args)
+            }
         }
-    };
-
-    private Emitter.Listener OnGetUserListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONArray data = (JSONArray) args[0];
-                    Log.e("LISTNER_GETCHATLISt", data.toString());
-//                    if (mSocketInterface != null) {
+    }
+    private val OnGetUserListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("LISTNER_GETCHATLISt", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(GET_USER_LIST, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(GET_USER_LIST, *args)
+            }
         }
-    };
-
-    private Emitter.Listener OnVendorOrderListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("VendorOrderListener", data.toString());
-//                    if (mSocketInterface != null) {
+    }
+    private val OnVendorOrderListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("VendorOrderListener", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(driverOrderRequest, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(driverOrderRequest, *args)
+            }
         }
-    };
-
-    private Emitter.Listener OnCallStatusListener = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            // Get a handler that can be used to post to the main thread
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("LISTNER_CAllStatusLISt", data.toString());
-//                    if (mSocketInterface != null) {
+    }
+    private val OnCallStatusListener = Emitter.Listener { args ->
+        // Get a handler that can be used to post to the main thread
+        Handler(Looper.getMainLooper()).post {
+            val data = args[0] as JSONObject
+            Log.e("LISTNER_CAllStatusLISt", data.toString())
+            //                    if (mSocketInterface != null) {
 //                        Log.e("response_socket", args.toString());
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
-
-                    for (SocketInterface observer : observerList) {
-                        observer.onSocketCall(CALL_STATUS, args);
-                    }
-                }
-            });
+            for (observer in observerList!!) {
+                observer.onSocketCall(CALL_STATUS, *args)
+            }
         }
-    };
+    }
 
     /*
      * Send Data to server by use of socket
      * */
-    public void sendDataToServer(final String methodName, final Object mObject) {
+    fun sendDataToServer(methodName: String?, mObject: Any) {
         // Get a handler that can be used to post to the main thread
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                mSocket.emit(methodName, mObject);
-                Log.e(methodName, mObject.toString());
-            }
-        });
+        Handler(Looper.getMainLooper()).post {
+            mSocket!!.emit(methodName, mObject)
+            Log.e(methodName, mObject.toString())
+        }
     }
 
     /*
      * Interface for Socket Callbacks
      * */
-    public interface SocketInterface {
-        void onSocketCall(String event, Object... args);
-
-        void onSocketConnect(Object... args);
-
-        void onSocketDisconnect(Object... args);
-
-        void onError(String event, Object... args);
+    interface SocketInterface {
+        fun onSocketCall(event: String?, vararg args: Any?)
+        fun onSocketConnect(vararg args: Any?)
+        fun onSocketDisconnect(vararg args: Any?)
+        fun onError(event: String?, vararg args: Any?)
     }
 
+    companion object {
+        private var mSocketClass: SocketManager? = null
+        private val TAG = SocketManager::class.java.canonicalName
+        const val CONNECT_USER = "connectUser"
+        const val CONNECT_LISTNER = "connectListener"
+        const val SEND_MESSAGE = "send_message"
+        const val RECIEVE_MESSAGE = "getChatMessageListing"
+        const val GET_CHAT = "getChatMessageListing"
+
+        const val GET_USER_LIST = "getChatListing"
+        const val VendorOrderListener = "vendorOrder"
+        const val driverOrderRequest = "driverOrderRequest"
+        const val UPDATE_DRIVER_LOCATION = "update_driver_location"
+        const val UPDATE_LOCATION_LISTENER = "get_driver_location"
+        const val TRACK_ORDER = "track_order"
+        const val TRACK_ORDER_LISTENER = "track_order"
+        const val CALL_STATUS = "call_status"
+        val socket: SocketManager?
+            get() {
+                if (mSocketClass == null) mSocketClass = SocketManager()
+                return mSocketClass
+            }
+    }
+
+    init {
+        try {
+            val options = IO.Options()
+            options.reconnection = true
+            options.reconnectionAttempts = Int.MAX_VALUE
+            Log.e("Constants.BASE_URL", GlobalVariables.URL.SOCKET_URL)
+            mSocket = IO.socket(GlobalVariables.URL.SOCKET_URL, options)
+            if (observerList == null || observerList!!.size == 0) {
+                observerList = ArrayList()
+            }
+            onDisconnect()
+        } catch (e: URISyntaxException) {
+            e.printStackTrace()
+        }
+    }
 }

@@ -1,50 +1,53 @@
-package com.stalkstock.vender.Model;
+package com.stalkstock.vender.Model
 
-public class MessageList {
-    int image;
-    String name;
-    String time;
-    String message;
+data class MessageList(
+    val bidId: Int,
+    val created: Int,
+    val createdAt: String,
+    val deletedId: Int,
+    val id: Int,
+    val lastMessage: LastMessage,
+    val lastMessageId: Int,
+    val orderId: Int,
+    val receiver: Receiver,
+    val receiverId: Int,
+    val sender: Sender,
+    val senderId: Int,
+    val updated: Int,
+    val updatedAt: String
+)
 
-    public MessageList() {
-    }
+data class LastMessage(
+    val chatId: Int,
+    val created: Int,
+    val createdAt: String,
+    val deletedId: Int,
+    val id: Int,
+    val isRead: Int,
+    val message: String,
+    val messageType: Int,
+    val receiverId: Int,
+    val senderId: Int,
+    val updated: Int,
+    val updatedAt: String
+)
 
-    public MessageList(int image, String name, String time, String message) {
-        this.image = image;
-        this.name = name;
-        this.time = time;
-        this.message = message;
-    }
+data class Receiver(
+    val email: String,
+    val firstName: String,
+    val id: Int,
+    val image: String,
+    val lastName: String,
+    val name: Any,
+    val role: Int
+)
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-}
+data class Sender(
+    val email: String,
+    val firstName: String,
+    val id: Int,
+    val image: String,
+    val lastName: String,
+    val name: Any,
+    val role: Int
+)

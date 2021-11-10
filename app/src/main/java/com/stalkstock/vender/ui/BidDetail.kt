@@ -12,23 +12,47 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.Chat
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
-import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.utils.others.Util
+import com.stalkstock.vender.Model.BidData
+import com.stalkstock.vender.Model.CommonResponseModel
+import com.stalkstock.vender.Model.OrderItem
+import com.stalkstock.vender.Model.VendorBidDetailResponse
+import com.stalkstock.vender.adapter.AccpetAdapter
+import com.stalkstock.vender.adapter.BidOrderAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_bid_detail.*
+import kotlinx.android.synthetic.main.activity_bid_detail.biddate
+import kotlinx.android.synthetic.main.activity_bid_detail.bidid
+import kotlinx.android.synthetic.main.activity_bid_detail.bidimguser
+import kotlinx.android.synthetic.main.activity_bid_detail.bidtime
+import kotlinx.android.synthetic.main.activity_bid_detail.bidusername
+import kotlinx.android.synthetic.main.activity_bid_detail.requestid
 import kotlinx.android.synthetic.main.activity_bid_product.*
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_order_details.*
 import kotlinx.android.synthetic.main.biddetailsalertbox.*
+import kotlinx.android.synthetic.main.bidprdouctaccpetlist.*
+import okhttp3.RequestBody
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {
 
     val viewModel: VendorViewModel by viewModels()
     var bidId=""
+    var mUtil= Util()
+    var arrayList= ArrayList<OrderItem>()
+    var bidOrderAdapter:BidOrderAdapter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +64,16 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     }
 
     private fun getIntentData() {
+        bidId= intent.getStringExtra("bidId").toString()
 
         getBidDetail(bidId)
 
     }
 
     private fun getBidDetail(bidId: String) {
-        val hashMap = HashMap<String, String>()
+        val hashMap = HashMap<String, RequestBody>()
+        hashMap["bidId"] = mUtil.createPartFromString(bidId)
+
         //   hashMap["type"] = "0"    // 0=>new request 1=>accepted
         viewModel.vendorBiddingDetail(this, true, hashMap)
         viewModel.mResponse.observe(this, this)
@@ -62,14 +89,14 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.newchat->{
-                startActivity(Intent(this@BidDetail, Chat::class.java))
+                val intent= Intent(this,Chat::class.java)
+                intent.putExtra("id",bidId.toString())
+                startActivity(intent)
             }
 
             R.id.biddetails_backarrow ->{
                 onBackPressed()
             }
-
-
 
             R.id.placebid_button ->{
                 val inflater = LayoutInflater.from(this@BidDetail)
@@ -78,37 +105,44 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
                 deleteDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 deleteDialog.setView(v)
                 val btncontinue = v.findViewById<Button>(R.id.submitbutton)
+                val edtPrice = v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
+                val edtSaleTerms = v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
                 btncontinue.setOnClickListener { v ->
-                    bidamt.visibility = View.VISIBLE
-                    biddisc.visibility = View.VISIBLE
-                    placebid_button.tag = 1
-                    placebid_button.text = "Place Bid"
-                    if (placebid_button.text.toString() == "Place Bid") {
-                        placebid_button.text = "Edit Bid"
 
+                    if(edtPrice.text.toString().isNullOrEmpty()){
+                        edtPrice.requestFocus()
+                        edtPrice.error = resources.getString(R.string.please_enter_sale_price)
+                    } else if(edtSaleTerms.text.toString().isNullOrEmpty()){
+                        edtPrice.requestFocus()
+                        edtPrice.error = resources.getString(R.string.please_enter_sale_terms)
+                    }else {
+                        var hashMap= HashMap<String,RequestBody>()
+                        hashMap["bidId"]= mUtil.createPartFromString(bidId)
+                        hashMap["amount"]= mUtil.createPartFromString(edtPrice.text.toString())
+                        hashMap["description"]= mUtil.createPartFromString(edtSaleTerms.text.toString())
+                        viewModel.vendorAcceptBid(this, true, hashMap)
+                        viewModel.mResponse.observe(this, this)
 
-//openNewActivity();
-                        v.tag = 1 //pause
-                    } else {
-                        val status = v.tag as Int
-                        if (status == 1) {
-                            //  nextbutton.setText("Checkout");
-                            //btn_add.setVisibility(View.VISIBLE);
-                            v.tag = 0 //pause
-                        } else {
+                        bidamt.visibility = View.VISIBLE
+                        biddisc.visibility = View.VISIBLE
+                        placebid_button.tag = 1
+                        placebid_button.text = "Place Bid"
+                        if (placebid_button.text.toString() == "Place Bid") {
                             placebid_button.text = "Edit Bid"
-
-//                         Intent intent = new Intent(SelectPaymentMethod.this, AddNewCard.class);
-//                         startActivity(intent);
-
-
-//openNewActivity();
                             v.tag = 1 //pause
+                        } else {
+                            val status = v.tag as Int
+                            if (status == 1) {
+                                v.tag = 0 //pause
+                            } else {
+                                placebid_button.text = "Edit Bid"
+                                v.tag = 1 //pause
+                            }
                         }
+
+                        deleteDialog.dismiss()
                     }
 
-//
-                    deleteDialog.dismiss()
                 }
                 deleteDialog.show()
             }
@@ -120,13 +154,19 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-                if (it.data is VendorBiddingListResponse) {
-                    val mResponse: VendorBiddingListResponse = it.data
+                if (it.data is VendorBidDetailResponse) {
+                    val mResponse: VendorBidDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        setBidData(mResponse.body)
 
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                }else if (it.data is CommonResponseModel) {
+                    val mResponse: CommonResponseModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
                         Log.i("====",mResponse.message)
-                        setBidData()
-
+                        onBackPressed()
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message)
                     }
@@ -146,7 +186,28 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
         }
     }
 
-    private fun setBidData() {
+    private fun setBidData(body: BidData) {
+        requestid.text= "Request Id: "+body.requestNo
+        bidqu.text= "Quantity : "+body.requestNo
+        bidid.text= "Bid : "+body.bidCount
 
+        arrayList.clear()
+        arrayList.addAll(body.orderItems)
+        bidOrderAdapter = BidOrderAdapter(this,arrayList)
+        rvOrders.layoutManager = LinearLayoutManager(this)
+        rvOrders.adapter = bidOrderAdapter
+//        tvCategory.text= body.orderItems[0].product.categoryName
+//        tvProduct.text= body.orderItems[0].product.name
+//        tvQty.text= body.orderItems[0].qty.toString()
+//        tvMesurement.text= body.orderItems[0].product.measurementName
+        biddate.text = AppUtils.changeDateFormat(
+            body.createdAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat1,
+            GlobalVariables.DATEFORMAT.DateTimeFormat2
+        )
+//        biddate.text=mUtil.toDate(body.createdAt,"MMM,dd,yyyy")
+//        bidtime.text= mUtil.toDate(body.createdAt,"hh:mm")
+        Glide.with(this).load(body.commercialDetail.image).into(bidimguser as CircleImageView)
+        bidusername.text= body.commercialDetail.firstName +" "+body.commercialDetail.lastName
     }
 }

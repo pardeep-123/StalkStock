@@ -1,81 +1,62 @@
-package com.stalkstock.vender.adapter;
+package com.stalkstock.vender.adapter
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.Chat
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.Util
+import com.stalkstock.vender.Model.BidData
+import com.stalkstock.vender.Model.MessageList
+import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.vender.ui.BidDetail
+import kotlinx.android.synthetic.main.bidproductlist.view.*
+import kotlinx.android.synthetic.main.messagelist.view.*
+import kotlinx.android.synthetic.main.row_cart.view.*
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class MessageAdapter(
+    var mContext: Context,
+    var arrayList: ArrayList<MessageList>
+) :
+    RecyclerView.Adapter<MessageAdapter.RecyclerViewHolder>() {
 
-import com.stalkstock.commercial.view.activities.Chat;
-import com.stalkstock.R;
-import com.stalkstock.vender.Model.MessageList;
+    var mUtil=Util()
+    var inflater: LayoutInflater
 
-import java.util.List;
-
-
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-
-    int[] userimg ={R.drawable.chat_img, R.drawable.chat_img_2,R.drawable.chat_img_3,R.drawable.chat_img,R.drawable.chat_img_3, R.drawable.chat_img_2,R.drawable.chat_img, R.drawable.chat_img};
-    Context context;
-    LayoutInflater inflater;
-    private List<MessageList> messageContacts;
-
-    public MessageAdapter(List<MessageList> messageContacts) {
-        this.messageContacts = messageContacts;
+    class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
-    public  MessageAdapter(Context context){
-        this.context=context;
-        inflater = LayoutInflater.from(context);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
+        val v = inflater.inflate(R.layout.messagelist, parent, false)
+        return RecyclerViewHolder(v)
     }
 
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.messagelist, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
+    override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
+        Glide.with(mContext).load(arrayList[position].sender.image).into(holder.itemView.iv_userimage)
+        holder.itemView.tv_personName.text= arrayList[position].sender.firstName + " "+arrayList[position].sender.lastName
+        holder.itemView.tv_messageTemplate.text= arrayList[position].lastMessage.message
+        holder.itemView.tv_timeOFMessage.text= mUtil.toDate(arrayList[position].created.toString(),"hh:mm")
+        holder.itemView.setOnClickListener {
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //context.startActivity(new Intent(context, ChatBox.class));
-                context.startActivity(new Intent(context, Chat.class));
-            }
-        });
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        MessageList messageList = messageContacts.get(position);
-//        holder.imageview.setImageResource(messageList.getImage());
-//        holder.textname.setText(messageList.getName());
-//        holder.texttime.setText(messageList.getTime());
-//        holder.textView.setText(messageList.getMessage());
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 3;
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder  {
-        ImageView imageview;
-        TextView textname,texttime,textView;
-        public ViewHolder(View itemView) {
-            super(itemView);
-             imageview= itemView.findViewById(R.id.imguser);
-            // textname=itemView.findViewById(R.id.msgusername);
-             texttime=itemView.findViewById(R.id.messagetime);
-          //  textView=itemView.findViewById(R.id.messagerecive);
+            val intent = Intent(mContext, Chat::class.java)
+            intent.putExtra("id",arrayList[position].id.toString())
+            mContext.startActivity(intent)
 
         }
 
+    }
 
+    override fun getItemCount(): Int {
+        return arrayList.size
+    }
+
+    init {
+        inflater = LayoutInflater.from(mContext)
     }
 }

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-     >
+    >
 
     <ImageView
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentRight="true" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,19 +20,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:ignore="MissingConstraints"
             android:orientation="vertical"
             android:layout_marginBottom="@dimen/_60sdp">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/rlToolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                     tools:ignore="MissingConstraints">
+                    android:layout_height="50dp"
+                    tools:ignore="MissingConstraints">
                     <ImageView
                         android:id="@+id/bidproductbackarrow"
                         android:layout_width="wrap_content"
@@ -44,25 +45,25 @@
                     </ImageView>
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:text="My Bids"
-                        android:layout_centerVertical="true"
                         android:textColor="@color/black"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="16dp" />
 
                 </RelativeLayout>
                 <View
                     android:layout_width="match_parent"
-                     android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:background="@color/dark_gray"
-                    ></View>
+                    />
                 <LinearLayout
                     android:id="@+id/lvBtn"
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@+id/rlToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -70,9 +71,7 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btnrequest"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:textSize="20sp"
-
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:background="@drawable/current_button"
                         android:text="Request"
@@ -81,8 +80,7 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btnaccpet"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:textSize="20sp"
+                        android:layout_height="40dp"
                         android:text="Accepted"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
@@ -93,13 +91,25 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lvBtn"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:layout_marginLeft="@dimen/_20sdp"
-                    android:id="@+id/bidrecyclerview"/>
+                    android:id="@+id/bidrecyclerview"
+                    tools:visibility="visible"/>
 
-            </LinearLayout>
 
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvNoBid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="No Data Found"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
