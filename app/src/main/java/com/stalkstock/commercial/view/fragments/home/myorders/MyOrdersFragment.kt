@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
+import com.stalkstock.commercial.view.activities.OrderDetailActivity
+import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -28,7 +30,7 @@ import kotlin.collections.ArrayList
 
 class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObservable>,MyOrdersListAdapter.OnMyOrdersRecyclerViewItemClickListner{
     var handler: Handler?=null
-    var list = ArrayList<MyOrdersList>()
+    var list = ArrayList<OrderListModel.Body>()
     val viewModel: HomeViewModel by viewModels()
     private var reset = false
     private var currentOffset = 0
@@ -109,10 +111,12 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObserva
                     val mResponse: OrderListModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOffset += 10
+                       list.addAll(mResponse.body)
+                 /*       list.add(MyOrdersList(mResponse.body[i].orderVendor.shopName,mResponse.body[i].orderVendor.ShopAddress,"USA",mResponse.body[i].orderItems[i].product.name,mResponse.body[i].createdAt,"06:17 PM",
+                            mResponse.body[i].total,mResponse.body[i].orderStatus))*/
+                            Log.i("lita",list.toString())
 
-                        list.add(MyOrdersList(mResponse.body[0].orderVendor.shopName,mResponse.body[0].orderVendor.ShopAddress,"USA",mResponse.body[0].orderItems[0].product.name,mResponse.body[0].createdAt,"06:17 PM",
-                            mResponse.body[0].total,mResponse.body[0].orderStatus))
-                        Log.i("lita",list.toString())
+
                         rv_myOrders.adapter= MyOrdersListAdapter(requireActivity(), list!!, this@MyOrdersFragment)
 
                         val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)

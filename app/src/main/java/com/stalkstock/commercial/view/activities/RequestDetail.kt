@@ -77,7 +77,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 detail.add(BidsData(items.firstname,items.lastname,items.detail,items.rs,items.accept,items.image,items.vendorId,items.bidId))
 
                 tvName.setText(items.firstname+" "+items.lastname)
-                tvPrices.setText(items.rs)
+                tvPrices.setText("$"+items.rs)
                 tvDetail.setText(items.detail)
                 Glide.with(this@RequestDetail).load(items.image).into(civImage)
 
@@ -131,6 +131,16 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                     val mResponse: BidingDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setData(mResponse)
+
+                        orderItemList.addAll(it.data.body.orderItems)
+                        layShpList.visibility = VISIBLE
+                        rl_edit.visibility = GONE
+                        rl_delete.visibility = GONE
+                        tvType.text = "Item Name"
+                        tvQuantity.text = "Quantity"
+                        tvQuantityType.text = "U.O.M"
+                        rvRequestProducts.adapter = RequestProductAdapter(list,orderItemList)
+
                         listBids.add(BidsData(it.data.body.vendorBidingRequest.vendorDetail.firstName,
                             it.data.body.vendorBidingRequest.vendorDetail.lastName,
                             it.data.body.vendorBidingRequest.vendorDetail.shopName,
@@ -141,14 +151,6 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                             it.data.body.vendorBidingRequest.bidId
                             ))
 
-                        orderItemList.addAll(it.data.body.orderItems)
-                        layShpList.visibility = VISIBLE
-                        rl_edit.visibility = GONE
-                        rl_delete.visibility = GONE
-                        tvType.text = "Item Name"
-                        tvQuantity.text = "Quantity"
-                        tvQuantityType.text = "U.O.M"
-                        rvRequestProducts.adapter = RequestProductAdapter(list,orderItemList)
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }

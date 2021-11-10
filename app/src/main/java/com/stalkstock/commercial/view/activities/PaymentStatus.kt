@@ -16,6 +16,10 @@ class PaymentStatus : AppCompatActivity() {
             startActivity(Intent(this,MainCommercialActivity::class.java))
             finishAffinity()
         }
+        back_img.setOnClickListener {
+            startActivity(Intent(this,MainCommercialActivity::class.java))
+            finishAffinity()
+        }
     }
 
 }

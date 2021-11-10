@@ -140,7 +140,7 @@
                     android:textColor="@color/black"
                      />
 
-                <RelativeLayout
+               <!-- <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -154,16 +154,17 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/red_dot"
                      />
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/name_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_toRightOf="@+id/img1"
+
                         android:text="Creamy nachos\n250 gm"
                         android:textColor="@color/black"
-
-                        android:layout_marginLeft="20sp"
-                        android:textSize="25sp"
-                        android:layout_toRightOf="@+id/img1"/>
+                        android:textSize="25sp" />
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -174,7 +175,17 @@
                         android:textSize="25sp"
                         />
 
-                </RelativeLayout>
+                </RelativeLayout>-->
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mRecyclerViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
 
 
@@ -191,6 +202,7 @@
 
                         android:text="Item Total"/>
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvItemTotals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
@@ -215,6 +227,7 @@
 
                         android:text="McDonald's Restaurant Charges"/>
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvRestCharge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -225,6 +238,7 @@
                         />
                 </RelativeLayout>
                 <RelativeLayout
+                    android:id="@+id/relDelveryFee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
@@ -238,6 +252,7 @@
 
                         android:text="Delivery Fee"/>
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvDeliveryFees"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
@@ -255,12 +270,14 @@
                     android:layout_marginLeft="15sp"
                     android:layout_marginRight="15sp">
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvTextCh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp"
 
                         android:text="Hp Charges"/>
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvShopCharges"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -284,6 +301,7 @@
 
                         android:text="Delivery Charges"/>
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvDeliveryCharges"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -436,7 +454,16 @@
                         android:layout_marginTop="5dp"
                         />
 
-
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/ivPay"
+                        android:layout_below="@+id/tv_paid"
+                        android:layout_width="@dimen/value_60dp"
+                        android:layout_height="@dimen/value_60dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/paypal_img"
+                        android:layout_marginTop="5dp"
+                        />
                 </RelativeLayout>
 
                 <View

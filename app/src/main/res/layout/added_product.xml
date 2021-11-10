@@ -375,12 +375,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_added"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/value_15dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/value_10dp"
             android:visibility="gone"
-            app:cardElevation="@dimen/value_2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/relSub"
             app:layout_constraintTop_toBottomOf="@id/tvAddMore">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -392,31 +392,39 @@
 
         </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/btnSave"
+        <RelativeLayout
+            android:id="@+id/relSub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/value_30dp"
-            android:layout_marginRight="@dimen/value_30dp"
-            android:layout_marginBottom="@dimen/value_20dp"
-            android:background="@drawable/white_round_corners"
-            android:text="Save"
-            android:textAllCaps="false"
-            android:textColor="@color/green_colour"
-            app:layout_constraintBottom_toTopOf="@id/btnSubmit" />
+            app:layout_constraintBottom_toBottomOf="parent">
+            <Button
+                android:id="@+id/btnSave"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_30dp"
+                android:layout_marginRight="@dimen/value_30dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:background="@drawable/white_round_corners"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/green_colour"
+                />
 
-        <com.stalkstock.utils.custom.TitiliumBoldButton
-            android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/value_30dp"
-            android:layout_marginRight="@dimen/value_30dp"
-            android:layout_marginBottom="@dimen/value_20dp"
-            android:background="@drawable/button_round_corners"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textColor="@color/white_color"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            <com.stalkstock.utils.custom.TitiliumBoldButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_30dp"
+                android:layout_marginRight="@dimen/value_30dp"
+                android:layout_marginBottom="@dimen/value_20dp"
+                android:background="@drawable/button_round_corners"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color" />
+
+        </RelativeLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
