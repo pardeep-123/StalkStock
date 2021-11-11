@@ -179,6 +179,7 @@
                 android:layout_height="@dimen/_25sdp"
                 android:layout_gravity="center"
                 android:padding="@dimen/_5sdp"
+                android:visibility="gone"
                 android:src="@drawable/attach_icn" />
             <ImageView
                 android:id="@+id/ivSend"
