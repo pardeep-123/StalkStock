@@ -34,6 +34,17 @@ class UploadActivity : BaseActivity() {
     var mLicenseimage2 = ""
     var mRegistrationImage = ""
     var mInsuranceImage = ""
+    var fName: String = ""
+    var lName : String= ""
+    var eId : String= ""
+    var mNumber: String = ""
+    var vType: String = ""
+    var model : String= ""
+    var make: String = ""
+    var city: String = ""
+    var state: String = ""
+    var pass : String= ""
+    var country: String = ""
     var mHashMap : HashMap<String, String> = HashMap()
 
 
@@ -52,16 +63,37 @@ class UploadActivity : BaseActivity() {
         iv_back.setOnClickListener {finish()}
         btn_continue.setOnClickListener {
             startActivity(Intent(this, AddDetailActivity::class.java)
-                .putExtra("driverData",mHashMap)
+                .putExtra("fName", fName)
+                .putExtra("lName", lName)
+                .putExtra("eId", eId)
+                .putExtra("mNumber", mNumber)
+                .putExtra("vType", vType)
+                .putExtra("make", make)
+                .putExtra("model", model)
+                .putExtra("city", city)
+                .putExtra("state", state)
+                .putExtra("country", country)
+                .putExtra("pass", pass)
                 .putExtra("profileImage",mProfileImage)
                 .putExtra("license1",mLicenseimage1)
                 .putExtra("license2",mLicenseimage2)
                 .putExtra("registration",mRegistrationImage)
                 .putExtra("insurance",mInsuranceImage))
         }
-        if (intent.hasExtra("driverData"))
-        {
-            mHashMap = intent.getSerializableExtra("driverData") as HashMap<String, String>
+
+            fName = intent.getStringExtra("fName").toString()
+            lName = intent.getStringExtra("lName").toString()
+            eId = intent.getStringExtra("eId").toString()
+            mNumber = intent.getStringExtra("mNumber").toString()
+            vType = intent.getStringExtra("vType").toString()
+            make = intent.getStringExtra("make").toString()
+            model = intent.getStringExtra("model").toString()
+            city = intent.getStringExtra("city").toString()
+            state = intent.getStringExtra("state").toString()
+            country = intent.getStringExtra("country").toString()
+            pass = intent.getStringExtra("pass").toString()
+
+
             mProfileImage = intent.getStringExtra("profileImage")!!
             mLicenseimage1 = intent.getStringExtra("license1")!!
             mLicenseimage2 = intent.getStringExtra("license2")!!
@@ -71,7 +103,7 @@ class UploadActivity : BaseActivity() {
             Glide.with(this).load(mLicenseimage2).into(ivImageLic2)
             Glide.with(this).load(mRegistrationImage).into(ivRegistration)
             Glide.with(this).load(mInsuranceImage).into(ivInsurance)
-        }
+
     }
 
 

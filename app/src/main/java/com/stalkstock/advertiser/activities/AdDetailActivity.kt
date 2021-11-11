@@ -116,10 +116,9 @@ class AdDetailActivity : BaseActivity(), View.OnClickListener, Observer<RestObse
         id = adsList.id
 
         imglist.clear()
-        for(i in 0 until adsList.bannerImages.size)
-        {
-            imglist.add(adsList.bannerImages[i].image)
-        }
+
+            imglist.add(adsList.image)
+
     }
 
     private fun setSlider(){

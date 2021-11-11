@@ -23,6 +23,20 @@ class UploadDocActivity : BaseActivity() {
     var mRegistrationImage = ""
     var mInsuranceImage = ""
     var mFirstImage = ""
+    var fName: String = ""
+    var lName : String= ""
+    var eId : String= ""
+    var mNumber: String = ""
+    var vType: String = ""
+    var model : String= ""
+    var make: String = ""
+    var city: String = ""
+    var state: String = ""
+    var pass : String= ""
+    var country: String = ""
+
+
+
     var mHashMap : HashMap<String, String> = HashMap()
 
     override fun getContentId(): Int {
@@ -66,11 +80,27 @@ class UploadDocActivity : BaseActivity() {
             selectImage("4")
         }
 
-        if (intent.hasExtra("driverData"))
+       fName = intent.getStringExtra("fName")!!
+       lName = intent.getStringExtra("lName")!!
+       eId = intent.getStringExtra("eId")!!
+       mNumber = intent.getStringExtra("mNumber")!!
+       vType = intent.getStringExtra("vType")!!
+       make = intent.getStringExtra("make")!!
+       model = intent.getStringExtra("model")!!
+       city = intent.getStringExtra("city")!!
+       state = intent.getStringExtra("state")!!
+       country = intent.getStringExtra("country")!!
+       pass = intent.getStringExtra("pass")!!
+       mFirstImage = intent.getStringExtra("profileImage").toString()
+
+
+
+
+    /*    if (intent.hasExtra("driverData"))
         {
             mHashMap = intent.getSerializableExtra("driverData") as HashMap<String, String>
             mFirstImage = intent.getStringExtra("profileImage")!!
-        }
+        }*/
 
     }
 
@@ -152,7 +182,17 @@ class UploadDocActivity : BaseActivity() {
             }
             else -> {
                 startActivity(Intent(this, UploadActivity::class.java)
-                    .putExtra("driverData",mHashMap)
+                    .putExtra("fName", fName)
+                    .putExtra("lName", lName)
+                    .putExtra("eId", eId)
+                    .putExtra("mNumber", mNumber)
+                    .putExtra("vType", vType)
+                     .putExtra("make", make)
+                     .putExtra("model", model)
+                     .putExtra("city", city)
+                     .putExtra("state", state)
+                     .putExtra("country", country)
+                     .putExtra("pass", pass)
                     .putExtra("profileImage",mFirstImage)
                     .putExtra("license1",mLicenseimage1)
                     .putExtra("license2",mLicenseimage2)

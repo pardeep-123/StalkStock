@@ -85,6 +85,16 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObserva
         }
     }
 
+    override fun onMyOrdersItemClickListner(
+        list: ArrayList<OrderListModel.Body>,
+        position: Int
+    ) {
+        requireContext().OpenActivity(OrderDetailActivity::class.java){
+            putString("fragment",position.toString())
+            putString("orderId",list[position].id.toString())
+        }
+    }
+
     override fun onDetach() {
         super.onDetach()
         handler= null
@@ -128,11 +138,6 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObserva
         }
     }
 
-    override fun onMyOrdersItemClickListner(list: ArrayList<OrderListModel.Body>, position: Int) {
-        requireContext().OpenActivity(OrderDetailActivity::class.java) {
-            putString("fragment", position.toString())
-        }
-    }
 
 
 }

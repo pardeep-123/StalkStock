@@ -37,7 +37,18 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     var mLicenseimage2 = ""
     var mRegistrationImage = ""
     var mInsuranceImage = ""
-    var mHashMap : HashMap<String, String> = HashMap()
+    var fName: String = ""
+    var lName : String= ""
+    var eId : String= ""
+    var mNumber: String = ""
+    var vType: String = ""
+    var model : String= ""
+    var make: String = ""
+    var city: String = ""
+    var state: String = ""
+    var pass : String= ""
+    var country: String = ""
+
     override fun getContentId(): Int {
         return R.layout.activity_add_detail
     }
@@ -52,19 +63,25 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         iv_back.setOnClickListener {finish()}
         btn_Continue.setOnClickListener {
             signUpApi()
-//            dialogconfirmation()
         }
 
-        if (intent.hasExtra("driverData")) {
-            mHashMap = intent.getSerializableExtra("driverData") as HashMap<String, String>
-            mProfileImage = intent.getStringExtra("profileImage")!!
-            mLicenseimage1 = intent.getStringExtra("license1")!!
-            mLicenseimage2 = intent.getStringExtra("license2")!!
-            mRegistrationImage = intent.getStringExtra("registration")!!
-            mInsuranceImage = intent.getStringExtra("insurance")!!
-        }
+        mProfileImage = intent.getStringExtra("profileImage")!!
+        mLicenseimage1 = intent.getStringExtra("license1")!!
+        mLicenseimage2 = intent.getStringExtra("license2")!!
+        mRegistrationImage = intent.getStringExtra("registration")!!
+        mInsuranceImage = intent.getStringExtra("insurance")!!
+        fName = intent.getStringExtra("fName").toString()
+        lName = intent.getStringExtra("lName").toString()
+        eId = intent.getStringExtra("eId").toString()
+        mNumber = intent.getStringExtra("mNumber").toString()
+        vType = intent.getStringExtra("vType").toString()
+        make = intent.getStringExtra("make").toString()
+        model = intent.getStringExtra("model").toString()
+        city = intent.getStringExtra("city").toString()
+        state = intent.getStringExtra("state").toString()
+        country = intent.getStringExtra("country").toString()
+        pass = intent.getStringExtra("pass").toString()
     }
-
 
     private fun dialogconfirmation() {
         val  dialog = Dialog(this)
@@ -85,59 +102,50 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
             startActivity(Intent(this,LoginActivity::class.java))
             dialog.dismiss()
             finishAffinity()
-
         }
         dialog.show()
     }
 
     private fun signUpApi()
     {
-        if (checkStringNull(edText.text.toString()))
-        {
-            edText.requestFocus()
-            edText.setError(resources.getString(R.string.please_enter_driver_license_number))
-        }else if (checkStringNull(edText1.text.toString()))
-        {
-            edText1.requestFocus()
-            edText1.setError(resources.getString(R.string.please_enter_driver_license_exp_date))
-        }else if (checkStringNull(edText2.text.toString()))
-        {
-            edText2.requestFocus()
-            edText2.setError(resources.getString(R.string.please_enter_registration_number))
-        }else if (checkStringNull(edText3.text.toString()))
-        {
-            edText3.requestFocus()
-            edText3.setError(resources.getString(R.string.please_enter_registration_expdate))
-        }else{
-        val hashMap = HashMap<String, RequestBody>()
-        hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.firstname))
-        hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.lastname))
-        hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.email))
-        hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.mobile))
-        hashMap[GlobalVariables.PARAM.vehicleType] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.vehicleType))
-        hashMap[GlobalVariables.PARAM.vehicleMake] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.vehicleMake))
-        hashMap[GlobalVariables.PARAM.vehicleModel] =
-            mUtils.createPartFromString(mHashMap.get(GlobalVariables.PARAM.vehicleModel))
-        hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.city))
-        hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.state))
-        hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(mHashMap.get(
-            GlobalVariables.PARAM.country))
-        hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(mHashMap.get(GlobalVariables.PARAM.password))
-        hashMap[GlobalVariables.PARAM.licenceNumber] = mUtils.createPartFromString(edText.text.toString())
-        hashMap[GlobalVariables.PARAM.registrationNumber] = mUtils.createPartFromString(edText2.text.toString())
-        hashMap[GlobalVariables.PARAM.licenceExpiryDate] = mUtils.createPartFromString(edText1.text.toString())
-        hashMap[GlobalVariables.PARAM.registrationExpiryDate] = mUtils.createPartFromString(edText3.text.toString())
-        viewModel.driverSignUpApi(this, true, hashMap,mProfileImage,mLicenseimage1,mLicenseimage2,mRegistrationImage,mInsuranceImage,mUtils)
-        viewModel.mResponse.observe(this, this)
-    }
+        when {
+            checkStringNull(edText.text.toString()) -> {
+                edText.requestFocus()
+                edText.error = resources.getString(R.string.please_enter_driver_license_number)
+            }
+            checkStringNull(edText1.text.toString()) -> {
+                edText1.requestFocus()
+                edText1.error = resources.getString(R.string.please_enter_driver_license_exp_date)
+            }
+            checkStringNull(edText2.text.toString()) -> {
+                edText2.requestFocus()
+                edText2.error = resources.getString(R.string.please_enter_registration_number)
+            }
+            checkStringNull(edText3.text.toString()) -> {
+                edText3.requestFocus()
+                edText3.error = resources.getString(R.string.please_enter_registration_expdate)
+            }
+            else -> {
+                val hashMap = HashMap<String, RequestBody>()
+                hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(fName)
+                hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(lName)
+                hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(eId)
+                hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(mNumber)
+                hashMap[GlobalVariables.PARAM.vehicleType] = mUtils.createPartFromString(vType)
+                hashMap[GlobalVariables.PARAM.vehicleMake] = mUtils.createPartFromString(make)
+                hashMap[GlobalVariables.PARAM.vehicleModel] = mUtils.createPartFromString(model)
+                hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(city)
+                hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(state)
+                hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
+                hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(pass)
+                hashMap[GlobalVariables.PARAM.licenceNumber] = mUtils.createPartFromString(edText.text.toString())
+                hashMap[GlobalVariables.PARAM.registrationNumber] = mUtils.createPartFromString(edText2.text.toString())
+                hashMap[GlobalVariables.PARAM.licenceExpiryDate] = mUtils.createPartFromString(edText1.text.toString())
+                hashMap[GlobalVariables.PARAM.registrationExpiryDate] = mUtils.createPartFromString(edText3.text.toString())
+                viewModel.driverSignUpApi(this, true, hashMap,mProfileImage,mLicenseimage1,mLicenseimage2,mRegistrationImage,mInsuranceImage,mUtils)
+                viewModel.mResponse.observe(this, this)
+            }
+        }
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -148,8 +156,9 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
                    if (data.code == 200) {
                        dialogconfirmation()
                        setData(data)
+                       startActivity(Intent(this, HomeActivity::class.java))
+                       finishAffinity()
                    }
-
                 }
             }
             it.status == Status.ERROR -> {
@@ -178,14 +187,10 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
-        savePrefrence(
-            GlobalVariables.SHARED_PREF_DRIVER.remember_token,
-            mResponse.body.remember_token
-        )
+        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.remember_token, mResponse.body.remember_token)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.created, mResponse.body.created)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updated, mResponse.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.createdAt, mResponse.body.createdAt)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updatedAt, mResponse.body.updatedAt)
     }
-
 }

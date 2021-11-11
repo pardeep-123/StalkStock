@@ -55,7 +55,7 @@ class ExpiredAdsAdapter(
             tvAdsTitle.text = adsList[position].title
             tvAdsDescription.text = adsList[position].description
             tvAdsStartDate.text = output
-            Glide.with(context).load(adsList[position].bannerImages[0].image).into(ivAdsImages)
+            Glide.with(context).load(adsList[position].image).into(ivAdsImages)
 
 
             itemView.setOnClickListener{
