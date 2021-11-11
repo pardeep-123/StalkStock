@@ -11,7 +11,7 @@ data class BusinessAdsList(
     data class Body(
         val action: Int,
         val adLink: String,
-        val bannerImages: List<BannerImage>,
+        val image: String,
         val budget: String,
         val createdAt: String,
         val description: String,

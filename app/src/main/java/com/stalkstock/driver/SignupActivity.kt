@@ -15,6 +15,7 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.model.Sendbidresponse
 import com.stalkstock.driver.models.CheckEmailResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
@@ -232,13 +233,24 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is CheckEmailResponse) {
-                    val data = it.data
-                    if (data.code == 200) {
-                        startActivity(
-                            Intent(this, UploadDocActivity::class.java)
-                                .putExtra("driverData", hashMap)
-                                .putExtra("profileImage", firstimage)
-                        ) } }
+                    val mResponse: CheckEmailResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+
+                            val intent = Intent(this, UploadDocActivity::class.java)
+                        intent.putExtra("fName", et_firstName.text.toString())
+                        intent.putExtra("lName", et_lastName.text.toString())
+                        intent.putExtra("eId", emailEdittext.text.toString())
+                        intent.putExtra("mNumber", et_mobileNo.text.toString())
+                        intent.putExtra("vType", mVehicleType)
+                        intent.putExtra("make", et_vehiclemake.text.toString())
+                        intent.putExtra("model", et_vehiclemodel.text.toString())
+                        intent.putExtra("city", et_city.text.toString())
+                        intent.putExtra("state", et_state.text.toString())
+                        intent.putExtra("country", mCountryName)
+                        intent.putExtra("pass", passwordEdittext.text.toString())
+                        intent.putExtra("profileImage", firstimage)
+                        startActivity(intent)
+                         } }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {

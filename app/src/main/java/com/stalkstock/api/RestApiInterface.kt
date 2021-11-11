@@ -352,10 +352,10 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<DriverDocResponse>
 
-    @FormUrlEncoded
+    @Multipart
     @POST(URL.checkEmailMobileExist)
     fun checkEmailMobileExist(
-        @FieldMap map: HashMap<String, RequestBody>
+        @PartMap map: HashMap<String, RequestBody>
     ): Observable<CheckEmailResponse>
 
     @Multipart

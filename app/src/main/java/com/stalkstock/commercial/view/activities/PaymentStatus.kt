@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.stalkstock.R
+import com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment
 import kotlinx.android.synthetic.main.payment_status.*
 
 class PaymentStatus : AppCompatActivity() {
@@ -13,7 +14,7 @@ class PaymentStatus : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_status)
         btn_view.setOnClickListener {
-            startActivity(Intent(this,MainCommercialActivity::class.java))
+            startActivity(Intent(this,MyOrdersFragment::class.java))
             finishAffinity()
         }
         back_img.setOnClickListener {

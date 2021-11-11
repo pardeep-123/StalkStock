@@ -28,6 +28,7 @@ import java.util.HashMap
 class OrderDetailActivity : AppCompatActivity() , Observer<RestObservable> {
     val viewModel: HomeViewModel by viewModels()
     lateinit var currency: String
+     var orderId: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parent)
@@ -38,7 +39,8 @@ class OrderDetailActivity : AppCompatActivity() , Observer<RestObservable> {
 
 
         if (intent.hasExtra("orderId"))
-            getOrderDetailApi(intent.getStringExtra("orderId")!!)
+            orderId = intent.getStringExtra("orderId").toString()
+            getOrderDetailApi(orderId)
 
 
         when(intent.extras!!.getString("fragment")){
@@ -92,7 +94,7 @@ private fun getOrderDetailApi(orderId:String) {
                             tvStatus.text = "Pending"
                         tvTexts.text = "Your order from "+mResponse.body.orderVendor.shopName+" is on the way"
                         mRecyclerViews.adapter = MyorderProductAdapter(this,mResponse.body.orderItems)
-                        tvItemTotals.text = mResponse.body.orderItems.size.toString()
+                        tvItemTotals.text = currency+mResponse.body.total
                         tvShopCharges.text = currency+mResponse.body.shopCharges
                         tvDeliveryCharges.text = currency+mResponse.body.shippingCharges
                         tv_total.text = currency+mResponse.body.total
