@@ -56,17 +56,17 @@
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tv_numberOfMessages"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/tv_timeOFMessage"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_timeOFMessage"
             android:layout_alignParentRight="true"
-            android:background="@drawable/red_solid_circle"
-            android:gravity="center"
-            android:layout_marginRight="15dp"
-
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:visibility="gone"
+            android:background="@drawable/red_solid_circle"
+
+            android:gravity="center"
             android:text="2"
-            android:textColor="@color/white_color"
-            />
+            android:textColor="@color/white_color" />
 
 
     </RelativeLayout>

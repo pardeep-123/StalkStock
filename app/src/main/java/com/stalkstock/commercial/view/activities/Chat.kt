@@ -1,7 +1,6 @@
 package com.stalkstock.commercial.view.activities
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -12,24 +11,24 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
 import com.stalkstock.MyApplication
-import com.stalkstock.commercial.view.adapters.ChatAdapter
 import com.stalkstock.R
+import com.stalkstock.commercial.view.adapters.ChatAdapter
 import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.getPrefrence
 import com.stalkstock.utils.socket.SocketManager
 import com.stalkstock.vender.Model.MessageList
-import com.stalkstock.vender.adapter.MessageAdapter
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.chat_fragment.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
@@ -42,40 +41,44 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
     var chatList : ArrayList<MessageList> = ArrayList()
     lateinit var chatAdapter: ChatAdapter
     var chatId=""
+    var screen_type=""
+    var user2Id=0
+    var bidId=0
+    var paramName=""
+    var userName=""
+    var userImage=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        MyApplication.getSocketManager().onRegister(this)
         init()
         getIntentData()
-        setAdapter()
         CommonMethods.hideKeyboard(this@Chat,rvChat)
         getChatList()
     }
 
     private fun getIntentData() {
-        chatId= intent.getStringExtra("id").toString()
+        screen_type= intent.getStringExtra("screen_type").toString()
+        chatId= intent.getStringExtra("chatId").toString()
+        userName= intent.getStringExtra("userName").toString()
+        userImage= intent.getStringExtra("userImage").toString()
+        user2Id= intent.getIntExtra("userId",0)
+        bidId= intent.getStringExtra("id").toString().toInt()
+        paramName= intent.getStringExtra("param_name").toString()
+        tv_nameOfChatPerson.text= userName
+        Glide.with(this).load(userImage).into(iv_userImageChat)
     }
 
     private fun getChatList() {
         val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
 
         val jsonObject = JSONObject()
-        jsonObject.put("userId", userId)
+        jsonObject.put("userId", user2Id)
         jsonObject.put("chatId", chatId.toInt())
-        jsonObject.put("offset", "1")
+        jsonObject.put("offset", "0")
         jsonObject.put("limit", "500")
         Log.e(SocketManager.GET_CHAT, jsonObject.toString())
         SocketManager.socket?.sendDataToServer(SocketManager.GET_CHAT, jsonObject)
-    }
-
-    private fun setAdapter() {
-
-        messagerecyclerview?.layoutManager = LinearLayoutManager(this)
-        chatAdapter = ChatAdapter(this, chatList)
-        rvChat?.adapter = chatAdapter
-
     }
 
     private fun selectImage(ivProduct: ImageView, type:String) {
@@ -130,16 +133,25 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
 
             }
             R.id.ivSend->{
-                if(etMessage.text.toString().isNotEmpty())
-                {
-//                    chatList.add(ChatData(etMessage.text.toString(),"17:00 PM","a","me"))
-//                    chatAdapter.notifyItemInserted(chatList.size-1)
-//                    rvChat.smoothScrollToPosition(chatList.size-1)
-//                    etMessage.text.clear()
-                }
-                else
-                {
-                    Toast.makeText(this,"Nothing to send", Toast.LENGTH_SHORT).show()
+
+                if (etMessage.text.toString().trim().isEmpty()) {
+                    Toast.makeText(this, "Please enter a message!!", Toast.LENGTH_LONG).show()
+                } else {
+
+                    val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
+                    val jsonObject = JSONObject()
+                    jsonObject.put("senderId", userId)
+                    if(paramName=="bidId"){
+                        jsonObject.put("bidId", bidId)
+                    }else{
+                        jsonObject.put("orderId",bidId)
+                    }
+                    jsonObject.put("receiverId", user2Id.toInt())
+                    jsonObject.put("messageType", 0)       // 1 for image, 2 for text
+                    jsonObject.put("message", etMessage.text.toString().trim())
+                    SocketManager.socket?.sendDataToServer(SocketManager.SEND_MESSAGE, jsonObject)
+                    etMessage.setText("")
+                    etMessage.setSelection(0)
                 }
             }
 
@@ -171,8 +183,13 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
 
         tvMsg.text = "Are you sure you want to clear this Chat?"
 
-        btn_yes.setOnClickListener { dialogSuccessful.dismiss()
-            finish()}
+        btn_yes.setOnClickListener {
+            val jsonObject = JSONObject()
+            jsonObject.put("userId", user2Id)
+            jsonObject.put("chatId", chatId.toInt())
+            SocketManager.socket?.sendDataToServer(SocketManager.CLEAR_CHAT, jsonObject)
+            dialogSuccessful.dismiss()
+        }
 
         btn_no.setOnClickListener { dialogSuccessful.dismiss() }
 
@@ -189,25 +206,48 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
         when (event) {
             SocketManager.GET_CHAT -> {
                 val mObject = args[0] as JSONObject
-                val list = mObject.get("body") as JsonArray
+                val list = mObject.get("body") as JSONArray
                 Log.i("====",list.toString())
-                if (mObject.length()>0) {
+               if (list.length()>0) {
                     chatList.clear()
-                    for (i in 0 until list.size()) {
-                        val jsonobj = mObject.getJSONObject(i.toString())
+                    for (i in 0 until list.length()) {
+                        val jsonobj = list.getJSONObject(i)
                         val gson = GsonBuilder().create()
                         val data = gson.fromJson(jsonobj.toString(), MessageList::class.java)
                         chatList.add(data)
-                        chatAdapter = ChatAdapter(this,chatList)
-                        rvChat?.adapter = chatAdapter
+
                     }
+                   chatList.reverse()
+                   chatAdapter = ChatAdapter(this,chatList,getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0).toString())
+                   rvChat.adapter = chatAdapter
+                   chatAdapter?.notifyDataSetChanged()
+
                 } else {
-                    messagerecyclerview?.visibility=View.GONE
-                    tvNoMsgList.visibility = View.VISIBLE
+                   rvChat.visibility=View.GONE
+                  //  tvNoMsgList.visibility = View.VISIBLE
                 }
             }
-        }
 
+            SocketManager.SEND_MESSAGE ->{
+                Log.i("====","Send Message success")
+                val mObject = args[0] as JSONObject
+                val list = mObject.get("body") as JSONObject
+                Log.i("=====",list.toString())
+                val gson = GsonBuilder().create()
+                val model = gson.fromJson(list.toString(), MessageList::class.java)
+                chatList.add(model)
+
+                chatAdapter.notifyDataSetChanged()
+                rvChat.scrollToPosition(chatList.size - 1)
+
+            }
+
+            SocketManager.CLEAR_CHAT ->{
+                Log.i("====","clear chat success")
+                chatList.clear()
+                chatAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onSocketConnect(vararg args: Any?) {
@@ -220,6 +260,10 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
 
     override fun onError(event: String?, vararg args: Any?) {
 
+    }
+    override fun onStart() {
+        super.onStart()
+        MyApplication.getSocketManager().onRegister(this)
     }
 
 

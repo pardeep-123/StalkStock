@@ -12,8 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.live.stalkstockcommercial.OpenActivity
-import com.stalkstock.commercial.view.activities.OrderDetailActivity
-import com.stalkstock.commercial.view.adapters.MyOrdersListAdapter
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -87,15 +85,6 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObserva
         }
     }
 
-    override fun onMyOrdersItemClickListner(
-        list: ArrayList<MyOrdersList>,
-        position: Int
-    ) {
-        requireContext().OpenActivity(OrderDetailActivity::class.java){
-            putString("fragment",position.toString())
-        }
-    }
-
     override fun onDetach() {
         super.onDetach()
         handler= null
@@ -136,6 +125,12 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObserva
             }
             it.status == Status.LOADING -> {
             }
+        }
+    }
+
+    override fun onMyOrdersItemClickListner(list: ArrayList<OrderListModel.Body>, position: Int) {
+        requireContext().OpenActivity(OrderDetailActivity::class.java) {
+            putString("fragment", position.toString())
         }
     }
 

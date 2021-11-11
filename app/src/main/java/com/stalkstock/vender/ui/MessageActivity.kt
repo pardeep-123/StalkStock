@@ -12,7 +12,6 @@ import android.widget.ImageView
 import com.stalkstock.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
 import com.stalkstock.MyApplication
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.getPrefrence
@@ -55,7 +54,7 @@ class MessageActivity : AppCompatActivity(),SocketManager.SocketInterface {
 
         val jsonObject = JSONObject()
         jsonObject.put("userId", userId)
-        jsonObject.put("offset", "1")
+        jsonObject.put("offset", "0")
         jsonObject.put("limit", "10")
         Log.e(SocketManager.GET_USER_LIST, jsonObject.toString())
         SocketManager.socket?.sendDataToServer(SocketManager.GET_USER_LIST, jsonObject)
@@ -71,15 +70,16 @@ class MessageActivity : AppCompatActivity(),SocketManager.SocketInterface {
         }
         when (event) {
             SocketManager.GET_USER_LIST -> {
+                messageLists.clear()
                 val mObject = args[0] as JSONObject
-                val list = mObject.get("body") as JsonArray
+                val list = mObject.get("body") as JSONArray
                 Log.i("====",list.toString())
-                if (mObject.length()>0) {
+                if (list.length()>0) {
                     messagerecyclerview?.visibility=View.VISIBLE
                     tvNoMsgList.visibility = View.GONE
-                    messageLists.clear()
-                    for (i in 0 until list.size()) {
-                        val jsonobj = mObject.getJSONObject(i.toString())
+
+                    for (i in 0 until list.length()) {
+                        val jsonobj = list.getJSONObject(i)
                         val gson = GsonBuilder().create()
                         val data = gson.fromJson(jsonobj.toString(), MessageList::class.java)
                         messageLists.add(data)
@@ -104,5 +104,21 @@ class MessageActivity : AppCompatActivity(),SocketManager.SocketInterface {
 
     override fun onError(event: String?, vararg args: Any?) {
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MyApplication.getSocketManager().onRegister(this)
+        getMessageList()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        MyApplication.getSocketManager().onRegister(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        MyApplication.getSocketManager().unRegister(this)
     }
 }

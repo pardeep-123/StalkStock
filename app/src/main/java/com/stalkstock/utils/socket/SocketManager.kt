@@ -126,15 +126,14 @@ class SocketManager  {
             mSocket!!.on(Socket.EVENT_CONNECT_ERROR, onConnectError)
             mSocket!!.on(Socket.EVENT_CONNECT_ERROR, onConnectError)
             mSocket!!.on(CONNECT_LISTNER, onConnectUserListner)
-            mSocket!!.on(RECIEVE_MESSAGE, onRecieveListner)
             mSocket!!.on(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener)
             mSocket!!.on(TRACK_ORDER, onTrackOrderListener)
             mSocket!!.on(SEND_MESSAGE, onSendListner)
             mSocket!!.on(GET_CHAT, OnGetchatListener)
             mSocket!!.on(GET_USER_LIST, OnGetUserListener)
+            mSocket!!.on(CLEAR_CHAT, onClearChatListener)
             //            mSocket.on(VendorOrderListener, OnVendorOrderListener);
             mSocket!!.on(driverOrderRequest, OnVendorOrderListener)
-            mSocket!!.on(CALL_STATUS, OnCallStatusListener)
             mSocket!!.connect()
         }
     }
@@ -150,7 +149,6 @@ class SocketManager  {
         mSocket!!.off(Socket.EVENT_CONNECT_ERROR, onConnectError)
         mSocket!!.off(Socket.EVENT_CONNECT_ERROR, onConnectError)
         mSocket!!.off(CONNECT_LISTNER, onConnectUserListner)
-        mSocket!!.off(RECIEVE_MESSAGE, onRecieveListner)
         mSocket!!.off(SEND_MESSAGE, onSendListner)
         mSocket!!.off(UPDATE_DRIVER_LOCATION, OnUPDATE_MY_LOCATIONListener)
         mSocket!!.off(TRACK_ORDER, onTrackOrderListener)
@@ -158,7 +156,7 @@ class SocketManager  {
         //        mSocket.off(VendorOrderListener, OnVendorOrderListener);
         mSocket!!.off(driverOrderRequest, OnVendorOrderListener)
         mSocket!!.off(GET_CHAT, OnGetchatListener)
-        mSocket!!.off(CALL_STATUS, OnCallStatusListener)
+        mSocket!!.off(CLEAR_CHAT, onClearChatListener)
     }
 
     private val OnUPDATE_MY_LOCATIONListener = Emitter.Listener { args ->
@@ -219,7 +217,7 @@ class SocketManager  {
                 val data = args[0] as JSONObject
                 Log.e("LISTNER_RecieveMessage", args[0].toString())
                 for (observer in observerList!!) {
-                    observer.onSocketCall(RECIEVE_MESSAGE, *args)
+                    observer.onSocketCall(SEND_MESSAGE, *args)
                 }
             }
         }
@@ -293,7 +291,7 @@ class SocketManager  {
             }
         }
     }
-    private val OnCallStatusListener = Emitter.Listener { args ->
+    private val onClearChatListener = Emitter.Listener { args ->
         // Get a handler that can be used to post to the main thread
         Handler(Looper.getMainLooper()).post {
             val data = args[0] as JSONObject
@@ -303,7 +301,7 @@ class SocketManager  {
 //                        mSocketInterface.onSocketCall(CONNECT_LISTNER, args);
 //                    }
             for (observer in observerList!!) {
-                observer.onSocketCall(CALL_STATUS, *args)
+                observer.onSocketCall(CLEAR_CHAT, *args)
             }
         }
     }
@@ -334,8 +332,7 @@ class SocketManager  {
         private val TAG = SocketManager::class.java.canonicalName
         const val CONNECT_USER = "connectUser"
         const val CONNECT_LISTNER = "connectListener"
-        const val SEND_MESSAGE = "send_message"
-        const val RECIEVE_MESSAGE = "getChatMessageListing"
+        const val SEND_MESSAGE = "sendMessage"
         const val GET_CHAT = "getChatMessageListing"
 
         const val GET_USER_LIST = "getChatListing"
@@ -345,7 +342,9 @@ class SocketManager  {
         const val UPDATE_LOCATION_LISTENER = "get_driver_location"
         const val TRACK_ORDER = "track_order"
         const val TRACK_ORDER_LISTENER = "track_order"
-        const val CALL_STATUS = "call_status"
+        const val CLEAR_CHAT="clearChat"
+
+
         val socket: SocketManager?
             get() {
                 if (mSocketClass == null) mSocketClass = SocketManager()
@@ -363,7 +362,7 @@ class SocketManager  {
             if (observerList == null || observerList!!.size == 0) {
                 observerList = ArrayList()
             }
-            onDisconnect()
+           // onDisconnect()
         } catch (e: URISyntaxException) {
             e.printStackTrace()
         }

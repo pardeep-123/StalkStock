@@ -2,10 +2,11 @@ package com.stalkstock.vender.Model
 
 data class MessageList(
     val bidId: Int,
-    val created: Int,
+    val created: Long,
     val createdAt: String,
     val deletedId: Int,
     val id: Int,
+    var message: String,
     val lastMessage: LastMessage,
     val lastMessageId: Int,
     val orderId: Int,
@@ -13,7 +14,7 @@ data class MessageList(
     val receiverId: Int,
     val sender: Sender,
     val senderId: Int,
-    val updated: Int,
+    val updated: Long,
     val updatedAt: String
 )
 

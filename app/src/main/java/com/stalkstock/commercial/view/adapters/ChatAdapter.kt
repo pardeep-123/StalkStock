@@ -5,33 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.vender.Model.MessageList
 import kotlinx.android.synthetic.main.chat_adapter.view.*
 
-class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
+class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>, var senderid:String) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
 
     lateinit var context: Context
     var click = 0
     var isOpenDot = false
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-
-    lateinit var clickDoctor: ClickDoctor
-
-    interface ClickDoctor {
-
-        fun clicked(position: Int)
     }
-
-    fun onPerformClick(clickDoctor: ClickDoctor)
-    {this.clickDoctor = clickDoctor}
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         context = parent.context
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.chat_adapter, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.chat_adapter, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -45,23 +36,23 @@ class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>) : R
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        /*if(chatList[position].type=="other")
+        if (senderid == chatList[position].senderId.toString())
         {
-            holder.itemView.clOther.visibility = View.VISIBLE
-            holder.itemView.clMe.visibility = View.GONE
-
-            holder.itemView.tvMessage.text = chatList[position].message
-            holder.itemView.tvTime.text = chatList[position].time
-        }
-        else
-        {
-            holder.itemView.clMe.visibility = View.VISIBLE
             holder.itemView.clOther.visibility = View.GONE
+            holder.itemView.clMe.visibility = View.VISIBLE
 
             holder.itemView.tvMessageMe.text = chatList[position].message
-            holder.itemView.tvTimeMe.text = chatList[position].time
+            Glide.with(mContext).load(chatList[position].sender.image).into(holder.itemView.civme)
+            holder.itemView.tvTimeMe.text =AppUtils.convertTimeStampToDateTime(chatList[position].created)
         }
-*/
+        else {
+            holder.itemView.clMe.visibility = View.GONE
+            holder.itemView.clOther.visibility = View.VISIBLE
+            Glide.with(mContext).load(chatList[position].sender.image).into(holder.itemView.civOther)
+
+            holder.itemView.tvMessage.text = chatList[position].message
+            holder.itemView.tvTime.text = AppUtils.convertTimeStampToDateTime(chatList[position].created)
+        }
 
 
 
@@ -71,9 +62,5 @@ class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>) : R
 
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
-    }
 
 }

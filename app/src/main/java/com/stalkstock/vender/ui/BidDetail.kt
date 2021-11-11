@@ -53,6 +53,10 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     var mUtil= Util()
     var arrayList= ArrayList<OrderItem>()
     var bidOrderAdapter:BidOrderAdapter?=null
+    var userId=0
+    var chatId=""
+    var userName=""
+    var userImage=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +94,13 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
         when(v?.id){
             R.id.newchat->{
                 val intent= Intent(this,Chat::class.java)
+                intent.putExtra("screen_type","bid")
                 intent.putExtra("id",bidId.toString())
+                intent.putExtra("userId",userId)
+                intent.putExtra("chatId",chatId)
+                intent.putExtra("userName",userName)
+                intent.putExtra("userImage",userImage)
+                intent.putExtra("paramName","bidId")
                 startActivity(intent)
             }
 
@@ -187,6 +197,8 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     }
 
     private fun setBidData(body: BidData) {
+        userId= body.commercialDetail.id
+        chatId= body.chatId.toString()
         requestid.text= "Request Id: "+body.requestNo
         bidqu.text= "Quantity : "+body.requestNo
         bidid.text= "Bid : "+body.bidCount
@@ -209,5 +221,7 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
 //        bidtime.text= mUtil.toDate(body.createdAt,"hh:mm")
         Glide.with(this).load(body.commercialDetail.image).into(bidimguser as CircleImageView)
         bidusername.text= body.commercialDetail.firstName +" "+body.commercialDetail.lastName
+        userName=body.commercialDetail.firstName +" "+body.commercialDetail.lastName
+        userImage=body.commercialDetail.image
     }
 }

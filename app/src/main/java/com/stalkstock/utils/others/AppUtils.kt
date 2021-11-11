@@ -136,4 +136,58 @@ object AppUtils {
         return spf.format(date!!)
     }
 
+    fun convertTimestampToTime(timestamp: Long): String? {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = timestamp
+        calendar.timeZone= TimeZone.getTimeZone("UTC")
+        val sdf = SimpleDateFormat("hh:mm aa", Locale.ENGLISH)
+        sdf.timeZone = TimeZone.getDefault()
+        return sdf.format(calendar.time)
+    }
+
+    fun getDateFromUTCTimestamp(mTimestamp: Long, mDateFormate: String?): String? {
+        var date: String? = null
+        try {
+            val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+            cal.timeInMillis = mTimestamp * 1000L
+            date = android.text.format.DateFormat.format(mDateFormate, cal.timeInMillis).toString()
+            val formatter = SimpleDateFormat(mDateFormate)
+            formatter.timeZone = TimeZone.getTimeZone("UTC")
+            val value = formatter.parse(date)
+            val dateFormatter = SimpleDateFormat(mDateFormate)
+            dateFormatter.timeZone = TimeZone.getDefault()
+            date = dateFormatter.format(value)
+            return date
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return date
+    }
+
+    fun getTimeTest(timeStamp: Long): String? {
+        return try {
+            val sdf = SimpleDateFormat("hh:mm a")
+            sdf.timeZone= TimeZone.getTimeZone("GMT")
+            val netDate = Date(timeStamp * 1000L)
+            sdf.format(netDate)
+        } catch (ex: java.lang.Exception) {
+            "xx"
+        }
+    }
+    fun convertTimeStampToDateTime(timestamp: Long): String? {
+        val calendar = Calendar.getInstance()
+        val tz = TimeZone.getDefault()
+        calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
+        val sdf = SimpleDateFormat("hh:mm a")
+        sdf.timeZone = tz
+        val currenTimeZone = Date(timestamp * 1000)
+        return sdf.format(currenTimeZone)
+    }
+
+
+
+
+
+
+
 }

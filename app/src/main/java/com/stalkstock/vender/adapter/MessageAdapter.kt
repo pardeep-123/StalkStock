@@ -12,6 +12,7 @@ import com.stalkstock.commercial.view.activities.Chat
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.Util
+import com.stalkstock.utils.others.getPrefrence
 import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.MessageList
 import com.stalkstock.vender.Model.VendorBiddingListResponse
@@ -26,7 +27,8 @@ class MessageAdapter(
 ) :
     RecyclerView.Adapter<MessageAdapter.RecyclerViewHolder>() {
 
-    var mUtil=Util()
+    var receiverId=""
+
     var inflater: LayoutInflater
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,14 +40,32 @@ class MessageAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        Glide.with(mContext).load(arrayList[position].sender.image).into(holder.itemView.iv_userimage)
-        holder.itemView.tv_personName.text= arrayList[position].sender.firstName + " "+arrayList[position].sender.lastName
+        Glide.with(mContext).load(arrayList[position].receiver.image).into(holder.itemView.iv_userimage)
+        holder.itemView.tv_personName.text= arrayList[position].receiver.firstName + " "+arrayList[position].receiver.lastName
         holder.itemView.tv_messageTemplate.text= arrayList[position].lastMessage.message
-        holder.itemView.tv_timeOFMessage.text= mUtil.toDate(arrayList[position].created.toString(),"hh:mm")
+        holder.itemView.tv_timeOFMessage.text= AppUtils.convertTimeStampToDateTime(arrayList[position].created.toLong())
+
         holder.itemView.setOnClickListener {
 
             val intent = Intent(mContext, Chat::class.java)
-            intent.putExtra("id",arrayList[position].id.toString())
+
+            if(arrayList[position].bidId==0){
+                intent.putExtra("id",arrayList[position].orderId.toString())
+                intent.putExtra("param_name","orderId")
+            }else{
+                intent.putExtra("id",arrayList[position].bidId.toString())
+                intent.putExtra("param_name","bidId")
+            }
+
+            intent.putExtra("chatId",arrayList[position].id.toString())
+            intent.putExtra("userName",arrayList[position].receiver.firstName + " "+arrayList[position].receiver.lastName)
+            intent.putExtra("userImage",arrayList[position].receiver.image.toString())
+            if (arrayList[position].receiverId == getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)){
+                intent.putExtra("userId",arrayList[position].senderId)
+
+            }else{
+                intent.putExtra("userId",arrayList[position].receiverId)
+            }
             mContext.startActivity(intent)
 
         }

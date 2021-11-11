@@ -17,7 +17,8 @@ data class BidData(
     val userId: Int,
     val orderItems: List<OrderItem>,
     val vendorBidingRequest: VendorBidingRequest,
-    val vendorId: Int
+    val vendorId: Int,
+    val chatId:Int
 )
 
 data class CommercialDetail(

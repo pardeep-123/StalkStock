@@ -109,7 +109,6 @@ class BidFragment : Fragment(), Observer<RestObservable> {
     }
 
     override fun onChanged(it: RestObservable?) {
-        val bottomnavigationScreen = activity as BottomnavigationScreen
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is VendorBiddingListResponse) {
@@ -147,7 +146,7 @@ class BidFragment : Fragment(), Observer<RestObservable> {
                         Log.i("====",mResponse.message)
 
                     } else {
-                        AppUtils.showErrorAlert(bottomnavigationScreen, mResponse.message)
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
             }
