@@ -18,6 +18,7 @@ import com.stalkstock.vender.Model.VendorBusinessDetailResponse
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_bussiness_profile.*
+import kotlinx.android.synthetic.main.row_manageaddress.view.*
 
 class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
 
@@ -77,15 +78,14 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                         business_license.setText(vendorDetail.buisnessLicense)
                         businessemailid.setText(mResponse.body.email)
                         businesstypes.setText(vendorDetail.buisnessTypeName)
-                        var array =
-                            this.resources.getStringArray(R.array.Select_business_delivery_type)
+                        var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
                         val get = array.get(vendorDetail.deliveryType + 1)
-                        txtbusinessDeliverytypes.setText(get)
-                        businessmobile.setText(mResponse.body.email)
-                        businesstelephonenumber.setText(vendorDetail.buisnessPhone)
-                        businesswebsitename.setText(vendorDetail.website)
-                        tvAddressBusiness.setText(vendorDetail.shopAddress)
-                        businessAddressLine2.setText(vendorDetail.addressLine2)
+                        txtbusinessDeliverytypes.text = get
+                        businessmobile.text = mResponse.body.email
+                        businesstelephonenumber.text = vendorDetail.buisnessPhone
+                        businesswebsitename.text = vendorDetail.website
+                        tvAddressBusiness.text = vendorDetail.shopAddress
+                        businessAddressLine2.text= vendorDetail.addressLine2
                         businessCity.setText(vendorDetail.city)
                         tvStateBusiness.setText(vendorDetail.state)
                         tvPostalcodeBusiness.setText(vendorDetail.postalCode)

@@ -139,7 +139,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_payment.setImageDrawable(resources.getDrawable(R.drawable.a14dooler1))
                 textColorChange(tv_account!!, tv_cart!!, tv_order!!, tv_home!!)
                 switchFragment(AccountFragment())
-            } }
+            }
+        }
     }
 
     private fun switchFragment(fragment: Fragment) {
@@ -172,7 +173,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                         AppUtils.showSuccessAlert(
                             this,
                             mResponse.message)
-                    } }
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -184,7 +186,10 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                         it.error!!.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
-                }}
+                }
+            }
             it.status == Status.LOADING -> {
-            } } }
+            }
+        }
+    }
 }
