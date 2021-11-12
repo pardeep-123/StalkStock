@@ -10,7 +10,6 @@
         <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_product.xml" value="0.11953125" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_product.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_homedetails.xml" value="0.13515625" />
@@ -120,7 +119,7 @@
         <entry key="app/src/main/res/layout/payment_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/payment_status.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/layout/request_bids_adapter.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/request_detail.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/request_detail.xml" value="0.15" />
         <entry key="app/src/main/res/layout/request_product_adapter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_manageaddress.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.22" />
@@ -128,6 +127,7 @@
         <entry key="app/src/main/res/layout/row_request.xml" value="0.22" />
         <entry key="app/src/main/res/layout/row_suggestedforyou.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_viewpager.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/select_payment.xml" value="0.16296296296296298" />
         <entry key="app/src/main/res/layout/spiner_layout_text.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/spinner_layout_for_vehicle.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19635416666666666" />
@@ -136,7 +136,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

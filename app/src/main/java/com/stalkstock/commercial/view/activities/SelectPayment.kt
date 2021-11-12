@@ -30,7 +30,7 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
     var bidId = 0
     var vendorId = 0
     var rs = ""
-    var payment = 0
+    var payment = 2
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +50,8 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
          rs = intent.getStringExtra("rs").toString()
 
         oneone.setOnClickListener {
-            if(!type.equals("frist")){
-                type = "frist"
+            if(!type.equals("first")){
+                type = "first"
                 oneone.setImageResource(R.drawable.radio_fill)
                 onetwo.setImageResource(R.drawable.radio_circle)
             }
@@ -75,7 +75,15 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
              }*/
         }
         btn_checkout.setOnClickListener {
-
+            if (type=="sec"){
+                payment = 1
+            }
+            else if (type=="first"){
+                payment = 0
+            }
+            else{
+                payment = 2
+            }
             placeOrderApi()
 
             startActivity(Intent(this, PaymentStatus::class.java)) }
@@ -83,27 +91,28 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
 
     private fun placeOrderApi() {
 
-        if (type=="sec"){
-            payment = 1
-        }
+      if (payment == 2 ){
+          Toast.makeText(this,"Please Select Payment Method",Toast.LENGTH_SHORT).show()
+      }
+        else if (card.isEmpty()){
+          Toast.makeText(this,"Please Add Card",Toast.LENGTH_SHORT).show()
+      }
         else{
-            payment = 0
-        }
+          val data = HashMap<String,Any>()
+          data.put("vendorId",vendorId)
+          data.put("netAmount",rs)
+          data.put("shippingCharges",0)
+          data.put("shopCharges",0)
+          data.put("paymentMethod",payment)
+          data.put("total",rs)
+          data.put("isSelfpickup",1)
+          data.put("cardId",card)
+          data.put("bidId",bidId)
 
+          homeModel.orderPlace(this, data,true)
+          homeModel.homeResponse.observe(this, this)
+      }
 
-        val data = HashMap<String,Any>()
-        data.put("vendorId",vendorId)
-        data.put("netAmount",rs)
-        data.put("shippingCharges",0)
-        data.put("shopCharges",0)
-        data.put("paymentMethod",payment)
-        data.put("total",rs)
-        data.put("isSelfpickup",1)
-        data.put("cardId",card)
-        data.put("bidId",bidId)
-
-        homeModel.orderPlace(this, data,true)
-        homeModel.homeResponse.observe(this, this)
     }
 
     override fun onChanged(it: RestObservable?) {
