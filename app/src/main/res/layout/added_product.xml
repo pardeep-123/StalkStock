@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitEnd"
         android:layout_alignParentEnd="true"
+        android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +36,6 @@
                 android:layout_width="@dimen/value_0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="17sp"
                 android:text="Add A Request For Products"
                 android:textColor="@color/black_color"
                 android:textSize="16sp"
@@ -91,7 +90,7 @@
                     android:background="#ffffff"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
-                    android:text="Street Address"/>
+                    android:text="Street Address" />
 
             </RelativeLayout>
 
@@ -196,7 +195,6 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/etProductName"
-                    android:visibility="gone"
                     style="@style/EditextFieldwhit1"
                     android:layout_marginStart="@dimen/value_10dp"
                     android:layout_marginTop="10dp"
@@ -205,7 +203,8 @@
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/light_grey">
+                    android:textColorHint="@color/light_grey"
+                    android:visibility="gone">
 
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -256,7 +255,6 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/etGetProductName"
-                    android:visibility="gone"
                     style="@style/EditextFieldwhit1"
                     android:layout_marginStart="@dimen/value_10dp"
                     android:layout_marginTop="10dp"
@@ -266,7 +264,8 @@
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/light_grey">
+                    android:textColorHint="@color/light_grey"
+                    android:visibility="gone">
 
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -378,9 +377,9 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/value_10dp"
             android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/relSub"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/relSub"
             app:layout_constraintTop_toBottomOf="@id/tvAddMore">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -397,9 +396,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent">
+
             <Button
                 android:id="@+id/btnSave"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/value_30dp"
@@ -409,7 +408,7 @@
                 android:text="Save"
                 android:textAllCaps="false"
                 android:textColor="@color/green_colour"
-                />
+                android:visibility="gone" />
 
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btnSubmit"

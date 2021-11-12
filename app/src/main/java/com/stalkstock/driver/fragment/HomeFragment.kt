@@ -143,7 +143,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         super.onResume()
         mactivity
         val map = HashMap<String, RequestBody>()
-        viewModel.driverOrderRequestAPI(mactivity!!, true, map)
+        viewModel.driverOrderRequestAPI(mactivity!!, true)
         viewModel.mResponse.observe(this, this)
     }
 
