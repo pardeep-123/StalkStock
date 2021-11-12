@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_product.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_product.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_homedetails.xml" value="0.13515625" />
@@ -119,7 +120,7 @@
         <entry key="app/src/main/res/layout/payment_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/payment_status.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/layout/request_bids_adapter.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/request_detail.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/request_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/request_product_adapter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_manageaddress.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.22" />

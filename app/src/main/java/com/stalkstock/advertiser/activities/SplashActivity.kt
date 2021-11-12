@@ -6,10 +6,13 @@ package com.stalkstock.advertiser.activities
  import android.content.pm.PackageManager
  import android.os.Bundle
  import android.os.CountDownTimer
+ import android.text.TextUtils
  import android.util.Base64
  import android.util.Log
  import android.view.WindowManager
  import androidx.appcompat.app.AppCompatActivity
+ import com.google.android.gms.tasks.Task
+ import com.google.firebase.messaging.FirebaseMessaging
  import com.stalkstock.MyApplication
  import com.stalkstock.R
  import com.stalkstock.commercial.view.activities.MainCommercialActivity
@@ -18,6 +21,7 @@ package com.stalkstock.advertiser.activities
  import com.stalkstock.driver.HomeActivity
  import com.stalkstock.utils.others.GlobalVariables
  import com.stalkstock.utils.others.getPrefrence
+ import com.stalkstock.utils.others.savePrefrence
  import com.stalkstock.vender.ui.BottomnavigationScreen
  import java.security.MessageDigest
  import java.security.NoSuchAlgorithmException
@@ -34,6 +38,8 @@ class SplashActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splash)
 
+        getFirebaseToken()
+
         val countDownTimer = object : CountDownTimer(1000, 1000) {
             override fun onTick(l: Long) {}
             override fun onFinish() {
@@ -43,6 +49,30 @@ class SplashActivity : AppCompatActivity() {
 
         printHashKey()
     }
+
+    private fun getFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            try {
+                FirebaseMessaging.getInstance().token.addOnSuccessListener { token: String ->
+                    if (!TextUtils.isEmpty(token)) {
+                        savePrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, token)
+                        Log.d("AppController", "retrieve token successful : $token")
+                    } else {
+                        Log.w("AppController", "token should not be null...")
+                    }
+                }.addOnFailureListener { e: Exception? -> }.addOnCanceledListener {}
+                    .addOnCompleteListener { task: Task<String> ->
+                        Log.v(
+                            "AppController",
+                            "This is the token : " + task.result
+                        )
+                    }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+        }
+    }
+
 
     private fun selectLoginOrHome() {
         if(getPrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, "") != "")
