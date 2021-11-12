@@ -11,6 +11,8 @@ import com.stalkstock.R
 import com.stalkstock.commercial.view.model.MyOrdersList
 import com.stalkstock.consumer.model.OrderListModel
 import com.stalkstock.utils.loadImage
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
 import kotlinx.android.synthetic.main.activity_orderdeatils.*
 import kotlinx.android.synthetic.main.item_orders.view.*
 import java.text.SimpleDateFormat
@@ -40,10 +42,7 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
         val status = itemView.tv_statusValueorders
 
         fun initalize(list: ArrayList<OrderListModel.Body>, position: Int){
-
-            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            val formatter = SimpleDateFormat("MMM dd, yyyy '|' HH:mm")
-            val output: String = formatter.format(parser.parse(list[position].createdAt))
+            
 
            /* image.setImageResource(list[position].image)*/
             image.loadImage(list[position].orderVendor.shopLogo)
@@ -51,7 +50,11 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
             city.text = list[position].orderVendor.ShopAddress
 //            country.text = list[position].countryname
             description.text = list[position].orderItems[0].product.name
-            date.text = output
+            date.text = AppUtils.changeDateFormat(
+                list[position].createdAt,
+                GlobalVariables.DATEFORMAT.DateTimeFormat1,
+                GlobalVariables.DATEFORMAT.DateTimeFormat2
+            )
           /*  time.text = list[position].time*/
             price.text = "$"+list[position].total
             if (list[position].orderStatus==1){

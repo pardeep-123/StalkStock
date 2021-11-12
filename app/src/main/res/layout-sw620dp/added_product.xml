@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitEnd"
         android:layout_alignParentRight="true"
+        android:scaleType="fitEnd"
 
         android:src="@drawable/bg_fit" />
 
@@ -20,44 +20,43 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar_myorders"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/toolbar_myorders">
+            app:layout_constraintTop_toTopOf="parent">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/value_1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:background="@color/dark_gray"
-                />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="20sp"
                 android:id="@+id/actHome"
                 android:layout_width="@dimen/value_0dp"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
                 android:text="Add A Request For Products"
                 android:textColor="@color/black_color"
-                android:gravity="center"
-                android:padding="17sp"
-                />
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/back"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/value_10dp"
                 android:padding="10dp"
-                app:layout_constraintTop_toTopOf="@id/actHome"
+                android:src="@drawable/back_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/actHome"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="@dimen/value_10dp"
-                android:src="@drawable/back_arrow"
-                />
+                app:layout_constraintTop_toTopOf="@id/actHome" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,13 +67,12 @@
             android:layout_height="wrap_content"
 
 
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="70dp"
             android:paddingTop="@dimen/value_10dp"
             android:paddingBottom="@dimen/value_10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_myorders"
-            >
+            app:layout_constraintTop_toBottomOf="@id/toolbar_myorders">
 
 
             <RelativeLayout
@@ -82,100 +80,98 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/value_10dp"
-                app:layout_constraintTop_toTopOf="parent"
                 android:visibility="gone"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:hint="Street Address"
-                    android:paddingLeft="@dimen/value_10dp"
-                    android:paddingRight="@dimen/value_10dp"
-
                     style="@style/EditextFieldwhit1"
-                    android:layout_margin="@dimen/value_10dp">
-                </EditText>
+                    android:layout_margin="@dimen/value_10dp"
+                    android:hint="Street Address"
+
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"></EditText>
 
                 <TextView
                     style="@style/Textfield1"
-                    android:text="Street Address"
                     android:layout_marginLeft="@dimen/value_60dp"
+                    android:background="#ffffff"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
-                    android:background="#ffffff">
-                </TextView>
+                    android:text="Street Address"></TextView>
 
             </RelativeLayout>
-<!--
+            <!--
+                        <RelativeLayout
+                            android:id="@+id/rlAddressLine2"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_marginBottom="@dimen/value_10dp"
+                            app:layout_constraintBottom_toTopOf="@id/rlCity"
+                            >
+
+                            <com.stalkstock.utils.custom.TitiliumBoldEditText
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/light_grey"
+                                android:paddingLeft="@dimen/value_10dp"
+                                android:paddingRight="20dp"
+
+                                 android:layout_height="55dp"
+                                android:drawableRight="@drawable/down_arow"
+                                android:hint="Enter Category"
+                                style="@style/EditextFieldwhit1"
+                                android:textSize="16sp"
+
+                                android:layout_margin="@dimen/value_10dp">
+                            </com.stalkstock.utils.custom.TitiliumBoldEditText>
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:textColor="@color/light_grey"
+                                style="@style/Textfield1"
+                                android:text="Category"
+                                android:textSize="16sp"
+                                android:layout_marginLeft="@dimen/value_60dp"
+                                android:background="#ffffff">
+                            </com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+                        </RelativeLayout>
+            -->
+
+
             <RelativeLayout
                 android:id="@+id/rlAddressLine2"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginBottom="@dimen/value_10dp"
-                app:layout_constraintBottom_toTopOf="@id/rlCity"
-                >
 
-                <com.stalkstock.utils.custom.TitiliumBoldEditText
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/light_grey"
-                    android:paddingLeft="@dimen/value_10dp"
-                    android:paddingRight="20dp"
-
-                     android:layout_height="55dp"
-                    android:drawableRight="@drawable/down_arow"
-                    android:hint="Enter Category"
-                    style="@style/EditextFieldwhit1"
-                    android:textSize="16sp"
-
-                    android:layout_margin="@dimen/value_10dp">
-                </com.stalkstock.utils.custom.TitiliumBoldEditText>
-
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textColor="@color/light_grey"
-                    style="@style/Textfield1"
-                    android:text="Category"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="@dimen/value_60dp"
-                    android:background="#ffffff">
-                </com.stalkstock.utils.custom.TitiliumBoldTextView>
-
-            </RelativeLayout>
--->
-
-
-            <RelativeLayout
-                android:id="@+id/rlAddressLine2"
-                app:layout_constraintBottom_toTopOf="@id/rlCity"
-                android:layout_marginBottom="@dimen/value_10dp"
-
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                >
+                android:layout_marginBottom="@dimen/value_10dp"
+                app:layout_constraintBottom_toTopOf="@id/rlCity">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/edittextshape"
-                    >
+                    android:background="@drawable/edittextshape">
+
                     <Spinner
                         android:id="@+id/spinnerProduct"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
+                        android:entries="@array/Select_Category"
                         android:gravity="center_vertical"
                         android:paddingLeft="15dp"
-                        android:text="Select Category"
-                        android:entries="@array/Select_Category"
-                        android:prompt="@string/dropdown"
                         android:paddingRight="20dp"
-                        android:textStyle="bold"
+                        android:prompt="@string/dropdown"
+                        android:text="Select Category"
+                        android:textColor="#000"
 
                         android:textColorHint="#F8F6F6"
                         android:textSize="16sp"
-                        android:textColor="#000"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,60 +179,58 @@
                     android:layout_marginTop="5dp"
                     android:background="#fff"
                     android:text="Category"
-                    android:textStyle="bold"
                     android:textColor="@color/light_grey"
                     android:textSize="16sp"
-                    />
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlCity"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
 
                 android:layout_marginBottom="@dimen/value_10dp"
-                app:layout_constraintBottom_toTopOf="@id/rlProduct"
-                >
+                app:layout_constraintBottom_toTopOf="@id/rlProduct">
 
                 <RelativeLayout
                     android:id="@+id/relPro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/edittextshape"
-                    >
+                    android:background="@drawable/edittextshape">
+
                     <Spinner
                         android:id="@+id/spinnerSubProduct"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
+                        android:entries="@array/Select_Category"
                         android:gravity="center_vertical"
                         android:paddingLeft="15dp"
-                        android:text="Select Category"
-                        android:entries="@array/Select_Category"
-                        android:prompt="@string/dropdown"
                         android:paddingRight="20dp"
-                        android:textStyle="bold"
+                        android:prompt="@string/dropdown"
+                        android:text="Select Category"
+                        android:textColor="#000"
 
                         android:textColorHint="#F8F6F6"
                         android:textSize="16sp"
-                        android:textColor="#000"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/light_grey"
-                    android:layout_height="55dp"
-                    android:textSize="16sp"
-                    android:visibility="gone"
                     style="@style/EditextFieldwhit2"
+                    android:layout_height="55dp"
+                    android:layout_margin="@dimen/value_10dp"
+                    android:hint="Enter product name"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
 
-                    android:hint="Enter product name"
-                    android:layout_margin="@dimen/value_10dp">
-                </com.stalkstock.utils.custom.TitiliumBoldEditText>
+                    android:textSize="16sp"
+                    android:visibility="gone"></com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield2"
@@ -258,179 +252,169 @@
                 android:layout_height="70dp"
 
                 android:layout_marginBottom="@dimen/value_10dp"
-                app:layout_constraintBottom_toTopOf="@id/rlState"
-                >
+                app:layout_constraintBottom_toTopOf="@id/rlState">
 
                 <RelativeLayout
                     android:id="@+id/rlProducts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/edittextshape"
-                    >
+                    android:background="@drawable/edittextshape">
+
                     <Spinner
                         android:id="@+id/spinnerGetProduct"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
+                        android:entries="@array/Select_Category"
                         android:gravity="center_vertical"
                         android:paddingLeft="15dp"
-                        android:text="Select Category"
-                        android:entries="@array/Select_Category"
-                        android:prompt="@string/dropdown"
                         android:paddingRight="20dp"
-                        android:textStyle="bold"
+                        android:prompt="@string/dropdown"
+                        android:text="Select Category"
+                        android:textColor="#000"
 
                         android:textColorHint="#F8F6F6"
                         android:textSize="16sp"
-                        android:textColor="#000"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/light_grey"
-                    android:layout_height="55dp"
-                    android:textSize="16sp"
-                    android:visibility="gone"
                     style="@style/EditextFieldwhit2"
+                    android:layout_height="55dp"
+                    android:layout_margin="@dimen/value_10dp"
+                    android:hint="Enter product name"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
 
-                    android:hint="Enter product name"
-                    android:layout_margin="@dimen/value_10dp">
-                </com.stalkstock.utils.custom.TitiliumBoldEditText>
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textColor="@color/light_grey"
-                    style="@style/Textfield2"
-                    android:text="Product Name"
                     android:textSize="16sp"
+                    android:visibility="gone"></com.stalkstock.utils.custom.TitiliumBoldEditText>
 
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    style="@style/Textfield2"
                     android:layout_marginLeft="@dimen/value_60dp"
-                    android:background="#ffffff">
-                </com.stalkstock.utils.custom.TitiliumBoldTextView>
+                    android:background="#ffffff"
+                    android:text="Product Name"
+
+                    android:textColor="@color/light_grey"
+                    android:textSize="16sp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlState"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginBottom="@dimen/value_10dp"
-                app:layout_constraintBottom_toTopOf="@id/rlUnitMesurment"
-                >
+                app:layout_constraintBottom_toTopOf="@id/rlUnitMesurment">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etEnterQuantity"
                     style="@style/EditextFieldwhit2"
+                    android:layout_height="55dp"
                     android:layout_marginStart="@dimen/value_10dp"
                     android:layout_marginTop="@dimen/value_10dp"
-                    android:layout_height="55dp"
-                    android:textSize="16sp"
-
-                    android:inputType="number"
                     android:layout_marginEnd="@dimen/value_10dp"
+
                     android:hint="Enter quantity of product"
+                    android:inputType="number"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/light_grey">
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="16sp">
 
                 </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textColor="@color/light_grey"
                     style="@style/Textfield2"
-                    android:text="Quantity of Product"
                     android:layout_marginLeft="@dimen/value_60dp"
-                    android:textSize="16sp"
+                    android:background="#ffffff"
+                    android:text="Quantity of Product"
+                    android:textColor="@color/light_grey"
 
-                    android:background="#ffffff">
-                </com.stalkstock.utils.custom.TitiliumBoldTextView>
+                    android:textSize="16sp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlUnitMesurment"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginBottom="@dimen/value_10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                >
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etUnitMeasurement"
                     style="@style/EditextFieldwhit2"
-                    android:textColorHint="@color/light_grey"
                     android:layout_height="55dp"
-                    android:textSize="16sp"
-                    android:inputType="number"
-
-                    android:paddingLeft="@dimen/value_10dp"
-                    android:paddingRight="@dimen/value_10dp"
-                    android:hint="Enter unit of measurement"
-                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/value_10dp"
                     android:editable="false"
                     android:focusable="false"
-                    android:layout_margin="@dimen/value_10dp">
-                </com.stalkstock.utils.custom.TitiliumBoldEditText>
+
+                    android:hint="Enter unit of measurement"
+                    android:inputType="number"
+                    android:paddingLeft="@dimen/value_10dp"
+                    android:paddingRight="@dimen/value_10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="16sp"></com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textColor="@color/light_grey"
                     android:id="@+id/tvUnitMeasurement"
                     style="@style/Textfield2"
-                    android:text="Unit of Measurement"
-                    android:textSize="16sp"
-
                     android:layout_marginLeft="@dimen/value_60dp"
-                    android:background="#ffffff">
-                </com.stalkstock.utils.custom.TitiliumBoldTextView>
+                    android:background="#ffffff"
+                    android:text="Unit of Measurement"
+
+                    android:textColor="@color/light_grey"
+                    android:textSize="16sp"></com.stalkstock.utils.custom.TitiliumBoldTextView>
 
             </RelativeLayout>
 
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         <TextView
             android:id="@+id/tvAddMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add More"
-            android:textSize="@dimen/value_18dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/green_colour"
-            app:layout_constraintTop_toBottomOf="@id/clAddressDetail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:drawableLeft="@drawable/add_more_con"
             android:drawablePadding="@dimen/value_10dp"
+            android:gravity="center_vertical"
             android:padding="@dimen/value_5dp"
-            />
+            android:text="Add More"
+            android:textColor="@color/green_colour"
+            android:textSize="@dimen/value_18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clAddressDetail" />
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
             android:id="@+id/card_added"
-            android:visibility="gone"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/value_15dp"
-            android:layout_marginBottom="@dimen/value_15dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="@dimen/value_15dp"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="@dimen/value_15dp"
+            android:visibility="gone"
 
-            app:layout_constraintTop_toBottomOf="@id/tvAddMore"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:cardElevation="@dimen/value_2dp"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAddMore">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRequestProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.cardview.widget.CardView>
 
 
@@ -445,25 +429,26 @@
             android:background="@drawable/white_round_corners"
             android:text="Save"
 
-            android:textSize="17sp"
             android:textAllCaps="false"
             android:textColor="@color/green_colour"
-            app:layout_constraintBottom_toTopOf="@id/btnSubmit"/>
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@id/btnSubmit" />
+
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnSubmit"
-            android:textSize="17sp"
-
             android:layout_width="match_parent"
+
             android:layout_height="60dp"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:layout_marginBottom="@dimen/value_20dp"
-             android:background="@drawable/btn_shape"
+            android:background="@drawable/btn_shape"
             android:text="Submit"
-
             android:textAllCaps="false"
+
             android:textColor="@color/white_color"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

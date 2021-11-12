@@ -33,39 +33,47 @@ import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInterface {
+class Chat : AppCompatActivity(), View.OnClickListener, SocketManager.SocketInterface {
 
     var click = ""
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
-    var firstimage=""
-    var chatList : ArrayList<MessageList> = ArrayList()
-    lateinit var chatAdapter: ChatAdapter
-    var chatId=""
-    var screen_type=""
-    var user2Id=0
-    var bidId=0
-    var paramName=""
-    var userName=""
-    var userImage=""
+    var firstimage = ""
+    var chatList: ArrayList<MessageList> = ArrayList()
+    var chatAdapter: ChatAdapter? = null
+    var chatId = ""
+    var screen_type = ""
+    var user2Id = 0
+    var bidId = 0
+    var paramName = ""
+    var userName = ""
+    var userImage = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
+        chatAdapter = ChatAdapter(
+            this,
+            chatList,
+            getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0).toString()
+        )
+        rvChat.adapter = chatAdapter
+
         init()
         getIntentData()
-        CommonMethods.hideKeyboard(this@Chat,rvChat)
+        CommonMethods.hideKeyboard(this@Chat, rvChat)
         getChatList()
     }
 
     private fun getIntentData() {
-        screen_type= intent.getStringExtra("screen_type").toString()
-        chatId= intent.getStringExtra("chatId").toString()
-        userName= intent.getStringExtra("userName").toString()
-        userImage= intent.getStringExtra("userImage").toString()
-        user2Id= intent.getIntExtra("userId",0)
-        bidId= intent.getStringExtra("id").toString().toInt()
-        paramName= intent.getStringExtra("param_name").toString()
-        tv_nameOfChatPerson.text= userName
+        screen_type = intent.getStringExtra("screen_type").toString()
+        chatId = intent.getStringExtra("chatId").toString()
+        userName = intent.getStringExtra("userName").toString()
+        userImage = intent.getStringExtra("userImage").toString()
+        user2Id = intent.getIntExtra("userId", 0)
+        bidId = intent.getStringExtra("id").toString().toInt()
+        paramName = intent.getStringExtra("param_name").toString()
+        tv_nameOfChatPerson.text = userName
         Glide.with(this).load(userImage).into(iv_userImageChat)
     }
 
@@ -81,7 +89,7 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
         SocketManager.socket?.sendDataToServer(SocketManager.GET_CHAT, jsonObject)
     }
 
-    private fun selectImage(ivProduct: ImageView, type:String) {
+    private fun selectImage(ivProduct: ImageView, type: String) {
         Album.image(this)
             .singleChoice()
             .camera(true)
@@ -93,8 +101,7 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                if (type == "1")
-                {
+                if (type == "1") {
                     firstimage = result[0].path
                 }
             }
@@ -104,7 +111,7 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
             .start()
     }
 
-    private  fun init(){
+    private fun init() {
         iv_backChat.setOnClickListener(this)
         iv_dotMenu.setOnClickListener(this)
         ivSend.setOnClickListener(this)
@@ -113,26 +120,26 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
     }
 
     override fun onClick(p0: View?) {
-        when(p0!!.id){
-            R.id.iv_backChat->{
+        when (p0!!.id) {
+            R.id.iv_backChat -> {
                 onBackPressed()
             }
-            R.id.ivAttach ->{
+            R.id.ivAttach -> {
                 mAlbumFiles = java.util.ArrayList()
                 mAlbumFiles.clear()
-                selectImage(ivAttach,"1")
+                selectImage(ivAttach, "1")
             }
-            R.id.iv_dotMenu->{
-                if(click == ""){
+            R.id.iv_dotMenu -> {
+                if (click == "") {
                     clDots.visibility = View.VISIBLE
                     click = "1"
-                }else{
+                } else {
                     clDots.visibility = View.GONE
                     click = ""
                 }
 
             }
-            R.id.ivSend->{
+            R.id.ivSend -> {
 
                 if (etMessage.text.toString().trim().isEmpty()) {
                     Toast.makeText(this, "Please enter a message!!", Toast.LENGTH_LONG).show()
@@ -141,10 +148,10 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
                     val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
                     val jsonObject = JSONObject()
                     jsonObject.put("senderId", userId)
-                    if(paramName=="bidId"){
+                    if (paramName == "bidId") {
                         jsonObject.put("bidId", bidId)
-                    }else{
-                        jsonObject.put("orderId",bidId)
+                    } else {
+                        jsonObject.put("orderId", bidId)
                     }
                     jsonObject.put("receiverId", user2Id.toInt())
                     jsonObject.put("messageType", 0)       // 1 for image, 2 for text
@@ -155,15 +162,15 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
                 }
             }
 
-            R.id.tvClearChat->{
-                Log.e("fdgdfsgdfsg","jklfh;jklagdfk")
+            R.id.tvClearChat -> {
+                Log.e("fdgdfsgdfsg", "jklfh;jklagdfk")
                 clearChat()
             }
         }
     }
 
 
-    fun clearChat(){
+    fun clearChat() {
 
         val dialogSuccessful = Dialog(this, R.style.Theme_Dialog)
         dialogSuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -196,7 +203,12 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
         dialogSuccessful.show()
     }
 
-    data class ChatData(var message: String = "", var time : String = "", var image: String = "",var type : String = "")
+    data class ChatData(
+        var message: String = "",
+        var time: String = "",
+        var image: String = "",
+        var type: String = ""
+    )
 
     override fun onSocketCall(event: String?, vararg args: Any?) {
 
@@ -207,8 +219,8 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
             SocketManager.GET_CHAT -> {
                 val mObject = args[0] as JSONObject
                 val list = mObject.get("body") as JSONArray
-                Log.i("====",list.toString())
-               if (list.length()>0) {
+                Log.i("====", list.toString())
+                if (list.length() > 0) {
                     chatList.clear()
                     for (i in 0 until list.length()) {
                         val jsonobj = list.getJSONObject(i)
@@ -217,35 +229,35 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
                         chatList.add(data)
 
                     }
-                   chatList.reverse()
-                   chatAdapter = ChatAdapter(this,chatList,getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0).toString())
-                   rvChat.adapter = chatAdapter
-                   chatAdapter?.notifyDataSetChanged()
+                    chatList.reverse()
+
+                    chatAdapter?.notifyDataSetChanged()
 
                 } else {
-                   rvChat.visibility=View.GONE
-                  //  tvNoMsgList.visibility = View.VISIBLE
+                    rvChat.visibility = View.GONE
+                    //  tvNoMsgList.visibility = View.VISIBLE
                 }
             }
 
-            SocketManager.SEND_MESSAGE ->{
-                Log.i("====","Send Message success")
+            SocketManager.SEND_MESSAGE -> {
+                rvChat.visibility = View.VISIBLE
+                Log.i("====", "Send Message success")
                 val mObject = args[0] as JSONObject
                 val list = mObject.get("body") as JSONObject
-                Log.i("=====",list.toString())
+                Log.i("=====", list.toString())
                 val gson = GsonBuilder().create()
                 val model = gson.fromJson(list.toString(), MessageList::class.java)
                 chatList.add(model)
 
-                chatAdapter.notifyDataSetChanged()
+                chatAdapter?.notifyDataSetChanged()
                 rvChat.scrollToPosition(chatList.size - 1)
 
             }
 
-            SocketManager.CLEAR_CHAT ->{
-                Log.i("====","clear chat success")
+            SocketManager.CLEAR_CHAT -> {
+                Log.i("====", "clear chat success")
                 chatList.clear()
-                chatAdapter.notifyDataSetChanged()
+                chatAdapter?.notifyDataSetChanged()
             }
         }
     }
@@ -261,6 +273,7 @@ class Chat : AppCompatActivity(), View.OnClickListener,SocketManager.SocketInter
     override fun onError(event: String?, vararg args: Any?) {
 
     }
+
     override fun onStart() {
         super.onStart()
         MyApplication.getSocketManager().onRegister(this)

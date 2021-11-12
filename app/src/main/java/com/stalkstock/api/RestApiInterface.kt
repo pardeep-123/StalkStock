@@ -398,6 +398,7 @@ interface RestApiInterface {
 
    // @DELETE(URL.deleteCard)
 
+
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = URL.deleteCard, hasBody = true)
     fun deleteCard(@FieldMap map: HashMap<String, String>): Observable<DeleteCardData>

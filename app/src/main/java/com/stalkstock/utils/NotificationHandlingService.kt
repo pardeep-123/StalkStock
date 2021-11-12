@@ -45,7 +45,7 @@ class NotificationHandlingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
 
         Log.e(TAG, "Notification: ${remoteMessage.data}")
-        Log.e(TAG, "Notification---: ${remoteMessage.data["body"]}")
+        Log.e(TAG, "Notification---: ${remoteMessage.notification!!.body}")
 
         try {
             type = remoteMessage.data["type"].toString().toInt()
@@ -53,10 +53,10 @@ class NotificationHandlingService : FirebaseMessagingService() {
             e.printStackTrace()
             type=6
         }
-        message = remoteMessage.data["body"].toString()
+        message = remoteMessage.data["message"]
 
         try {
-            title = remoteMessage.data["title"].toString()
+            title = remoteMessage.data["title"]!!
         } catch (e: Exception) {
             e.printStackTrace()
         }

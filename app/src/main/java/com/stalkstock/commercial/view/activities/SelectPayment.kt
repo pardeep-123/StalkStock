@@ -20,11 +20,11 @@ import kotlinx.android.synthetic.main.select_payment.*
 import org.json.JSONArray
 import org.json.JSONObject
 
-class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
+class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
 
     private val homeModel: HomeViewModel by viewModels()
     var card = ""
-     var type = ""
+    var type = ""
     var firstname = ""
     var lastname = ""
     var bidId = 0
@@ -38,16 +38,15 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
         setContentView(R.layout.select_payment)
 
 
-        if(intent.hasExtra("card"))
-        {
+        if (intent.hasExtra("card")) {
             card = intent.getStringExtra("card")!!
         }
 
-         firstname = intent.getStringExtra("firstname").toString()
-         lastname = intent.getStringExtra("lastname").toString()
-         bidId = intent.getIntExtra("bidId",0)
-         vendorId = intent.getIntExtra("vendorId",0)
-         rs = intent.getStringExtra("rs").toString()
+        firstname = intent.getStringExtra("firstname").toString()
+        lastname = intent.getStringExtra("lastname").toString()
+        bidId = intent.getIntExtra("bidId", 0)
+        vendorId = intent.getIntExtra("vendorId", 0)
+        rs = intent.getStringExtra("rs").toString()
 
         oneone.setOnClickListener {
             if(!type.equals("first")){
@@ -57,7 +56,7 @@ class SelectPayment : AppCompatActivity() , Observer<RestObservable> {
             }
         }
         onetwo.setOnClickListener {
-            if(!type.equals("sec")){
+            if (!type.equals("sec")) {
                 type = "sec"
                 onetwo.setImageResource(R.drawable.radio_fill)
                 oneone.setImageResource(R.drawable.radio_circle)

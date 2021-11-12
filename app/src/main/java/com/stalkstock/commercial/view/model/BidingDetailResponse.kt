@@ -15,7 +15,8 @@ data class BidingDetailResponse(
         val requestNo: String,
         val userId: Int,
         val vendorBidingRequest: VendorBidingRequest,
-        val vendorId: Int
+        val vendorId: Int,
+        val chatId: Int
     )
     data class OrderItem(
         val bidId: Int,

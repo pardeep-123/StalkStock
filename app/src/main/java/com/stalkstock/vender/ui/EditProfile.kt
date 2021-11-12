@@ -30,6 +30,7 @@ import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.account_fragment.*
 import kotlinx.android.synthetic.main.activity_edit_profile2.*
 import okhttp3.RequestBody
 import java.util.*
@@ -202,7 +203,7 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     private fun setData(mResponse: VendorProfileDetail) {
-        editprofile_imageset.loadImage(mResponse.body.vendorDetail.image)
+        Glide.with(this).load(mResponse.body.vendorDetail.image).into(editprofile_imageset as ImageView)
         editprofile_name.setText(mResponse.body.vendorDetail.firstName)
         editprofile_last_name.setText(mResponse.body.vendorDetail.lastName)
         editprofile_email.setText(mResponse.body.email)

@@ -228,8 +228,7 @@ class DriverViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun driverOrderRequestAPI(
         activity: Activity,
-        showLoader: Boolean,
-        hashMap: HashMap<String, RequestBody>
+        showLoader: Boolean
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             restApiInterface.driverOrderRequestAPI()
@@ -245,7 +244,7 @@ class DriverViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        driverOrderRequestAPI(activity, showLoader, hashMap)
+                        driverOrderRequestAPI(activity, showLoader)
                     }
                 })
         }

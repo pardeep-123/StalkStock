@@ -573,7 +573,6 @@
                             android:layout_weight="1">
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                android:id="@+id/businessAddressLine2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/address_line2"
@@ -590,6 +589,8 @@
                             android:layout_weight="1">
 
                             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:id="@+id/businessAddressLine2"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="H.N 152"

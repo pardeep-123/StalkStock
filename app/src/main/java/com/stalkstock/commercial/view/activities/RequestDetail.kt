@@ -147,8 +147,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
             intent.putExtra("chatId", chatId)
             intent.putExtra("userName", userName)
             intent.putExtra("userImage", userImage)
-            intent.putExtra("paramName", "bidId")
-            intent.putExtra("id", bidId.toString())
+            intent.putExtra("param_name", "bidId")
             startActivity(intent)
         }
     }
@@ -167,6 +166,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setData(mResponse)
 
+                        chatId = mResponse.body.chatId.toString()
                         orderItemList.addAll(it.data.body.orderItems)
                         layShpList.visibility = VISIBLE
                         rl_edit.visibility = GONE
@@ -214,7 +214,8 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
         tvRequest.text = "Request ID:" + " " + mResponse.body.requestNo
         tvCreatedDateB.text = output
         userId = mResponse.body.vendorBidingRequest.vendorDetail.id
-        userName = mResponse.body.vendorBidingRequest.vendorDetail.firstName +" "+ mResponse.body.vendorBidingRequest.vendorDetail.lastName
+        userName =
+            mResponse.body.vendorBidingRequest.vendorDetail.firstName + " " + mResponse.body.vendorBidingRequest.vendorDetail.lastName
         userImage = mResponse.body.vendorBidingRequest.vendorDetail.image
         //userImage= mResponse.body.
     }

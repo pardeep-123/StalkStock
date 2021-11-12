@@ -40,10 +40,10 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
 
     val viewModel: DriverViewModel by viewModels()
 
-    lateinit var ctx : Context
-     var  distance = 0.0f
-    lateinit var adapter : RequestAdapter
-     var listRequest = mutableListOf<HistoryDataBody>()
+    lateinit var ctx: Context
+    var distance = 0.0f
+    lateinit var adapter: RequestAdapter
+    var listRequest = mutableListOf<HistoryDataBody>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,9 +56,11 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = RequestAdapter(listRequest)
-        adapter.onClickInterFace(object :RequestAdapter.OnClick{
+        adapter.onClickInterFace(object : RequestAdapter.OnClick {
             override fun onClick(position: Int) {
-                dialogConfirmation(listRequest[position]) } })
+                dialogConfirmation(listRequest[position])
+            }
+        })
         recy_req.adapter = adapter
 
         btn_current.setOnClickListener {
@@ -75,7 +77,7 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
             btn_current.setBackgroundColor(resources.getColor(R.color.light_grey))
             callCurrentOrders("1")
         }
-       callCurrentOrders("0")
+        callCurrentOrders("0")
     }
 
     private fun callCurrentOrders(s: String) {
@@ -88,7 +90,7 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun dialogCompleted() {
-        val  dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.completed_popup)
 
@@ -106,42 +108,63 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
         }
         dialog.show()
     }
+
     private fun dialogConfirmation(historyDataBody: HistoryDataBody) {
-        val  dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.current_popup)
-        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
         dialog.window!!.setGravity(Gravity.CENTER)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.tvName.text = "${historyDataBody.firstName} ${historyDataBody.lastName}"
         dialog.tvMyAddress.text = historyDataBody.vendorDetail.shopAddress
-        Glide.with(dialog.ivProfile.context).load(historyDataBody.image).placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder)).into(dialog.ivProfile)
-        Glide.with(dialog.ivShopLogo2.context).load(historyDataBody.vendorDetail.shopLogo).placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder)).into(dialog.ivShopLogo2)
-        Glide.with(dialog.ivShopLogo.context).load(historyDataBody.vendorDetail.shopLogo).placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder)).into(dialog.ivShopLogo)
+        Glide.with(dialog.ivProfile.context).load(historyDataBody.image)
+            .placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder))
+            .into(dialog.ivProfile)
+        Glide.with(dialog.ivShopLogo2.context).load(historyDataBody.vendorDetail.shopLogo)
+            .placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder))
+            .into(dialog.ivShopLogo2)
+        Glide.with(dialog.ivShopLogo.context).load(historyDataBody.vendorDetail.shopLogo)
+            .placeholder(dialog.ivProfile.context.getDrawable(R.drawable.place_holder))
+            .into(dialog.ivShopLogo)
         dialog.tvUserAddress.text = historyDataBody.orderAddress.street_address
         dialog.tvUserAddress2.text = historyDataBody.orderAddress.street_address
         dialog.tvDistance.text = " ${calculatedDistance(historyDataBody)} km"
         dialog.tvOrderID.text = "Order Id: ${historyDataBody.orderNo}"
         dialog.tvCharge.text = "$ ${historyDataBody.shippingCharges}"
-        dialog.tvStatus.text = Util.orderStatus(historyDataBody.orderStatus,dialog.tvStatus.context)
-        dialog.tvDateTime.text = AppUtils.changeDateFormat(historyDataBody.createdAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
+        dialog.tvStatus.text =
+            Util.orderStatus(historyDataBody.orderStatus, dialog.tvStatus.context)
+        dialog.tvDateTime.text = AppUtils.changeDateFormat(
+            historyDataBody.createdAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat3,
+            GlobalVariables.DATEFORMAT.DateTimeFormat2
+        )
         dialog.iv_cross.setOnClickListener { dialog.dismiss() }
         dialog.btnPickDeliver.apply {
-            this.text = Util.driverBtnStatus(historyDataBody.orderStatus,this)
+            this.text = Util.driverBtnStatus(historyDataBody.orderStatus, this)
             this.setOnClickListener {
                 dialog.dismiss()
                 val map = HashMap<String, RequestBody>()
-                map["orderId"] = RequestBody.create(MultipartBody.FORM, historyDataBody.id.toString())
-                map["status"] = RequestBody.create(MultipartBody.FORM, if(historyDataBody.orderStatus==2) "3" else "4")  //3 => pickUp 4 =>delivered
+                map["orderId"] =
+                    RequestBody.create(MultipartBody.FORM, historyDataBody.id.toString())
+                map["status"] = RequestBody.create(
+                    MultipartBody.FORM,
+                    if (historyDataBody.orderStatus == 2) "3" else "4"
+                )  //3 => pickUp 4 =>delivered
                 viewModel.changeDiverOrder(ctx as Activity, true, map)
-            }}
+            }
+        }
         dialog.show()
     }
 
     private fun calculatedDistance(
-        historyData: HistoryDataBody) : String {
+        historyData: HistoryDataBody
+    ): String {
         val locationA = Location("point A")
 
         locationA.latitude = historyData.vendorDetail.latitude.toDouble()
@@ -152,7 +175,7 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
         locationB.latitude = historyData.orderAddress.latitude.toDouble()
         locationB.longitude = historyData.orderAddress.longitude.toDouble()
 
-       return String.format("%.1f", locationA.distanceTo(locationB)/1000)
+        return String.format("%.1f", locationA.distanceTo(locationB) / 1000)
     }
 
 
@@ -167,20 +190,20 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
                         listRequest.clear()
                         listRequest.addAll(mResponse.body)
                         adapter.notifyDataSetChanged()
-                    }
-                    else {
+                    } else {
                         Toast.makeText(ctx, mResponse.message, Toast.LENGTH_SHORT).show()
-                    } }
+                    }
+                }
                 if (it.data is DefaultDataModel) {
                     val mResponse: DefaultDataModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
 
                         Toast.makeText(ctx, mResponse.message, Toast.LENGTH_SHORT).show()
                         callCurrentOrders("0")
-                    }
-                    else {
+                    } else {
                         Toast.makeText(ctx, mResponse.message, Toast.LENGTH_SHORT).show()
-                    } }
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
