@@ -14,7 +14,7 @@ class PaymentStatus : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_status)
         btn_view.setOnClickListener {
-            startActivity(Intent(this,MyOrdersFragment::class.java))
+            startActivity(Intent(this,MainCommercialActivity::class.java))
             finishAffinity()
         }
         back_img.setOnClickListener {

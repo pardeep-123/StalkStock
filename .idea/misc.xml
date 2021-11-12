@@ -10,7 +10,6 @@
         <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_product.xml" value="0.11953125" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_product.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_homedetails.xml" value="0.13515625" />
@@ -22,6 +21,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_search.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_search_screen.xml" value="0.17" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/added_product.xml" value="0.1171875" />
         <entry key="app/src/main/res/layout-sw620dp/bidprdouctaccpetlist.xml" value="0.18" />
         <entry key="app/src/main/res/layout-sw620dp/bottom_layout.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_h_ome.xml" value="0.1" />
@@ -84,6 +84,7 @@
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_terms_condition.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/added_product.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/biddetailsalertbox.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/bidprdouctaccpetlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/bottom_layout2.xml" value="0.18020833333333333" />
@@ -91,7 +92,7 @@
         <entry key="app/src/main/res/layout/chat_adapter.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/layout/chat_fragment.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/completed_popup.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/current_popup.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/current_popup.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_account2.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_account_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.21" />
@@ -120,7 +121,7 @@
         <entry key="app/src/main/res/layout/payment_popup.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/payment_status.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/layout/request_bids_adapter.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/request_detail.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/request_detail.xml" value="0.18" />
         <entry key="app/src/main/res/layout/request_product_adapter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_manageaddress.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.22" />

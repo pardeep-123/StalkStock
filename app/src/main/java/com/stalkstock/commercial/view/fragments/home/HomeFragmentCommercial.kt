@@ -28,8 +28,8 @@ import kotlinx.android.synthetic.main.fragment_home_commercial.*
 import java.util.HashMap
 
 class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestObservable> {
-  //  var listner: CommunicationListner? = null
-   private val homeModel: HomeViewModel by viewModels()
+    //  var listner: CommunicationListner? = null
+    private val homeModel: HomeViewModel by viewModels()
     var list: ArrayList<BidingListResponse.BodyX> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +42,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // listner!!.getYourFragmentActive(1)
+        // listner!!.getYourFragmentActive(1)
         btnAddNew.setOnClickListener(this)
         ivNotification.setOnClickListener(this)
 
@@ -50,10 +50,10 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
-            R.id.btnAddNew ->{
+            R.id.btnAddNew -> {
                 startActivity(Intent(context, AddedProduct::class.java))
             }
-            R.id.ivNotification ->{
+            R.id.ivNotification -> {
                 startActivity(Intent(context, NotificationFirstActivity::class.java))
             }
         }
@@ -70,7 +70,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
 
     override fun onDetach() {
         super.onDetach()
-       // listner = null
+        // listner = null
     }
 
 
@@ -86,10 +86,18 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
                     val mResponse: BidingListResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
 
-                            list.clear()
-                            list.addAll(it.data.body)
+                        list.clear()
+                        list.addAll(it.data.body)
 
-                            rvHome.adapter = HomeAdapter(list)
+                        rvHome.adapter = HomeAdapter(list)
+
+                        if (list.isNotEmpty()) {
+                            tvNoRequest.visibility = View.GONE
+                            rvHome.visibility = View.VISIBLE
+                        } else {
+                            tvNoRequest.visibility = View.VISIBLE
+                            rvHome.visibility = View.GONE
+                        }
 
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), mResponse.message.toString())
@@ -100,7 +108,8 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
                 if (it.data != null) {
                     Toast.makeText(requireActivity(), it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             it.status == Status.LOADING -> {
@@ -116,7 +125,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
 
     private fun getBidingListApi() {
         val map = HashMap<String, String>()
-        homeModel.getBidingList(requireActivity(), true,map)
+        homeModel.getBidingList(requireActivity(), true, map)
         homeModel.homeResponse.observe(this, this)
     }
 
