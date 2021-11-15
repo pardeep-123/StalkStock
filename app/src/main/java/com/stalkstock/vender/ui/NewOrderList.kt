@@ -88,7 +88,8 @@ class NewOrderList : AppCompatActivity(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOffset += 10
                         mOrderArrayList.addAll(mResponse.body)
-                        newOrderAdapter!!.notifyDataSetChanged()
+                        mOrderArrayList.reverse()
+                        newOrderAdapter?.notifyDataSetChanged()
                         reset = false
 
                         tvNoOrders.visibility = if(mOrderArrayList.isEmpty()) View.VISIBLE else View.GONE

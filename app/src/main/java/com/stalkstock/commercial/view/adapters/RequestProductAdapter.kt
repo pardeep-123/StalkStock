@@ -43,9 +43,6 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-
-
-
         if(position==0)
         {
             holder.itemView.viewUp.visibility  = View.VISIBLE}
@@ -93,8 +90,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
 //        }
 
 
-        if(list[position].edit)
-        {
+        if(list[position].edit) {
             holder.itemView.ivEdit.visibility = View.VISIBLE
             holder.itemView.viewEdit.visibility = View.VISIBLE
             holder.itemView.rl_edit.visibility = View.VISIBLE

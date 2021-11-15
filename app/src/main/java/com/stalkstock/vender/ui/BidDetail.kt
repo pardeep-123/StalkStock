@@ -49,14 +49,14 @@ import kotlin.collections.HashMap
 class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {
 
     val viewModel: VendorViewModel by viewModels()
-    var bidId=""
-    var mUtil= Util()
-    var arrayList= ArrayList<OrderItem>()
-    var bidOrderAdapter:BidOrderAdapter?=null
-    var userId=0
-    var chatId=""
-    var userName=""
-    var userImage=""
+    var bidId = ""
+    var mUtil = Util()
+    var arrayList = ArrayList<OrderItem>()
+    var bidOrderAdapter: BidOrderAdapter? = null
+    var userId = 0
+    var chatId = ""
+    var userName = ""
+    var userImage = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +68,7 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     }
 
     private fun getIntentData() {
-        bidId= intent.getStringExtra("bidId").toString()
+        bidId = intent.getStringExtra("bidId").toString()
 
         getBidDetail(bidId)
 
@@ -91,45 +91,53 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.newchat->{
-                val intent= Intent(this,Chat::class.java)
-                intent.putExtra("screen_type","bid")
-                intent.putExtra("id",bidId.toString())
-                intent.putExtra("userId",userId)
-                intent.putExtra("chatId",chatId)
-                intent.putExtra("userName",userName)
-                intent.putExtra("userImage",userImage)
-                intent.putExtra("paramName","bidId")
+        when (v?.id) {
+            R.id.newchat -> {
+                val intent = Intent(this, Chat::class.java)
+                intent.putExtra("screen_type", "bid")
+                intent.putExtra("id", bidId.toString())
+                intent.putExtra("userId", userId)
+                intent.putExtra("chatId", chatId)
+                intent.putExtra("userName", userName)
+                intent.putExtra("userImage", userImage)
+                intent.putExtra("paramName", "bidId")
                 startActivity(intent)
             }
 
-            R.id.biddetails_backarrow ->{
+            R.id.biddetails_backarrow -> {
                 onBackPressed()
             }
 
-            R.id.placebid_button ->{
-                val inflater = LayoutInflater.from(this@BidDetail)
+            R.id.placebid_button -> {
+                val dialog = PlaceBidDialogFragment(this)
+                dialog.show(supportFragmentManager,"postDelete")
+            }
+
+
+            /*val inflater = LayoutInflater.from(this@BidDetail)
                 val v = inflater.inflate(R.layout.biddetailsalertbox, null)
                 val deleteDialog = AlertDialog.Builder(this@BidDetail).create()
                 deleteDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 deleteDialog.setView(v)
                 val btncontinue = v.findViewById<Button>(R.id.submitbutton)
-                val edtPrice = v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
-                val edtSaleTerms = v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
+                val edtPrice =
+                    v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
+                val edtSaleTerms =
+                    v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
                 btncontinue.setOnClickListener { v ->
 
-                    if(edtPrice.text.toString().isNullOrEmpty()){
+                    if (edtPrice.text.toString().isNullOrEmpty()) {
                         edtPrice.requestFocus()
                         edtPrice.error = resources.getString(R.string.please_enter_sale_price)
-                    } else if(edtSaleTerms.text.toString().isNullOrEmpty()){
+                    } else if (edtSaleTerms.text.toString().isNullOrEmpty()) {
                         edtPrice.requestFocus()
                         edtPrice.error = resources.getString(R.string.please_enter_sale_terms)
-                    }else {
-                        var hashMap= HashMap<String,RequestBody>()
-                        hashMap["bidId"]= mUtil.createPartFromString(bidId)
-                        hashMap["amount"]= mUtil.createPartFromString(edtPrice.text.toString())
-                        hashMap["description"]= mUtil.createPartFromString(edtSaleTerms.text.toString())
+                    } else {
+                        var hashMap = HashMap<String, RequestBody>()
+                        hashMap["bidId"] = mUtil.createPartFromString(bidId)
+                        hashMap["amount"] = mUtil.createPartFromString(edtPrice.text.toString())
+                        hashMap["description"] =
+                            mUtil.createPartFromString(edtSaleTerms.text.toString())
                         viewModel.vendorAcceptBid(this, true, hashMap)
                         viewModel.mResponse.observe(this, this)
 
@@ -158,6 +166,24 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
             }
 
 
+        }*/
+        }
+    }
+
+    fun placeBid(hashMap: java.util.HashMap<String, RequestBody>) {
+        viewModel.vendorAcceptBid(this, true, hashMap)
+        viewModel.mResponse.observe(this, this)
+
+        bidamt.visibility = View.VISIBLE
+        biddisc.visibility = View.VISIBLE
+        placebid_button.tag = 1
+        placebid_button.text = "Place Bid"
+        if (placebid_button.text.toString() == "Place Bid") {
+            placebid_button.text = "Edit Bid"
+
+        } else {
+            placebid_button.text = "Edit Bid"
+
         }
     }
 
@@ -172,10 +198,10 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message)
                     }
-                }else if (it.data is CommonResponseModel) {
+                } else if (it.data is CommonResponseModel) {
                     val mResponse: CommonResponseModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        Log.i("====",mResponse.message)
+                        Log.i("====", mResponse.message)
                         onBackPressed()
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message)
@@ -197,15 +223,15 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     }
 
     private fun setBidData(body: BidData) {
-        userId= body.commercialDetail.id
-        chatId= body.chatId.toString()
-        requestid.text= "Request Id: "+body.requestNo
-        bidqu.text= "Quantity : "+body.requestNo
-        bidid.text= "Bid : "+body.bidCount
+        userId = body.commercialDetail.id
+        chatId = body.chatId.toString()
+        requestid.text = "Request Id: " + body.requestNo
+        bidqu.text = "Quantity : " + body.requestNo
+        bidid.text = "Bid : " + body.bidCount
 
         arrayList.clear()
         arrayList.addAll(body.orderItems)
-        bidOrderAdapter = BidOrderAdapter(this,arrayList)
+        bidOrderAdapter = BidOrderAdapter(this, arrayList)
         rvOrders.layoutManager = LinearLayoutManager(this)
         rvOrders.adapter = bidOrderAdapter
 //        tvCategory.text= body.orderItems[0].product.categoryName
@@ -220,8 +246,8 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
 //        biddate.text=mUtil.toDate(body.createdAt,"MMM,dd,yyyy")
 //        bidtime.text= mUtil.toDate(body.createdAt,"hh:mm")
         Glide.with(this).load(body.commercialDetail.image).into(bidimguser as CircleImageView)
-        bidusername.text= body.commercialDetail.firstName +" "+body.commercialDetail.lastName
-        userName=body.commercialDetail.firstName +" "+body.commercialDetail.lastName
-        userImage=body.commercialDetail.image
+        bidusername.text = body.commercialDetail.firstName + " " + body.commercialDetail.lastName
+        userName = body.commercialDetail.firstName + " " + body.commercialDetail.lastName
+        userImage = body.commercialDetail.image
     }
 }
