@@ -50,9 +50,9 @@
         android:id="@+id/mangeaddress_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/btn_signup"
         android:layout_below="@+id/vendor"
         android:layout_marginLeft="10dp"
-        android:layout_above="@+id/btn_signup"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp" />
 
