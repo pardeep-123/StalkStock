@@ -32,18 +32,16 @@ class PlaceBidDialogFragment(var bidDetail: BidDetail) : DialogFragment() {
 
         submitbutton.setOnClickListener { v ->
 
-            if (edtSellingPrice.text.toString().isNullOrEmpty()) {
-                edtSellingPrice.requestFocus()
-                edtSellingPrice.error = resources.getString(R.string.please_enter_sale_price)
-            } else if (edtSellngDesc.text.toString().isNullOrEmpty()) {
-                edtSellngDesc.requestFocus()
-                edtSellngDesc.error = resources.getString(R.string.please_enter_sale_terms)
+            if (dialog?.edtSellingPrice!!.text.toString().isEmpty()) {
+                dialog?.edtSellingPrice!!.error = resources.getString(R.string.please_enter_sale_price)
+            } else if (dialog?.edtSellngDesc!!.text.toString().isEmpty()) {
+                dialog?.edtSellngDesc!!.error = resources.getString(R.string.please_enter_sale_terms)
             } else {
                 dismiss()
                 var hashMap = HashMap<String, RequestBody>()
                 hashMap["bidId"] = mUtil.createPartFromString(bidDetail.bidId)
-                hashMap["amount"] = mUtil.createPartFromString(edtSellingPrice.text.toString())
-                hashMap["description"] = mUtil.createPartFromString(edtSellngDesc.text.toString())
+                hashMap["amount"] = mUtil.createPartFromString(dialog?.edtSellingPrice!!.text.toString())
+                hashMap["description"] = mUtil.createPartFromString(dialog?.edtSellngDesc!!.text.toString())
                 bidDetail.placeBid(hashMap)
             }
 

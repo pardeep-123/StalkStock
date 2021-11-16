@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,6 +74,7 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
         tv_account.setText("ACCOUNT");
 
         loadFragment(new MainHomeFragment());
+
         try {
             home_tab=findViewById(R.id.home_tab);
             iv_homeTab=findViewById(R.id.iv_homeTab);
@@ -120,14 +122,7 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
 
 
             bid_tab.setOnClickListener(view -> {
-                iv_homeTab.setImageResource(R.drawable.home_black_icon1);
-                iv_orderTab.setImageResource(R.drawable.list_black_icon1);
-                iv_paymentTab.setImageResource(R.drawable.a14dooler1);
-                iv_bidTab.setImageResource(R.drawable.ic_bid_green);
-                iv_accountTab.setImageResource(R.drawable.user_black_icon1);
-
-                textColorChange(tv_bid,tv_order,tv_home,tv_payment,tv_account);
-                loadFragment(new BidFragment());
+               bidClick();
 
             });
 
@@ -222,6 +217,17 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
 
     }
 
+    private void bidClick() {
+        iv_homeTab.setImageResource(R.drawable.home_black_icon1);
+        iv_orderTab.setImageResource(R.drawable.list_black_icon1);
+        iv_paymentTab.setImageResource(R.drawable.a14dooler1);
+        iv_bidTab.setImageResource(R.drawable.ic_bid_green);
+        iv_accountTab.setImageResource(R.drawable.user_black_icon1);
+
+        textColorChange(tv_bid,tv_order,tv_home,tv_payment,tv_account);
+        loadFragment(new BidFragment());
+    }
+
     private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,fragment).commit();
@@ -270,6 +276,14 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
     @Override
     protected int getContentId() {
         return R.layout.activity_bottomnavigation_screen;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (getIntent().getBooleanExtra("notificationClick",false)){
+            bidClick();
+        }
     }
 }
 

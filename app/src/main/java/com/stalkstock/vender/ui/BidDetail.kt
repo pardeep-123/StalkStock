@@ -109,8 +109,59 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
             }
 
             R.id.placebid_button -> {
+                val inflater = LayoutInflater.from(this@BidDetail)
+                val v1 = inflater.inflate(R.layout.biddetailsalertbox, null)
+                val deleteDialog = AlertDialog.Builder(this@BidDetail).create()
+                deleteDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                deleteDialog.setView(v1)
+                val btncontinue = v1.findViewById<Button>(R.id.submitbutton)
+                val edtPrice =
+                    v1.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
+                val edtSaleTerms =
+                    v1.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
+                btncontinue.setOnClickListener { view ->
+
+                    if (edtPrice.text.toString().isEmpty()) {
+                        edtPrice.requestFocus()
+                        edtPrice.error = resources.getString(R.string.please_enter_sale_price)
+                    } else if (edtSaleTerms.text.toString().isNullOrEmpty()) {
+                        edtPrice.requestFocus()
+                        edtPrice.error = resources.getString(R.string.please_enter_sale_terms)
+                    } else {
+                        var hashMap = HashMap<String, RequestBody>()
+                        hashMap["bidId"] = mUtil.createPartFromString(bidId)
+                        hashMap["amount"] = mUtil.createPartFromString(edtPrice.text.toString())
+                        hashMap["description"] =
+                            mUtil.createPartFromString(edtSaleTerms.text.toString())
+                        viewModel.vendorAcceptBid(this, true, hashMap)
+                        viewModel.mResponse.observe(this, this)
+
+                        bidamt.visibility = View.VISIBLE
+                        biddisc.visibility = View.VISIBLE
+                        placebid_button.tag = 1
+                        placebid_button.text = "Place Bid"
+                        if (placebid_button.text.toString() == "Place Bid") {
+                            placebid_button.text = "Edit Bid"
+                            view.tag = 1 //pause
+                        } else {
+                            val status = view.tag as Int
+                            if (status == 1) {
+                                view.tag = 0 //pause
+                            } else {
+                                placebid_button.text = "Edit Bid"
+                                view.tag = 1 //pause
+                            }
+                        }
+
+                        deleteDialog.dismiss()
+                    }
+
+                }
+                deleteDialog.show()
+/*
                 val dialog = PlaceBidDialogFragment(this)
                 dialog.show(supportFragmentManager,"postDelete")
+*/
             }
 
 

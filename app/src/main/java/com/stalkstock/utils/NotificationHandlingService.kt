@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.stalkstock.R
+import com.stalkstock.commercial.view.activities.MainCommercialActivity
+import com.stalkstock.vender.ui.BottomnavigationScreen
 import org.json.JSONObject
 
 class NotificationHandlingService : FirebaseMessagingService() {
@@ -45,13 +47,13 @@ class NotificationHandlingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
 
         Log.e(TAG, "Notification: ${remoteMessage.data}")
-        Log.e(TAG, "Notification---: ${remoteMessage.notification!!.body}")
+       // Log.e(TAG, "Notification---: ${remoteMessage.notification!!.body}")
 
         try {
             type = remoteMessage.data["type"].toString().toInt()
         } catch (e: Exception) {
             e.printStackTrace()
-            type=6
+
         }
         message = remoteMessage.data["message"]
 
@@ -81,20 +83,15 @@ class NotificationHandlingService : FirebaseMessagingService() {
            // ex.message?.let { Log.e("FirebaseRam", it) } //providerId
         }
         var intent = Intent()
-        makePush(intent)
-      /*  if (type == 5) {
-            intent = Intent(this, ChatActivity::class.java)
-            intent.putExtra("user2Id", receiverId)
-            intent.putExtra("userId", getPrefrence(CommonKeys.UserId, ""))
-            intent.putExtra("UserName", recieverName)
-            intent.putExtra("userImage", recieverImage)
+//        makePush(intent)
+        if (type == 32) {
+            intent = Intent(this, MainCommercialActivity::class.java)
             makePush(intent)
-        }else if(type==2){   //when booking cancel
-            intent= Intent(this, HomeActivity::class.java)
-            intent.putExtra("type",type)
-            intent.putExtra("booking_id",bookingId)
+        }else if(type==31){
+            intent= Intent(this, BottomnavigationScreen::class.java)
+            intent.putExtra("notificationClick",true)
             makePush(intent)
-        }else if(type==1){     //when booking accept
+        }/*else if(type==1){     //when booking accept
             intent= Intent(this, HomeActivity::class.java)
             intent.putExtra("type",type)
             intent.putExtra("booking_id",bookingId)
