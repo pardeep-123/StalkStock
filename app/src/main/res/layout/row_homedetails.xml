@@ -18,7 +18,7 @@
             android:layout_width="115dp"
             android:layout_height="125dp"
             android:scaleType="fitXY"
-            android:src="@drawable/product_img_1"/>
+            android:src="@drawable/ic_dummy_img" />
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/starCount"
             android:layout_width="wrap_content"

@@ -92,10 +92,9 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
 
       if (payment == 2 ){
           Toast.makeText(this,"Please Select Payment Method",Toast.LENGTH_SHORT).show()
-      }
-        else if (card.isEmpty()){
+      }/* else if (card.isEmpty()){
           Toast.makeText(this,"Please Add Card",Toast.LENGTH_SHORT).show()
-      }
+      }*/
         else{
           val data = HashMap<String,Any>()
           data.put("vendorId",vendorId)

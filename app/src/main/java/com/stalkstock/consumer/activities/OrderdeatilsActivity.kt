@@ -18,6 +18,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_orderdeatils.*
+import kotlinx.android.synthetic.main.row_myorder.view.*
 import java.util.HashMap
 
 class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
@@ -35,7 +36,7 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
             getOrderDetail(intent.getStringExtra("orderId")!!)
     }
 
-    private fun getOrderDetail(orderId:String) {
+    private fun getOrderDetail(orderId: String) {
         val hashMap = HashMap<String, String>()
         hashMap["orderId"] = orderId
         viewModel.getOrderDetailAPI(this, true, hashMap)
@@ -51,27 +52,30 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         img.loadImage(mResponse.body.orderVendor.shopLogo)
                         kfc.text = mResponse.body.orderVendor.shopName
-                        if (mResponse.body.orderStatus == 0)
-                            tvStatus.text = "Pending"
-                        tvText.text = "Your order from "+mResponse.body.orderVendor.shopName+" is on the way"
-                        mRecyclerView.adapter = MyorderProductAdapter(this,mResponse.body.orderItems)
-                        tvItemTotal.text = "$"+mResponse.body.netAmount
-                        tvRestCharges.text = "$"+mResponse.body.shopCharges
-                        tvDeliveryFee.text = "$"+mResponse.body.shippingCharges
-                        tvTotalAmount.text = "$"+mResponse.body.total
+                        tvLocation.text=mResponse.body.orderVendor.ShopAddress
+
+                        setOrderStatus(mResponse.body.orderStatus)
+
+
+                        tvText.text = "Your order from " + mResponse.body.orderVendor.shopName + " is on the way"
+                        mRecyclerView.adapter = MyorderProductAdapter(this, mResponse.body.orderItems)
+                        tvItemTotal.text = "$" + mResponse.body.netAmount
+                        tvRestCharges.text = "$" + mResponse.body.shopCharges
+                        tvDeliveryFee.text = "$" + mResponse.body.shippingCharges
+                        tvTotalAmount.text = "$" + mResponse.body.total
                         tvOrderNumber.text = mResponse.body.orderNo
                         tvDateTime.text = AppUtils.changeDateFormat(
                             mResponse.body.updatedAt,
                             GlobalVariables.DATEFORMAT.DateTimeFormat1,
                             GlobalVariables.DATEFORMAT.DateTimeFormat2
                         )
-                        if (!checkObjectNull(mResponse.body.orderAddress)){
-                        if (!checkStringNull(mResponse.body.orderAddress.geoLocation))
-                            tvDeliveryLocation.text = mResponse.body.orderAddress.geoLocation
-                        else {
-                            tvDeliveryLocation.visibility = View.GONE
-                            textDelivery.visibility = View.GONE
-                        }
+                        if (!checkObjectNull(mResponse.body.orderAddress)) {
+                            if (!checkStringNull(mResponse.body.orderAddress.geoLocation))
+                                tvDeliveryLocation.text = mResponse.body.orderAddress.geoLocation
+                            else {
+                                tvDeliveryLocation.visibility = View.GONE
+                                textDelivery.visibility = View.GONE
+                            }
                         } else {
                             tvDeliveryLocation.visibility = View.GONE
                             textDelivery.visibility = View.GONE
@@ -91,5 +95,18 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    private fun setOrderStatus(orderStatus: Int) {
+        when(orderStatus){
+            0->{ tvStatus.text = "Pending" }
+            1->{tvStatus.text = "In Progress"}
+            3->{tvStatus.text = "Packed"}
+            4->{tvStatus.text= "Completed"}
+            5->{tvStatus.text = "Cancelled"}
+            6->{tvStatus.text= "Rejected"}
+            else->{tvStatus.text= "Error"}
+        }
+
     }
 }

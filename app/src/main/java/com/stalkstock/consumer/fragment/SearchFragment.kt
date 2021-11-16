@@ -46,7 +46,7 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
     private var mProductName = ""
     lateinit var mActivity: MainConsumerActivity
     private var mWhichApi = 0
-    private lateinit var viewFrag:View
+    private lateinit var viewFrag: View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -64,7 +64,12 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = HomedetailAdapter(mActivity, currentModel, mActivity.currentDeliveryType.toString(),this)
+        adapter = HomedetailAdapter(
+            mActivity,
+            currentModel,
+            mActivity.currentDeliveryType.toString(),
+            this
+        )
         view.detail_recycle.adapter = adapter
         view.detail_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -78,21 +83,21 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
             }
         })
 
-    mRecentSearchAdapter = RecentSearchAdapter(mActivity, recentSearchList,this)
+        mRecentSearchAdapter = RecentSearchAdapter(mActivity, recentSearchList, this)
         view.searchRecycle.adapter = mRecentSearchAdapter
-    view.editTextSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
-        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-            getProductAsPerCatSub()
-            return@OnEditorActionListener true
-        }
-        false
-    })
-    view.search.setOnClickListener{
-        if(view.editTextSearch.text.toString().isNotEmpty()) getProductAsPerCatSub()
+        view.editTextSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                getProductAsPerCatSub()
+                return@OnEditorActionListener true
+            }
+            false
+        })
+        view.search.setOnClickListener {
+            if (view.editTextSearch.text.toString().isNotEmpty()) getProductAsPerCatSub()
 
-    }
-    getProductAsPerCatSub()
-    viewModel.homeResponse.observe(mActivity, this)
+        }
+        getProductAsPerCatSub()
+        viewModel.homeResponse.observe(mActivity, this)
     }
 
     override fun onResume() {
@@ -104,19 +109,16 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
         currentModel.clear()
 
 
-       // currentModel.addAll(mResponse.body)
+        // currentModel.addAll(mResponse.body)
 
-        val list  =mResponse.body.sortedBy { it.mrp.toFloat() }
-        if(GlobalVariables.FilterVariables.currentSortBy=="low_to_high")
-        {
+        val list = mResponse.body.sortedBy { it.mrp.toFloat() }
+        if (GlobalVariables.FilterVariables.currentSortBy == "low_to_high") {
             currentModel.addAll(list)
-        }
-        else
-        {
+        } else {
             currentModel.addAll(list.reversed())
         }
 
-        tvNoProducts.visibility =if(currentModel.isEmpty()) View.VISIBLE else View.GONE
+        tvNoProducts.visibility = if (currentModel.isEmpty()) View.VISIBLE else View.GONE
         adapter!!.notifyDataSetChanged()
         reset = false
     }
@@ -130,13 +132,14 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
         val map = HashMap<String, RequestBody>()
         map["offset"] = mActivity.mUtils.createPartFromString("0")
         map["limit"] = mActivity.mUtils.createPartFromString("50")
-        map["search"] = mActivity.mUtils.createPartFromString(viewFrag.editTextSearch.text.toString())
-        map["deliveryType"] = mActivity.mUtils.createPartFromString(mActivity.currentDeliveryType.toString())
+        map["search"] =
+            mActivity.mUtils.createPartFromString(viewFrag.editTextSearch.text.toString())
+        map["deliveryType"] =
+            mActivity.mUtils.createPartFromString(mActivity.currentDeliveryType.toString())
         viewModel.getProductAccToCategorySubcategoryAPI(mActivity, true, map)
     }
 
-    fun addRecentSearchApi(productId: String, name: String)
-    {
+    fun addRecentSearchApi(productId: String, name: String) {
         mWhichApi = 1
         mProductId = productId
         mProductName = name
@@ -145,15 +148,13 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
         viewModel.addRecentSearchAPI(mActivity, true, map)
     }
 
-    private fun getRecentSearchAPI()
-    {
+    private fun getRecentSearchAPI() {
         mWhichApi = 2
         val map = HashMap<String, String>()
         viewModel.getRecentSearchAPI(mActivity, true, map)
     }
 
-    fun deleteRecentSearchAPI(searchId:String)
-    {
+    fun deleteRecentSearchAPI(searchId: String) {
         mWhichApi = 3
         val map = HashMap<String, String>()
         map["searchId"] = searchId
@@ -173,50 +174,46 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
-                if (it.data is AddRecentSearchResponse)
-                {
+                if (it.data is AddRecentSearchResponse) {
                     val mResponse: AddRecentSearchResponse = it.data
-                    if (mResponse.code == GlobalVariables.URL.code)
-                    {
+                    if (mResponse.code == GlobalVariables.URL.code) {
                         val intent = Intent(mActivity, ProductActivity::class.java)
-                        intent.putExtra("product_id",mProductId)
-                        intent.putExtra("title",mProductName)
+                        intent.putExtra("product_id", mProductId)
+                        intent.putExtra("title", mProductName)
                         intent.putExtra("delivery_type", mActivity.currentDeliveryType.toString())
                         startActivity(intent)
                     }
                 }
-                if (it.data is RecentSearchListResponse)
-                {
+                if (it.data is RecentSearchListResponse) {
                     val mResponse: RecentSearchListResponse = it.data
-                    if (mResponse.code == GlobalVariables.URL.code)
-                    {
+                    if (mResponse.code == GlobalVariables.URL.code) {
                         recentSearchList.clear()
                         recentSearchList.addAll(mResponse.body)
                         mRecentSearchAdapter.notifyDataSetChanged()
                     }
                 }
-                if (it.data is DeleteRecentSearchResponse)
-                {
+                if (it.data is DeleteRecentSearchResponse) {
                     val mResponse: DeleteRecentSearchResponse = it.data
-                    if (mResponse.code == GlobalVariables.URL.code)
-                    {
+                    if (mResponse.code == GlobalVariables.URL.code) {
                         getRecentSearchAPI()
-                    } }
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
                     Toast.makeText(mActivity, it.data as String, Toast.LENGTH_SHORT).show()
-                  if (mWhichApi == 0){
-                    currentModel.clear()
-                    adapter!!.notifyDataSetChanged()
-                  } }
-                else {
-                    Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-                    if (mWhichApi == 0){
-                    currentModel.clear()
-                    adapter!!.notifyDataSetChanged()
+                    if (mWhichApi == 0) {
+                        currentModel.clear()
+                        adapter!!.notifyDataSetChanged()
                     }
-                } }
+                } else {
+                    Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                    if (mWhichApi == 0) {
+                        currentModel.clear()
+                        adapter!!.notifyDataSetChanged()
+                    }
+                }
+            }
             it.status == Status.LOADING -> {
             }
         }

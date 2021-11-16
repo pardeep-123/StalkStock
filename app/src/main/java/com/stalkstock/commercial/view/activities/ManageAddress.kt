@@ -2,6 +2,7 @@ package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -116,9 +117,18 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: ModelUserAddressList) {
-        currentModel.addAll(mResponse.body)
-        adapter!!.notifyDataSetChanged()
-        reset = false
+        if(mResponse.body.size==0){
+            mangeaddress_recycle.visibility=View.GONE
+            tvNoAddress.visibility= View.VISIBLE
+        }
+        else{
+            mangeaddress_recycle.visibility=View.VISIBLE
+            tvNoAddress.visibility= View.GONE
+            currentModel.addAll(mResponse.body)
+            adapter!!.notifyDataSetChanged()
+            reset = false
+        }
+
     }
 
     fun deleteAddressAPI(get: ModelUserAddressList.Body) {

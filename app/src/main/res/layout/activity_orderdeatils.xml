@@ -76,14 +76,16 @@
                         android:textColor="@color/black"
                         android:textSize="16sp"
                          />
+
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
+                        android:id="@+id/tvLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/kfc"
-                        android:textSize="12sp"
-                        android:layout_toEndOf="@+id/img"
                         android:layout_marginStart="10dp"
-                        android:text="New York, USA"/>
+                        android:layout_toEndOf="@+id/img"
+                        android:text="New York, USA"
+                        android:textSize="12sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/tvStatus"

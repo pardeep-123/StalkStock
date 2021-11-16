@@ -56,7 +56,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp" />
 
-
+    <TextView
+        android:id="@+id/tvNoAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No addresses found yet"
+        android:visibility="gone"/>
     <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"

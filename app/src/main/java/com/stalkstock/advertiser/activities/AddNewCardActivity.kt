@@ -64,7 +64,7 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
     override fun onClick(p0: View?) {
         when(p0?.id) {
             R.id.iv_back -> {
-                finish()
+                onBackPressed()
             }
             R.id.monthsss -> { openMonth() }
             R.id.yearsss -> {

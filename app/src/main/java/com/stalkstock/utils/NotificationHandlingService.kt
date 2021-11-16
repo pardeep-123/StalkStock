@@ -16,6 +16,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import com.stalkstock.vender.ui.BottomnavigationScreen
+import com.stalkstock.vender.ui.NewOrderList
 import org.json.JSONObject
 
 class NotificationHandlingService : FirebaseMessagingService() {
@@ -84,14 +85,34 @@ class NotificationHandlingService : FirebaseMessagingService() {
         }
         var intent = Intent()
 //        makePush(intent)
-        if (type == 32) {
+        if (type == 32) { //load home fragment of commercial
             intent = Intent(this, MainCommercialActivity::class.java)
             makePush(intent)
-        }else if(type==31){
+        }else if(type==31){ //load bid fragment
             intent= Intent(this, BottomnavigationScreen::class.java)
             intent.putExtra("notificationClick",true)
             makePush(intent)
-        }/*else if(type==1){     //when booking accept
+        }else if(type==20){  //load NewOrderList Activity
+            intent= Intent(this, NewOrderList::class.java)
+            intent.putExtra("key","New Orders")
+            makePush(intent)
+        }else if(type==21 || type==22 || type==24){  //load ListFragment fragment
+            intent= Intent(this, NewOrderList::class.java)
+            intent.putExtra("key","New Orders")
+            makePush(intent)
+        }else if(type==21 || type==22 || type==24){  //load ListFragment fragment
+            intent= Intent(this, NewOrderList::class.java)
+            intent.putExtra("key","New Orders")
+            makePush(intent)
+        }else if(type==30){  //load driver my requests fragment
+            intent= Intent(this, NewOrderList::class.java)
+            intent.putExtra("key","New Orders")
+            makePush(intent)
+        }else{
+            makePush(intent)
+        }
+
+    /*else if(type==1){     //when booking accept
             intent= Intent(this, HomeActivity::class.java)
             intent.putExtra("type",type)
             intent.putExtra("booking_id",bookingId)

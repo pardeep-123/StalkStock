@@ -31,7 +31,7 @@ class ProductsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         holder.itemView.starCount.text = currentModel[position].name
-        holder.itemView.txtLocation.text = currentModel[position].productVendor.geoLocation
+        holder.itemView.txtLocation.text = currentModel[position].productVendor.ShopAddress
         holder.itemView.txtVendor.text = currentModel[position].productVendor.shopName
         holder.itemView.price.text = currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()

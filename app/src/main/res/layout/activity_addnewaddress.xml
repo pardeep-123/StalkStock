@@ -94,12 +94,13 @@
             android:text="Your Location" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tv_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/location_text123"
-            android:id="@+id/tv_ll"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:drawableLeft="@drawable/check_circle_price"
             android:drawablePadding="10dp"
             android:text="The Castro"

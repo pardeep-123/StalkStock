@@ -22,16 +22,16 @@ import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {
-    val mContext:Context = this
-    var click=0
-    var mMap:HashMap<String,String>? = null
+    val mContext: Context = this
+    var click = 0
+    var mMap: HashMap<String, String>? = null
     var mObject: PlaceOrderModel? = null
     val viewModel: HomeViewModel by viewModels()
     var mPaymentType = "1"  // 0=>Wallet 1=>Card 2=>paypal
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_payment)
 
@@ -42,53 +42,54 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         firstclick.setOnClickListener(this)
         secondclick.setOnClickListener(this)
 
-        if (intent.hasExtra("orderdata"))
-        {
+        if (intent.hasExtra("orderdata")) {
 //            mMap = intent.getSerializableExtra("orderdata") as HashMap<String, String>
             mObject = intent.getSerializableExtra("orderdata") as PlaceOrderModel
         }
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id) {
+        when (p0?.id) {
             R.id.iv_back -> {
                 finish()
             }
             R.id.btn_checkout -> {
-                if (click==0){
-                    click=1;
+                if (click == 0) {
+                    click = 1;
                     btn_checkout.setText("Pay Now")
-                }else{
-                    if (MyApplication.instance.getString("usertype").equals("1")){
+                } else {
+                    if (MyApplication.instance.getString("usertype").equals("1")) {
                         if (mObject != null)
                             placeOrderApi()
-                       /* val intent = Intent(mContext, ThanksActivity::class.java)
-                        startActivity(intent)*/
-                    }else{
+                        /* val intent = Intent(mContext, ThanksActivity::class.java)
+                         startActivity(intent)*/
+                    } else {
                         val intent = Intent(mContext, ThankyouActivity::class.java)
                         startActivity(intent)
                     }
                 }
 
-            } R.id.btn_preview -> {
-                val intent = Intent(mContext, AfteraddActivity::class.java)
+            }
+            R.id.btn_preview -> {
+                val intent = Intent(mContext, AddNewCardActivity::class.java)
                 startActivity(intent)
             }
             R.id.firstclick -> {
                 mPaymentType = "1"
                 oneone.setImageResource(R.drawable.radio_fill)
                 onetwo.setImageResource(R.drawable.radio_circle)
-            }R.id.secondclick -> {
-            mPaymentType = "2"
-            oneone.setImageResource(R.drawable.radio_circle)
-            onetwo.setImageResource(R.drawable.radio_fill)
+            }
+            R.id.secondclick -> {
+                mPaymentType = "2"
+                oneone.setImageResource(R.drawable.radio_circle)
+                onetwo.setImageResource(R.drawable.radio_fill)
             }
         }
     }
 
     private fun placeOrderApi() {
         mObject!!.paymentMethod = mPaymentType
-        viewModel.placeOrderApi(this, true,mObject!!)
+        viewModel.placeOrderApi(this, true, mObject!!)
         viewModel.homeResponse.observe(this, this)
     }
 

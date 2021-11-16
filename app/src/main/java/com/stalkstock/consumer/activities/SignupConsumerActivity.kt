@@ -90,11 +90,19 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             return false
         } else if (edtConsumerPhone.text.toString().trim().isEmpty()) {
             edtConsumerPhone.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter Phone number")
+            AppUtils.showErrorAlert(this, "Please enter mobile number")
             return false
-        } else if (edtConsumerPassword.text.toString().trim().isEmpty()) {
+        } else if (edtConsumerPhone.text.toString().length< 10) {
+            edtConsumerPassword.requestFocus()
+            AppUtils.showErrorAlert(this, "Please enter correct mobile number")
+            return false
+        }  else if (edtConsumerPassword.text.toString().trim().isEmpty()) {
             edtConsumerPassword.requestFocus()
             AppUtils.showErrorAlert(this, "Please enter password")
+            return false
+        }else if (edtConsumerPassword.text.toString().length>7) {
+            edtConsumerPassword.requestFocus()
+            AppUtils.showErrorAlert(this, "Please enter at least 6 characters in password ")
             return false
         } else if (edtConsumerRePassword.text.toString().trim().isEmpty()) {
             edtConsumerRePassword.requestFocus()
@@ -104,7 +112,7 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
                 .trim() != edtConsumerPassword.text.toString().trim()
         ) {
             edtConsumerRePassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Password mismatch")
+            AppUtils.showErrorAlert(this, "Confirm password should be same as password")
             return false
         } else {
             return true

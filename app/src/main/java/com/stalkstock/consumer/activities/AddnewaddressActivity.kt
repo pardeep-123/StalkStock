@@ -195,5 +195,7 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
                 }
             }
             it.status == Status.LOADING -> {
-            } } }
+            }
+        }
+    }
 }
