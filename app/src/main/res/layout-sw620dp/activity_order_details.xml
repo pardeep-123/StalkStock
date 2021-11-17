@@ -85,8 +85,8 @@
                                 android:id="@+id/tvName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                android:text="Tom Martin"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:text=""
                                 android:textColor="#000"
                                 android:textSize="@dimen/_15sdp" />
 
@@ -175,7 +175,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_5sdp"
-                                android:text="152KL0552"
+                                android:text=""
                                 android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
                         </LinearLayout>
                     </LinearLayout>
@@ -458,7 +458,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="123456789"
+                        android:text=""
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -474,7 +474,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="MAY 1,2020 AT 04:07 PM"
+                        android:text=""
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -491,7 +491,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="John Due"
+                        android:text=""
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -509,7 +509,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginBottom="20sp"
-                        android:text="43-D San Francisco,near church USA"
+                        android:text=""
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView

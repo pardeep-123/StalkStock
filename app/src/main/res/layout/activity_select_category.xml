@@ -40,19 +40,18 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
 
-                    android:text="Select Category"
+                    android:layout_centerInParent="true"
+                    android:text="Add Product"
+
                     android:textColor="#000"
-
                     android:textSize="16dp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.dp"
-                android:background="@color/dark_gray"></View>
+                android:background="@color/dark_gray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

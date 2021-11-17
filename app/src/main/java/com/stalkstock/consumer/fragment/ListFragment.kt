@@ -52,7 +52,8 @@ class ListFragment : Fragment(), Observer<RestObservable> {
                     if (currentOffset > 1 && mOrderArrayList.size > 9)
                         getOrderList()
                 }
-            } })
+            }
+        })
 
         return view
     }

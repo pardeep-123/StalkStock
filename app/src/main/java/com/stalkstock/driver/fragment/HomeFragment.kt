@@ -405,6 +405,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         }
         when (event) {
             SocketManager.driverOrderRequest -> {
+                ca_tv1.visibility=View.VISIBLE
                 val gson = GsonBuilder().serializeNulls().create()
 
                 val mObject = args[0] as JSONObject
@@ -445,6 +446,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             it!!.status == Status.SUCCESS -> {
 
                 if (it.data is NewOrderResponse) {
+                    ca_tv1.visibility=View.VISIBLE
                     val mResponse: NewOrderResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOrder = mResponse

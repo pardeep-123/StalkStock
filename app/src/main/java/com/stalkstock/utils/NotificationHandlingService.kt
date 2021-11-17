@@ -15,6 +15,8 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
+import com.stalkstock.consumer.activities.MainConsumerActivity
+import com.stalkstock.driver.HomeActivity
 import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.vender.ui.NewOrderList
 import org.json.JSONObject
@@ -97,16 +99,13 @@ class NotificationHandlingService : FirebaseMessagingService() {
             intent.putExtra("key","New Orders")
             makePush(intent)
         }else if(type==21 || type==22 || type==24){  //load ListFragment fragment
-            intent= Intent(this, NewOrderList::class.java)
-            intent.putExtra("key","New Orders")
+            intent= Intent(this, MainConsumerActivity::class.java)
             makePush(intent)
         }else if(type==21 || type==22 || type==24){  //load ListFragment fragment
-            intent= Intent(this, NewOrderList::class.java)
-            intent.putExtra("key","New Orders")
+            intent= Intent(this, MainConsumerActivity::class.java)
             makePush(intent)
         }else if(type==30){  //load driver my requests fragment
-            intent= Intent(this, NewOrderList::class.java)
-            intent.putExtra("key","New Orders")
+            intent= Intent(this, HomeActivity::class.java)
             makePush(intent)
         }else{
             makePush(intent)

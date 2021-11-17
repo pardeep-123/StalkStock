@@ -179,6 +179,9 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         } else if (addproductprice.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter price")
             return false
+        }else if (addproductprice.text.toString().trim()=="0") {
+            AppUtils.showErrorAlert(this, "Price should be greater than 0")
+            return false
         } else if (addproductdescription.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter description")
             return false

@@ -100,9 +100,9 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             edtConsumerPassword.requestFocus()
             AppUtils.showErrorAlert(this, "Please enter password")
             return false
-        }else if (edtConsumerPassword.text.toString().length>7) {
+        }else if (edtConsumerPassword.text.toString().length<7) {
             edtConsumerPassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter at least 6 characters in password ")
+            AppUtils.showErrorAlert(this, "Please should contain at least 6 characters")
             return false
         } else if (edtConsumerRePassword.text.toString().trim().isEmpty()) {
             edtConsumerRePassword.requestFocus()

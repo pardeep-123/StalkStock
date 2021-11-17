@@ -164,6 +164,7 @@
                             android:text="Add Product"
                             android:textAllCaps="false"
                             android:textColor="#fff"
+                            android:layout_marginBottom="@dimen/_10sdp"
                             android:textSize="16dp" />
                     </LinearLayout>
                 </LinearLayout>

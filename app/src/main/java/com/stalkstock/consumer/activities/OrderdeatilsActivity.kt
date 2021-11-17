@@ -101,7 +101,7 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
         when(orderStatus){
             0->{ tvStatus.text = "Pending" }
             1->{tvStatus.text = "In Progress"}
-            3->{tvStatus.text = "Packed"}
+            2->{tvStatus.text = "Packed"}
             4->{tvStatus.text= "Completed"}
             5->{tvStatus.text = "Cancelled"}
             6->{tvStatus.text= "Rejected"}

@@ -170,7 +170,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 {
                     AppUtils.showErrorAlert(
                         this,
-                        "Add at least one tag!"
+                        "Add atleast one tag!"
                     )
                 }
                 else {

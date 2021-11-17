@@ -79,17 +79,18 @@
             android:id="@+id/edText1"
             style="@style/EditextFieldwhit1"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_9sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/light_grey"
-            android:paddingLeft="15dp"
-            android:paddingRight="12dp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:focusable="false"
+            android:hint="@string/enter_expiration_date"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textSize="13sp"
             android:lines="1"
-            android:hint="@string/enter_expiration_date">
+            android:paddingLeft="15dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="13sp">
 
         </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
@@ -154,17 +155,18 @@
             android:id="@+id/edText3"
             style="@style/EditextFieldwhit1"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_9sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/light_grey"
-            android:paddingLeft="15dp"
-            android:paddingRight="12dp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:focusable="false"
+            android:hint="@string/enter_regi_expiration_date"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:lines="1"
-            android:textSize="13sp"
-            android:hint="@string/enter_regi_expiration_date">
+            android:paddingLeft="15dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="13sp">
 
         </com.stalkstock.utils.custom.TitiliumBoldEditText>
 

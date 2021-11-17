@@ -53,14 +53,14 @@
                         android:id="@+id/imgFrontDriver"
                         android:scaleType="fitXY"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:src="@drawable/license_two"
+
                         android:layout_weight="1"/>
                     <ImageView
                         android:layout_width="0dp"
                         android:id="@+id/imgBackDriver"
                         android:layout_height="120dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/license_three"
+
                         android:layout_weight="1"/>
                 </LinearLayout>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -76,7 +76,6 @@
                     android:id="@+id/imgDriverRegistration"
                     android:layout_height="200dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/license_a"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
@@ -94,7 +93,6 @@
                     android:layout_height="200dp"
                     android:id="@+id/imgDriverProofInsurance"
                     android:scaleType="fitXY"
-                    android:src="@drawable/license_a"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_20sdp"

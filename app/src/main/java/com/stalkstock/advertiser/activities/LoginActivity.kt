@@ -2,6 +2,7 @@ package com.stalkstock.advertiser.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -16,29 +17,33 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.stalkstock.api.Status
+import com.google.firebase.messaging.FirebaseMessaging
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.SelectuserActivity
 import com.stalkstock.consumer.activities.SignupConsumerActivity
-import com.stalkstock.driver.HomeActivity
 import com.stalkstock.consumer.model.UserLoginResponse
-import com.stalkstock.utils.others.getPrefrence
-import com.stalkstock.vender.ui.BottomnavigationScreen
-import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.api.RestObservable
+import com.stalkstock.driver.HomeActivity
 import com.stalkstock.driver.SignupActivity
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.FacebookHelper
 import com.stalkstock.utils.FacebookHelper.*
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.getPrefrence
 import com.stalkstock.utils.others.savePrefrence
+import com.stalkstock.vender.ui.BottomnavigationScreen
+import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
+import kotlin.collections.HashMap
 
 class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable>,
     FacebookHelperCallback {
+
 
     val viewModel: HomeViewModel by viewModels()
 
@@ -57,6 +62,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getFirebaseToken()
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 //        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         tv_forgot_password.setOnClickListener(this)
@@ -64,6 +70,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         btn_signin.setOnClickListener(this)
         signup.setOnClickListener(this)
         back.setOnClickListener(this)
+
+
 
         iv_fb.setOnClickListener {
             isFb = "fb"
@@ -83,6 +91,29 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
+
+    private fun getFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            try {
+                FirebaseMessaging.getInstance().token.addOnSuccessListener { token: String ->
+                    if (!TextUtils.isEmpty(token)) {
+                        savePrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, token)
+                        Log.d("AppController", "retrieve token successful : $token")
+                    } else {
+                        Log.w("AppController", "token should not be null...")
+                    }
+                }.addOnFailureListener { e: Exception? -> }.addOnCanceledListener {}
+                    .addOnCompleteListener { task: Task<String> ->
+                        Log.v(
+                            "AppController",
+                            "This is the token : " + task.result
+                        )
+                    }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -113,6 +144,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
             e.printStackTrace()
         }
     }
+
+
 
     override fun onClick(v: View?) {
         when (v?.id) {

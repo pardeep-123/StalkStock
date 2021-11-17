@@ -1,5 +1,6 @@
 package com.stalkstock.vender.ui
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -57,6 +58,7 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
     var chatId = ""
     var userName = ""
     var userImage = ""
+    var dialog : Dialog?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,115 +111,66 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
             }
 
             R.id.placebid_button -> {
-                val inflater = LayoutInflater.from(this@BidDetail)
+                //Toast.makeText(this, "Toast", Toast.LENGTH_LONG).show()
+                editDialog()
+               /*  dialog = Dialog(this)
+                dialog?.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+                dialog?.setContentView(R.layout.biddetailsalertbox)
+                dialog?.setCancelable(true)
+                *//*val inflater = LayoutInflater.from(this@BidDetail)
                 val v1 = inflater.inflate(R.layout.biddetailsalertbox, null)
                 val deleteDialog = AlertDialog.Builder(this@BidDetail).create()
                 deleteDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                deleteDialog.setView(v1)
-                val btncontinue = v1.findViewById<Button>(R.id.submitbutton)
-                val edtPrice =
-                    v1.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
-                val edtSaleTerms =
-                    v1.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
-                btncontinue.setOnClickListener { view ->
+                deleteDialog.setView(v1)*//*
+//                val btncontinue = dialog?.findViewById<com.stalkstock.utils.custom.TitiliumBoldButton>(R.id.submitbutton)
+//                val edtPrice =
+//                    dialog?.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
+//                val edtSaleTerms =
+//                    dialog?.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
 
-                    if (edtPrice.text.toString().isEmpty()) {
-                        edtPrice.requestFocus()
-                        edtPrice.error = resources.getString(R.string.please_enter_sale_price)
-                    } else if (edtSaleTerms.text.toString().isNullOrEmpty()) {
-                        edtPrice.requestFocus()
-                        edtPrice.error = resources.getString(R.string.please_enter_sale_terms)
-                    } else {
-                        var hashMap = HashMap<String, RequestBody>()
-                        hashMap["bidId"] = mUtil.createPartFromString(bidId)
-                        hashMap["amount"] = mUtil.createPartFromString(edtPrice.text.toString())
-                        hashMap["description"] =
-                            mUtil.createPartFromString(edtSaleTerms.text.toString())
-                        viewModel.vendorAcceptBid(this, true, hashMap)
-                        viewModel.mResponse.observe(this, this)
-
-                        bidamt.visibility = View.VISIBLE
-                        biddisc.visibility = View.VISIBLE
-                        placebid_button.tag = 1
-                        placebid_button.text = "Place Bid"
-                        if (placebid_button.text.toString() == "Place Bid") {
-                            placebid_button.text = "Edit Bid"
-                            view.tag = 1 //pause
-                        } else {
-                            val status = view.tag as Int
-                            if (status == 1) {
-                                view.tag = 0 //pause
-                            } else {
-                                placebid_button.text = "Edit Bid"
-                                view.tag = 1 //pause
-                            }
-                        }
-
-                        deleteDialog.dismiss()
-                    }
-
-                }
-                deleteDialog.show()
-/*
+//                btncontinue?.setOnClickListener { view ->
+//
+//                    if (edtPrice?.text.toString().isEmpty()) {
+//                        edtPrice?.requestFocus()
+//                        edtPrice?.error = resources.getString(R.string.please_enter_sale_price)
+//                    } else if (edtSaleTerms?.text.toString().isNullOrEmpty()) {
+//                        edtPrice?.requestFocus()
+//                        edtPrice?.error = resources.getString(R.string.please_enter_sale_terms)
+//                    } else {
+//                        val hashMap = HashMap<String, RequestBody>()
+//                        hashMap["bidId"] = mUtil.createPartFromString(bidId)
+//                        hashMap["amount"] = mUtil.createPartFromString(edtPrice?.text.toString())
+//                        hashMap["description"] = mUtil.createPartFromString(edtSaleTerms?.text.toString())
+//                        viewModel.vendorAcceptBid(this, true, hashMap)
+//                        viewModel.mResponse.observe(this, this)
+//
+//                        bidamt.visibility = View.VISIBLE
+//                        biddisc.visibility = View.VISIBLE
+//                        placebid_button.tag = 1
+//                        placebid_button.text = "Place Bid"
+//                        if (placebid_button.text.toString() == "Place Bid") {
+//                            placebid_button.text = "Edit Bid"
+//                            view.tag = 1 //pause
+//                        } else {
+//                            val status = view.tag as Int
+//                            if (status == 1) {
+//                                view.tag = 0 //pause
+//                            } else {
+//                                placebid_button.text = "Edit Bid"
+//                                view.tag = 1 //pause
+//                            }
+//                        }
+//
+//
+//                    }
+//                    dialog?.dismiss()
+//                }
+                dialog?.show()
+*//*
                 val dialog = PlaceBidDialogFragment(this)
                 dialog.show(supportFragmentManager,"postDelete")
 */
             }
-
-
-            /*val inflater = LayoutInflater.from(this@BidDetail)
-                val v = inflater.inflate(R.layout.biddetailsalertbox, null)
-                val deleteDialog = AlertDialog.Builder(this@BidDetail).create()
-                deleteDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                deleteDialog.setView(v)
-                val btncontinue = v.findViewById<Button>(R.id.submitbutton)
-                val edtPrice =
-                    v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
-                val edtSaleTerms =
-                    v.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
-                btncontinue.setOnClickListener { v ->
-
-                    if (edtPrice.text.toString().isNullOrEmpty()) {
-                        edtPrice.requestFocus()
-                        edtPrice.error = resources.getString(R.string.please_enter_sale_price)
-                    } else if (edtSaleTerms.text.toString().isNullOrEmpty()) {
-                        edtPrice.requestFocus()
-                        edtPrice.error = resources.getString(R.string.please_enter_sale_terms)
-                    } else {
-                        var hashMap = HashMap<String, RequestBody>()
-                        hashMap["bidId"] = mUtil.createPartFromString(bidId)
-                        hashMap["amount"] = mUtil.createPartFromString(edtPrice.text.toString())
-                        hashMap["description"] =
-                            mUtil.createPartFromString(edtSaleTerms.text.toString())
-                        viewModel.vendorAcceptBid(this, true, hashMap)
-                        viewModel.mResponse.observe(this, this)
-
-                        bidamt.visibility = View.VISIBLE
-                        biddisc.visibility = View.VISIBLE
-                        placebid_button.tag = 1
-                        placebid_button.text = "Place Bid"
-                        if (placebid_button.text.toString() == "Place Bid") {
-                            placebid_button.text = "Edit Bid"
-                            v.tag = 1 //pause
-                        } else {
-                            val status = v.tag as Int
-                            if (status == 1) {
-                                v.tag = 0 //pause
-                            } else {
-                                placebid_button.text = "Edit Bid"
-                                v.tag = 1 //pause
-                            }
-                        }
-
-                        deleteDialog.dismiss()
-                    }
-
-                }
-                deleteDialog.show()
-            }
-
-
-        }*/
         }
     }
 
@@ -237,6 +190,40 @@ class BidDetail : AppCompatActivity(), View.OnClickListener, Observer<RestObserv
 
         }
     }
+
+    private fun editDialog() {
+        dialog = Dialog(this)
+       // dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog!!.setContentView(R.layout.biddetailsalertbox)
+        dialog!!.setCancelable(true)
+
+        val btnSubmit = dialog!!.findViewById<com.stalkstock.utils.custom.TitiliumBoldButton>(R.id.submitbutton)
+        val etEditPrice = dialog!!.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellingPrice)
+        val etEditDesc = dialog!!.findViewById<com.stalkstock.utils.custom.TitiliumBoldEditText>(R.id.edtSellngDesc)
+
+        btnSubmit.setOnClickListener {
+            dialog!!.dismiss()
+
+           /* if (!mValidationClass!!.isNetworkConnected()) {
+                showAlerterRed(resources.getString(R.string.no_internet))
+            } else {
+                if (etEditPrice.text.toString().isEmpty()) {
+
+                } else {
+                    val map = HashMap<String, String>()
+                    map.put("id", productId)
+                    map.put("mrp", etEditPrice.text.toString().trim())
+
+                    viewModel.editPriceAPI(this, true, map)
+                    viewModel.mResponse.observe(this, this)
+                }
+            }*/
+
+            //   edit2Dialog()
+        }
+        dialog!!.show()
+    }
+
 
     override fun onChanged(it: RestObservable?) {
         when {

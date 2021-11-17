@@ -1,5 +1,6 @@
 package com.stalkstock.driver
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -28,9 +29,14 @@ import kotlinx.android.synthetic.main.activity_add_detail.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.verification_popup.*
 import okhttp3.RequestBody
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
 
+    private val myCalendar = Calendar.getInstance()
+    private lateinit var date: DatePickerDialog.OnDateSetListener
     val viewModel: DriverViewModel by viewModels()
     var mProfileImage = ""
     var mLicenseimage1 = ""
@@ -48,6 +54,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     var state: String = ""
     var pass : String= ""
     var country: String = ""
+    var type=1
 
     override fun getContentId(): Int {
         return R.layout.activity_add_detail
@@ -55,11 +62,29 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(Color.WHITE);
         }
+
+        date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, monthOfYear)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateLabel()
+        }
         tv_heading.text = "Add Details"
+        edText1.setOnClickListener {
+            type=1
+            datePicker()
+        }
+        edText3.setOnClickListener {
+            type=2
+            datePicker()
+        }
+
+
         iv_back.setOnClickListener {finish()}
         btn_Continue.setOnClickListener {
             signUpApi()
@@ -193,4 +218,28 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.createdAt, mResponse.body.createdAt)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updatedAt, mResponse.body.updatedAt)
     }
+
+    private fun datePicker() {
+
+        val datePickerDialog = DatePickerDialog(this, date,  myCalendar[Calendar.YEAR],
+            myCalendar[Calendar.MONTH],
+            myCalendar[Calendar.DAY_OF_MONTH])
+
+        datePickerDialog.datePicker.minDate= System.currentTimeMillis() -1000
+        datePickerDialog.show()
+
+    }
+
+    private fun updateDateLabel() {
+        val dateFormat = "dd/MM/yyyy" //In which you need put here
+        val sdf = SimpleDateFormat(dateFormat, Locale.US)
+        if(type==1){
+            edText1.setText(sdf.format(myCalendar.time))
+        }else{
+            edText3.setText(sdf.format(myCalendar.time))
+        }
+
+
+    }
+
 }

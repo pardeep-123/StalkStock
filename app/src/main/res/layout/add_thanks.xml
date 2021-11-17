@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center"
-            android:text="Your request was completed successfully."
+            android:text="Your request was sent successfully."
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp" />
 

@@ -25,6 +25,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup3.*
 import kotlinx.android.synthetic.main.activity_signup3.btn_signup
 import kotlinx.android.synthetic.main.activity_signup3.emailEdittext
@@ -189,7 +190,11 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = resources.getString(R.string.please_enter_password)
-        } else if (repasswordEdittext.text.toString().isEmpty()) {
+        }else if (passwordEdittext.getText().toString().length<7) {
+            passwordEdittext.requestFocus()
+            passwordEdittext.setError("Password should contain at least 6 characters")
+        }
+        else if (repasswordEdittext.text.toString().isEmpty()) {
             repasswordEdittext.requestFocus()
             repasswordEdittext.error = resources.getString(R.string.please_reenter_password)
         } else if (passwordEdittext.text.toString() != repasswordEdittext.text.toString()
@@ -197,6 +202,15 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             repasswordEdittext.requestFocus()
             repasswordEdittext.error = resources.getString(R.string.new_confirm_password_dont_match)
         } else {
+
+            if(mVehicleType=="Select your vehicle type"){
+                Toast.makeText(this, "Please select your vehicle type", Toast.LENGTH_SHORT).show()
+                return
+            }
+            if(mCountryName=="Select Country"){
+                Toast.makeText(this, "Please select country name", Toast.LENGTH_SHORT).show()
+                return
+            }
 
             val hashMap = HashMap<String, String>()
             hashMap[GlobalVariables.PARAM.firstname] = et_firstName.text.toString().trim()

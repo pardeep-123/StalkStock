@@ -502,14 +502,14 @@
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center_vertical"
                     android:hint="@string/create_your_password"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionNext"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textColorHint="@color/light_grey"
                     android:minHeight="45dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="13sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView

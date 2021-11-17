@@ -47,7 +47,7 @@ class MyordersAdapter(
         {
             0->{holder.itemView.tvStatus.text = "Pending" }
             1->{holder.itemView.tvStatus.text = "In Progress"}
-            3->{holder.itemView.tvStatus.text = "Packed"}
+            2->{holder.itemView.tvStatus.text = "Packed"}
             4->{holder.itemView.tvStatus.text = "Completed"}
             5->{holder.itemView.tvStatus.text = "Cancelled"}
             6->{holder.itemView.tvStatus.text = "Rejected"}

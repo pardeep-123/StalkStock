@@ -66,8 +66,8 @@
                         android:id="@+id/ivCamera"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:tint="@color/dark_gray"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="fitXY"
+                        app:tint="@color/dark_gray" />
 
                     <ImageView
                         android:id="@+id/ivCamera1"
@@ -96,7 +96,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:tint="@color/dark_gray"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="fitXY"/>
 
                     <ImageView
                         android:id="@+id/iv_camera2"
@@ -144,7 +144,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         app:tint="@color/dark_gray"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="fitXY"/>
 
                     <ImageView
                         android:id="@+id/iv_camera3"
@@ -187,7 +187,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
                         app:tint="@color/dark_gray"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="fitXY"/>
 
                     <ImageView
                         android:id="@+id/iv_camera4"

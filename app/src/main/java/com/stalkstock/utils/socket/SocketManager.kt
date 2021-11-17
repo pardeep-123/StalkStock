@@ -40,13 +40,17 @@ class SocketManager  {
     }
 
     fun unRegister(observer: SocketInterface) {
-        if (observerList != null) {
-            for (i in observerList!!.indices) {
-                val model = observerList!![i]
-                if (model === observer) {
-                    observerList!!.remove(model)
+        try {
+            if (observerList != null) {
+                for (i in 0 until observerList?.size!! - 1) {
+                    val model = observerList!![i]
+                    if (model === observer) {
+                        observerList?.remove(model)
+                    }
                 }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

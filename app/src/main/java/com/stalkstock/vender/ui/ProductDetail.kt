@@ -106,6 +106,7 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
     private fun setData(mResponse: ModelProductDetail) {
         currentProductModel = mResponse
         adduploadimages.loadImage(mResponse.body.productImage[0].image)
+        tvProductName.text= mResponse.body.name
         product_Bacongrill.text = mResponse.body.brandName
         businessnamee1.text = mResponse.body.productTag[0].tag
         businessmobile.text = mResponse.body.country

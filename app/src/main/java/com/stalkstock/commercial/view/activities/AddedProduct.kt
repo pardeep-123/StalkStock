@@ -290,24 +290,48 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
     }
 
     private fun addBidingRequestApi() {
-        val jsonArray = JSONArray()
-        val student1 = JSONObject()
-        val quantity = etEnterQuantity.text.toString()
-        if(list.size==0){
-            student1.put("productId",productId)
-            student1.put("qty",quantity.toInt())
-            jsonArray.put(student1)
+
+        if(spinnerProduct.selectedItemPosition==0) {
+            spinnerProduct.requestFocus()
+            AppUtils.showErrorAlert(this, getString(R.string.please_select_category))
         }
-        else{
-            for (i in 0 until list.size) {
-                student1.put("productId",list[i].type)
-                student1.put("qty",list[i].quantity)
+
+        else if(spinnerSubProduct.selectedItemPosition==0) {
+            spinnerSubProduct.requestFocus()
+            AppUtils.showErrorAlert(this, getString(R.string.please_select_sub_category))
+        }else if(spinnerGetProduct.selectedItemPosition==0){
+            spinnerGetProduct.requestFocus()
+            AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
+        }else if(etEnterQuantity.text.toString().trim().isEmpty()){
+            etEnterQuantity.requestFocus()
+            etEnterQuantity.error = resources.getString(R.string.please_enter_quantity)
+        }else if(etEnterQuantity.text.toString().trim()=="0"){
+            etEnterQuantity.requestFocus()
+            etEnterQuantity.error = "Quantity should be greater than 0"
+        }else if(etUnitMeasurement.text.toString().trim().isEmpty()){
+            etUnitMeasurement.requestFocus()
+            etUnitMeasurement.error = resources.getString(R.string.please_select_quantity)
+        }else{
+            val jsonArray = JSONArray()
+            val student1 = JSONObject()
+            val quantity = etEnterQuantity.text.toString()
+            if(list.size==0){
+                student1.put("productId",productId)
+                student1.put("qty",quantity.toInt())
                 jsonArray.put(student1)
             }
-            Log.i("list",list.toString())
+            else{
+                for (i in 0 until list.size) {
+                    student1.put("productId",list[i].type)
+                    student1.put("qty",list[i].quantity)
+                    jsonArray.put(student1)
+                }
+                Log.i("list",list.toString())
+            }
+            homeModel.sendBidingRequest(this, addressId,jsonArray,true)
+            homeModel.homeResponse.observe(this, this)
         }
-        homeModel.sendBidingRequest(this, addressId,jsonArray,true)
-        homeModel.homeResponse.observe(this, this)
+
     }
 
     override fun onBackPressed() {

@@ -71,16 +71,19 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5sp"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:background="@android:color/darker_gray"
                       />
+
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/bidtime"
-                    android:layout_toRightOf="@+id/view_gdsd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="22sp"
-                     android:text="3:30"/>
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/view_gdsd"
+                    android:text="3:30"
+                    android:visibility="gone"
+                    android:textSize="22sp" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

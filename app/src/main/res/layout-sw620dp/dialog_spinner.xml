@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_12sdp"
-        android:text="Change Order Statys"
+        android:text="Change Order Status"
         android:textColor="#000"
         android:textSize="18sp" />
 

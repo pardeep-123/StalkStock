@@ -39,7 +39,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="business_name">Business name</string>
     <string name="enter_mobile">Enter your phone number</string>
     <string name="mobile">Mobile</string>
-    <string name="enter_business_telephone_number">Enter your business phone number</string>
+    <string name="enter_business_telephone_number">Enter your business telephone number</string>
     <string name="business_telephone_number">Business Telephone Number</string>
     <string name="enter_website">Enter your website address</string>
     <string name="website">Website</string>
@@ -179,6 +179,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="enter_cardholder_full_name">Enter cardholder\ʼs full name</string>
     <string name="enter_credit_card_number">Enter credit card number</string>
     <string name="enter_your_street_address">Enter your street address</string>
+    <string name="enter_your_business_address">Enter your business address</string>
     <string name="enter_unit_apt_suite_floor">Enter Unit/Apt/Suite/Floor</string>
     <string name="unit_apt_suite_floor">Unit/Apt/Suite/Floor</string>
     <string name="state_province_region">State/Province/Region</string>
@@ -221,7 +222,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_business_name">Please enter business name</string>
     <string name="please_enter_business_description">Please enter business description</string>
     <string name="please_enter_business_license">Please enter business license</string>
-    <string name="please_enter_business_type">Please enter business Type</string>
+    <string name="please_enter_business_type">Please enter business type</string>
     <string name="please_enter_business_delivery_type">Please enter business delivery Type</string>
     <string name="please_enter_mobile_number">Please enter mobile number</string>
     <string name="please_enter_valid_number">Please enter valid number</string>
@@ -242,9 +243,9 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_state">Please enter state/province/region</string>
     <string name="please_enter_postal_code">Please enter postal/zip code</string>
     <string name="please_enter_country">Please enter country</string>
-    <string name="please_reenter_password">Please reenter your password</string>
+    <string name="please_reenter_password">Please re-enter your password</string>
     <string name="please_select_image">Please select image</string>
-    <string name="new_confirm_password_dont_match">New and confirm password do not match</string>
+    <string name="new_confirm_password_dont_match">Confirm password should be same as password</string>
     <string name="success">Success!</string>
     <string name="please_select_vehicletype">Please select vehicle type</string>
     <string name="please_enter_vehicle_make">Please enter vehicle make</string>
@@ -287,7 +288,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_select_product">Please select Product</string>
     <string name="please_select_sub_category">Please select SubCategory</string>
     <string name="please_select_category">Please select Category</string>
-    <string name="please_select_quantity">Please select quantity</string>
+    <string name="please_select_quantity">Please select unit of measurement</string>
     <string name="no_request_found">No Request Found</string>
 
     <string-array name="Select_Category">

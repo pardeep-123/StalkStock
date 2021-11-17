@@ -35,6 +35,7 @@
                     android:id="@+id/image"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:src="@drawable/ic_dummy_img"
                      />
             </LinearLayout>
 
@@ -50,7 +51,7 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jamie Row"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="17sp"
                      />
@@ -60,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="jamie@gmail.com"
+                    android:text=""
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
 
@@ -69,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="123785768"
+                    android:text=""
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
             </LinearLayout>

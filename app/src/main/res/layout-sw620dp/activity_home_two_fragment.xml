@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/hometwo"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,72 +22,52 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                 tools:ignore="MissingConstraints">
+                android:layout_height="50dp"
+                tools:ignore="MissingConstraints">
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     android:text="My Products"
                     android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="My Products"
                     android:textColor="#000"
-                    android:textSize="20sp" />
-
-                <!--<ImageView
-                    android:id="@+id/notification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/_35sdp"
-                    android:src="@drawable/ic_notficationicon"></ImageView>
-
-                <ImageView
-                    android:id="@+id/filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/ic_filter"></ImageView>-->
+                    android:textSize="16dp" />
 
 
                 <ImageView
                     android:id="@+id/iv_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/notification"
                     android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_toStartOf="@+id/notification"
                     android:src="@drawable/chat_grey_icon1"
-                    android:tint="#ED1F24"
-                    android:layout_marginRight="15dp"
-                    />
-
+                    app:tint="#ED1F24" />
 
                 <ImageView
                     android:id="@+id/notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/notification_icon1"
-                    android:layout_toLeftOf="@+id/filter"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="15dp"
-                    />
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@+id/filter"
+                    android:src="@drawable/notification_icon1" />
 
                 <ImageView
                     android:id="@+id/filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/filter_icn1"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                   />
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/filter_icn1" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                 android:background="@color/dark_gray"></View>
+                android:layout_height="0.5dp"
+                android:background="@color/dark_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,113 +77,69 @@
                 android:layout_marginRight="15dp"
                 android:orientation="vertical">
 
-<!--
                 <RelativeLayout
-                    android:layout_width="match_parent"
                     android:id="@+id/edit_search"
-                    android:layout_marginTop="20dp"
-
-                    android:background="@drawable/search_input"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/search"
-                        android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/search_icon"/>
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_height="wrap_content"
-                        />
-
-                    <TextView
-
-                        android:layout_toRightOf="@+id/search"
-                        android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="16sp"
-                        android:text="Search.."
-                        />
-
-                </RelativeLayout>
--->
-
-                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:id="@+id/edit_search"
 
-                    android:padding="12dp"
+
+                    android:layout_height="45dp"
                     android:background="@drawable/shape_edit_new_home"
-                    android:layout_height="70dp">
+                    android:padding="12dp">
 
                     <ImageView
                         android:id="@+id/search"
                         android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/search_icon"/>
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:src="@drawable/search_icon" />
 
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_10sdp"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
-
-                        android:layout_toRightOf="@+id/search"
                         android:layout_width="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:textSize="22sp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/search"
                         android:text="Search.."
-                        />
+                        android:textSize="17sp" />
 
                 </RelativeLayout>
-
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="5dp"
+                    android:layout_gravity="end"
                     android:id="@+id/txtHomeTotal"
-                    android:gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:gravity="end"
                     android:text="Total:0"
                     android:textColor="#000"
-                    android:textSize="22sp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp">
 
@@ -213,7 +150,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_20sdp"
@@ -223,17 +159,17 @@
                         <com.stalkstock.utils.custom.TitiliumBoldButton
                             android:id="@+id/addproductbutton"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
+                            android:layout_height="wrap_content"
                             android:background="@drawable/buttonshape"
                             android:text="Add Product"
                             android:textAllCaps="false"
-                            android:layout_marginBottom="15dp"
-
                             android:textColor="#fff"
-                            android:textSize="17sp" />
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:textSize="16dp" />
                     </LinearLayout>
-                </RelativeLayout>
-         </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
 
     </LinearLayout>
 

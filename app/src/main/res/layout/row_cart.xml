@@ -80,9 +80,10 @@
         <RelativeLayout
             android:layout_width="70dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
-
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_toLeftOf="@+id/tvPrice"
             android:layout_toRightOf="@+id/name_text"
             android:background="@drawable/background_box_new"
             android:gravity="center_vertical"

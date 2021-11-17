@@ -219,6 +219,9 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (passwordEdittext.getText().toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError(resources.getString(R.string.please_enter_password))
+        } else if (passwordEdittext.getText().toString().length<7) {
+            passwordEdittext.requestFocus()
+            passwordEdittext.setError("Password should contain at least 6 characters")
         } else if (repasswordEdittext.getText().toString().isEmpty()) {
             repasswordEdittext.requestFocus()
             repasswordEdittext.setError(resources.getString(R.string.please_reenter_password))
@@ -229,6 +232,16 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             repasswordEdittext.setError(resources.getString(R.string.new_confirm_password_dont_match))
         }
         else if (MyApplication.instance.getString("usertype").equals("4")) {
+
+            if (spinner.selectedItem.toString()=="Select Country") {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_enter_country),
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            }
+
             val hashMap = HashMap<String, RequestBody>()
             hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
@@ -253,6 +266,15 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         }
 
         else {
+
+            if (country=="Select Country") {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_enter_country),
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            }
 
             val hashMap = HashMap<String, RequestBody>()
             hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
@@ -303,8 +325,9 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 if (it.data is CommercialSignUpResponse) {
                     val data = it.data as CommercialSignUpResponse
                     if (data.code == 200) {
-                        setCommercialData(data)
-                        startActivity(Intent(this, MainCommercialActivity::class.java))
+                        Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
+                       // setCommercialData(data)
+                        startActivity(Intent(this, LoginActivity::class.java))
                     }
 
                     else {
@@ -537,11 +560,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         if (p0?.id == R.id.spinner) {
             var array = this.resources.getStringArray(R.array.Select_country)
 
-            country = array.get(p2)
+            country = array[p2]
         } else if (p0?.id == R.id.spinner_type) {
             var array = this.resources.getStringArray(R.array.Select_business_type)
 
-            business_type = p2.toString()
+            business_type = array[p2]
         }
     }
 }
