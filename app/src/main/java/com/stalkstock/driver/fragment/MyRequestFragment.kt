@@ -186,10 +186,27 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
                 if (it.data is OrderHistoryData) {
                     val mResponse: OrderHistoryData = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        if(mResponse.body.size==0){
+                            tvNoData.visibility=View.VISIBLE
+                            recy_req.visibility=View.GONE
+                        }else{
+                            tvNoData.visibility=View.GONE
+                            recy_req.visibility=View.VISIBLE
+                            listRequest.clear()
+                            listRequest.addAll(mResponse.body)
+                            adapter.notifyDataSetChanged()
+                        }
 
-                        listRequest.clear()
-                        listRequest.addAll(mResponse.body)
-                        adapter.notifyDataSetChanged()
+
+                        /*if(listRequest.size==0){
+                            tvNoData.visibility=View.VISIBLE
+                            recy_req.visibility=View.GONE
+                        }else{
+                            tvNoData.visibility=View.VISIBLE
+                            recy_req.visibility=View.GONE*/
+
+                     //   }
+
                     } else {
                         Toast.makeText(ctx, mResponse.message, Toast.LENGTH_SHORT).show()
                     }

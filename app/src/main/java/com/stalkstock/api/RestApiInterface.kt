@@ -1,6 +1,5 @@
 package com.stalkstock.api
 
-import com.google.gson.JsonObject
 import com.stalkstock.advertiser.model.*
 import com.stalkstock.commercial.view.model.*
 import com.stalkstock.common.model.ModelCategoryList
@@ -16,7 +15,6 @@ import com.stalkstock.vender.Model.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.http.*
 import retrofit2.http.Body
 

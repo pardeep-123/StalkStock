@@ -44,11 +44,6 @@ class RequestAdapter(
             GlobalVariables.DATEFORMAT.DateTimeFormat1,
             GlobalVariables.DATEFORMAT.DateTimeFormat2
         )
-//            mUtil.toDate(arrayList[position].createdAt.toString(),"MMM,dd,yyyy")
-//        holder.itemView.bidtime.text=mUtil.toDate(arrayList[position].createdAt.toString(),"hh:mm")
-//         holder.itemView.biddate.bidtime=
-
-
         holder.itemView.setOnClickListener {
 
             val intent = Intent(mContext, BidDetail::class.java)

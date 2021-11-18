@@ -190,7 +190,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = resources.getString(R.string.please_enter_password)
-        }else if (passwordEdittext.getText().toString().length<7) {
+        }else if (passwordEdittext.getText().toString().length<6) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError("Password should contain at least 6 characters")
         }

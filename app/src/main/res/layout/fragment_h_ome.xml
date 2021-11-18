@@ -151,7 +151,7 @@
             android:id="@+id/ca_tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"
@@ -189,6 +189,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:text="Pending"
                     android:textColor="@color/orange_colour" />
+
 
                 <RelativeLayout
                     android:id="@+id/rl"

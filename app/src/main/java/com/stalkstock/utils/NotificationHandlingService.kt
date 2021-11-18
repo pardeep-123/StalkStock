@@ -27,7 +27,7 @@ class NotificationHandlingService : FirebaseMessagingService() {
     var title = ""
     var message: String? = ""
     var type:Int=0
-    var CHANNEL_ID = "BuzzAMaid"
+    var CHANNEL_ID = "StalkNStock"
 
     var id = ""
     var name = ""
@@ -154,7 +154,7 @@ class NotificationHandlingService : FirebaseMessagingService() {
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel =
-                NotificationChannel(channelId, "BuzzAMaid", NotificationManager.IMPORTANCE_HIGH)
+                NotificationChannel(channelId, "StalkNStock", NotificationManager.IMPORTANCE_HIGH)
             channel.enableLights(true)
             channel.lightColor = Color.RED
             channel.setShowBadge(true)

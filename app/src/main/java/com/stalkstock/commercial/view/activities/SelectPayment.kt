@@ -2,7 +2,6 @@ package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +11,9 @@ import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.CommericalOrderPlaceResponse
-import com.stalkstock.commercial.view.model.Sendbidresponse
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.select_payment.*
-import org.json.JSONArray
-import org.json.JSONObject
 
 class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
 
@@ -85,7 +80,8 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
             }
             placeOrderApi()
 
-            startActivity(Intent(this, PaymentStatus::class.java)) }
+          //  startActivity(Intent(this, PaymentStatus::class.java))
+        }
     }
 
     private fun placeOrderApi() {
@@ -103,7 +99,7 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
           data.put("shopCharges",0)
           data.put("paymentMethod",payment)
           data.put("total",rs)
-          data.put("isSelfpickup",1)
+          data.put("isSelfpickup",0)
           data.put("cardId",card)
           data.put("bidId",bidId)
 

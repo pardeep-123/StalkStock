@@ -257,14 +257,14 @@
                 android:layout_marginTop="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/edtConsumerRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center_vertical"
-                    android:id="@+id/edtConsumerRePassword"
                     android:hint="@string/re_enter_your_password"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:minHeight="45dp"

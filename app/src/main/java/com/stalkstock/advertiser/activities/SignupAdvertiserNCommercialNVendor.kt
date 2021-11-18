@@ -312,7 +312,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     val data = it.data as VendorSignupResponse
                     if (MyApplication.instance.getString("usertype").equals("3")) {
                         setData(data)
-                        startActivity(Intent(this, BottomnavigationScreen::class.java))
+                        startActivity(Intent(this, LoginActivity::class.java))
                         //startActivity(Intent(mContext, Verification::class.java))
 //                finish()
                     }

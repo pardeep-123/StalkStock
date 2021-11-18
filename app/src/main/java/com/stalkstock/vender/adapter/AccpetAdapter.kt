@@ -58,10 +58,6 @@ class AccpetAdapter(
             GlobalVariables.DATEFORMAT.DateTimeFormat1,
             GlobalVariables.DATEFORMAT.DateTimeFormat2
         )
-//            mUtil.toDate(arrayList[position].createdAt.toString(),"MMM,dd,yyyy")
-//        holder.itemView.bidtime.text=mUtil.toDate(arrayList[position].createdAt.toString(),"hh:mm")
-
-
     }
 
     override fun getItemCount(): Int {

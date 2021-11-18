@@ -30,6 +30,9 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_add_product.*
+import kotlinx.android.synthetic.main.activity_add_product.spinner
+import kotlinx.android.synthetic.main.activity_add_product.spinnerCountry
+import kotlinx.android.synthetic.main.activity_edit_product.*
 import okhttp3.RequestBody
 import kotlin.collections.ArrayList
 
@@ -75,6 +78,14 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         ivImg.setOnClickListener(this)
         measurement.setOnClickListener(this)
         imagethree.setOnClickListener(this)
+
+        val countryAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_country,
+            R.layout.spinner_layout_for_vehicle
+        )
+        countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinnerCountry.adapter = countryAdapter
 
         try {
             currentCatId = intent.getStringExtra("catId")!!
@@ -145,8 +156,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         map["description"] = mUtils.createPartFromString(addproductdescription.text.toString())
         map["brandName"] = mUtils.createPartFromString(addproductbrand.text.toString())
         map["mrp"] = mUtils.createPartFromString(addproductprice.text.toString())
-        map["country"] = mUtils.createPartFromString(addproductorigin.text.toString())
-        map["country"] = mUtils.createPartFromString(addproductorigin.text.toString())
+        map["country"] = mUtils.createPartFromString(spinnerCountry.selectedItem.toString())
         var avail = 0
         if (spinner.selectedItemPosition == 0)
             avail = 1
@@ -170,7 +180,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         } else if (addproductname.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter product name")
             return false
-        } else if (addproductorigin.text.toString().trim().isEmpty()) {
+        } else if(spinnerCountry.selectedItem.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter country")
             return false
         } else if (curreMeasurementId.trim().isEmpty()) {

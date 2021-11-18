@@ -464,13 +464,16 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                             ca_tv1.visibility = View.GONE
                         }
                     } else {
-                        ca_tv1.visibility = View.GONE
+                        ca_tv1.visibility = View.VISIBLE
                     }
+                }
+                else{
+                    ca_tv1.visibility = View.GONE
                 }
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        ca_tv1.visibility = View.GONE
+                        ca_tv1.visibility = View.VISIBLE
                         Toast.makeText(mactivity!!, mResponse.message, Toast.LENGTH_SHORT)
                             .show()
                     }

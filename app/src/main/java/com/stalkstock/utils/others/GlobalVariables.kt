@@ -315,6 +315,7 @@ class GlobalVariables {
         const val bidinglist = "commercial/biding/list"
         const val sendBidingRequest = "sendBidingRequest"
         const val orderPlace = "commercial/order/place"
+        const val markAsPrimary = "markAsPrimary"
 
    /*     {
             "addressId": 42,

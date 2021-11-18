@@ -167,15 +167,14 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                     if (it.data != null) {
                         Toast.makeText(ctx, it.data as String, Toast.LENGTH_SHORT).show()
                     } else {
-                        if (it.error!!.toString().contains("Data not found")) {
+                        Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
+                            .show()
+
+                        if (it.error!!.toString().contains("Data not found!")) {
                             try{
                                 val intent = Intent(ctx, MainConsumerActivity::class.java)
                                 intent.putExtra("is_open", "4")
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
-                                Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
-                                    .show()
                             }
                             catch (e:Exception)
                             {
@@ -183,8 +182,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                             }
 
                         } else
-                            Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
-                            .show()
+                            Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
                 it.status == Status.LOADING -> {

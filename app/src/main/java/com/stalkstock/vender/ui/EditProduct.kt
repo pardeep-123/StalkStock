@@ -84,6 +84,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         imageView.setOnClickListener(this)
         adduploadimages.setOnClickListener(this)
         addSingleImage.setOnClickListener(this)
+        deleteicon.setOnClickListener(this)
         addproduct_unitmeasurement.setOnClickListener { setUnitList() }
 
         adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages)
@@ -201,6 +202,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             }
             R.id.addSingleImage -> {
                 askCameraPermissons()
+            }
+
+            R.id.deleteicon ->{
+
             }
         }
     }
@@ -383,7 +388,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 if (it.data is ModelEditProduct) {
                     val mResponse: ModelEditProduct = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        AppUtils.showSuccessAlert(this, mResponse.message)
+                        AppUtils.showSuccessAlert(this, "Product updated successfully.")
                         Handler(Looper.getMainLooper()).postDelayed({
                             finish()
                         }, 2000)
@@ -437,6 +442,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         list.clear()
         for (i in listCategoryBody) { list.add(i.name) }
         spinnerCategory!!.adapter = ArrayAdapter(this, R.layout.spinner_item_text, list)
+
+        for(i in list.indices) {
+            if(currentProductModel.body.productCategory.name == list[i]) {
+                spinnerCategory.setSelection(list.indexOf(list[i]))
+            }
+        }
         getmeasurementsAPI()
     }
 
