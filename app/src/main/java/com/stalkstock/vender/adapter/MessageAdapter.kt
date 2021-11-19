@@ -11,15 +11,9 @@ import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.Chat
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
-import com.stalkstock.utils.others.Util
 import com.stalkstock.utils.others.getPrefrence
-import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.MessageList
-import com.stalkstock.vender.Model.VendorBiddingListResponse
-import com.stalkstock.vender.ui.BidDetail
-import kotlinx.android.synthetic.main.bidproductlist.view.*
 import kotlinx.android.synthetic.main.messagelist.view.*
-import kotlinx.android.synthetic.main.row_cart.view.*
 
 class MessageAdapter(
     var mContext: Context,

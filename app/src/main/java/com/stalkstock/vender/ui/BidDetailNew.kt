@@ -1,15 +1,19 @@
 package com.stalkstock.vender.ui
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Gravity
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -30,11 +34,9 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_bid_detail.*
 import kotlinx.android.synthetic.main.biddetailsalertbox.*
 import okhttp3.RequestBody
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
-class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
+class BidDetailNew: AppCompatActivity(), Observer<RestObservable>, View.OnClickListener {
+    val mContext: Context = this
     val viewModel: VendorViewModel by viewModels()
     var bidId = ""
     var mUtil = Util()
@@ -44,28 +46,19 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
     var chatId = ""
     var userName = ""
     var userImage = ""
-    var views: View? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        views = inflater.inflate(R.layout.activity_bid_detail, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_bid_detail)
 
-        return views
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         getIntentData()
 
         setOnClicks()
+
     }
 
     private fun getIntentData() {
-
-        bidId = arguments?.getString("bidId").toString()
+        bidId = intent.getStringExtra("bidId").toString()
         getBidDetail(bidId)
 
     }
@@ -75,21 +68,54 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
         hashMap["bidId"] = mUtil.createPartFromString(bidId)
 
         //   hashMap["type"] = "0"    // 0=>new request 1=>accepted
-        viewModel.vendorBiddingDetail(requireActivity(), true, hashMap)
-        viewModel.mResponse.observe(viewLifecycleOwner, this)
-
+        viewModel.vendorBiddingDetail(this, true, hashMap)
+        viewModel.mResponse.observe(this, this)
     }
-
     private fun setOnClicks() {
         placebid_button.setOnClickListener(this)
         newchat.setOnClickListener(this)
         biddetails_backarrow.setOnClickListener(this)
     }
 
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is VendorBidDetailResponse) {
+                    val mResponse: VendorBidDetailResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        setBidData(mResponse.body)
+
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                } else if (it.data is CommonResponseModel) {
+                    val mResponse: CommonResponseModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        Log.i("====", mResponse.message)
+                        onBackPressed()
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+
+                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.newchat -> {
-                val intent = Intent(requireContext(), Chat::class.java)
+                val intent = Intent(this, Chat::class.java)
                 intent.putExtra("screen_type", "bid")
                 intent.putExtra("id", bidId.toString())
                 intent.putExtra("userId", userId)
@@ -101,7 +127,7 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
             }
 
             R.id.biddetails_backarrow -> {
-                activity?.onBackPressed()
+                onBackPressed()
             }
 
             R.id.placebid_button -> {
@@ -109,35 +135,15 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
             }
         }
     }
-
-
-    fun placeBid(hashMap: HashMap<String, RequestBody>) {
-
-    }
-
-    private fun loadFragment(fragment: Fragment?): Boolean {
-        if (fragment != null) {
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment)
-                .commit()
-            return true
-        }
-        return false
-    }
-
     private fun editDialog() {
-        val dialog = Dialog(requireContext(), R.style.Theme_Dialog)
+        val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.biddetailsalertbox)
-        dialog.setCancelable(true)
-        Objects.requireNonNull<Window>(dialog.window).setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCanceledOnTouchOutside(true)
-
+        dialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         dialog.window!!.setGravity(Gravity.CENTER)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
 
         dialog.submitbutton.setOnClickListener {
             if (dialog.edtSellingPrice.text.toString().isEmpty()) {
@@ -149,7 +155,7 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
                 hashMap["bidId"] = mUtil.createPartFromString(bidId)
                 hashMap["amount"] = mUtil.createPartFromString(dialog.edtSellingPrice?.text.toString())
                 hashMap["description"] = mUtil.createPartFromString(dialog.edtSellngDesc?.text.toString())
-                viewModel.vendorAcceptBid(requireActivity(), true, hashMap)
+                viewModel.vendorAcceptBid(this, true, hashMap)
                 viewModel.mResponse.observe(this, this)
 
                 bidamt.visibility = View.VISIBLE
@@ -174,42 +180,6 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
         dialog.show()
     }
 
-
-    override fun onChanged(it: RestObservable?) {
-        when {
-            it!!.status == Status.SUCCESS -> {
-                if (it.data is VendorBidDetailResponse) {
-                    val mResponse: VendorBidDetailResponse = it.data
-                    if (mResponse.code == GlobalVariables.URL.code) {
-                        setBidData(mResponse.body)
-
-                    } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
-                    }
-                } else if (it.data is CommonResponseModel) {
-                    val mResponse: CommonResponseModel = it.data
-                    if (mResponse.code == GlobalVariables.URL.code) {
-                        Log.i("====", mResponse.message)
-                        activity?.onBackPressed()
-                    } else {
-                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
-                    }
-                }
-            }
-            it.status == Status.ERROR -> {
-                if (it.data != null) {
-                    Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
-                } else {
-
-                    Toast.makeText(requireContext(), it.error!!.toString(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-            it.status == Status.LOADING -> {
-            }
-        }
-    }
-
     private fun setBidData(body: BidData) {
         userId = body.commercialDetail.id
         chatId = body.chatId.toString()
@@ -218,8 +188,8 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
 
         arrayList.clear()
         arrayList.addAll(body.orderItems)
-        bidOrderAdapter = BidOrderAdapter(requireContext(), arrayList)
-        rvOrders.layoutManager = LinearLayoutManager(requireContext())
+        bidOrderAdapter = BidOrderAdapter(this, arrayList)
+        rvOrders.layoutManager = LinearLayoutManager(this)
         rvOrders.adapter = bidOrderAdapter
 //        tvCategory.text= body.orderItems[0].product.categoryName
 //        tvProduct.text= body.orderItems[0].product.name

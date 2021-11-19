@@ -1,15 +1,18 @@
 package com.stalkstock.vender.ui
 
+import android.app.Dialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import com.stalkstock.vender.adapter.AccpetAdapter
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.stalkstock.R
@@ -23,14 +26,16 @@ import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.VendorBiddingListResponse
 import com.stalkstock.vender.adapter.RequestAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
+import kotlinx.android.synthetic.main.activity_bid_detail.*
 import kotlinx.android.synthetic.main.activity_bid_product.*
+import kotlinx.android.synthetic.main.biddetailsalertbox.*
 import okhttp3.RequestBody
 import java.util.HashMap
 
 /**
  * A simple [Fragment] subclass.
  */
-class BidFragment : Fragment(), Observer<RestObservable> {
+class BidFragment : Fragment(), Observer<RestObservable>, RequestAdapter.RequestInterface{
     var mContext: Context? = null
     var requestAdapter: RequestAdapter? = null
     var accpetAdapter: AccpetAdapter? = null
@@ -56,15 +61,17 @@ class BidFragment : Fragment(), Observer<RestObservable> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+      //  editDialog()
         mUtils = Util()
         val bidproductbackarrow = views?.findViewById<ImageView>(R.id.bidproductbackarrow)
         bidproductbackarrow?.visibility = View.GONE
         // bidrecyclerview = views?.findViewById(R.id.bidrecyclerview)
         mContext = requireActivity()
-        requestAdapter = RequestAdapter(mContext!!,arrayList)
-        bidrecyclerview?.layoutManager = LinearLayoutManager(mContext)
-        bidrecyclerview?.adapter = requestAdapter
 
+        bidrecyclerview?.layoutManager = LinearLayoutManager(mContext)
+        requestAdapter = RequestAdapter(mContext!!,arrayList,this)
+
+        bidrecyclerview?.adapter = requestAdapter
         getBidList(type)
 
 //        val backarrow = views?.findViewById<ImageView>(R.id.bidproductbackarrow)
@@ -99,6 +106,50 @@ class BidFragment : Fragment(), Observer<RestObservable> {
         }
     }
 
+    private fun editDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.biddetailsalertbox)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+
+        dialog.submitbutton.setOnClickListener {
+            if (dialog.edtSellingPrice.text.toString().isEmpty()) {
+                dialog.edtSellingPrice.error = resources.getString(R.string.please_enter_sale_price)
+            } else if (dialog.edtSellngDesc.text.toString().isEmpty()) {
+                dialog.edtSellngDesc.error = resources.getString(R.string.please_enter_sale_terms)
+            } else {
+                val hashMap = HashMap<String, RequestBody>()
+//                hashMap["bidId"] = mUtil.createPartFromString("bidId")
+//                hashMap["amount"] = mUtil.createPartFromString(dialog.edtSellingPrice?.text.toString())
+//                hashMap["description"] = mUtil.createPartFromString(dialog.edtSellngDesc?.text.toString())
+//                viewModel.vendorAcceptBid(this, true, hashMap)
+//                viewModel.mResponse.observe(this, this)
+
+                bidamt.visibility = View.VISIBLE
+                biddisc.visibility = View.VISIBLE
+                placebid_button.tag = 1
+                placebid_button.text = "Place Bid"
+                if (placebid_button.text.toString() == "Place Bid") {
+                    placebid_button.text = "Edit Bid"
+                    it.tag = 1 //pause
+                } else {
+                    val status = it.tag as Int
+                    if (status == 1) {
+                        it.tag = 0 //pause
+                    } else {
+                        placebid_button.text = "Edit Bid"
+                        it.tag = 1 //pause
+                    }
+                }
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
+    }
     private fun getBidList(type: String) {
         val hashMap = HashMap<String, RequestBody>()
         hashMap["type"] = mUtils.createPartFromString(type)
@@ -127,7 +178,7 @@ class BidFragment : Fragment(), Observer<RestObservable> {
                             if(type=="0"){
                                 arrayList.clear()
                                 arrayList.addAll(it.data.body)
-                                requestAdapter = RequestAdapter(mContext!!,arrayList)
+                                requestAdapter = RequestAdapter(mContext!!,arrayList,this)
                                 bidrecyclerview.layoutManager = LinearLayoutManager(mContext)
                                 bidrecyclerview.adapter = requestAdapter
 
@@ -167,6 +218,18 @@ class BidFragment : Fragment(), Observer<RestObservable> {
     override fun onResume() {
         super.onResume()
         getBidList(type)
+    }
+
+    override fun OnItemClick(position: Int, id: String) {
+        val bidDetail= BidDetail()
+        val bundle= Bundle()
+        bundle.putString("bidId",id.toString())
+        bidDetail.arguments= bundle
+        fragmentManager?.beginTransaction()?.add(R.id.rl_container, bidDetail)?.addToBackStack(null)?.commit()
+        //replaceFragment(bidDetail)
+//        val intent = Intent(requireActivity(), BidDetail::class.java)
+//        intent.putExtra("bidId",arrayList[position].id.toString())
+//        mContext.startActivity(intent)
     }
 
 

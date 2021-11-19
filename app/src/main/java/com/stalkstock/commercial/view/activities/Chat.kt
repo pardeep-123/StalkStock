@@ -203,12 +203,6 @@ class Chat : AppCompatActivity(), View.OnClickListener, SocketManager.SocketInte
         dialogSuccessful.show()
     }
 
-    data class ChatData(
-        var message: String = "",
-        var time: String = "",
-        var image: String = "",
-        var type: String = ""
-    )
 
     override fun onSocketCall(event: String?, vararg args: Any?) {
 
@@ -279,5 +273,9 @@ class Chat : AppCompatActivity(), View.OnClickListener, SocketManager.SocketInte
         MyApplication.getSocketManager().onRegister(this)
     }
 
+    override fun onStop() {
+        super.onStop()
+        MyApplication.getSocketManager().unRegister(this)
+    }
 
 }

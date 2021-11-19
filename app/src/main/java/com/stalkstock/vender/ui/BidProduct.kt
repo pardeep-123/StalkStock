@@ -13,7 +13,7 @@ import com.stalkstock.vender.adapter.AccpetAdapter
 import com.stalkstock.vender.adapter.RequestAdapter
 import kotlinx.android.synthetic.main.activity_bid_product.*
 
-class BidProduct : AppCompatActivity() {
+class BidProduct : AppCompatActivity(), RequestAdapter.RequestInterface {
     var mContext: Context? = null
     var requestAdapter: RequestAdapter? = null
     var accpetAdapter: AccpetAdapter? = null
@@ -22,7 +22,7 @@ class BidProduct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bid_product)
         mContext = this@BidProduct
-                requestAdapter = RequestAdapter(mContext!!,arrayList);
+                requestAdapter = RequestAdapter(mContext!!,arrayList,this);
         bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
         bidrecyclerview.setAdapter(requestAdapter)
         val backarrow = findViewById<ImageView>(R.id.bidproductbackarrow)
@@ -34,9 +34,10 @@ class BidProduct : AppCompatActivity() {
             btnAccpet.background = resources.getDrawable(R.drawable.past_button2)
             btnRequest.setTextColor(resources.getColor(R.color.white))
             btnAccpet.setTextColor(resources.getColor(R.color.balck))
-             requestAdapter =  RequestAdapter(mContext!!,arrayList);
+             requestAdapter =  RequestAdapter(mContext!!,arrayList,this);
             bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
             bidrecyclerview.setAdapter(requestAdapter)
+            requestAdapter?.requestInterface=this
         }
         btnAccpet.setOnClickListener { v: View? ->
             btnAccpet.background = resources.getDrawable(R.drawable.current_button)
@@ -46,5 +47,9 @@ class BidProduct : AppCompatActivity() {
             bidrecyclerview.setLayoutManager(LinearLayoutManager(mContext))
             bidrecyclerview.setAdapter(accpetAdapter)
         }
+    }
+
+    override fun OnItemClick(position: Int, id: String) {
+
     }
 }

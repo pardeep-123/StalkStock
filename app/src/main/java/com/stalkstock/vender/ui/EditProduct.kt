@@ -51,6 +51,8 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private var mAlbumFilesMultiple = ArrayList<AlbumFile>()
     var firstimage = ""
 
+    var deleteImageArrayId= ArrayList<String>()
+
     private var curreMeasurementId = ""
     private lateinit var adapterMeasurements: AdapterProductUnit2
     private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
@@ -68,6 +70,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     lateinit var adduploadimages: ImageView
     var relativeLayout: RelativeLayout? = null
     var detailDialog: Dialog? = null
+
     override fun getContentId(): Int {
         return R.layout.activity_edit_product
     }

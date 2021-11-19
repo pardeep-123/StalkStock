@@ -195,6 +195,39 @@ class HomeViewModel : ViewModel() {
     }
 
     @SuppressLint("CheckResult")
+    fun makeDefaultAddress(
+        activity: Activity,
+        showLoader: Boolean,
+        addressId: String
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.makeDefaultAddress(addressId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        makeDefaultAddress(activity, showLoader, addressId)
+                    }
+                })
+        }
+
+    }
+
+
+
+
+
+
+    @SuppressLint("CheckResult")
     fun editUserAddressAPI(
         activity: Activity,
         showLoader: Boolean,

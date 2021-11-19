@@ -1,7 +1,6 @@
 package com.stalkstock.vender.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,14 @@ import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.Util
 import com.stalkstock.vender.Model.BidData
-import com.stalkstock.vender.Model.VendorBiddingListResponse
-import com.stalkstock.vender.ui.BidDetail
 import kotlinx.android.synthetic.main.bidproductlist.view.*
-import kotlinx.android.synthetic.main.row_cart.view.*
 
 class RequestAdapter(
     var mContext: Context,
-    var arrayList: ArrayList<BidData>
+    var arrayList: ArrayList<BidData>,var requestInterface:RequestInterface
 ) :
     RecyclerView.Adapter<RequestAdapter.RecyclerViewHolder>() {
+  //  lateinit var requestInterface:RequestInterface
 
     var mUtil=Util()
     var inflater: LayoutInflater
@@ -46,12 +43,16 @@ class RequestAdapter(
         )
         holder.itemView.setOnClickListener {
 
-            val intent = Intent(mContext, BidDetail::class.java)
-            intent.putExtra("bidId",arrayList[position].id.toString())
-            mContext.startActivity(intent)
+            requestInterface.OnItemClick(position,arrayList[position].id.toString())
+
 
         }
 
+    }
+
+
+    interface RequestInterface{
+        fun OnItemClick(position: Int,id:String)
     }
 
     override fun getItemCount(): Int {

@@ -76,15 +76,15 @@ class AddAddress : AppCompatActivity(), OnMapReadyCallback {
     var mapBool = true
 
     private fun setMapInit(bool:Boolean){
-        if (bool){
+        if (bool) {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-            mapBool=false
-            if (!this::mapFragment.isInitialized)
-            {
+            mapBool = false
+            if (!this::mapFragment.isInitialized) {
                 mapFragment = supportFragmentManager
                     .findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
-          }
-        } }
+            }
+        }
+    }
 
 }

@@ -274,7 +274,7 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
     }
 
     private fun getCategoryListApi() {
-       homeModel.getCategoryListAPI(this,true)
+        homeModel.getCategoryListAPI(this,true)
         homeModel.homeResponse.observe(this,this)
     }
 

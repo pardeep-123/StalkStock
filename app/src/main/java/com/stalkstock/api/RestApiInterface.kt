@@ -519,5 +519,8 @@ interface RestApiInterface {
     @POST(URL.orderPlace)
     fun orderPlace(@Body body: HashMap<String,Any>): Observable<CommericalOrderPlaceResponse>
 
+    @PUT(URL.markAsPrimaryAddress)
+    fun makeDefaultAddress(@Body addressId:String): Observable<CommonResponseModel>
+
 
 }

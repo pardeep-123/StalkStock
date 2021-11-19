@@ -5,29 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.stalkstock.R
-import com.stalkstock.consumer.adapter.CartAdapter
-import com.stalkstock.consumer.fragment.CartFragment
-import com.stalkstock.consumer.model.ModelCartData
-import com.stalkstock.utils.others.AppUtils
-import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.Util
-import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.OrderItem
-import com.stalkstock.vender.Model.VendorBiddingListResponse
-import com.stalkstock.vender.ui.BidFragment
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_bid_detail.*
-import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.*
-import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.biddate
-import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.bidtime
-import kotlinx.android.synthetic.main.bidprdouctaccpetlist.view.requestid
-import kotlinx.android.synthetic.main.bidproductlist.view.*
 import kotlinx.android.synthetic.main.item_view_bid_order_adapter.view.*
-import kotlinx.android.synthetic.main.row_cart.view.*
-import kotlinx.android.synthetic.main.row_cart.view.name_text
-import kotlin.collections.ArrayList
 
 class BidOrderAdapter(
     var mContext: Context,

@@ -1,11 +1,12 @@
 package com.stalkstock.vender.fragment
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -29,6 +30,8 @@ import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_home_two_fragment.*
 import okhttp3.RequestBody
 import com.stalkstock.consumer.activities.FilterActivity
+import kotlinx.android.synthetic.main.activity_bid_detail.*
+import kotlinx.android.synthetic.main.biddetailsalertbox.*
 import java.util.HashMap
 
 class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservable> {
@@ -111,6 +114,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     override fun onClick(view: View) {
         when (view.id) {
             R.id.notification -> {
+              //  editDialog()
                 val intent = Intent(activity, NotificationFirstActivity::class.java)
                 startActivity(intent)
             }
@@ -129,6 +133,52 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
             }
         }
     }
+
+    private fun editDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.biddetailsalertbox)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+
+        dialog.submitbutton.setOnClickListener {
+            if (dialog.edtSellingPrice.text.toString().isEmpty()) {
+                dialog.edtSellingPrice.error = resources.getString(R.string.please_enter_sale_price)
+            } else if (dialog.edtSellngDesc.text.toString().isEmpty()) {
+                dialog.edtSellngDesc.error = resources.getString(R.string.please_enter_sale_terms)
+            } else {
+                val hashMap = HashMap<String, RequestBody>()
+//                hashMap["bidId"] = mUtil.createPartFromString("bidId")
+//                hashMap["amount"] = mUtil.createPartFromString(dialog.edtSellingPrice?.text.toString())
+//                hashMap["description"] = mUtil.createPartFromString(dialog.edtSellngDesc?.text.toString())
+//                viewModel.vendorAcceptBid(this, true, hashMap)
+//                viewModel.mResponse.observe(this, this)
+
+                bidamt.visibility = View.VISIBLE
+                biddisc.visibility = View.VISIBLE
+                placebid_button.tag = 1
+                placebid_button.text = "Place Bid"
+                if (placebid_button.text.toString() == "Place Bid") {
+                    placebid_button.text = "Edit Bid"
+                    it.tag = 1 //pause
+                } else {
+                    val status = it.tag as Int
+                    if (status == 1) {
+                        it.tag = 0 //pause
+                    } else {
+                        placebid_button.text = "Edit Bid"
+                        it.tag = 1 //pause
+                    }
+                }
+                dialog.dismiss()
+            }
+        }
+        dialog.show()
+    }
+
 
     override fun onChanged(it: RestObservable?) {
         when {

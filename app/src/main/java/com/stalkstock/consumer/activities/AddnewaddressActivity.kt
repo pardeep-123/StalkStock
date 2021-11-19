@@ -36,7 +36,6 @@ import java.util.*
 
 class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObservable> {
 
-
     private var target: LatLng? = null
     var city = ""
     var address = ""
@@ -46,15 +45,11 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
     var postalCode = ""
     var knownName = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
 
-
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
 
         btn_signup.setOnClickListener {
             addNewAddressAPI()
