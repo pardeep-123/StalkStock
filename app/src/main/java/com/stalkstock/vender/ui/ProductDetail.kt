@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -19,11 +21,15 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelProductDetail
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.vender.adapter.CustomPagerAdapter
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import okhttp3.RequestBody
 import java.util.HashMap
 
 class ProductDetail : BaseActivity(), Observer<RestObservable> {
+
+    var customPagerAdapter:CustomPagerAdapter?=null
     override fun getContentId(): Int {
         return R.layout.activity_product_detail
     }
@@ -105,7 +111,7 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
 
     private fun setData(mResponse: ModelProductDetail) {
         currentProductModel = mResponse
-        adduploadimages.loadImage(mResponse.body.productImage[0].image)
+        var imagesList= mResponse.body.productImage
         tvProductName.text= mResponse.body.name
         product_Bacongrill.text = mResponse.body.brandName
         businessnamee1.text = mResponse.body.productTag[0].tag
@@ -118,5 +124,53 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
             businesstypes.text = "Available"
         } else
             businesstypes.text = "Not Available"
+
+        customPagerAdapter = CustomPagerAdapter(this,
+            imagesList as MutableList<ModelProductDetail.Body.ProductImage>
+        )
+        viewPagerImages.adapter = customPagerAdapter
+        viewPagerImages.autoScroll(2000)
+        if (imagesList.size > 1) {
+            tab_layout.visibility = View.VISIBLE
+        } else {
+            tab_layout.visibility = View.GONE
+        }
+        tab_layout.setupWithViewPager(viewPagerImages, true)
+    }
+    private fun ViewPager.autoScroll(interval: Long) {
+
+        val handler = Handler(Looper.getMainLooper())
+        var scrollPosition = 0
+
+        val runnable = object : Runnable {
+
+            override fun run() {
+                val count = customPagerAdapter?.count!!
+                setCurrentItem(scrollPosition++ % count, true)
+
+                handler.postDelayed(this, interval)
+            }
+        }
+
+        addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageSelected(position: Int) {
+                // Updating "scroll position" when user scrolls manually
+                scrollPosition = position + 1
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                // Not necessary
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                // Not necessary
+            }
+        })
+
+        handler.post(runnable)
     }
 }

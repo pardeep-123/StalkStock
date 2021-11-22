@@ -243,6 +243,7 @@ class GlobalVariables {
         const val changePassword = "changePassword"
         const val getSubCategoryList = "getSubCategoryList"
         const val getProductAccToCategorySubcategory = "getProductAccToCategorySubcategory"
+        const val getProductAccToCategory = "getProductAccToCategory"
         const val addRecentSearch = "user/addRecentSearch"
         const val recentSearchList = "user/recentSearchList"
         const val deleteRecentSearch = "user/deleteRecentSearch"

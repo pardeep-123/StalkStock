@@ -27,26 +27,29 @@ import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.ProductUnitData
 import com.stalkstock.utils.loadImage
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelEditProduct
 import com.stalkstock.vender.Model.ModelProductDetail
 import com.stalkstock.vender.adapter.AdapterMultipleFiles
+import com.stalkstock.vender.adapter.AddEditImageModel
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_product.*
 import kotlinx.android.synthetic.main.activity_edit_product.spinner
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
+class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable>,
+    AdapterMultipleFiles.MultipleFilesInterface {
     private lateinit var currentProductModel: ModelProductDetail
     private lateinit var adapterMultipleFiles: AdapterMultipleFiles
-    private var arrStringMultipleImages: ArrayList<String> = ArrayList()
+    private var arrStringMultipleImages: ArrayList<AddEditImageModel> = ArrayList()
     private var arrStringMultipleImagesUploadable: ArrayList<String> = ArrayList()
-    private var haveSubscription = true
+    private var haveSubscription = false
     private var mAlbumFiles = ArrayList<AlbumFile?>()
     private var mAlbumFilesMultiple = ArrayList<AlbumFile>()
     var firstimage = ""
@@ -63,7 +66,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private var listCategoryBody: ArrayList<ModelCategoryList.Body> = ArrayList()
     private var listSub: ArrayList<String> = ArrayList()
     private var listSubCategoryBody: ArrayList<ModelSubCategoriesList.Body> = ArrayList()
-
 
     var m: Context? = null
     var ivImg: ImageView? = null
@@ -91,8 +93,8 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         addproduct_unitmeasurement.setOnClickListener { setUnitList() }
 
         adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages)
-        recyclerviewSubImages.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
+        adapterMultipleFiles.multipleFileInterface=this
+        recyclerviewSubImages.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
         recyclerviewSubImages.adapter = adapterMultipleFiles
 
         adapterMeasurements = AdapterProductUnit2(this, listProductUnit)
@@ -173,9 +175,9 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         addproduct_description.setText(currentProductModel.body.description)
 
         val productImage = currentProductModel.body.productImage
-        if (productImage.size > 1) {
-            edituploadimages.loadImage(productImage[0].image)
-            firstimage = productImage[0].image
+        if (productImage.size > 0) {
+//            edituploadimages.loadImage(productImage[0].image)
+//            firstimage = productImage[0].image
             setmultipleImages(productImage)
         } else if (productImage.isNotEmpty()) {
             edituploadimages.loadImage(productImage[0].image)
@@ -186,8 +188,11 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private fun setmultipleImages(productImage: List<ModelProductDetail.Body.ProductImage>) {
         arrStringMultipleImages.clear()
         for (i in productImage.indices) {
-            if (i == 0) { }
-            else arrStringMultipleImages.add(productImage[i].image)
+            val data= AddEditImageModel()
+            data.id= productImage[i].id.toString()
+            data.name= productImage[i].image
+            data.type="edit"
+            arrStringMultipleImages.add(data)
         }
         adapterMultipleFiles.notifyDataSetChanged()
     }
@@ -200,8 +205,16 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                     alertDailogConfirmEdit()
             }
             R.id.imagesthree -> {
-                if (haveSubscription)
+                if (arrStringMultipleImages.size==2){
+                    Toast.makeText(
+                        this,
+                        "You cannot upload more than 2 photos!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }else{
                     askCameraPermissonsMultiple()
+                }
+
             }
             R.id.addSingleImage -> {
                 askCameraPermissons()
@@ -217,10 +230,11 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
     private fun validations(): Boolean {
         when {
-            firstimage == "" -> {
-                AppUtils.showErrorAlert(this, "Please select an image for the product")
+            arrStringMultipleImages.size==0 -> {
+                AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
                 return false
             }
+
             addproduct_Brand.text.toString().trim().isEmpty() -> {
                 AppUtils.showErrorAlert(this, "Please enter brand")
                 return false
@@ -276,13 +290,18 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
     private fun updateProductAPI() {
         arrStringMultipleImagesUploadable.clear()
-        if (!firstimage.contains(GlobalVariables.URL.IMAGE_URL)) { arrStringMultipleImagesUploadable.add(firstimage) }
+       // if (!firstimage.contains(GlobalVariables.URL.IMAGE_URL)) { arrStringMultipleImagesUploadable.add(firstimage) }
 
-        for (i in arrStringMultipleImages) {
-            if (!i.contains(GlobalVariables.URL.IMAGE_URL)) {
-                val removePrefix = i.removePrefix("localStalk")
-                arrStringMultipleImagesUploadable.add(removePrefix)
-            } }
+        for (i in 0 until arrStringMultipleImages.size) {
+            if (arrStringMultipleImages[i].name?.contains(GlobalVariables.URL.IMAGE_URL)!!) {
+                arrStringMultipleImagesUploadable.remove(arrStringMultipleImages[i].name)
+                val removePrefix =arrStringMultipleImages[i].name?.removePrefix("localStalk")
+            }else{
+                arrStringMultipleImagesUploadable.add(arrStringMultipleImages[i].name!!)
+
+            }
+        }
+
 
         val map = HashMap<String, RequestBody>()
         map["categoryId"] =
@@ -297,15 +316,25 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         map["mrp"] = mUtils.createPartFromString(addproduct_addprice.text.toString())
         map["country"] = mUtils.createPartFromString(spinnerCountry.selectedItem.toString())
         map["product_id"] = mUtils.createPartFromString(currentProductModel.body.id.toString())
+     //   map["deleteImageArrayId"] = deleteImageArrayId
 
         var avail = 0
         if (spinner.selectedItemPosition == 0) avail = 1
         map["availability"] = mUtils.createPartFromString(avail.toString())
-        viewModel.editProductAPI(this, true, map, arrStringMultipleImagesUploadable, mUtils)
+        Log.i("==Ids",deleteImageArrayId.size.toString())
+
+
+        val deleteImageIds: ArrayList<MultipartBody.Part> = ArrayList()
+        for(i in 0 until deleteImageArrayId.size){
+            deleteImageIds.add(MultipartBody.Part.createFormData("deleteImageArrayId", deleteImageArrayId[i]))
+
+        }
+
+       // var deleteImageIds=createPartFromArray(deleteImageArrayId)
+        viewModel.editProductAPI(this, true, map, deleteImageIds,arrStringMultipleImagesUploadable, mUtils)
         viewModel.homeResponse.observe(this, this)
 
     }
-
     private fun askCameraPermissons() {
         mAlbumFiles = ArrayList()
         mAlbumFiles.clear()
@@ -324,6 +353,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 .widget(Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build())
                 .camera(true)
                 .columnCount(4)
+                .selectCount(2)
                 .onResult { result ->
                     mAlbumFilesMultiple.clear()
                     mAlbumFilesMultiple.addAll(result)
@@ -353,7 +383,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         if (mAlbumFilesMultiple.size > 0) {
             arrStringMultipleImages.clear()
             for (i in mAlbumFilesMultiple) {
-                arrStringMultipleImages.add("localStalk" + i.path)
+                var data= AddEditImageModel()
+                data.name=i.path
+                data.type="add"
+                arrStringMultipleImages.add(data)
                 Log.e("PathMulti,", i.path)
             } }
 
@@ -467,5 +500,20 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private fun getmeasurementsAPI() {
         viewModel.measurementListAPI(this, true)
         viewModel.homeResponse.observe(this, this)
+    }
+
+    override fun onItemClick(position: Int, data: AddEditImageModel) {
+        if(data.type=="add"){
+            if(mAlbumFilesMultiple.size>0){
+                mAlbumFilesMultiple.removeAt(position)
+            }
+            arrStringMultipleImages.removeAt(position)
+            adapterMultipleFiles.notifyDataSetChanged()
+        }else{
+            deleteImageArrayId.add(data.id)
+            arrStringMultipleImages.removeAt(position)
+            adapterMultipleFiles.notifyDataSetChanged()
+
+        }
     }
 }

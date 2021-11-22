@@ -426,6 +426,7 @@ class HomeViewModel : ViewModel() {
         activity: Activity,
         showLoader: Boolean,
         hashMap: HashMap<String, RequestBody>,
+        deleteImage: ArrayList<MultipartBody.Part>,
         profileImage: ArrayList<String>,
         mUtils: Util
     ) {
@@ -439,7 +440,7 @@ class HomeViewModel : ViewModel() {
                 }
             }
 
-            restApiInterface.editProductAPI(hashMap, image)
+            restApiInterface.editProductAPI(hashMap,deleteImage, image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
@@ -452,7 +453,7 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        editProductAPI(activity, showLoader, hashMap, profileImage, mUtils)
+                        editProductAPI(activity, showLoader, hashMap, deleteImage,profileImage, mUtils)
                     }
                 }) }
     }
@@ -538,6 +539,34 @@ class HomeViewModel : ViewModel() {
                     }
                 }) }
     }
+
+
+    @SuppressLint("CheckResult")
+    fun getProductAccToCategoryAPI(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getProductAccToCategoryAPI(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getProductAccToCategoryAPI(activity, showLoader, hashMap)
+                    }
+                }) }
+    }
+
 
     @SuppressLint("CheckResult")
     fun addRecentSearchAPI(

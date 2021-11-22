@@ -49,6 +49,7 @@ interface RestApiInterface {
     @PUT(URL.editProduct)
     fun editProductAPI(
         @PartMap map: HashMap<String, RequestBody>,
+        @Part deleteImage: ArrayList<MultipartBody.Part>,
         @Part image: ArrayList<MultipartBody.Part>
     ): Observable<ModelEditProduct>
 
@@ -67,6 +68,12 @@ interface RestApiInterface {
     @Multipart
     @POST(URL.getProductAccToCategorySubcategory)
     fun getProductAccToCategorySubcategoryAPI(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<ModelProductListAsPerSubCat>
+
+    @Multipart
+    @POST(URL.getProductAccToCategory)
+    fun getProductAccToCategoryAPI(
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<ModelProductListAsPerSubCat>
 

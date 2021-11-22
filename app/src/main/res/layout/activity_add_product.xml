@@ -69,6 +69,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="20dp"
+                        android:visibility="gone"
                         android:orientation="vertical">
 
                         <ImageView
@@ -95,78 +96,57 @@
                             android:layout_marginRight="@dimen/_10sdp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/dlt_green"
-                            android:visibility="gone"></ImageView>
+                            android:visibility="gone"/>
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/add_images"
+                    <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginRight="20dp"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:id="@+id/adduploadddimagesone"
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:background="@drawable/addproduct"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ad_img_2"></ImageView>
-
-                        <ImageView
-                            android:id="@+id/adduploadimaddgestwo"
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_centerInParent="true"
-                            android:layout_centerHorizontal="true"
-                            android:background="@drawable/addproduct"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/advertiser_img"></ImageView>
-
+                        android:layout_height="wrap_content">
                         <RelativeLayout
-                            android:id="@+id/imagethree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:orientation="horizontal">
 
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_alignParentRight="true"
-                            android:background="@drawable/addproduct">
-
-                            <ImageView
-                                android:id="@+id/uploadimagesthree"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvSubImages"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/addproduct"
-                                android:scaleType="fitCenter"></ImageView>
+                                android:layout_height="@dimen/_85sdp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginEnd="@dimen/_4sdp"
+                                android:layout_toStartOf="@+id/relative_imagesthree"
+                                tools:listitem="@layout/item_sub_images" />
 
-                            <ImageView
-                                android:id="@+id/imagesthree"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_centerHorizontal="true"
+                            <RelativeLayout
+                                android:id="@+id/relative_imagesthree"
                                 android:layout_centerVertical="true"
-                                android:layout_gravity="center"
-                                android:src="@drawable/pro_camera_icon"></ImageView>
+                                android:layout_alignParentEnd="true"
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:background="@drawable/addproduct">
 
+                                <ImageView
+                                    android:id="@+id/ivUpload"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/addproduct"
+                                    android:scaleType="fitCenter" />
+
+                                <ImageView
+                                    android:id="@+id/imagesthree"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/pro_camera_icon" />
+
+                            </RelativeLayout>
                         </RelativeLayout>
+                    </androidx.core.widget.NestedScrollView>
 
-                        <!--
-                                                <ImageView
-                                                    android:id="@+id/add_uploadimagesthree"
-                                                    android:layout_width="@dimen/_80sdp"
-                                                    android:layout_height="@dimen/_80sdp"
-                                                    android:layout_alignParentRight="true"
-                                                    android:scaleType="fitCenter"
-                                                    android:background="@drawable/addproduct"
-                                                    android:padding="@dimen/_25sdp"
-                                                    android:src="@drawable/camera"
-                                                    app:tint="#000"></ImageView>
-                        -->
-
-
-                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -206,17 +186,28 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginRight="20dp">
 
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:id="@+id/addproductname"
+
+                        <RelativeLayout
+                            android:id="@+id/relProducts"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="40dp"
                             android:layout_marginTop="15dp"
-                            android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Enter product name "
-                            android:paddingLeft="15dp"
-                            android:textColor="#000"
-                            android:textColorHint="@color/light_grey"
-                            android:textSize="13sp" />
+                            android:background="@drawable/edittextshape">
+
+                            <Spinner
+                                android:id="@+id/spinnerGetProduct"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="20dp"
+
+                                android:prompt="@string/dropdown"
+                                android:text="Select Product"
+                                android:textColor="#000"
+                                android:textColorHint="@color/light_grey"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="wrap_content"

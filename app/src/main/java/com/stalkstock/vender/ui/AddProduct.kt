@@ -13,6 +13,7 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.live.stalkstockcommercial.ui.view.fragments.home.AdapterProductUnit2
@@ -20,41 +21,59 @@ import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelMeasurementList
+import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.ProductUnitData
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelAddProduct
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.vender.adapter.AdapterMultipleFiles
+import com.stalkstock.vender.adapter.AddEditImageModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_add_product.spinner
 import kotlinx.android.synthetic.main.activity_add_product.spinnerCountry
+import kotlinx.android.synthetic.main.activity_add_product.spinnerGetProduct
 import kotlinx.android.synthetic.main.activity_edit_product.*
+import kotlinx.android.synthetic.main.added_product.*
 import okhttp3.RequestBody
 import kotlin.collections.ArrayList
 
-class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
+class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable>,
+    AdapterMultipleFiles.MultipleFilesInterface {
+    private var productId: String=""
     private var curreMeasurementId = ""
     private lateinit var adapterMeasurements: AdapterProductUnit2
+    private lateinit var adapterMultipleFiles: AdapterMultipleFiles
     private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
     var listProductUnit: ArrayList<ProductUnitData> = ArrayList()
     private var currentCatId = ""
     private var currentSubCatId = ""
     private var currentTags = ""
     private var mAlbumFiles = ArrayList<AlbumFile?>()
+    private var mAlbumFilesMultiple = ArrayList<AlbumFile>()
+
+    private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
+    private var listProduct: ArrayList<String> = ArrayList()
+    private var reset = false
+    private var currentOffsets = 0
+    private var currentOffset = 0
     var firstimage = ""
     lateinit var backarrow: ImageView
     lateinit var ivImg: ImageView
     lateinit var cameropen: ImageView
     lateinit var visibaleimage: ImageView
     lateinit var detailDialog: Dialog
-    lateinit var imagethree: RelativeLayout
-    lateinit var relativeLayout: RelativeLayout
+    //lateinit var imagethree: RelativeLayout
+    //lateinit var relativeLayout: RelativeLayout
     lateinit var setimage: RelativeLayout
     lateinit var measurement: TextView
+    private lateinit var productAdapter: ArrayAdapter<String>
+    private var arrStringMultipleImages: ArrayList<AddEditImageModel> = ArrayList()
+
     override fun getContentId(): Int {
         return R.layout.activity_add_product
     }
@@ -66,18 +85,24 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         cameropen = findViewById(R.id.add_uploadimages)
         ivImg = findViewById(R.id.iv_Img)
         setimage = findViewById(R.id.add_product)
-        relativeLayout = findViewById(R.id.add_images)
         visibaleimage = findViewById(R.id.add_deleteicon)
         measurement = findViewById(R.id.addproductmasurement)
-        imagethree = findViewById(R.id.imagethree)
+
+        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages)
+        adapterMultipleFiles.multipleFileInterface=this
+        rvSubImages.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
+        rvSubImages.adapter = adapterMultipleFiles
+
+
+       // imagethree.setOnClickListener(this)
         button.setOnClickListener(this)
         backarrow.setOnClickListener(this)
         cameropen.setOnClickListener(this)
         setimage.setOnClickListener(this)
-        relativeLayout.setOnClickListener(this)
-        ivImg.setOnClickListener(this)
+        ivUpload.setOnClickListener(this)
+//        relativeLayout.setOnClickListener(this)
         measurement.setOnClickListener(this)
-        imagethree.setOnClickListener(this)
 
         val countryAdapter = ArrayAdapter.createFromResource(
             this,
@@ -87,10 +112,31 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinnerCountry.adapter = countryAdapter
 
+        listProduct.add("Select Product")
+        spinnerGetProduct.isEnabled = false
+        productAdapter = ArrayAdapter(this, R.layout.spiner_layout_text, listProduct)
+        spinnerGetProduct!!.adapter = productAdapter
+
+
+        spinnerGetProduct.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position!==0){
+                    val product = currentModel[spinnerGetProduct.selectedItemPosition-1]
+                    productId = product.id.toString()
+                }
+                else{ }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
         try {
             currentCatId = intent.getStringExtra("catId")!!
             currentSubCatId = intent.getStringExtra("subCatId")!!
             currentTags = intent.getStringExtra("tags")!!
+
+            getProductAsSubCategory()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -105,9 +151,33 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         viewModel.homeResponse.observe(this, this)
     }
 
+    private fun getProductAsSubCategory() {
+        if (reset) {
+            currentOffset = 0
+            currentModel.clear()
+        }
+        val map = java.util.HashMap<String, RequestBody>()
+        map["subCategoryId"] = mUtils.createPartFromString(currentSubCatId)
+        map["categoryId"] = mUtils.createPartFromString(currentCatId)
+        viewModel.getProductAccToCategoryAPI(this, true, map)
+        viewModel.homeResponse.observe(this, this)
+    }
+
     override fun onClick(view: View) {
         val id = view.id
         when (id) {
+
+            R.id.ivUpload -> {
+                if (arrStringMultipleImages.size == 2) {
+                    Toast.makeText(
+                        this,
+                        "You cannot upload more than 2 photos!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    askCameraPermissonsMultiple()
+                }
+            }
             R.id.addproduct_backarrow -> onBackPressed()
             R.id.addproductsubmitbutton -> {
                 if (validations()) {
@@ -120,7 +190,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 //                    addProductAlertDialog()
             }
             R.id.add_uploadimages -> askCameraPermissons()
-            R.id.imagethree -> {
+           /* R.id.imagethree -> {
                 val logoutUpdatedDialog = Dialog(this)
                 logoutUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 logoutUpdatedDialog.setContentView(R.layout.upgrade_alert_box)
@@ -140,19 +210,24 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 }
                 button2.setOnClickListener { logoutUpdatedDialog.dismiss() }
                 logoutUpdatedDialog.show()
-            }
+            }*/
             R.id.addproductmasurement ->
                 setUnitList()
         }
     }
 
     private fun addproductAPI() {
+
+        if(mAlbumFilesMultiple.size==0){
+            AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
+            return
+        }
         var map = HashMap<String, RequestBody>()
         map["categoryId"] = mUtils.createPartFromString(currentCatId)
         map["subCategoryId"] = mUtils.createPartFromString(currentSubCatId)
         map["measurementId"] = mUtils.createPartFromString(curreMeasurementId)
         map["tag"] = mUtils.createPartFromString(currentTags)
-        map["name"] = mUtils.createPartFromString(addproductname.text.toString())
+        map["productId"] = mUtils.createPartFromString(productId)
         map["description"] = mUtils.createPartFromString(addproductdescription.text.toString())
         map["brandName"] = mUtils.createPartFromString(addproductbrand.text.toString())
         map["mrp"] = mUtils.createPartFromString(addproductprice.text.toString())
@@ -162,8 +237,8 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             avail = 1
         map["availability"] = mUtils.createPartFromString(avail.toString())
         var arrayList: ArrayList<String> = ArrayList()
-        for (i in mAlbumFiles) {
-            arrayList.add(i!!.path)
+        for (i in arrStringMultipleImages) {
+            arrayList.add(i.name!!)
         }
         viewModel.vendorAddProductAPI(this, true, map, arrayList, mUtils)
         viewModel.homeResponse.observe(this, this)
@@ -171,14 +246,15 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     }
 
     private fun validations(): Boolean {
-        if (firstimage.equals("")) {
+        if (mAlbumFilesMultiple.size==0) {
             AppUtils.showErrorAlert(this, "Please select an image for the product")
             return false
         } else if (addproductbrand.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter brand")
             return false
-        } else if (addproductname.text.toString().trim().isEmpty()) {
-            AppUtils.showErrorAlert(this, "Please enter product name")
+        } else if(spinnerGetProduct.selectedItemPosition==0) {
+            spinnerGetProduct.requestFocus()
+            AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
             return false
         } else if(spinnerCountry.selectedItem.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter country")
@@ -223,6 +299,42 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 
     }
 
+    private fun askCameraPermissonsMultiple() {
+        selectImage("2")
+    }
+    private fun selectImage(s: String) {
+        if (s == "2") {
+            Album.image(this)
+                .multipleChoice()
+                .checkedList(mAlbumFilesMultiple)
+                .widget(Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build())
+                .camera(true)
+                .selectCount(2)
+                .columnCount(4)
+                .onResult { result ->
+                    mAlbumFilesMultiple.clear()
+                    mAlbumFilesMultiple.addAll(result)
+                    setAdapter(mAlbumFilesMultiple)
+                }
+                .onCancel { }
+                .start()
+
+        }
+    }
+
+    private fun setAdapter(mAlbumFilesMultiple:ArrayList<AlbumFile>) {
+        if (mAlbumFilesMultiple.size > 0) {
+            arrStringMultipleImages.clear()
+            for (i in mAlbumFilesMultiple) {
+                val data= AddEditImageModel()
+                data.name= i.path
+                data.type="add"
+                arrStringMultipleImages.add(data)
+                Log.e("PathMulti,", i.path)
+            } }
+
+        adapterMultipleFiles.notifyDataSetChanged()
+    }
     private fun setUnitList() {
         //        listProductUnit.add(new ProductUnitData("Volume", "Teaspoon (t or tsp.)", false));
         setDialog()
@@ -250,7 +362,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     private fun askCameraPermissons() {
         mAlbumFiles = ArrayList()
         mAlbumFiles.clear()
-        selectImage(ivImg, "1")
+       // selectImage(ivImg, "1")
     }
 
     private fun selectImage(ivImg: ImageView?, s: String) {
@@ -286,6 +398,16 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                     }
                 }
 
+                if (it.data is ModelProductListAsPerSubCat) {
+                    val mResponse: ModelProductListAsPerSubCat = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOffset += 5
+                        setData(mResponse)
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                }
+
                 if (it.data is ModelAddProduct) {
                     val mResponse: ModelAddProduct = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
@@ -308,6 +430,21 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         }
     }
 
+    private fun setData(mResponse: ModelProductListAsPerSubCat) {
+        currentModel.clear()
+        currentModel.addAll(mResponse.body)
+        reset = false
+        spinnerGetProduct.isEnabled = true
+
+        listProduct.clear()
+        listProduct.add("Select Product")
+        for (i in 0 until currentModel.size) {
+            listProduct.add(currentModel[i].name) }
+
+        productAdapter.notifyDataSetChanged()
+    }
+
+
     private fun setDataMeasurements(mResponse: ModelMeasurementList) {
         listProductUnit.clear()
         currentModelMeasurements.clear()
@@ -329,5 +466,14 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         addproductmasurement.setText(productUnitData.unit)
         detailDialog.dismiss()
         curreMeasurementId = currentModelMeasurements.get(position).id.toString()
+    }
+
+    override fun onItemClick(position: Int, data: AddEditImageModel) {
+        if(data.type=="add"){
+            mAlbumFilesMultiple.removeAt(position)
+            arrStringMultipleImages.removeAt(position)
+            adapterMultipleFiles.notifyDataSetChanged()
+            Log.i("===",arrStringMultipleImages.size.toString())
+        }
     }
 }

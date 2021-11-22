@@ -8,9 +8,13 @@
         <entry key="app/src/main/res/drawable/btn_shape1.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable/btn_shape_gray.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable/buttonshape.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/drawable/default_dot.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/edittextshape.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/drawable/ic_dummy_image.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/ic_dummy_img.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/line.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/drawable/tab_selector.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout-sw620dp/accept_request_alert.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.1" />
@@ -40,6 +44,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_signup_consumer.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_upload_doc.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/add_thanks.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/added_product.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/biddetailsalertbox.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/bidprdouctaccpetlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/bidproductlist.xml" value="0.25" />
@@ -52,6 +57,7 @@
         <entry key="app/src/main/res/layout-sw620dp/fragment_payment.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_adapter.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_popup.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/item_sub_images.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/layout_progress_hud.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/manage_address.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/messagelist.xml" value="0.18" />
@@ -109,6 +115,7 @@
         <entry key="app/src/main/res/layout/activity_payment_accounts.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_product.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.16458333333333333" />
+        <entry key="app/src/main/res/layout/activity_productdetails.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_search_screen.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_select_category.xml" value="0.159375" />
@@ -119,7 +126,7 @@
         <entry key="app/src/main/res/layout/activity_upload.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_upload_doc.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/add_thanks.xml" value="0.159375" />
-        <entry key="app/src/main/res/layout/added_product.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/added_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/biddetailsalertbox.xml" value="0.2" />
         <entry key="app/src/main/res/layout/bidprdouctaccpetlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bidproductlist.xml" value="0.25" />
@@ -148,6 +155,8 @@
         <entry key="app/src/main/res/layout/item_chat_left.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/item_messages.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/layout/item_orders.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/layout/item_pager.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/item_sub_images.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_view_bid_order_adapter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_progress_hud.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/layout_sort_popup.xml" value="0.18020833333333333" />
@@ -175,6 +184,7 @@
         <entry key="app/src/main/res/layout/select_payment.xml" value="0.16296296296296298" />
         <entry key="app/src/main/res/layout/spiner_layout_text.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/spinner_layout_for_vehicle.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/upgrade_alert_box.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19635416666666666" />
       </map>

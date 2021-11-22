@@ -209,15 +209,9 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
             currentModel.clear()
         }
         val map = java.util.HashMap<String, RequestBody>()
-        map["offset"] = mUtils.createPartFromString(currentOffset.toString())
-        map["limit"] = mUtils.createPartFromString("5")
         map["subCategoryId"] = mUtils.createPartFromString(subCategoryId)
         map["categoryId"] = mUtils.createPartFromString(categoryId)
-        map["sortBy"] = mUtils.createPartFromString(currentSortBy)
-        map["lowPrice"] = mUtils.createPartFromString(currentLowPrice)
-        map["deliveryType"] = mUtils.createPartFromString(currentDeliveryType)
-        map["highPrice"] = mUtils.createPartFromString(currentHighPrice)
-        homeModel.getProductAccToCategorySubcategoryAPI(this, true, map)
+        homeModel.getProductAccToCategoryAPI(this, true, map)
         homeModel.homeResponse.observe(this, this)
     }
 

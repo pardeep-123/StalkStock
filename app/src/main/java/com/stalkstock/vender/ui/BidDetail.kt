@@ -150,7 +150,6 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
                 hashMap["amount"] = mUtil.createPartFromString(dialog.edtSellingPrice?.text.toString())
                 hashMap["description"] = mUtil.createPartFromString(dialog.edtSellngDesc?.text.toString())
                 viewModel.vendorAcceptBid(requireActivity(), true, hashMap)
-                viewModel.mResponse.observe(this, this)
 
                 bidamt.visibility = View.VISIBLE
                 biddisc.visibility = View.VISIBLE
