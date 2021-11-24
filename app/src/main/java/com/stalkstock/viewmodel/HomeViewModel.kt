@@ -198,7 +198,7 @@ class HomeViewModel : ViewModel() {
     fun makeDefaultAddress(
         activity: Activity,
         showLoader: Boolean,
-        addressId: String
+        addressId: HashMap<String,Int>
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
@@ -221,10 +221,6 @@ class HomeViewModel : ViewModel() {
         }
 
     }
-
-
-
-
 
 
     @SuppressLint("CheckResult")

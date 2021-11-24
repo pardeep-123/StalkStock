@@ -144,6 +144,37 @@ class DriverViewModel : ViewModel() {
 
 
     @SuppressLint("CheckResult")
+    fun makeDefaultCard(
+        activity: Activity,
+        showLoader: Boolean,
+        addressId: HashMap<String,Int>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.makeDefaultCard(addressId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        makeDefaultCard(activity, showLoader, addressId)
+                    }
+                })
+        }
+
+    }
+
+
+
+
+    @SuppressLint("CheckResult")
     fun getProfileDetail(
         activity: Activity,
         showLoader: Boolean,

@@ -40,6 +40,7 @@ import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_product.*
 import kotlinx.android.synthetic.main.activity_edit_product.spinner
+import kotlinx.android.synthetic.main.added_product.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -153,6 +154,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             spinner.setSelection(0)
         } else
             spinner.setSelection(1)
+
+
+        if (currentProductModel.body.productType == 1) {
+            spinnerType.setSelection(0)
+        } else
+            spinnerType.setSelection(1)
 
         val productTag = currentProductModel.body.productTag
         var stTag = ""
@@ -320,7 +327,11 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
         var avail = 0
         if (spinner.selectedItemPosition == 0) avail = 1
+
+        var productType = 0
+        if (spinnerType.selectedItemPosition == 0) productType = 1
         map["availability"] = mUtils.createPartFromString(avail.toString())
+        map["productType"] = mUtils.createPartFromString(productType.toString())
         Log.i("==Ids",deleteImageArrayId.size.toString())
 
 

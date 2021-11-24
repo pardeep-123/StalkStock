@@ -316,7 +316,7 @@ class GlobalVariables {
         const val bidinglist = "commercial/biding/list"
         const val sendBidingRequest = "sendBidingRequest"
         const val orderPlace = "commercial/order/place"
-        const val markAsPrimary = "markAsPrimary"
+        const val makeDefaultCard = "user/markAsPrimary"
         const val markAsPrimaryAddress = "markAsPrimaryAddress"
 
    /*     {
@@ -346,6 +346,7 @@ class GlobalVariables {
         val businessPhone = "buisnessPhone"
         val shopName = "shopName"
         val buisnessTypeId = "buisnessTypeId"
+        val deliveryType = "deliveryType"
         val buisnessDeliveryTypeId = "deliveryType"
         val buisnessLicense = "buisnessLicense"
         val website = "website"

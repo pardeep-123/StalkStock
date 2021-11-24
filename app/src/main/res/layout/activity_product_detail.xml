@@ -10,9 +10,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true" />
+        android:src="@drawable/bg_fit" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

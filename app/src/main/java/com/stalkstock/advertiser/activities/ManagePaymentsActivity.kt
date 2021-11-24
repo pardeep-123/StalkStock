@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -23,20 +22,25 @@ import com.stalkstock.consumer.model.DeleteCardData
 import com.stalkstock.driver.models.UserCardBody
 import com.stalkstock.driver.models.UserCardList
 import com.stalkstock.driver.viewmodel.DriverViewModel
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.vender.Model.CommonResponseModel
 import kotlinx.android.synthetic.main.activity_add_new_card.*
 import kotlinx.android.synthetic.main.activity_manage_payments.*
 import kotlinx.android.synthetic.main.delete_successfully_alert.*
 import kotlinx.android.synthetic.main.toolbar.*
-import java.util.HashMap
+import java.util.*
 
 class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
     Observer<RestObservable> {
     val mContext: Context = this
     var from = ""
+    private var reset = false
+    private var currentOffset = 0
     var deleteCardPos = 0
     var rvCards: RecyclerView? = null
     val viewModel: DriverViewModel by viewModels()
+
     lateinit var adapter: UserCardAdapter
     private var listCards = mutableListOf<UserCardBody>()
 
@@ -68,7 +72,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             btn_checkout.visibility = View.VISIBLE
         }
 
-        adapter = UserCardAdapter(listCards)
+        adapter = UserCardAdapter(listCards,this)
         rvCards?.adapter = adapter
         adapter.onPerformClick(object : UserCardAdapter.CardClicked {
             override fun clicked(position: Int, id: Int) {
@@ -88,7 +92,20 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         callCardList()
     }
 
+    fun setDefaultCardApi(cardId: String) {
+        val map= HashMap<String,Int>()
+        map["cardId"]= cardId.toInt()
+
+        viewModel.makeDefaultCard(this, false, map)
+        viewModel.mResponse.observe(this, this)
+    }
+
     private fun callCardList() {
+
+        if (reset) {
+            currentOffset = 0
+            listCards.clear()
+        }
         val map = HashMap<String, String>()
         map["offset"] = "0"
         map["limit"] = "20"
@@ -141,9 +158,21 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                         adapter.notifyDataSetChanged()
                     }
                 }
+
+                if (it.data is CommonResponseModel) {
+                    val mResponse: CommonResponseModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        AppUtils.showSuccessAlert(this, mResponse.message)
+                        reset=true
+                        callCardList()
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                }
                 if (it.data is DeleteCardData) {
                     val mResponse: DeleteCardData = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        AppUtils.showSuccessAlert(this, mResponse.message)
                         listCards.removeAt(deleteCardPos)
                         adapter.notifyItemRemoved(deleteCardPos)
                         adapter.notifyItemRangeChanged(deleteCardPos, listCards.size)

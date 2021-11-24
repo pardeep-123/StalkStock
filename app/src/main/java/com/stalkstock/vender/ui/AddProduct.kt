@@ -232,10 +232,20 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         map["brandName"] = mUtils.createPartFromString(addproductbrand.text.toString())
         map["mrp"] = mUtils.createPartFromString(addproductprice.text.toString())
         map["country"] = mUtils.createPartFromString(spinnerCountry.selectedItem.toString())
+
+        //productType(0=>veg 1=>non veg)
         var avail = 0
         if (spinner.selectedItemPosition == 0)
             avail = 1
+
+        var productType = 0
+        if (spinner.selectedItemPosition == 0)
+            productType = 1
+
+        Log.e("product_type",productType.toString())
+
         map["availability"] = mUtils.createPartFromString(avail.toString())
+        map["productType"] = mUtils.createPartFromString(productType.toString())
         var arrayList: ArrayList<String> = ArrayList()
         for (i in arrStringMultipleImages) {
             arrayList.add(i.name!!)

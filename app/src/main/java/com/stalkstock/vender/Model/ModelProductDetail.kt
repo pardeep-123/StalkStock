@@ -22,6 +22,7 @@ data class ModelProductDetail(
         val name: String, // jdjdfn
         val oldMrp: String, // 4634.00
         val parentId: Int, // 0
+        val productType:Int,
         val percentageDiscount: Int, // 0
         val productCategory: ProductCategory,
         val productImage: List<ProductImage>,

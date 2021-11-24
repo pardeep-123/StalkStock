@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.stalkstock">
+    package="com.stalkstock" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -18,13 +18,15 @@
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:protectionLevel="signature"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:protectionLevel="signature"
-        android:usesCleartextTraffic="true">
-
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".rating.RatingActivity"
+            android:exported="false" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -33,18 +35,17 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
-       <!-- <service android:name=".utils.MyFirebaseMessagingService"
+        <!--
+ <service android:name=".utils.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
--->
-
+        -->
         <service
             android:name=".utils.NotificationHandlingService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -53,472 +54,461 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/app_icon" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <activity android:name=".vender.ui.MessageActivity"
+        <activity
+            android:name=".vender.ui.MessageActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".utils.TermsConditionActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".utils.TermsConditionActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".advertiser.GetStartedPageActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".advertiser.GetStartedPageActivity"
+            tools:ignore="LockedOrientationActivity" /> <!-- driver start -->
+        <activity
+            android:name=".driver.AddBankAccount"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/> <!-- driver start -->
-        <activity android:name=".driver.AddBankAccount"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".driver.AddDetailActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".driver.AddDetailActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".driver.DriverInformationActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".driver.DriverInformationActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".driver.Edit_profile"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".driver.Edit_profile"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".driver.EditDriverInfoActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".driver.HomeActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".driver.HomeActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".driver.SignupActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".driver.UploadActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".driver.UploadActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".driver.UploadDocActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".driver.UploadDocActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".advertiser.activities.ThankyouActivity2"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".advertiser.activities.ThankyouActivity2"
+            tools:ignore="LockedOrientationActivity" /> <!-- driver end -->
+        <activity
+            android:name=".vender.ui.SearchScreen"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/> <!-- driver end -->
-        <activity android:name=".vender.ui.SearchScreen"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.Subscription"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.Subscription"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.BidDetail"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".vender.ui.EditProfile"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.OrderDetails"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.OrderDetails"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.NewOrderList"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.NewOrderList"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".vender.ui.EditProduct"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.ProductDetail"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.ProductDetail"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.NotificationSetting"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.NotificationSetting"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.NotificationScreen"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.NotificationScreen"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.Help"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.Help"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.ThankYou"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.ThankYou"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.ChatBox"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.ChatBox"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.AddNewCard"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.AddNewCard"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.SelectPaymentMethod"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.SelectPaymentMethod"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.PaymentAccounts"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".vender.ui.PaymentAccounts"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".vender.ui.EditBussinessProfile"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.BussinessProfile"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.BussinessProfile"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.BidProduct"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.BidProduct"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.ChangePassword"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.ChangePassword"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".vender.ui.AddProduct"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.SelectCategory"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.SelectCategory"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.BottomnavigationScreen"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.BottomnavigationScreen"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.AddBusinessDetails"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.AddBusinessDetails"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.Verification"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.Verification"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.SignUpVendor"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.SignUpVendor"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".vender.ui.ForgotPassword"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".vender.ui.ForgotPassword"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.MyOrderActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.MyOrderActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.MyRequestActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".consumer.activities.MyRequestActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.EditAddressDetail2Activity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".consumer.activities.EditAddressDetail2Activity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".advertiser.activities.EditAddressDetailActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".advertiser.activities.EditAddressDetailActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/> <!-- commercial -->
+            tools:ignore="LockedOrientationActivity" /> <!-- commercial -->
         <activity
             android:name=".commercial.view.activities.OrderDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.ManageAddress"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.AddAddress"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.BusinessProfile"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.AddedProduct"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name="com.live.stalkstockcommercial.ui.paymnet.AddNewCard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.AddThanks"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.Chat"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.MainCommercialActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.PaymentStatus"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.RequestDetail"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".commercial.view.activities.SelectPayment"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
-        <activity android:name=".consumer.activities.ProductDetailsActivity"
+        <activity
+            android:name=".consumer.activities.ProductDetailsActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".commercial.view.activities.Verification"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".commercial.view.activities.Verification"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.FilterActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.FilterActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.ProductActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.ProductActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.HomedetailsActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.HomedetailsActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.AddcartdetailsActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.AddcartdetailsActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.AddnewaddressActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.AddnewaddressActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.OrderdeatilsActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.OrderdeatilsActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.ThanksActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.ThanksActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.PaymentselectActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.PaymentselectActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.OrderreviewActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.OrderreviewActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.ManageaddressActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.ManageaddressActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.AddcardpaymentActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.AddcardpaymentActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <activity android:name=".consumer.activities.ManagmentPaymentActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".consumer.activities.ManagmentPaymentActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".consumer.activities.EditprofileConsumerActivity"
-            android:windowSoftInputMode="stateVisible|adjustPan"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
-        <!-- advertiser -->
-
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            tools:ignore="LockedOrientationActivity" /> <!-- advertiser -->
         <activity
             android:name=".consumer.activities.SelectuserActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
-            tools:ignore="LockedOrientationActivity"/>
-
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".consumer.activities.MainConsumerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".consumer.activities.SignupConsumerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.TestingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.AfteraddActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.NewActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.NotificationFirstActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.ThankyouActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.PaymentActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.AddNewCardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.NotificationListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.EditAdActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.AdDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.PreviewActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.ManagePaymentsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.HelpActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.EditBusinessProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.BusinessProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.EditProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.SignupAdvertiserNCommercialNVendor"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
-        <activity android:name=".advertiser.activities.SignUpActivity"
-            android:windowSoftInputMode="adjustPan"
+        <activity
+            android:name=".advertiser.activities.SignUpActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".advertiser.activities.LoginActivity"
-            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".advertiser.activities.SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:exported="true">
-
+            tools:ignore="LockedOrientationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.stalkstock.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
-
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-
         </provider>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD8c46gsZPEYwRqSxm3tSg5zg5Yc7Jr7Gc" />

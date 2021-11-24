@@ -34,6 +34,12 @@ class ProductsdetailsAdapter(
         holder.itemView.price.text = "$"+currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
 
+        if(currentModel[position].productType==0){
+            holder.itemView.imgVegNon.setImageResource(R.drawable.green_dot)
+        }else{
+            holder.itemView.imgVegNon.setImageResource(R.drawable.red_dot)
+        }
+
         if(currentModel[position].productImage.isNotEmpty()) holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
 
         val cart = currentModel[position].cart

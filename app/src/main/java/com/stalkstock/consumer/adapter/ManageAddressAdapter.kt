@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.view.*
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +12,15 @@ import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.ManageAddress
 import com.stalkstock.consumer.activities.EditAddressDetail2Activity
 import com.stalkstock.consumer.model.ModelUserAddressList
+import kotlinx.android.synthetic.main.row_manageaddress.view.*
 import java.util.*
 
-class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserAddressList.Body>) :
+class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserAddressList.Body>,var manageAddress:ManageAddress) :
     RecyclerView.Adapter<ManageAddressAdapter.RecyclerViewHolder>() {
+
+    var selectedpos = -1
+    lateinit var selectedAdd: CheckBox
+
     var inflater: LayoutInflater
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,7 +28,6 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
         var edit: RelativeLayout = view.findViewById(R.id.edit)
         var textType: TextView = view.findViewById(R.id.text)
         var location: TextView = view.findViewById(R.id.location)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -31,7 +36,7 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-
+        val cbDefault: CheckBox = holder.itemView.cbDefault
         val get = body[position]
         when (get.type) {
             "1" -> {
@@ -48,6 +53,11 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
             }
         }
 
+        if(get.isDefault=="1"){
+            cbDefault.isChecked = true
+        }else{
+            cbDefault.isChecked = false
+        }
         holder.location.text = get.address_line2
 
         holder.delete.setOnClickListener { openStartInfoApp(body[position]) }
@@ -56,7 +66,27 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
             intent.putExtra("key","edit")
             intent.putExtra("body",body[position])
             context.startActivity(intent);
+        }
 
+        holder.itemView.setOnClickListener {
+            if (selectedpos < 0) {
+                selectedpos = position
+                selectedAdd = cbDefault
+                cbDefault.isChecked = true
+                manageAddress.setDefaultAddressApi(get.id.toString())
+            } else {
+                if (cbDefault.isChecked) {
+                    selectedpos = -1
+                    cbDefault.isChecked = false
+                    manageAddress.setDefaultAddressApi(get.id.toString())
+                } else {
+                    selectedAdd.isChecked = false
+                    cbDefault.isChecked = true
+                    selectedpos = position
+                    selectedAdd = cbDefault
+                    manageAddress.setDefaultAddressApi(get.id.toString())
+                }
+            }
         }
     }
 

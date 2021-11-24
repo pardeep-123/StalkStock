@@ -16,15 +16,13 @@ import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.commercial.view.activities.MainCommercialActivity
 import com.stalkstock.commercial.view.model.CommercialSignUpResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
-import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -44,6 +42,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
     var business_type = "0"
+    var business_delivery_type = 0
     var country = ""
     override fun getContentId(): Int {
         return R.layout.activity_signup
@@ -64,6 +63,15 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         btn_signup.setOnClickListener(this)
         spinner.onItemSelectedListener = this
         spinner_type.onItemSelectedListener = this
+        spinner_delivery_type.onItemSelectedListener = this
+
+        val foodadapter3: ArrayAdapter<*> = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_business_delivery_type,
+            R.layout.spinner_layout_for_vehicle
+        )
+        foodadapter3.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner_delivery_type.adapter = foodadapter3
 
 
         val foodadapter = ArrayAdapter.createFromResource(
@@ -179,7 +187,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (licnEdittext.getText().toString().isEmpty()) {
             licnEdittext.requestFocus()
             licnEdittext.setError(resources.getString(R.string.please_enter_business_license))
-        } else if (emailEdittext.getText().toString().isEmpty()) {
+        }  else if (business_delivery_type == 0) {
+            AppUtils.showErrorAlert(
+                this,
+                resources.getString(R.string.please_enter_business_delivery_type)
+            )
+        }else if (emailEdittext.getText().toString().isEmpty()) {
             emailEdittext.requestFocus()
             emailEdittext.setError(resources.getString(R.string.please_enter_email))
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString())
@@ -219,7 +232,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (passwordEdittext.getText().toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError(resources.getString(R.string.please_enter_password))
-        } else if (passwordEdittext.getText().toString().length<7) {
+        } else if (passwordEdittext.getText().toString().length<6) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError("Password should contain at least 6 characters")
         } else if (repasswordEdittext.getText().toString().isEmpty()) {
@@ -249,6 +262,8 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.buisnessDescription] = mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
             hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.deliveryType] = mUtils.createPartFromString((business_delivery_type-1).toString())
+
             hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
             hashMap[GlobalVariables.PARAM.businessPhone] = mUtils.createPartFromString(et_businessPhone.text.toString().trim())
@@ -282,7 +297,8 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.shopName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.shopDescription] =
                 mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(business_type)
+            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(business_type.toString())
+            hashMap[GlobalVariables.PARAM.deliveryType] = mUtils.createPartFromString((business_delivery_type-1).toString())
             hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
@@ -565,6 +581,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             var array = this.resources.getStringArray(R.array.Select_business_type)
 
             business_type = array[p2]
+        }
+
+        else if (p0?.id == R.id.spinner_delivery_type) {
+            var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
+
+            business_delivery_type = p2
         }
     }
 }

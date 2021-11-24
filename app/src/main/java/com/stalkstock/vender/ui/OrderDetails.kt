@@ -95,6 +95,20 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
         val ltStatus2 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus2)
         val ltStatus3 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus3)
         val ltStatus4 = dialogSuccessful.findViewById<LinearLayout>(R.id.ltStatus4)
+
+        if(mStatus==1){
+            ltStatus4.visibility=View.GONE
+            ltStatus1.visibility=View.GONE
+        }else if(mStatus==2){
+            ltStatus1.visibility=View.GONE
+            ltStatus2.visibility=View.GONE
+            ltStatus4.visibility=View.GONE
+        }else{
+            ltStatus1.visibility=View.VISIBLE
+            ltStatus2.visibility=View.VISIBLE
+            ltStatus4.visibility=View.VISIBLE
+        }
+
         ltStatus1.setOnClickListener {
             changeStatus("1") //accept
             dialogSuccessful.dismiss()

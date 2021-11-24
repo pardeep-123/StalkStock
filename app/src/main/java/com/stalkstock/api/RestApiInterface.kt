@@ -526,8 +526,12 @@ interface RestApiInterface {
     @POST(URL.orderPlace)
     fun orderPlace(@Body body: HashMap<String,Any>): Observable<CommericalOrderPlaceResponse>
 
+    @Multipart
     @PUT(URL.markAsPrimaryAddress)
-    fun makeDefaultAddress(@Body addressId:String): Observable<CommonResponseModel>
+    fun makeDefaultAddress(@PartMap body: HashMap<String,Int>): Observable<CommonResponseModel>
 
+    @Multipart
+    @PUT(URL.makeDefaultCard)
+    fun makeDefaultCard(@PartMap body: HashMap<String,Int>): Observable<CommonResponseModel>
 
 }

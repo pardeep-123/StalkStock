@@ -27,14 +27,13 @@ import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.consumer.activities.HomedetailsActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
-import com.stalkstock.consumer.adapter.CategoryAdapter
+import com.stalkstock.rating.CategoryAdapter
 import com.stalkstock.consumer.adapter.SuggestedAdapter
 import com.stalkstock.consumer.adapter.ViewDetailAdapter
 import com.stalkstock.consumer.model.UserBannerModel
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CurrentLocationActivity
-import com.stalkstock.vender.ui.MessageActivity
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import com.viewpagerindicator.CirclePageIndicator

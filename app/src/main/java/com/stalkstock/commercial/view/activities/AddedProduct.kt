@@ -43,7 +43,8 @@ import org.bouncycastle.crypto.modes.GOFBBlockCipher
 import org.json.JSONArray
 import org.json.JSONObject
 
-class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
+class
+AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
     private val homeModel: HomeViewModel by viewModels()
 
     private var reset = false

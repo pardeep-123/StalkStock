@@ -1,4 +1,4 @@
-package com.stalkstock.consumer.adapter
+package com.stalkstock.rating
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,17 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.consumer.adapter.CategoryAdapter
 import com.stalkstock.consumer.fragment.HomeCounsumerFragment
-import com.stalkstock.rating.CategoryAdapter
 import com.stalkstock.utils.loadImage
 import kotlin.collections.ArrayList
 
-class CategoryAdapter(
-    var context: HomeCounsumerFragment,
+class RatingProductAdapter(
+    var context: RatingActivity,
     var mContext: Context,
     var arrayList: ArrayList<ModelCategoryList.Body>
 ) :
-    RecyclerView.Adapter<CategoryAdapter.RecyclerViewHolder>() {
+    RecyclerView.Adapter<RatingProductAdapter.RecyclerViewHolder>() {
     var inflater: LayoutInflater = LayoutInflater.from(mContext)
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,7 +36,7 @@ class CategoryAdapter(
         holder.img.loadImage(arrayList[position].image)
         holder.name.text = arrayList[position].name
         holder.itemView.setOnClickListener {
-            context.startSubCat(arrayList[position].id.toString())
+            //context.startSubCat(arrayList[position].id.toString())
         }
     }
 

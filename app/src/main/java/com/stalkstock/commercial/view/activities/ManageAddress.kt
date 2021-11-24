@@ -19,6 +19,7 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.vender.Model.CommonResponseModel
 import kotlinx.android.synthetic.main.manage_address.*
 import okhttp3.RequestBody
 import java.util.*
@@ -65,7 +66,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
             startActivity(intent)
         }
 
-        adapter = ManageAddressAdapter(this, currentModel)
+        adapter = ManageAddressAdapter(this, currentModel,this)
         mangeaddress_recycle.layoutManager = LinearLayoutManager(this)
         mangeaddress_recycle.adapter = adapter
         mangeaddress_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -101,6 +102,18 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                         AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
+
+
+                if (it.data is CommonResponseModel) {
+                    val mResponse: CommonResponseModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        AppUtils.showSuccessAlert(this, mResponse.message)
+                        reset = true
+                        getAddresses()
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -114,6 +127,15 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+
+    fun setDefaultAddressApi(addressId: String) {
+        val map= HashMap<String,Int>()
+        map["addressId"]= addressId.toInt()
+
+        viewModel.makeDefaultAddress(this, false, map)
+        viewModel.homeResponse.observe(this, this)
     }
 
     private fun setData(mResponse: ModelUserAddressList) {

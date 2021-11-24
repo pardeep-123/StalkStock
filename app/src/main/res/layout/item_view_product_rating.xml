@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/ratingVendor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/buttonshape"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintTop_toTopOf="@id/ratingVendor"
+        app:layout_constraintBottom_toBottomOf="@id/ratingVendor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ratingVendor"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:textSize="12sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

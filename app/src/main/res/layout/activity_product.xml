@@ -108,6 +108,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:src="@drawable/ad_img_2"

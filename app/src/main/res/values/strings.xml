@@ -48,7 +48,9 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="business_address">Business Address</string>
     <string name="enter_business_address">Enter your business address</string>
     <string name="select_business_type">Select your business type</string>
+    <string name="select_delivery_type">Select your Delivery type</string>
     <string name="business_type">Business Type</string>
+    <string name="delivery_type">Delivery Type</string>
     <string name="billing_info">Billing Info</string>
     <string name="enter_billing_info">Enter your billing info</string>
     <string name="send">Send</string>
@@ -551,6 +553,13 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
         <item>Available</item>
         <item>Not Available</item>
     </string-array>
+
+
+    <string-array name="Select_product_type">
+        <item>Veg</item>
+        <item>Non-Veg</item>
+    </string-array>
+
     <string-array name="Select_business_type">
         <item>Select your business type</item>
         <item>Big stocklist</item>
