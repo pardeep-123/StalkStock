@@ -171,6 +171,90 @@ class DriverViewModel : ViewModel() {
 
     }
 
+    @SuppressLint("CheckResult")
+    fun addProductRating(
+        activity: Activity,
+        showLoader: Boolean,
+        data: HashMap<String,Any>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.addProductRating(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        addProductRating(activity, showLoader, data)
+                    }
+                })
+        }
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun addUserReview(
+        activity: Activity,
+        showLoader: Boolean,
+        data: HashMap<String,Any>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.addUserReview(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        addUserReview(activity, showLoader, data)
+                    }
+                })
+        }
+
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun addDriverReview(
+        activity: Activity,
+        showLoader: Boolean,
+        data: HashMap<String,Any>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.addDriverReview(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        addDriverReview(activity, showLoader, data)
+                    }
+                })
+        }
+
+    }
 
 
 

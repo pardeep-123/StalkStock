@@ -25,22 +25,22 @@ import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.consumer.activities.FilterActivity
 import com.stalkstock.consumer.activities.HomedetailsActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
-import com.stalkstock.rating.CategoryAdapter
+import com.stalkstock.consumer.adapter.CategoryAdapter
 import com.stalkstock.consumer.adapter.SuggestedAdapter
 import com.stalkstock.consumer.adapter.ViewDetailAdapter
 import com.stalkstock.consumer.model.UserBannerModel
 import com.stalkstock.consumer.model.UserCommonModel
+import com.stalkstock.driver.models.SuggestedBody
+import com.stalkstock.driver.models.SuggestedDataListed
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CurrentLocationActivity
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import com.viewpagerindicator.CirclePageIndicator
 import okhttp3.RequestBody
-import com.stalkstock.consumer.activities.FilterActivity
-import com.stalkstock.driver.models.SuggestedBody
-import com.stalkstock.driver.models.SuggestedDataListed
 import java.util.*
 import kotlin.collections.ArrayList
 

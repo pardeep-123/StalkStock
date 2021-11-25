@@ -49,6 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="Give Rating to Product"
         android:layout_margin="@dimen/_10sdp"
+        android:visibility="gone"
         android:textColor="@color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -57,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@+id/tvProductRating"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
 
@@ -74,11 +76,32 @@
         android:id="@+id/ratingVendor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:numStars="5"
+        android:scaleY="0.8"
+        android:scaleX="0.85"
         app:layout_constraintTop_toBottomOf="@id/tvVendorRating"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
         app:layout_constraintStart_toStartOf="@id/tvProductRating"
         android:layout_marginTop="@dimen/_10sdp"/>
 
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnVendorRating"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/buttonshape"
+        android:text="Submit"
+        android:textAllCaps="false"
+        app:layout_goneMarginEnd="@dimen/_10sdp"
+        android:textColor="#fff"
+        app:layout_constraintTop_toTopOf="@id/ratingVendor"
+        app:layout_constraintBottom_toBottomOf="@id/ratingVendor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ratingVendor"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:textSize="12sp" />
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView
         android:id="@+id/tvDriverRating"
@@ -94,10 +117,32 @@
         android:id="@+id/ratingDriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:numStars="5"
+        android:scaleY="0.8"
+        android:scaleX="0.85"
         app:layout_constraintTop_toBottomOf="@id/tvDriverRating"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        app:layout_constraintStart_toStartOf="@id/tvDriverRating"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/_10sdp"/>
+
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnDriverRating"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/buttonshape"
+        android:text="Submit"
+        android:textAllCaps="false"
+        app:layout_goneMarginEnd="@dimen/_10sdp"
+        android:textColor="#fff"
+        app:layout_constraintTop_toTopOf="@id/ratingDriver"
+        app:layout_constraintBottom_toBottomOf="@id/ratingDriver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ratingDriver"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:textSize="12sp" />
 
 
     <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -110,6 +155,9 @@
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="#fff"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         app:layout_constraintVertical_bias="1.0"
         android:layout_marginBottom="@dimen/_20sdp"
         android:textSize="16dp" />

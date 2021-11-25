@@ -125,6 +125,8 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
 
+    //rating bar
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
     implementation 'com.tapadoo.android:alerter:5.0.0'
 

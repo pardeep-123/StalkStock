@@ -4,13 +4,24 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatRatingBar
-        android:id="@+id/ratingVendor"
+
+    <com.stalkstock.utils.custom.TitiliumBoldTextView
+        android:id="@+id/tvProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:text=""/>
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/ratingProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProduct"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_marginTop="@dimen/_10sdp"/>
 
@@ -23,10 +34,10 @@
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="#fff"
-        app:layout_constraintTop_toTopOf="@id/ratingVendor"
-        app:layout_constraintBottom_toBottomOf="@id/ratingVendor"
+        app:layout_constraintTop_toTopOf="@id/ratingProduct"
+        app:layout_constraintBottom_toBottomOf="@id/ratingProduct"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ratingVendor"
+        app:layout_constraintStart_toEndOf="@id/ratingProduct"
         app:layout_constraintHorizontal_bias="1.0"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"

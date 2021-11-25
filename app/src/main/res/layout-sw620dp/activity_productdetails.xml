@@ -126,8 +126,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/App"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:background="@color/App"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -211,7 +211,19 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="10dp"
                                 android:layout_toRightOf="@+id/star"
-                                android:text="0.0 Rating. 0"
+                                android:text="0.0 Rating,"
+                                android:textSize="14sp" />
+
+
+                            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                                android:id="@+id/totalCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@+id/starCount"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@+id/star"
+                                android:text="0"
                                 android:textSize="14sp" />
 
                         </RelativeLayout>
@@ -223,7 +235,7 @@
                             android:layout_below="@+id/rl_ra"
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="5dp"
-
+                            android:visibility="gone"
                             android:text="0 Minutes (Delivery time)"
                             android:textSize="14sp" />
 

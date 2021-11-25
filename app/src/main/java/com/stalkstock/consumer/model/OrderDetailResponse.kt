@@ -1,11 +1,13 @@
 package com.stalkstock.consumer.model
 
+import java.io.Serializable
+
 data class OrderDetailResponse(
     val body: Body,
     val code: Int, // 200
     val message: String, // Order detail fetch successfully.
     val success: Boolean // true
-) {
+):Serializable {
     data class Body(
         val acceptedLat: String, // 0.00000000
         val acceptedLong: String, // 0.00000000
@@ -16,6 +18,7 @@ data class OrderDetailResponse(
         val driverId: Int, // 0
         val id: Int, // 8
         val isDriverReview: Int, // 0
+        val isVendorReview: Int, // 0
         val isSelfpickup: Int, // 1
         val isUserReview: Int, // 0
         val netAmount: String, // 10.00
@@ -32,7 +35,7 @@ data class OrderDetailResponse(
         val updatedAt: String, // 2021-07-12T13:09:28.000Z
         val vendorCommission: String, // 0.00
         val vendorId: Int // 85
-    ) {
+    ):Serializable {
         data class OrderAddress(
             val address_line2: String, // address_limne
             val bidId: Int, // 0
@@ -49,7 +52,7 @@ data class OrderDetailResponse(
             val type: String, // 1
             val userId: Int, // 77
             val zipcode: String // 6767821
-        )
+        ):Serializable
 
         data class OrderItem(
             val id: Int, // 7
@@ -57,8 +60,9 @@ data class OrderDetailResponse(
             val product: Product,
             val productId: Int, // 28
             val qty: Int, // 1
-            val total: String // 10.00
-        ) {
+            val total: String, // 10.00
+            val isReview:Int
+        ):Serializable {
             data class Product(
                 val availability: Int, // 1
                 val brandName: String, // gggg
@@ -67,7 +71,7 @@ data class OrderDetailResponse(
                 val name: String, // pname
                 val percentageDiscount: Int, // 0
                 val productType: Int // 0
-            )
+            ):Serializable
         }
 
         data class OrderVendor(
@@ -79,6 +83,6 @@ data class OrderDetailResponse(
             val shopLogo: String, // http://3.13.214.27:8800/uploads/user/89ebafda-19c7-41d3-ab2f-3d82b9976823.jpg
             val shopName: String, // test vendor
             val userId: Int // 85
-        )
+        ):Serializable
     }
 }

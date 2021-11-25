@@ -42,8 +42,6 @@ public class SignUpVendor extends AppCompatActivity implements View.OnClickListe
         camera.setOnClickListener(this);
     }
 
-
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -53,8 +51,6 @@ public class SignUpVendor extends AppCompatActivity implements View.OnClickListe
             case R.id.signupbackarrow:
                 onBackPressed();
                 break;
-
-
             case R.id.signupbutton:
                 startActivity(new Intent(SignUpVendor.this, BottomnavigationScreen.class));
 //                startActivity(new Intent(SignUpVendor.this, Verification.class));
@@ -64,14 +60,7 @@ public class SignUpVendor extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.signup_imgcamera:
                 askCameraPermissons();
-
-
-
-
-
         }
-
-
     }
 
     private void askCameraPermissons() {

@@ -534,4 +534,16 @@ interface RestApiInterface {
     @PUT(URL.makeDefaultCard)
     fun makeDefaultCard(@PartMap body: HashMap<String,Int>): Observable<CommonResponseModel>
 
+    @Multipart
+    @POST(URL.addProductRating)
+    fun addProductRating(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+
+    @Multipart
+    @POST(URL.userReview)
+    fun addUserReview(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+
+    @Multipart
+    @POST(URL.driverReview)
+    fun addDriverReview(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+
 }

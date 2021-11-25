@@ -28,9 +28,9 @@ import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.consumer.model.UserVendorsProductList
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.loadImage
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_productdetails.*
 import okhttp3.RequestBody
 import java.util.*
@@ -191,8 +191,9 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
     private fun setAdapterData(mResponse: UserVendorsProductList) {
         kfc.text = mResponse.body.product.productVendor.shopName
         deliveryTime.text = mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)"
-        starCount.text = mResponse.body.product.productVendor.ratingCount + " Rating, " + mResponse.body.product.productVendor.totalRating.toString()
-        star.rating = mResponse.body.product.productVendor.ratingCount.toFloat()
+        starCount.text = mResponse.body.product.productVendor.totalRating.toFloat().toString() + " Rating, "
+        star.rating = mResponse.body.product.productVendor.totalRating.toFloat()
+        totalCount.text = mResponse.body.product.productVendor.ratingCount.toString()
         shopLocation.text = mResponse.body.product.productVendor.ShopAddress
         img.loadImage(mResponse.body.product.productVendor.shopLogo)
 

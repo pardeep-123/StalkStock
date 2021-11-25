@@ -106,8 +106,6 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             }
             R.id.btn_signup -> {
                 SetValidation()
-
-
             }
             R.id.iv_back -> {
                 finish()
@@ -134,7 +132,6 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 }
             }
         }
-
     }
 
     private fun selectImage(ivProduct: ImageView, type: String) {
@@ -163,12 +160,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     }
 
     fun SetValidation() {
-        if (firstimage.isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.please_select_image),
-                Toast.LENGTH_LONG
-            ).show()
+        if (firstimage.isEmpty()) { Toast.makeText(this, resources.getString(R.string.please_select_image), Toast.LENGTH_LONG).show()
 
         } else if (et_firstName.getText().toString().isEmpty()) {
             et_firstName.requestFocus()

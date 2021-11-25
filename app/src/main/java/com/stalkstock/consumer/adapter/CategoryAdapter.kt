@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.consumer.fragment.HomeCounsumerFragment
-import com.stalkstock.rating.CategoryAdapter
 import com.stalkstock.utils.loadImage
 import kotlin.collections.ArrayList
 

@@ -319,6 +319,10 @@ class GlobalVariables {
         const val makeDefaultCard = "user/markAsPrimary"
         const val markAsPrimaryAddress = "markAsPrimaryAddress"
 
+        const val addProductRating= "orderItemReview"
+        const val userReview= "userReview"
+        const val driverReview= "driverReview"
+
    /*     {
             "addressId": 42,
             "bidItem": [

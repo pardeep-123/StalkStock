@@ -1,5 +1,6 @@
 package com.stalkstock.consumer.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +12,8 @@ import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.MyorderProductAdapter
 import com.stalkstock.consumer.model.OrderDetailResponse
+import com.stalkstock.driver.models.DriverDocResponse
+import com.stalkstock.rating.RatingActivity
 import com.stalkstock.utils.extention.checkObjectNull
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.loadImage
@@ -22,18 +25,27 @@ import kotlinx.android.synthetic.main.row_myorder.view.*
 import java.util.HashMap
 
 class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
+    private lateinit var publicData: OrderDetailResponse
 
     val viewModel: HomeViewModel by viewModels()
+    var orderId=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orderdeatils)
 
+        btnSubmitRating.setOnClickListener{
+            val intent= Intent(this,RatingActivity::class.java)
+            if (publicData != null)
+                intent.putExtra("body", publicData)
+            startActivity(intent)
 
+        }
         arrowBack.setOnClickListener { onBackPressed() }
 
         if (intent.hasExtra("orderId"))
-            getOrderDetail(intent.getStringExtra("orderId")!!)
+            orderId= intent.getStringExtra("orderId")!!
+            getOrderDetail(orderId)
     }
 
     private fun getOrderDetail(orderId: String) {
@@ -50,6 +62,12 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is OrderDetailResponse) {
                     val mResponse: OrderDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        publicData = mResponse
+                        if(publicData.body.orderStatus==4){
+                            btnSubmitRating.visibility=View.VISIBLE
+                        }else{
+                            btnSubmitRating.visibility=View.GONE
+                        }
                         img.loadImage(mResponse.body.orderVendor.shopLogo)
                         kfc.text = mResponse.body.orderVendor.shopName
                         tvLocation.text=mResponse.body.orderVendor.ShopAddress
@@ -108,5 +126,10 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
             else->{tvStatus.text= "Error"}
         }
 
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        getOrderDetail(orderId)
     }
 }

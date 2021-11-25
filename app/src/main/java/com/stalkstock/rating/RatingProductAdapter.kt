@@ -4,43 +4,43 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
-import com.stalkstock.common.model.ModelCategoryList
-import com.stalkstock.consumer.adapter.CategoryAdapter
-import com.stalkstock.consumer.fragment.HomeCounsumerFragment
-import com.stalkstock.utils.loadImage
-import kotlin.collections.ArrayList
+import com.stalkstock.consumer.model.OrderDetailResponse
+import kotlinx.android.synthetic.main.item_view_product_rating.view.*
 
 class RatingProductAdapter(
-    var context: RatingActivity,
     var mContext: Context,
-    var arrayList: ArrayList<ModelCategoryList.Body>
+    var arrayList: ArrayList<OrderDetailResponse.Body.OrderItem>
 ) :
     RecyclerView.Adapter<RatingProductAdapter.RecyclerViewHolder>() {
+
+    lateinit var ratingProductInterface: RatingProductInterface
     var inflater: LayoutInflater = LayoutInflater.from(mContext)
 
     class RecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var img: ImageView = view.findViewById(R.id.img)
-        var name: TextView = view.findViewById(R.id.starCount)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        val v = inflater.inflate(R.layout.row_categrey, parent, false)
+        val v = inflater.inflate(R.layout.item_view_product_rating, parent, false)
         return RecyclerViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.img.loadImage(arrayList[position].image)
-        holder.name.text = arrayList[position].name
-        holder.itemView.setOnClickListener {
-            //context.startSubCat(arrayList[position].id.toString())
+        holder.itemView.tvProduct.text= "Give rating to "+arrayList[position].product.name
+        var rating= holder.itemView.ratingProduct.rating.toString()
+
+        holder.itemView.btnSubmit.setOnClickListener {
+            ratingProductInterface.onSubmitRating(position,rating,arrayList[position].id.toString(),arrayList[position].productId.toString())
         }
     }
 
     override fun getItemCount(): Int {
         return arrayList.size
+    }
+
+    interface RatingProductInterface{
+        fun onSubmitRating(position: Int,rating:String,orderItemId:String,productId:String)
     }
 }
