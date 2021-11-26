@@ -5,6 +5,7 @@ import com.stalkstock.commercial.view.model.*
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
+import com.stalkstock.common.model.PayPalWebResponse
 import com.stalkstock.consumer.TermsData
 import com.stalkstock.consumer.model.*
 import com.stalkstock.driver.models.*
@@ -545,5 +546,9 @@ interface RestApiInterface {
     @Multipart
     @POST(URL.driverReview)
     fun addDriverReview(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+
+    @Multipart
+    @POST(URL.getPayPalWebviewLink)
+    fun getPayPalLink(@PartMap body: HashMap<String,Any>): Observable<PayPalWebResponse>
 
 }

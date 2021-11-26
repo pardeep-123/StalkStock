@@ -12,7 +12,8 @@ data class PlaceOrderModel(
     val total: String, // 114
     val totalQuantity: String, // 2
     val vendorId: String, // 78
-    val addressId: String // 78
+    val addressId: String, // 78
+    val transactionId:Int?=null
 ):Serializable {
     data class OrderItem(
         val netAmount: String, // 56.00

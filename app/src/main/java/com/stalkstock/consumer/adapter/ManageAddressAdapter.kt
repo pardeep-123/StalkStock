@@ -1,6 +1,7 @@
 package com.stalkstock.consumer.adapter
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.view.*
 import android.widget.Button
@@ -55,8 +56,13 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
 
         if(get.isDefault=="1"){
             cbDefault.isChecked = true
+            cbDefault.text= "Default"
+            cbDefault.setTextColor(context.resources.getColor(R.color.App))
         }else{
             cbDefault.isChecked = false
+            cbDefault.text= "Set As Default"
+            cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
+
         }
         holder.location.text = get.address_line2
 
@@ -73,15 +79,24 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
                 selectedpos = position
                 selectedAdd = cbDefault
                 cbDefault.isChecked = true
+                cbDefault.text= "Default"
+                cbDefault.setTextColor(context.resources.getColor(R.color.App))
+
                 manageAddress.setDefaultAddressApi(get.id.toString())
             } else {
                 if (cbDefault.isChecked) {
                     selectedpos = -1
                     cbDefault.isChecked = false
+                    cbDefault.text= "Set As Default"
+                    cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
+
                     manageAddress.setDefaultAddressApi(get.id.toString())
                 } else {
                     selectedAdd.isChecked = false
                     cbDefault.isChecked = true
+                    cbDefault.text= "Set As Default"
+                    cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
+
                     selectedpos = position
                     selectedAdd = cbDefault
                     manageAddress.setDefaultAddressApi(get.id.toString())

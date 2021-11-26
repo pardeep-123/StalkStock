@@ -12,9 +12,8 @@ import com.stalkstock.consumer.activities.ProductActivity
 import com.stalkstock.consumer.fragment.SearchFragment
 import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.loadImage
-import com.stalkstock.vender.ui.SearchScreen
 import kotlinx.android.synthetic.main.row_homedetails.view.*
-import java.util.ArrayList
+import java.util.*
 
 class HomedetailAdapter(
     var context: Activity,
@@ -50,7 +49,7 @@ class HomedetailAdapter(
                 val intent = Intent(context, ProductActivity::class.java)
                 intent.putExtra("product_id", body.id.toString())
                 intent.putExtra("title", body.name.toString())
-                intent.putExtra("delivery_type", currentDeliveryType)
+                intent.putExtra("deliveryType", currentDeliveryType)
                 context.startActivity(intent)
             }
         }

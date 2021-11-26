@@ -292,6 +292,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_select_category">Please select Category</string>
     <string name="please_select_quantity">Please select unit of measurement</string>
     <string name="no_request_found">No Request Found</string>
+    <string name="confirm_location_proceed"><![CDATA[Confirm Location & Proceed]]></string>
 
     <string-array name="Select_Category">
         <item>Select category</item>

@@ -45,6 +45,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable> {
+    private var currentDeliveryType: Int=2
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var mLat: Double = 0.0
     private var mLong: Double = 0.0
@@ -195,7 +196,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             tv_delivery.background =
             mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             tv_delivery.setTextColor(mActivity.getColor(R.color.green_ss))
-            mActivity.currentDeliveryType = 0
+            currentDeliveryType = 0
         }
         tv_delivery.setOnClickListener {
             bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
@@ -205,7 +206,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             bt_pickup.setTextColor(mActivity.getColor(R.color.green_ss))
             tv_delivery.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
             tv_delivery.setTextColor(mActivity.getColor(R.color.white))
-            mActivity.currentDeliveryType = 1
+            currentDeliveryType = 1
         }
 
         getAdsBannerAPI()
@@ -303,21 +304,21 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             if (mActivity.currentDeliveryType == 0)
                 bt_pickup.performClick()
             else
-                this.tv_delivery.performClick()
+                tv_delivery.performClick()
         }
         tv_default = logoutUpdatedDialog2.findViewById(R.id.tv_default)
         tv_most = logoutUpdatedDialog2.findViewById(R.id.tv_most)
         tv_rating = logoutUpdatedDialog2.findViewById(R.id.tv_rating)
         btn_apply.setOnClickListener {
             logoutUpdatedDialog2.dismiss()
-            if (mActivity.currentDeliveryType == 0)
+            if (currentDeliveryType == 0)
                 bt_pickup.performClick()
             else
-                this.tv_delivery.performClick()
+                tv_delivery.performClick()
         }
         rl_delivery.setOnClickListener {
             statusClick = 1
-            mActivity.currentDeliveryType = 1
+            currentDeliveryType = 1
             iconAndTextColorChange(
                 statusClick,
                 tv_delivery,
@@ -333,7 +334,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         }
         rl_pickups.setOnClickListener {
             statusClick = 2
-            mActivity.currentDeliveryType = 0
+            currentDeliveryType = 0
             iconAndTextColorChange(
                 statusClick,
                 tv_delivery,
@@ -535,7 +536,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     fun startSubCat(toString: String) {
         val intent = Intent(context, HomedetailsActivity::class.java)
         intent.putExtra("catId", toString)
-        intent.putExtra("currentDeliveryType", mActivity.currentDeliveryType.toString())
+        intent.putExtra("currentDeliveryType", currentDeliveryType.toString())
         intent.putExtra("currentHighPrice", currentHighPrice)
         intent.putExtra("currentLowPrice", currentLowPrice)
         intent.putExtra("currentSortBy", currentSortBy)

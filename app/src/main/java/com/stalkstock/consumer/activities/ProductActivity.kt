@@ -79,7 +79,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
         }
 
         currentProductID = intent.getStringExtra("product_id")!!
-        currentDelivery_type = intent.getStringExtra("delivery_type")!!
+        currentDelivery_type = intent.getStringExtra("deliveryType")!!
         txtTitle.text = intent.getStringExtra("title")
         getProductAsVendor()
         back.setOnClickListener { finish() }

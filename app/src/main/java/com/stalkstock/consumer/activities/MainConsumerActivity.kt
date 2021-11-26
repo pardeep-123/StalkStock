@@ -28,7 +28,7 @@ class MainConsumerActivity : BaseActivity() {
     lateinit var tv_order: TextView
     lateinit var tv_cart: TextView
     lateinit var tv_account: TextView
-    var currentDeliveryType = 0 // 0- pickup,1-deelivery , 2 -all
+    var currentDeliveryType = 2 // 0- pickup,1-deelivery , 2 -all
 
     override fun getContentId(): Int {
         return R.layout.activity_main_consumer

@@ -52,6 +52,7 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
     lateinit var tvTagWork: TextView
     lateinit var tvTagHotel: TextView
     lateinit var tvTagOther: TextView
+
     override fun onMapReady(p0: GoogleMap?) {
         mMap = p0
 
@@ -82,6 +83,7 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
         }
 
         mMap!!.setOnCameraMoveListener {
+            mMap!!.clear()
             target = mMap!!.cameraPosition.target
             mLatitude = target!!.latitude.toString()
             mLongitude = target!!.longitude.toString()

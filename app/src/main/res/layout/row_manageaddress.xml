@@ -31,14 +31,13 @@
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbDefault"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_100sdp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:button="@drawable/bg_check_box"
-            android:enabled="false"
-            android:padding="@dimen/_10sdp" />
+            android:enabled="false" />
 
         <RelativeLayout
             android:id="@+id/edit"

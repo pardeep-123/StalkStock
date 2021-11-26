@@ -36,6 +36,7 @@ import java.lang.Exception
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.collections.set
 
 /**
@@ -90,6 +91,17 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                         )
                     )
                 }
+
+                /*val hashMap=HashMap<String,Any>()
+                hashMap["isSelfpickup"] = mSelfPickUp
+                hashMap["netAmount"] = mNetAmount
+                hashMap["orderItem"] = mArrayLIst
+                hashMap["shippingCharges"] = mShippingCharges
+                hashMap["shopCharges"] = mShopCharges
+                hashMap["total"] = mTotalAmount
+                hashMap["totalQuantity"] = mTotalQuantity
+                hashMap["vendorId"] = mVendorId
+                hashMap["addressId"] = mAddressId*/
                 val placeOrderModel = PlaceOrderModel(
                     mSelfPickUp,
                     mNetAmount,

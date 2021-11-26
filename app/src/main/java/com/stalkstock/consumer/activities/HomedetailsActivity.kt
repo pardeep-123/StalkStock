@@ -110,6 +110,12 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
+        currentCatId = intent.getStringExtra("catId")!!
+        currentDeliveryType = intent.getStringExtra("currentDeliveryType")!!
+        currentHighPrice = intent.getStringExtra("currentHighPrice")!!
+        currentLowPrice = intent.getStringExtra("currentLowPrice")!!
+        currentSortBy = intent.getStringExtra("currentSortBy")!!
+
         detail_recycle = findViewById(R.id.detail_recycle)
         rv_title = findViewById(R.id.rv_title)
         meat = findViewById(R.id.meat)
@@ -200,11 +206,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
 
         setTitleAdapter()
 
-        currentCatId = intent.getStringExtra("catId")!!
-        currentDeliveryType = intent.getStringExtra("currentDeliveryType")!!
-        currentHighPrice = intent.getStringExtra("currentHighPrice")!!
-        currentLowPrice = intent.getStringExtra("currentLowPrice")!!
-        currentSortBy = intent.getStringExtra("currentSortBy")!!
+
 
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
