@@ -1,11 +1,11 @@
 package com.stalkstock.commercial.view.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.stalkstock.MyApplication
 import com.stalkstock.R
@@ -14,8 +14,6 @@ import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.MyorderProductAdapter
 import com.stalkstock.consumer.model.OrderDetailResponse
 import com.stalkstock.rating.RatingActivity
-import com.stalkstock.utils.extention.checkObjectNull
-import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
@@ -25,12 +23,13 @@ import kotlinx.android.synthetic.main.activity_parent.*
 import kotlinx.android.synthetic.main.activity_parent.img
 import kotlinx.android.synthetic.main.activity_parent.kfc
 import kotlinx.android.synthetic.main.activity_parent.tvStatus
-import java.util.HashMap
+import java.util.*
 
 class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     val viewModel: HomeViewModel by viewModels()
     lateinit var currency: String
     private lateinit var publicData: OrderDetailResponse
+    val list= ArrayList<OrderDetailResponse.Body.OrderItem>()
 
     var orderId: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,11 +97,21 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is OrderDetailResponse) {
                     val mResponse: OrderDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        for(i in 0 until publicData.body.orderItems.size){
+                            if(publicData.body.orderItems[i].isReview==0){
 
-                         if(publicData.body.orderStatus==1){
-                            btnRating.visibility=View.VISIBLE
+                                list.add(publicData.body.orderItems[i])
+                            }
+                        }
+                        if(publicData.body.orderStatus!=1){
+                            btnRating.visibility=View.GONE
+                        }
+                        else if(publicData.body.orderStatus==1 && publicData.body.orderStatus==4 && publicData.body.isDriverReview==1 && publicData.body.isVendorReview==1
+                                 && publicData.body.isUserReview==0 && list.size==0 ){
+                                 btnSubmitRating.visibility=View.GONE
+                            btnRating.visibility=View.GONE
                         }else{
-                             btnRating.visibility=View.GONE
+                             btnRating.visibility=View.VISIBLE
                         }
                         publicData = mResponse
                         img.loadImage(mResponse.body.orderVendor.shopLogo)

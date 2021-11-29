@@ -1,7 +1,6 @@
 package com.stalkstock.consumer.adapter
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.view.*
 import android.widget.Button
@@ -39,28 +38,30 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val cbDefault: CheckBox = holder.itemView.cbDefault
         val get = body[position]
+        holder.itemView.location.text= body[position].geoLocation
         when (get.type) {
             "1" -> {
                 holder.textType.text = "Home"
-                holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home_green_icon, 0, 0, 0);
+                holder.itemView.imgAddress.setImageResource(R.drawable.home_1)
+                //holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home_1, 0, 0, 0);
             }
             "2" -> {
                 holder.textType.text = "Work"
-                holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.work_icon, 0, 0, 0);
+                holder.itemView.imgAddress.setImageResource(R.drawable.work_1)
             }
             else -> {
                 holder.textType.text = "Other"
-                holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.location_icon_for_edit, 0, 0, 0);
+                holder.itemView.imgAddress.setImageResource(R.drawable.location_1)
             }
         }
 
         if(get.isDefault=="1"){
             cbDefault.isChecked = true
-            cbDefault.text= "Default"
+         //   cbDefault.text= "Default"
             cbDefault.setTextColor(context.resources.getColor(R.color.App))
         }else{
             cbDefault.isChecked = false
-            cbDefault.text= "Set As Default"
+          //  cbDefault.text= "Set As Default"
             cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
 
         }
@@ -79,7 +80,7 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
                 selectedpos = position
                 selectedAdd = cbDefault
                 cbDefault.isChecked = true
-                cbDefault.text= "Default"
+             //   cbDefault.text= "Default"
                 cbDefault.setTextColor(context.resources.getColor(R.color.App))
 
                 manageAddress.setDefaultAddressApi(get.id.toString())
@@ -87,14 +88,14 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
                 if (cbDefault.isChecked) {
                     selectedpos = -1
                     cbDefault.isChecked = false
-                    cbDefault.text= "Set As Default"
+                   // cbDefault.text= "Set As Default"
                     cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
 
                     manageAddress.setDefaultAddressApi(get.id.toString())
                 } else {
                     selectedAdd.isChecked = false
                     cbDefault.isChecked = true
-                    cbDefault.text= "Set As Default"
+                    //cbDefault.text= "Set As Default"
                     cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
 
                     selectedpos = position

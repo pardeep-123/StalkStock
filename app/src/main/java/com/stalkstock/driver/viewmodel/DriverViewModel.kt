@@ -257,6 +257,36 @@ class DriverViewModel : ViewModel() {
     }
 
 
+    @SuppressLint("CheckResult")
+    fun getPayPalWebLink(
+        activity: Activity,
+        showLoader: Boolean,
+        data: HashMap<String,Any>
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getPayPalLink(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { mResponse.value = RestObservable.success(it) },
+                    { mResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getPayPalWebLink(activity, showLoader, data)
+                    }
+                })
+        }
+
+    }
+
+
+
 
     @SuppressLint("CheckResult")
     fun getProfileDetail(

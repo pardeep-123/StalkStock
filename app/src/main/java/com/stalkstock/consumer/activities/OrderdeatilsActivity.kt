@@ -29,6 +29,7 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
 
     val viewModel: HomeViewModel by viewModels()
     var orderId=""
+    val list= ArrayList<OrderDetailResponse.Body.OrderItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,10 +64,27 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
                     val mResponse: OrderDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         publicData = mResponse
-                        if(publicData.body.orderStatus==4){
-                            btnSubmitRating.visibility=View.VISIBLE
-                        }else{
+
+                        for(i in 0 until publicData.body.orderItems.size){
+                            if(publicData.body.orderItems[i].isReview==0){
+
+                                list.add(publicData.body.orderItems[i])
+                            }
+                        }
+                        if(publicData.body.orderStatus<4){
                             btnSubmitRating.visibility=View.GONE
+                        }else if(publicData.body.isSelfpickup==0){
+                            if(publicData.body.orderStatus==4 && publicData.body.isDriverReview==1 && publicData.body.isVendorReview==1
+                                && publicData.body.isUserReview==0 && list.size==0 ){
+                                btnSubmitRating.visibility=View.GONE
+                            }
+                        }else if(publicData.body.isSelfpickup==1){
+                            if(publicData.body.orderStatus==4 && publicData.body.isDriverReview==0 && publicData.body.isVendorReview==1
+                                && publicData.body.isUserReview==1 && list.size==0 ){
+                                btnSubmitRating.visibility=View.GONE
+                            }
+                        } else{
+                            btnSubmitRating.visibility=View.VISIBLE
                         }
                         img.loadImage(mResponse.body.orderVendor.shopLogo)
                         kfc.text = mResponse.body.orderVendor.shopName

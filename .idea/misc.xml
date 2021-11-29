@@ -138,7 +138,7 @@
         <entry key="app/src/main/res/layout/activity_productdetails.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_search_screen.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/activity_select_category.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_select_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup3.xml" value="0.159375" />
@@ -159,7 +159,7 @@
         <entry key="app/src/main/res/layout/chat_fragment.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/completed_popup.xml" value="0.2" />
         <entry key="app/src/main/res/layout/current_popup.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/dialog_spinner.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/dialog_spinner.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_account2.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_account_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.21" />

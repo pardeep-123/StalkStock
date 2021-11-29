@@ -170,7 +170,6 @@ class RatingActivity:AppCompatActivity(), RatingProductAdapter.RatingProductInte
         when(v?.id){
             R.id.btnDriverRating ->{
                 isDriverReview=1
-                isVendorReview=0
                 val hashMap = HashMap<String, Any>()
                 hashMap["orderId"] = orderId.toInt()
                 hashMap["rating"] = ratingVendor.rating

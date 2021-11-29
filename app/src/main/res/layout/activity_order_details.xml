@@ -119,9 +119,7 @@
                                 android:layout_marginRight="10dp"
                                 android:layout_toLeftOf="@+id/iv_drop"
                                 android:text=""
-
                                 android:textColor="#8BC34A"
-
                                 android:textSize="@dimen/_12sdp"
                                 android:visibility="gone" />
 

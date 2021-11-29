@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -22,9 +23,11 @@ import androidx.lifecycle.Observer
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.common.model.PayPalWebResponse
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.ThanksActivity
 import com.stalkstock.consumer.model.*
+import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
@@ -37,6 +40,8 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
     var mMap: HashMap<String, String>? = null
     var mObject: PlaceOrderModel? = null
     val viewModel: HomeViewModel by viewModels()
+    val driverViewModel: DriverViewModel by viewModels()
+
     var mPaymentType = "1"  // 0=>Wallet 1=>Card 2=>paypal
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,8 +78,9 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                             mObject!!.paymentMethod = mPaymentType
                             placeOrderApi()
                     } else {
-                           // mObject!!.paymentMethod = mPaymentType
+                            mObject!!.paymentMethod = mPaymentType
                             Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show()
+                            getPayPalWebLink()
                         //add paypal functionality
 //                        val intent = Intent(mContext, ThankyouActivity::class.java)
 //                        startActivity(intent)
@@ -99,6 +105,14 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         }
     }
 
+    private fun getPayPalWebLink() {
+        val hashMap= HashMap<String,Any>()
+        hashMap.put("totalAmount",mObject?.total?.toFloat()!!)
+        driverViewModel.getPayPalWebLink(this,true,hashMap)
+        driverViewModel.mResponse.observe(this, this)
+
+    }
+
     private fun placeOrderApi() {
 
         viewModel.placeOrderApi(this, true, mObject!!)
@@ -121,6 +135,22 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                         )
                     }
                 }
+                if (it.data is PayPalWebResponse) {
+                    val mResponse: PayPalWebResponse = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                       for(i in 0 until mResponse.body.result.links.size){
+                           if(mResponse.body.result.links[i].rel=="approve"){
+                               showebview(mResponse.body.result.links[i].href)
+                           }
+                       }
+                    } else {
+                        AppUtils.showErrorAlert(
+                            this,
+                            mResponse.message.toString()
+                        )
+                    }
+                }
+
 
             }
             it.status == Status.ERROR -> {
@@ -211,10 +241,19 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                 Log.e("url",url)
                 view.loadUrl(url)
                 if (url.contains("http://3.13.214.27:8800/api/successStalkAndStockUrl")) {
+
+                    val uri: Uri =
+                        Uri.parse(url)
+                    val server: String? = uri.getAuthority()
+                    val path: String? = uri.getPath()
+                    val protocol: String? = uri.getScheme()
+                    val args: Set<String> = uri.getQueryParameterNames()
+
+                    val id = uri.getQueryParameter("token")
+                    mObject?.transactionId= id?.toInt()
                    // mObject!!.transactionId = add transaction id here
                     placeOrderApi()
                     //place order api
-                    //cartPreseneter.placeorder(requireArguments().getString("type")!!,requireArguments().getString("cart_id")!!,requireArguments().getString("quantity")!!,requireArguments().getString("amount")!!,requireArguments().getString("address_id")!!,paymentcode)
                 }
                 return true
             }

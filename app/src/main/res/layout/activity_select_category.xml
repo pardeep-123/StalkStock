@@ -81,9 +81,7 @@
                             android:paddingRight="20dp"
                             android:prompt="@string/dropdown"
                             android:text="Select Category"
-                            android:textColor="#000"
 
-                            android:textColorHint="#F8F6F6"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
@@ -120,11 +118,6 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp"
                             android:paddingRight="20dp"
-                            android:prompt="@string/dropdown"
-                            android:text="Select Sub-Category"
-                            android:textColor="#000"
-
-                            android:textColorHint="#F8F6F6"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 

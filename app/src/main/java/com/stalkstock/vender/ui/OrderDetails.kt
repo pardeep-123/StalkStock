@@ -104,9 +104,10 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
             ltStatus2.visibility=View.GONE
             ltStatus4.visibility=View.GONE
         }else{
-            ltStatus1.visibility=View.VISIBLE
-            ltStatus2.visibility=View.VISIBLE
-            ltStatus4.visibility=View.VISIBLE
+            ltStatus3.visibility=View.VISIBLE
+            ltStatus1.visibility=View.GONE
+            ltStatus2.visibility=View.GONE
+            ltStatus4.visibility=View.GONE
         }
 
         ltStatus1.setOnClickListener {

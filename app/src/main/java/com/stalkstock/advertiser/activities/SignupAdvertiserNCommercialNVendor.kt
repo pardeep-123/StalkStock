@@ -41,7 +41,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
-    var business_type = "0"
+    var business_type = 0
     var business_delivery_type = 0
     var country = ""
     override fun getContentId(): Int {
@@ -160,7 +160,8 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     }
 
     fun SetValidation() {
-        if (firstimage.isEmpty()) { Toast.makeText(this, resources.getString(R.string.please_select_image), Toast.LENGTH_LONG).show()
+        if (firstimage.isEmpty()) {
+            Toast.makeText(this, resources.getString(R.string.please_select_image), Toast.LENGTH_LONG).show()
 
         } else if (et_firstName.getText().toString().isEmpty()) {
             et_firstName.requestFocus()
@@ -174,17 +175,17 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (et_businessDescptn.getText().toString().isEmpty()) {
             et_businessDescptn.requestFocus()
             et_businessDescptn.setError(resources.getString(R.string.please_enter_business_description))
-        } else if (business_type.equals("0")) {
+        } else if (business_type == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
-        } else if (licnEdittext.getText().toString().isEmpty()) {
-            licnEdittext.requestFocus()
-            licnEdittext.setError(resources.getString(R.string.please_enter_business_license))
-        }  else if (business_delivery_type == 0) {
+        }else if (business_delivery_type == 0) {
             AppUtils.showErrorAlert(
                 this,
                 resources.getString(R.string.please_enter_business_delivery_type)
             )
-        }else if (emailEdittext.getText().toString().isEmpty()) {
+        } else if (licnEdittext.getText().toString().isEmpty()) {
+            licnEdittext.requestFocus()
+            licnEdittext.setError(resources.getString(R.string.please_enter_business_license))
+        }  else if (emailEdittext.getText().toString().isEmpty()) {
             emailEdittext.requestFocus()
             emailEdittext.setError(resources.getString(R.string.please_enter_email))
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString())
@@ -221,7 +222,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (et_zipCode.getText().toString().isEmpty()) {
             et_zipCode.requestFocus()
             et_zipCode.setError(resources.getString(R.string.please_enter_postal_code))
-        } else if (passwordEdittext.getText().toString().isEmpty()) {
+        } else if (spinner.selectedItem.toString()=="Select Country") {
+            AppUtils.showErrorAlert(
+                this,
+                resources.getString(R.string.please_enter_country)
+            )
+        }else if (passwordEdittext.getText().toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError(resources.getString(R.string.please_enter_password))
         } else if (passwordEdittext.getText().toString().length<6) {
@@ -274,7 +280,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
         else {
 
-            if (country=="Select Country") {
+            if (spinner.selectedItem.toString()=="Select Country") {
                 Toast.makeText(
                     this,
                     resources.getString(R.string.please_enter_country),
@@ -572,7 +578,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (p0?.id == R.id.spinner_type) {
             var array = this.resources.getStringArray(R.array.Select_business_type)
 
-            business_type = array[p2]
+            business_type = p2
         }
 
         else if (p0?.id == R.id.spinner_delivery_type) {

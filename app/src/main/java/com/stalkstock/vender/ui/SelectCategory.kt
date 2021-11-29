@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import co.lujun.androidtagview.TagView.OnTagClickListener
 import com.stalkstock.R
@@ -20,6 +21,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_change_password.*
+import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_select_category.*
 import okhttp3.RequestBody
 
@@ -30,11 +32,13 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     private var listCategoryBody: ArrayList<ModelCategoryList.Body> = ArrayList()
     private var listSub: ArrayList<String> = ArrayList()
     private var listSubCategoryBody: ArrayList<ModelSubCategoriesList.Body> = ArrayList()
-    var spinner: Spinner? = null
+    var mSpinner: Spinner? = null
     lateinit var textView: TextView
     lateinit var textView1: TextView
     lateinit var textView2: TextView
     lateinit var textView3: TextView
+    var categoryId = "0"
+    var subCategoryId = "0"
     override fun getContentId(): Int {
         return R.layout.activity_select_category
     }
@@ -54,6 +58,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         super.onCreate(savedInstanceState)
         val backarrow = findViewById<ImageView>(R.id.selectctgbackarrow)
         val button = findViewById<Button>(R.id.enteritembutton)
+
         button.setOnClickListener(this)
         backarrow.setOnClickListener(this)
         textView = findViewById(R.id.text)
@@ -106,7 +111,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 ltTagContainer.removeTag(position)
             }
         })
-        spinner = findViewById<View>(R.id.spinner) as Spinner
+        mSpinner = findViewById<View>(R.id.spinner) as Spinner
+
         spinner!!.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
@@ -114,9 +120,25 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 position: Int,
                 id: Long
             ) {
-                val get = listCategoryBody.get(spinner!!.selectedItemPosition)
-                val id1 = get.id.toString()
-                getSubCategoryAPI(id1)
+                if (position == 0) {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@SelectCategory, R.color.sort_popup_gray_color
+                        )
+                    )
+                    setAdapterSpinnerSub("0", listSubCategoryBody)
+                } else {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@SelectCategory, R.color.black
+                        )
+                    )
+                    val get = listCategoryBody.get(spinner!!.selectedItemPosition)
+                    categoryId = get.id.toString()
+                    getSubCategoryAPI(categoryId)
+
+                }
+
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -132,9 +154,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
     private fun getSubCategoryAPI(id1: String) {
         listSubCategoryBody.clear()
-        listSub.clear()
         subCatAdapter.notifyDataSetChanged()
-
         val hashMap = HashMap<String, RequestBody>()
         hashMap["category_id"] = mUtils.createPartFromString(id1)
         viewModel.getSubCategoryListAPI(this, true, hashMap)
@@ -157,23 +177,28 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         when (id) {
             R.id.selectctgbackarrow -> onBackPressed()
             R.id.enteritembutton -> {
-
                 val tags = ltTagContainer.tags
-
-                if (spinnerSubCategory.selectedItemPosition == -1) {
+                if (spinner.selectedItemPosition == 0) {
+                    AppUtils.showErrorAlert(
+                        this,
+                        "Please select category"
+                    )
+                } else if (spinnerSubCategory.selectedItemPosition == 0) {
+                    AppUtils.showErrorAlert(
+                        this,
+                        "Please select sub category"
+                    )
+                } else if (spinnerSubCategory.selectedItemPosition == -1) {
                     AppUtils.showErrorAlert(
                         this,
                         "Change category , Sub category not found for this category "
                     )
-                }
-                else if (tags.size<1)
-                {
+                } else if (tags.size < 1) {
                     AppUtils.showErrorAlert(
                         this,
                         "Add atleast one tag!"
                     )
-                }
-                else {
+                } else {
                     val join = TextUtils.join(",", tags)
                     Log.e("Joinedss>>>,", join)
 
@@ -183,7 +208,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     val selectedItemPosition1 = spinnerSubCategory.selectedItemPosition
                     val subCat = listSubCategoryBody.get(selectedItemPosition1).id.toString()
 
-                    var intent = Intent(this@SelectCategory, AddProduct::class.java)
+                    val intent = Intent(this@SelectCategory, AddProduct::class.java)
                     intent.putExtra("catId", id1)
                     intent.putExtra("subCatId", subCat)
                     intent.putExtra("tags", join)
@@ -200,6 +225,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     val mResponse: ModelCategoryList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setAdapterSpinner(mResponse)
+
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
@@ -208,7 +234,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 if (it.data is ModelSubCategoriesList) {
                     val mResponse: ModelSubCategoriesList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        setAdapterSpinnerSub(mResponse)
+                        setAdapterSpinnerSub("1", mResponse.body!!)
+
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
@@ -227,9 +254,20 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         }
     }
 
-    private fun setAdapterSpinnerSub(mResponse: ModelSubCategoriesList) {
+    private fun setAdapterSpinnerSub(
+        position: String,
+        mResponse: List<ModelSubCategoriesList.Body>
+    ) {
         listSubCategoryBody.clear()
-        listSubCategoryBody.addAll(mResponse.body)
+        listSubCategoryBody.add(
+            0,
+            ModelSubCategoriesList.Body(0, 0, "Select Sub-Category", categoryId.toInt(), 0)
+        )
+
+        if (position != "0") {
+            listSubCategoryBody.addAll(mResponse)
+        }
+
         listSub.clear()
         for (i in listSubCategoryBody) {
             listSub.add(i.name)
@@ -241,6 +279,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
     private fun setAdapterSpinner(mResponse: ModelCategoryList) {
         listCategoryBody.clear()
+        listCategoryBody.add(0, ModelCategoryList.Body(0, "", "Select Category", 0))
         listCategoryBody.addAll(mResponse.body)
         list.clear()
         for (i in listCategoryBody) {
