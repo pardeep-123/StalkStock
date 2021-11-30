@@ -30,7 +30,7 @@ data class OrderListModel(
         val updatedAt: String, // 2021-07-09T11:14:42.000Z
         val vendorCommission: String, // 0.00
         val vendorId: Int ,// 78
-        val transactionDetail: String,
+        //val transactionDetail: String,
         val transactionId: String
 
 

@@ -500,8 +500,10 @@
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
                     android:paddingRight="12dp"
+                    android:singleLine="true"
                     android:paddingBottom="5dp"
                     android:textColor="@color/black"
+                    android:focusable="false"
                     android:textColorHint="@color/light_grey"
                     android:textSize="13sp" />
 

@@ -41,6 +41,7 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
     var mObject: PlaceOrderModel? = null
     val viewModel: HomeViewModel by viewModels()
     val driverViewModel: DriverViewModel by viewModels()
+    var cardId = 0
 
     var mPaymentType = "1"  // 0=>Wallet 1=>Card 2=>paypal
 
@@ -61,6 +62,8 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
 //            mMap = intent.getSerializableExtra("orderdata") as HashMap<String, String>
             mObject = intent.getSerializableExtra("orderdata") as PlaceOrderModel
         }
+        cardId = intent.getIntExtra("cardId", 0)
+
     }
 
     override fun onClick(p0: View?) {
@@ -73,14 +76,23 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                     click = 1;
                     btn_checkout.text = "Pay Now"
                 } else {
-                   // if (MyApplication.instance.getString("usertype").equals("1")) {
-                        if (mObject != null && mPaymentType=="1"){
+                    // if (MyApplication.instance.getString("usertype").equals("1")) {
+                    if (mObject != null && mPaymentType == "1") {
+                        if (cardId == 0) {
+                            AppUtils.showErrorAlert(
+                                this,
+                                "Please add your card first"
+                            )
+                        } else {
                             mObject!!.paymentMethod = mPaymentType
+                            mObject!!.cardId = cardId
                             placeOrderApi()
+                        }
+
                     } else {
-                            mObject!!.paymentMethod = mPaymentType
-                            Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show()
-                            getPayPalWebLink()
+                        mObject!!.paymentMethod = mPaymentType
+                       // Toast.makeText(this, "In progress", Toast.LENGTH_SHORT).show()
+                        getPayPalWebLink()
                         //add paypal functionality
 //                        val intent = Intent(mContext, ThankyouActivity::class.java)
 //                        startActivity(intent)
@@ -106,9 +118,9 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
     }
 
     private fun getPayPalWebLink() {
-        val hashMap= HashMap<String,Any>()
-        hashMap.put("totalAmount",mObject?.total?.toFloat()!!)
-        driverViewModel.getPayPalWebLink(this,true,hashMap)
+        val hashMap = HashMap<String, Any>()
+        hashMap.put("totalAmount", mObject?.total?.toFloat()!!)
+        driverViewModel.getPayPalWebLink(this, true, hashMap)
         driverViewModel.mResponse.observe(this, this)
 
     }
@@ -138,11 +150,11 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                 if (it.data is PayPalWebResponse) {
                     val mResponse: PayPalWebResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                       for(i in 0 until mResponse.body.result.links.size){
-                           if(mResponse.body.result.links[i].rel=="approve"){
-                               showebview(mResponse.body.result.links[i].href)
-                           }
-                       }
+                        for (i in 0 until mResponse.body.result.links.size) {
+                            if (mResponse.body.result.links[i].rel == "approve") {
+                                showebview(mResponse.body.result.links[i].href)
+                            }
+                        }
                     } else {
                         AppUtils.showErrorAlert(
                             this,
@@ -179,8 +191,7 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         }
     }
 
-    fun showebview(url:String)
-    {
+    fun showebview(url: String) {
         val llPadding = 30
         val alert: AlertDialog.Builder = AlertDialog.Builder(this)
         alert.setTitle("PayPal")
@@ -190,7 +201,8 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         ll.gravity = Gravity.CENTER
         var llParam = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT)
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
         llParam.gravity = Gravity.CENTER
         ll.layoutParams = llParam
 
@@ -201,7 +213,8 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
 
         llParam = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT)
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         llParam.gravity = Gravity.CENTER
         val tvText = TextView(this)
         tvText.text = "Please wait..."
@@ -237,10 +250,12 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                 tvText.visibility = View.GONE
 
             }
+
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                Log.e("url",url)
+                Log.e("url", url)
                 view.loadUrl(url)
                 if (url.contains("http://3.13.214.27:8800/api/successStalkAndStockUrl")) {
+               // if (url.contains("http://192.168.1.119:8800/api/successStalkAndStockUrl")) {
 
                     val uri: Uri =
                         Uri.parse(url)
@@ -249,9 +264,9 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
                     val protocol: String? = uri.getScheme()
                     val args: Set<String> = uri.getQueryParameterNames()
 
-                    val id = uri.getQueryParameter("token")
-                    mObject?.transactionId= id?.toInt()
-                   // mObject!!.transactionId = add transaction id here
+                    val id = uri.getQueryParameter("token").toString()
+                    mObject?.transactionId = id
+                    // mObject!!.transactionId = add transaction id here
                     placeOrderApi()
                     //place order api
                 }
@@ -264,7 +279,6 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         alert.setNegativeButton("Close") { dialog, id -> dialog.dismiss() }
         alert.show()
     }
-
 
 
 }

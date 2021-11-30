@@ -1,7 +1,10 @@
 package com.stalkstock.advertiser.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -12,6 +15,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
@@ -26,14 +33,21 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_addnewaddress.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_signup.spinner
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
+import java.util.*
+import kotlin.collections.HashMap
 
 class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
 
+    private var latitude = ""
+    private var longitude = ""
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
@@ -44,6 +58,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     var business_type = 0
     var business_delivery_type = 0
     var country = ""
+    var city = ""
+    var address = ""
+    var geoLocation = ""
+    var state = ""
+    var postalCode = ""
+    var knownName = ""
     override fun getContentId(): Int {
         return R.layout.activity_signup
     }
@@ -53,7 +73,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        Places.initialize(this, getString(R.string.maps_api_key))
         tv_heading.text = getString(R.string.sign_up)
         tv_signin.setOnClickListener(this)
         iv_back.setOnClickListener(this)
@@ -61,6 +81,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         tv_signin.setOnClickListener(this)
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
+        et_businessAddress.setOnClickListener(this)
         spinner.onItemSelectedListener = this
         spinner_type.onItemSelectedListener = this
         spinner_delivery_type.onItemSelectedListener = this
@@ -116,6 +137,22 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 mAlbumFiles.clear()
                 selectImage(image, "1")
             }
+
+            R.id.et_businessAddress -> {
+                val fields = listOf(
+                    Place.Field.ID,
+                    Place.Field.NAME,
+                    Place.Field.LAT_LNG,
+                    Place.Field.ADDRESS_COMPONENTS,
+                    Place.Field.ADDRESS
+                )
+                // Start the autocomplete intent.
+                val intent =
+                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
+                        this
+                    )
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            }
         }
     }
 
@@ -131,8 +168,39 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
+        }else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+                latitude = place.latLng?.latitude.toString()
+                longitude = place.latLng?.longitude.toString()
+                getAddress(latitude.toDouble(),longitude.toDouble())
+                et_businessAddress.setText(place.name.toString())
+
+            }
         }
     }
+
+
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        )
+
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
+            et_city.setText(city)
+        }
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
+            et_state.setText(state)
+        }
+
+    }
+
 
     private fun selectImage(ivProduct: ImageView, type: String) {
         Album.image(this)
@@ -161,7 +229,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
     fun SetValidation() {
         if (firstimage.isEmpty()) {
-            Toast.makeText(this, resources.getString(R.string.please_select_image), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this,
+                resources.getString(R.string.please_select_image),
+                Toast.LENGTH_LONG
+            ).show()
 
         } else if (et_firstName.getText().toString().isEmpty()) {
             et_firstName.requestFocus()
@@ -177,7 +249,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             et_businessDescptn.setError(resources.getString(R.string.please_enter_business_description))
         } else if (business_type == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
-        }else if (business_delivery_type == 0) {
+        } else if (business_delivery_type == 0) {
             AppUtils.showErrorAlert(
                 this,
                 resources.getString(R.string.please_enter_business_delivery_type)
@@ -185,7 +257,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (licnEdittext.getText().toString().isEmpty()) {
             licnEdittext.requestFocus()
             licnEdittext.setError(resources.getString(R.string.please_enter_business_license))
-        }  else if (emailEdittext.getText().toString().isEmpty()) {
+        } else if (emailEdittext.getText().toString().isEmpty()) {
             emailEdittext.requestFocus()
             emailEdittext.setError(resources.getString(R.string.please_enter_email))
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString())
@@ -222,15 +294,15 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (et_zipCode.getText().toString().isEmpty()) {
             et_zipCode.requestFocus()
             et_zipCode.setError(resources.getString(R.string.please_enter_postal_code))
-        } else if (spinner.selectedItem.toString()=="Select Country") {
+        } else if (spinner.selectedItem.toString() == "Select Country") {
             AppUtils.showErrorAlert(
                 this,
                 resources.getString(R.string.please_enter_country)
             )
-        }else if (passwordEdittext.getText().toString().isEmpty()) {
+        } else if (passwordEdittext.getText().toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError(resources.getString(R.string.please_enter_password))
-        } else if (passwordEdittext.getText().toString().length<6) {
+        } else if (passwordEdittext.getText().toString().length < 6) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError("Password should contain at least 6 characters")
         } else if (repasswordEdittext.getText().toString().isEmpty()) {
@@ -241,10 +313,9 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         ) {
             repasswordEdittext.requestFocus()
             repasswordEdittext.setError(resources.getString(R.string.new_confirm_password_dont_match))
-        }
-        else if (MyApplication.instance.getString("usertype").equals("4")) {
+        } else if (MyApplication.instance.getString("usertype").equals("4")) {
 
-            if (spinner.selectedItem.toString()=="Select Country") {
+            if (spinner.selectedItem.toString() == "Select Country") {
                 Toast.makeText(
                     this,
                     resources.getString(R.string.please_enter_country),
@@ -254,33 +325,50 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             }
 
             val hashMap = HashMap<String, RequestBody>()
-            hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessDescription] = mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
-            hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.deliveryType] = mUtils.createPartFromString((business_delivery_type-1).toString())
+            hashMap["latitude"] = mUtils.createPartFromString(latitude)
+            hashMap["longitude"] = mUtils.createPartFromString(longitude)
+            hashMap[GlobalVariables.PARAM.firstname] =
+                mUtils.createPartFromString(et_firstName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.lastname] =
+                mUtils.createPartFromString(et_lastName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessName] =
+                mUtils.createPartFromString(et_businessName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessDescription] =
+                mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessTypeId] =
+                mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
+            hashMap[GlobalVariables.PARAM.buisnessLicense] =
+                mUtils.createPartFromString(licnEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.deliveryType] =
+                mUtils.createPartFromString((business_delivery_type - 1).toString())
 
-            hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.businessPhone] = mUtils.createPartFromString(et_businessPhone.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.website] = mUtils.createPartFromString(et_website.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessAddress] = mUtils.createPartFromString(et_businessAddress.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.postalCode] = mUtils.createPartFromString(et_zipCode.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(spinner.selectedItem.toString())
-            hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.email] =
+                mUtils.createPartFromString(emailEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.mobile] =
+                mUtils.createPartFromString(et_mobileNo.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.businessPhone] =
+                mUtils.createPartFromString(et_businessPhone.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.website] =
+                mUtils.createPartFromString(et_website.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessAddress] =
+                mUtils.createPartFromString(et_businessAddress.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.city] =
+                mUtils.createPartFromString(et_city.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.state] =
+                mUtils.createPartFromString(et_state.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.postalCode] =
+                mUtils.createPartFromString(et_zipCode.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.country] =
+                mUtils.createPartFromString(spinner.selectedItem.toString())
+            hashMap[GlobalVariables.PARAM.password] =
+                mUtils.createPartFromString(passwordEdittext.text.toString().trim())
 
 
             viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)
             viewModel.homeResponse.observe(this, this)
-        }
+        } else {
 
-        else {
-
-            if (spinner.selectedItem.toString()=="Select Country") {
+            if (spinner.selectedItem.toString() == "Select Country") {
                 Toast.makeText(
                     this,
                     resources.getString(R.string.please_enter_country),
@@ -291,28 +379,42 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
             val hashMap = HashMap<String, RequestBody>()
             hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.shopName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
+            hashMap["latitude"] = mUtils.createPartFromString(latitude)
+            hashMap["longitude"] = mUtils.createPartFromString(longitude)
+            hashMap[GlobalVariables.PARAM.lastname] =
+                mUtils.createPartFromString(et_lastName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.shopName] =
+                mUtils.createPartFromString(et_businessName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.shopDescription] =
                 mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(business_type.toString())
-            hashMap[GlobalVariables.PARAM.deliveryType] = mUtils.createPartFromString((business_delivery_type-1).toString())
-            hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessTypeId] =
+                mUtils.createPartFromString(business_type.toString())
+            hashMap[GlobalVariables.PARAM.deliveryType] =
+                mUtils.createPartFromString((business_delivery_type - 1).toString())
+            hashMap[GlobalVariables.PARAM.buisnessLicense] =
+                mUtils.createPartFromString(licnEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.email] =
+                mUtils.createPartFromString(emailEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.mobile] =
+                mUtils.createPartFromString(et_mobileNo.text.toString().trim())
             hashMap[GlobalVariables.PARAM.businessPhone] =
                 mUtils.createPartFromString(et_businessPhone.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.website] = mUtils.createPartFromString(et_website.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.website] =
+                mUtils.createPartFromString(et_website.text.toString().trim())
             hashMap[GlobalVariables.PARAM.shopAddress] =
                 mUtils.createPartFromString(et_businessAddress.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.postalCode] = mUtils.createPartFromString(et_zipCode.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.city] =
+                mUtils.createPartFromString(et_city.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.state] =
+                mUtils.createPartFromString(et_state.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.postalCode] =
+                mUtils.createPartFromString(et_zipCode.text.toString().trim())
             hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
-            hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.password] =
+                mUtils.createPartFromString(passwordEdittext.text.toString().trim())
 
-                viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
-                viewModel.homeResponse.observe(this, this)
+            viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
+            viewModel.homeResponse.observe(this, this)
 
 
         }
@@ -329,8 +431,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                         startActivity(Intent(this, LoginActivity::class.java))
                         //startActivity(Intent(mContext, Verification::class.java))
 //                finish()
-                    }
-                     else {
+                    } else {
                         startActivity(Intent(mContext, LoginActivity::class.java))
                         finish()
                     }
@@ -340,11 +441,9 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     val data = it.data as CommercialSignUpResponse
                     if (data.code == 200) {
                         Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
-                       // setCommercialData(data)
+                        // setCommercialData(data)
                         startActivity(Intent(this, LoginActivity::class.java))
-                    }
-
-                    else {
+                    } else {
                         startActivity(Intent(mContext, LoginActivity::class.java))
                         finish()
                     }
@@ -366,7 +465,10 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.authKey)
         savePrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, data.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.AUTH_KEY, data.body.authKey)
-        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.token, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.deviceToken, data.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.id, data.body.id)
@@ -386,32 +488,56 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.updated, data.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.createdAt, data.body.createdAt)
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.updatedAt, data.body.updatedAt)
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.advertiserId, data.body.commercialDetail.id)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.advertiserId,
+            data.body.commercialDetail.id
+        )
 
         savePrefrence(
             GlobalVariables.SHARED_PREF_COMMERCIAL.firstName,
             data.body.commercialDetail.firstName
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.lastName, data.body.commercialDetail.lastName)
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.image, data.body.commercialDetail.image)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.lastName,
+            data.body.commercialDetail.lastName
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.image,
+            data.body.commercialDetail.image
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessPhone,
             data.body.commercialDetail.buisnessPhone
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessLogo, data.body.commercialDetail.buisnessLogo)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessLogo,
+            data.body.commercialDetail.buisnessLogo
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessTypeId,
             data.body.commercialDetail.buisnessTypeId
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessName, data.body.commercialDetail.buisnessName)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessName,
+            data.body.commercialDetail.buisnessName
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessLicense,
             data.body.commercialDetail.buisnessLicense
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.website, data.body.commercialDetail.website)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.website,
+            data.body.commercialDetail.website
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.city, data.body.commercialDetail.city)
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.state, data.body.commercialDetail.state)
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.country, data.body.commercialDetail.country)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.state,
+            data.body.commercialDetail.state
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.country,
+            data.body.commercialDetail.country
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_COMMERCIAL.postalCode,
             data.body.commercialDetail.postalCode
@@ -428,13 +554,19 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             GlobalVariables.SHARED_PREF_COMMERCIAL.buisnessDescription,
             data.body.commercialDetail.buisnessDescription
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_COMMERCIAL.userId, data.body.commercialDetail.userId)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_COMMERCIAL.userId,
+            data.body.commercialDetail.userId
+        )
     }
 
 
     private fun setData(data: VendorSignupResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.token)
-        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.AUTH_KEY, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.token, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_VENDOR.id, data.body.id)
@@ -579,9 +711,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             var array = this.resources.getStringArray(R.array.Select_business_type)
 
             business_type = p2
-        }
-
-        else if (p0?.id == R.id.spinner_delivery_type) {
+        } else if (p0?.id == R.id.spinner_delivery_type) {
             var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
 
             business_delivery_type = p2

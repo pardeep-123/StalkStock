@@ -16,6 +16,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
 <!--    <string name="maps_api_key">AIzaSyD8c46gsZPEYwRqSxm3tSg5zg5Yc7Jr7Gc</string>-->
     <string name="maps_api_key">AIzaSyDG3ftTHL_IMGAd8c8vU-q0Oi-oURgTeKE</string>
 
+
     <string name="facebook_app_id">150987940516952</string>
     <string name="fb_login_protocol_scheme">fb150987940516952</string>
     <string name="default_notification_channel_id" translatable="false">Stalk_fcm_default_channel</string>
@@ -231,6 +232,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_business_phone_number">Please enter business phone number</string>
     <string name="please_enter_website">Please enter website</string>
     <string name="please_enter_business_address">Please enter business address</string>
+    <string name="please_enter_address">Please enter address</string>
 
     <string name="please_enter_title">Please enter title</string>
     <string name="please_enter_description">Please enter description</string>

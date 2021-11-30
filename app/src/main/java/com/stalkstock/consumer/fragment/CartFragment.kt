@@ -54,6 +54,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
     var mVendorId = ""
     var mTotalQuantity = 0
     var mNetAmount = "0"
+    var cardId=0
     var mShippingCharges = "0"
     var mShopCharges = "0"
     var mTotalAmount = "0"
@@ -91,17 +92,6 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                         )
                     )
                 }
-
-                /*val hashMap=HashMap<String,Any>()
-                hashMap["isSelfpickup"] = mSelfPickUp
-                hashMap["netAmount"] = mNetAmount
-                hashMap["orderItem"] = mArrayLIst
-                hashMap["shippingCharges"] = mShippingCharges
-                hashMap["shopCharges"] = mShopCharges
-                hashMap["total"] = mTotalAmount
-                hashMap["totalQuantity"] = mTotalQuantity
-                hashMap["vendorId"] = mVendorId
-                hashMap["addressId"] = mAddressId*/
                 val placeOrderModel = PlaceOrderModel(
                     mSelfPickUp,
                     mNetAmount,
@@ -116,6 +106,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                 )
                 val intent = Intent(activity, PaymentActivity::class.java)
                 intent.putExtra("orderdata", placeOrderModel)
+                intent.putExtra("cardId", cardId)
                 startActivity(intent)
             }
         }
@@ -203,6 +194,10 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         }
 
     private fun setDataCart(mResponse: ModelCartData) {
+
+        if(mResponse.body.card!=null){
+            cardId= mResponse.body.card.id
+        }
 
         if (mResponse.body.shopDetail.deliveryType == 0) {
             ltPickup.visibility = View.VISIBLE

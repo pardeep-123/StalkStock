@@ -1,8 +1,12 @@
 package com.stalkstock.vender.ui
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Patterns
 import android.view.Gravity
@@ -13,6 +17,10 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -31,11 +39,15 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.*
+import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner
+import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner_delivery_type
+import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner_type
+import kotlinx.android.synthetic.main.activity_signup.*
 import okhttp3.RequestBody
 import java.util.*
 
 class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
-    AdapterView.OnItemSelectedListener, Observer<RestObservable> {
+    AdapterView.OnItemSelectedListener, Observer<RestObservable>, View.OnClickListener {
     private var mAlbumFiles = ArrayList<AlbumFile>()
     var firstimage = ""
     var business_type = 0
@@ -43,6 +55,14 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
     var mLatitude = "0"
     var mLongitude = "0"
     var mCountryName = ""
+    var city = ""
+    var address = ""
+    var geoLocation = ""
+    var state = ""
+    var postalCode = ""
+    private var latitude = ""
+    private var longitude = ""
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
     val viewModel: VendorViewModel by viewModels()
 
     override fun getContentId(): Int {
@@ -51,6 +71,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Places.initialize(this, getString(R.string.maps_api_key))
 
         val imageView = findViewById<ImageView>(R.id.edit_businessbackarrow)
         val button = findViewById<Button>(R.id.businessupdatebutton)
@@ -123,6 +144,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         businessupdatebutton.setOnClickListener {
             setValidation()
         }
+        autoTvLocation.setOnClickListener(this)
     }
 
     private fun setDataUI(body: VendorBusinessDetailResponse.Body) {
@@ -271,6 +293,8 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             editboxbusinesscode.error = resources.getString(R.string.please_enter_postal_code)
         } else {
             val hashMap = HashMap<String, RequestBody>()
+            hashMap["latitude"] = mUtils.createPartFromString(latitude)
+            hashMap["longitude"] = mUtils.createPartFromString(longitude)
             hashMap[GlobalVariables.PARAM.firstname] =
                 mUtils.createPartFromString(editboxbusinessname.text.toString().trim())
             hashMap[GlobalVariables.PARAM.lastname] =
@@ -335,5 +359,59 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.autoTvLocation ->{
+                val fields = listOf(
+                    Place.Field.ID,
+                    Place.Field.NAME,
+                    Place.Field.LAT_LNG,
+                    Place.Field.ADDRESS_COMPONENTS,
+                    Place.Field.ADDRESS
+                )
+                // Start the autocomplete intent.
+                val intent =
+                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
+                        this
+                    )
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            }
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+                latitude = place.latLng?.latitude.toString()
+                longitude = place.latLng?.longitude.toString()
+                getAddress(latitude.toDouble(),longitude.toDouble())
+                autoTvLocation.setText(place.name.toString())
+
+            }
+        }
+    }
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        )
+
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
+            editboxbusinesscity.setText(city)
+        }
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
+            editboxbusinessstate.setText(state)
+        }
+
     }
 }

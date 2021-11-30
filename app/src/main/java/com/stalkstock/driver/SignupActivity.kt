@@ -1,6 +1,9 @@
 package com.stalkstock.driver
 
+import android.app.Activity
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -11,6 +14,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
@@ -42,13 +49,25 @@ import kotlinx.android.synthetic.main.activity_signup3.total
 import kotlinx.android.synthetic.main.activity_signup3.tv_signin
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener,
     Observer<RestObservable> {
+
+    private var latitude = ""
+    private var longitude = ""
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
     private var mAlbumFiles: ArrayList<AlbumFile> = ArrayList()
     var firstimage = ""
     private var mVehicleType = ""
     private var mCountryName = ""
+    var city = ""
+    var address = ""
+    var geoLocation = ""
+    var state = ""
+    var postalCode = ""
 
     override fun getContentId(): Int {
         return R.layout.activity_signup3
@@ -56,6 +75,8 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Places.initialize(this, getString(R.string.maps_api_key))
+
         tv_heading.text = getString(R.string.sign_up)
         tv_signin.setOnClickListener(this)
         iv_back.setOnClickListener(this)
@@ -63,6 +84,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         tv_signin.setOnClickListener(this)
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
+        etDriverAddress.setOnClickListener(this)
 
         CommonMethods.hideKeyboard(this, btn_signup)
         val foodadapter = ArrayAdapter.createFromResource(
@@ -87,6 +109,22 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
+
+            R.id.etDriverAddress -> {
+                val fields = listOf(
+                    Place.Field.ID,
+                    Place.Field.NAME,
+                    Place.Field.LAT_LNG,
+                    Place.Field.ADDRESS_COMPONENTS,
+                    Place.Field.ADDRESS
+                )
+                // Start the autocomplete intent.
+                val intent =
+                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
+                        this
+                    )
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            }
             R.id.tv_signin -> {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -96,15 +134,55 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            R.id.btn_signup -> { setValidation()
+            R.id.btn_signup -> {
+                setValidation()
             }
-            R.id.iv_back -> { finish()
+            R.id.iv_back -> {
+                finish()
             }
             R.id.image -> {
                 mAlbumFiles = java.util.ArrayList()
                 mAlbumFiles.clear()
                 selectImage(image, "1")
-            } } }
+            }
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+       if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+                latitude = place.latLng?.latitude.toString()
+                longitude = place.latLng?.longitude.toString()
+                getAddress(latitude.toDouble(),longitude.toDouble())
+                etDriverAddress.setText(place.name.toString())
+
+            }
+        }
+    }
+
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        )
+
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
+            et_city.setText(city)
+        }
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
+            et_state.setText(state)
+        }
+
+    }
+
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         if (p0?.id == R.id.spinner_country) {
@@ -113,7 +191,8 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else if (p0?.id == R.id.spinner) {
             val array = this.resources.getStringArray(R.array.Select_Vehicle_type)
             mVehicleType = array[p2]
-        } }
+        }
+    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -128,7 +207,10 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(ivProduct)
-                if (type == "1") { firstimage = result[0].path } }
+                if (type == "1") {
+                    firstimage = result[0].path
+                }
+            }
             .onCancel {}
             .start()
     }
@@ -175,6 +257,9 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else if (checkStringNull(et_vehiclemodel.text.toString())) {
             et_vehiclemodel.requestFocus()
             et_vehiclemodel.error = resources.getString(R.string.please_enter_vehicle_model)
+        } else if (checkStringNull(etDriverAddress.text.toString())) {
+            etDriverAddress.requestFocus()
+            etDriverAddress.error = resources.getString(R.string.please_enter_address)
         } else if (checkStringNull(et_city.text.toString())) {
             et_city.requestFocus()
             et_city.error = resources.getString(R.string.please_enter_city)
@@ -190,11 +275,10 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = resources.getString(R.string.please_enter_password)
-        }else if (passwordEdittext.getText().toString().length<6) {
+        } else if (passwordEdittext.getText().toString().length < 6) {
             passwordEdittext.requestFocus()
             passwordEdittext.setError("Password should contain at least 6 characters")
-        }
-        else if (repasswordEdittext.text.toString().isEmpty()) {
+        } else if (repasswordEdittext.text.toString().isEmpty()) {
             repasswordEdittext.requestFocus()
             repasswordEdittext.error = resources.getString(R.string.please_reenter_password)
         } else if (passwordEdittext.text.toString() != repasswordEdittext.text.toString()
@@ -203,16 +287,18 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             repasswordEdittext.error = resources.getString(R.string.new_confirm_password_dont_match)
         } else {
 
-            if(mVehicleType=="Select your vehicle type"){
+            if (mVehicleType == "Select your vehicle type") {
                 Toast.makeText(this, "Please select your vehicle type", Toast.LENGTH_SHORT).show()
                 return
             }
-            if(mCountryName=="Select Country"){
+            if (mCountryName == "Select Country") {
                 Toast.makeText(this, "Please select country name", Toast.LENGTH_SHORT).show()
                 return
             }
 
             val hashMap = HashMap<String, String>()
+            hashMap["latitude"] =latitude
+            hashMap["longitude"] = longitude
             hashMap[GlobalVariables.PARAM.firstname] = et_firstName.text.toString().trim()
             hashMap[GlobalVariables.PARAM.lastname] = et_lastName.text.toString().trim()
             hashMap[GlobalVariables.PARAM.email] = emailEdittext.text.toString().trim()
@@ -231,7 +317,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
     }
 
     val viewModel: DriverViewModel by viewModels()
-    lateinit var hashMap:HashMap<String,RequestBody>
+    lateinit var hashMap: HashMap<String, RequestBody>
 
     private fun checkEmailAndMobileExistAPI() {
         hashMap = HashMap()
@@ -250,7 +336,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                     val mResponse: CheckEmailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
 
-                            val intent = Intent(this, UploadDocActivity::class.java)
+                        val intent = Intent(this, UploadDocActivity::class.java)
                         intent.putExtra("fName", et_firstName.text.toString())
                         intent.putExtra("lName", et_lastName.text.toString())
                         intent.putExtra("eId", emailEdittext.text.toString())
@@ -264,7 +350,8 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                         intent.putExtra("pass", passwordEdittext.text.toString())
                         intent.putExtra("profileImage", firstimage)
                         startActivity(intent)
-                         } }
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {

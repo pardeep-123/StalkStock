@@ -10,7 +10,8 @@ data class ModelCartData(
         val address: Address,
         val cartData: List<CartData>,
         val deliveryCharges: DeliveryCharges,
-        val shopDetail: ShopDetail
+        val shopDetail: ShopDetail,
+        val card:Card
     ) {
         data class Address(
             val address_line2: String,
@@ -57,6 +58,14 @@ data class ModelCartData(
             )
         }
 
+        data class Card(
+            val id: Int,
+            val userId: Int,
+            val stripeCardId: String,
+            val isDefault: Int,
+            val cardType: Int
+        )
+
         data class DeliveryCharges(
             val comment: String, // USD
             val id: Int, // 2
@@ -79,3 +88,5 @@ data class ModelCartData(
         )
     }
 }
+
+

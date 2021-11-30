@@ -341,7 +341,40 @@
                     android:textSize="13sp" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp">
 
+                <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/etDriverAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_address"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="12dp"
+                    android:singleLine="true"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:focusable="false"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="13sp" />
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    android:text="@string/address"
+                    android:textColor="@color/light_grey"
+                    android:textSize="13sp" />
+            </RelativeLayout>
 
 
             <RelativeLayout
@@ -356,10 +389,10 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center_vertical"
+                    android:hint="@string/enter_city"
                     android:imeOptions="actionNext"
                     android:inputType="textPersonName"
                     android:maxLines="1"
-                    android:hint="@string/enter_city"
                     android:minHeight="45dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="12dp"

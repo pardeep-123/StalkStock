@@ -539,6 +539,8 @@
                             android:maxLines="3"
                             android:paddingLeft="15dp"
                             android:textColor="#000"
+                            android:focusable="false"
+                            android:singleLine="true"
                             android:textColorHint="@color/light_grey"
                             android:textSize="13sp" />
                         <!--<com.stalkstock.utils.custom.TitiliumBoldEditText
