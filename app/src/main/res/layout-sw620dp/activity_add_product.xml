@@ -235,7 +235,7 @@
                             android:background="@drawable/edit_text_bg_trans">
 
                             <Spinner
-                                android:id="@+id/spinnerType"
+                                android:id="@+id/spinnerProdType"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:entries="@array/Select_product_type"

@@ -242,6 +242,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 }
             }
             it.status == Status.ERROR -> {
+                setAdapterSpinnerSub("0", listSubCategoryBody)
+
                 if (it.data != null) {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {

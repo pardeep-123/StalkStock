@@ -193,7 +193,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
         deliveryTime.text = mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)"
         starCount.text = mResponse.body.product.productVendor.totalRating.toFloat().toString() + " Rating, "
         star.rating = mResponse.body.product.productVendor.totalRating.toFloat()
-        totalCount.text = mResponse.body.product.productVendor.ratingCount.toString()
+        totalCount.text = String.format("%.2f", mResponse.body.product.productVendor.ratingCount).toString()
         shopLocation.text = mResponse.body.product.productVendor.ShopAddress
         img.loadImage(mResponse.body.product.productVendor.shopLogo)
 
@@ -207,7 +207,12 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
 
         if (currentItemCount > 0) {
             all.visibility = View.VISIBLE
-            item_count.text = "$currentItemCount Items"
+            if(currentItemCount==1){
+                item_count.text = "$currentItemCount Item"
+            }else{
+                item_count.text = "$currentItemCount Items"
+
+            }
 
         } else {
             all.visibility = View.GONE

@@ -239,7 +239,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             avail = 1
 
         var productType = 0
-        if (spinner.selectedItemPosition == 0)
+        if (spinnerProdType.selectedItemPosition == 0)
             productType = 1
 
         Log.e("product_type",productType.toString())
@@ -266,8 +266,8 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             spinnerGetProduct.requestFocus()
             AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
             return false
-        } else if(spinnerCountry.selectedItem.toString().trim().isEmpty()) {
-            AppUtils.showErrorAlert(this, "Please enter country")
+        } else if(spinnerCountry.selectedItemPosition==0) {
+            AppUtils.showErrorAlert(this, "Please select country")
             return false
         } else if (curreMeasurementId.trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please select measurement")
