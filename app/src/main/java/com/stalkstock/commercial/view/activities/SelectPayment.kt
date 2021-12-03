@@ -13,6 +13,7 @@ import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.CommericalOrderPlaceResponse
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.select_payment.*
 
 class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
@@ -26,6 +27,8 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
     var vendorId = 0
     var rs = ""
     var payment = 2
+    var deliveryCharges=""
+    var shopCharges=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +45,8 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
         bidId = intent.getIntExtra("bidId", 0)
         vendorId = intent.getIntExtra("vendorId", 0)
         rs = intent.getStringExtra("rs").toString()
+        deliveryCharges = intent.getStringExtra("deliveryCharges").toString()
+        shopCharges = intent.getStringExtra("shopCharges").toString()
 
         oneone.setOnClickListener {
             if(!type.equals("first")){
@@ -70,10 +75,10 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
         }
         btn_checkout.setOnClickListener {
             if (type=="sec"){
-                payment = 1
+                payment = 3
             }
             else if (type=="first"){
-                payment = 0
+                payment = 1
             }
             else{
                 payment = 2
@@ -92,13 +97,14 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
           Toast.makeText(this,"Please Add Card",Toast.LENGTH_SHORT).show()
       }*/
         else{
+          var total= (deliveryCharges.toFloat()+ shopCharges.toFloat()+rs.toFloat()).toString()
           val data = HashMap<String,Any>()
           data.put("vendorId",vendorId)
           data.put("netAmount",rs)
-          data.put("shippingCharges",0)
-          data.put("shopCharges",0)
+          data.put("shippingCharges",deliveryCharges)
+          data.put("shopCharges",shopCharges)
           data.put("paymentMethod",payment)
-          data.put("total",rs)
+          data.put("total",total)
           data.put("isSelfpickup",0)
           data.put("cardId",card)
           data.put("bidId",bidId)

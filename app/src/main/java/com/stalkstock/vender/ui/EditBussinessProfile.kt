@@ -291,6 +291,8 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         } else if (editboxbusinesscode.text.toString().isEmpty()) {
             editboxbusinesscode.requestFocus()
             editboxbusinesscode.error = resources.getString(R.string.please_enter_postal_code)
+        }else if (spinner.selectedItemPosition==0) {
+            AppUtils.showErrorAlert(this, resources.getString(R.string.please_select_countryname))
         } else {
             val hashMap = HashMap<String, RequestBody>()
             hashMap["latitude"] = mUtils.createPartFromString(latitude)

@@ -84,7 +84,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
 
             holder.itemView.tvType.text = orderList[pos].product.name
             holder.itemView.tvQuantity.text = orderList[pos].qty.toString()
-            holder.itemView.tvQuantityType.text = orderList[pos].product.measurementName
+            holder.itemView.tvQuantityType.text = orderList[pos].measurementName
 //        holder.itemView.tvCount.text=
             holder.tvCount.text=pos.toString()+"."
 //        }

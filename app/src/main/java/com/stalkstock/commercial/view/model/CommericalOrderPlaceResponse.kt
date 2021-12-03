@@ -31,7 +31,7 @@ data class CommericalOrderPlaceResponse(
         val shopCharges: String,
         val taxCharged: String,
         val total: String,
-        val transactionDetail: String,
+       // val transactionDetail: String,
         val transactionId: String,
         val updated: Int,
         val updatedAt: String,

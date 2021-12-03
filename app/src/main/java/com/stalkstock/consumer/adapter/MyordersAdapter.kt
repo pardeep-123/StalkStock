@@ -1,5 +1,6 @@
 package com.stalkstock.consumer.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ import com.stalkstock.utils.others.AppUtils.changeDateFormat
 import kotlinx.android.synthetic.main.row_myorder.view.*
 
 class MyordersAdapter(
-    var context: MainConsumerActivity,
+    var context: Context,
     var mOrderArrayList: ArrayList<OrderListModel.Body>
 ) : RecyclerView.Adapter<MyordersAdapter.RecyclerViewHolder>() {
 
@@ -45,7 +46,8 @@ class MyordersAdapter(
 
         when(mOrderArrayList[position].orderStatus)
         {
-            0->{holder.itemView.tvStatus.text = "Pending" }
+            0->{holder.itemView.tvStatus.text = "Pending"
+            }
             1->{holder.itemView.tvStatus.text = "In Progress"}
             2->{holder.itemView.tvStatus.text = "Packed"}
             4->{holder.itemView.tvStatus.text = "Completed"}
@@ -67,14 +69,14 @@ class MyordersAdapter(
     private fun getStatusColor(orderStatus: Int): Int {
         return when(orderStatus) {
             0->{
-                R.color.theme_green
+                R.color.orange_colour
             }
             1->{
-                R.color.theme_green
+                R.color.orange_colour
             }
 
             3->{
-                R.color.theme_green
+                R.color.orange_colour
             }
             4->{
                 R.color.theme_green

@@ -11,6 +11,7 @@ data class BidingDetailResponse(
         val createdAt: String,
         val id: Int,
         val instruction: String,
+        val deliveryCharges: String,
         val orderItems: List<OrderItem>,
         val requestNo: String,
         val userId: Int,
@@ -24,7 +25,9 @@ data class BidingDetailResponse(
         val product: Product,
         val productId: Int,
         val qty: Int,
-        val userId: Int
+        val userId: Int,
+        val measurementId: Int,
+        val measurementName: String
     )
     data class Product(
         val categoryId: Int,
@@ -50,6 +53,7 @@ data class BidingDetailResponse(
         val image: String,
         val lastName: String,
         val shopLogo: String,
-        val shopName: String
+        val shopName: String,
+        val shopCharges: String
     )
 }

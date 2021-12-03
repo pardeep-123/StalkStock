@@ -155,8 +155,8 @@ class BidFragment : Fragment(), Observer<RestObservable>, RequestAdapter.Request
         hashMap["type"] = mUtils.createPartFromString(type)
         //   hashMap["type"] = "0"    // 0=>new request 1=>accepted
         val mActivity = activity as BottomnavigationScreen
-        viewModel.vendorBiddingList(mActivity, true, hashMap)
-        viewModel.mResponse.observe(mActivity, this)
+        viewModel.vendorBiddingList(requireActivity(), true, hashMap)
+        viewModel.mResponse.observe(requireActivity(), this)
     }
 
     override fun onChanged(it: RestObservable?) {

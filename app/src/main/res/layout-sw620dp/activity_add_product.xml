@@ -354,6 +354,7 @@
                             android:inputType="number"
                             android:paddingLeft="15dp"
                             android:textColor="#000"
+                            android:maxLength="5"
                             android:textColorHint="@color/light_grey"
                             android:textSize="13sp" />
 

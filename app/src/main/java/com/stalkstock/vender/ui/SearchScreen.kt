@@ -30,7 +30,7 @@ class SearchScreen : BaseActivity(), Observer<RestObservable> {
     private var currentOffset = 0
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
     private var recentSearchList: ArrayList<RecentSearchListResponse.Body> = ArrayList()
-    var currentDeliveryType = "0" // 0- pickup,1-deelivery , 2 -all
+    var currentDeliveryType = "2" // 0- pickup,1-deelivery , 2 -all
     lateinit var adapter: HomedetailAdapter
     lateinit var mRecentSearchAdapter: RecentSearchAdapter
     private var mProductId = ""

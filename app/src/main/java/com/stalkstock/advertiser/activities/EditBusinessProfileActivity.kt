@@ -307,6 +307,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
+
                 if (it.data is EditBuisnessDetail) {
                     val mResponse: EditBuisnessDetail = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {

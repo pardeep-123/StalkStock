@@ -12,6 +12,8 @@ import com.stalkstock.commercial.view.model.BidingListResponse
 
 import com.stalkstock.utils.custom.TitiliumBoldTextView
 import com.stalkstock.utils.custom.TitiliumRegularTextView
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
 import java.text.SimpleDateFormat
 
 class HomeAdapter(var list: ArrayList<BidingListResponse.BodyX>) : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
@@ -44,13 +46,13 @@ class HomeAdapter(var list: ArrayList<BidingListResponse.BodyX>) : RecyclerView.
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val formatter = SimpleDateFormat("MMM dd, yyyy '|' HH:mm")
-        val output: String = formatter.format(parser.parse(list[position].createdAt))
-
         holder.tvRequest.text = "Request ID:"+" "+list[position].requestNo
         holder.tvBid.text = "BID:"+" "+list[position].bidCount
-        holder.tvCreatedDate.text = output
+        holder.tvCreatedDate.text = AppUtils.changeDateFormat(list[position].createdAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat3,
+            GlobalVariables.DATEFORMAT.DateTimeFormat2)
+
+       // holder.tvCreatedDate.text = output
         /*holder.tvBidStatus.text = list[position].*/
 
        // holder.itemView.setOnClickListener { clickDoctor.clicked(position) }

@@ -8,23 +8,30 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.adapters.NotificationsAdapter
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.activities.RequestDetail
+import com.stalkstock.commercial.view.fragments.home.HomeFragmentCommercial
+import com.stalkstock.commercial.view.fragments.home.myorders.MyOrdersFragment
+import com.stalkstock.consumer.fragment.ListFragment
 import com.stalkstock.consumer.model.NotificationListBody
 import com.stalkstock.consumer.model.NotificationListData
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.vender.ui.BidFragment
 import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_notification_first.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.HashMap
 
 class NotificationFirstActivity : AppCompatActivity(), View.OnClickListener,
-    Observer<RestObservable> {
+    Observer<RestObservable>, NotificationsAdapter.NotificationClick {
      val mContext: Context = this
      lateinit var adapter: NotificationsAdapter
      var listNotify = mutableListOf<NotificationListBody>()
@@ -52,7 +59,8 @@ class NotificationFirstActivity : AppCompatActivity(), View.OnClickListener,
 
     fun setAdapter() {
          adapter = NotificationsAdapter(listNotify)
-        rv_notification.adapter = adapter
+         rv_notification.adapter = adapter
+        adapter?.notificationClick=this
     }
 
     override fun onClick(v: View?) {
@@ -94,6 +102,33 @@ class NotificationFirstActivity : AppCompatActivity(), View.OnClickListener,
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    override fun OnItemClick(position: Int, data: NotificationListBody) {
+        if(MyApplication.instance.getString("usertype").equals("1")){
+            if(data.type==26 || data.type==21 || data.type==24 || data.type==22){
+                val listFragment= ListFragment()
+                loadFragment(listFragment)
+            }
+        }else{
+            if(data.type==26 || data.type==21 || data.type==24 || data.type==22){
+                val listFragment= MyOrdersFragment()
+                loadFragment(listFragment)
+            } else if (data.type==32){
+                val intent = Intent(this, RequestDetail::class.java)
+                intent.putExtra("bidId",data.bidId)
+                startActivity(intent)
+            }
+        }
+
+    }
+
+    private fun loadFragment(fragment: Fragment?): Boolean {
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.rlNotificaion, fragment).commit()
+            return true
+        }
+        return false
     }
 
 }

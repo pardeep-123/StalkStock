@@ -9,15 +9,17 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit" />
+        android:src="@drawable/bg_fit"
+        android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <include layout="@layout/toolbar" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="120dp"
                     android:layout_height="120dp"
@@ -55,19 +58,17 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:text="@string/add_or_change_profile_photo_or_logo"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
+                    android:textColor="@color/black" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etFirstName"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
@@ -75,33 +76,35 @@
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/first_name"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
 
-                 <RelativeLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etLastName"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
@@ -109,32 +112,35 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/last_name"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etBusinessName"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
@@ -142,32 +148,34 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="45dp"
                         android:background="@color/white"
                         android:text="@string/business_name"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etDecription"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
@@ -175,179 +183,179 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
-                         android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/business_description"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
-<!--
+                <!--
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="60dp"
+                                    android:layout_marginTop="20dp">
+
+                                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="45dp"
+                                        android:layout_marginTop="10dp"
+                                        android:background="@drawable/edit_text_bg"
+                                        android:gravity="center_vertical"
+                                        android:hint="@string/select_business_type"
+                                        android:imeOptions="actionNext"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:minHeight="45dp"
+                                        android:paddingLeft="15dp"
+                                        android:paddingRight="12dp"
+                                        android:textColor="@color/black"
+                                        android:drawableRight="@drawable/down_arow"
+                                        android:textColorHint="@color/light_grey"
+                                        android:textSize="13sp" />
+
+                                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_marginLeft="45dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@color/white"
+                                        android:text="@string/business_type"
+                                        android:textColor="@color/light_grey"
+                                        android:textSize="13sp" />
+                                </RelativeLayout>
+                -->
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp">
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_text_bg"
-                        android:gravity="center_vertical"
-                        android:hint="@string/select_business_type"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:maxLines="1"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
-                        android:textColor="@color/black"
-                        android:drawableRight="@drawable/down_arow"
-                        android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
-
-                    <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/white"
-                        android:text="@string/business_type"
-                        android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
-                </RelativeLayout>
--->
-
-                <RelativeLayout
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    >
+                    android:layout_height="60dp">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/edit_text_bg"
-                        >
+                        android:background="@drawable/edit_text_bg">
+
                         <Spinner
                             android:id="@+id/spinner_type"
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
+                            android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:entries="@array/Select_business_type"
-                            android:prompt="@string/select_business_type"
-                            android:paddingRight="20dp"
-                            android:textStyle="bold"
-
+                            android:paddingHorizontal="20dp"
+                            android:textColor="#000"
                             android:textColorHint="#F8F6F6"
-                            android:textSize="16sp"
-                            android:textColor="#000"/>
+                            android:textSize="13sp" />
 
                     </RelativeLayout>
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="@string/business_type"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp"
-                        />
-
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
-
-
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etBusinessPhone"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_business_telephone_number"
                         android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
+                        android:inputType="phone"
                         android:maxLines="1"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/business_telephone_number"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_email"
                         android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:maxLines="1"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/email"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etPhone"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
@@ -355,68 +363,71 @@
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLines="1"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/mobile"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etBusinessLicense"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_your_business_license_number"
                         android:imeOptions="actionNext"
-                        android:inputType="phone"
+                        android:inputType="text"
                         android:maxLines="1"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/enter_your_business_license_number"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etWebsite"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
@@ -424,296 +435,270 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:minHeight="45dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/website"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etSreetAddress"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_your_street_address"
-                        android:paddingBottom="5dp"
+                        android:paddingStart="15dp"
                         android:paddingTop="5dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="5dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/business_address"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etFloor"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_unit_apt_suite_floor"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/address_line2_optional"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etCity"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_city"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/city"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etState"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_state_province_region"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/state_province_region"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/etZipCode"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_postal_zipcode"
                         android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
                         android:inputType="number"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingTop="5dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/postal_zipcode"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </RelativeLayout>
-                <!--
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:layout_marginTop="20dp">
-
-                                <com.stalkstock.utils.custom.TitiliumBoldEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="55dp"
-                                    android:layout_marginTop="10dp"
-                                    android:background="@drawable/edit_text_bg"
-                                    android:gravity="center_vertical"
-                                    android:hint="@string/select_country"
-                                    android:drawableRight="@drawable/down_arow"
-                                    android:paddingBottom="5dp"
-                                    android:paddingTop="5dp"
-                                    android:paddingLeft="15dp"
-                                    android:paddingRight="12dp"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/light_grey"
-                                    android:textSize="16sp" />
-
-                                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentTop="true"
-                                    android:layout_marginLeft="45dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@color/white"
-                                    android:text="@string/country"
-                                    android:textColor="@color/light_grey"
-                                    android:textSize="16sp" />
-                            </RelativeLayout>
-                -->
 
                 <RelativeLayout
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    >
+                    android:layout_height="60dp">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:background="@drawable/edit_text_bg"
-                        >
+                        android:background="@drawable/edit_text_bg">
+
                         <Spinner
                             android:id="@+id/spinner"
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:gravity="center_vertical"
+                            android:layout_height="match_parent"
                             android:entries="@array/Select_country"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="20dp"
                             android:prompt="@string/select_country"
-                            android:paddingRight="20dp"
-                            android:textStyle="bold"
-
+                            android:textColor="#000"
                             android:textColorHint="#F8F6F6"
-                            android:textSize="16sp"
-                            android:textColor="#000"/>
+                            android:textSize="13sp" />
 
                     </RelativeLayout>
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="5dp"
                         android:background="#fff"
                         android:text="@string/country"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp"
-                        />
-
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="20dp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:hint="@string/enter_billing_info"
-                        android:paddingLeft="15dp"
+                        android:paddingStart="15dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
-                        android:paddingRight="12dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         android:text="@string/billing_info"
                         android:textColor="@color/light_grey"
-                        android:textSize="16sp" />
-                </RelativeLayout>
+                        android:textSize="13sp" />
 
+                </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_update"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@drawable/btn_shape"
@@ -722,12 +707,12 @@
                     android:text="@string/update"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
+
         </ScrollView>
 
     </LinearLayout>
-
 
 </RelativeLayout>

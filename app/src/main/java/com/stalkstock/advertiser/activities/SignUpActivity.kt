@@ -1,7 +1,10 @@
 package com.stalkstock.advertiser.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -12,6 +15,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
@@ -28,11 +35,13 @@ import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
+import java.util.*
+import kotlin.collections.HashMap
 
 class SignUpActivity: BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
-
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
     val viewModel: AdvertiserViewModel by lazy {
         ViewModelProvider(this).get(AdvertiserViewModel::class.java)
     }
@@ -42,6 +51,14 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
     var firstimage = ""
     var businessType = ""
     var country = ""
+    var city = ""
+    var address = ""
+    var geoLocation = ""
+    var state = ""
+    var postalCode = ""
+    var knownName = ""
+    private var latitude = ""
+    private var longitude = ""
 
     override fun getContentId(): Int {
         return R.layout.activity_signup
@@ -51,7 +68,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         super.onCreate(savedInstanceState)
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        Places.initialize(this, getString(R.string.maps_api_key))
         relAddressLine.visibility = View.GONE
 
         tv_heading.text = getString(R.string.sign_up)
@@ -61,6 +78,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         tv_signin.setOnClickListener(this)
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
+        et_businessAddress.setOnClickListener(this)
         spinner.onItemSelectedListener = this
         spinner_type.onItemSelectedListener = this
 
@@ -97,6 +115,21 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             R.id.iv_back -> {
                 finish()
             }
+            R.id.et_businessAddress ->{
+                val fields = listOf(
+                    Place.Field.ID,
+                    Place.Field.NAME,
+                    Place.Field.LAT_LNG,
+                    Place.Field.ADDRESS_COMPONENTS,
+                    Place.Field.ADDRESS
+                )
+                // Start the autocomplete intent.
+                val intent =
+                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
+                        this
+                    )
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            }
             R.id.image -> {
                 mAlbumFiles = java.util.ArrayList()
                 mAlbumFiles.clear()
@@ -117,7 +150,36 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
+        }else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+                latitude = place.latLng?.latitude.toString()
+                longitude = place.latLng?.longitude.toString()
+                getAddress(latitude.toDouble(),longitude.toDouble())
+                et_businessAddress.setText(place.name.toString())
+
+            }
         }
+    }
+
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        )
+
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
+            et_city.setText(city)
+        }
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
+            et_state.setText(state)
+        }
+
     }
 
     private fun selectImage(ivProduct: ImageView, type: String) {
@@ -166,9 +228,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         } else if (spinner_type.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
         }
-        else if (spinner.selectedItemPosition == 0){
-            AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_country))
-        }
+
         else if (licnEdittext.text.toString().isEmpty()) {
             licnEdittext.requestFocus()
             licnEdittext.error = resources.getString(R.string.please_enter_business_license)
@@ -209,6 +269,8 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         } else if (et_zipCode.text.toString().isEmpty()) {
             et_zipCode.requestFocus()
             et_zipCode.error = resources.getString(R.string.please_enter_postal_code)
+        }  else if (spinner.selectedItemPosition == 0){
+            AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_country))
         } else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = resources.getString(R.string.please_enter_password)

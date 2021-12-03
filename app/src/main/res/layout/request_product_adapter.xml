@@ -184,6 +184,7 @@
                 android:id="@+id/rl_edit"
                 android:layout_weight="0.9"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -207,14 +208,14 @@
                 android:layout_weight="0.9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:id="@+id/ivDelete"
                     android:layout_width="@dimen/value_12dp"
                     android:layout_height="@dimen/value_15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_centerInParent="true"
                     android:background="@drawable/dlt_icon_red"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
             </RelativeLayout>

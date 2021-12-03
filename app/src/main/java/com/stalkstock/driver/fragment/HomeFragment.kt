@@ -404,7 +404,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             Log.e("onSocketCall", event)
         }
         when (event) {
-            SocketManager.driverOrderRequest -> {
+            /*SocketManager.driverOrderRequest -> {
                 ca_tv1.visibility=View.VISIBLE
                 val gson = GsonBuilder().serializeNulls().create()
 
@@ -413,8 +413,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     Log.e("sockVendorOrderListener", mObject.toString())
                 } catch (e: Exception) {
                 }
-                val offeredOrder =
-                    gson.fromJson(mObject.toString(), NewOrderResponse::class.java) ?: return
+                val offeredOrder = gson.fromJson(mObject.toString(), NewOrderResponse::class.java)
                 ca_tv1.visibility = View.VISIBLE
                 tv_orderHome.text = "Order ID : " + offeredOrder.body.orderNo
                 txtDateHome.text = offeredOrder.body.updatedAt.substring(0, 10)
@@ -424,7 +423,8 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                 Glide.with(this).load(offeredOrder.body.image).into(iv_profileHome)
                 currentOrder = offeredOrder
 
-            } }
+            } */
+        }
     }
 
     override fun onSocketConnect(vararg args: Any?) {
@@ -450,19 +450,23 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     val mResponse: NewOrderResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOrder = mResponse
-                        if (currentOrder.body.orderNo != null) {
-                            orderID = currentOrder.body.id.toString()
-                            ca_tv1.visibility = View.VISIBLE
-                            tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
-                            txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
-                            tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
-                            txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
-                            Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
-                                .into(imgVendorImage as ImageView)
-                            Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
-                        } else {
+                        if(currentOrder.body.orderStatus==1){
+                            if (currentOrder.body.orderNo != null) {
+                                orderID = currentOrder.body.id.toString()
+                                ca_tv1.visibility = View.VISIBLE
+                                tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
+                                txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
+                                tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
+                                txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
+                                Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
+                                    .into(imgVendorImage as ImageView)
+                                Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
+                            }
+                        }
+                        else {
                             ca_tv1.visibility = View.GONE
                         }
+
                     } else {
                         ca_tv1.visibility = View.VISIBLE
                     }

@@ -294,7 +294,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
                         }
                         goingToHome()
                     } else {
-                         Toast.makeText(this, mResponse.message,Toast.LENGTH_SHORT).show()
+                         Toast.makeText(this, "Verification is in progress.Please wait for admin approval",Toast.LENGTH_SHORT).show()
                     }
                 }
             }

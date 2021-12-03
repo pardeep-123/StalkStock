@@ -116,12 +116,15 @@
                                 android:id="@+id/text_detailes3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_4sdp"
                                 android:layout_marginRight="10dp"
                                 android:layout_toLeftOf="@+id/iv_drop"
+                                android:layout_toRightOf="@id/tvName"
                                 android:text=""
+                                android:textAlignment="center"
                                 android:textColor="#8BC34A"
                                 android:textSize="@dimen/_12sdp"
-                                android:visibility="gone" />
+                                android:visibility="visible" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/text_detailes4"
@@ -498,7 +501,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                        android:text="DELIVERY TO"
+                        android:text="DELIVERED TO"
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView

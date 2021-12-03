@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.AddedProduct
@@ -52,34 +53,6 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
         }
 
 
-/*        if (position==0){
-
-            val type = Typeface.createFromAsset(context.getAssets(), "fonts/TitilliumWeb_Bold.ttf")
-
-//        holder.itemView.tvCount.text=
-            holder.tvCount.text="S. No."
-            holder.tvCount.setTextColor(context.resources.getColor(R.color.black))
-            holder.tvCount.setTypeface(type)
-
-
-            holder.itemView.tvName.setText("Item Brand")
-            holder.itemView.tvName.setTextColor(context.resources.getColor(R.color.black))
-             holder.itemView.tvName.setTypeface(type)
-
-            holder.itemView.tvType.setText("Item Name")
-             holder.itemView.tvType.setTypeface(type)
-            holder.itemView.tvType.setTextColor(context.resources.getColor(R.color.black))
-
-            holder.itemView.tvQuantity.setText("Quantity")
-             holder.itemView.tvQuantity.setTypeface(type)
-            holder.itemView.tvQuantity.setTextColor(context.resources.getColor(R.color.black))
-
-            holder.itemView.tvQuantityType.setText("U.O.M.")
-            holder.itemView.tvQuantityType.setTextColor(context.resources.getColor(R.color.black))
-            holder.itemView.tvQuantityType.setTypeface(type)
-
-        }*/
-//        else{
         var pos=position
 
         holder.itemView.tvType.text = list[pos].name
@@ -91,6 +64,7 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
 
 
             holder.itemView.rl_delete.setOnClickListener {
+                Toast.makeText(context, "Request deleted successfully", Toast.LENGTH_SHORT).show()
                 list.removeAt(pos)
                 notifyItemRemoved(pos)
                 notifyItemRangeChanged(pos,list.size)

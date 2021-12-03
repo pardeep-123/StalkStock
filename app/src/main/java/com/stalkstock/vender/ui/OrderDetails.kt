@@ -102,8 +102,10 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
             ltStatus2.visibility=View.VISIBLE
             ltStatus3.visibility=View.VISIBLE
         }else if(mStatus==1){
+            ltStatus1.visibility=View.GONE
             ltStatus2.visibility=View.VISIBLE
             ltStatus3.visibility=View.VISIBLE
+            ltStatus4.visibility=View.GONE
         } else if(mStatus==2){
             ltStatus3.visibility=View.VISIBLE
             ltStatus1.visibility=View.GONE
@@ -154,11 +156,11 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
                 tv_deli_by!!.visibility = View.VISIBLE
                 tv_deli_by_value!!.visibility = View.VISIBLE
                 tv_deli_by!!.text = "DELIVERED BY"
-                tv_deli_to!!.text = "DELIVER TO"
+                tv_deli_to!!.text = "DELIVERED TO"
             } else {
                 tv_deli_by!!.visibility = View.GONE
                 tv_deli_by_value!!.visibility = View.GONE
-                tv_deli_to!!.text = "DELIVER TO"
+                tv_deli_to!!.text = "DELIVERED TO"
             }
         }
     }

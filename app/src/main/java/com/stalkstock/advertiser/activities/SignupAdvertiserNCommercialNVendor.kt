@@ -249,11 +249,6 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             et_businessDescptn.setError(resources.getString(R.string.please_enter_business_description))
         } else if (business_type == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
-        } else if (business_delivery_type == 0) {
-            AppUtils.showErrorAlert(
-                this,
-                resources.getString(R.string.please_enter_business_delivery_type)
-            )
         } else if (licnEdittext.getText().toString().isEmpty()) {
             licnEdittext.requestFocus()
             licnEdittext.setError(resources.getString(R.string.please_enter_business_license))

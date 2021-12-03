@@ -58,7 +58,7 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
           /*  time.text = list[position].time*/
             price.text = "$"+list[position].total
             if (list[position].orderStatus==1){
-                status.text = "Delivered"
+                status.text = "Pending"
             }
             else{
                 status.text = "Pending"

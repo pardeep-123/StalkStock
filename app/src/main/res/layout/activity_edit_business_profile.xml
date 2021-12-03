@@ -325,6 +325,8 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="12dp"

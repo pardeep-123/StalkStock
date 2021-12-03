@@ -57,6 +57,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgUserProfile"
                     android:layout_width="60dp"
+                    android:src="@drawable/ic_dummy_img"
                     android:layout_height="60dp" />
             </LinearLayout>
 

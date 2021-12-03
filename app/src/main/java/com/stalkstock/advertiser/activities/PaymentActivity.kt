@@ -102,7 +102,9 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
             }
             R.id.btn_preview -> {
                 val intent = Intent(mContext, AddNewCardActivity::class.java)
+                intent.putExtra("from","cart")
                 startActivity(intent)
+                finish()
             }
             R.id.firstclick -> {
                 mPaymentType = "1"

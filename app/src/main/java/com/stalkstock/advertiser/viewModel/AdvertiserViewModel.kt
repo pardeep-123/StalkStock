@@ -147,12 +147,12 @@ class AdvertiserViewModel: ViewModel() {
         activity: Activity,
         showLoader: Boolean,
         hashMap: HashMap<String, RequestBody>,
-        firstImage: String,
+        firstImage: String?,
         mUtils: Util
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             var image: MultipartBody.Part? = null
-            if (firstImage.isNotEmpty()) {
+            if (firstImage?.isNotEmpty()!!) {
                 val file = File(firstImage)
                 image = mUtils.prepareFilePart("buisnessLogo", file)
             }

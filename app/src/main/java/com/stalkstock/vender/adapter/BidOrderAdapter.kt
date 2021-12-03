@@ -36,7 +36,7 @@ class BidOrderAdapter(
         holder.itemView.tvCategory.text= arrayList[position].product.categoryName
         holder.itemView.tvProduct.text= arrayList[position].product.name
         holder.itemView.tvQuantity.text= arrayList[position].qty.toString()
-        holder.itemView.tvQuantityType.text= arrayList[position].product.measurementName
+        holder.itemView.tvQuantityType.text= arrayList[position].measurementName
     }
 
     override fun getItemCount(): Int {

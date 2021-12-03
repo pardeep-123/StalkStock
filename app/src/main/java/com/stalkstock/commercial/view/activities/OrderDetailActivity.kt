@@ -97,6 +97,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is OrderDetailResponse) {
                     val mResponse: OrderDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        publicData = mResponse
                         for(i in 0 until publicData.body.orderItems.size){
                             if(publicData.body.orderItems[i].isReview==0){
 
@@ -113,16 +114,15 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                         }else{
                              btnRating.visibility=View.VISIBLE
                         }
-                        publicData = mResponse
+
                         img.loadImage(mResponse.body.orderVendor.shopLogo)
                         kfc.text = mResponse.body.orderVendor.shopName
                         if (mResponse.body.orderStatus == 0)
                             tvStatus.text = "Pending"
                         tvTexts.text =
                             "Your order from " + mResponse.body.orderVendor.shopName + " is on the way"
-                        mRecyclerViews.adapter =
-                            MyorderProductAdapter(this, mResponse.body.orderItems)
-                        tvItemTotals.text = currency + mResponse.body.total
+                        mRecyclerViews.adapter = MyorderProductAdapter(this, mResponse.body.orderItems)
+                        tvItemTotals.text = currency + mResponse.body.netAmount
                         tvShopCharges.text = currency + mResponse.body.shopCharges
                         tvDeliveryCharges.text = currency + mResponse.body.shippingCharges
                         tv_total.text = currency + mResponse.body.total

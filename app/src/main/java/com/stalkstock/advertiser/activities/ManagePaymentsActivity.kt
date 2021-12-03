@@ -123,6 +123,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             }
             R.id.btn_add -> {
                 val intent = Intent(mContext, AddNewCardActivity::class.java)
+                intent.putExtra("from","account")
                 startActivity(intent)
             }
             R.id.layout_delete -> {

@@ -40,7 +40,9 @@ data class OrderItem(
     val product: Product,
     val productId: Int,
     val qty: Int,
-    val userId: Int
+    val userId: Int,
+    val measurementId: Int,
+    val measurementName: String
 )
 
 data class Product(

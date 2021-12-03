@@ -148,7 +148,9 @@ class BidDetailNew: AppCompatActivity(), Observer<RestObservable>, View.OnClickL
         dialog.submitbutton.setOnClickListener {
             if (dialog.edtSellingPrice.text.toString().isEmpty()) {
                 dialog.edtSellingPrice.error = resources.getString(R.string.please_enter_sale_price)
-            } else if (dialog.edtSellngDesc.text.toString().isEmpty()) {
+            } else if (dialog.edtSellingPrice.text.toString()=="0") {
+            dialog.edtSellingPrice.error = "Price should be greater than 0"
+          }else if (dialog.edtSellngDesc.text.toString().isEmpty()) {
                 dialog.edtSellngDesc.error = resources.getString(R.string.please_enter_sale_terms)
             } else {
                 val hashMap = HashMap<String, RequestBody>()
