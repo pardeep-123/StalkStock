@@ -54,7 +54,6 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
         when (intent.extras!!.getString("fragment")) {
             "0" -> {
-                tvStatus.text = "Pending"
                 tv_delivered_by.visibility = View.GONE
                 tv_delivered_by_value.visibility = View.GONE
                 tv_delivered_to.visibility = View.VISIBLE
@@ -62,7 +61,6 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 tv_delivered_to.text = "DELIVERED BY"
             }
             "1" -> {
-                tvStatus.text = "Delivered"
                 tvStatus.setTextColor(resources.getColor(R.color.themeColor))
             }
         }
@@ -117,10 +115,8 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
                         img.loadImage(mResponse.body.orderVendor.shopLogo)
                         kfc.text = mResponse.body.orderVendor.shopName
-                        if (mResponse.body.orderStatus == 0)
-                            tvStatus.text = "Pending"
-                        tvTexts.text =
-                            "Your order from " + mResponse.body.orderVendor.shopName + " is on the way"
+                        setOrderStatus(mResponse.body.orderStatus)
+                        tvTexts.text = "Your order from " + mResponse.body.orderVendor.shopName + " is on the way"
                         mRecyclerViews.adapter = MyorderProductAdapter(this, mResponse.body.orderItems)
                         tvItemTotals.text = currency + mResponse.body.netAmount
                         tvShopCharges.text = currency + mResponse.body.shopCharges
@@ -172,4 +168,21 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             }
         }
     }
+
+    private fun setOrderStatus(orderStatus: Int) {
+        when(orderStatus){
+            0->{ tvStatus.text = "Pending" }
+            1->{tvStatus.text = "In Progress"}
+            2->{tvStatus.text = "Packed"}
+            4->{
+                tvStatus.text= "Completed"
+                tvStatus.setTextColor(resources.getColor(R.color.green_colour))
+            }
+            5->{tvStatus.text = "Cancelled"}
+            6->{tvStatus.text= "Rejected"}
+            else->{tvStatus.text= "Error"}
+        }
+
+    }
+
 }

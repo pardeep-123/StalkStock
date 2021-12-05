@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.commercial.view.model.ModelPojo
 import com.stalkstock.R
@@ -15,6 +16,7 @@ import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import kotlinx.android.synthetic.main.activity_orderdeatils.*
 import kotlinx.android.synthetic.main.item_orders.view.*
+import kotlinx.android.synthetic.main.row_myorder.view.*
 import java.text.SimpleDateFormat
 
 class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListModel.Body>, var listner: OnMyOrdersRecyclerViewItemClickListner):RecyclerView.Adapter<MyOrdersListAdapter.MyViewHolder>() {
@@ -57,14 +59,30 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
             )
           /*  time.text = list[position].time*/
             price.text = "$"+list[position].total
-            if (list[position].orderStatus==1){
-                status.text = "Pending"
+
+            when(list[position].orderStatus)
+            {
+                0->{status.text = "Pending"
+                }
+                1->{ status.text = "In Progress"}
+                2->{status.text = "Packed"}
+                4->{status.text = "Completed"}
+                5->{status.text = "Cancelled"}
+                6->{status.text = "Rejected"}
+                else->{status.text = "Error"}
+            }
+
+            status.setTextColor(ContextCompat.getColor(context,getStatusColor(list[position].orderStatus)))
+
+
+            /*if (list[position].orderStatus==4){
+                status.text = "Delivered"
             }
             else{
                 status.text = "Pending"
             }
 
-
+*/
             itemView.setOnClickListener {
                 listner.onMyOrdersItemClickListner(list, position)
             }
@@ -81,6 +99,33 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
                 itemView.comma2.visibility= View.GONE
             }
 
+        }
+
+        private fun getStatusColor(orderStatus: Int): Int {
+            return when (orderStatus) {
+                0 -> {
+                    R.color.orange_colour
+                }
+                1 -> {
+                    R.color.orange_colour
+                }
+
+                3 -> {
+                    R.color.orange_colour
+                }
+                4 -> {
+                    R.color.theme_green
+                }
+                5 -> {
+                    R.color.red_dark_colour
+                }
+                6 -> {
+                    R.color.red_dark_colour
+                }
+                else -> {
+                    R.color.red_dark_colour
+                }
+            }
         }
 
     }
