@@ -13,8 +13,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
+import com.stalkstock.commercial.view.activities.RequestDetail
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.driver.HomeActivity
 import com.stalkstock.vender.ui.BottomnavigationScreen
@@ -30,6 +32,7 @@ class NotificationHandlingService : FirebaseMessagingService() {
     var CHANNEL_ID = "StalkNStock"
 
     var id = ""
+    var bidId=""
     var name = ""
     var image = ""
     var recieverName = ""
@@ -86,26 +89,29 @@ class NotificationHandlingService : FirebaseMessagingService() {
            // ex.message?.let { Log.e("FirebaseRam", it) } //providerId
         }
         var intent = Intent()
-//        makePush(intent)
-        if (type == 32) { //load home fragment of commercial
-            intent = Intent(this, MainCommercialActivity::class.java)
+
+        if(MyApplication.instance.getString("usertype").equals("1")) {
+            if(type==21 || type==22 || type==24) {  //load ListFragment fragment
+                intent = Intent(this, MainConsumerActivity::class.java)
+                makePush(intent)
+            }
+        }else if(MyApplication.instance.getString("usertype").equals("4")){
+            if(type==21 || type==22 || type==24 || type==32) {  //load ListFragment fragment
+                intent = Intent(this, MainCommercialActivity::class.java)
+                makePush(intent)
+            }
+        } else if(type==30){  //load driver my requests fragment
+            intent= Intent(this, HomeActivity::class.java)
             makePush(intent)
-        }else if(type==31){ //load bid fragment
+        }
+//        makePush(intent)
+        else if(type==31){ //load bid fragment
             intent= Intent(this, BottomnavigationScreen::class.java)
             intent.putExtra("notificationClick",true)
             makePush(intent)
         }else if(type==20){  //load NewOrderList Activity
             intent= Intent(this, NewOrderList::class.java)
             intent.putExtra("key","New Orders")
-            makePush(intent)
-        }else if(type==21 || type==22 || type==24){  //load ListFragment fragment
-            intent= Intent(this, MainConsumerActivity::class.java)
-            makePush(intent)
-        }else if(type==21 || type==22 || type==24){  //load ListFragment fragment
-            intent= Intent(this, MainConsumerActivity::class.java)
-            makePush(intent)
-        }else if(type==30){  //load driver my requests fragment
-            intent= Intent(this, HomeActivity::class.java)
             makePush(intent)
         }else{
             makePush(intent)

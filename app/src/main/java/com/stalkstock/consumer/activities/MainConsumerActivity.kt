@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.stalkstock.R
 import com.stalkstock.consumer.fragment.*
 import com.stalkstock.utils.BaseActivity
+import kotlinx.android.synthetic.main.activity_product.*
 
 class MainConsumerActivity : BaseActivity() {
     var context: MainConsumerActivity? = null
@@ -150,6 +151,9 @@ class MainConsumerActivity : BaseActivity() {
     }
 
     private fun switchFragment(fragment: Fragment?) {
+        val bundle= Bundle()
+        bundle.putString("deliveryType",currentDeliveryType.toString())
+        fragment?.arguments=bundle
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment!!)
         fragmentTransaction.commit()

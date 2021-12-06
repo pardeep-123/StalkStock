@@ -24,6 +24,7 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
     val mContext:Context=this
     var current_year: Int = 0
     var future_year = 40
+    var from=""
     lateinit var yearArray: Array<String?>
     internal var items = arrayOf<CharSequence>("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
     val viewModel: DriverViewModel by viewModels()
@@ -31,6 +32,7 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_card)
+        from= intent.getStringExtra("from").toString()
         tv_heading.text = "Add A New Card"
         iv_back.setOnClickListener(this)
         btn_save.setOnClickListener(this)
@@ -129,7 +131,14 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
                     val mResponse: AddCardData = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         onBackPressed()
-                    } }
+                       /* if(from=="cart"){
+
+                        }else{
+                            onBackPressed()
+                        }*/
+
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) { Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show() }

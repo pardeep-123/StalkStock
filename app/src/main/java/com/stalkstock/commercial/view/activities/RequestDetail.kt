@@ -64,13 +64,14 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 "Item Brand",
                 "Item Name",
                 "Quantity",
+                "",
                 "Unit of Measurement",
                 false,
                 false
             )
         )
-        list.add(AddedProduct.RequestProductData("Meat", "Bacon Grill", "10", "Kg", false, false))
-        list.add(AddedProduct.RequestProductData("Meat", "Bacon Normal", "8", "Kg", false, false))
+        list.add(AddedProduct.RequestProductData("Meat", "Bacon Grill", "10", "Kg","", false, false))
+        list.add(AddedProduct.RequestProductData("Meat", "Bacon Normal", "8", "Kg","", false, false))
 //        rvRequestProducts.adapter = RequestProductAdapter(list)
 
         /*    listBids.add(BidsData("Jamie jai","McDonald's","$80.50","Accept"))
@@ -99,7 +100,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                         items.accept,
                         items.image,
                         items.vendorId,
-                        items.bidId
+                        items.bidId,
+                        items.deliveryCharges,
+                        items.shopCharges
                     )
                 )
 
@@ -128,6 +131,8 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 intent.putExtra("bidId", detail[0].bidId)
                 intent.putExtra("vendorId", detail[0].vendorId)
                 intent.putExtra("rs", detail[0].rs)
+                intent.putExtra("deliveryCharges", detail[0].deliveryCharges)
+                intent.putExtra("shopCharges", detail[0].shopCharges)
 
                 startActivity(intent)
 
@@ -155,7 +160,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
     data class BidsData(
         var firstname: String = "", var lastname: String = "", var detail: String = "",
         var rs: String = "", var accept: String = "", var image: String = "", var vendorId: Int = 0,
-        var bidId: Int = 0
+        var bidId: Int = 0,var deliveryCharges:String="",var shopCharges:String=""
     )
 
     override fun onChanged(it: RestObservable?) {
@@ -164,6 +169,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is BidingDetailResponse) {
                     val mResponse: BidingDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+
                         setData(mResponse)
 
                         chatId = mResponse.body.chatId.toString()
@@ -185,7 +191,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                                 "Accept",
                                 it.data.body.vendorBidingRequest.vendorDetail.image,
                                 it.data.body.vendorBidingRequest.vendorId,
-                                it.data.body.vendorBidingRequest.bidId
+                                it.data.body.vendorBidingRequest.bidId,
+                                it.data.body.deliveryCharges,
+                                it.data.body.vendorBidingRequest.vendorDetail.shopCharges
                             )
                         )
 
@@ -212,7 +220,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
         val output: String = formatter.format(parser.parse(mResponse.body.createdAt))
 
         tvRequest.text = "Request ID:" + " " + mResponse.body.requestNo
-        tvCreatedDateB.text = output
+        tvCreatedDateB.text = AppUtils.changeDateFormat(mResponse.body.createdAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat3,
+            GlobalVariables.DATEFORMAT.DateTimeFormat2)
         userId = mResponse.body.vendorBidingRequest.vendorDetail.id
         userName =
             mResponse.body.vendorBidingRequest.vendorDetail.firstName + " " + mResponse.body.vendorBidingRequest.vendorDetail.lastName

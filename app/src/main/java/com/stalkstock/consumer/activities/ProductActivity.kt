@@ -55,6 +55,9 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
+
+        currentProductID = intent.getStringExtra("product_id")!!
+        currentDelivery_type = intent.getStringExtra("deliveryType")!!
         product_recycle = findViewById(R.id.product_recycle)
         back = findViewById(R.id.back)
         notification = findViewById(R.id.notification)
@@ -78,8 +81,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
             resultLauncher.launch(intent)
         }
 
-        currentProductID = intent.getStringExtra("product_id")!!
-        currentDelivery_type = intent.getStringExtra("deliveryType")!!
+
         txtTitle.text = intent.getStringExtra("title")
         getProductAsVendor()
         back.setOnClickListener { finish() }

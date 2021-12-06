@@ -226,6 +226,7 @@ class Chat : AppCompatActivity(), View.OnClickListener, SocketManager.SocketInte
                     chatList.reverse()
 
                     chatAdapter?.notifyDataSetChanged()
+                    rvChat.smoothScrollToPosition(chatList.size-1)
 
                 } else {
                     rvChat.visibility = View.GONE

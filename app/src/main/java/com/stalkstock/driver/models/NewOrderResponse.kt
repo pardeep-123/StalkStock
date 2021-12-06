@@ -34,7 +34,7 @@ data class NewOrderResponse(
         var shippingCharges: String, // 2.00
         var shopCharges: String, // 0.00
         var total: String, // 126.00
-        var transactionDetail: String, // {}
+      //  var transactionDetail: String, // {}
         var transactionId: String,
         var updatedAt: String, // 2021-09-03T06:30:29.000Z
         var vendorCommission: String, // 74.40

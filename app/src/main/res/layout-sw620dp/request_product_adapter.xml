@@ -188,6 +188,7 @@
                 android:id="@+id/rl_edit"
                 android:layout_weight="0.9"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/ivEdit"

@@ -24,13 +24,14 @@ import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.ProductsdetailsAdapter
 import com.stalkstock.consumer.model.ModelAddToCart
+import com.stalkstock.consumer.model.SellerProduct
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.consumer.model.UserVendorsProductList
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.loadImage
-import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
+import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_productdetails.*
 import okhttp3.RequestBody
 import java.util.*
@@ -48,7 +49,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
 
     private var reset = false
     private var currentOffset = 0
-    private var currentModel: ArrayList<UserVendorsProductList.Body.SellerProduct> = ArrayList()
+    private var currentModel: ArrayList<SellerProduct> = ArrayList()
 
 
     lateinit var back: ImageView
@@ -191,9 +192,8 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
     private fun setAdapterData(mResponse: UserVendorsProductList) {
         kfc.text = mResponse.body.product.productVendor.shopName
         deliveryTime.text = mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)"
-        starCount.text = mResponse.body.product.productVendor.totalRating.toFloat().toString() + " Rating, "
-        star.rating = mResponse.body.product.productVendor.totalRating.toFloat()
-        totalCount.text = mResponse.body.product.productVendor.ratingCount.toString()
+        starCount.text = String.format("%.2f",mResponse.body.product.productVendor.ratingCount.toFloat()) + " Rating, " + String.format("%.2f",mResponse.body.product.productVendor.totalRating.toFloat())
+        star.rating = mResponse.body.product.productVendor.ratingCount.toFloat()
         shopLocation.text = mResponse.body.product.productVendor.ShopAddress
         img.loadImage(mResponse.body.product.productVendor.shopLogo)
 
@@ -205,11 +205,15 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                 currentItemCount += i.cart.quantity
         }
 
-        if (currentItemCount > 0) {
+        if (currentItemCount > 0 && currentItemCount==1) {
+            all.visibility = View.VISIBLE
+            item_count.text = "$currentItemCount Item"
+
+        }else if(currentItemCount>1){
             all.visibility = View.VISIBLE
             item_count.text = "$currentItemCount Items"
-
-        } else {
+        }
+        else {
             all.visibility = View.GONE
         }
 

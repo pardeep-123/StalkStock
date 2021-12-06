@@ -34,7 +34,7 @@ class ListFragment : Fragment(), Observer<RestObservable> {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mActivity = context as MainConsumerActivity
+        //mActivity = context as requ
     }
 
     override fun onCreateView(
@@ -42,8 +42,8 @@ class ListFragment : Fragment(), Observer<RestObservable> {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-        viewModel.homeResponse.observe(mActivity, this)
-        adapter = MyordersAdapter(mActivity,mOrderArrayList)
+        viewModel.homeResponse.observe(requireActivity(), this)
+        adapter = MyordersAdapter(requireActivity(),mOrderArrayList)
         view.myorder_recycle.adapter = adapter
         view.myorder_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -72,7 +72,7 @@ class ListFragment : Fragment(), Observer<RestObservable> {
         val hashMap = HashMap<String, String>()
         hashMap["offset"] = currentOffset.toString()
         hashMap["limit"] = "10"
-        viewModel.getOrderListAPI(mActivity, true, hashMap)
+        viewModel.getOrderListAPI(requireActivity(), true, hashMap)
 
     }
 
@@ -90,15 +90,15 @@ class ListFragment : Fragment(), Observer<RestObservable> {
                         reset = false
                         tvNoOrders.visibility = if(mOrderArrayList.isEmpty()) View.VISIBLE else View.GONE
                     } else {
-                        AppUtils.showErrorAlert(mActivity, mResponse.message)
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
                 }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
-                    Toast.makeText(mActivity, it.data as String, Toast.LENGTH_SHORT).show() }
+                    Toast.makeText(requireActivity(), it.data as String, Toast.LENGTH_SHORT).show() }
                 else
-                { Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show() }
+                { Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT).show() }
             }
             it.status == Status.LOADING -> {
             }

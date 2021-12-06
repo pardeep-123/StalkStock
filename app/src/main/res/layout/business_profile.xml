@@ -238,7 +238,7 @@
                         android:layout_height="120dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="20dp"
-                        android:src="@drawable/logo_business"
+                        android:src="@drawable/ic_dummy_img"
                         app:civ_border_color="#8C8D8E"
                         app:civ_border_overlay="true"
                         app:civ_border_width="1dp" />
@@ -269,15 +269,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumRegularTextView
                             android:id="@+id/businessnamee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Sea Eat"
-                            android:textSize="@dimen/_14sdp"
+                            android:text=""
+                            android:textColor="#000"
 
-                            android:textColor="#000">
-                        </com.stalkstock.utils.custom.TitiliumRegularTextView>
+                            android:textSize="@dimen/_14sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
 
                     </RelativeLayout>
 <!--
@@ -322,7 +322,7 @@
                             android:id="@+id/businessnamee1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Sea Eat"
+                            android:text="S"
                             android:textColor="#000"
 
                             android:textSize="@dimen/_14sdp" />
@@ -362,7 +362,7 @@
                             android:id="@+id/businessaboutdetails"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Lorem ipsum dolor sit amet, consectetur"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -404,10 +404,10 @@
                             android:id="@+id/businesstypes"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Farming - Seafood"
-                            android:textSize="@dimen/_14sdp"
+                            android:text=""
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="@dimen/_14sdp" />
 
                     </RelativeLayout>
 
@@ -445,7 +445,7 @@
                             android:id="@+id/business_license"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="MH1420110062821"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -484,7 +484,7 @@
                             android:id="@+id/businessemailid"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="admin@gmail.com"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -524,7 +524,7 @@
                             android:id="@+id/businessmobile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="123 456 789"
+                            android:text=""
                             android:textDirection="ltr"
                             android:textSize="@dimen/_14sdp"
 
@@ -565,7 +565,7 @@
                             android:id="@+id/businesstelephonenumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="123 456 789"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -609,7 +609,7 @@
                             android:id="@+id/businesswebsitename"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="www.dummy.com"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -651,7 +651,7 @@
                             android:id="@+id/tvBusinessAddr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/full_address"
+                            android:text=""
                             android:textColor="#000"
 
                             android:textSize="@dimen/_14sdp" />
@@ -690,7 +690,7 @@
                             android:id="@+id/tvAddrLine2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="H.N 152"
+                            android:text=""
                             android:textColor="#000"
 
                             android:textSize="@dimen/_14sdp" />
@@ -728,7 +728,7 @@
                             android:id="@+id/tvCityC"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Mohali"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -766,7 +766,7 @@
                             android:id="@+id/tvStateC"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Punjab"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>
@@ -806,7 +806,7 @@
                              android:id="@+id/tvZipCodeC"
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
-                             android:text="135102"
+                             android:text=""
                              android:textSize="@dimen/_14sdp"
 
                              android:textColor="#000"/>
@@ -843,7 +843,7 @@
                             android:id="@+id/tvCountryC"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Afghanistan"
+                            android:text=""
                             android:textSize="@dimen/_14sdp"
 
                             android:textColor="#000"/>

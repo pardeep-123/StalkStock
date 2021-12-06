@@ -171,7 +171,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 if (arrStringMultipleImages.size == 2) {
                     Toast.makeText(
                         this,
-                        "You cannot upload more than 2 photos!",
+                        "You can't upload more than 2 photos!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -234,17 +234,15 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         map["country"] = mUtils.createPartFromString(spinnerCountry.selectedItem.toString())
 
         //productType(0=>veg 1=>non veg)
-        var avail = 0
-        if (spinner.selectedItemPosition == 0)
-            avail = 1
+
 
         var productType = 0
-        if (spinner.selectedItemPosition == 0)
+        if (spinnerProdType.selectedItemPosition == 0)
             productType = 1
 
         Log.e("product_type",productType.toString())
 
-        map["availability"] = mUtils.createPartFromString(avail.toString())
+        map["availability"] = mUtils.createPartFromString(spinner.selectedItemPosition.toString())
         map["productType"] = mUtils.createPartFromString(productType.toString())
         var arrayList: ArrayList<String> = ArrayList()
         for (i in arrStringMultipleImages) {
@@ -266,8 +264,8 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             spinnerGetProduct.requestFocus()
             AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
             return false
-        } else if(spinnerCountry.selectedItem.toString().trim().isEmpty()) {
-            AppUtils.showErrorAlert(this, "Please enter country")
+        } else if(spinnerCountry.selectedItemPosition==0) {
+            AppUtils.showErrorAlert(this, "Please select country")
             return false
         } else if (curreMeasurementId.trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please select measurement")
@@ -280,6 +278,9 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             return false
         } else if (addproductdescription.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter description")
+            return false
+        }else if (spinner.selectedItemPosition==0) {
+            AppUtils.showErrorAlert(this, "Please select product availability")
             return false
         } else
             return true

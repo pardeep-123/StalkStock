@@ -59,21 +59,22 @@
             android:layout_marginLeft="10dp"
             android:drawablePadding="10dp"
             android:textSize="17sp"/>
+
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View More"
             android:layout_below="@+id/price"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
-            android:gravity="center"
-            android:textColor="@color/theme_green"
-            android:paddingBottom="10dp"
             android:layout_toRightOf="@+id/img"
             android:background="@drawable/background_box_new"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="View More"
+            android:textColor="@color/theme_green"
 
             />
     </RelativeLayout>

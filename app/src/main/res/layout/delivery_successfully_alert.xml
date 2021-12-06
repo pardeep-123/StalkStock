@@ -29,7 +29,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_gravity="center_horizontal"
-                android:text="Please note: Delivery/pickup options may vary."
+                android:text="Please note: Delivery/pickup price may vary."
                 android:gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:textSize="15sp" />

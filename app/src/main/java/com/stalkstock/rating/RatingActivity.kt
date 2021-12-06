@@ -148,7 +148,7 @@ class RatingActivity:AppCompatActivity(), RatingProductAdapter.RatingProductInte
                         }else{
                             setRatingData(isDriverReview,isVendorReview)
                         }
-
+                        setRatingData(isDriverReview,isVendorReview)
 //                        finish()
 //                        startActivity(intent)
                     }

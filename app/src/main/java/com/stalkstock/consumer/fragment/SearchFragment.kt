@@ -47,6 +47,7 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
     lateinit var mActivity: MainConsumerActivity
     private var mWhichApi = 0
     private lateinit var viewFrag: View
+    var deliveryType=""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -64,10 +65,12 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bundle = this.arguments
+        deliveryType= bundle?.getString("deliveryType")!!
         adapter = HomedetailAdapter(
             mActivity,
             currentModel,
-            mActivity.currentDeliveryType.toString(),
+            deliveryType,
             this
         )
         view.detail_recycle.adapter = adapter
@@ -180,7 +183,7 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
                         val intent = Intent(mActivity, ProductActivity::class.java)
                         intent.putExtra("product_id", mProductId)
                         intent.putExtra("title", mProductName)
-                        intent.putExtra("delivery_type", mActivity.currentDeliveryType.toString())
+                        intent.putExtra("deliveryType", deliveryType)
                         startActivity(intent)
                     }
                 }
@@ -201,13 +204,15 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
-                    Toast.makeText(mActivity, it.data as String, Toast.LENGTH_SHORT).show()
+                    tvNoProducts.visibility=View.VISIBLE
+                    //Toast.makeText(mActivity, it.data as String, Toast.LENGTH_SHORT).show()
                     if (mWhichApi == 0) {
                         currentModel.clear()
                         adapter!!.notifyDataSetChanged()
                     }
                 } else {
-                    Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                    tvNoProducts.visibility=View.VISIBLE
+                  //  Toast.makeText(mActivity, it.error!!.toString(), Toast.LENGTH_SHORT).show()
                     if (mWhichApi == 0) {
                         currentModel.clear()
                         adapter!!.notifyDataSetChanged()

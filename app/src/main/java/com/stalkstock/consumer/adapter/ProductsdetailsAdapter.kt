@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.stalkstock.R
 import android.view.ViewGroup
 import android.view.View
+import com.stalkstock.consumer.model.SellerProduct
 import com.stalkstock.consumer.model.UserVendorsProductList
 import com.stalkstock.utils.loadImage
 import kotlinx.android.synthetic.main.row_productdetsils.view.*
@@ -14,7 +15,7 @@ import java.util.ArrayList
 
 class ProductsdetailsAdapter(
     var context: ProductDetailsActivity,
-    var currentModel: ArrayList<UserVendorsProductList.Body.SellerProduct>
+    var currentModel: ArrayList<SellerProduct>
 ) : RecyclerView.Adapter<ProductsdetailsAdapter.RecyclerViewHolder>() {
     var inflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -35,9 +36,9 @@ class ProductsdetailsAdapter(
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
 
         if(currentModel[position].productType==0){
-            holder.itemView.imgVegNon.setImageResource(R.drawable.green_dot)
-        }else{
             holder.itemView.imgVegNon.setImageResource(R.drawable.red_dot)
+        }else{
+            holder.itemView.imgVegNon.setImageResource(R.drawable.green_dot)
         }
 
         if(currentModel[position].productImage.isNotEmpty()) holder.itemView.img.loadImage(currentModel[position].productImage[0].image)

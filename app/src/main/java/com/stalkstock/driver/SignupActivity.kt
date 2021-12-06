@@ -245,7 +245,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         ) {
             et_mobileNo.requestFocus()
             et_mobileNo.error = resources.getString(R.string.please_enter_valid_number)
-        } else if (checkStringNull(mVehicleType)) {
+        } else if (spinner.selectedItemPosition==0) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.please_select_vehicletype),
@@ -266,7 +266,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else if (checkStringNull(et_state.text.toString())) {
             et_state.requestFocus()
             et_state.error = resources.getString(R.string.please_enter_state)
-        } else if (checkStringNull(mCountryName)) {
+        } else if (spinner_country.selectedItemPosition==0) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.please_select_countryname),

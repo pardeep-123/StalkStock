@@ -43,8 +43,7 @@ import org.bouncycastle.crypto.modes.GOFBBlockCipher
 import org.json.JSONArray
 import org.json.JSONObject
 
-class
-AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
+class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
     private val homeModel: HomeViewModel by viewModels()
 
     private var reset = false
@@ -58,6 +57,7 @@ AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"
+    var measurementId=""
 
     private var address: ArrayList<ModelUserAddressList.Body> = ArrayList()
     var addressId: Int = 0
@@ -245,7 +245,7 @@ AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
                 etUnitMeasurement.error = resources.getString(R.string.please_select_quantity)
             }
             else -> {
-                list.add(RequestProductData(spinnerGetProduct.selectedItem.toString(), type, quantity, etUnitMeasurement.text.toString(), edit = true, delete = true))
+                list.add(RequestProductData(spinnerGetProduct.selectedItem.toString(), type,productId, quantity, measurementId, edit = true, delete = true))
                 val adapter = RequestProductHomeAdapter(list,orderList)
                 rvRequestProducts.adapter = adapter
                 adapter.notifyDataSetChanged()
@@ -285,47 +285,53 @@ AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
     }
 
     private fun addBidingRequestApi() {
-
-        if(spinnerProduct.selectedItemPosition==0) {
-            spinnerProduct.requestFocus()
-            AppUtils.showErrorAlert(this, getString(R.string.please_select_category))
-        }
-
-        else if(spinnerSubProduct.selectedItemPosition==0) {
-            spinnerSubProduct.requestFocus()
-            AppUtils.showErrorAlert(this, getString(R.string.please_select_sub_category))
-        }else if(spinnerGetProduct.selectedItemPosition==0){
-            spinnerGetProduct.requestFocus()
-            AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
-        }else if(etEnterQuantity.text.toString().trim().isEmpty()){
-            etEnterQuantity.requestFocus()
-            etEnterQuantity.error = resources.getString(R.string.please_enter_quantity)
-        }else if(etEnterQuantity.text.toString().trim()=="0"){
-            etEnterQuantity.requestFocus()
-            etEnterQuantity.error = "Quantity should be greater than 0"
-        }else if(etUnitMeasurement.text.toString().trim().isEmpty()){
-            etUnitMeasurement.requestFocus()
-            etUnitMeasurement.error = resources.getString(R.string.please_select_quantity)
-        }else{
-            val jsonArray = JSONArray()
-            val student1 = JSONObject()
-            val quantity = etEnterQuantity.text.toString()
-            if(list.size==0){
-                student1.put("productId",productId)
-                student1.put("qty",quantity.toInt())
+        val jsonArray = JSONArray()
+        val student1 = JSONObject()
+        val quantity = etEnterQuantity.text.toString()
+        if(list.size>0){
+            for (i in 0 until list.size) {
+                student1.put("productId",list[i].type)
+                student1.put("qty",list[i].quantity)
+                student1.put("measurementId",list[i].unit)
                 jsonArray.put(student1)
             }
-            else{
-                for (i in 0 until list.size) {
-                    student1.put("productId",list[i].type)
-                    student1.put("qty",list[i].quantity)
-                    jsonArray.put(student1)
-                }
-                Log.i("list",list.toString())
-            }
+            Log.i("list",list.toString())
             homeModel.sendBidingRequest(this, addressId,jsonArray,true)
             homeModel.homeResponse.observe(this, this)
+        }else{
+            if(spinnerProduct.selectedItemPosition==0) {
+                spinnerProduct.requestFocus()
+                AppUtils.showErrorAlert(this, getString(R.string.please_select_category))
+            }
+
+            else if(spinnerSubProduct.selectedItemPosition==0) {
+                spinnerSubProduct.requestFocus()
+                AppUtils.showErrorAlert(this, getString(R.string.please_select_sub_category))
+            }else if(spinnerGetProduct.selectedItemPosition==0){
+                spinnerGetProduct.requestFocus()
+                AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
+            }else if(etEnterQuantity.text.toString().trim().isEmpty()){
+                etEnterQuantity.requestFocus()
+                etEnterQuantity.error = resources.getString(R.string.please_enter_quantity)
+            }else if(etEnterQuantity.text.toString().trim()=="0"){
+                etEnterQuantity.requestFocus()
+                etEnterQuantity.error = "Quantity should be greater than 0"
+            }else if(etUnitMeasurement.text.toString().trim().isEmpty()){
+                etUnitMeasurement.requestFocus()
+                etUnitMeasurement.error = resources.getString(R.string.please_select_quantity)
+            }else{
+
+                if(list.size==0){
+                    student1.put("productId",productId)
+                    student1.put("qty",quantity.toInt())
+                    student1.put("measurementId",measurementId)
+                    jsonArray.put(student1)
+                }
+                homeModel.sendBidingRequest(this, addressId,jsonArray,true)
+                homeModel.homeResponse.observe(this, this)
+            }
         }
+
 
     }
 
@@ -347,7 +353,7 @@ AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
         detailDialog.show()
     }
 
-    data class RequestProductData(var name:String ="",var type:String ="",
+    data class RequestProductData(var name:String ="",var type:String ="",val productId:String ="",
                                   var quantity:String = "",var unit:String ="",var edit:Boolean =false,var delete:Boolean =false)
 
     data class ProductUnitData(var id:Int =  0,var name:String =  "",var status:Int =  0)
@@ -361,6 +367,8 @@ AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
                         val intent = Intent(this, AddThanks::class.java)
                         intent.putExtra("requestNo", it.data.body.requestNo)
                         startActivity(intent)
+                    }else if(mResponse.code == 403) {
+                        AppUtils.showErrorAlert(this,"Please add your address first before sending the request.")
                     }
                 }
 
@@ -475,6 +483,7 @@ AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservable> {
     }
 
     fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
+        measurementId= productUnitData.id.toString()
         for (i in 0 until currentModelMeasurements.size) {
             listProductUnit[i] = ProductUnitData(
                 currentModelMeasurements[i].id,

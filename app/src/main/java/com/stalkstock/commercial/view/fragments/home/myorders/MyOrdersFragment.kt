@@ -109,17 +109,25 @@ class MyOrdersFragment : Fragment(), View.OnClickListener , Observer<RestObserva
                 if (it.data is OrderListModel) {
                     val mResponse: OrderListModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        currentOffset += 10
-                       list.addAll(mResponse.body)
-                 /*       list.add(MyOrdersList(mResponse.body[i].orderVendor.shopName,mResponse.body[i].orderVendor.ShopAddress,"USA",mResponse.body[i].orderItems[i].product.name,mResponse.body[i].createdAt,"06:17 PM",
-                            mResponse.body[i].total,mResponse.body[i].orderStatus))*/
+                        if(mResponse.body.size==0){
+                            tvNoOrders.visibility=View.VISIBLE
+                            rv_myOrders.visibility=View.GONE
+                        }else{
+                            tvNoOrders.visibility=View.GONE
+                            rv_myOrders.visibility=View.VISIBLE
+                            currentOffset += 10
+                            list.addAll(mResponse.body)
+                            /*       list.add(MyOrdersList(mResponse.body[i].orderVendor.shopName,mResponse.body[i].orderVendor.ShopAddress,"USA",mResponse.body[i].orderItems[i].product.name,mResponse.body[i].createdAt,"06:17 PM",
+                                       mResponse.body[i].total,mResponse.body[i].orderStatus))*/
                             Log.i("lita",list.toString())
 
 
-                        rv_myOrders.adapter= MyOrdersListAdapter(requireActivity(), list!!, this@MyOrdersFragment)
+                            rv_myOrders.adapter= MyOrdersListAdapter(requireActivity(), list!!, this@MyOrdersFragment)
 
-                        val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
-                        rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
+                            val dividerBetweenRecyclerViewItems = DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL)
+                            rv_myOrders.addItemDecoration(dividerBetweenRecyclerViewItems)
+                        }
+
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }

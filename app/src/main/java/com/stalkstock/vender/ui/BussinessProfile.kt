@@ -72,8 +72,8 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                         mData = mResponse.body
                         val vendorDetail = mResponse.body.vendorDetail
                         imageset.loadImage(vendorDetail.shopLogo)
-                        businessnamee.setText(vendorDetail.firstName)
-                        businessnamee1.setText(vendorDetail.lastName)
+                        businessnamee.setText(vendorDetail.firstName+" "+vendorDetail.lastName )
+                        businessnamee1.setText(vendorDetail.shopName)
                         businessaboutdetails.setText(vendorDetail.shopDescription)
                         business_license.setText(vendorDetail.buisnessLicense)
                         businessemailid.setText(mResponse.body.email)

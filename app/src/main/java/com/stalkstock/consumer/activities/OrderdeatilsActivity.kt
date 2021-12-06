@@ -138,7 +138,10 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
             0->{ tvStatus.text = "Pending" }
             1->{tvStatus.text = "In Progress"}
             2->{tvStatus.text = "Packed"}
-            4->{tvStatus.text= "Completed"}
+            4->{
+                tvStatus.text= "Completed"
+                tvStatus.setTextColor(resources.getColor(R.color.green_colour))
+            }
             5->{tvStatus.text = "Cancelled"}
             6->{tvStatus.text= "Rejected"}
             else->{tvStatus.text= "Error"}
