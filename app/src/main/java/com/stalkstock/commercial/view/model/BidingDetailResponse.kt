@@ -12,6 +12,7 @@ data class BidingDetailResponse(
         val id: Int,
         val instruction: String,
         val deliveryCharges: String,
+        val cardId:String,
         val orderItems: List<OrderItem>,
         val requestNo: String,
         val userId: Int,

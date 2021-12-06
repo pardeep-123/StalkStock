@@ -114,6 +114,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
             }
             R.id.tv_manage -> {
                 val intent = Intent(activity, ManagePaymentsActivity::class.java)
+                intent.putExtra("from","account")
                 startActivity(intent)
             }
             R.id.tv_changepass -> {

@@ -51,9 +51,19 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         tv_heading.text = "Manage Payments"
         if (intent.getStringExtra("from") != null) {
             from = intent.getStringExtra("from")!!
+
+        } else{
+            from=""
+        }
+        if(from=="add_post"){
+            btn_checkout.visibility=View.VISIBLE
             btn_checkout.text = "Save"
-        } else {
-            from = ""
+        }
+        else if(from=="account") {
+            btn_checkout.visibility=View.GONE
+        }
+        if (MyApplication.instance.getString("usertype").equals("5")) {
+            btn_checkout.visibility = View.VISIBLE
         }
         iv_back.setOnClickListener(this)
         btn_add.setOnClickListener(this)
@@ -68,9 +78,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 onBackPressed()
             }
         }
-        if (MyApplication.instance.getString("usertype").equals("5")) {
-            btn_checkout.visibility = View.VISIBLE
-        }
+
 
         adapter = UserCardAdapter(listCards,this)
         rvCards?.adapter = adapter

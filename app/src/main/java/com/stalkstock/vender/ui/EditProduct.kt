@@ -38,9 +38,11 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_product.*
 import kotlinx.android.synthetic.main.activity_edit_product.spinner
+import kotlinx.android.synthetic.main.activity_edit_product.spinnerCountry
 import kotlinx.android.synthetic.main.activity_edit_product.spinnerSubCategory
 import kotlinx.android.synthetic.main.activity_select_category.*
 import kotlinx.android.synthetic.main.added_product.*
@@ -203,9 +205,9 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
 
         if (currentProductModel.body.productType == 1) {
-            spinnerType.setSelection(0)
-        } else
             spinnerType.setSelection(1)
+        } else
+            spinnerType.setSelection(2)
 
         val productTag = currentProductModel.body.productTag
         var stTag = ""
@@ -296,6 +298,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 AppUtils.showErrorAlert(this, "Please enter product name")
                 return false
             }
+            spinnerType.selectedItemPosition == 0 -> {
+                AppUtils.showErrorAlert(this, "Please select product type")
+                return false
+            }
             spinnerCountry.selectedItemPosition == 0 -> {
                 AppUtils.showErrorAlert(this, "Please select country")
                 return false
@@ -380,10 +386,21 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         map["product_id"] = mUtils.createPartFromString(currentProductModel.body.id.toString())
         //   map["deleteImageArrayId"] = deleteImageArrayId
 
+        var avail=0
+        var productType=0
+        if(spinner.selectedItemPosition==1){
+            avail=0
+        }else{
+            avail=1
+        }
 
-        var productType = 0
-        if (spinnerType.selectedItemPosition == 0) productType = 1
-        map["availability"] = mUtils.createPartFromString(spinner.selectedItemPosition.toString())
+        if(spinnerType.selectedItemPosition==1){
+            productType=0
+        }else{
+            productType=1
+        }
+
+        map["availability"] = mUtils.createPartFromString(avail.toString())
         map["productType"] = mUtils.createPartFromString(productType.toString())
         Log.i("==Ids", deleteImageArrayId.size.toString())
 

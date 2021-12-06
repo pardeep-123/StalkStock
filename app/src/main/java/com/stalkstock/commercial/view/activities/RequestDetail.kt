@@ -36,6 +36,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
     var userName = ""
     var userImage = ""
     private val homeModel: HomeViewModel by viewModels()
+    var cardId=""
 
     var detail = ArrayList<BidsData>()
     var list: ArrayList<AddedProduct.RequestProductData> = ArrayList()
@@ -133,6 +134,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 intent.putExtra("rs", detail[0].rs)
                 intent.putExtra("deliveryCharges", detail[0].deliveryCharges)
                 intent.putExtra("shopCharges", detail[0].shopCharges)
+                intent.putExtra("card", cardId)
 
                 startActivity(intent)
 
@@ -153,6 +155,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
             intent.putExtra("userName", userName)
             intent.putExtra("userImage", userImage)
             intent.putExtra("param_name", "bidId")
+
             startActivity(intent)
         }
     }
@@ -171,7 +174,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
 
                         setData(mResponse)
-
+                        cardId= mResponse.body.cardId
                         chatId = mResponse.body.chatId.toString()
                         orderItemList.addAll(it.data.body.orderItems)
                         layShpList.visibility = VISIBLE

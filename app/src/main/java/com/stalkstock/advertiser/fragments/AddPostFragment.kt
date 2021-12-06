@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,7 @@ import kotlinx.android.synthetic.main.fragment_add_post.view.*
 import kotlinx.android.synthetic.main.fragment_pending_ads.view.*
 import kotlinx.android.synthetic.main.toolbar2.view.*
 import java.util.*
+import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 
 class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
@@ -210,6 +212,8 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
     }
 
     private fun checkAdPostValidation() {
+
+        val url= etAdsLink.text.toString().trim()
         when {
 
             firstimage.isEmpty() -> {
@@ -224,18 +228,6 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 etAddTitle.requestFocus()
                 etAddTitle.error = resources.getString(R.string.please_enter_title)
             }
-            etEnterBudget.text.toString().isEmpty() -> {
-                etEnterBudget.requestFocus()
-                etEnterBudget.error = resources.getString(R.string.please_enter_budget)
-            }
-            etAdsLink.text.toString().isEmpty() -> {
-                etAdsLink.requestFocus()
-                etAdsLink.error = resources.getString(R.string.please_enter_link)
-            }
-            etEnterDescription.text.toString().isEmpty() -> {
-                etEnterDescription.requestFocus()
-                etEnterDescription.error = resources.getString(R.string.please_enter_description)
-            }
             tvFromDate.text.toString().isEmpty() -> {
                 tvFromDate.requestFocus()
                 tvFromDate.error = resources.getString(R.string.please_enter_start_date)
@@ -247,6 +239,24 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
             !ivCheckbox.isChecked->{
                 Toast.makeText(requireActivity(),"Please select terms and condition", Toast.LENGTH_SHORT).show()
             }
+            etAdsLink.text.toString().isEmpty() -> {
+                etAdsLink.requestFocus()
+                etAdsLink.error = resources.getString(R.string.please_enter_link)
+            }
+           !Patterns.WEB_URL.matcher(url).matches() -> {
+                etAdsLink.requestFocus()
+                etAdsLink.error = resources.getString(R.string.please_enter_valid_link)
+            }
+            etEnterBudget.text.toString().isEmpty() -> {
+                etEnterBudget.requestFocus()
+                etEnterBudget.error = resources.getString(R.string.please_enter_budget)
+            }
+            etEnterDescription.text.toString().isEmpty() -> {
+                etEnterDescription.requestFocus()
+                etEnterDescription.error = resources.getString(R.string.please_enter_description)
+            }
+
+
          actionselected.trim().isEmpty()-> {
                 Toast.makeText(requireActivity(),"Please select an action", Toast.LENGTH_SHORT).show()
             }
@@ -320,7 +330,6 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
         mAlbumFiles.clear()
         selectImage(ivAddImage,"1")
     }
-
 
 }
 

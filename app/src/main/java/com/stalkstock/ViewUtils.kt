@@ -1,4 +1,4 @@
-package com.live.stalkstockcommercial
+package com.stalkstock
 
 
 import android.app.Activity
@@ -17,11 +17,11 @@ import com.google.android.libraries.maps.CameraUpdateFactory
 import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
-import com.stalkstock.R
 import com.stalkstock.utils.extention.checkStringNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 import java.util.regex.Pattern
 
 
@@ -60,6 +60,8 @@ fun isEmailValid(email: String): Boolean {
 fun iscityValid(c: String): Boolean {
     return c.matches("([a - zA - Z] + |[a - zA - Z] + \\s[a - zA - Z] + )".toRegex())
 }
+
+
 fun showSnackBar(activity: Activity, messageToShow: String): Snackbar?{
     try {
         val snackbar =

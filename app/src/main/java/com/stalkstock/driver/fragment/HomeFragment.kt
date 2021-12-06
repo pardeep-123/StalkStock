@@ -30,7 +30,7 @@ import com.google.android.libraries.maps.model.BitmapDescriptorFactory
 import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.model.MarkerOptions
 import com.google.gson.GsonBuilder
-import com.live.stalkstockcommercial.updateCamera
+import com.stalkstock.updateCamera
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable

@@ -238,6 +238,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_description">Please enter description</string>
     <string name="please_enter_budget">Please enter budget</string>
     <string name="please_enter_link">Please enter link</string>
+    <string name="please_enter_valid_link">Please enter valid link</string>
     <string name="please_enter_start_date">Please enter start date</string>
     <string name="please_enter_end_date">Please enter end date</string>
     <string name="please_enter_action">Please enter action</string>
@@ -290,6 +291,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="onWay">On the way</string>
     <string name="delivered">Delivered</string>
     <string name="please_select_product">Please select product</string>
+    <string name="please_select_product_type">Please select product type</string>
     <string name="please_select_sub_category">Please select sub category</string>
     <string name="please_select_category">Please select category</string>
     <string name="please_select_quantity">Please select unit of measurement</string>
@@ -561,6 +563,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
 
 
     <string-array name="Select_product_type">
+        <item>Select product type</item>
         <item>Veg</item>
         <item>Non-Veg</item>
     </string-array>

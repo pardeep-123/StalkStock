@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
 import com.stalkstock.commercial.view.adapters.AdapterProductUnit
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
@@ -38,6 +40,7 @@ import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.dialog_home.*
 import kotlinx.android.synthetic.main.added_product.back
+import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.bouncycastle.crypto.modes.GOFBBlockCipher
 import org.json.JSONArray
@@ -163,6 +166,8 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         getMeasurementApi()
 
         tvAddMore.setOnClickListener {
+            type = productId
+            quantity = etEnterQuantity.text.toString()
             showDataList()
 
                 btnSave.visibility = VISIBLE
@@ -187,7 +192,7 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
             else{
                 btnSave.visibility = GONE
                 btnSubmit.visibility = VISIBLE
-                showDataList()
+                addBidingRequestApi()
             }
             }
     }
@@ -217,8 +222,7 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
     }
 
     private fun showDataList() {
-        type = productId
-        quantity = etEnterQuantity.text.toString()
+
 
         when {
             spinnerProduct.selectedItemPosition==0 -> {
@@ -288,15 +292,20 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         val jsonArray = JSONArray()
         val student1 = JSONObject()
         val quantity = etEnterQuantity.text.toString()
+        val hashMap= HashMap<String, RequestBody>()
+
         if(list.size>0){
+
             for (i in 0 until list.size) {
                 student1.put("productId",list[i].type)
                 student1.put("qty",list[i].quantity)
                 student1.put("measurementId",list[i].unit)
                 jsonArray.put(student1)
             }
+
             Log.i("list",list.toString())
-            homeModel.sendBidingRequest(this, addressId,jsonArray,true)
+
+            homeModel.sendBidingRequest(this,addressId, jsonArray,true)
             homeModel.homeResponse.observe(this, this)
         }else{
             if(spinnerProduct.selectedItemPosition==0) {
@@ -327,12 +336,12 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                     student1.put("measurementId",measurementId)
                     jsonArray.put(student1)
                 }
+
+
                 homeModel.sendBidingRequest(this, addressId,jsonArray,true)
                 homeModel.homeResponse.observe(this, this)
             }
         }
-
-
     }
 
     override fun onBackPressed() {
@@ -352,6 +361,8 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         detailDialog.llDialog.setOnClickListener { detailDialog.dismiss() }
         detailDialog.show()
     }
+
+
 
     data class RequestProductData(var name:String ="",var type:String ="",val productId:String ="",
                                   var quantity:String = "",var unit:String ="",var edit:Boolean =false,var delete:Boolean =false)
@@ -497,6 +508,13 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
         detailDialog.dismiss()
         currentMeasurementId = currentModelMeasurements[position].id.toString()
     }
+    fun createRequestBody(param: String): RequestBody {
+       val request = RequestBody.create(
+            MediaType.parse("text/plain"),
+            param)
+        return request
+    }
+
 
     override fun onClick(v: View?) {
     }

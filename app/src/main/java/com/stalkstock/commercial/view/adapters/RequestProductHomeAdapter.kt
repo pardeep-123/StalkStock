@@ -79,7 +79,7 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
         {
             holder.itemView.ivEdit.visibility = View.VISIBLE
             holder.itemView.viewEdit.visibility = View.VISIBLE
-            holder.itemView.rl_edit.visibility = View.VISIBLE
+            holder.itemView.rl_edit.visibility = View.GONE
             holder.itemView.rl_delete.visibility = View.VISIBLE
 
         }

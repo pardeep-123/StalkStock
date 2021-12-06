@@ -76,7 +76,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
     override fun onResume() {
         super.onResume()
-
+        getOrderDetailApi(orderId)
         if (MyApplication.instance.getString("usertype").equals("4")) {
 
             tv_rest_charges.visibility = View.GONE
@@ -102,7 +102,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                                 list.add(publicData.body.orderItems[i])
                             }
                         }
-                        if(publicData.body.orderStatus!=1){
+                        if(publicData.body.orderStatus<4){
                             btnRating.visibility=View.GONE
                         }
                         else if(publicData.body.orderStatus==1 && publicData.body.orderStatus==4 && publicData.body.isDriverReview==1 && publicData.body.isVendorReview==1
@@ -184,5 +184,6 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
 
     }
+
 
 }

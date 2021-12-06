@@ -190,27 +190,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 //                    addProductAlertDialog()
             }
             R.id.add_uploadimages -> askCameraPermissons()
-           /* R.id.imagethree -> {
-                val logoutUpdatedDialog = Dialog(this)
-                logoutUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                logoutUpdatedDialog.setContentView(R.layout.upgrade_alert_box)
-                logoutUpdatedDialog.window!!.setLayout(
-                    WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT
-                )
-                logoutUpdatedDialog.setCancelable(true)
-                logoutUpdatedDialog.setCanceledOnTouchOutside(false)
-                logoutUpdatedDialog.window!!.setGravity(Gravity.CENTER)
-                logoutUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                val button1 = logoutUpdatedDialog.findViewById<Button>(R.id.upgrade_yes)
-                val button2 = logoutUpdatedDialog.findViewById<Button>(R.id.upgrade_cancel)
-                button1.setOnClickListener {
-                    startActivity(Intent(this@AddProduct, Subscription::class.java))
-                    logoutUpdatedDialog.dismiss()
-                }
-                button2.setOnClickListener { logoutUpdatedDialog.dismiss() }
-                logoutUpdatedDialog.show()
-            }*/
+
             R.id.addproductmasurement ->
                 setUnitList()
         }
@@ -234,15 +214,21 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         map["country"] = mUtils.createPartFromString(spinnerCountry.selectedItem.toString())
 
         //productType(0=>veg 1=>non veg)
+        var avail=0
+        var productType=0
+        if(spinner.selectedItemPosition==1){
+            avail=0
+        }else{
+            avail=1
+        }
 
+        if(spinnerProdType.selectedItemPosition==1){
+            productType=0
+        }else{
+            productType=1
+        }
 
-        var productType = 0
-        if (spinnerProdType.selectedItemPosition == 0)
-            productType = 1
-
-        Log.e("product_type",productType.toString())
-
-        map["availability"] = mUtils.createPartFromString(spinner.selectedItemPosition.toString())
+        map["availability"] = mUtils.createPartFromString(avail.toString())
         map["productType"] = mUtils.createPartFromString(productType.toString())
         var arrayList: ArrayList<String> = ArrayList()
         for (i in arrStringMultipleImages) {
@@ -264,7 +250,12 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             spinnerGetProduct.requestFocus()
             AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
             return false
-        } else if(spinnerCountry.selectedItemPosition==0) {
+        }  else if(spinnerProdType.selectedItemPosition == 0) {
+            spinnerProdType.requestFocus()
+            AppUtils.showErrorAlert(this, getString(R.string.please_select_product_type))
+            return false
+        }
+        else if(spinnerCountry.selectedItemPosition==0) {
             AppUtils.showErrorAlert(this, "Please select country")
             return false
         } else if (curreMeasurementId.trim().isEmpty()) {
