@@ -29,7 +29,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_gravity="center_horizontal"
-            android:text="Verification in progress. Please wait for a status update"
+            android:text="Verification is in progress. Please wait for admin approval."
             android:gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:textSize="15sp" />

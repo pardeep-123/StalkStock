@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.AdDetailActivity
 import com.stalkstock.advertiser.model.BusinessAdsList
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
 import java.text.SimpleDateFormat
 
 class PendingAdsAdapter(
@@ -54,7 +56,11 @@ class PendingAdsAdapter(
 
             tvAdsTitle.text = adsList[position].title
             tvAdsDescription.text = adsList[position].description
-            tvAdsStartDate.text = output
+            tvAdsStartDate.text = AppUtils.changeDateFormat(
+                adsList[position].createdAt,
+                GlobalVariables.DATEFORMAT.DateTimeFormat1,
+                GlobalVariables.DATEFORMAT.DateTimeFormat2
+            )
             Glide.with(context).load(adsList[position].image).into(ivAdsImages)
 
             itemView.setOnClickListener{

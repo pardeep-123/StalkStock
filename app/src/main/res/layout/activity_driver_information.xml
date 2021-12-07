@@ -280,6 +280,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
+                    android:visibility="gone"
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
@@ -306,6 +307,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -331,6 +333,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView

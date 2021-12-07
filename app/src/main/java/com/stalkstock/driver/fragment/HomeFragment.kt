@@ -143,6 +143,10 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         super.onResume()
         mactivity
         val map = HashMap<String, RequestBody>()
+       getOrderRequest()
+    }
+
+    fun getOrderRequest(){
         viewModel.driverOrderRequestAPI(mactivity!!, true)
         viewModel.mResponse.observe(this, this)
     }
@@ -432,7 +436,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
     }
 
     override fun onSocketDisconnect(vararg args: Any?) {
-        TODO("Not yet implemented")
     }
 
 
@@ -477,7 +480,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        ca_tv1.visibility = View.VISIBLE
+                        ca_tv1.visibility = View.GONE
                         Toast.makeText(mactivity!!, mResponse.message, Toast.LENGTH_SHORT)
                             .show()
                     }

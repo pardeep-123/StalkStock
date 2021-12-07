@@ -502,10 +502,10 @@
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:hint="@string/enter_unit_apt_suite_floor"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
                         android:paddingStart="15dp"
+                        android:paddingTop="5dp"
                         android:paddingEnd="12dp"
+                        android:paddingBottom="5dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
                         android:textSize="13sp" />

@@ -236,9 +236,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 c123.requestFocus()
                 c123.error = resources.getString(R.string.please_enter_end_date)
             }
-            !ivCheckbox.isChecked->{
-                Toast.makeText(requireActivity(),"Please select terms and condition", Toast.LENGTH_SHORT).show()
-            }
+
             etAdsLink.text.toString().isEmpty() -> {
                 etAdsLink.requestFocus()
                 etAdsLink.error = resources.getString(R.string.please_enter_link)
@@ -251,11 +249,17 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 etEnterBudget.requestFocus()
                 etEnterBudget.error = resources.getString(R.string.please_enter_budget)
             }
+            etEnterBudget.text.toString().equals("0") -> {
+                etEnterBudget.requestFocus()
+                etEnterBudget.error = resources.getString(R.string.please_enter_budget_price)
+            }
             etEnterDescription.text.toString().isEmpty() -> {
                 etEnterDescription.requestFocus()
                 etEnterDescription.error = resources.getString(R.string.please_enter_description)
             }
-
+            !ivCheckbox.isChecked->{
+                Toast.makeText(requireActivity(),"Please select terms and condition", Toast.LENGTH_SHORT).show()
+            }
 
          actionselected.trim().isEmpty()-> {
                 Toast.makeText(requireActivity(),"Please select an action", Toast.LENGTH_SHORT).show()

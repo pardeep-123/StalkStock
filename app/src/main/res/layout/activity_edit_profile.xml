@@ -34,7 +34,7 @@
                 android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:alpha="0.7"
-                android:background="@drawable/ic_dummy_img" />
+                android:src="@drawable/ic_dummy_img" />
 
             <ImageView
                 android:id="@+id/ivEditImage"

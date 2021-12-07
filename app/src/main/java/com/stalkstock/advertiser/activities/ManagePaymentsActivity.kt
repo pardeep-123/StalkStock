@@ -62,9 +62,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         else if(from=="account") {
             btn_checkout.visibility=View.GONE
         }
-        if (MyApplication.instance.getString("usertype").equals("5")) {
-            btn_checkout.visibility = View.VISIBLE
-        }
+
         iv_back.setOnClickListener(this)
         btn_add.setOnClickListener(this)
         one.setOnClickListener(this)

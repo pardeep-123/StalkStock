@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 
 class DriverInformationActivity : AppCompatActivity(), Observer<RestObservable> {
-    private lateinit var publicData: DriverDocResponse
+    private var publicData: DriverDocResponse?=null
     val mContext: Context = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

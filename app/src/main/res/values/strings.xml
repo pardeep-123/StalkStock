@@ -236,6 +236,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
 
     <string name="please_enter_title">Please enter title</string>
     <string name="please_enter_description">Please enter description</string>
+    <string name="please_enter_budget_price">Budget price should be greater than 0</string>
     <string name="please_enter_budget">Please enter budget</string>
     <string name="please_enter_link">Please enter link</string>
     <string name="please_enter_valid_link">Please enter valid link</string>

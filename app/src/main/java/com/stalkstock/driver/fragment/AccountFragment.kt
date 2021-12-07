@@ -36,6 +36,7 @@ import kotlinx.android.synthetic.main.fragment_account2.tv_help
 import kotlinx.android.synthetic.main.fragment_account2.tv_logout
 import kotlinx.android.synthetic.main.logout_alert.*
 import okhttp3.RequestBody
+import java.lang.Exception
 import java.util.*
 
 
@@ -197,7 +198,12 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: DriverProfileDetailResponse) {
-        image.loadImage(mResponse.body.driverDetail.image)
+        try{
+            image.loadImage(mResponse.body.driverDetail.image)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
         tvName.text = mResponse.body.driverDetail.firstName+" "+mResponse.body.driverDetail.lastName
         tvMobile.text = mResponse.body.mobile
         tvEmail.text = mResponse.body.email

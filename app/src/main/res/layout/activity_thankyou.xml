@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:gravity="center"
-                    android:text="Your order has been submitted.\nYou will receive status updates via \nemail and/or text."
+                    android:text="Your order has been submitted."
                     android:textColor="@color/black"
                     android:textSize="15sp" />
             </LinearLayout>

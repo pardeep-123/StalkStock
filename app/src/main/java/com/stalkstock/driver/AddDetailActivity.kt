@@ -181,6 +181,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
                    if (data.code == 200) {
                        dialogconfirmation()
                        setData(data)
+                       //Verification is in progress. Please wait for admin approval.
                        startActivity(Intent(this, LoginActivity::class.java))
                        finishAffinity()
                    }

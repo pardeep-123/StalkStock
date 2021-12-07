@@ -137,8 +137,10 @@ class MyRequestFragment : Fragment(), Observer<RestObservable> {
         dialog.tvDistance.text = " ${calculatedDistance(historyDataBody)} km"
         dialog.tvOrderID.text = "Order Id: ${historyDataBody.orderNo}"
         dialog.tvCharge.text = "$ ${historyDataBody.shippingCharges}"
-        dialog.tvStatus.text =
-            Util.orderStatus(historyDataBody.orderStatus, dialog.tvStatus.context)
+        if(historyDataBody.orderStatus==4){
+            dialog.tvStatus.setTextColor(resources.getColor(R.color.dark_green_colour))
+        }
+        dialog.tvStatus.text = Util.orderStatus(historyDataBody.orderStatus, dialog.tvStatus.context)
         dialog.tvDateTime.text = AppUtils.changeDateFormat(
             historyDataBody.createdAt,
             GlobalVariables.DATEFORMAT.DateTimeFormat3,

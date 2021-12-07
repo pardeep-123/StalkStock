@@ -6,6 +6,8 @@ import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
@@ -423,7 +425,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     val data = it.data as VendorSignupResponse
                     if (MyApplication.instance.getString("usertype").equals("3")) {
                         setData(data)
-                        startActivity(Intent(this, LoginActivity::class.java))
+                        AppUtils.showSuccessAlert(this,"Sign up successfully !! please login to continue")
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            //Do something after 100ms
+                        }, 2000)
                         //startActivity(Intent(mContext, Verification::class.java))
 //                finish()
                     } else {

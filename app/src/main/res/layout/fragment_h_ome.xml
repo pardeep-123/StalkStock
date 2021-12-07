@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white">
 
     <ImageView
@@ -157,7 +158,8 @@
             android:layout_marginRight="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="@dimen/_2sdp">
+            app:cardElevation="@dimen/_2sdp"
+            tools:visibility="visible">
 
             <RelativeLayout
                 android:layout_width="match_parent"

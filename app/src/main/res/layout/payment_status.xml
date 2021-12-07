@@ -68,7 +68,7 @@
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your order has been submitted.\nYou will receive status updated via email\nand/or text."
+                    android:text="Your order has been submitted."
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="17sp"

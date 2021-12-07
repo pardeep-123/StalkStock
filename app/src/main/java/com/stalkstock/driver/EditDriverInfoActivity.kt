@@ -1,9 +1,14 @@
 package com.stalkstock.driver
 
+import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Address
+import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -14,12 +19,17 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -33,23 +43,41 @@ import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_add_detail.*
+import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_driver_info.*
+import kotlinx.android.synthetic.main.activity_edit_driver_info.btn_update
 import kotlinx.android.synthetic.main.activity_edit_driver_info.edtCity
+import kotlinx.android.synthetic.main.activity_signup3.*
+import kotlinx.android.synthetic.main.activity_signup3.spinner
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
+import java.text.SimpleDateFormat
 import java.util.*
 
 
-class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
+class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
+    AdapterView.OnItemSelectedListener {
     val mContext: Context = this
+    private val myCalendar = Calendar.getInstance()
+    private lateinit var date: DatePickerDialog.OnDateSetListener
     private var mAlbumFiles = ArrayList<AlbumFile>()
     var mLicenseimage1 = ""
     var mLicenseimage2 = ""
     var mRegistrationImage = ""
     var mInsuranceImage = ""
     var mFirstImage = ""
-
+    var type=1
+    private var mCountryName = ""
+    var city = ""
+    var address = ""
+    var geoLocation = ""
+    var state = ""
+    var postalCode = ""
+    private var latitude = ""
+    private var longitude = ""
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
 
     lateinit var successfulUpdatedDialog: Dialog
     override fun getContentId(): Int {
@@ -58,6 +86,8 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Places.initialize(this, getString(R.string.maps_api_key))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(Color.WHITE);
@@ -65,6 +95,12 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
         tv_heading.text = "Edit Driver Information"
         iv_back.setOnClickListener {
             finish()
+        }
+        date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, monthOfYear)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateLabel()
         }
 
         edtInsuranceExpiry.addTextChangedListener(object : TextWatcher {
@@ -82,10 +118,39 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
             }
 
         })
+
+        edtRegisterationExpiry.setOnClickListener {
+
+            type=1
+            datePicker()
+
+        }
+        edtLicenceExpiry.setOnClickListener {
+
+            type=2
+            datePicker()
+        }
+
         btn_update.setOnClickListener {
             if (validations())
                 hitUpdateDriverDocAPI()
 //                updateDailogMethod()
+        }
+
+        edtDriverStreetAddress.setOnClickListener {
+            val fields = listOf(
+                Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.LAT_LNG,
+                Place.Field.ADDRESS_COMPONENTS,
+                Place.Field.ADDRESS
+            )
+            // Start the autocomplete intent.
+            val intent =
+                Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
+                    this
+                )
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
 
         rlEditDriverFront.setOnClickListener {
@@ -117,10 +182,64 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
 
+        val foodadapter2 = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_country,
+            R.layout.spinner_layout_for_vehicle
+        )
+        foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinnerCountry.adapter = foodadapter2
+        spinnerCountry.onItemSelectedListener = this
+
         if (intent.hasExtra("body")) {
             var driverDocResponse = intent.getSerializableExtra("body") as DriverDocResponse
             setData(driverDocResponse)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+                latitude = place.latLng?.latitude.toString()
+                longitude = place.latLng?.longitude.toString()
+                getAddress(latitude.toDouble(),longitude.toDouble())
+                edtDriverStreetAddress.setText(place.name.toString())
+
+            }
+        }
+    }
+
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        )
+
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
+            edtCity.setText(city)
+        }
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
+            edtDriverState.setText(state)
+        }
+
+    }
+
+    private fun datePicker() {
+
+        val datePickerDialog = DatePickerDialog(this, date,  myCalendar[Calendar.YEAR],
+            myCalendar[Calendar.MONTH],
+            myCalendar[Calendar.DAY_OF_MONTH])
+
+        datePickerDialog.datePicker.minDate= System.currentTimeMillis() -1000
+        datePickerDialog.show()
+
     }
 
     private fun setData(driverDocResponse: DriverDocResponse) {
@@ -160,8 +279,15 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
             edtDriverState.setText(driverDocResponse.body.driverDetail.state)
         if (!checkStringNull(driverDocResponse.body.driverDetail.postalCode))
             edtZipCode.setText(driverDocResponse.body.driverDetail.postalCode)
-        if (!checkStringNull(driverDocResponse.body.driverDetail.country))
-            edtCountry.setText(driverDocResponse.body.driverDetail.country)
+
+        val countryName: Array<String> = resources.getStringArray(R.array.Select_country)
+        for(i in countryName.indices)
+        {
+            if(driverDocResponse.body.driverDetail.country == countryName[i])
+            {
+                spinnerCountry.setSelection(countryName.indexOf(countryName[i]))
+            }
+        }
 
     }
 
@@ -208,7 +334,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
         hashMap.put("city", mUtils.createPartFromString(edtCity.text.toString()))
         hashMap.put("state", mUtils.createPartFromString(edtDriverState.text.toString()))
         hashMap.put("postalCode", mUtils.createPartFromString(edtZipCode.text.toString()))
-        hashMap.put("country", mUtils.createPartFromString(edtCountry.text.toString()))
+        hashMap.put("country", mUtils.createPartFromString(spinnerCountry.selectedItemPosition.toString()))
         hashMap.put("latitude", mUtils.createPartFromString(""))
         hashMap.put("longitude", mUtils.createPartFromString(""))
         viewModel.editDriverDocumentDetail(
@@ -253,14 +379,6 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
                 Toast.LENGTH_LONG
             ).show()
             return false
-        } else if (isInvalidDate(edtLicenceExpiry.text.toString())) {
-            edtLicenceExpiry.requestFocus()
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_valid_date),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
         } else if (edtRegisterationNumber.text.toString().toString().isEmpty()) {
             Toast.makeText(
                 this,
@@ -275,54 +393,10 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
                 Toast.LENGTH_LONG
             ).show()
             return false
-        } else if (isInvalidDate(edtRegisterationExpiry.text.toString())) {
-            edtRegisterationExpiry.requestFocus()
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_valid_date),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
-        } else if (edtInsuranceProvider.text.toString().toString().isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_your_insurance_provider),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
-        } else if (edtInsuranceNumber.text.toString().toString().isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_your_insurance_policy_number),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
-        } else if (edtInsuranceExpiry.text.toString().toString().isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_insurance_expiration_date),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
-        } else if (isInvalidDate(edtInsuranceExpiry.text.toString())) {
-            edtInsuranceExpiry.requestFocus()
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_valid_date),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
-        } else if (edtDriverStreetAddress.text.toString().toString().isEmpty()) {
+        }else if (edtDriverStreetAddress.text.toString().toString().isEmpty()) {
             Toast.makeText(
                 this,
                 resources.getString(R.string.enter_your_street_address),
-                Toast.LENGTH_LONG
-            ).show()
-            return false
-        } else if (edtEnterApartment.text.toString().toString().isEmpty()) {
-            Toast.makeText(
-                this,
-                resources.getString(R.string.enter_unit_apt_suite_floor),
                 Toast.LENGTH_LONG
             ).show()
             return false
@@ -347,10 +421,10 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
                 Toast.LENGTH_LONG
             ).show()
             return false
-        } else if (edtCountry.text.toString().toString().isEmpty()) {
+        } else if (spinnerCountry.selectedItemPosition==0) {
             Toast.makeText(
                 this,
-                resources.getString(R.string.please_enter_country),
+                resources.getString(R.string.please_select_countryname),
                 Toast.LENGTH_LONG
             ).show()
             return false
@@ -404,6 +478,18 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
             .start()
     }
 
+    private fun updateDateLabel() {
+        val dateFormat = "yyyy/MM/dd" //In which you need put here
+        val sdf = SimpleDateFormat(dateFormat, Locale.US)
+        if(type==1){
+            edtRegisterationExpiry.setText(sdf.format(myCalendar.time))
+        }else{
+            edtLicenceExpiry.setText(sdf.format(myCalendar.time))
+        }
+
+
+    }
+
     private fun updateDailogMethod() {
         successfulUpdatedDialog = Dialog(mContext, R.style.Theme_Dialog)
         successfulUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -453,6 +539,17 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable> {
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, view: View?, p2: Int, id: Long) {
+        if (p0?.id == R.id.spinnerCountry) {
+            val array = this.resources.getStringArray(R.array.Select_country)
+            mCountryName = array[p2]
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 
 }

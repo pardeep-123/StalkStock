@@ -21,27 +21,32 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.adapters.BusinessTypeAdapter
 import com.stalkstock.advertiser.model.BuisnessDetailResponse
 import com.stalkstock.advertiser.model.BusinessTypeResponse
-import com.stalkstock.advertiser.model.EditBuisnessDetail
 import com.stalkstock.advertiser.model.BussinessTypeList
+import com.stalkstock.advertiser.model.EditBuisnessDetail
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.EditCommercialBuisnessDetail
 import com.stalkstock.commercial.view.model.GetCommercialBuisnessDetail
 import com.stalkstock.utils.BaseActivity
-import com.stalkstock.utils.others.*
+import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
-import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner
-import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner_type
-import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.find
+import kotlin.collections.indexOf
+import kotlin.collections.indices
+import kotlin.collections.isNotEmpty
+import kotlin.collections.set
 
 class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
     lateinit var successfulUpdatedDialog: Dialog
@@ -187,10 +192,6 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
             etSreetAddress.text.toString().isEmpty() -> {
                 etSreetAddress.requestFocus()
                 etSreetAddress.error = resources.getString(R.string.please_enter_business_address)
-            }
-            etFloor.text.toString().isEmpty() -> {
-                etFloor.requestFocus()
-                etFloor.error = resources.getString(R.string.please_enter_business_address)
             }
             etCity.text.toString().isEmpty() -> {
                 etCity.requestFocus()

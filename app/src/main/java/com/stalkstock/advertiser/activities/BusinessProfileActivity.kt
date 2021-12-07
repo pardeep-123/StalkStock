@@ -65,7 +65,12 @@ class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Obser
                         businessnamee.text = data.body.advertiserDetail.firstName+" "+data.body.advertiserDetail.lastName
                         businessnamee1.text = data.body.advertiserDetail.buisnessName
                         businessaboutdetails.text = data.body.advertiserDetail.buisnessDescription
-                        Glide.with(this).load(data.body.advertiserDetail.buisnessLogo).into(imageset)
+                        if(data.body.advertiserDetail.buisnessLogo.isNullOrEmpty()){
+                         imageset.setImageResource(R.drawable.ic_dummy_img)
+                        }else{
+                            Glide.with(this).load(data.body.advertiserDetail.buisnessLogo).into(imageset)
+                        }
+
                         businesstypes.text = data.body.advertiserDetail.buisnessTypeName
                         business_license.text = data.body.advertiserDetail.buisnessLicense
                         businessemailid.text = data.body.email
