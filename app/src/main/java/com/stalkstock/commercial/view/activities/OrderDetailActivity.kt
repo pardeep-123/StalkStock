@@ -134,7 +134,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                             GlobalVariables.DATEFORMAT.DateTimeFormat2
                         )
 
-                        if (mResponse.body.paymentMethod == 0) {
+                        if (mResponse.body.paymentMethod == 1) {
                             ivCard.visibility = View.VISIBLE
                             ivPay.visibility = View.GONE
                         } else {
@@ -191,6 +191,11 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
         }
 
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        getOrderDetailApi(orderId)
     }
 
 

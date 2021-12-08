@@ -12,17 +12,17 @@ import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.MyorderProductAdapter
 import com.stalkstock.consumer.model.OrderDetailResponse
-import com.stalkstock.driver.models.DriverDocResponse
 import com.stalkstock.rating.RatingActivity
 import com.stalkstock.utils.extention.checkObjectNull
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.loadImage
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_orderdeatils.*
-import kotlinx.android.synthetic.main.row_myorder.view.*
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.set
 
 class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
     private lateinit var publicData: OrderDetailResponse

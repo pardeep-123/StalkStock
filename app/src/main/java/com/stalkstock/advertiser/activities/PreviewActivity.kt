@@ -21,7 +21,10 @@ import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.others.Util
 import kotlinx.android.synthetic.main.activity_preview.*
+import kotlinx.android.synthetic.main.activity_preview.tvFromDate
+import kotlinx.android.synthetic.main.fragment_add_post.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
@@ -30,6 +33,7 @@ import java.util.HashMap
 
 class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
     val mContext : Context = this
+
     lateinit var successfulUpdatedDialog:Dialog
     var firstimage=""
     var imglist = ArrayList<String>()
@@ -62,6 +66,7 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
         super.onCreate(savedInstanceState)
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
+        mUtils = Util()
         tv_heading.text = "Preview Ad"
 
         if(intent.hasExtra("intentFrom"))
@@ -164,7 +169,20 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
                         editAdsApi()
                     }
                     "add" -> {
-                        addAdsApi()
+                        val intent = Intent(this, ManagePaymentsActivity::class.java)
+                        intent.putExtra("title",title)
+                        intent.putExtra("startDate",startDate)
+                        intent.putExtra("endDate",endDate)
+                        intent.putExtra("adLink",adLink)
+                        intent.putExtra("budget",budget)
+                        intent.putExtra("description",description)
+//                intent.putExtra("adsList",adsList)
+                        intent.putExtra("adsList",adsList)
+                        intent.putExtra("action",action)
+                        intent.putExtra("actionContent",actionContent)
+                        intent.putExtra("from","preview")
+                        startActivity(intent)
+                       // addAdsApi()
                     }
                     else -> {
                         Toast.makeText(this,"no internet", Toast.LENGTH_SHORT).show()
@@ -210,7 +228,7 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tv_msg.text = "Your ad details have been successfully submitted for approval. You can check the status of your ad in the Ad Manager!"
+        successfulUpdatedDialog.tvmsg.text = "Your ad details have been successfully submitted for approval. You can check the status of your ad in the Ad Manager!"
         successfulUpdatedDialog.btn_ok.text = "Go to Ad Manager"
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)

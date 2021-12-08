@@ -26,10 +26,7 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.adapters.BusinessTypeAdapter
-import com.stalkstock.advertiser.model.BuisnessDetailResponse
-import com.stalkstock.advertiser.model.BusinessTypeResponse
-import com.stalkstock.advertiser.model.BussinessTypeList
-import com.stalkstock.advertiser.model.EditBuisnessDetail
+import com.stalkstock.advertiser.model.*
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -400,8 +397,8 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                     }
                 }
 
-                if (it.data is BuisnessDetailResponse) {
-                    val mResponse: BuisnessDetailResponse = it.data
+                if (it.data is AdvertiserSignUpResponse) {
+                    val mResponse: AdvertiserSignUpResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setData(mResponse)
                     }
@@ -527,7 +524,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         homeModel.homeResponse.observe(this,this)
     }
 
-    private fun setData(mResponse: BuisnessDetailResponse) {
+    private fun setData(mResponse: AdvertiserSignUpResponse) {
 
         country = mResponse.body.advertiserDetail.country
 

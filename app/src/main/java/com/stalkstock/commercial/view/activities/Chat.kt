@@ -171,6 +171,7 @@ class Chat : AppCompatActivity(), View.OnClickListener, SocketManager.SocketInte
 
 
     fun clearChat() {
+        clDots.visibility=View.GONE
 
         val dialogSuccessful = Dialog(this, R.style.Theme_Dialog)
         dialogSuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE)

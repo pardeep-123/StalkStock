@@ -6,15 +6,19 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.advertiser.model.AddBusinesssAdsResponse
+import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.adapter.UserCardAdapter
@@ -24,22 +28,42 @@ import com.stalkstock.driver.models.UserCardList
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.Util
 import com.stalkstock.vender.Model.CommonResponseModel
 import kotlinx.android.synthetic.main.activity_add_new_card.*
 import kotlinx.android.synthetic.main.activity_manage_payments.*
 import kotlinx.android.synthetic.main.delete_successfully_alert.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.update_successfully_alert.*
+import okhttp3.RequestBody
 import java.util.*
 
 class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
     Observer<RestObservable> {
     val mContext: Context = this
+    lateinit var mUtils:Util
     var from = ""
     private var reset = false
     private var currentOffset = 0
     var deleteCardPos = 0
     var rvCards: RecyclerView? = null
     val viewModel: DriverViewModel by viewModels()
+    lateinit var successfulUpdatedDialog:Dialog
+
+    var cardId="0"
+    lateinit var title: String
+    lateinit var action: String
+    lateinit var actionContent: String
+    lateinit var startDate: String
+    lateinit var endDate: String
+    lateinit var adLink: String
+    lateinit var budget: String
+    lateinit var description: String
+    lateinit var adsList :String
+    var id: Int = 0
+    val viewModel1: AdvertiserViewModel by lazy {
+        ViewModelProvider(this).get(AdvertiserViewModel::class.java)
+    }
 
     lateinit var adapter: UserCardAdapter
     private var listCards = mutableListOf<UserCardBody>()
@@ -47,6 +71,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_payments)
+        mUtils= Util()
         rvCards = findViewById(R.id.rvCards)
         tv_heading.text = "Manage Payments"
         if (intent.getStringExtra("from") != null) {
@@ -61,6 +86,21 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         }
         else if(from=="account") {
             btn_checkout.visibility=View.GONE
+        }else if(from=="preview"){
+            btn_checkout.visibility=View.VISIBLE
+            title = intent.getStringExtra("title").toString()
+            startDate = intent.getStringExtra("startDate").toString()
+            endDate = intent.getStringExtra("endDate").toString()
+            adLink = intent.getStringExtra("adLink").toString()
+            budget = intent.getStringExtra("budget").toString()
+            description = intent.getStringExtra("description").toString()
+            title = intent.getStringExtra("title").toString()
+//                adsList = intent.getStringArrayListExtra("adsList") as ArrayList<String>
+            adsList = intent.getStringExtra("adsList").toString()
+            id = intent.getIntExtra("id",0)
+            action = intent.getStringExtra("action").toString()
+            actionContent = intent.getStringExtra("actionContent").toString()
+
         }
 
         iv_back.setOnClickListener(this)
@@ -72,7 +112,20 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             if (from.isEmpty()) {
                 val intents = Intent(this@ManagePaymentsActivity, ThankyouActivity2::class.java)
                 startActivity(intents)
-            } else {
+            } else if(from=="preview") {
+                if(cardId=="0"){
+                    AppUtils.showErrorAlert(
+                        this,
+                        "Please add your card first before making a request."
+                    )
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        finish()
+                    }, 2000)
+                }else{
+                    addAdsApi()
+                }
+
+            }else{
                 onBackPressed()
             }
         }
@@ -92,6 +145,24 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         })
 
     }
+
+    private fun addAdsApi() {
+        val map = HashMap<String, RequestBody>()
+        map["title"] = mUtils.createPartFromString(title)
+        map["startDate"] = mUtils.createPartFromString(startDate)
+        map["endDate"] = mUtils.createPartFromString(endDate)
+        map["adLink"] = mUtils.createPartFromString(adLink)
+        map["budget"] = mUtils.createPartFromString(budget)
+        map["description"] = mUtils.createPartFromString(description)
+        map["action"] = mUtils.createPartFromString(action)
+        map["cardId"] = mUtils.createPartFromString(cardId)
+        map["paymentType"] = mUtils.createPartFromString("1")
+        viewModel1.addAds(this, true, map,adsList,mUtils)
+        viewModel1.mResponse.observe(this,this)
+    }
+
+
+
 
     override fun onResume() {
         super.onResume()
@@ -159,10 +230,28 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 if (it.data is UserCardList) {
                     val mResponse: UserCardList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
+                        if(mResponse.body.size==0){
+                            cardId="0"
+                        }else{
+                            for(i in 0 until mResponse.body.size){
+                                if(mResponse.body[i].isDefault==1){
+                                    cardId= mResponse.body[i].cardNumber.toString()
+                                }
+                            }
+                        }
+
+
                         tvNoCards.visibility = View.GONE
                         listCards.clear()
                         listCards.addAll(mResponse.body)
                         adapter.notifyDataSetChanged()
+                    }
+                }
+
+                if (it.data is AddBusinesssAdsResponse){
+                    val data = it.data
+                    if (data.code == 200){
+                        updateDailogMethod()
                     }
                 }
 
@@ -198,4 +287,29 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             }
         }
     }
+
+    private fun updateDailogMethod() {
+        successfulUpdatedDialog = Dialog(mContext, R.style.Theme_Dialog)
+        successfulUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        successfulUpdatedDialog.setContentView(R.layout.update_successfully_alert)
+
+        successfulUpdatedDialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        successfulUpdatedDialog.tvmsg.text = "Your ad details have been successfully submitted for approval. You can check the status of your ad in the Ad Manager!"
+        successfulUpdatedDialog.btn_ok.text = "Go to Ad Manager"
+        successfulUpdatedDialog.setCancelable(true)
+        successfulUpdatedDialog.setCanceledOnTouchOutside(false)
+        successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)
+        successfulUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        successfulUpdatedDialog.btn_ok.setOnClickListener {
+            successfulUpdatedDialog.dismiss()
+            val intent = Intent(mContext, MainActivity::class.java)
+            startActivity(intent)
+            finishAffinity()
+        }
+        successfulUpdatedDialog.show()
+    }
+
 }

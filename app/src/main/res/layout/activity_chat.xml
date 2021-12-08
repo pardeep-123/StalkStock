@@ -223,6 +223,7 @@
             android:paddingBottom="@dimen/_15sdp"
             android:elevation="@dimen/_5sdp"
             android:background="@drawable/white_round_corner_chat"
+            tools:visibility="visible"
             >
 
 
