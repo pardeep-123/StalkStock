@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.stalkstock.R
+import com.stalkstock.advertiser.model.AdvertiserSignUpResponse
 import com.stalkstock.advertiser.model.BuisnessDetailResponse
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
@@ -57,7 +58,7 @@ class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Obser
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-                if (it.data is BuisnessDetailResponse) {
+                if (it.data is AdvertiserSignUpResponse) {
                     val data = it.data
 
                     if (data.code==200){

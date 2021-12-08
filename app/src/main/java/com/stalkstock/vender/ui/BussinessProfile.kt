@@ -81,7 +81,7 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                         var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
                         val get = array.get(vendorDetail.deliveryType + 1)
                         txtbusinessDeliverytypes.text = get
-                        businessmobile.text = mResponse.body.email
+                        businessmobile.text = mResponse.body.mobile
                         businesstelephonenumber.text = vendorDetail.buisnessPhone
                         businesswebsitename.text = vendorDetail.website
                         tvAddressBusiness.text = vendorDetail.shopAddress

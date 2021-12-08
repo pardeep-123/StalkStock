@@ -1,9 +1,13 @@
 package com.stalkstock.advertiser.activities
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -16,6 +20,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.adapters.BusinessTypeAdapter
@@ -37,6 +44,9 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
+import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner
+import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner_type
+import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
@@ -56,6 +66,16 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
     var businessType = ""
     var country = ""
     var selectedId = ""
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
+
+    var city = ""
+    var address = ""
+    var geoLocation = ""
+    var state = ""
+    var postalCode = ""
+    var knownName = ""
+    private var latitude = ""
+    private var longitude = ""
     var businessTypeArray: ArrayList<BusinessTypeResponse.Body> = ArrayList()
     val userType = MyApplication.instance.getString("usertype")
 
@@ -73,6 +93,8 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //rlBusinessType.visibility=View.GONE
+
         tv_heading.text = "Edit Business Profile"
 
         getBusinessTypeApi()
@@ -80,6 +102,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         iv_back.setOnClickListener(this)
         btn_update.setOnClickListener(this)
         imageBusiness.setOnClickListener(this)
+        etSreetAddress.setOnClickListener(this)
         viewModel.mResponse.observe(this, this)
 
 
@@ -105,6 +128,23 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
+
+            R.id.etSreetAddress ->{
+                val fields = listOf(
+                    Place.Field.ID,
+                    Place.Field.NAME,
+                    Place.Field.LAT_LNG,
+                    Place.Field.ADDRESS_COMPONENTS,
+                    Place.Field.ADDRESS
+                )
+                // Start the autocomplete intent.
+                val intent =
+                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
+                        this
+                    )
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            }
+
             R.id.iv_back -> {
                 finish()
             }
@@ -119,6 +159,40 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                 selectImage(imageBusiness)
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+                latitude = place.latLng?.latitude.toString()
+                longitude = place.latLng?.longitude.toString()
+                getAddress(latitude.toDouble(),longitude.toDouble())
+                etSreetAddress.setText(place.name.toString())
+
+            }
+        }
+    }
+
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        )
+
+        if (addresses[0].locality != null) {
+            city = addresses[0].locality
+            etCity.setText(city)
+        }
+        if (addresses[0].adminArea != null) {
+            state = addresses[0].adminArea
+            etState.setText(state)
+        }
+
     }
 
     private fun selectImage(imageBusiness: ImageView) {

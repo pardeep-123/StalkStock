@@ -44,6 +44,7 @@ data class AdvertiserDetail(
     val buisnessName: String,
     val buisnessPhone: String,
     val buisnessTypeId: Int,
+    val buisnessTypeName: String,
     val city: String,
     val country: String,
     val created: Int,

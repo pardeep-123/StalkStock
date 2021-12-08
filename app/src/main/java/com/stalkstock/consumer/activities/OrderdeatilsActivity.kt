@@ -40,6 +40,7 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
             if (publicData != null)
                 intent.putExtra("body", publicData)
             startActivity(intent)
+            finish()
 
         }
         arrowBack.setOnClickListener { onBackPressed() }
@@ -73,15 +74,19 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
                         }
                         if(publicData.body.orderStatus<4){
                             btnSubmitRating.visibility=View.GONE
-                        }else if(publicData.body.isSelfpickup==0){
+                        }else if(publicData.body.isSelfpickup==0 ){
                             if(publicData.body.orderStatus==4 && publicData.body.isDriverReview==1 && publicData.body.isVendorReview==1
                                 && publicData.body.isUserReview==0 && list.size==0 ){
                                 btnSubmitRating.visibility=View.GONE
+                            }else{
+                                btnSubmitRating.visibility=View.VISIBLE
                             }
                         }else if(publicData.body.isSelfpickup==1){
                             if(publicData.body.orderStatus==4 && publicData.body.isDriverReview==0 && publicData.body.isVendorReview==1
                                 && publicData.body.isUserReview==1 && list.size==0 ){
                                 btnSubmitRating.visibility=View.GONE
+                            }else{
+                                btnSubmitRating.visibility=View.VISIBLE
                             }
                         } else{
                             btnSubmitRating.visibility=View.VISIBLE
@@ -135,16 +140,24 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun setOrderStatus(orderStatus: Int) {
         when(orderStatus){
-            0->{ tvStatus.text = "Pending" }
-            1->{tvStatus.text = "In Progress"}
-            2->{tvStatus.text = "Packed"}
+            0->{ tvStatus.text = "Pending"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
+            1->{tvStatus.text = "In Progress"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
+            2->{tvStatus.text = "Packed"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
+            3->{tvStatus.text = "On the way"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
             4->{
                 tvStatus.text= "Completed"
                 tvStatus.setTextColor(resources.getColor(R.color.green_colour))
             }
-            5->{tvStatus.text = "Cancelled"}
-            6->{tvStatus.text= "Rejected"}
-            else->{tvStatus.text= "Error"}
+            5->{tvStatus.text = "Cancelled"
+                tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
+            6->{tvStatus.text= "Rejected"
+                tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
+            else->{tvStatus.text= "Error"
+                tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
         }
 
     }

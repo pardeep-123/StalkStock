@@ -120,7 +120,7 @@
                 android:background="@drawable/shape_edit_for_add_card"
                 android:gravity="center_vertical"
                 android:hint="@string/enter_credit_card_number"
-
+                android:maxLength="16"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:drawableRight="@drawable/visa_img"

@@ -239,6 +239,7 @@
                 </RelativeLayout>
 -->
                 <RelativeLayout
+                    android:id="@+id/rlBusinessType"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
@@ -287,7 +288,7 @@
                         android:gravity="center_vertical"
                         android:hint="@string/enter_business_telephone_number"
                         android:imeOptions="actionNext"
-                        android:inputType="phone"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
@@ -361,7 +362,7 @@
                         android:gravity="center_vertical"
                         android:hint="@string/enter_mobile"
                         android:imeOptions="actionNext"
-                        android:inputType="phone"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
@@ -471,6 +472,7 @@
                         android:paddingStart="15dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="12dp"
+                        android:focusable="false"
                         android:paddingBottom="5dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"

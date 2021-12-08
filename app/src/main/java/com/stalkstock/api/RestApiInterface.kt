@@ -427,12 +427,12 @@ interface RestApiInterface {
     @PUT(URL.editAdvertiserProfileDetail)
     fun editAdvertiserProfileDetail(
         @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
-    ): Observable<EditProfileResponse>
+    ): Observable<AdvertiserSignUpResponse>
 
     @FormUrlEncoded
     @POST(URL.getBuisnessDetail)
     fun getBusinessProfile(
-        @FieldMap map: HashMap<String, String>): Observable<BuisnessDetailResponse>
+        @FieldMap map: HashMap<String, String>): Observable<AdvertiserSignUpResponse>
 
     @Multipart
     @PUT(URL.editAdvertiserBuisnessDetail)
@@ -496,7 +496,7 @@ interface RestApiInterface {
     @PUT(URL.editCommercialProfileDetail)
     fun editCommercialProfileDetail(
         @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
-    ): Observable<EditCommercialProfileResponse>
+    ): Observable<GetCommercialBuisnessDetail>
 
     @FormUrlEncoded
     @POST(URL.getCommercialBuisnessDetail)
@@ -550,5 +550,9 @@ interface RestApiInterface {
     @Multipart
     @POST(URL.getPayPalWebviewLink)
     fun getPayPalLink(@PartMap body: HashMap<String,Any>): Observable<PayPalWebResponse>
+
+    @Multipart
+    @POST(URL.getVendorProductSearch)
+    fun getVendorProduct(@PartMap body: HashMap<String,RequestBody>): Observable<CommonResponseModel>
 
 }

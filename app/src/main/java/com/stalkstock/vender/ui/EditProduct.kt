@@ -205,9 +205,9 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
 
         if (currentProductModel.body.productType == 1) {
-            spinnerType.setSelection(1)
-        } else
             spinnerType.setSelection(2)
+        } else
+            spinnerType.setSelection(1)
 
         val productTag = currentProductModel.body.productTag
         var stTag = ""
@@ -389,9 +389,9 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         var avail=0
         var productType=0
         if(spinner.selectedItemPosition==1){
-            avail=0
-        }else{
             avail=1
+        }else{
+            avail=0
         }
 
         if(spinnerType.selectedItemPosition==1){

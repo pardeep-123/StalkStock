@@ -58,6 +58,10 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
 
         currentProductID = intent.getStringExtra("product_id")!!
         currentDelivery_type = intent.getStringExtra("deliveryType")!!
+        currentSortBy = intent.getStringExtra("sortBy")!!
+        currentLowPrice = intent.getStringExtra("lowPrice")!!
+        currentHighPrice = intent.getStringExtra("highPrice")!!
+
         product_recycle = findViewById(R.id.product_recycle)
         back = findViewById(R.id.back)
         notification = findViewById(R.id.notification)

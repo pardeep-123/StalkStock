@@ -171,16 +171,24 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun setOrderStatus(orderStatus: Int) {
         when(orderStatus){
-            0->{ tvStatus.text = "Pending" }
-            1->{tvStatus.text = "In Progress"}
-            2->{tvStatus.text = "Packed"}
+            0->{ tvStatus.text = "Pending"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
+            1->{tvStatus.text = "In Progress"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
+            2->{tvStatus.text = "Packed"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
+            3->{tvStatus.text = "On the way"
+                tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
             4->{
                 tvStatus.text= "Completed"
                 tvStatus.setTextColor(resources.getColor(R.color.green_colour))
             }
-            5->{tvStatus.text = "Cancelled"}
-            6->{tvStatus.text= "Rejected"}
-            else->{tvStatus.text= "Error"}
+            5->{tvStatus.text = "Cancelled"
+                tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
+            6->{tvStatus.text= "Rejected"
+                tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
+            else->{tvStatus.text= "Error"
+                tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
         }
 
     }

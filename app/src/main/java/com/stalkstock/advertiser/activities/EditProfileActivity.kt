@@ -18,11 +18,13 @@ import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.advertiser.model.EditProfileResponse
 import com.stalkstock.advertiser.model.AdvertiserProfileDetailResponse
+import com.stalkstock.advertiser.model.AdvertiserSignUpResponse
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.CommercialProfileDetailResponse
 import com.stalkstock.commercial.view.model.EditCommercialProfileResponse
+import com.stalkstock.commercial.view.model.GetCommercialBuisnessDetail
 import com.stalkstock.driver.models.DriverProfileDetailResponse
 import com.stalkstock.driver.models.EditDriverResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
@@ -252,8 +254,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                     }
                 }
 
-                if (it.data is EditProfileResponse){
-                    val mResponse: EditProfileResponse = it.data
+                if (it.data is AdvertiserSignUpResponse){
+                    val mResponse: AdvertiserSignUpResponse = it.data
                     val data = it.data
                     if (mResponse.code == GlobalVariables.URL.code ){
                         savePrefrence(
@@ -275,8 +277,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
                     }
                 }
 
-                if (it.data is EditCommercialProfileResponse){
-                    val mResponse: EditCommercialProfileResponse = it.data
+                if (it.data is GetCommercialBuisnessDetail){
+                    val mResponse: GetCommercialBuisnessDetail = it.data
                     val data = it.data
                     if (mResponse.code == GlobalVariables.URL.code ){
                         savePrefrence(

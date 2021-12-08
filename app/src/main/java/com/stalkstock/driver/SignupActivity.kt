@@ -76,7 +76,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Places.initialize(this, getString(R.string.maps_api_key))
-
+      //  rl_deliveryType.visibility=View.GONE
         tv_heading.text = getString(R.string.sign_up)
         tv_signin.setOnClickListener(this)
         iv_back.setOnClickListener(this)

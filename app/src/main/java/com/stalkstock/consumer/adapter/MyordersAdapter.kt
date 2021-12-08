@@ -50,6 +50,7 @@ class MyordersAdapter(
             }
             1->{holder.itemView.tvStatus.text = "In Progress"}
             2->{holder.itemView.tvStatus.text = "Packed"}
+            3->{holder.itemView.tvStatus.text = "On the way"}
             4->{holder.itemView.tvStatus.text = "Completed"}
             5->{holder.itemView.tvStatus.text = "Cancelled"}
             6->{holder.itemView.tvStatus.text = "Rejected"}
@@ -72,6 +73,8 @@ class MyordersAdapter(
                 R.color.orange_colour
             }
             1->{
+                R.color.orange_colour
+            }2->{
                 R.color.orange_colour
             }
 

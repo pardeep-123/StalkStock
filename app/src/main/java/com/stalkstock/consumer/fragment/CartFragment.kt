@@ -126,6 +126,8 @@ class CartFragment : Fragment(), Observer<RestObservable> {
     }
 
     private fun getCartData() {
+        llMain.visibility=View.GONE
+        btnPaymentMethod.visibility=View.GONE
         val mainConsumerActivity = activity as MainConsumerActivity
         viewModel.getUserCardDataAPI(mainConsumerActivity, true)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
@@ -135,6 +137,9 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         override fun onChanged(it: RestObservable?) {
             when {
                 it!!.status == Status.SUCCESS -> {
+                    llMain.visibility=View.VISIBLE
+                    btnPaymentMethod.visibility=View.VISIBLE
+                    tvNoCartData.visibility=View.GONE
 
                     if (it.data is ModelCartData) {
                         val mResponse: ModelCartData = it.data
@@ -170,14 +175,17 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                     if (it.data != null) {
                         Toast.makeText(ctx, it.data as String, Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
-                            .show()
+//                        Toast.makeText(ctx, it.error.toString(), Toast.LENGTH_SHORT)
+//                            .show()
 
                         if (it.error!!.toString().contains("Data not found!")) {
                             try{
-                                val intent = Intent(ctx, MainConsumerActivity::class.java)
-                                intent.putExtra("is_open", "4")
-                                startActivity(intent)
+                                llMain.visibility=View.GONE
+                                btnPaymentMethod.visibility=View.GONE
+                                tvNoCartData.visibility=View.VISIBLE
+//                                val intent = Intent(ctx, MainConsumerActivity::class.java)
+//                                intent.putExtra("is_open", "4")
+//                                startActivity(intent)
                             }
                             catch (e:Exception)
                             {

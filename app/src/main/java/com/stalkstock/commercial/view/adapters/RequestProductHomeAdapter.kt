@@ -77,7 +77,7 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
 
         if(list[position].edit)
         {
-            holder.itemView.ivEdit.visibility = View.VISIBLE
+            holder.itemView.ivEdit.visibility = View.GONE
             holder.itemView.viewEdit.visibility = View.VISIBLE
             holder.itemView.rl_edit.visibility = View.GONE
             holder.itemView.rl_delete.visibility = View.VISIBLE

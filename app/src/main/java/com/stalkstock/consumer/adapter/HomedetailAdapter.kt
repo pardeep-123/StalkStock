@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
+import com.stalkstock.consumer.activities.HomedetailsActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.activities.ProductActivity
 import com.stalkstock.consumer.fragment.SearchFragment
@@ -19,7 +20,8 @@ class HomedetailAdapter(
     var context: Activity,
     var currentModel: ArrayList<ModelProductListAsPerSubCat.Body>,
     var currentDeliveryType: String,
-    var searchFragment: SearchFragment?
+    var searchFragment: SearchFragment?,
+    var homedetailsActivity:HomedetailsActivity?
 ) :
     RecyclerView.Adapter<HomedetailAdapter.RecyclerViewHolder>() {
     var inflater: LayoutInflater
@@ -39,8 +41,9 @@ class HomedetailAdapter(
         if (body.productImage.size > 0)
             holder.itemView.img.loadImage(body.productImage[0].image)
         holder.itemView.starCount.setText(body.name)
-        holder.itemView.price.setText("$" + body.mrp + "/")
+        //holder.itemView.price.setText("$" + body.mrp + "/")
         holder.itemView.star.visibility = View.GONE
+        holder.itemView.price.visibility = View.GONE
 
         holder.itemView.setOnClickListener {
             if (context is MainConsumerActivity) {
@@ -49,6 +52,10 @@ class HomedetailAdapter(
                 val intent = Intent(context, ProductActivity::class.java)
                 intent.putExtra("product_id", body.id.toString())
                 intent.putExtra("title", body.name.toString())
+                intent.putExtra("sortBy", homedetailsActivity?.currentSortBy)
+                intent.putExtra("lowPrice", homedetailsActivity?.currentLowPrice)
+                intent.putExtra("highPrice", homedetailsActivity?.currentHighPrice)
+
                 intent.putExtra("deliveryType", currentDeliveryType)
                 context.startActivity(intent)
             }

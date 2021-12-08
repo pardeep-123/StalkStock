@@ -230,6 +230,7 @@
 -->
 
             <RelativeLayout
+                android:id="@+id/rlBusinessType"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp">
@@ -254,6 +255,8 @@
 
                 </RelativeLayout>
 
+
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -269,15 +272,18 @@
 
 
             <RelativeLayout
+                android:id="@+id/rlDelivery"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_marginTop="10dp">
 
                 <RelativeLayout
+                    android:id="@+id/rl_deliveryType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:visibility="gone"
                     android:background="@drawable/edit_text_bg">
 
                     <Spinner
@@ -287,7 +293,7 @@
                         android:entries="@array/Select_business_type"
                         android:gravity="center_vertical"
                         android:paddingRight="20dp"
-                        android:prompt="@string/select_business_type"
+                        android:prompt="@string/select_delivery_type"
                         android:textColor="#000"
                         android:textColorHint="#F8F6F6"
                         android:textSize="13sp" />
@@ -393,9 +399,9 @@
                     android:gravity="center_vertical"
                     android:hint="@string/enter_mobile"
                     android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLines="1"
+                    android:inputType="number"
                     android:maxLength="16"
+                    android:maxLines="1"
                     android:minHeight="45dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="12dp"
@@ -429,9 +435,9 @@
                     android:gravity="center_vertical"
                     android:hint="@string/enter_business_telephone_number"
                     android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLines="1"
+                    android:inputType="number"
                     android:maxLength="15"
+                    android:maxLines="1"
                     android:minHeight="45dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="12dp"

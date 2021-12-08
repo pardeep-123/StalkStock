@@ -2,6 +2,7 @@ package com.stalkstock.vender.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -18,9 +19,11 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.adapter.RecentSearchAdapter
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.vender.Model.CommonResponseModel
 import kotlinx.android.synthetic.main.activity_search_screen.*
 import okhttp3.RequestBody
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class SearchScreen : BaseActivity(), Observer<RestObservable> {
@@ -31,7 +34,7 @@ class SearchScreen : BaseActivity(), Observer<RestObservable> {
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
     private var recentSearchList: ArrayList<RecentSearchListResponse.Body> = ArrayList()
     var currentDeliveryType = "2" // 0- pickup,1-deelivery , 2 -all
-    lateinit var adapter: HomedetailAdapter
+     var adapter: HomedetailAdapter?=null
     lateinit var mRecentSearchAdapter: RecentSearchAdapter
     private var mProductId = ""
     private var mProductName = ""
@@ -40,9 +43,38 @@ class SearchScreen : BaseActivity(), Observer<RestObservable> {
         return R.layout.activity_search_screen
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        editTextSearch.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                getVendorSearch(editTextSearch.text.toString())
+               // doSomething()
+                true
+            } else {
+                false
+            }
+        }
+       /* editTextSearch.setOnEditorActionListener { v, actionId, event ->
+
+        }*/
+    }
+
+    private fun getVendorSearch(search: String) {
+        val hashMap= HashMap<String,RequestBody>()
+        hashMap["offset"]=mUtils.createPartFromString("0")
+        hashMap["limit"]=mUtils.createPartFromString("30")
+        hashMap["search"]=mUtils.createPartFromString(search)
+        viewModel.getVendorProduct(this,true,hashMap)
+        viewModel.homeResponse.observe(this,this)
+    }
+
     override fun onResume() {
         super.onResume()
         getRecentSearchAPI()
+
+
+
         id_backarrow.setOnClickListener {
             onBackPressed()
         }
@@ -64,6 +96,10 @@ class SearchScreen : BaseActivity(), Observer<RestObservable> {
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
+
+                if (it.data is CommonResponseModel) {
+                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+                }
 
                 if (it.data is ModelProductListAsPerSubCat) {
                     val mResponse: ModelProductListAsPerSubCat = it.data
@@ -98,16 +134,18 @@ class SearchScreen : BaseActivity(), Observer<RestObservable> {
                 }
             }
             it.status == Status.ERROR -> {
-                if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
-                        currentModel.clear()
-                        adapter!!.notifyDataSetChanged()
-                } else {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-                        currentModel.clear()
-                        adapter!!.notifyDataSetChanged()
+                if(it.data!=null) {
+                    if (it.data is CommonResponseModel) {
+                        Toast.makeText(this, it.data.message as String, Toast.LENGTH_SHORT).show()
 
-                }
+                    }
+                }else{
+                        Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                        currentModel.clear()
+                        adapter!!.notifyDataSetChanged()
+                    }
+
+
             }
             it.status == Status.LOADING -> {
             }

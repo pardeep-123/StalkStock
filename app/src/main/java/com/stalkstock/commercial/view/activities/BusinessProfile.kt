@@ -42,6 +42,8 @@ class BusinessProfile : AppCompatActivity(), View.OnClickListener, Observer<Rest
         super.onCreate(savedInstanceState)
         setContentView(R.layout.business_profile)
 
+        llBusinessType.visibility=View.GONE
+
         ivBusiness.setOnClickListener(this)
         btn_edit.setOnClickListener(this)
 
@@ -58,7 +60,12 @@ class BusinessProfile : AppCompatActivity(), View.OnClickListener, Observer<Rest
                         businessnamee.text = data.body.commercialDetail.firstName+" "+data.body.commercialDetail.lastName
                         businessnamee1.text = data.body.commercialDetail.buisnessName
                         businessaboutdetails.text = data.body.commercialDetail.buisnessDescription
-                        Glide.with(this).load(data.body.commercialDetail.buisnessLogo).into(imageSet)
+                        if(data.body.commercialDetail.buisnessLogo.isNullOrEmpty()){
+                            imageSet.setImageResource(R.drawable.ic_dummy_img)
+                        }else{
+                            Glide.with(this).load(data.body.commercialDetail.buisnessLogo).into(imageSet)
+
+                        }
                         businesstypes.text = data.body.commercialDetail.buisnessTypeName
                         business_license.text = data.body.commercialDetail.buisnessLicense
                         businessemailid.text = data.body.email

@@ -5,21 +5,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.innovattic.rangeseekbar.RangeSeekBar
 import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.consumer.adapter.FilterAdapter
 import com.stalkstock.consumer.fragment.HomeCounsumerFragment
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentHighPrice
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentLowPrice
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentSortBy
+import com.stalkstock.vender.fragment.MainHomeFragment
 import kotlinx.android.synthetic.main.activity_filter.*
+import kotlinx.android.synthetic.main.activity_select_category.*
 
 class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
 
     private var fromWhichActivity = ""
     var arrayList = ArrayList<FilterData>()
+    var categoryId=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
@@ -27,11 +33,55 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         rangeSeekBar.seekBarChangeListener = this
         fromWhichActivity = intent.getStringExtra("from")!!
 
+        spinner2!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                if (position == 0) {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@FilterActivity, R.color.sort_popup_gray_color
+                        )
+                    )
+                    categoryId=""
+                } else {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@FilterActivity, R.color.black
+                        )
+                    )
+
+                    categoryId = spinner2.selectedItemPosition.toString()
+
+                }
+
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
+
         btn_apply.setOnClickListener {
 
             var returnIntent = Intent()
-            if (fromWhichActivity == "HomeCounsumerFragment")
-                returnIntent = Intent(this, HomeCounsumerFragment::class.java)
+            if (fromWhichActivity == "HomeCounsumerFragment") {
+                var returnIntent = Intent()
+                returnIntent.putExtra("lowPrice", currentLowPrice.toString())
+                returnIntent.putExtra("highPrice", currentHighPrice.toString())
+                returnIntent.putExtra("sortBy", currentSortBy)
+                setResult(RESULT_OK, returnIntent)
+            }
+            if (fromWhichActivity == "MainHomeFragment") {
+                var returnIntent = Intent()
+                returnIntent.putExtra("lowPrice", currentLowPrice.toString())
+                returnIntent.putExtra("highPrice", currentHighPrice.toString())
+                returnIntent.putExtra("sortBy", currentSortBy)
+                setResult(RESULT_OK, returnIntent)
+            }
             if (fromWhichActivity == "HomedetailsActivity")
                 returnIntent = Intent(this, HomedetailsActivity::class.java)
             if (fromWhichActivity == "ProductdetailsActivity")
@@ -82,13 +132,13 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
         if (MyApplication.instance.getString("usertype").equals("3")) {
             tv_sort_cate.visibility = View.VISIBLE
             rl_sort_cate.visibility = View.VISIBLE
+        } else {
         }
-        else { }
         setStaticData()
     }
 
     private fun setStaticData() {
-        Log.e("Thumnbs>>","$currentLowPrice --- $currentHighPrice --- $currentSortBy")
+        Log.e("Thumnbs>>", "$currentLowPrice --- $currentHighPrice --- $currentSortBy")
         rangeSeekBar.setMinThumbValue(currentLowPrice)
         rangeSeekBar.setMaxThumbValue(currentHighPrice)
         tv_start.text = "$$currentLowPrice"
@@ -96,8 +146,7 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
 
         if (currentSortBy == "low_to_high") {
             ltLowToHigh.performClick()
-        }
-        else {
+        } else {
             rlCost.performClick()
         }
     }

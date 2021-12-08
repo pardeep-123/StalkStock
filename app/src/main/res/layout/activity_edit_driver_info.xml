@@ -789,6 +789,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_text_bg"
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <Spinner

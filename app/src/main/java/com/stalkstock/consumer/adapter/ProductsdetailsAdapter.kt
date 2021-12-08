@@ -35,7 +35,7 @@ class ProductsdetailsAdapter(
         holder.itemView.price.text = "$"+currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
 
-        if(currentModel[position].productType==0){
+        if(currentModel[position].productType==1){
             holder.itemView.imgVegNon.setImageResource(R.drawable.red_dot)
         }else{
             holder.itemView.imgVegNon.setImageResource(R.drawable.green_dot)

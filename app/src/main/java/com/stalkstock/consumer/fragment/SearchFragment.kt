@@ -72,7 +72,7 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
             currentModel,
             deliveryType,
             this
-        )
+        ,null)
         view.detail_recycle.adapter = adapter
         view.detail_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

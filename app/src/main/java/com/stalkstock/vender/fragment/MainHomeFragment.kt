@@ -1,5 +1,6 @@
 package com.stalkstock.vender.fragment
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -41,7 +44,13 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     var clickMsg = 0
     private var reset = false
     private var currentOffset = 0
+    var currentLowPrice = ""
+    var currentHighPrice = "10000"
+    var currentSortBy = "high_to_low"
+
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var currentModel: ArrayList<ModelVendorProductList.Body.Product> = ArrayList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,12 +94,17 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         return view
     }
 
-    override fun onResume() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getVendorProducts()
+    }
+
+   /* override fun onResume() {
         super.onResume()
         clickMsg = 0
         reset = true
         getVendorProducts()
-    }
+    }*/
 
     val viewModel: HomeViewModel by viewModels()
 
@@ -103,6 +117,9 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         if (activity!=null)
         {
             val mActivity = activity as BottomnavigationScreen
+            map["sortBy"] = mActivity.mUtils.createPartFromString(currentSortBy.toString())
+            map["lowPrice"] = mActivity.mUtils.createPartFromString(currentLowPrice.toString())
+            map["highPrice"] = mActivity.mUtils.createPartFromString(currentHighPrice.toString())
             map["offset"] = mActivity.mUtils.createPartFromString(currentOffset.toString())
             map["limit"] = mActivity.mUtils.createPartFromString("5")
             viewModel.getVendorProductListAPI(mActivity, true, map)
@@ -121,7 +138,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
             R.id.filter -> {
                 val intent2 = Intent(activity, FilterActivity::class.java)
                 intent2.putExtra("from","MainHomeFragment")
-                startActivity(intent2)
+                startActivityForResult(intent2,0)
             }
             R.id.edit_search -> {
                 val intent1 = Intent(activity, SearchScreen::class.java)
@@ -130,6 +147,21 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
             R.id.addproductbutton -> {
                 val i = Intent(activity, SelectCategory::class.java)
                 startActivity(i)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === 0) {
+            if (resultCode === Activity.RESULT_OK) {
+                currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                currentHighPrice = data.getStringExtra("highPrice")!!
+                currentSortBy = data.getStringExtra("sortBy")!!
+                getVendorProducts()
+            }
+            if (resultCode === Activity.RESULT_CANCELED) {
+                // Write your code if there's no result
             }
         }
     }
@@ -220,8 +252,17 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
 
     private fun setData(mResponse: ModelVendorProductList) {
         txtHomeTotal.text = "Total:${mResponse.body.product.size}"
+        currentModel.clear()
         currentModel.addAll(mResponse.body.product)
-        testAdapter!!.notifyDataSetChanged()
-        reset = false
+        if(currentModel.size==0){
+            tvNoData.visibility=View.VISIBLE
+            recyclerview.visibility=View.GONE
+        }else{
+            tvNoData.visibility=View.GONE
+            recyclerview.visibility=View.VISIBLE
+            testAdapter!!.notifyDataSetChanged()
+            reset = false
+        }
+
     }
 }

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -378,10 +380,13 @@ class AddedProduct : BaseActivity(),View.OnClickListener ,Observer<RestObservabl
                         val intent = Intent(this, AddThanks::class.java)
                         intent.putExtra("requestNo", it.data.body.requestNo)
                         startActivity(intent)
-                    }else if(mResponse.code == 403) {
-                        AppUtils.showErrorAlert(this,"Please add your address first before sending the request.")
                     }
-                }
+                }/*else {
+                    AppUtils.showErrorAlert(this,"Please add your address first before sending the request.")
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        finish()
+                    }, 2000)
+                }*/
 
                 if (it.data is ModelUserAddressList) {
                     val mResponse: ModelUserAddressList = it.data

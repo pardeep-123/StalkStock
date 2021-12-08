@@ -217,9 +217,9 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         var avail=0
         var productType=0
         if(spinner.selectedItemPosition==1){
-            avail=0
-        }else{
             avail=1
+        }else{
+            avail=0
         }
 
         if(spinnerProdType.selectedItemPosition==1){

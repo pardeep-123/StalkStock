@@ -66,6 +66,7 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
                 }
                 1->{ status.text = "In Progress"}
                 2->{status.text = "Packed"}
+                3->{status.text = "On the way"}
                 4->{status.text = "Completed"}
                 5->{status.text = "Cancelled"}
                 6->{status.text = "Rejected"}
@@ -88,12 +89,10 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
             }
 
             if((status.text as String?).equals("Pending",true)){
-                status.setTextColor(Color.parseColor("#fb862e"))
                 date.visibility=  View.VISIBLE
                /* time.visibility=View.VISIBLE*/
                 itemView.comma2.visibility= View.VISIBLE
             }else{
-                status.setTextColor(Color.parseColor("#7DB733"))
                 date.visibility=  View.GONE
                 time.visibility=View.GONE
                 itemView.comma2.visibility= View.GONE
@@ -107,6 +106,9 @@ class MyOrdersListAdapter(var context: Context, var list:ArrayList<OrderListMode
                     R.color.orange_colour
                 }
                 1 -> {
+                    R.color.orange_colour
+                }
+                2 -> {
                     R.color.orange_colour
                 }
 

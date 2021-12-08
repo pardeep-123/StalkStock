@@ -32,11 +32,11 @@ class RequestAdapter(var listRequest: MutableList<HistoryDataBody>) : RecyclerVi
                 }
                 2 -> {
                     this.text = this.context.getString(R.string.packed)
-                    this.setTextColor(this.context.getColorStateList(R.color.dark_green_colour))
+                    this.setTextColor(this.context.getColorStateList(R.color.orange_colour))
                 }
                 3 -> {
                     this.text = this.context.getString(R.string.onWay)
-                    this.setTextColor(this.context.getColorStateList(R.color.dark_green_colour))
+                    this.setTextColor(this.context.getColorStateList(R.color.orange_colour))
                 }
                 4 -> {
                     this.text = this.context.getString(R.string.completed)

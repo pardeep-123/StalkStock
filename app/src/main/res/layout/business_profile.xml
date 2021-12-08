@@ -322,7 +322,7 @@
                             android:id="@+id/businessnamee1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="S"
+                            android:text=""
                             android:textColor="#000"
 
                             android:textSize="@dimen/_14sdp" />
@@ -372,6 +372,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llBusinessType"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -383,14 +384,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:id="@+id/businesstype"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Business Type"
-                            android:textSize="@dimen/_14sdp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="@dimen/_14sdp" />
 
                     </RelativeLayout>
 

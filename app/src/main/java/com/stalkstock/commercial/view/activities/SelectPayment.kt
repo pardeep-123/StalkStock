@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.live.stalkstockcommercial.ui.paymnet.AddNewCard
 import com.stalkstock.R
+import com.stalkstock.advertiser.activities.AddNewCardActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.CommericalOrderPlaceResponse
@@ -86,7 +87,8 @@ class SelectPayment : AppCompatActivity(), Observer<RestObservable> {
         }
         ivBackPayment.setOnClickListener { onBackPressed() }
         btn_preview.setOnClickListener {
-            startActivity(Intent(this, AddNewCard::class.java))
+            startActivity(Intent(this, AddNewCardActivity::class.java))
+            finish()
 
             /* if(card.isNotEmpty()){
              onBackPressed()}

@@ -172,7 +172,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         fillter.setOnClickListener {
             val intent = Intent(requireContext(), FilterActivity::class.java)
             intent.putExtra("from", "HomeCounsumerFragment")
-            resultLauncher.launch(intent)
+            startActivityForResult(intent,0)
         }
         etSearch.setOnClickListener {
             mActivity.openSearchFragment()
@@ -231,6 +231,20 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val mainConsumerActivity = activity as MainConsumerActivity
         viewModel.getCategoryListAPI(mainConsumerActivity, false)
         viewModel.homeResponse.observe(mainConsumerActivity, this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === 0) {
+            if (resultCode === Activity.RESULT_OK) {
+                currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                currentHighPrice = data.getStringExtra("highPrice")!!
+                currentSortBy = data.getStringExtra("sortBy")!!
+            }
+            if (resultCode === Activity.RESULT_CANCELED) {
+                // Write your code if there's no result
+            }
+        }
     }
 
     private var reset = false

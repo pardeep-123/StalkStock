@@ -53,6 +53,7 @@ class PaymentFragment : Fragment(), Observer<RestObservable> {
         btnTransfer.setOnClickListener {
 
             if(valid()) {
+
                 val map = HashMap<String, String>()
                 map["amount"] = etEnterAmount.text.toString()
                 map["bankAccountId"] = cardAdapter.defaultCardId
@@ -87,6 +88,10 @@ class PaymentFragment : Fragment(), Observer<RestObservable> {
             }
             etEnterAmount.text.toString().toFloat()>balanceAmount.toFloat() ->{
                 AppUtils.showErrorAlert(ctx as Activity, getString(R.string.insufficient_balance))
+                false
+            }
+          cardAdapter.defaultCardId.isNullOrEmpty() ->{
+                AppUtils.showErrorAlert(ctx as Activity,"Please add your bank account")
                 false
             }
             else -> true

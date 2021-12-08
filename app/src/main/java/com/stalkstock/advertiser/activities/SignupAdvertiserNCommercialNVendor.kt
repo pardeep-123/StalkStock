@@ -76,7 +76,16 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
         // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         Places.initialize(this, getString(R.string.maps_api_key))
+
+        if (MyApplication.instance.getString("usertype").equals("4")) {
+            rlDelivery.visibility = View.GONE
+            rlBusinessType.visibility = View.VISIBLE
+        } else {
+            rlDelivery.visibility = View.VISIBLE
+            rlBusinessType.visibility = View.VISIBLE
+        }
         tv_heading.text = getString(R.string.sign_up)
+        rl_deliveryType.visibility = View.VISIBLE
         tv_signin.setOnClickListener(this)
         iv_back.setOnClickListener(this)
         image.setOnClickListener(this)
@@ -170,12 +179,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
-        }else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+        } else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
                 longitude = place.latLng?.longitude.toString()
-                getAddress(latitude.toDouble(),longitude.toDouble())
+                getAddress(latitude.toDouble(), longitude.toDouble())
                 et_businessAddress.setText(place.name.toString())
 
             }
@@ -251,6 +260,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             et_businessDescptn.setError(resources.getString(R.string.please_enter_business_description))
         } else if (business_type == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
+        } else if (MyApplication.instance.getString("usertype") != "4" &&  spinner_delivery_type.selectedItemPosition == 0 ) {
+
+            AppUtils.showErrorAlert(
+                this,
+                resources.getString(R.string.please_enter_business_delivery_type)
+            )
         } else if (licnEdittext.getText().toString().isEmpty()) {
             licnEdittext.requestFocus()
             licnEdittext.setError(resources.getString(R.string.please_enter_business_license))
@@ -375,7 +390,8 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             }
 
             val hashMap = HashMap<String, RequestBody>()
-            hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.firstname] =
+                mUtils.createPartFromString(et_firstName.text.toString().trim())
             hashMap["latitude"] = mUtils.createPartFromString(latitude)
             hashMap["longitude"] = mUtils.createPartFromString(longitude)
             hashMap[GlobalVariables.PARAM.lastname] =
@@ -425,7 +441,10 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     val data = it.data as VendorSignupResponse
                     if (MyApplication.instance.getString("usertype").equals("3")) {
                         setData(data)
-                        AppUtils.showSuccessAlert(this,"Sign up successfully !! please login to continue")
+                        AppUtils.showSuccessAlert(
+                            this,
+                            "Sign up successfully !! please login to continue"
+                        )
                         Handler(Looper.getMainLooper()).postDelayed({
                             startActivity(Intent(this, LoginActivity::class.java))
                             //Do something after 100ms

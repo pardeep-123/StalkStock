@@ -236,6 +236,9 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 c123.requestFocus()
                 c123.error = resources.getString(R.string.please_enter_end_date)
             }
+            actionselected.trim().isEmpty()-> {
+                Toast.makeText(requireActivity(),"Please select an action", Toast.LENGTH_SHORT).show()
+            }
 
             etAdsLink.text.toString().isEmpty() -> {
                 etAdsLink.requestFocus()
@@ -261,9 +264,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 Toast.makeText(requireActivity(),"Please select terms and condition", Toast.LENGTH_SHORT).show()
             }
 
-         actionselected.trim().isEmpty()-> {
-                Toast.makeText(requireActivity(),"Please select an action", Toast.LENGTH_SHORT).show()
-            }
+
 
             else -> {
                 val intent = Intent(activity, PreviewActivity::class.java)

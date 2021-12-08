@@ -126,16 +126,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@+id/bidusername"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:text="$80.50"
                     android:textColor="#8BC34A"
                     android:textSize="14sp" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bidusername"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/check_circle"/>
+                    android:src="@drawable/check_circle" />
             </RelativeLayout>
 
         </LinearLayout>

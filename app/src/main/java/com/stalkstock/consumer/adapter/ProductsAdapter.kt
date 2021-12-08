@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.consumer.activities.ProductActivity
@@ -36,14 +37,24 @@ class ProductsAdapter(
         holder.itemView.price.text = currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
 
+        if(currentModel[position].availability==0){
+            holder.itemView.rlMain.setBackgroundColor(context.resources.getColor(R.color.light_grey))
+            holder.itemView.tvOutOfStock.visibility=View.VISIBLE
+
+        }else{
+            holder.itemView.tvOutOfStock.visibility=View.GONE
+            holder.itemView.rlMain.setBackgroundColor(context.resources.getColor(R.color.white))
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra("product_id",currentModel[position].id.toString())
+                intent.putExtra("deliveryType",currentDelivery_type)
+                context.startActivity(intent)
+            }
+        }
+
         if(currentModel[position].productImage.isNotEmpty()) holder.itemView.img.loadImage(currentModel[position].productImage[0].image)
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, ProductDetailsActivity::class.java)
-            intent.putExtra("product_id",currentModel[position].id.toString())
-            intent.putExtra("deliveryType",currentDelivery_type)
-            context.startActivity(intent)
-        }
+
     }
 
     override fun getItemCount(): Int {

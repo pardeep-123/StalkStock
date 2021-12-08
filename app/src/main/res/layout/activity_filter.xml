@@ -177,9 +177,9 @@
             android:layout_marginTop="@dimen/_10sdp">
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtLowToHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtLowToHigh"
                 android:layout_marginStart="15dp"
                 android:text="Cost Low to High"
                 android:textColor="@color/dark_gray" />
@@ -237,6 +237,7 @@
             app:rsb_max="1000"
             app:rsb_maxThumbDrawable="@drawable/custom_switch"
             app:rsb_minRange="0"
+            android:overScrollMode="never"
             app:rsb_minThumbDrawable="@drawable/custom_switch"
             app:rsb_trackColor="@color/dark_gray"
             app:rsb_trackSelectedColor="@color/green_colour"

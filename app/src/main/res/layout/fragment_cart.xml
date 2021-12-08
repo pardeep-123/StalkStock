@@ -29,6 +29,12 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/header"
+        android:background="@color/light_grey" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,6 +45,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvNoCartData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No items found"
+                android:layout_marginTop="@dimen/_140sdp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/llMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
 
             <RelativeLayout
                 android:id="@+id/all"
@@ -298,6 +322,7 @@
                 android:layout_marginTop="30sp"
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
@@ -317,5 +342,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp" />
+
 
 </RelativeLayout>

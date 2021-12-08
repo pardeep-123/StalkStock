@@ -23,6 +23,8 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_change_password.*
+import kotlinx.android.synthetic.main.activity_change_password.passwordEdittext
+import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
@@ -75,8 +77,17 @@ class ChangePasswordActivity : BaseActivity(), View.OnClickListener, Observer<Re
             AppUtils.showErrorAlert(this, "Please enter new password")
             newpasswordEdittext.requestFocus()
             return false
+        }else if (newpasswordEdittext.text.toString().length<6) {
+            newpasswordEdittext.requestFocus()
+            newpasswordEdittext.error = "Password should contain atleast 6 characters"
+            return false
+        }
+        else if (confpasswordEdittext.text.toString().trim().isEmpty()) {
+            AppUtils.showErrorAlert(this, "Please enter confirm password")
+            newpasswordEdittext.requestFocus()
+            return false
         } else if (confpasswordEdittext.text.toString() != newpasswordEdittext.text.toString()) {
-            AppUtils.showErrorAlert(this, "Password mismatch")
+            AppUtils.showErrorAlert(this, "Confirm password should be same as password")
             confpasswordEdittext.requestFocus()
             return false
         } else {

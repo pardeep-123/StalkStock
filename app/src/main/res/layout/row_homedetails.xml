@@ -16,19 +16,21 @@
         <ImageView
             android:id="@+id/img"
             android:layout_width="115dp"
-            android:layout_height="125dp"
+            android:layout_height="100dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_dummy_img" />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/starCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_toRightOf="@+id/img"
             android:text="Meat"
             android:textColor="@color/black"
-            android:textSize="18sp"
 
-            android:layout_marginLeft="10dp"/>
+            android:textSize="18sp" />
 
 
 
@@ -49,16 +51,16 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beef: $9.50/LB"
             android:layout_below="@+id/star"
-            android:layout_toRightOf="@+id/img"
-            android:layout_marginTop="5dp"
-            android:textColor="@android:color/holo_red_dark"
-
-            android:drawableRight="@drawable/red_arrow"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img"
+            android:drawableRight="@drawable/red_arrow"
+
             android:drawablePadding="10dp"
-            android:textSize="17sp"/>
+            android:text="Beef: $9.50/LB"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="17sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"

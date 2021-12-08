@@ -40,6 +40,7 @@ class RatingActivity:AppCompatActivity(), RatingProductAdapter.RatingProductInte
     private fun setOnClicks() {
         btnDriverRating.setOnClickListener(this)
         btnVendorRating.setOnClickListener(this)
+        order_details_backarrow.setOnClickListener(this)
     }
 
     private fun getIntentData() {
@@ -168,6 +169,9 @@ class RatingActivity:AppCompatActivity(), RatingProductAdapter.RatingProductInte
 
     override fun onClick(v: View?) {
         when(v?.id){
+            R.id.order_details_backarrow->{
+                onBackPressed()
+            }
             R.id.btnDriverRating ->{
                 isDriverReview=1
                 val hashMap = HashMap<String, Any>()

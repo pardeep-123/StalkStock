@@ -29,6 +29,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CheckLocationActivity
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import kotlinx.android.synthetic.main.activity_homedetails.*
 import okhttp3.RequestBody
 import java.util.*
 
@@ -201,7 +202,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             intent.putExtra("from", "HomedetailsActivity")
             resultLauncher.launch(intent)
         }
-        adapter = HomedetailAdapter(this, currentModel, currentDeliveryType, null)
+        adapter = HomedetailAdapter(this, currentModel, currentDeliveryType, null,this)
         detail_recycle.adapter = adapter
 
         setTitleAdapter()
@@ -268,18 +269,20 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                     if (whichApi == "subCat")
                         finish()
                     else if (whichApi == "productList") {
+                        tvNoProducts.visibility=View.VISIBLE
+                        detail_recycle.visibility=View.GONE
                         currentModel.clear()
                         adapter!!.notifyDataSetChanged()
                     }
                 } else {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
                     if (whichApi == "subCat")
                         finish()
                     else if (whichApi == "productList") {
+                        tvNoProducts.visibility=View.VISIBLE
+                        detail_recycle.visibility=View.GONE
                         currentModel.clear()
                         adapter!!.notifyDataSetChanged()
                     }
@@ -291,8 +294,16 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
 
     private fun setData(mResponse: ModelProductListAsPerSubCat) {
         currentModel.addAll(mResponse.body)
-        adapter!!.notifyDataSetChanged()
-        reset = false
+        if(currentModel.size==0){
+            tvNoProducts.visibility=View.VISIBLE
+            detail_recycle.visibility=View.GONE
+        }else{
+            tvNoProducts.visibility=View.GONE
+            detail_recycle.visibility=View.VISIBLE
+            adapter!!.notifyDataSetChanged()
+            reset = false
+        }
+
     }
 
     private fun setAdapterSpinnerSub(mResponse: ModelSubCategoriesList) {
