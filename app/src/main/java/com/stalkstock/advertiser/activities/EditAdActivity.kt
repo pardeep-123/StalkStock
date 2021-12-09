@@ -91,24 +91,18 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
         Glide.with(this).load(imagelist[0]).into(imagslideid)
 
         when(action){
-            0 ->
-            {
+            0 -> {
                 cbLearnmore.isChecked = true
-
                 actionselected = "0"
                 actionSelectedTitle = "Learn More"
             }
-            1 ->
-            {
+            1 -> {
                 cbShopnow.isChecked = true
-
                 actionselected = "1"
                 actionSelectedTitle = "Shop Now"
             }
-            2 ->
-            {
+            2 -> {
                 cbGetnow.isChecked = true
-
                 actionselected = "2"
                 actionSelectedTitle = "Get Now"
             }
@@ -337,11 +331,11 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
                 cEndDate.requestFocus()
                 cEndDate.error = resources.getString(R.string.please_enter_end_date)
             }
-            !ivCheckboxTermsCondition.isChecked ->{
+          /*  !ivCheckboxTermsCondition.isChecked ->{
 
-                Toast.makeText(this,"Please select terms and condition", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Please select terms and conditions", Toast.LENGTH_SHORT).show()
 
-            }
+            }*/
 
             actionselected.trim().isEmpty()-> {
                 Toast.makeText(this,"Please select an action", Toast.LENGTH_SHORT).show()

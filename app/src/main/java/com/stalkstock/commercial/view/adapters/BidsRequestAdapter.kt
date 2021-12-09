@@ -12,8 +12,9 @@ import com.stalkstock.commercial.view.activities.RequestDetail
 import com.stalkstock.commercial.view.model.BidingDetailResponse
 import de.hdodenhof.circleimageview.CircleImageView
 
-class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : RecyclerView.Adapter<BidsRequestAdapter.MyViewHolder>() {
+class BidsRequestAdapter : RecyclerView.Adapter<BidsRequestAdapter.MyViewHolder>() {
 
+    var listBids= ArrayList<BidingDetailResponse.VendorBidingRequest>()
     lateinit var context: Context
     var click = 0
     var isOpenDot = false
@@ -23,7 +24,7 @@ class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : Recy
 
     interface ClickItem {
 
-        fun clicked(position: Int,items: RequestDetail.BidsData)
+        fun clicked(position: Int,items: BidingDetailResponse.VendorBidingRequest)
     }
 
     fun onPerformClick(clickItem: ClickItem)
@@ -43,10 +44,10 @@ class BidsRequestAdapter(var listBids: ArrayList<RequestDetail.BidsData>) : Recy
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.tvPrice.setText("$"+ " "+listBids[position].rs)
-        holder.tvDetail.setText(listBids[position].detail)
-        holder.tvName.setText(listBids[position].firstname+" "+listBids[position].lastname)
-        Glide.with(context).load(listBids[position].image).into(holder.civImage)
+        holder.tvPrice.setText("$"+ " "+listBids[position].amount)
+        holder.tvDetail.setText(listBids[position].vendorDetail.shopName)
+        holder.tvName.setText(listBids[position].vendorDetail.firstName+" "+listBids[position].vendorDetail.lastName)
+        Glide.with(context).load(listBids[position].vendorDetail.image).into(holder.civImage)
 
          holder.itemView.setOnClickListener {
             val item = listBids[position]

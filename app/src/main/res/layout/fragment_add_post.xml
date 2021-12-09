@@ -516,10 +516,9 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/ivCheckbox"
-                        />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                     <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                         android:id="@+id/tv_terms_conditions"

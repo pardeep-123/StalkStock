@@ -235,6 +235,12 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                 etPhone.requestFocus()
                 etPhone.error = resources.getString(R.string.please_enter_mobile_number)
             }
+            etPhone.text.toString().length < 10 || et_mobileNo.getText()
+                .toString().length > 13
+            -> {
+                etPhone.requestFocus()
+                etPhone.error = resources.getString(R.string.please_enter_valid_number)
+        }
             etEmail.text.toString().isEmpty() -> {
                 etEmail.requestFocus()
                 etEmail.error = resources.getString(R.string.please_enter_email)

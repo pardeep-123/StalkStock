@@ -86,7 +86,7 @@
             android:layout_below="@+id/price"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/by"
-            android:text="McDonald\'s"
+            android:text=""
             android:textColor="@color/theme_green" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -99,8 +99,8 @@
             android:layout_toRightOf="@+id/img"
             android:drawableLeft="@drawable/green_location_arrow"
             android:drawablePadding="5dp"
-            android:gravity="center"
-            android:text="New York 920.." />
+
+            android:text="" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tvOutOfStock"

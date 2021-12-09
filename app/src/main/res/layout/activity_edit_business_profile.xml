@@ -364,6 +364,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLines="1"
+                        android:maxLength="13"
                         android:minHeight="45dp"
                         android:paddingStart="15dp"
                         android:paddingEnd="12dp"

@@ -499,7 +499,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tv_msg.text = "Your information has been successfully updated!"
+        successfulUpdatedDialog.tvmsg.text = "Your information has been successfully updated!"
         successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)

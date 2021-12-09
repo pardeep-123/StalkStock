@@ -12,7 +12,9 @@ import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.ManageAddress
 import com.stalkstock.consumer.activities.EditAddressDetail2Activity
 import com.stalkstock.consumer.model.ModelUserAddressList
+import kotlinx.android.synthetic.main.row_cart.view.*
 import kotlinx.android.synthetic.main.row_manageaddress.view.*
+import kotlinx.android.synthetic.main.row_manageaddress.view.count
 import java.util.*
 
 class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserAddressList.Body>,var manageAddress:ManageAddress) :
@@ -42,16 +44,64 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
         when (get.type) {
             "1" -> {
                 holder.textType.text = "Home"
-                holder.itemView.imgAddress.setImageResource(R.drawable.home_1)
+                if(get.isDefault=="1") {
+                    holder.itemView.count.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.itemView.count1.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.textType.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.location.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.itemView.imgAddress.setImageResource(R.drawable.home_1)
+                    holder.itemView.edit.setBackgroundResource(R.drawable.background_box_new)
+                    holder.itemView.delete.setBackgroundResource(R.drawable.background_box_new)
+                }else{
+                    holder.itemView.count.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.edit.setBackgroundResource(R.drawable.background_box_black)
+                    holder.itemView.count1.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.delete.setBackgroundResource(R.drawable.background_box_black)
+                    holder.textType.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.location.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.imgAddress.setImageResource(R.drawable.home_black)
+                }
                 //holder.textType.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home_1, 0, 0, 0);
             }
             "2" -> {
                 holder.textType.text = "Work"
-                holder.itemView.imgAddress.setImageResource(R.drawable.work_1)
+                if(get.isDefault=="0") {
+                    holder.itemView.edit.setBackgroundResource(R.drawable.background_box_black)
+                    holder.itemView.delete.setBackgroundResource(R.drawable.background_box_black)
+                    holder.itemView.count.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.count1.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.imgAddress.setImageResource(R.drawable.work_black)
+                    holder.textType.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.location.setTextColor(context.resources.getColor(R.color.black_color))
+                }else{
+                    holder.itemView.edit.setBackgroundResource(R.drawable.background_box_new)
+                    holder.itemView.count.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.itemView.delete.setBackgroundResource(R.drawable.background_box_new)
+                    holder.itemView.count1.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.itemView.imgAddress.setImageResource(R.drawable.work_1)
+                    holder.textType.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.location.setTextColor(context.resources.getColor(R.color.green_colour))
+                }
             }
             else -> {
                 holder.textType.text = "Other"
-                holder.itemView.imgAddress.setImageResource(R.drawable.location_1)
+                if(get.isDefault=="1") {
+                    holder.itemView.edit.setBackgroundResource(R.drawable.background_box_new)
+                    holder.itemView.delete.setBackgroundResource(R.drawable.background_box_new)
+                    holder.itemView.count.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.itemView.count1.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.textType.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.location.setTextColor(context.resources.getColor(R.color.green_colour))
+                    holder.itemView.imgAddress.setImageResource(R.drawable.location_1)
+                }else{
+                    holder.itemView.edit.setBackgroundResource(R.drawable.background_box_black)
+                    holder.itemView.delete.setBackgroundResource(R.drawable.background_box_black)
+                    holder.itemView.count.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.count1.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.itemView.imgAddress.setImageResource(R.drawable.work_black)
+                    holder.textType.setTextColor(context.resources.getColor(R.color.black_color))
+                    holder.location.setTextColor(context.resources.getColor(R.color.black_color))
+                }
             }
         }
 
@@ -65,7 +115,6 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
             cbDefault.setTextColor(context.resources.getColor(R.color.dark_gray))
 
         }
-        holder.location.text = get.address_line2
 
         holder.delete.setOnClickListener { openStartInfoApp(body[position]) }
         holder.edit.setOnClickListener {

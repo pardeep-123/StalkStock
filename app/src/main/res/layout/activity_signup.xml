@@ -436,7 +436,7 @@
                     android:hint="@string/enter_business_telephone_number"
                     android:imeOptions="actionNext"
                     android:inputType="number"
-                    android:maxLength="15"
+                    android:maxLength="13"
                     android:maxLines="1"
                     android:minHeight="45dp"
                     android:paddingLeft="15dp"

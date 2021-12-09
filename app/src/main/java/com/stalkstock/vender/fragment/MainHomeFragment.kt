@@ -7,13 +7,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,34 +21,40 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.consumer.activities.FilterActivity
 import com.stalkstock.consumer.model.UserCommonModel
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelVendorProductList
 import com.stalkstock.vender.adapter.TestAdapter
-import com.stalkstock.vender.ui.*
+import com.stalkstock.vender.ui.BottomnavigationScreen
+import com.stalkstock.vender.ui.MessageActivity
+import com.stalkstock.vender.ui.SelectCategory
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
-import kotlinx.android.synthetic.main.activity_home_two_fragment.*
-import okhttp3.RequestBody
-import com.stalkstock.consumer.activities.FilterActivity
 import kotlinx.android.synthetic.main.activity_bid_detail.*
+import kotlinx.android.synthetic.main.activity_home_two_fragment.*
 import kotlinx.android.synthetic.main.biddetailsalertbox.*
-import java.util.HashMap
+import okhttp3.RequestBody
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.set
 
-class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservable> {
+class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservable>, TextWatcher {
     var mcontext: Context? = null
     private var testAdapter: TestAdapter? = null
-    lateinit var recyclerview: RecyclerView
+
     var clickMsg = 0
     private var reset = false
     private var currentOffset = 0
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"
+    var tv_Notfound: TextView?=null
+    var rvCategory: RecyclerView?=null
+    var etSearch: EditText?=null
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var currentModel: ArrayList<ModelVendorProductList.Body.Product> = ArrayList()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,12 +63,16 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     ): View? {
         val view = inflater.inflate(R.layout.activity_home_two_fragment, container, false)
         mcontext = activity
-        recyclerview = view.findViewById(R.id.recyclerview)
-        testAdapter = TestAdapter(mcontext!!,currentModel)
-        recyclerview.layoutManager = LinearLayoutManager(mcontext)
-        recyclerview.adapter = testAdapter
 
-        recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        tv_Notfound = view.findViewById(R.id.tvNoData)
+        etSearch = view.findViewById(R.id.edtSearch)
+        rvCategory = view.findViewById(R.id.recyclerview)
+        testAdapter = TestAdapter(mcontext!!,currentModel,this)
+        rvCategory?.layoutManager = LinearLayoutManager(mcontext)
+        rvCategory?.adapter = testAdapter
+        testAdapter?.arrayList=currentModel
+
+        rvCategory?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -76,12 +84,13 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         val notification = view.findViewById<ImageView>(R.id.notification)
         val filter = view.findViewById<ImageView>(R.id.filter)
         val iv_msg = view.findViewById<ImageView>(R.id.iv_msg)
-        val editText = view.findViewById<RelativeLayout>(R.id.edit_search)
+       // val editText = view.findViewById<RelativeLayout>(R.id.edit_search)
         val button = view.findViewById<Button>(R.id.addproductbutton)
         button.setOnClickListener(this)
         notification.setOnClickListener(this)
         filter.setOnClickListener(this)
-        editText.setOnClickListener(this)
+        etSearch?.addTextChangedListener(this)
+        //editText.setOnClickListener(this)
         iv_msg.setOnClickListener {
 
             if (clickMsg == 0) {
@@ -140,10 +149,10 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 intent2.putExtra("from","MainHomeFragment")
                 startActivityForResult(intent2,0)
             }
-            R.id.edit_search -> {
+            /*R.id.edit_search -> {
                 val intent1 = Intent(activity, SearchScreen::class.java)
                 startActivity(intent1)
-            }
+            }*/
             R.id.addproductbutton -> {
                 val i = Intent(activity, SelectCategory::class.java)
                 startActivity(i)
@@ -253,7 +262,10 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     private fun setData(mResponse: ModelVendorProductList) {
         txtHomeTotal.text = "Total:${mResponse.body.product.size}"
         currentModel.clear()
+
         currentModel.addAll(mResponse.body.product)
+        testAdapter?.arrayList=currentModel
+
         if(currentModel.size==0){
             tvNoData.visibility=View.VISIBLE
             recyclerview.visibility=View.GONE
@@ -265,4 +277,20 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         }
 
     }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        testAdapter?.filter?.filter(s.toString().trim())
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+    }
+
+   /* override fun onResume() {
+        super.onResume()
+        getVendorProducts()
+    }*/
 }

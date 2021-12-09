@@ -11,8 +11,6 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.view.*
 import android.widget.*
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -46,7 +44,6 @@ import kotlin.collections.ArrayList
 
 class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable> {
     private var currentDeliveryType: Int=2
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var mLat: Double = 0.0
     private var mLong: Double = 0.0
     var stAddress = ""
@@ -95,17 +92,6 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         mActivity = context as MainConsumerActivity
     }
     
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK ) {
-                    val data: Intent? = result.data
-                    currentLowPrice = data!!.getStringExtra("lowPrice")!!
-                    currentHighPrice = data.getStringExtra("highPrice")!!
-                    currentSortBy = data.getStringExtra("sortBy")!!
-                } }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -175,7 +161,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             startActivityForResult(intent,0)
         }
         etSearch.setOnClickListener {
-            mActivity.openSearchFragment()
+            mActivity.openSearchFragment(currentDeliveryType,currentHighPrice,currentLowPrice,currentSortBy)
         }
         bt_sort.setOnClickListener {
             bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
@@ -315,7 +301,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val ic_dining = logoutUpdatedDialog2.findViewById<ImageView>(R.id.ic_dining)
         iv_cross.setOnClickListener {
             logoutUpdatedDialog2.dismiss()
-            if (mActivity.currentDeliveryType == 0)
+            if (mActivity.deliveryType == 0)
                 bt_pickup.performClick()
             else
                 tv_delivery.performClick()

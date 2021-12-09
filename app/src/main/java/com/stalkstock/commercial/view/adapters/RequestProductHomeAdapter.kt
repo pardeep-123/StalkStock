@@ -57,6 +57,14 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
 
         holder.itemView.tvType.text = list[pos].name
         holder.itemView.tvQuantity.text =  list[pos].quantity
+        if(list[pos].unit=="1"){
+            holder.itemView.tvQuantityType.text =  "Tea spoon"
+        }else{
+            holder.itemView.tvQuantityType.text =  "Cup"
+        }
+            /*
+            measurementName
+             */
         holder.itemView.tvQuantityType.text =  list[pos].unit
 //        holder.itemView.tvCount.text=
         holder.tvCount.text=pos.toString()+"."
@@ -96,7 +104,7 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
             holder.itemView.ivDelete.visibility = View.VISIBLE
             holder.itemView.viewDelete.visibility = View.VISIBLE
 
-            holder.itemView.rl_edit.visibility = View.VISIBLE
+            holder.itemView.rl_edit.visibility = View.GONE
             holder.itemView.rl_delete.visibility = View.VISIBLE
         }
         else

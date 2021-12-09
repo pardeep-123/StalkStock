@@ -35,7 +35,7 @@ class NewOrderAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.tvName.text = mOrderArrayList[position].firstName+" "+mOrderArrayList[0].lastName
+        holder.itemView.tvName.text = mOrderArrayList[position].firstName+" "+mOrderArrayList[position].lastName
         holder.itemView.tvOrderNumber.text = mOrderArrayList[position].orderNo
         holder.itemView.tvDate.text = changeDateFormat(
             mOrderArrayList[position].updatedAt,

@@ -1,52 +1,38 @@
 package com.stalkstock.advertiser.fragments
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.interfaces.OnClick
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.ManagePaymentsActivity
-import com.stalkstock.advertiser.activities.NewActivity
 import com.stalkstock.advertiser.activities.PreviewActivity
 import com.stalkstock.advertiser.adapters.AddImageAdapter
-import com.stalkstock.advertiser.adapters.PendingAdsAdapter
 import com.stalkstock.advertiser.dialogClass.FromDatePickerFragment
 import com.stalkstock.advertiser.dialogClass.ToDatePickerFragment
-import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import kotlinx.android.synthetic.main.activity_edit_ad.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.delete_successfully_alert.*
 import kotlinx.android.synthetic.main.fragment_add_post.*
-import kotlinx.android.synthetic.main.fragment_add_post.btn_preview
-import kotlinx.android.synthetic.main.fragment_add_post.ivCheckbox
 import kotlinx.android.synthetic.main.fragment_add_post.view.*
-import kotlinx.android.synthetic.main.fragment_pending_ads.view.*
 import kotlinx.android.synthetic.main.toolbar2.view.*
-import java.util.*
-import java.util.regex.Pattern
-import kotlin.collections.ArrayList
 
 class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
 
@@ -261,7 +247,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 etEnterDescription.error = resources.getString(R.string.please_enter_description)
             }
             !ivCheckbox.isChecked->{
-                Toast.makeText(requireActivity(),"Please select terms and condition", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(),"Please select terms and conditions", Toast.LENGTH_SHORT).show()
             }
 
 

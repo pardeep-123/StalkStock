@@ -221,6 +221,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="10dp"
+                                android:visibility="gone"
                                 android:layout_toEndOf="@+id/starCount"
                                 android:layout_toRightOf="@+id/star"
                                 android:text="0"

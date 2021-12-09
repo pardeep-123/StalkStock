@@ -316,18 +316,18 @@
                         >
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
-                            android:layout_width="match_parent"
                             android:id="@+id/cEndDate"
+                            android:layout_width="match_parent"
                             android:layout_height="45dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/edit_text_bg"
+                            android:drawableRight="@drawable/calendar_icon"
                             android:gravity="center_vertical"
+                            android:hint="Select ad end date"
                             android:imeOptions="actionNext"
                             android:inputType="textPersonName"
-                            android:maxLines="1"
-                            android:hint="Select ad end date"
 
-                            android:drawableRight="@drawable/calendar_icon"
+                            android:maxLines="1"
 
                             android:minHeight="45dp"
                             android:paddingLeft="15dp"
@@ -643,6 +643,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <CheckBox

@@ -61,7 +61,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     var firstimage = ""
     var categoryId = "0"
     var subCategoryId = "0"
-
+    private var listProduct: ArrayList<String> = ArrayList()
     var deleteImageArrayId = ArrayList<String>()
 
     private var curreMeasurementId = ""
@@ -100,7 +100,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         deleteicon.setOnClickListener(this)
         addproduct_unitmeasurement.setOnClickListener { setUnitList() }
         getCategories()
-        getmeasurementsAPI()
 
         adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages)
         adapterMultipleFiles.multipleFileInterface = this
@@ -146,7 +145,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         )
         countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinnerCountry.adapter = countryAdapter
-
+        getmeasurementsAPI()
     }
 
     private fun setAdapterSpinnerSub(
@@ -154,6 +153,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         mResponse: List<ModelSubCategoriesList.Body>
     ) {
         listSubCategoryBody.clear()
+        listSubCategoryBody.add(
+            0,
+            ModelSubCategoriesList.Body(0, 0, "Select sub category", categoryId.toInt(), 0)
+        )
 
         if (position != "0") {
             listSubCategoryBody.addAll(mResponse)
@@ -165,6 +168,8 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         }
 
         subCatAdapter.notifyDataSetChanged()
+        spinnerSubCategory.setSelection(listSub.indexOf(currentProductModel.body.subCategoryId.toString()))
+
 
 //        list = ArrayList()
     }
@@ -184,17 +189,29 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     private fun setData(currentProductModel: ModelProductDetail) {
-        categoryId = currentProductModel.body.categoryId.toString()
-        getSubCategoryAPI(categoryId)
+        subCategoryId= currentProductModel.body.subCategoryId.toString()
+
+        val obj= listCategoryBody.find { it.id==currentProductModel.body.categoryId }
+        spinnerCategory.setSelection(listCategoryBody.indexOf(obj))
+        getSubCategoryAPI(currentProductModel.body.categoryId.toString())
+
+//        categoryId = currentProductModel.body.categoryId.toString()
+//        getSubCategoryAPI(categoryId)
         //  subCategoryId=currentProductModel.body.subCategoryId.toString()
-        for (i in 0 until list.size) {
-            if (list[i] == currentProductModel.body.categoryId.toString()) {
+        /*for (i in 0 until list.size) {
+            if (lis[i] == currentProductModel.body.categoryId.toString()) {
                 spinnerCategory.setSelection(list.indexOf(currentProductModel.body.categoryId.toString()))
-                getSubCategoryAPI(categoryId)
+               // getSubCategoryAPI(categoryId)
             }
         }
+
+        for (i in 0 until listSub.size) {
+            if (listSub[i] == currentProductModel.body.subCategoryId.toString()) {
+                spinnerSubCategory.setSelection(list.indexOf(currentProductModel.body.subCategoryId.toString()))
+                // getSubCategoryAPI(categoryId)
+            }
+        }*/
         //  spinnerCategory.setSelection(list.indexOf(currentProductModel.body.categoryId.toString()))
-        spinnerSubCategory.setSelection(listSub.indexOf(currentProductModel.body.subCategoryId.toString()))
         addproduct_unitmeasurement.text = currentProductModel.body.productMeasurement.name
         curreMeasurementId = currentProductModel.body.measurementId.toString()
 
@@ -287,6 +304,14 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         when {
             arrStringMultipleImages.size == 0 -> {
                 AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
+                return false
+            }
+
+            spinnerSubCategory.selectedItemPosition==0 ->{
+                AppUtils.showErrorAlert(
+                    this,
+                    "Please select sub category"
+                )
                 return false
             }
 
@@ -516,6 +541,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                     val mResponse: ModelCategoryList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setAdapterSpinner(mResponse)
+                        getSubCategoryAPI(mResponse.body[0].id.toString())
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
@@ -545,7 +571,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 if (it.data is ModelSubCategoriesList) {
                     val mResponse: ModelSubCategoriesList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        setAdapterSpinnerSub("1", mResponse.body!!)
+
+                        val obj1= listSubCategoryBody.find { it.id==subCategoryId.toInt() }
+                        spinnerSubCategory.setSelection(listSubCategoryBody.indexOf(obj1))
+
+
+                        setAdapterSpinnerSub("1", mResponse.body)
 
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -595,6 +626,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         }
 //        list = ArrayList()
         spinnerCategory!!.adapter = ArrayAdapter(this, R.layout.spinner_item_text, list)
+
     }
 
     fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {

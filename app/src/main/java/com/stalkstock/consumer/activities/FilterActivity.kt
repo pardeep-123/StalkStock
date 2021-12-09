@@ -3,24 +3,22 @@ package com.stalkstock.consumer.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.innovattic.rangeseekbar.RangeSeekBar
+import com.google.android.material.slider.RangeSlider
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.consumer.fragment.HomeCounsumerFragment
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentHighPrice
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentLowPrice
 import com.stalkstock.utils.others.GlobalVariables.FilterVariables.Companion.currentSortBy
-import com.stalkstock.vender.fragment.MainHomeFragment
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_select_category.*
 
-class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
+class FilterActivity : AppCompatActivity() {
 
     private var fromWhichActivity = ""
     var arrayList = ArrayList<FilterData>()
@@ -29,8 +27,25 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-        rangeSeekBar.setMaxThumbValue(1000)
-        rangeSeekBar.seekBarChangeListener = this
+
+
+
+        rangePrice.addOnChangeListener(object : RangeSlider.OnChangeListener {
+
+            override fun onValueChange(slider: RangeSlider, value: Float, fromUser: Boolean) {
+                val start_values = rangePrice.values[0].toInt()
+                val end_values = rangePrice.values[1].toInt()
+
+                tv_start.text = "$$start_values"
+                currentLowPrice = start_values
+                tv_end.text = "$$end_values"
+                currentHighPrice = end_values
+
+
+                //    tvValues.text = values.
+            }
+        })
+
         fromWhichActivity = intent.getStringExtra("from")!!
 
         spinner2!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -138,11 +153,11 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
     }
 
     private fun setStaticData() {
-        Log.e("Thumnbs>>", "$currentLowPrice --- $currentHighPrice --- $currentSortBy")
-        rangeSeekBar.setMinThumbValue(currentLowPrice)
-        rangeSeekBar.setMaxThumbValue(currentHighPrice)
-        tv_start.text = "$$currentLowPrice"
-        tv_end.text = "$$currentHighPrice"
+//        Log.e("Thumnbs>>", "$currentLowPrice --- $currentHighPrice --- $currentSortBy")
+//        rangeSeekBar.setMinThumbValue(currentLowPrice)
+//        rangeSeekBar.setMaxThumbValue(currentHighPrice)
+//        tv_start.text = "$$currentLowPrice"
+//        tv_end.text = "$$currentHighPrice"
 
         if (currentSortBy == "low_to_high") {
             ltLowToHigh.performClick()
@@ -153,14 +168,5 @@ class FilterActivity : AppCompatActivity(), RangeSeekBar.SeekBarChangeListener {
 
     data class FilterData(var name: String, var isBoolen: Boolean = false)
 
-    override fun onStartedSeeking() {}
 
-    override fun onStoppedSeeking() {}
-
-    override fun onValueChanged(minThumbValue: Int, maxThumbValue: Int) {
-        tv_start.text = "$$minThumbValue"
-        currentLowPrice = minThumbValue
-        tv_end.text = "$$maxThumbValue"
-        currentHighPrice = maxThumbValue
-    }
 }

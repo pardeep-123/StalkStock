@@ -42,6 +42,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             if (publicData != null)
                 intent.putExtra("body", publicData)
             startActivity(intent)
+            finish()
         }
 
         ivBackDetail.setOnClickListener { onBackPressed() }

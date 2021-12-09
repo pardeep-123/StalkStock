@@ -119,7 +119,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                         "Please add your card first before making a request."
                     )
                     Handler(Looper.getMainLooper()).postDelayed({
-                        finish()
+
                     }, 2000)
                 }else{
                     addAdsApi()

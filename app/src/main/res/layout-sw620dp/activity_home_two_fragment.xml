@@ -80,8 +80,6 @@
                 <RelativeLayout
                     android:id="@+id/edit_search"
                     android:layout_width="match_parent"
-
-
                     android:layout_height="45dp"
                     android:background="@drawable/shape_edit_new_home"
                     android:padding="12dp">
@@ -103,14 +101,17 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         />
 
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
+                    <EditText
+                        android:id="@+id/edtSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="text"
+                        android:backgroundTint="@color/white"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/search"
-                        android:text="Search.."
+                        android:hint="Search.."
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
                         android:textSize="17sp" />
 
                 </RelativeLayout>
@@ -130,12 +131,24 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNoData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_data_found"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/_80sdp"
+                        android:layout_marginBottom="@dimen/_80sdp"
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -146,7 +159,10 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerview"
                             android:layout_width="match_parent"
+                            android:visibility="visible"
                             android:layout_height="wrap_content" />
+
+
                     </LinearLayout>
 
                     <LinearLayout

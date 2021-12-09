@@ -23,7 +23,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toLeftOf="@id/tvStatus"
             android:layout_toRightOf="@+id/img"
-            android:text="KFccccccccccccccccC"
+            android:text="ghjgjghhhhhhhhhhhhhhhh"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
@@ -34,16 +34,15 @@
             android:layout_below="@+id/kfc"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/img"
-            android:text="New York, USA" />
+            android:text="New York, UiooooooooooooooSA" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="10dp"
             android:text="On the waybcnsbcsbcnsc"
             android:textColor="@color/theme_green"
             android:textSize="16sp" />

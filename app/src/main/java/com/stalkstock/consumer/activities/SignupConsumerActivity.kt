@@ -21,8 +21,11 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup_consumer.*
+import kotlinx.android.synthetic.main.activity_signup_consumer.btn_signup
 import kotlinx.android.synthetic.main.activity_signup_consumer.emailEdittext
+import kotlinx.android.synthetic.main.activity_signup_consumer.tv_signin
 import okhttp3.RequestBody
 import java.util.*
 
@@ -92,11 +95,13 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             edtConsumerPhone.requestFocus()
             AppUtils.showErrorAlert(this, "Please enter mobile number")
             return false
-        } else if (edtConsumerPhone.text.toString().length< 10) {
-            edtConsumerPassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter correct mobile number")
+        } else if (edtConsumerPhone.text.toString().length < 10 || et_mobileNo.getText()
+                .toString().length > 13
+        ) {
+            edtConsumerPhone.requestFocus()
+            edtConsumerPhone.error = resources.getString(R.string.please_enter_valid_number)
             return false
-        }  else if (edtConsumerPassword.text.toString().trim().isEmpty()) {
+        } else if (edtConsumerPassword.text.toString().trim().isEmpty()) {
             edtConsumerPassword.requestFocus()
             AppUtils.showErrorAlert(this, "Please enter password")
             return false

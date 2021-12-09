@@ -2,12 +2,10 @@ package com.stalkstock.viewmodel
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.MyApplication
@@ -15,14 +13,13 @@ import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.commercial.view.model.SendRequestData
 import com.stalkstock.consumer.model.PlaceOrderModel
-import com.stalkstock.utils.others.Util
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.Util
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONArray
-import org.json.JSONObject
 import java.io.File
 
 class HomeViewModel : ViewModel() {

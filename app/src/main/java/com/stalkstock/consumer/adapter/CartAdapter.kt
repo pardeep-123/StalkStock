@@ -9,10 +9,6 @@ import com.stalkstock.R
 import com.stalkstock.consumer.fragment.CartFragment
 import com.stalkstock.consumer.model.ModelCartData
 import kotlinx.android.synthetic.main.row_cart.view.*
-import kotlinx.android.synthetic.main.row_cart.view.count
-import kotlinx.android.synthetic.main.row_cart.view.minus
-import kotlinx.android.synthetic.main.row_cart.view.plus
-import kotlinx.android.synthetic.main.row_productdetsils.view.*
 
 class CartAdapter(
     var context: CartFragment,
@@ -44,9 +40,9 @@ class CartAdapter(
         }
 
         if(arrayList[position].product.productType==1){
-            holder.itemView.imgVegNon.setImageResource(R.drawable.red_dot)
+            holder.itemView.img1.setImageResource(R.drawable.red_dot)
         }else{
-            holder.itemView.imgVegNon.setImageResource(R.drawable.green_dot)
+            holder.itemView.img1.setImageResource(R.drawable.green_dot)
         }
         //img1
         holder.itemView.plus.setOnClickListener {

@@ -1,5 +1,7 @@
 package com.stalkstock.commercial.view.model
 
+import java.lang.reflect.Array
+
 data class BidingDetailResponse(
     val body: Body,
     val code: Int,
@@ -16,7 +18,7 @@ data class BidingDetailResponse(
         val orderItems: List<OrderItem>,
         val requestNo: String,
         val userId: Int,
-        val vendorBidingRequest: VendorBidingRequest,
+        val vendorBidingRequests: ArrayList<VendorBidingRequest>,
         val vendorId: Int,
         val chatId: Int
     )

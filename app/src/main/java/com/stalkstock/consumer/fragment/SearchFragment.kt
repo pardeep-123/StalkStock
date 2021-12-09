@@ -138,7 +138,7 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
         map["search"] =
             mActivity.mUtils.createPartFromString(viewFrag.editTextSearch.text.toString())
         map["deliveryType"] =
-            mActivity.mUtils.createPartFromString(mActivity.currentDeliveryType.toString())
+            mActivity.mUtils.createPartFromString(mActivity.deliveryType.toString())
         viewModel.getProductAccToCategorySubcategoryAPI(mActivity, true, map)
     }
 
@@ -184,6 +184,10 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
                         intent.putExtra("product_id", mProductId)
                         intent.putExtra("title", mProductName)
                         intent.putExtra("deliveryType", deliveryType)
+                        intent.putExtra("sortBy",mActivity.sortBy)
+                        intent.putExtra("lowPrice",mActivity.lowPrice)
+                        intent.putExtra("highPrice", mActivity.highPrice)
+
                         startActivity(intent)
                     }
                 }

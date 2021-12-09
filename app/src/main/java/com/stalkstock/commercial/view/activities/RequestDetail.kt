@@ -37,15 +37,17 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
     var userImage = ""
     private val homeModel: HomeViewModel by viewModels()
     var cardId=""
+    var deliveryCharges=""
 
-    var detail = ArrayList<BidsData>()
+    var detail = ArrayList<BidingDetailResponse.VendorBidingRequest>()
     var list: ArrayList<AddedProduct.RequestProductData> = ArrayList()
-    var listBids: ArrayList<BidsData> = ArrayList()
-    var bidsreq: ArrayList<BidingDetailResponse.VendorBidingRequest> = ArrayList()
+    var listBids: ArrayList<BidingDetailResponse.VendorBidingRequest> = ArrayList()
 
     //    var bidUser : ArrayList<BidingDetailResponse.VendorDetail> = ArrayList()
     private var orderItemList: ArrayList<BidingDetailResponse.OrderItem> = ArrayList()
     var bidId: Int = 0
+
+    var vendorBidAdapter:BidsRequestAdapter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,11 +83,12 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
             listBids.add(BidsData("Jamie jai","McDonald's","$80.50","Accept"))
             listBids.add(BidsData("Jamie jai","McDonald's","$80.50","Accept"))*/
 
-        val adapter = BidsRequestAdapter(listBids)
-        rvRequestBids.adapter = adapter
+        vendorBidAdapter = BidsRequestAdapter()
+        rvRequestBids.adapter = vendorBidAdapter
+        vendorBidAdapter?.listBids= listBids
 
-        adapter.onPerformClick(object : BidsRequestAdapter.ClickItem {
-            override fun clicked(position: Int, items: BidsData) {
+        vendorBidAdapter?.onPerformClick(object : BidsRequestAdapter.ClickItem {
+            override fun clicked(position: Int, items: BidingDetailResponse.VendorBidingRequest) {
 
                 tvChat.visibility = VISIBLE
                 cvBidder.visibility = VISIBLE
@@ -93,24 +96,13 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 btnAccepts.visibility = VISIBLE
 
                 detail.add(
-                    BidsData(
-                        items.firstname,
-                        items.lastname,
-                        items.detail,
-                        items.rs,
-                        items.accept,
-                        items.image,
-                        items.vendorId,
-                        items.bidId,
-                        items.deliveryCharges,
-                        items.shopCharges
-                    )
+                   items
                 )
 
-                tvName.setText(items.firstname + " " + items.lastname)
-                tvPrices.setText("$" + items.rs)
-                tvDetail.setText(items.detail)
-                Glide.with(this@RequestDetail).load(items.image).into(civImage)
+                tvName.setText(items.vendorDetail.firstName + " " + items.vendorDetail.lastName)
+                tvPrices.setText("$" + items.amount)
+                tvDetail.setText(items.vendorDetail.shopName)
+                Glide.with(this@RequestDetail).load(items.vendorDetail.image).into(civImage)
 
             }
         })
@@ -127,13 +119,13 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 ivTick.visibility = View.VISIBLE
             } else {
                 val intent = Intent(this, SelectPayment::class.java)
-                intent.putExtra("firstname", detail[0].firstname)
-                intent.putExtra("lastname", detail[0].lastname)
+                intent.putExtra("firstname", detail[0].vendorDetail.firstName)
+                intent.putExtra("lastname", detail[0].vendorDetail.lastName)
                 intent.putExtra("bidId", detail[0].bidId)
                 intent.putExtra("vendorId", detail[0].vendorId)
-                intent.putExtra("rs", detail[0].rs)
-                intent.putExtra("deliveryCharges", detail[0].deliveryCharges)
-                intent.putExtra("shopCharges", detail[0].shopCharges)
+                intent.putExtra("rs", detail[0].amount)
+                intent.putExtra("deliveryCharges", deliveryCharges)
+                intent.putExtra("shopCharges", detail[0].vendorDetail.shopCharges)
                 intent.putExtra("card", cardId)
 
                 startActivity(intent)
@@ -173,6 +165,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                     val mResponse: BidingDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
 
+                        deliveryCharges= mResponse.body.deliveryCharges
                         setData(mResponse)
                         cardId= mResponse.body.cardId
                         chatId = mResponse.body.chatId.toString()
@@ -185,20 +178,9 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                         tvQuantityType.text = "U.O.M"
                         rvRequestProducts.adapter = RequestProductAdapter(list, orderItemList)
 
-                        listBids.add(
-                            BidsData(
-                                it.data.body.vendorBidingRequest.vendorDetail.firstName,
-                                it.data.body.vendorBidingRequest.vendorDetail.lastName,
-                                it.data.body.vendorBidingRequest.vendorDetail.shopName,
-                                it.data.body.vendorBidingRequest.amount,
-                                "Accept",
-                                it.data.body.vendorBidingRequest.vendorDetail.image,
-                                it.data.body.vendorBidingRequest.vendorId,
-                                it.data.body.vendorBidingRequest.bidId,
-                                it.data.body.deliveryCharges,
-                                it.data.body.vendorBidingRequest.vendorDetail.shopCharges
-                            )
-                        )
+                        listBids.addAll(mResponse.body.vendorBidingRequests)
+                        vendorBidAdapter?.notifyDataSetChanged()
+
 
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -218,18 +200,15 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: BidingDetailResponse) {
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val formatter = SimpleDateFormat("MMM dd, yyyy '|' HH:mm")
-        val output: String = formatter.format(parser.parse(mResponse.body.createdAt))
 
         tvRequest.text = "Request ID:" + " " + mResponse.body.requestNo
         tvCreatedDateB.text = AppUtils.changeDateFormat(mResponse.body.createdAt,
             GlobalVariables.DATEFORMAT.DateTimeFormat3,
             GlobalVariables.DATEFORMAT.DateTimeFormat2)
-        userId = mResponse.body.vendorBidingRequest.vendorDetail.id
-        userName =
-            mResponse.body.vendorBidingRequest.vendorDetail.firstName + " " + mResponse.body.vendorBidingRequest.vendorDetail.lastName
-        userImage = mResponse.body.vendorBidingRequest.vendorDetail.image
+//        userId = mResponse.body.vendorBidingRequest.vendorDetail.id
+//        userName =
+//            mResponse.body.vendorBidingRequest.vendorDetail.firstName + " " + mResponse.body.vendorBidingRequest.vendorDetail.lastName
+//        userImage = mResponse.body.vendorBidingRequest.vendorDetail.image
         //userImage= mResponse.body.
     }
 

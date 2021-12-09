@@ -174,7 +174,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tv_msg.text = "Your profile has been successfully updated!"
+        successfulUpdatedDialog.tvmsg.text = "Your profile has been successfully updated!"
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

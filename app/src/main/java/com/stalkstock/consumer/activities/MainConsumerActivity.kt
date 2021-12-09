@@ -1,7 +1,6 @@
 package com.stalkstock.consumer.activities
 
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -29,7 +28,10 @@ class MainConsumerActivity : BaseActivity() {
     lateinit var tv_order: TextView
     lateinit var tv_cart: TextView
     lateinit var tv_account: TextView
-    var currentDeliveryType = 2 // 0- pickup,1-deelivery , 2 -all
+    var deliveryType = 2 // 0- pickup,1-deelivery , 2 -all
+    var highPrice = "" // 0- pickup,1-deelivery , 2 -all
+    var lowPrice = "" // 0- pickup,1-deelivery , 2 -all
+    var sortBy = "" // 0- pickup,1-deelivery , 2 -all
 
     override fun getContentId(): Int {
         return R.layout.activity_main_consumer
@@ -66,7 +68,12 @@ class MainConsumerActivity : BaseActivity() {
             switchFragment(HomeCounsumerFragment())
         }
         search_home.setOnClickListener {
-            openSearchFragment()
+            openSearchFragment(
+                deliveryType,
+                highPrice,
+                lowPrice,
+                sortBy
+            )
         }
         list.setOnClickListener {
             home_img.setImageResource(R.drawable.home_black_icon1)
@@ -109,7 +116,12 @@ class MainConsumerActivity : BaseActivity() {
                         switchFragment(CartFragment())
                     }
                     intent.getStringExtra("is_open") == "2" -> {
-                        openSearchFragment()
+                        openSearchFragment(
+                            deliveryType,
+                            highPrice,
+                            lowPrice,
+                            sortBy
+                        )
                     }
                     intent.getStringExtra("is_open") == "3" -> {
                         home_img.setImageResource(R.drawable.home_black_icon1)
@@ -152,15 +164,24 @@ class MainConsumerActivity : BaseActivity() {
 
     private fun switchFragment(fragment: Fragment?) {
         val bundle= Bundle()
-        bundle.putString("deliveryType",currentDeliveryType.toString())
+        bundle.putString("deliveryType",deliveryType.toString())
         fragment?.arguments=bundle
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment!!)
         fragmentTransaction.commit()
     }
 
-    fun openSearchFragment()
+    fun openSearchFragment(
+        currentDeliveryType: Int,
+        currentHighPrice: String,
+        currentLowPrice: String,
+        currentSortBy: String
+    )
     {
+        deliveryType=currentDeliveryType
+        highPrice=currentHighPrice
+        lowPrice=currentLowPrice
+        sortBy=currentSortBy
         home_img.setImageResource(R.drawable.home_black_icon1)
         search_img.setImageResource(R.drawable.ic_search_green_new)
         list_img.setImageResource(R.drawable.list_black_icon1)

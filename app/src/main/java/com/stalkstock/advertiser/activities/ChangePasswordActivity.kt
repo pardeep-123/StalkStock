@@ -104,7 +104,7 @@ class ChangePasswordActivity : BaseActivity(), View.OnClickListener, Observer<Re
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tv_msg.text = "Your password has been successfully updated"
+        successfulUpdatedDialog.tvmsg.text = "Your password has been successfully updated"
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

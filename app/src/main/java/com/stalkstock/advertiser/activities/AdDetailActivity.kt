@@ -186,7 +186,7 @@ class AdDetailActivity : BaseActivity(), View.OnClickListener, Observer<RestObse
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tv_msg.text = "Your ad details have been successfully deleted. You can check the status of your ad in the Ad Manager!"
+        successfulUpdatedDialog.tvmsg.text = "Your ad details have been successfully deleted. You can check the status of your ad in the Ad Manager!"
         successfulUpdatedDialog.btn_ok.text = "Go to Ad Manager"
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)

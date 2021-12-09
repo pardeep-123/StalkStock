@@ -56,11 +56,11 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
         super.onCreate(savedInstanceState)
         context = this
 
-        currentProductID = intent.getStringExtra("product_id")!!
-        currentDelivery_type = intent.getStringExtra("deliveryType")!!
-        currentSortBy = intent.getStringExtra("sortBy")!!
-        currentLowPrice = intent.getStringExtra("lowPrice")!!
-        currentHighPrice = intent.getStringExtra("highPrice")!!
+        currentProductID = intent.getStringExtra("product_id").toString()
+        currentDelivery_type = intent.getStringExtra("deliveryType").toString()
+        currentSortBy = intent.getStringExtra("sortBy").toString()
+        currentLowPrice = intent.getStringExtra("lowPrice").toString()
+        currentHighPrice = intent.getStringExtra("highPrice").toString()
 
         product_recycle = findViewById(R.id.product_recycle)
         back = findViewById(R.id.back)

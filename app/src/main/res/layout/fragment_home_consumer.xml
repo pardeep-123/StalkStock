@@ -163,11 +163,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:background="@drawable/btn_shape"
+                        android:background="@drawable/btn_shape_gray"
                         android:gravity="center"
                         android:text="PICKUP"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/green_ss"
                         android:textSize="14sp" />
                 </RelativeLayout>
 

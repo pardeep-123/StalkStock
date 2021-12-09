@@ -333,6 +333,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
         if (list.size > 0) {
 
             for (i in 0 until list.size) {
+                val student1 = JSONObject()
                 student1.put("productId", list[i].type)
                 student1.put("qty", list[i].quantity)
                 student1.put("measurementId", list[i].unit)
