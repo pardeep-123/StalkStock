@@ -179,8 +179,7 @@ interface RestApiInterface {
 
     @Multipart
     @POST(URL.USERSIGNUP)
-    fun usersignup(
-        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    fun usersignup(@PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<ModelSignupUser>
 
     @Multipart

@@ -62,7 +62,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_search_screen.xml" value="0.17" />
         <entry key="app/src/main/res/layout-sw620dp/activity_select_category.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_sign_up.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.18" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup3.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup_consumer.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_thankyou.xml" value="0.22" />
@@ -157,8 +157,9 @@
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_search_screen.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_select_category.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_selectuser.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.18187660668380462" />
         <entry key="app/src/main/res/layout/activity_signup3.xml" value="0.2617621899059025" />
         <entry key="app/src/main/res/layout/activity_signup_consumer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_terms_condition.xml" value="0.18020833333333333" />

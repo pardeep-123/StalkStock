@@ -95,7 +95,7 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             edtConsumerPhone.requestFocus()
             AppUtils.showErrorAlert(this, "Please enter mobile number")
             return false
-        } else if (edtConsumerPhone.text.toString().length < 10 || et_mobileNo.getText()
+        } else if (edtConsumerPhone.text.toString().length < 10 || edtConsumerPhone.getText()
                 .toString().length > 13
         ) {
             edtConsumerPhone.requestFocus()
