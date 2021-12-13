@@ -2,47 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="50dp"
-    android:layout_marginRight="50dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:background="@drawable/item_border"
+
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <RelativeLayout
+            android:layout_margin="5dp"
+            android:background="@drawable/item_border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:background="@drawable/item_border"
-
             android:padding="10dp">
+
             <ImageView
                 android:id="@+id/img"
-                android:layout_alignBottom="@+id/add"
-                android:layout_alignTop="@+id/starCount"
-                android:layout_width="135dp"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/product_img_1"/>
+                android:layout_width="115dp"
+                android:layout_height="130dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_dummy_image" />
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/starCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/img"
-                android:includeFontPadding="false"
                 android:text="Meat"
                 android:textColor="@color/black"
-                android:textSize="22sp"
-                 android:layout_marginLeft="10dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:id="@+id/imgVegNon"
-                android:layout_height="wrap_content"
-                android:src="@drawable/red_dot"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"/>
 
-                android:layout_alignParentRight="true"/>
+            <ImageView
+                android:id="@+id/imgVegNon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/red_dot" />
 
             <!--
                     <ImageView
@@ -79,12 +74,10 @@
                 android:layout_below="@+id/star"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:includeFontPadding="false"
                 android:layout_toRightOf="@+id/img"
                 android:text="Beef: $9.50/LB"
                 android:textColor="@android:color/black"
-                android:textSize="22sp"
-                  />
+                android:textSize="19sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/location_text"
@@ -92,10 +85,9 @@
                 android:layout_height="wrap_content"
                 android:text="New York 920.."
                 android:layout_below="@+id/price"
-                android:includeFontPadding="false"
-                android:layout_toRightOf="@+id/img"
-                android:textSize="22sp"
                 android:gravity="center"
+
+                android:layout_toRightOf="@+id/img"
                 android:drawablePadding="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
@@ -144,21 +136,20 @@
                     android:textColor="@color/theme_green"
                     android:textSize="20sp" />
             </RelativeLayout>
+
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/add"
-                android:layout_width="140dp"
-
-                android:layout_height="50dp"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
                 android:text="Add"
-                android:textSize="22sp"
                 android:layout_below="@+id/location_text"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_marginLeft="10dp"
-
+                android:paddingTop="10dp"
                 android:gravity="center"
                 android:textColor="@color/white"
-
+                android:paddingBottom="10dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/add_btn"
 

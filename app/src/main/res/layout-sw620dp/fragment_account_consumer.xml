@@ -8,7 +8,7 @@
     >
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
         android:scaleType="fitEnd"
@@ -22,16 +22,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account"
                 android:layout_centerInParent="true"
+                android:text="Account"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="16sp" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -43,62 +44,61 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/profile_grey"
-            android:padding="10dp"
-            >
+            android:padding="10dp">
 
             <LinearLayout
                 android:id="@+id/ly_profile"
 
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgUserProfile"
                     android:layout_width="60dp"
-                    android:src="@drawable/ic_dummy_img"
-                    android:layout_height="60dp" />
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_dummy_img" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_toRightOf="@+id/ly_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ly_profile"
                 android:layout_weight="0.7"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
                 android:paddingLeft="10dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/txtUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtUserName"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/txtUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:id="@+id/txtUserEmail"
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/txtUserPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:id="@+id/txtUserPhone"
                     android:textColor="@color/light_grey"
                     android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_alignParentRight="true"
                 android:id="@+id/lin_editProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:gravity="center">
 
                 <ImageView
@@ -119,8 +119,8 @@
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="40dp"
                 android:layout_centerVertical="true"
+                android:minHeight="40dp"
                 android:padding="15dp"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
@@ -141,15 +141,15 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/toggle_off"/>
+                android:src="@drawable/toggle_off" />
 
             <ImageView
                 android:id="@+id/toggle_off2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:src="@drawable/toggle_on"
                 android:visibility="gone" />
         </RelativeLayout>

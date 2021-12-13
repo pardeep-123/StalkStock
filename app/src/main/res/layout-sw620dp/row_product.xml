@@ -3,78 +3,79 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-
+        android:id="@+id/rlMain"
         android:background="@drawable/item_border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10dp">
+
         <ImageView
             android:id="@+id/img"
-            android:layout_width="140dp"
-            android:layout_height="150dp"
+            android:layout_width="115dp"
+            android:layout_height="130dp"
             android:scaleType="fitXY"
-            android:src="@drawable/product_img_1"/>
+            android:src="@drawable/ic_dummy_img" />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/starCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/img"
             android:text="Meat"
             android:textColor="@color/black"
-            android:textSize="22sp"
-             android:layout_marginLeft="10dp"/>
+            android:textSize="18sp" />
 
-       <!-- <ImageView
+        <!-- <ImageView
+             android:id="@+id/star"
+             android:layout_width="15dp"
+             android:layout_height="15dp"
+             android:layout_below="@+id/name"
+             android:layout_marginTop="5dp"
+             android:src="@drawable/star_fill"
+             android:layout_toRightOf="@+id/img"
+             android:layout_marginLeft="10dp"
+             />-->
+
+        <RatingBar
             android:id="@+id/star"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_below="@+id/name"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/star_fill"
-            android:layout_toRightOf="@+id/img"
-            android:layout_marginLeft="10dp"
-            />-->
-
-        <RatingBar android:layout_width="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/star"
-            android:progressTint="@color/yellow"
-            android:progressBackgroundTint="@color/yellow"
             android:layout_below="@+id/starCount"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/img"
-            android:rating="5"
-            android:numStars="5"
             android:layout_marginTop="5dp"
-            style="?android:attr/ratingBarStyleSmall"/>
+            android:layout_toRightOf="@+id/img"
+            android:numStars="5"
+            android:progressBackgroundTint="@color/yellow"
+            android:progressTint="@color/yellow"
+            android:rating="5" />
 
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beef: $9.50/LB"
-            android:gravity="center"
-
             android:layout_below="@+id/star"
-            android:layout_toRightOf="@+id/img"
-            android:layout_marginTop="5dp"
-            android:textColor="@android:color/holo_red_dark"
-             android:drawableRight="@drawable/red_arrow"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img"
+            android:drawableRight="@drawable/red_arrow"
             android:drawablePadding="10dp"
-            android:textSize="22sp"/>
+            android:gravity="center"
+            android:text="Beef: $9.50/LB"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="19sp" />
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/by"
             android:layout_below="@+id/price"
             android:layout_toRightOf="@+id/img"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
-            android:textSize="22sp"
             android:layout_height="wrap_content"
             android:text="By"/>
 
@@ -85,9 +86,8 @@
             android:layout_below="@+id/price"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/by"
-            android:text="McDonald\'s"
-            android:textColor="@color/theme_green"
-            android:textSize="22sp" />
+            android:text=""
+            android:textColor="@color/theme_green" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/txtLocation"
@@ -98,10 +98,22 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/img"
             android:drawableLeft="@drawable/green_location_arrow"
-
             android:drawablePadding="5dp"
-            android:gravity="center"
-            android:text="New York"
-            android:textSize="22sp" />
+
+            android:text="" />
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvOutOfStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLocation"
+            android:textSize="9sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img"
+            android:layout_alignParentEnd="true"
+            android:gravity="end"
+            android:textColor="@color/sort_popup_gray_color"
+            android:text="Out of stock" />
     </RelativeLayout>
 </LinearLayout>

@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true" />
+        android:src="@drawable/bg_fit" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +32,7 @@
                 android:background="@color/dark_gray"
                 />
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="20sp"
+                android:textSize="16dp"
                 android:id="@+id/actHome"
                 android:layout_width="@dimen/value_0dp"
                 android:layout_height="match_parent"
@@ -74,7 +73,7 @@
             android:text="Enter New Card Details"
             android:layout_margin="20dp"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,7 +85,7 @@
                 android:background="@color/white"
                 android:text="@string/name"
                 android:textColor="@color/light_grey2"
-                android:textSize="22sp" />
+                android:textSize="13sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:layout_width="match_parent"
@@ -103,7 +102,7 @@
                 android:paddingRight="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey2"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
@@ -112,7 +111,7 @@
                 android:text="Credit Card Number"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/light_grey2"
-                android:textSize="22sp" />
+                android:textSize="13sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:layout_width="match_parent"
@@ -121,7 +120,7 @@
                 android:background="@drawable/shape_edit_for_add_card"
                 android:gravity="center_vertical"
                 android:hint="@string/enter_credit_card_number"
-
+                android:maxLength="16"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:drawableRight="@drawable/visa_img"
@@ -131,7 +130,7 @@
                 android:paddingRight="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey2"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +148,7 @@
                         android:text="Expiry Month"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey2"
-                        android:textSize="22sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/monthsss"
@@ -167,21 +166,20 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey2"
-                        android:textSize="16sp" />
-                </LinearLayout>
-                <LinearLayout
+                        android:textSize="13sp" />
+                </LinearLayout><LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
-                    <com.stalkstock.utils.custom.TitiliumRegularTextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:text="Expiry Year"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/light_grey2"
-                    android:textSize="22sp" />
+                    android:textSize="13sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/yearsss"
@@ -200,7 +198,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey2"
-                    android:textSize="16sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -211,11 +209,11 @@
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                         android:text="CVV"
+                        android:text="CVV"
                         android:visibility="visible"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey2"
-                        android:textSize="22sp"/>
+                        android:textSize="13sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:layout_width="match_parent"
@@ -234,7 +232,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey2"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -248,10 +246,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/ivCheckbox"
-                    android:layout_centerVertical="true"
                     />
 
-                <TextView
+                <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tv_terms_conditions"
                     android:layout_toRightOf="@+id/ivCheckbox"
                     android:layout_width="wrap_content"
@@ -259,10 +256,9 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
                     android:gravity="start"
-                    android:layout_marginLeft="5dp"
                     android:text="Save for future transactions"
                     android:textColor="@color/light_grey2"
-                    android:textSize="22sp" />
+                    android:textSize="13sp" />
 
             </RelativeLayout>
             <LinearLayout
@@ -274,17 +270,18 @@
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_save"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/btn_shape"
                     android:layout_marginRight="35dp"
                     android:layout_marginLeft="35dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
+                    android:minHeight="45dp"
                     android:text="Save"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -24,7 +24,7 @@
             android:layout_marginLeft="10dp"
             android:text="Edit"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="15sp" />
 
         <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/deleteTxt"
@@ -35,7 +35,7 @@
             android:layout_marginTop="20dp"
             android:text="Delete"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 

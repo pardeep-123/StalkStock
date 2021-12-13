@@ -2,13 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
     <ImageView
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
@@ -18,67 +16,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/profile"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/profile_grey"
             android:padding="10dp"
-            >
+            android:weightSum="1">
 
             <LinearLayout
-                android:id="@+id/ly_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_centerVertical="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
                 android:gravity="center">
 
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_dummy_img" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_dummy_img"
+                    />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_toRightOf="@+id/ly_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:paddingLeft="20dp">
+                android:paddingLeft="10dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                     android:textColor="@color/black"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="@color/light_grey"
-                    android:textSize="22sp" />
+                    android:textSize="13sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
+                    android:id="@+id/tvMobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="@color/light_grey"
-                    android:textSize="22sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lin_editProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
                 android:gravity="center">
 
                 <ImageView
@@ -88,79 +89,7 @@
                     android:src="@drawable/edi_icon" />
             </LinearLayout>
 
-        </RelativeLayout>
-
-        <!--
-                <LinearLayout
-                    android:id="@+id/profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@color/profile_grey"
-                    android:padding="10dp"
-                    android:weightSum="1">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.2"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/vendor_img" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.7"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:paddingLeft="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jamie Row"
-                            android:textColor="@color/black"
-                            android:textSize="17sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="jamie@gmail.com"
-                            android:textColor="@color/light_grey"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="123785768"
-                            android:textColor="@color/light_grey"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/lin_editProfile"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.1"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/ivEdit"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/edi_icon" />
-                    </LinearLayout>
-
-                </LinearLayout>
-        -->
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/ll_notifications"
@@ -172,41 +101,40 @@
                 android:id="@+id/tv_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:minHeight="40dp"
-                android:layout_centerVertical="true"
+                android:minHeight="40dp"
                 android:padding="15dp"
+                android:layout_centerVertical="true"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="17sp" />
 
-<!--
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/toggle"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/toggle_off"
-                app:trackTint="@color/switch_track_selector"
-                android:thumb="@drawable/custom_switch" />
--->
+            <!--
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/toggle"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/toggle_off"
+                            app:trackTint="@color/switch_track_selector"
+                            android:thumb="@drawable/custom_switch" />
+            -->
 
             <ImageView
                 android:id="@+id/toggle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/toggle_off"/>
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/toggle_off" />
 
             <ImageView
                 android:id="@+id/toggle_off2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/_5sdp"
+                android:layout_centerVertical="true"
                 android:src="@drawable/toggle_on"
                 android:visibility="gone" />
         </RelativeLayout>
@@ -224,7 +152,7 @@
             android:padding="15dp"
             android:text="@string/documents"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <View
             android:layout_width="match_parent"
@@ -232,7 +160,6 @@
             android:layout_marginRight="20sp"
 
             android:background="@color/white" />
-
         <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
             android:id="@+id/tv_manage_address"
             android:layout_width="match_parent"
@@ -241,7 +168,7 @@
             android:padding="15dp"
             android:text="Manage Addresses"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <View
             android:layout_width="match_parent"
@@ -259,7 +186,7 @@
             android:padding="15dp"
             android:text="@string/change_password"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <View
             android:layout_width="match_parent"
@@ -275,7 +202,7 @@
             android:padding="15dp"
             android:text="@string/help"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <View
             android:layout_width="match_parent"
@@ -292,7 +219,7 @@
             android:padding="15dp"
             android:text="@string/logout"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
 
         <View
             android:layout_width="match_parent"
