@@ -19,11 +19,9 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
@@ -542,9 +540,17 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, view: View?, p2: Int, id: Long) {
-        if (p0?.id == R.id.spinnerCountry) {
-            val array = this.resources.getStringArray(R.array.Select_country)
-            mCountryName = array[p2]
+        if (p2 == 0) {
+            (view as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@EditDriverInfoActivity, R.color.sort_popup_gray_color
+                )
+            )
+        } else {
+            if (p0?.id == R.id.spinnerCountry) {
+                val array = this.resources.getStringArray(R.array.Select_country)
+                mCountryName = array[p2]
+            }
         }
     }
 

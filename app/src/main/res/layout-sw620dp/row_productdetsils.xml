@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/imgVegNon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/red_dot" />
 

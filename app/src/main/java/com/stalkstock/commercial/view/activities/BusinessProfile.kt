@@ -26,8 +26,6 @@ import kotlinx.android.synthetic.main.business_profile.businessnamee1
 import kotlinx.android.synthetic.main.business_profile.businesstelephonenumber
 import kotlinx.android.synthetic.main.business_profile.businesstypes
 import kotlinx.android.synthetic.main.business_profile.businesswebsitename
-import kotlinx.android.synthetic.main.business_profile.imageset
-
 import java.util.HashMap
 
 class BusinessProfile : AppCompatActivity(), View.OnClickListener, Observer<RestObservable> {

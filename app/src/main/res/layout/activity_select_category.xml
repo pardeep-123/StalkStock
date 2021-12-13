@@ -81,7 +81,6 @@
                             android:paddingRight="20dp"
                             android:prompt="@string/dropdown"
                             android:text="Select Category"
-
                             android:textSize="13sp"
                             android:textStyle="bold" />
 

@@ -189,6 +189,7 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/button_round_corners"
                     android:text="Add New Payment Method"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 

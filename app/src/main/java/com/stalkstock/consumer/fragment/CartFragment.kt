@@ -48,6 +48,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
     lateinit var tvChange: TextView
     var views: View? = null
     lateinit var btnPaymentMethod: Button
+    lateinit var btnStartShopping: Button
     lateinit var recyceler: RecyclerView
     lateinit var ctx: Context
     var currentCartModel: ArrayList<ModelCartData.Body.CartData> = ArrayList()
@@ -68,6 +69,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
         ctx = container!!.context
         views = inflater.inflate(R.layout.fragment_cart, container, false)
         btnPaymentMethod = views!!.findViewById(R.id.btnPaymentMethod)
+        btnStartShopping = views!!.findViewById(R.id.btnStartShopping)
         tvChange = views!!.findViewById(R.id.tvChange)
         btnPaymentMethod.setOnClickListener {
 
@@ -114,6 +116,11 @@ class CartFragment : Fragment(), Observer<RestObservable> {
             val intent = Intent(activity, ManageAddress::class.java)
             startActivity(intent)
         }
+
+        btnStartShopping.setOnClickListener {
+            startActivity(Intent(context,MainConsumerActivity::class.java))
+        }
+
         recyceler = views!!.findViewById(R.id.recyclerCartItems)
         cartAdapter = CartAdapter(this, requireContext(), currentCartModel)
         recyceler.adapter = cartAdapter
@@ -139,6 +146,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                 it!!.status == Status.SUCCESS -> {
                     llMain.visibility=View.VISIBLE
                     btnPaymentMethod.visibility=View.VISIBLE
+                    btnStartShopping.visibility=View.GONE
                     tvNoCartData.visibility=View.GONE
 
                     if (it.data is ModelCartData) {
@@ -182,6 +190,7 @@ class CartFragment : Fragment(), Observer<RestObservable> {
                             try{
                                 llMain.visibility=View.GONE
                                 btnPaymentMethod.visibility=View.GONE
+                                btnStartShopping.visibility=View.VISIBLE
                                 tvNoCartData.visibility=View.VISIBLE
 //                                val intent = Intent(ctx, MainConsumerActivity::class.java)
 //                                intent.putExtra("is_open", "4")

@@ -141,11 +141,10 @@
                             android:id="@+id/tvNotification"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Notification"
                             android:layout_centerVertical="true"
+                            android:text="@string/notifications"
                             android:textColor="@color/black_color"
-                            android:textSize="17sp"
-                            />
+                            android:textSize="17sp" />
 
                         <ImageView
                             android:id="@+id/toggle1"

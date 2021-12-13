@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
@@ -55,21 +55,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="SORT BY TAGS"
             android:textColor="@color/dark_gray"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recy_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginStart="15dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="4"
             tools:listitem="@layout/row_filter" />
@@ -147,17 +147,17 @@
             android:layout_marginTop="@dimen/_10sdp">
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/txtHighToLow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtHighToLow"
                 android:layout_marginStart="15dp"
                 android:text="Cost High to Low "
                 android:textColor="@color/green_colour" />
 
             <ImageView
+                android:id="@+id/imgHighToLOw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imgHighToLOw"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:src="@drawable/check_icon" />
@@ -185,8 +185,8 @@
                 android:textColor="@color/dark_gray" />
 
             <ImageView
-                android:layout_width="wrap_content"
                 android:id="@+id/imgLowToHigh"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_10sdp"
@@ -237,6 +237,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
+            android:theme="@style/MyMaterialTheme"
             android:valueFrom="0"
             android:valueTo="1000"
             app:labelBehavior="gone"
@@ -245,10 +246,8 @@
             app:thumbRadius="9dp"
             app:thumbStrokeColor="@color/white"
             app:thumbStrokeWidth="6dp"
-            android:theme="@style/MyMaterialTheme"
             app:trackHeight="5dp"
             app:values="@array/initial_slider_values" />
-
 
 
         <!--  <com.innovattic.rangeseekbar.RangeSeekBar

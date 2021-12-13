@@ -12,6 +12,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -34,6 +35,8 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_edit_address_detail2.*
+import kotlinx.android.synthetic.main.activity_edit_address_detail2.spinner
+import kotlinx.android.synthetic.main.activity_edit_product.*
 import okhttp3.RequestBody
 import java.util.*
 
@@ -259,6 +262,36 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
 
+        spinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+
+                if(position==0){
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditAddressDetail2Activity, R.color.sort_popup_gray_color
+                        )
+                    )
+                }else{
+
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditAddressDetail2Activity, R.color.black
+                        )
+                    )
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
         if (dataSet == 1) {
             val body = intent.getSerializableExtra("body") as ModelUserAddressList.Body
             setData(body)
@@ -298,8 +331,12 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
         mLatitude = body.latitude
         mLongitude = body.longitude
 
-        if (body.country != null && body.country != "")
+        if (body.country != null && body.country != "") {
             spinner.setSelection(foodadapter.getPosition(body.country))
+
+
+        }
+
         edtDeliveryInstructions.setText(body.special_instruction)
 
         when (body.type) {

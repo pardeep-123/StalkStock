@@ -7,11 +7,9 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
@@ -184,13 +182,27 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
     }
 
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        if (p0?.id == R.id.spinner_country) {
-            val array = this.resources.getStringArray(R.array.Select_country)
-            mCountryName = array[p2]
-        } else if (p0?.id == R.id.spinner) {
-            val array = this.resources.getStringArray(R.array.Select_Vehicle_type)
-            mVehicleType = array[p2]
+    override fun onItemSelected(p0: AdapterView<*>?, selectedItemView: View?, p2: Int, p3: Long) {
+
+        if (p2 == 0) {
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@SignupActivity, R.color.sort_popup_gray_color
+                )
+            )
+        } else {
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@SignupActivity, R.color.black_color
+                )
+            )
+            if (p0?.id == R.id.spinner_country) {
+                val array = this.resources.getStringArray(R.array.Select_country)
+                mCountryName = array[p2]
+            } else if (p0?.id == R.id.spinner) {
+                val array = this.resources.getStringArray(R.array.Select_Vehicle_type)
+                mVehicleType = array[p2]
+            }
         }
     }
 

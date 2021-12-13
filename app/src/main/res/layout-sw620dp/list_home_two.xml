@@ -2,152 +2,143 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:background="@drawable/item_border">
+    android:background="@drawable/item_border"
+    android:layout_marginTop="15dp">
+
     <LinearLayout
-         android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
-    <RelativeLayout
-        android:id="@+id/itemlayout"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-
-        android:background="#fff"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:id="@+id/homeitemimage"
-            android:layout_width="150dp"
-            android:layout_height="160dp"
-
-            android:scaleType="centerCrop"
-            android:src="@drawable/product_img_1"
-            android:layout_gravity="right"/>
-
-
-
         <LinearLayout
-            android:layout_toRightOf="@+id/homeitemimage"
+            android:id="@+id/itemlayout"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:orientation="vertical"
-            android:layout_marginTop="-5dp"
-            android:layout_marginLeft="10dp">
-            <RelativeLayout
+
+            android:layout_marginBottom="10dp"
+
+            android:background="#fff"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/homeitemimage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_dummy_image"
+                android:layout_gravity="right"></ImageView>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp">
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:layout_weight="1"
-                    android:id="@+id/itemname"
-                    android:textSize="22sp"
-                    android:includeFontPadding="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Beef Fresh Meet"
-                     android:textColor="#000"/>
-                <ImageView
-                    android:id="@+id/edititem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="15dp"
-                     android:src="@drawable/ic_editicon"
-                    android:layout_gravity="right"></ImageView>
-            </RelativeLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:orientation="vertical">
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:id="@+id/kg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="250g"
-                     android:textColor="#000"
-                    android:textSize="22sp"
-                    />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:id="@+id/editname"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:layout_weight="1"
+                        android:id="@+id/itemname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Beef Fresh Meet"
+                        android:textColor="#000" />
+
+                    <ImageView
+                        android:id="@+id/edititem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_editicon"
+                        android:layout_gravity="right"></ImageView>
+                </RelativeLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="Beef"
-                     android:textColor="#E81414"
-                    android:textSize="22sp"
-                    />
-                <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:id="@+id/lb"
+                    android:orientation="vertical">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/kg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="250g"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/editname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Beef"
+                        android:textColor="#E81414"
+                        android:textSize="15dp" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldTextView
+                        android:id="@+id/lb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="$9.50/LB"
+                        android:textStyle="bold"
+                        android:textColor="#E81414"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="$9.50/LB"
-                    android:textStyle="bold"
-                    android:textColor="#E81414"
-                    android:textSize="22sp"
-                    />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="@dimen/_8sdp">
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/notavble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:text="Not Available"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textSize="12dp"
+                        android:textColor="@color/dark_gray"
+                        android:textAllCaps="false"
+                        android:background="@drawable/not_available_shape" />
+
+                    <com.stalkstock.utils.custom.TitiliumBoldButton
+                        android:id="@+id/avble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginLeft="5dp"
+                        android:text="Available"
+
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textSize="12dp"
+                        android:textColor="#fff"
+                        android:textAllCaps="false"
+                        android:background="@drawable/backgroundshapebtn"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_toRightOf="@+id/homeitemimage"
-            android:layout_alignBottom="@+id/homeitemimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            >
-
-            <com.stalkstock.utils.custom.TitiliumBoldButton
-                android:id="@+id/notavble"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Not Available"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textSize="17sp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:background="@drawable/not_available_shape"
-                android:textColor="@color/dark_gray"
-                android:textAllCaps="false"
-                />
-            <com.stalkstock.utils.custom.TitiliumBoldButton
-                android:id="@+id/avble"
-                android:layout_toRightOf="@+id/notavble"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:text="Available"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textSize="17sp"
-                android:textColor="#fff"
-                android:textAllCaps="false"
-                android:background="@drawable/backgroundshapebtn"></com.stalkstock.utils.custom.TitiliumBoldButton>
-        </RelativeLayout>
-
-
-    </RelativeLayout>
 
     </LinearLayout>
 

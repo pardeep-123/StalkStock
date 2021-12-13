@@ -2,21 +2,18 @@ package com.stalkstock.vender.ui
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import com.stalkstock.vender.adapter.AccpetAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.stalkstock.R
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.utils.others.AppUtils
@@ -24,13 +21,16 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.Util
 import com.stalkstock.vender.Model.BidData
 import com.stalkstock.vender.Model.VendorBiddingListResponse
+import com.stalkstock.vender.adapter.AccpetAdapter
 import com.stalkstock.vender.adapter.RequestAdapter
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
 import kotlinx.android.synthetic.main.activity_bid_detail.*
 import kotlinx.android.synthetic.main.activity_bid_product.*
 import kotlinx.android.synthetic.main.biddetailsalertbox.*
 import okhttp3.RequestBody
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.set
 
 /**
  * A simple [Fragment] subclass.

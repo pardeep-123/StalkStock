@@ -10,10 +10,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Patterns
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -722,19 +720,33 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        if (p0?.id == R.id.spinner) {
-            var array = this.resources.getStringArray(R.array.Select_country)
+    override fun onItemSelected(p0: AdapterView<*>?, selectedItemView: View?, position: Int, p3: Long) {
+        if (position == 0) {
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@SignupAdvertiserNCommercialNVendor, R.color.sort_popup_gray_color
+                )
+            )
+        } else {
 
-            country = array[p2]
-        } else if (p0?.id == R.id.spinner_type) {
-            var array = this.resources.getStringArray(R.array.Select_business_type)
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@SignupAdvertiserNCommercialNVendor, R.color.black_color
+                )
+            )
+            if (p0?.id == R.id.spinner) {
+                var array = this.resources.getStringArray(R.array.Select_country)
 
-            business_type = p2
-        } else if (p0?.id == R.id.spinner_delivery_type) {
-            var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
+                country = array[position]
+            } else if (p0?.id == R.id.spinner_type) {
+                var array = this.resources.getStringArray(R.array.Select_business_type)
 
-            business_delivery_type = p2
+                business_type = position
+            } else if (p0?.id == R.id.spinner_delivery_type) {
+                var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
+
+                business_delivery_type = position
+            }
         }
     }
 }

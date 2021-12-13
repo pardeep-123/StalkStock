@@ -13,10 +13,8 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -43,6 +41,7 @@ import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner
 import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner_type
+import kotlinx.android.synthetic.main.activity_select_category.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
@@ -110,6 +109,36 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         )
         countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = countryAdapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                if (position == 0) {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditBusinessProfileActivity, R.color.sort_popup_gray_color
+                        )
+                    )
+                } else {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditBusinessProfileActivity, R.color.black
+                        )
+                    )
+
+
+                }
+
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
 
     }
 
@@ -443,6 +472,19 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                                 parent: AdapterView<*>,
                                 view: View, position: Int, id: Long
                             ) {
+                                if(position==0){
+                                    (view as? TextView)?.setTextColor(
+                                        ContextCompat.getColor(
+                                            this@EditBusinessProfileActivity, R.color.sort_popup_gray_color
+                                        )
+                                    )
+                                }else{
+                                    (view as? TextView)?.setTextColor(
+                                        ContextCompat.getColor(
+                                            this@EditBusinessProfileActivity, R.color.black_color
+                                        )
+                                    )
+                                }
                                 if(businessTypeArray.isNotEmpty()) {
                                     val category = businessTypeArray[spinner_type!!.selectedItemPosition]
                                     selectedId = category.id.toString()

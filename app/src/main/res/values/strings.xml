@@ -154,6 +154,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="upload_your_registration">Upload your registration</string>
     <!--<string name="look_like_you_do">Looks like you don\'t have any deliveries at the movement. You can check again soon or update your range and be on the lookout for new notifications!</string>-->
     <string name="look_like_you_do">Looks like you don\'t have any deliveries at the movement. Try again later or widen your range and look out for new notifications.</string>
+    <string name="look_like_you_not_request">Looks like you haven\'t placed any orders yet. Let\'s get you going by adding a new request.</string>
+    <string name="look_like_your_cart">Looks like you haven\'t started shopping yet. Let\'s get you started!</string>
     <string name="funds_transfer_in_progress_please_allow_3_5_business_days_for_transfer_to_be_completed">Funds transfer in progress. Please allow 3-5 business days for transfer to be completed.</string>
     <string name="or">OR</string>
     <string name="your_order_no_8974563251_has_been_be_picked_up">Your order no <b>8974563251</b> has been be picked up!</string>

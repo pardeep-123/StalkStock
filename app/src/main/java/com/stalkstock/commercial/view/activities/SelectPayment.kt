@@ -19,7 +19,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.live.stalkstockcommercial.ui.paymnet.AddNewCard
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.AddNewCardActivity
 import com.stalkstock.api.RestObservable
@@ -30,7 +29,6 @@ import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.select_payment.*
 
 class SelectPayment : AppCompatActivity(), Observer<RestObservable> {

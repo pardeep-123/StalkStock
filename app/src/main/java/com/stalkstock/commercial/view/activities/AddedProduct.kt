@@ -16,8 +16,10 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
@@ -127,10 +129,20 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 id: Long
             ) {
                 if (position !== 0) {
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddedProduct, R.color.black_color
+                        )
+                    )
                     val categories = productCategoryList[spinnerProduct!!.selectedItemPosition - 1]
                     categoryId = categories.id.toString()
                     getProductList()
                 } else {
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddedProduct, R.color.sort_popup_gray_color
+                        )
+                    )
                 }
             }
 
@@ -159,10 +171,20 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
             ) {
 
                 if (position !== 0) {
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddedProduct, R.color.black_color
+                        )
+                    )
                     val products = listSubCategoryBody[spinnerSubProduct.selectedItemPosition - 1]
                     subCategoryId = products.id.toString()
                     getProductAsSubCategory()
                 } else {
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddedProduct, R.color.sort_popup_gray_color
+                        )
+                    )
                 }
             }
 
@@ -179,9 +201,19 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
             ) {
 
                 if (position !== 0) {
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddedProduct, R.color.black_color
+                        )
+                    )
                     val product = currentModel[spinnerGetProduct.selectedItemPosition - 1]
                     productId = product.id.toString()
                 } else {
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddedProduct, R.color.sort_popup_gray_color
+                        )
+                    )
                 }
             }
 
@@ -442,146 +474,145 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                             Handler(Looper.getMainLooper()).postDelayed({
                                 finish()
                             }, 2000)
+                        } else {
+                            currentOffset += 5
+                            address.addAll(mResponse.body)
+                            addressId = address[0].id
                         }
-                     else {
-                        currentOffset += 5
-                        address.addAll(mResponse.body)
-                        addressId = address[0].id
+
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
-
-                } else {
-                    AppUtils.showErrorAlert(this, mResponse.message.toString())
                 }
-            }
 
-            if (it.data is ModelProductListAsPerSubCat) {
-                val mResponse: ModelProductListAsPerSubCat = it.data
-                if (mResponse.code == GlobalVariables.URL.code) {
-                    currentOffset += 5
-                    setData(mResponse)
-                } else {
-                    AppUtils.showErrorAlert(this, mResponse.message.toString())
+                if (it.data is ModelProductListAsPerSubCat) {
+                    val mResponse: ModelProductListAsPerSubCat = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        currentOffset += 5
+                        setData(mResponse)
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
                 }
-            }
 
                 if (it.data is ModelCategoryList) {
-                val mResponse: ModelCategoryList = it.data
-                if (mResponse.code == GlobalVariables.URL.code) {
+                    val mResponse: ModelCategoryList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
 
-                    productCategoryList.clear()
-                    productCategoryList.addAll(mResponse.body)
+                        productCategoryList.clear()
+                        productCategoryList.addAll(mResponse.body)
 
-                    listC.clear()
-                    listC.add(CategoryList(0, 0, "Select category", ""))
-                    if (productCategoryList.isNotEmpty()) {
-                        for (i in 0 until productCategoryList.size) {
-                            listC.add(
-                                CategoryList(
-                                    productCategoryList[i].id, productCategoryList[i].status,
-                                    productCategoryList[i].name, productCategoryList[i].image
+                        listC.clear()
+                        listC.add(CategoryList(0, 0, "Select category", ""))
+                        if (productCategoryList.isNotEmpty()) {
+                            for (i in 0 until productCategoryList.size) {
+                                listC.add(
+                                    CategoryList(
+                                        productCategoryList[i].id, productCategoryList[i].status,
+                                        productCategoryList[i].name, productCategoryList[i].image
+                                    )
                                 )
-                            )
+                            }
                         }
-                    }
 
-                    val categoryList = CategoryCommercialAdapter(this, "Select category", listC)
-                    spinnerProduct.adapter = categoryList
+                        val categoryList = CategoryCommercialAdapter(this, "Select category", listC)
+                        spinnerProduct.adapter = categoryList
+                    }
                 }
-            }
 
-            if (it.data is ModelSubCategoriesList) {
-                val mResponse: ModelSubCategoriesList = it.data
-                if (mResponse.code == GlobalVariables.URL.code) {
-                    spinnerSubProduct.isEnabled = true
-                    listSubCategoryBody.clear()
-                    listSubCategoryBody.addAll(mResponse.body)
-                    listSub.clear()
-                    listSub.add("Select Sub Category")
-                    if (listSubCategoryBody.isNotEmpty()) {
-                        for (i in 0 until listSubCategoryBody.size) {
-                            listSub.add(listSubCategoryBody[i].name)
+                if (it.data is ModelSubCategoriesList) {
+                    val mResponse: ModelSubCategoriesList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        spinnerSubProduct.isEnabled = true
+                        listSubCategoryBody.clear()
+                        listSubCategoryBody.addAll(mResponse.body)
+                        listSub.clear()
+                        listSub.add("Select Sub Category")
+                        if (listSubCategoryBody.isNotEmpty()) {
+                            for (i in 0 until listSubCategoryBody.size) {
+                                listSub.add(listSubCategoryBody[i].name)
+                            }
+                            subCatAdapter.notifyDataSetChanged()
                         }
-                        subCatAdapter.notifyDataSetChanged()
-                    }
 
-                } else AppUtils.showErrorAlert(this, mResponse.message)
-            }
+                    } else AppUtils.showErrorAlert(this, mResponse.message)
+                }
 
                 if (it.data is ModelMeasurementList) {
-                val mResponse: ModelMeasurementList = it.data
-                if (mResponse.code == GlobalVariables.URL.code) {
-                    setDataMeasurements(mResponse)
-                } else {
-                    AppUtils.showErrorAlert(this, mResponse.message)
+                    val mResponse: ModelMeasurementList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        setDataMeasurements(mResponse)
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message)
+                    }
                 }
             }
-        }
-        it.status == Status.ERROR -> {
-            if (it.data != null) {
-                Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+            it.status == Status.LOADING -> {
+
             }
         }
-        it.status == Status.LOADING -> {
+    }
 
+    private fun setData(mResponse: ModelProductListAsPerSubCat) {
+        currentModel.clear()
+        currentModel.addAll(mResponse.body)
+        reset = false
+        spinnerGetProduct.isEnabled = true
+
+        listProduct.clear()
+        listProduct.add("Select Product")
+        for (i in 0 until currentModel.size) {
+            listProduct.add(currentModel[i].name)
         }
-    }
-}
 
-private fun setData(mResponse: ModelProductListAsPerSubCat) {
-    currentModel.clear()
-    currentModel.addAll(mResponse.body)
-    reset = false
-    spinnerGetProduct.isEnabled = true
-
-    listProduct.clear()
-    listProduct.add("Select Product")
-    for (i in 0 until currentModel.size) {
-        listProduct.add(currentModel[i].name)
+        productAdapter.notifyDataSetChanged()
     }
 
-    productAdapter.notifyDataSetChanged()
-}
+    private fun setDataMeasurements(mResponse: ModelMeasurementList) {
+        listProductUnit.clear()
+        currentModelMeasurements.clear()
+        currentModelMeasurements = mResponse.body as ArrayList<ModelMeasurementList.Body>
 
-private fun setDataMeasurements(mResponse: ModelMeasurementList) {
-    listProductUnit.clear()
-    currentModelMeasurements.clear()
-    currentModelMeasurements = mResponse.body as ArrayList<ModelMeasurementList.Body>
-
-    for (i in currentModelMeasurements) {
-        listProductUnit.add(ProductUnitData(i.id, i.name, i.status))
+        for (i in currentModelMeasurements) {
+            listProductUnit.add(ProductUnitData(i.id, i.name, i.status))
+        }
+        adapterMeasurements.notifyDataSetChanged()
     }
-    adapterMeasurements.notifyDataSetChanged()
-}
 
-fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
-    measurementId = productUnitData.id.toString()
-    for (i in 0 until currentModelMeasurements.size) {
-        listProductUnit[i] = ProductUnitData(
-            currentModelMeasurements[i].id,
-            currentModelMeasurements[i].name,
-            currentModelMeasurements[i].status
+    fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
+        measurementId = productUnitData.id.toString()
+        for (i in 0 until currentModelMeasurements.size) {
+            listProductUnit[i] = ProductUnitData(
+                currentModelMeasurements[i].id,
+                currentModelMeasurements[i].name,
+                currentModelMeasurements[i].status
+            )
+        }
+        val productUnitData1 =
+            ProductUnitData(productUnitData.id, productUnitData.name, productUnitData.status)
+        listProductUnit[position] = productUnitData1
+        adapterMeasurements.notifyDataSetChanged()
+        etUnitMeasurement.setText(productUnitData.name)
+        detailDialog.dismiss()
+        currentMeasurementId = currentModelMeasurements[position].id.toString()
+    }
+
+    fun createRequestBody(param: String): RequestBody {
+        val request = RequestBody.create(
+            MediaType.parse("text/plain"),
+            param
         )
+        return request
     }
-    val productUnitData1 =
-        ProductUnitData(productUnitData.id, productUnitData.name, productUnitData.status)
-    listProductUnit[position] = productUnitData1
-    adapterMeasurements.notifyDataSetChanged()
-    etUnitMeasurement.setText(productUnitData.name)
-    detailDialog.dismiss()
-    currentMeasurementId = currentModelMeasurements[position].id.toString()
-}
-
-fun createRequestBody(param: String): RequestBody {
-    val request = RequestBody.create(
-        MediaType.parse("text/plain"),
-        param
-    )
-    return request
-}
 
 
-override fun onClick(v: View?) {
-}
+    override fun onClick(v: View?) {
+    }
 }

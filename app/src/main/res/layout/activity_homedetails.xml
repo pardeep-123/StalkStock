@@ -93,6 +93,13 @@
         android:layout_below="@+id/rl_tooll"
         android:orientation="vertical">
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/img_banner"
+            android:scaleType="fitXY"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_title"
             android:layout_width="match_parent"

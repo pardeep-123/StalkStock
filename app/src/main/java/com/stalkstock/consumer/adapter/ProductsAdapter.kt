@@ -34,6 +34,17 @@ class ProductsAdapter(
         holder.itemView.starCount.text = currentModel[position].name
         holder.itemView.txtLocation.text = currentModel[position].productVendor.ShopAddress
         holder.itemView.txtVendor.text = currentModel[position].productVendor.shopName
+        if(currentModel[position].oldMrp==currentModel[position].mrp){
+            holder.itemView.imgPriceRange.visibility=View.GONE
+        }else if(currentModel[position].oldMrp< currentModel[position].mrp){
+            holder.itemView.imgPriceRange.visibility=View.VISIBLE
+            holder.itemView.imgPriceRange.setImageResource(R.drawable.red_arrow)
+
+        }else{
+            holder.itemView.imgPriceRange.visibility=View.VISIBLE
+            holder.itemView.imgPriceRange.setImageResource(R.drawable.green_arrow)
+
+        }
         holder.itemView.price.text = currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
 

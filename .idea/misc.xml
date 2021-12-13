@@ -26,18 +26,24 @@
         <entry key="app/src/main/res/layout-land/activity_main2.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout-land/test.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout-ldltr-h620dp-xlarge/a.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-ldltr-h620dp-xlarge/row_myorderdetailproduct.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/accept_request_alert.xml" value="0.11953125" />
-        <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_add_new_card.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_product.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/activity_addnewaddress.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_detail.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_product.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bussiness_profile.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_change_password.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_change_password2.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_driver_information.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_ad.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_edit_address_detail2.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_bussiness_profile.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_edit_driver_info.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile.xml" value="0.32727272727272727" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_profile3.xml" value="0.13515625" />
@@ -62,40 +68,52 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_search_screen.xml" value="0.17" />
         <entry key="app/src/main/res/layout-sw620dp/activity_select_category.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_sign_up.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup3.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup_consumer.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_thankyou.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/activity_upload_doc.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/add_thanks.xml" value="0.11953125" />
-        <entry key="app/src/main/res/layout-sw620dp/added_product.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-sw620dp/added_product.xml" value="0.2" />
         <entry key="app/src/main/res/layout-sw620dp/biddetailsalertbox.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/bidprdouctaccpetlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/bidproductlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/bottom_layout.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/business_profile.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/dialog_spinner.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_account2.xml" value="0.18" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_account_consumer.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_add_post.xml" value="0.22" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_cart.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_h_ome.xml" value="0.1" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_home_commercial.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_home_consumer.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_list.xml" value="0.109765625" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_messages.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_my_orders.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_payment.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_adapter.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/home_popup.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/item_sub_images.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/item_view_product_rating.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/layout_progress_hud.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/list_home_two.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/manage_address.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/messagelist.xml" value="0.18" />
         <entry key="app/src/main/res/layout-sw620dp/neworderlist.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/notification_card.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-sw620dp/row_categrey.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/row_homedetails.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/row_manageaddress.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/row_myorder.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-sw620dp/row_myorderdetailproduct.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/row_product.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/row_productdetsils.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout-sw620dp/row_suggestedforyou.xml" value="0.1046875" />
+        <entry key="app/src/main/res/layout-sw620dp/spiner_layout_text.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/spinner_item_text.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/spinner_layout.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/spinner_layout_for_vehicle.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/update_successfully_alert.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/verification_popup.xml" value="0.22" />
         <entry key="app/src/main/res/layout-v26/activity_terms_condition.xml" value="0.18020833333333333" />
@@ -113,11 +131,13 @@
         <entry key="app/src/main/res/layout/activity_bid_product.xml" value="0.10462962962962963" />
         <entry key="app/src/main/res/layout/activity_business_profile.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_bussiness_profile.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.14739583333333334" />
+        <entry key="app/src/main/res/layout/activity_change_password2.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_driver_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_ad.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_edit_address_detail2.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/activity_edit_business_profile.xml" value="0.21246246246246248" />
+        <entry key="app/src/main/res/layout/activity_edit_address_detail2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_edit_business_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_bussiness_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_driver_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_product.xml" value="0.25" />
@@ -159,7 +179,7 @@
         <entry key="app/src/main/res/layout/activity_select_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_selectuser.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.18187660668380462" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup3.xml" value="0.2617621899059025" />
         <entry key="app/src/main/res/layout/activity_signup_consumer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_terms_condition.xml" value="0.18020833333333333" />
@@ -169,7 +189,7 @@
         <entry key="app/src/main/res/layout/add_address.xml" value="0.33" />
         <entry key="app/src/main/res/layout/add_new_card.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/add_thanks.xml" value="0.159375" />
-        <entry key="app/src/main/res/layout/added_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/added_product.xml" value="0.33" />
         <entry key="app/src/main/res/layout/biddetailsalertbox.xml" value="0.2" />
         <entry key="app/src/main/res/layout/bidprdouctaccpetlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bidproductlist.xml" value="0.25" />
@@ -207,6 +227,7 @@
         <entry key="app/src/main/res/layout/item_view_product_rating.xml" value="0.2" />
         <entry key="app/src/main/res/layout/layout_progress_hud.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/layout_sort_popup.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/list_home_two.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/manage_address.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/manage_payment.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/messagelist.xml" value="0.25" />
@@ -225,6 +246,7 @@
         <entry key="app/src/main/res/layout/row_homedetails.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/row_manageaddress.xml" value="0.22" />
         <entry key="app/src/main/res/layout/row_myorder.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/row_myorderdetailproduct.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/row_myordervendordetailproduct.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_product.xml" value="0.33" />
         <entry key="app/src/main/res/layout/row_productdetsils.xml" value="0.159375" />
@@ -234,6 +256,8 @@
         <entry key="app/src/main/res/layout/row_viewpager.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/select_payment.xml" value="0.16296296296296298" />
         <entry key="app/src/main/res/layout/spiner_layout_text.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/spinner_item_text.xml" value="0.14739583333333334" />
+        <entry key="app/src/main/res/layout/spinner_layout.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/spinner_layout_for_vehicle.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/update_successfully_alert.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/upgrade_alert_box.xml" value="0.33" />

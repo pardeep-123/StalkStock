@@ -8,10 +8,8 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -405,15 +403,28 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
 
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        if (p0?.id == R.id.spinner) {
-            val array = this.resources.getStringArray(R.array.Select_country)
+    override fun onItemSelected(p0: AdapterView<*>?, selectedItemView: View?, p2: Int, p3: Long) {
+        if (p2 == 0) {
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@SignUpActivity, R.color.sort_popup_gray_color
+                )
+            )
+        } else {
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@SignUpActivity, R.color.black_color
+                )
+            )
+            if (p0?.id == R.id.spinner) {
+                val array = this.resources.getStringArray(R.array.Select_country)
 
-            country = array[p2]
-        } else if (p0?.id == R.id.spinner_type) {
-            var array = this.resources.getStringArray(R.array.Select_business_type)
+                country = array[p2]
+            } else if (p0?.id == R.id.spinner_type) {
+                var array = this.resources.getStringArray(R.array.Select_business_type)
 
-            businessType = p2.toString()
+                businessType = p2.toString()
+            }
         }
     }
 }

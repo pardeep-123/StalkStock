@@ -64,12 +64,23 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/img"
-            android:drawableRight="@drawable/red_arrow"
-            android:drawablePadding="10dp"
             android:gravity="center"
             android:text="Beef: $9.50/LB"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="19sp" />
+
+        <ImageView
+            android:id="@+id/imgPriceRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/star"
+            android:layout_above="@id/by"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/price"
+            android:drawablePadding="5dp"
+            android:src="@drawable/red_arrow" />
+
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/by"
             android:layout_below="@+id/price"

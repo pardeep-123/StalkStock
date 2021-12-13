@@ -73,19 +73,54 @@
             app:layout_constraintBottom_toTopOf="@id/btnAddNew"
             app:layout_constraintTop_toBottomOf="@id/toolbar_myorders" />
 
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
+
+        <LinearLayout
             android:id="@+id/tvNoRequest"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/no_request_found"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16sdp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/btnAddNew"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_myorders" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/iv_congrats"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/cart_empty" />
+
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center_horizontal"
+                android:text="No active requests."
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/tv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center_horizontal"
+                android:text="@string/look_like_you_not_request"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
 
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnAddNew"

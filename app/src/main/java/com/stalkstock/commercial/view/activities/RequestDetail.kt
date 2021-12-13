@@ -73,8 +73,8 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 false
             )
         )
-        list.add(AddedProduct.RequestProductData("Meat", "Bacon Grill", "10", "Kg","", false, false))
-        list.add(AddedProduct.RequestProductData("Meat", "Bacon Normal", "8", "Kg","", false, false))
+//        list.add(AddedProduct.RequestProductData("Meat", "Bacon Grill", "10", "Kg","", false, false))
+//        list.add(AddedProduct.RequestProductData("Meat", "Bacon Normal", "8", "Kg","", false, false))
 //        rvRequestProducts.adapter = RequestProductAdapter(list)
 
         /*    listBids.add(BidsData("Jamie jai","McDonald's","$80.50","Accept"))

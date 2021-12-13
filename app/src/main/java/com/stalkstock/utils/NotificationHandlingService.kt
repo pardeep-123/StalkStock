@@ -16,7 +16,6 @@ import com.google.firebase.messaging.RemoteMessage
 import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.commercial.view.activities.MainCommercialActivity
-import com.stalkstock.commercial.view.activities.RequestDetail
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.driver.HomeActivity
 import com.stalkstock.vender.ui.BottomnavigationScreen
@@ -117,22 +116,6 @@ class NotificationHandlingService : FirebaseMessagingService() {
             makePush(intent)
         }
 
-    /*else if(type==1){     //when booking accept
-            intent= Intent(this, HomeActivity::class.java)
-            intent.putExtra("type",type)
-            intent.putExtra("booking_id",bookingId)
-            makePush(intent)
-        }else if(type==4){     //when job finished
-            intent= Intent(this, HomeActivity::class.java)
-            intent.putExtra("type",type)
-            intent.putExtra("booking_id",bookingId)
-            makePush(intent)
-        }else if(type==6){     //when job started
-            intent= Intent(this, HomeActivity::class.java)
-            intent.putExtra("type",type)
-            intent.putExtra("booking_id",bookingId)
-            makePush(intent)
-        }*/
     }
 
     private fun makePush(intent: Intent?) {

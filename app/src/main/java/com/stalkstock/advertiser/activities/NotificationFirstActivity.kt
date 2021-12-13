@@ -78,7 +78,11 @@ class NotificationFirstActivity : AppCompatActivity(), View.OnClickListener,
                     if (mResponse.code == GlobalVariables.URL.code) {
                         listNotify.addAll(mResponse.body)
                         adapter.notifyItemRangeInserted(0,listNotify.size)
-                        if(listNotify.isNotEmpty()) rl_ll.visibility = View.GONE
+                        if(listNotify.isNotEmpty()) {
+                            rl_ll.visibility = View.GONE
+                        }else{
+                            rl_ll.visibility = View.VISIBLE
+                        }
                     }
                     else {
                         AppUtils.showErrorAlert(this, mResponse.message)

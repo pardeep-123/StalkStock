@@ -234,11 +234,6 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         }
         wv.loadUrl(url)
         wv!!.settings.javaScriptEnabled = true
-        wv.settings.javaScriptCanOpenWindowsAutomatically = true
-        wv.settings.domStorageEnabled = true
-        wv.settings.allowFileAccess = true
-        wv.settings.allowContentAccess = true
-        wv.settings.setGeolocationEnabled(true)
         wv.webViewClient = object : WebViewClient() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {

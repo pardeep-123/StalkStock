@@ -858,19 +858,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10sdp"
                     >
+
                     <com.stalkstock.utils.custom.TitiliumBoldButton
-                        android:layout_alignParentBottom="true"
                         android:id="@+id/btn_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginTop="25dp"
                         android:layout_marginBottom="@dimen/_15sdp"
-                        android:textAllCaps="false"
+                        android:background="@drawable/buttonshape"
                         android:text="@string/edit_business_profile"
+                        android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="16dp"
-                        android:background="@drawable/buttonshape">
-                    </com.stalkstock.utils.custom.TitiliumBoldButton>
+                        android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
                 </RelativeLayout>
 
             </LinearLayout>

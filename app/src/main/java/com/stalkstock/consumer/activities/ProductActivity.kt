@@ -46,7 +46,6 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
-
     lateinit var fillter: ImageView
     override fun getContentId(): Int {
         return R.layout.activity_product
