@@ -8,8 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit"
-        android:layout_alignParentRight="true" />
+        android:src="@drawable/bg_fit" />
 
     <include
         android:id="@+id/toolbar"
@@ -34,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:id="@+id/tv_Upload"
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:text="@string/upload_your_driver_s_license"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_12sdp" />
 
             <LinearLayout
                 android:id="@+id/layoutApp"
@@ -57,7 +57,7 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="130dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_xml"
                     android:padding="@dimen/_5sdp">
@@ -66,13 +66,12 @@
                         android:id="@+id/ivCamera"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        app:tint="@color/dark_gray" />
+                        android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/ivCamera1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:layout_marginRight="@dimen/_20sdp"
@@ -86,7 +85,7 @@
 
                 <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="130dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_xml"
                     android:padding="@dimen/_5sdp">
@@ -95,13 +94,12 @@
                         android:id="@+id/ivCamera2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:tint="@color/dark_gray"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/iv_camera2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="@dimen/_20sdp"
                         android:layout_marginRight="@dimen/_20sdp"
@@ -127,11 +125,11 @@
                     android:gravity="center"
                     android:text="@string/upload_your_registration"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -143,13 +141,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        app:tint="@color/dark_gray"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/iv_camera3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/camera"
                         app:tint="@color/dark_gray" />
@@ -158,6 +155,7 @@
 
             </LinearLayout>
             <LinearLayout
+
                 android:id="@+id/layoutText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,11 +170,11 @@
                     android:gravity="center"
                     android:text="@string/upload_your_proof_of_insurance"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="200dp"
                     android:layout_margin="@dimen/_10sdp"
                     android:background="@drawable/shape_xml"
                     android:padding="@dimen/_5sdp">
@@ -185,14 +183,12 @@
                         android:id="@+id/ivCamera4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        app:tint="@color/dark_gray"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY" />
 
                     <ImageView
                         android:id="@+id/iv_camera4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:layout_centerInParent="true"
                         android:src="@drawable/camera"
                         app:tint="@color/dark_gray" />
@@ -202,26 +198,26 @@
             </LinearLayout>
 
             <Button
+                android:layout_centerHorizontal="true"
                 android:id="@+id/btn_Upload1"
                 android:layout_below="@+id/layoutText2"
-                android:layout_width="450dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:layout_marginRight="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/btn_shape"
+                android:background="@drawable/green_btn"
                 android:text="Upload"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="@dimen/_12sdp"
 
                 />
 
         </RelativeLayout>
     </ScrollView>
+
 
 
 </RelativeLayout>

@@ -38,7 +38,7 @@
                     android:layout_marginLeft="10dp">
                 </ImageView>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textSize="20sp"
+                    android:textSize="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Payment"
@@ -65,9 +65,9 @@
                     android:layout_height="wrap_content"
                     android:text="Select Your Payment Method"
                     android:id="@+id/spm_Detail"
-                    android:textSize="25sp"
-                     android:textColor="#171717"
-                     android:layout_marginTop="@dimen/_15sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="#171717"
+                    android:layout_marginTop="@dimen/_15sdp"
                     />
 
             </RelativeLayout>
@@ -85,8 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CREDIT/DEBIT CARD"
-                    android:textSize="22sp"
-                    android:gravity="center_vertical"
+                    android:textSize="@dimen/_13sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:drawableLeft="@drawable/credit_card_img"
@@ -97,8 +96,8 @@
 
                 <ImageView
                     android:id="@+id/radio_fill"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
@@ -154,7 +153,7 @@
                 android:orientation="horizontal"
                 android:id="@+id/rl2"
                 android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:layout_below="@+id/layoutDetail">
 
@@ -162,12 +161,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CREDIT/DEBIT CARD"
-                    android:gravity="center_vertical"
                     android:drawableLeft="@drawable/paypal"
                     android:drawablePadding="@dimen/_10sdp"
                     android:layout_centerInParent="true"
                     android:layout_alignParentLeft="true"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/_13sdp"
                     android:layout_weight="3"
 
                     />
@@ -175,8 +173,8 @@
                 <ImageView
                     android:id="@+id/radio_empty"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:src="@drawable/radio_circle"
                     android:gravity="right"
                     android:layout_weight="1"
@@ -240,13 +238,13 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btn_add"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
                         android:textAllCaps="false"
                         android:text="Add New Payment Method"
                         android:textColor="#8BC34A"
                         android:visibility="gone"
-                        android:textSize="17sp"
+                        android:textSize="15dp"
                         android:background="@drawable/edittextshape"
                         >
                     </com.stalkstock.utils.custom.TitiliumBoldButton>
@@ -254,15 +252,14 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:background="@drawable/buttonshape"
                         android:id="@+id/spm_btnNext"
                         android:text="Next"
-                        android:layout_marginBottom="20dp"
                         android:textColor="#fff"
                         android:textAllCaps="false"
                         android:textStyle="bold"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/_12sdp"
                         />
                 </LinearLayout>
             </RelativeLayout>

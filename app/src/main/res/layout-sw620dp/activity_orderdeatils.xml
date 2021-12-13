@@ -70,12 +70,11 @@
                         android:id="@+id/kfc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/img"
                         android:layout_marginStart="10dp"
-                        android:text="McDonald's"
+                        android:layout_toEndOf="@+id/img"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvLocation"
@@ -84,7 +83,7 @@
                         android:layout_below="@+id/kfc"
                         android:layout_marginStart="10dp"
                         android:layout_toEndOf="@+id/img"
-                        android:text="New York, USA"
+                        android:text=""
                         android:textSize="12sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -94,7 +93,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="10dp"
-                        android:text="Pending"
+                        android:text=""
                         android:textColor="@color/orange_colour"
                         android:textSize="@dimen/_15sdp" />
 
@@ -150,7 +149,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="$69.50"
+                        android:text=""
                         android:textColor="@color/black" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -164,14 +163,14 @@
                         android:layout_height="wrap_content"
                         android:text="Restaurant Charges"
                         />
+
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvRestCharges"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:textColor="@color/black"
-                        android:text="$5.50"
-                        />
+                        android:text=""
+                        android:textColor="@color/black" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -189,7 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="$1.50"
+                        android:text=""
                         android:textColor="@color/black" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -258,7 +257,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="$4.50"
+                        android:text=""
                         android:textColor="@color/black" />
                 </RelativeLayout>
 
@@ -285,7 +284,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:textColor="@color/black"
-                    android:text="123456789"/>
+                    android:text=""/>
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
@@ -318,7 +317,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:textColor="@color/black"
-                    android:text="John Due"/>
+                    android:text=""/>
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/textDelivery"
@@ -347,8 +346,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:text="Submit Your Rating"
                     android:textAllCaps="false"
-                    android:visibility="gone"
                     android:textColor="#fff"
+                    android:visibility="gone"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     app:layout_constraintVertical_bias="1.0"

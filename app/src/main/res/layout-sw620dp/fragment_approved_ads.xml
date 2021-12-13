@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".advertiser.fragments.ApprovedAdsFragment">
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_approved"
-    android:layout_width="match_parent"
-    android:nestedScrollingEnabled="false"
-    android:layout_height="match_parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_approved"
+        android:layout_width="match_parent"
+        android:nestedScrollingEnabled="false"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"/>
+
 </LinearLayout>

@@ -377,15 +377,16 @@
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtLicenceExpiry"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
+                        android:focusable="false"
                         android:gravity="center_vertical"
-                        android:hint="DD/MM/YYYY"
+                        android:hint="YYYY-MM-DD"
                         android:imeOptions="actionNext"
                         android:inputType="date"
-                        android:id="@+id/edtLicenceExpiry"
                         android:maxLines="1"
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
@@ -451,16 +452,17 @@
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtRegisterationExpiry"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
-                        android:hint="DD/MM/YYYY"
+                        android:hint="YYYY-MM-DD"
                         android:imeOptions="actionNext"
-                        android:id="@+id/edtRegisterationExpiry"
                         android:inputType="date"
                         android:maxLines="1"
+                        android:focusable="false"
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="12dp"
@@ -485,6 +487,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
@@ -522,6 +525,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
@@ -559,6 +563,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
@@ -567,7 +572,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
-                        android:hint="DD/MM/YYYY"
+                        android:hint="YYYY-MM-DD"
                         android:imeOptions="actionNext"
                         android:inputType="date"
                         android:maxLines="1"
@@ -600,6 +605,7 @@
                     android:layout_marginRight="@dimen/_10sdp">
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/edtDriverStreetAddress"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
@@ -609,7 +615,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
                         android:maxLines="1"
-                        android:id="@+id/edtDriverStreetAddress"
+                        android:focusable="false"
                         android:minHeight="45dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="12dp"
@@ -783,24 +789,19 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_text_bg"
                     android:layout_marginRight="@dimen/_10sdp">
 
-                    <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    <Spinner
+                        android:id="@+id/spinnerCountry"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_text_bg"
+                        android:layout_height="match_parent"
+                        android:entries="@array/Select_country"
                         android:gravity="center_vertical"
-                        android:hint="@string/enter_country"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPersonName"
-                        android:id="@+id/edtCountry"
-                        android:maxLines="1"
-                        android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/light_grey"
+                        android:paddingRight="20dp"
+                        android:prompt="@string/select_country"
+                        android:textColor="#000"
+                        android:textColorHint="#F8F6F6"
                         android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView

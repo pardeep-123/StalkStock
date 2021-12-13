@@ -172,6 +172,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLines="1"
+                    android:maxLength="13"
                     android:minHeight="45dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="12dp"
@@ -242,19 +243,20 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edit_text_bg"
                     >
+
                     <Spinner
                         android:id="@+id/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
                         android:entries="@array/Select_Vehicle_type"
-                        android:prompt="@string/dropdown_vehicle_type"
+                        android:gravity="center_vertical"
                         android:paddingRight="20dp"
-                        android:textStyle="bold"
+                        android:prompt="@string/dropdown_vehicle_type"
+                        android:textColor="#000"
 
                         android:textColorHint="#F8F6F6"
                         android:textSize="13sp"
-                        android:textColor="#000"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView

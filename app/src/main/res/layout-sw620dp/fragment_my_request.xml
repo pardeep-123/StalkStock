@@ -12,22 +12,22 @@
         android:layout_marginRight="@dimen/_5sdp"
         android:id="@+id/ll_top"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content">
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_current"
-             android:textSize="22sp"
+            android:textSize="@dimen/_14sdp"
             android:text="@string/current"
             android:layout_weight="1"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:background="@color/green_colour"
             android:layout_width="@dimen/album_dp_0"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <View
             android:layout_width="@dimen/_4sdp"
             android:layout_height="2dp"/>
         <com.stalkstock.utils.custom.TitiliumBoldButton
-            android:textSize="22sp"
+            android:textSize="@dimen/_14sdp"
             android:id="@+id/btn_completed"
             android:text="@string/completed"
             android:textAllCaps="false"
@@ -35,16 +35,24 @@
             android:textColor="@color/black"
             android:background="@color/light_grey"
             android:layout_width="@dimen/album_dp_0"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recy_req"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_below="@id/ll_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_top"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_result_found"
+        android:visibility="gone"/>
 </RelativeLayout>

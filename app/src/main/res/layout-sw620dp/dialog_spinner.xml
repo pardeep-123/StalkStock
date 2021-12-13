@@ -2,24 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_margin="@dimen/_12sdp"
     android:orientation="vertical">
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_12sdp"
         android:text="Change Order Status"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_gravity="center"
         android:textColor="#000"
         android:textSize="18sp" />
-
     <LinearLayout
-        android:id="@+id/ltStatus1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
+        android:id="@+id/ltStatus1"
         android:paddingTop="@dimen/_6sdp"
-        android:paddingBottom="@dimen/_6sdp">
+        android:paddingBottom="@dimen/_6sdp"
+        android:layout_height="wrap_content">
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
@@ -33,38 +35,35 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey" />
-
+        android:background="@color/grey"
+        android:layout_height="1dp" />
     <LinearLayout
-        android:id="@+id/ltStatus2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:paddingTop="@dimen/_6sdp"
+        android:id="@+id/ltStatus2"
+        android:paddingBottom="@dimen/_6sdp"
 
-        android:paddingBottom="@dimen/_6sdp">
+        android:layout_height="wrap_content">
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_12sdp"
             android:text="2. Order Packed"
-
             android:textColor="#000"
             android:textSize="16sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey" />
-
+        android:background="@color/grey"
+        android:layout_height="1dp" />
     <LinearLayout
-        android:id="@+id/ltStatus3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/ltStatus3"
         android:paddingTop="@dimen/_6sdp"
-        android:paddingBottom="@dimen/_6sdp">
+        android:paddingBottom="@dimen/_6sdp"
+        android:layout_height="wrap_content">
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
@@ -78,15 +77,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        android:layout_height="1dp" />
 
     <LinearLayout
-        android:id="@+id/ltStatus4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:paddingTop="@dimen/_6sdp"
-        android:paddingBottom="@dimen/_6sdp">
+        android:id="@+id/ltStatus4"
+        android:paddingBottom="@dimen/_6sdp"
+        android:layout_height="wrap_content">
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
@@ -100,8 +99,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
         android:layout_marginTop="@dimen/_12sdp"
-        android:background="@color/grey" />
+        android:background="@color/grey"
+        android:layout_height="1dp" />
 
 </LinearLayout>

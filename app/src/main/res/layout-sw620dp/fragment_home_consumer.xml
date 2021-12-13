@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -19,23 +21,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginLeft="15dp">
+                android:layout_marginStart="15dp">
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:drawableLeft="@drawable/location_icon"
+                    android:drawableStart="@drawable/location_icon"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="New York 920.."
                     android:textSize="16sp"
                     android:visibility="gone" />
 
-
                 <ImageView
                     android:id="@+id/sdgd"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -45,21 +45,20 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/sdgd"
+                    android:layout_alignStart="@+id/sdgd"
                     android:layout_alignTop="@+id/sdgd"
-                    android:layout_alignRight="@+id/sdgd"
+                    android:layout_alignEnd="@+id/sdgd"
                     android:layout_alignBottom="@+id/sdgd"
                     android:layout_centerInParent="true"
                     android:src="@drawable/logo_get" />
-
 
                 <ImageView
                     android:id="@+id/searchss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@+id/fillter"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@+id/fillter"
                     android:src="@drawable/search_icon"
                     android:visibility="invisible" />
 
@@ -68,21 +67,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/notification"
+                    android:layout_marginEnd="15dp"
+                    android:layout_toStartOf="@+id/notification"
                     android:src="@drawable/chat_grey_icon1"
-                    android:tint="#ED1F24"></ImageView>
-
+                    app:tint="#ED1F24"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/fillter"
+                    android:layout_marginEnd="15dp"
+                    android:layout_toStartOf="@+id/fillter"
                     android:src="@drawable/notification_icon1" />
 
                 <ImageView
@@ -92,36 +90,11 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/filter_icn1" />
 
-
-                <!-- <ImageView
-                     android:id="@+id/notification"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_toLeftOf="@+id/fillter"
-                     android:layout_centerVertical="true"
-                     android:layout_marginRight="10dp"
-                     android:padding="5dp"
-                     android:src="@drawable/notification_icon"/>
-
-                 <ImageView
-                     android:id="@+id/fillter"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:src="@drawable/filter_icn"
-                     android:layout_centerVertical="true"
-                     android:layout_marginRight="10dp"
-                     android:padding="5dp"
-                     android:layout_alignParentRight="true"/>
-                 -->
-
-
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/etSearcha"
                 android:layout_width="match_parent"
-
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15sp"
@@ -132,12 +105,10 @@
 
                 <ImageView
                     android:id="@+id/iv_loo"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/location_icon">
-
                 </ImageView>
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -145,22 +116,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/iv_loo"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/iv_loo"
                     android:gravity="center_vertical"
                     android:includeFontPadding="false"
-                    android:text="New York 920, NY 10001"
                     android:textColor="@color/green_ss"
                     android:textSize="17sp" />
 
             </RelativeLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="15sp"
-
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15sp"
                 android:orientation="horizontal">
@@ -168,7 +136,7 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:visibility="gone"
                     android:layout_weight="1">
 
@@ -195,19 +163,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-
-                        android:background="@drawable/btn_shape"
+                        android:background="@drawable/btn_shape_gray"
                         android:gravity="center"
                         android:text="PICKUP"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/green_ss"
                         android:textSize="14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="1">
 
                     <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -215,7 +182,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-
                         android:background="@drawable/btn_shape_gray"
                         android:gravity="center"
                         android:text="DELIVERY"
@@ -223,7 +189,6 @@
                         android:textColor="@color/green_ss"
                         android:textSize="14sp" />
                 </RelativeLayout>
-
 
             </LinearLayout>
 
@@ -242,11 +207,12 @@
 
                 <com.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/indicator"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/_5sdp"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true">
+                    >
 
                 </com.viewpagerindicator.CirclePageIndicator>
 
@@ -256,7 +222,6 @@
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-
                 android:layout_marginLeft="15sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15sp"
@@ -268,26 +233,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:src="@drawable/search_icon" />
-
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                     />
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_toRightOf="@+id/search"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/search"
                     android:text="Search.."
                     android:textSize="17sp" />
 
@@ -296,7 +259,7 @@
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Categories"
                 android:textColor="@color/black"
@@ -310,6 +273,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:nestedScrollingEnabled="false"
                 android:layout_marginRight="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -317,9 +281,9 @@
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:text="Suggested for you"
                 android:textAllCaps="true"
                 android:textColor="@color/green_ss"
@@ -336,5 +300,4 @@
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

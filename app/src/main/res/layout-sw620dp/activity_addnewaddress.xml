@@ -514,19 +514,19 @@
 
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:id="@+id/btnEdit"
-                    android:layout_below="@+id/rlsdgsdg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlsdgsdg"
                     android:layout_marginLeft="@dimen/value_35dp"
-                    android:layout_marginBottom="@dimen/value_20dp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/value_35dp"
+                    android:layout_marginBottom="@dimen/value_20dp"
                     android:background="@drawable/button_round_corners"
                     android:text="@string/confirm_location_proceed"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
             </RelativeLayout>
 

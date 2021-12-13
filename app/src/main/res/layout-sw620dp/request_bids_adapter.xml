@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-         android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:layout_marginStart="@dimen/value_2dp"
         android:layout_marginEnd="@dimen/value_2dp"
         app:cardElevation="@dimen/value_1dp"
@@ -16,10 +16,9 @@
         >
 
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_height="match_parent"
             >
 
 
@@ -29,39 +28,37 @@
                 android:layout_width="@dimen/value_50dp"
                 android:layout_height="@dimen/value_50dp"
                 android:layout_marginStart="@dimen/value_10dp"
-                android:layout_centerVertical="true"
-
+                android:layout_marginTop="@dimen/value_12dp"
+                android:layout_marginBottom="@dimen/value_12dp"
                 android:src="@drawable/chat_img_1"
-                />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/civImage"
                 app:layout_constraintTop_toTopOf="@id/civImage"
                 app:layout_constraintStart_toEndOf="@id/civImage"
                 android:layout_marginTop="@dimen/value_2dp"
                 android:layout_marginStart="@dimen/value_10dp"
                 android:textColor="@color/black_color"
-                android:textSize="25sp"
+                android:textSize="@dimen/value_14dp"
 
                 android:text="Jamie Jai"
                 />
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvDetail"
                 android:layout_width="wrap_content"
-                android:layout_below="@+id/tvName"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/civImage"
-
                 app:layout_constraintBottom_toBottomOf="@id/civImage"
                 app:layout_constraintStart_toEndOf="@id/civImage"
                 android:layout_marginStart="@dimen/value_10dp"
                 android:layout_marginBottom="@dimen/value_2dp"
                 android:textColor="@color/black_color"
-                android:textSize="22sp"
+                android:textSize="@dimen/value_12dp"
 
                 android:text="Mcdonald's"
                 />
@@ -69,14 +66,13 @@
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvPrice"
-                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/civImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/value_15dp"
                 android:textColor="@color/red_dark_colour"
-                android:textSize="22sp"
+                android:textSize="@dimen/value_14dp"
 
                 android:text="$80.50"
                 />
@@ -84,26 +80,25 @@
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvAccept"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                 android:background="@color/green_colour"
-                 android:layout_marginEnd="@dimen/value_15dp"
+                app:layout_constraintBottom_toBottomOf="@id/civImage"
+                android:background="@color/green_colour"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/value_15dp"
                 android:textColor="@color/white"
                 android:paddingTop="@dimen/_2sdp"
                 android:paddingBottom="@dimen/_2sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:textSize="22sp"
+                android:textSize="@dimen/value_14dp"
 
                 android:text="Accept"
                 />
 
 
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>

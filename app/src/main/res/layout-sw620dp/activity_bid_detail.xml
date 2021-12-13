@@ -7,9 +7,8 @@
     android:background="@color/white">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
 
@@ -20,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toTopOf="parent"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,8 +28,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    tools:ignore="MissingConstraints">
+                    android:layout_height="50dp">
                     <ImageView
                         android:id="@+id/biddetails_backarrow"
                         android:layout_width="wrap_content"
@@ -176,6 +174,7 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="#000"
                                     android:textSize="17sp"
+
                                     android:layout_alignParentLeft="true"
                                     android:text=""/>
                                 <com.stalkstock.utils.custom.TitiliumRegularTextView
