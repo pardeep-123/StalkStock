@@ -179,6 +179,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
         )
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
+        spinner.onItemSelectedListener = this
 
         val foodadapter2 = ArrayAdapter.createFromResource(
             this,
@@ -547,6 +548,11 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
                 )
             )
         } else {
+            (view as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@EditDriverInfoActivity, R.color.black_color
+                )
+            )
             if (p0?.id == R.id.spinnerCountry) {
                 val array = this.resources.getStringArray(R.array.Select_country)
                 mCountryName = array[p2]

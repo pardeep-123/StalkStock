@@ -135,6 +135,25 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         subCatAdapter = ArrayAdapter(this, R.layout.spinner_item_text, listSub)
         spinnerSubCategory!!.adapter = subCatAdapter
 
+        spinnerSubCategory!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+
+                (selectedItemView as? TextView)?.setTextColor(
+                    ContextCompat.getColor(
+                        this@EditProduct, R.color.black
+                    )
+                )
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
 
         currentProductModel = intent.getSerializableExtra("body") as ModelProductDetail
 
@@ -145,6 +164,35 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         )
         countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinnerCountry.adapter = countryAdapter
+
+
+        spinnerCountry!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                if(position==0){
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditProduct, R.color.sort_popup_gray_color
+                    ) )
+                }else{
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditProduct, R.color.black
+                        )
+                    )
+                }
+
+
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
         getmeasurementsAPI()
     }
 

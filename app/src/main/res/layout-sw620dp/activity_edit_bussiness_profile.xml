@@ -6,7 +6,7 @@
     android:background="@color/white">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
-                android:background="#BDBCBC"></View>
+                android:background="#BDBCBC"/>
 
             <ScrollView
                 android:id="@+id/scrolView_account"
@@ -807,8 +807,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
                         android:layout_marginBottom="@dimen/_10sdp">
 
                         <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -821,7 +821,7 @@
                             android:text="Update"
                             android:textAllCaps="false"
                             android:textColor="#fff"
-                            android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                            android:textSize="16dp"/>
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>

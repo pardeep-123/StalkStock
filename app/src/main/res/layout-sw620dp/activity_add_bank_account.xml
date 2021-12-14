@@ -173,14 +173,15 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btnSave"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="@dimen/_40sdp"
                         android:background="@drawable/buttonshape"
                         android:text="Save"
+                        android:minHeight="45dp"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="17dp"/>
+                        android:textSize="17dp" />
 
                 </RelativeLayout>
             </LinearLayout>

@@ -42,6 +42,8 @@
             android:background="@drawable/btn_shape"
             android:gravity="center"
             android:minHeight="45dp"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
             android:text="Confirm"
             android:textAllCaps="false"
             android:textColor="@color/white"

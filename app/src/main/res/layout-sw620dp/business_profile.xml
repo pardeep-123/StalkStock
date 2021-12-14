@@ -856,6 +856,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_40sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     >
 
@@ -870,7 +872,7 @@
                         android:text="@string/edit_business_profile"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                        android:textSize="16dp"/>
                 </RelativeLayout>
 
             </LinearLayout>

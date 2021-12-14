@@ -105,8 +105,9 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         }
 
         btn_ok.setOnClickListener {
-            rl_top.visibility = View.GONE
-            rl_tv.visibility = View.VISIBLE
+            getOrderRequest()
+//            rl_top.visibility = View.GONE
+//            rl_tv.visibility = View.VISIBLE
         }
         ca_tv1.setOnClickListener {
             dialogconfirmation()
@@ -449,26 +450,33 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             it!!.status == Status.SUCCESS -> {
 
                 if (it.data is NewOrderResponse) {
-                    ca_tv1.visibility=View.VISIBLE
                     val mResponse: NewOrderResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOrder = mResponse
-                        if(currentOrder.body.orderStatus==1){
-                            if (currentOrder.body.orderNo != null) {
-                                orderID = currentOrder.body.id.toString()
-                                ca_tv1.visibility = View.VISIBLE
-                                tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
-                                txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
-                                tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
-                                txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
-                                Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
-                                    .into(imgVendorImage as ImageView)
-                                Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
+                        if(currentOrder.body==null){
+                            rlNoRequest.visibility=View.VISIBLE
+                            rl_tv.visibility=View.GONE
+                        }else{
+                            rlNoRequest.visibility=View.GONE
+                            rl_tv.visibility=View.VISIBLE
+                            if(currentOrder.body.orderStatus==1){
+                                if (currentOrder.body.orderNo != null) {
+                                    orderID = currentOrder.body.id.toString()
+                                    ca_tv1.visibility = View.VISIBLE
+                                    tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
+                                    txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
+                                    tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
+                                    txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
+                                    Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
+                                        .into(imgVendorImage as ImageView)
+                                    Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
+                                }
+                            }
+                            else {
+                                ca_tv1.visibility = View.GONE
                             }
                         }
-                        else {
-                            ca_tv1.visibility = View.GONE
-                        }
+
 
                     } else {
                         ca_tv1.visibility = View.VISIBLE

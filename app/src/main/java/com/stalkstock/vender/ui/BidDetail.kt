@@ -157,7 +157,7 @@ class BidDetail : Fragment(), View.OnClickListener, Observer<RestObservable> {
                 viewModel.vendorAcceptBid(requireActivity(), true, hashMap)
 
                 bidamt.visibility = View.VISIBLE
-                biddisc.visibility = View.VISIBLE
+                biddisc.visibility = View.GONE
                 placebid_button.tag = 1
                 placebid_button.text = "Place Bid"
                 if (placebid_button.text.toString() == "Place Bid") {

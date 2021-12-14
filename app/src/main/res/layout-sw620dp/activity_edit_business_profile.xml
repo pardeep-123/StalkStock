@@ -706,6 +706,8 @@
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
                     android:minHeight="45dp"
                     android:text="@string/update"
                     android:textAllCaps="false"

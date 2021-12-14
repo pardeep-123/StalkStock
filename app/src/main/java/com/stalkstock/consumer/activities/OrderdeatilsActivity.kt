@@ -34,7 +34,6 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orderdeatils)
-        setContentView(R.layout.activity_orderdeatils)
 
         btnSubmitRating.setOnClickListener{
             val intent= Intent(this,RatingActivity::class.java)

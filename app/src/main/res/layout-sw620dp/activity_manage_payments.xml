@@ -183,9 +183,9 @@
                     android:id="@+id/btn_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/_40sdp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/_40sdp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/button_round_corners"
                     android:text="Add New Payment Method"
@@ -198,11 +198,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/btn_add"
-                    android:layout_margin="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_40sdp"
                     android:background="@drawable/btn_shape"
                     android:text="Checkout"
                     android:textColor="@color/white"
                     android:textSize="13sp"
+                    android:textAllCaps="false"
                     android:visibility="gone" />
             </RelativeLayout>
 

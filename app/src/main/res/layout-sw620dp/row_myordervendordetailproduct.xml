@@ -26,14 +26,13 @@
             android:textSize="18sp"
             android:layout_toRightOf="@+id/img1"/>
         <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$9.50"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
-            android:textSize="14sp"
-            android:layout_marginRight="15sp"/>
+            android:layout_marginRight="@dimen/_5sdp"
+            android:text="Quantity : 10"
+            android:textSize="@dimen/_12sdp"/>
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

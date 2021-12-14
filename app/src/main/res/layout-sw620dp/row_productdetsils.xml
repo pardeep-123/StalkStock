@@ -26,17 +26,17 @@
                 android:id="@+id/starCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/img"
+                android:layout_toEndOf="@+id/img"
                 android:text="Meat"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginStart="10dp"/>
 
             <ImageView
                 android:id="@+id/imgVegNon"
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_alignParentRight="true"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
                 android:src="@drawable/red_dot" />
 
             <!--

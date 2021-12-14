@@ -75,6 +75,7 @@
                 android:layout_marginRight="@dimen/_20sdp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
+                    android:id="@+id/etEnterAmount"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"

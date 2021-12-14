@@ -151,9 +151,9 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+               //     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                  //  Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
             it.status == Status.LOADING -> {

@@ -134,7 +134,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
         val map= HashMap<String,Int>()
         map["addressId"]= addressId.toInt()
 
-        viewModel.makeDefaultAddress(this, false, map)
+        viewModel.makeDefaultAddress(this, true, map)
         viewModel.homeResponse.observe(this, this)
     }
 

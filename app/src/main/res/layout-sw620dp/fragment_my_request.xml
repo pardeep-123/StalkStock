@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_current"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="14sp"
             android:text="@string/current"
             android:layout_weight="1"
             android:textAllCaps="false"
@@ -27,11 +27,12 @@
             android:layout_width="@dimen/_4sdp"
             android:layout_height="2dp"/>
         <com.stalkstock.utils.custom.TitiliumBoldButton
-            android:textSize="@dimen/_14sdp"
+            android:textSize="14sp"
             android:id="@+id/btn_completed"
             android:text="@string/completed"
             android:textAllCaps="false"
             android:layout_weight="1"
+
             android:textColor="@color/black"
             android:background="@color/light_grey"
             android:layout_width="@dimen/album_dp_0"

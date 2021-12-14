@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -39,7 +40,8 @@ import kotlinx.android.synthetic.main.activity_addnewaddress.*
 import okhttp3.RequestBody
 import java.util.*
 
-class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObservable> {
+class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObservable>,
+    AdapterView.OnItemSelectedListener {
 
     private var currentAddressId = ""
     private var selectedAddressType = "1"
@@ -295,10 +297,7 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
 
-        /*if (dataSet == 1) {
-            val body = intent.getSerializableExtra("body") as ModelUserAddressList.Body
-            setData(body)
-        }*/
+        spinner.onItemSelectedListener = this
 
     }
 
@@ -453,6 +452,26 @@ class AddnewaddressActivity : GPSTracker(), OnMapReadyCallback, Observer<RestObs
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (position == 0) {
+            (view as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@AddnewaddressActivity, R.color.sort_popup_gray_color
+                )
+            )
+        } else {
+            (view as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@AddnewaddressActivity, R.color.black_color
+                )
+            )
+
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 
 

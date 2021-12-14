@@ -9,7 +9,7 @@
     tools:context=".advertiser.fragments.AddPostFragment">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitEnd"
         android:src="@drawable/bg_fit" />
@@ -541,6 +541,8 @@
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:minHeight="45dp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
                     android:text="@string/edit_update_payment_method"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -555,6 +557,8 @@
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:minHeight="45dp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
                     android:text="@string/preview_ad"
                     android:textAllCaps="false"
                     android:textColor="@color/white"

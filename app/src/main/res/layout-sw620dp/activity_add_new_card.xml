@@ -13,15 +13,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_fit"
         android:layout_alignParentRight="true"
-        android:scaleType="fitEnd"
-        />
+        android:scaleType="fitEnd" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/toolbar" />
 
+        <include layout="@layout/toolbar" />
 
         <View
             android:layout_width="match_parent"
@@ -34,21 +33,24 @@
             android:text="Enter New Card Details"
             android:layout_margin="20dp"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:text="@string/name"
                 android:textColor="@color/light_grey"
-                android:textSize="22sp" />
+                android:textSize="13sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -63,7 +65,7 @@
                 android:paddingRight="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="match_parent"
@@ -72,9 +74,10 @@
                 android:text="Credit Card Number"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/light_grey"
-                android:textSize="22sp" />
+                android:textSize="13sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
+                android:id="@+id/etCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -91,17 +94,20 @@
                 android:paddingRight="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="3">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -109,7 +115,7 @@
                         android:text="Expiry Month"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey"
-                        android:textSize="22sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/monthsss"
@@ -119,21 +125,24 @@
                         android:background="@drawable/shape_edit_for_add_card"
                         android:gravity="center_vertical"
                         android:hint="Select Month"
-                         android:imeOptions="actionNext"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLines="1"
                         android:minHeight="45dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="12dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -141,7 +150,7 @@
                         android:text="Expiry Year"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey"
-                        android:textSize="22sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/yearsss"
@@ -160,14 +169,17 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -176,9 +188,10 @@
                         android:visibility="visible"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey"
-                        android:textSize="22sp" />
+                        android:textSize="13sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
+                        android:id="@+id/tvCvv"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
@@ -195,8 +208,10 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="16sp" />
+                        android:textSize="13sp" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <RelativeLayout
@@ -209,7 +224,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/ivCheckbox"
-                    android:layout_centerVertical="true"
                     />
 
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
@@ -219,13 +233,13 @@
                     android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
                     android:drawablePadding="3dp"
-                    android:layout_marginLeft="5dp"
                     android:gravity="start"
                     android:text="Save for future transactions"
                     android:textColor="@color/light_grey"
-                    android:textSize="22sp" />
+                    android:textSize="13sp" />
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -246,21 +260,22 @@
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_save"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/btn_shape"
                     android:layout_marginRight="35dp"
                     android:layout_marginLeft="35dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
-                     android:text="Save"
+                    android:minHeight="45dp"
+                    android:text="Save"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="17sp" />
+                    android:textSize="15sp" />
+
             </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 

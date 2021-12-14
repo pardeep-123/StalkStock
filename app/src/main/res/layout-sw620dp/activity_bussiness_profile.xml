@@ -775,6 +775,8 @@
                             android:text="Edit Business Profile"
                             android:textAllCaps="false"
                             android:textColor="#fff"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
                             android:textSize="16dp" />
                     </RelativeLayout>
 

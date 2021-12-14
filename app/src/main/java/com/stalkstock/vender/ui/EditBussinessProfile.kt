@@ -15,6 +15,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
@@ -209,7 +210,20 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         mLongitude = long
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+    override fun onItemSelected(p0: AdapterView<*>?, selectedItemView: View?, p2: Int, p3: Long) {
+        if(p2==0){
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@EditBussinessProfile, R.color.sort_popup_gray_color
+                )
+            )
+        }else{
+            (selectedItemView as? TextView)?.setTextColor(
+                ContextCompat.getColor(
+                    this@EditBussinessProfile, R.color.black
+                )
+            )
+        }
         if (p0?.id == R.id.spinner) {
             val array = this.resources.getStringArray(R.array.Select_country)
 

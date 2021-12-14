@@ -32,7 +32,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_5sdp"
             android:text="Quantity : 10"
-            android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+            android:textSize="@dimen/_12sdp"/>
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

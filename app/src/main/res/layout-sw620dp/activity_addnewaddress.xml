@@ -23,16 +23,16 @@
             android:layout_marginStart="@dimen/value_10dp"
             android:src="@drawable/back_arrow"
             />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16dp"
             android:id="@+id/actHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Edit Address Details"
-            android:textColor="@color/black_color"
             android:gravity="center"
-            />
+            android:text="Add New Address"
+            android:textColor="@color/black_color"
+            android:textSize="16dp" />
 
     </RelativeLayout>
 
@@ -518,9 +518,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rlsdgsdg"
-                    android:layout_marginLeft="@dimen/value_35dp"
+                    android:layout_marginLeft="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/value_35dp"
+                    android:layout_marginRight="@dimen/_40sdp"
                     android:layout_marginBottom="@dimen/value_20dp"
                     android:background="@drawable/button_round_corners"
                     android:text="@string/confirm_location_proceed"

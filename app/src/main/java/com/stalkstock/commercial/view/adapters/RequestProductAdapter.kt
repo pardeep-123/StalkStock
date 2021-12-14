@@ -46,75 +46,40 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
         if(position==0)
         {
             holder.itemView.viewUp.visibility  = View.VISIBLE}
-        else
-        {
+        else {
             holder.itemView.viewUp.visibility  = View.GONE
         }
 
-
-/*        if (position==0){
-
-            val type = Typeface.createFromAsset(context.getAssets(), "fonts/TitilliumWeb_Bold.ttf")
-
-//        holder.itemView.tvCount.text=
-            holder.tvCount.text="S. No."
-            holder.tvCount.setTextColor(context.resources.getColor(R.color.black))
-            holder.tvCount.setTypeface(type)
-
-
-            holder.itemView.tvName.setText("Item Brand")
-            holder.itemView.tvName.setTextColor(context.resources.getColor(R.color.black))
-             holder.itemView.tvName.setTypeface(type)
-
-            holder.itemView.tvType.setText("Item Name")
-             holder.itemView.tvType.setTypeface(type)
-            holder.itemView.tvType.setTextColor(context.resources.getColor(R.color.black))
-
-            holder.itemView.tvQuantity.setText("Quantity")
-             holder.itemView.tvQuantity.setTypeface(type)
-            holder.itemView.tvQuantity.setTextColor(context.resources.getColor(R.color.black))
-
-            holder.itemView.tvQuantityType.setText("U.O.M.")
-            holder.itemView.tvQuantityType.setTextColor(context.resources.getColor(R.color.black))
-            holder.itemView.tvQuantityType.setTypeface(type)
-
-        }*/
-//        else{
             var pos=position
 
             holder.itemView.tvType.text = orderList[pos].product.name
             holder.itemView.tvQuantity.text = orderList[pos].qty.toString()
             holder.itemView.tvQuantityType.text = orderList[pos].measurementName
-//        holder.itemView.tvCount.text=
             holder.tvCount.text=pos.toString()+"."
-//        }
 
 
-        if(list[position].edit) {
+
+      /*  if(list[position].edit) {
             holder.itemView.ivEdit.visibility = View.VISIBLE
             holder.itemView.viewEdit.visibility = View.VISIBLE
             holder.itemView.rl_edit.visibility = View.VISIBLE
             holder.itemView.rl_delete.visibility = View.VISIBLE
-
         }
-        else
-        {
+        else {
             holder.itemView.ivEdit.visibility = View.GONE
             holder.itemView.rl_edit.visibility = View.GONE
             holder.itemView.viewEdit.visibility = View.GONE
             holder.itemView.rl_delete.visibility = View.GONE
          }
-
-        if(list[position].delete)
-        {
+*/
+        if(list[position].delete) {
             holder.itemView.ivDelete.visibility = View.VISIBLE
              holder.itemView.viewDelete.visibility = View.VISIBLE
 
             holder.itemView.rl_edit.visibility = View.VISIBLE
             holder.itemView.rl_delete.visibility = View.VISIBLE
         }
-        else
-        {
+        else {
             holder.itemView.ivDelete.visibility = View.GONE
             holder.itemView.viewDelete.visibility = View.GONE
             holder.itemView.viewEdit.visibility = View.GONE

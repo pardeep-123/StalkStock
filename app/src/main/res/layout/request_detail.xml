@@ -254,7 +254,7 @@
         android:layout_marginLeft="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_40sdp"
         android:layout_marginBottom="@dimen/value_30dp"
-        android:background="@drawable/green_btn"
+        android:background="@drawable/button_round_corners"
         android:text="Accept"
         android:visibility="gone"
         android:textAllCaps="false"

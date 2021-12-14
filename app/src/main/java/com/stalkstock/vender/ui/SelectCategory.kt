@@ -148,6 +148,34 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         subCatAdapter = ArrayAdapter(this, R.layout.spinner_item_text, listSub)
         spinnerSubCategory!!.adapter = subCatAdapter
 
+        spinnerSubCategory!!.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                if (position == 0) {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@SelectCategory, R.color.sort_popup_gray_color
+                        )
+                    )
+                    setAdapterSpinnerSub("0", listSubCategoryBody)
+                } else {
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@SelectCategory, R.color.black
+                        )
+                    )
+                }
+
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
         getCategories()
 
     }
