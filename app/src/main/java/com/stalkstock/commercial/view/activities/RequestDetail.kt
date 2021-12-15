@@ -24,7 +24,6 @@ import com.stalkstock.viewmodel.HomeViewModel
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.request_detail.*
 import kotlinx.android.synthetic.main.request_product_adapter.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.set
@@ -128,7 +127,6 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 intent.putExtra("deliveryCharges", deliveryCharges)
                 intent.putExtra("shopCharges", detail[0].vendorDetail.shopCharges)
                 intent.putExtra("card", cardId)
-
                 startActivity(intent)
 
             }
@@ -143,7 +141,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
 
             intent.putExtra("screen_type", "bid")
             intent.putExtra("id", bidId.toString())
-            intent.putExtra("userId", userId)
+            intent.putExtra("userId", detail[0].vendorDetail.id)
             intent.putExtra("chatId", chatId)
             intent.putExtra("userName", detail[0].vendorDetail.firstName +" "+detail[0].vendorDetail.lastName)
             intent.putExtra("userImage", detail[0].vendorDetail.image)
@@ -165,11 +163,12 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is BidingDetailResponse) {
                     val mResponse: BidingDetailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-
+                        chatId= mResponse.body.chatId.toString()
                         deliveryCharges= mResponse.body.deliveryCharges
                         setData(mResponse)
                         cardId= mResponse.body.cardId
                         chatId = mResponse.body.chatId.toString()
+                        orderItemList.clear()
                         orderItemList.addAll(it.data.body.orderItems)
                         layShpList.visibility = VISIBLE
                         rl_edit.visibility = GONE
@@ -178,6 +177,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                         tvQuantity.text = "Quantity"
                         tvQuantityType.text = "U.O.M"
                         rvRequestProducts.adapter = RequestProductAdapter(list, orderItemList)
+                        listBids.clear()
 
                         listBids.addAll(mResponse.body.vendorBidingRequests)
                         vendorBidAdapter?.notifyDataSetChanged()
@@ -223,5 +223,11 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
         map["bidId"] = bidId
         homeModel.getBidingDetail(this, true, map)
         homeModel.homeResponse.observe(this, this)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        getBidingDetilsApi()
+
     }
 }
