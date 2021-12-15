@@ -198,16 +198,17 @@
             </LinearLayout>
 
             <Button
-                android:layout_centerHorizontal="true"
                 android:id="@+id/btn_Upload1"
-                android:layout_below="@+id/layoutText2"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutText2"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="30dp"
+                android:minHeight="45dp"
                 android:layout_marginRight="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/green_btn"
+                android:background="@drawable/button_round_corners"
                 android:text="Upload"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

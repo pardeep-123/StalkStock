@@ -289,8 +289,11 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     override fun afterTextChanged(s: Editable?) {
     }
 
-   /* override fun onResume() {
+    override fun onResume() {
         super.onResume()
+
+            currentOffset = 0
+            currentModel.clear()
         getVendorProducts()
-    }*/
+    }
 }

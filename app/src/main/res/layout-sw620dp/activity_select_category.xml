@@ -281,8 +281,6 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp">
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -290,11 +288,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_40sdp"
                     android:background="@drawable/buttonshape"
+                    android:minHeight="45dp"
                     android:text="Enter item"
                     android:textAllCaps="false"
                     android:textColor="#fff"
-                    android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                    android:textSize="16dp" />
             </RelativeLayout>
 
         </LinearLayout>

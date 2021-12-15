@@ -7,33 +7,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/mc_img"
         android:layout_marginLeft="@dimen/value_15dp"
-        android:layout_marginTop="@dimen/value_24dp"
+        android:layout_marginTop="@dimen/value_18dp"
         android:id="@+id/iv_brandImage"
         />
+
     <com.stalkstock.utils.custom.TitiliumBoldTextView
+        android:id="@+id/tv_brandName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mc Donald's"
-        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/value_15dp"
+        android:layout_marginTop="@dimen/value_15dp"
         android:layout_toRightOf="@+id/iv_brandImage"
+        android:layout_toLeftOf="@+id/tv_statusValueorders"
         android:gravity="left|top"
+        android:text="Mc Donacvvvvvvvvvvvvvvld's"
         android:textColor="@color/black_color"
-        android:textSize="25sp"
-         android:layout_marginTop="@dimen/value_15dp"
-         android:layout_marginLeft="@dimen/value_15dp"
-        android:id="@+id/tv_brandName"
-        />
+        android:textSize="@dimen/value_18sp" />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New York, "
-        android:textSize="22sp"
+        android:textSize="@dimen/value_12sp"
         android:textColor="@color/dark_gray"
         android:layout_below="@+id/tv_brandName"
         android:layout_alignLeft="@+id/tv_brandName"
@@ -43,23 +42,22 @@
         />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:id="@+id/tv_countryname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tv_cityname"
-        android:layout_toRightOf="@+id/tv_cityname"
         android:layout_below="@+id/tv_brandName"
-
+        android:layout_alignTop="@+id/tv_cityname"
+        android:visibility="gone"
         android:layout_marginLeft="@dimen/value_5dp"
+        android:layout_toRightOf="@+id/tv_cityname"
         android:text="USA"
-        android:textSize="22sp"
         android:textColor="@color/dark_gray"
-        android:id="@+id/tv_countryname"
-        />
+        android:textSize="@dimen/value_12sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/value_1dp"
-         android:layout_marginTop="@dimen/value_5dp"
+        android:layout_marginTop="@dimen/value_5dp"
         android:layout_below="@+id/iv_brandImage"
         android:layout_alignLeft="@+id/iv_brandImage"
         android:layout_alignRight="@+id/iv_brandImage"
@@ -74,35 +72,34 @@
         android:text="Beef Fresh Meet 250gm"
         android:layout_alignLeft="@+id/lineView"
         android:textColor="@color/black_color"
-        android:textSize="22sp"
+        android:textSize="@dimen/value_12sp"
         android:layout_below="@+id/lineView"
-         android:layout_marginTop="@dimen/value_7dp"
+        android:layout_marginTop="@dimen/value_7dp"
         android:id="@+id/tv_description"
         />
     <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="01 May 2020"
-        android:textSize="22sp"
+        android:textSize="@dimen/value_10sp"
         android:textColor="@color/dark_gray"
         android:layout_alignLeft="@+id/tv_description"
         android:layout_below="@+id/tv_description"
-         android:layout_marginTop="5dp"
-         android:id="@+id/tv_dateOrders"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_dateOrders"
         />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=", "
-        android:textSize="22sp"
-
         android:textColor="@color/dark_gray"
         android:layout_toRightOf="@+id/tv_dateOrders"
         android:layout_below="@+id/tv_description"
 
         android:layout_alignTop="@+id/tv_dateOrders"
         android:layout_alignBottom="@+id/tv_dateOrders"
+        android:textSize="@dimen/value_10sp"
 
         android:id="@+id/comma2"
         />
@@ -112,12 +109,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="06:17 PM"
-        android:textSize="22sp"
+        android:textSize="@dimen/value_10sp"
         android:textColor="@color/dark_gray"
         android:layout_toRightOf="@+id/tv_dateOrders"
         android:layout_alignTop="@+id/tv_dateOrders"
-         android:layout_marginLeft="@dimen/value_5dp"
-         android:id="@+id/tv_timeorders"
+        android:layout_marginLeft="@dimen/value_5dp"
+        android:id="@+id/tv_timeorders"
+        android:visibility="gone"
         />
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -125,29 +123,29 @@
         android:layout_height="wrap_content"
         android:text="$80.50"
         android:textColor="@color/black_color"
-        android:textSize="22sp"
-          android:layout_alignParentRight="true"
-         android:layout_alignTop="@+id/tv_description"
+        android:textSize="@dimen/value_16sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tv_description"
         android:id="@+id/tv_priceOrders"
         android:maxLines="1"
-          android:layout_marginRight="15dp"
+        android:layout_marginRight="15dp"
 
-         android:singleLine="true"
+        android:singleLine="true"
         android:ellipsize="end"
         />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:id="@+id/tv_statusValueorders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pending"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
         android:layout_alignTop="@+id/tv_brandName"
-        android:textSize="22sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginRight="15dp"
+        android:text="Penrtggggggdsgding"
 
         android:textColor="@color/orange_colour"
-        android:id="@+id/tv_statusValueorders"
-        />
+        android:textSize="@dimen/value_16sp" />
 
 
 

@@ -80,9 +80,9 @@
                 <RelativeLayout
                     android:id="@+id/edit_search"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/shape_edit_new_home"
-                    android:padding="12dp">
+                    >
 
                     <ImageView
                         android:id="@+id/search"
@@ -105,14 +105,19 @@
                         android:id="@+id/edtSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="text"
-                        android:backgroundTint="@color/white"
+                        android:layout_margin="@dimen/_6sdp"
                         android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:layout_toEndOf="@+id/search"
+                        android:backgroundTint="@color/white"
                         android:hint="Search.."
+                        android:inputType="text"
+                        android:padding="6dp"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
-                        android:textSize="17sp" />
+                        android:textColorHint="@color/dark_gray"
+                        android:textSize="15sp" />
 
                 </RelativeLayout>
 

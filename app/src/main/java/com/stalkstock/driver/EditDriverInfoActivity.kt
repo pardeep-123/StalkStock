@@ -247,6 +247,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
         Glide.with(this).load(driverDocResponse.body.driverDetail.registrationImage).into(img3)
         Glide.with(this).load(driverDocResponse.body.driverDetail.insuranceProof).into(img4)
 
+        mCountryName= driverDocResponse.body.driverDetail.country
         val vehicleType = getResources().getStringArray(R.array.Select_Vehicle_type)
 
         spinnerVehicleType.setSelection(vehicleType.indexOf(driverDocResponse.body.driverDetail.vehicleType))
@@ -333,7 +334,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
         hashMap.put("city", mUtils.createPartFromString(edtCity.text.toString()))
         hashMap.put("state", mUtils.createPartFromString(edtDriverState.text.toString()))
         hashMap.put("postalCode", mUtils.createPartFromString(edtZipCode.text.toString()))
-        hashMap.put("country", mUtils.createPartFromString(spinnerCountry.selectedItemPosition.toString()))
+        hashMap.put("country", mUtils.createPartFromString(mCountryName))
         hashMap.put("latitude", mUtils.createPartFromString(""))
         hashMap.put("longitude", mUtils.createPartFromString(""))
         viewModel.editDriverDocumentDetail(

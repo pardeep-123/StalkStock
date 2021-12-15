@@ -76,6 +76,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
     private lateinit var productAdapter: ArrayAdapter<String>
     private lateinit var adapterMeasurements: AdapterProductUnit
     var currentMeasurementId = ""
+    var currentMeasurementName = ""
     var quantity: String = ""
     var type: String = ""
     var categoryId: String = ""
@@ -128,7 +129,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 position: Int,
                 id: Long
             ) {
-                if (position !== 0) {
+                if (position !=0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddedProduct, R.color.black_color
@@ -170,7 +171,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 id: Long
             ) {
 
-                if (position !== 0) {
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddedProduct, R.color.black_color
@@ -200,7 +201,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 id: Long
             ) {
 
-                if (position !== 0) {
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddedProduct, R.color.black_color
@@ -311,6 +312,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                         spinnerGetProduct.selectedItem.toString(),
                         type,
                         productId,
+                        currentMeasurementName,
                         quantity,
                         measurementId,
                         edit = true,
@@ -437,6 +439,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
         var name: String = "",
         var type: String = "",
         val productId: String = "",
+        val unitName: String = "",
         var quantity: String = "",
         var unit: String = "",
         var edit: Boolean = false,
@@ -588,6 +591,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
 
     fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
         measurementId = productUnitData.id.toString()
+        currentMeasurementName = productUnitData.name.toString()
         for (i in 0 until currentModelMeasurements.size) {
             listProductUnit[i] = ProductUnitData(
                 currentModelMeasurements[i].id,
@@ -602,6 +606,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
         etUnitMeasurement.setText(productUnitData.name)
         detailDialog.dismiss()
         currentMeasurementId = currentModelMeasurements[position].id.toString()
+
     }
 
     fun createRequestBody(param: String): RequestBody {

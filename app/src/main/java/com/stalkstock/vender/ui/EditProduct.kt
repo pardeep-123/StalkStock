@@ -65,6 +65,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     var deleteImageArrayId = ArrayList<String>()
 
     private var curreMeasurementId = ""
+    private var curreMeasurementName= ""
     private lateinit var adapterMeasurements: AdapterProductUnit2
     private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
     var listProductUnit: ArrayList<ProductUnitData> = ArrayList()
@@ -116,16 +117,22 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 position: Int,
                 id: Long
             ) {
-
-                (selectedItemView as? TextView)?.setTextColor(
-                    ContextCompat.getColor(
-                        this@EditProduct, R.color.black
+                if(position==0){
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditProduct, R.color.sort_popup_gray_color
+                        )
                     )
-                )
-                val get = listCategoryBody[position]
-                categoryId = get.id.toString()
-                getSubCategoryAPI(categoryId)
-
+                }else{
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditProduct, R.color.black
+                        )
+                    )
+                    val get = listCategoryBody[position]
+                    categoryId = get.id.toString()
+                    getSubCategoryAPI(categoryId)
+                }
 
             }
 
@@ -142,12 +149,20 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 position: Int,
                 id: Long
             ) {
-
-                (selectedItemView as? TextView)?.setTextColor(
-                    ContextCompat.getColor(
-                        this@EditProduct, R.color.black
+                if(position==0){
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditProduct, R.color.sort_popup_gray_color
+                        )
                     )
-                )
+                }else{
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditProduct, R.color.black
+                        )
+                    )
+                }
+
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -262,6 +277,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         //  spinnerCategory.setSelection(list.indexOf(currentProductModel.body.categoryId.toString()))
         addproduct_unitmeasurement.text = currentProductModel.body.productMeasurement.name
         curreMeasurementId = currentProductModel.body.measurementId.toString()
+        curreMeasurementName = currentProductModel.body.productMeasurement.name
 
         if (currentProductModel.body.availability == 1) {
             spinner.setSelection(1)
@@ -687,6 +703,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         addproduct_unitmeasurement.text = productUnitData.unit
         detailDialog!!.dismiss()
         curreMeasurementId = currentModelMeasurements[position].id.toString()
+        curreMeasurementName = currentModelMeasurements[position].name.toString()
     }
 
     private fun getmeasurementsAPI() {

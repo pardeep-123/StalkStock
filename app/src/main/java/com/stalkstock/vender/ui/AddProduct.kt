@@ -12,6 +12,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -112,20 +113,116 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinnerCountry.adapter = countryAdapter
 
+        spinnerCountry.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position!=0){
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.black_color
+                        )
+                    )
+                }
+                else{
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.sort_popup_gray_color
+                        )
+                    )
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
+
+        val prodTypeAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_product_type,
+            R.layout.spinner_layout_for_vehicle
+        )
+        prodTypeAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinnerProdType.adapter = prodTypeAdapter
+
+        spinnerProdType.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position!=0){
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.black_color
+                        )
+                    )
+                }
+                else{
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.sort_popup_gray_color
+                        )
+                    )
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
+
+         val availAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.Select_Category_available,
+            R.layout.spinner_layout_for_vehicle
+        )
+        availAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
+        spinner.adapter = availAdapter
+
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                if (position!=0){
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.black_color
+                        )
+                    )
+                }
+                else{
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.sort_popup_gray_color
+                        )
+                    )
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
+
+
         listProduct.add("Select Product")
         spinnerGetProduct.isEnabled = false
         productAdapter = ArrayAdapter(this, R.layout.spiner_layout_text, listProduct)
         spinnerGetProduct!!.adapter = productAdapter
 
-
         spinnerGetProduct.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                if (position!==0){
+                if (position!=0){
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.black_color
+                        )
+                    )
                     val product = currentModel[spinnerGetProduct.selectedItemPosition-1]
                     productId = product.id.toString()
                 }
-                else{ }
+                else{
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@AddProduct, R.color.sort_popup_gray_color
+                        )
+                    )
+                }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }

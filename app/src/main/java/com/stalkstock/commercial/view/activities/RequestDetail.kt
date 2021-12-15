@@ -68,6 +68,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 "Item Name",
                 "Quantity",
                 "",
+                "",
                 "Unit of Measurement",
                 false,
                 false
@@ -144,8 +145,8 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
             intent.putExtra("id", bidId.toString())
             intent.putExtra("userId", userId)
             intent.putExtra("chatId", chatId)
-            intent.putExtra("userName", userName)
-            intent.putExtra("userImage", userImage)
+            intent.putExtra("userName", detail[0].vendorDetail.firstName +" "+detail[0].vendorDetail.lastName)
+            intent.putExtra("userImage", detail[0].vendorDetail.image)
             intent.putExtra("param_name", "bidId")
 
             startActivity(intent)

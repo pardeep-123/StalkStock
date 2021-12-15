@@ -57,15 +57,7 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
 
         holder.itemView.tvType.text = list[pos].name
         holder.itemView.tvQuantity.text =  list[pos].quantity
-        if(list[pos].unit=="1"){
-            holder.itemView.tvQuantityType.text =  "Teaspoon"
-        }else{
-            holder.itemView.tvQuantityType.text =  "Cup"
-        }
-            /*
-            measurementName
-             */
-//        holder.itemView.tvCount.text=
+        holder.itemView.tvQuantityType.text = list[pos].unitName
         holder.tvCount.text=pos.toString()+"."
 //        }
 

@@ -246,8 +246,7 @@
                                 android:text="Select Product Type"
                                 android:textColor="#000"
                                 android:textColorHint="@color/light_grey"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
+                                android:textSize="13sp" />
 
                         </RelativeLayout>
 
@@ -465,8 +464,7 @@
                                 android:textColor="#000"
 
                                 android:textColorHint="@color/light_grey"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
+                                android:textSize="13sp" />
 
                         </RelativeLayout>
 

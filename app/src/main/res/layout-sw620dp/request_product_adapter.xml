@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         >
 
 
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/black_color"
-             />
+            />
 
         <View
             android:id="@+id/viewStart"
@@ -43,7 +43,7 @@
             android:layout_height="0.5dp"
             android:layout_alignParentBottom="true"
             android:background="@color/black_color"
-             />
+            />
 
 
 
@@ -52,9 +52,9 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_weight="0.9"
                 android:layout_width="0dp"
-                android:visibility="gone"
                 android:layout_height="match_parent">
 
 
@@ -64,10 +64,9 @@
                     android:layout_height="wrap_content"
                     android:text="1."
                     android:layout_centerInParent="true"
-                     android:textSize="20sp"
-                    android:layout_marginLeft="@dimen/value_15dp"
+                    android:textSize="@dimen/value_12dp"
                     android:textColor="@color/black_color"
-                     />
+                    />
 
                 <View
                     android:id="@+id/viewName"
@@ -75,13 +74,13 @@
                     android:layout_alignParentRight="true"
                     android:layout_height="match_parent"
                     android:background="@color/black_color"
-                      />
+                    />
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_weight="1.5"
-                android:layout_width="0dp"
                 android:visibility="gone"
+                android:layout_weight="1.3"
+                android:layout_width="0dp"
                 android:layout_height="match_parent">
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -90,10 +89,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Meat"
-                     android:textSize="20sp"
-                     android:textColor="@color/black_color"
+                    android:textSize="@dimen/value_12dp"
+                    android:textColor="@color/black_color"
 
-                     />
+                    />
 
                 <View
                     android:id="@+id/viewType"
@@ -102,11 +101,11 @@
                     android:layout_height="match_parent"
 
                     android:background="@color/black_color"
-                      />
+                    />
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
@@ -114,21 +113,19 @@
                     android:id="@+id/tvType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bacon Grill"
                     android:layout_centerInParent="true"
+                    android:text="Bacon Grill"
 
-                    android:textSize="20sp"
-                     android:textColor="@color/black_color"
-
-                     />
+                    android:textColor="@color/black_color"
+                    android:textSize="@dimen/value_12dp" />
 
                 <View
                     android:id="@+id/viewQuantity"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                      android:background="@color/black_color"
-                      />
+                    android:background="@color/black_color"
+                    />
 
 
             </RelativeLayout>
@@ -141,12 +138,11 @@
                     android:id="@+id/tvQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
-                     android:textSize="20sp"
                     android:layout_centerInParent="true"
-                     android:textColor="@color/black_color"
+                    android:text="10"
+                    android:textColor="@color/black_color"
 
-                    />
+                    android:textSize="@dimen/value_12dp" />
 
 
                 <View
@@ -154,8 +150,8 @@
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                      android:background="@color/black_color"
-                      />
+                    android:background="@color/black_color"
+                    />
 
 
             </RelativeLayout>
@@ -169,19 +165,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kg"
+                    android:maxLines="2"
                     android:layout_centerInParent="true"
-                     android:textSize="20sp"
+                    android:textSize="@dimen/value_12dp"
                     android:layout_marginRight="@dimen/value_12dp"
                     android:textColor="@color/black_color"
-                     />
+                    />
 
                 <View
                     android:id="@+id/viewEdit"
                     android:layout_width="0.5dp"
                     android:layout_alignParentRight="true"
                     android:layout_height="match_parent"
-                      android:background="@color/black_color"
-                      />
+                    android:background="@color/black_color"
+                    />
 
             </RelativeLayout>
             <RelativeLayout
@@ -190,36 +187,37 @@
                 android:layout_width="0dp"
                 android:visibility="gone"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:id="@+id/ivEdit"
                     android:layout_width="@dimen/value_16dp"
                     android:layout_height="@dimen/value_16dp"
                     android:layout_centerInParent="true"
-                     android:background="@drawable/edi_icon"
-                    />
+                    android:background="@drawable/edi_icon" />
 
                 <View
                     android:id="@+id/viewDelete"
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                      android:background="@color/black_color"
-                      />
+                    android:background="@color/black_color"
+                    />
 
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_delete"
                 android:layout_weight="0.9"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:id="@+id/ivDelete"
                     android:layout_width="@dimen/value_12dp"
                     android:layout_height="@dimen/value_15dp"
-                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_centerInParent="true"
-                     android:background="@drawable/dlt_icon_red"
-                    />
+                    android:background="@drawable/dlt_icon_red"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
             </RelativeLayout>

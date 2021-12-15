@@ -46,12 +46,18 @@ class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>, var
             holder.itemView.tvTimeMe.text =AppUtils.convertTimeStampToDateTime(chatList[position].created)
         }
         else {
-            holder.itemView.clMe.visibility = View.GONE
-            holder.itemView.clOther.visibility = View.VISIBLE
-            Glide.with(mContext).load(chatList[position].sender.image).into(holder.itemView.civOther)
+            try {
+                holder.itemView.clMe.visibility = View.GONE
+                holder.itemView.clOther.visibility = View.VISIBLE
+                Glide.with(mContext).load(chatList[position].sender.image)
+                    .into(holder.itemView.civOther)
 
-            holder.itemView.tvMessage.text = chatList[position].message
-            holder.itemView.tvTime.text = AppUtils.convertTimeStampToDateTime(chatList[position].created)
+                holder.itemView.tvMessage.text = chatList[position].message
+                holder.itemView.tvTime.text =
+                    AppUtils.convertTimeStampToDateTime(chatList[position].created)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
         }
 
 

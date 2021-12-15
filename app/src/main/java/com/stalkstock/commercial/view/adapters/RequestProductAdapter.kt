@@ -72,7 +72,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
             holder.itemView.rl_delete.visibility = View.GONE
          }
 */
-        if(list[position].delete) {
+       /* if(list[position].delete) {
             holder.itemView.ivDelete.visibility = View.VISIBLE
              holder.itemView.viewDelete.visibility = View.VISIBLE
 
@@ -85,7 +85,7 @@ class RequestProductAdapter(var list: ArrayList<AddedProduct.RequestProductData>
             holder.itemView.viewEdit.visibility = View.GONE
             holder.itemView.rl_delete.visibility = View.GONE
         }
-
+*/
 
 
 
