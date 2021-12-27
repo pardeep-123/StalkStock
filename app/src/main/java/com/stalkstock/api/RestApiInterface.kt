@@ -13,6 +13,7 @@ import com.stalkstock.response_models.common.forgot.ForgotPasswordResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.others.GlobalVariables.URL
 import com.stalkstock.vender.Model.*
+import com.stripe.android.model.Address
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -553,5 +554,8 @@ interface RestApiInterface {
     @Multipart
     @POST(URL.getVendorProductSearch)
     fun getVendorProduct(@PartMap body: HashMap<String,RequestBody>): Observable<CommonResponseModel>
+
+    @POST(URL.getPrimaryAddress)
+    fun getPrimaryAddress(): Observable<PrimaryAddressModel>
 
 }

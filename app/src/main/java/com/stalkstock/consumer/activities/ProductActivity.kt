@@ -3,9 +3,7 @@ package com.stalkstock.consumer.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -32,6 +30,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
 
     var currentLowPrice = ""
     var currentHighPrice = "10000"
+    var productType = "0"
     var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
 
     var context: ProductActivity? = null
@@ -84,7 +83,6 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
             resultLauncher.launch(intent)
         }
 
-
         txtTitle.text = intent.getStringExtra("title")
         getProductAsVendor()
         back.setOnClickListener { finish() }
@@ -100,6 +98,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
                     currentLowPrice = data!!.getStringExtra("lowPrice")!!
                     currentHighPrice = data.getStringExtra("highPrice")!!
                     currentSortBy = data.getStringExtra("sortBy")!!
+                    productType = data.getStringExtra("productType")!!
 
                     reset = true
                     getProductAsVendor()
@@ -130,6 +129,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
         hashMap["highPrice"] = mUtils.createPartFromString(currentHighPrice)
         hashMap["product_id"] = mUtils.createPartFromString(currentProductID)
         hashMap["deliveryType"] = mUtils.createPartFromString(currentDelivery_type)
+        hashMap["productType"] = mUtils.createPartFromString(productType)
         viewModel.userGetVendorAsPerProductAPI(this, true, hashMap)
         viewModel.homeResponse.observe(this, this)
 

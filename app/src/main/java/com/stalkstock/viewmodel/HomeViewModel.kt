@@ -780,7 +780,6 @@ class HomeViewModel : ViewModel() {
         activity: Activity,
         showLoader: Boolean
     ) {
-
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             restApiInterface.helpContentAPI()
                 .subscribeOn(Schedulers.io())
@@ -799,8 +798,35 @@ class HomeViewModel : ViewModel() {
                     }
                 })
         }
+    }
+
+    @SuppressLint("CheckResult")
+    fun getPrimaryAddress(
+        activity: Activity,
+        showLoader: Boolean
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getPrimaryAddress()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getPrimaryAddress(activity, showLoader)
+                    }
+                })
+        }
 
     }
+
 
     @SuppressLint("CheckResult")
     fun getCategoryListAPI(

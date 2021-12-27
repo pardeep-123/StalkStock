@@ -324,6 +324,7 @@ class GlobalVariables {
         const val driverReview= "driverReview"
         const val getPayPalWebviewLink="getPayPalWebviewLink"
         const val getVendorProductSearch="vendor/vendorProductSearch"
+        const val getPrimaryAddress="getPrimaryAddress"
 
    /*     {
             "addressId": 42,

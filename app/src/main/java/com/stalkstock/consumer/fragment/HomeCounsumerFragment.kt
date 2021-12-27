@@ -22,22 +22,28 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.activities.NotificationFirstActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.activities.ManageAddress
 import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.consumer.activities.EditAddressDetail2Activity
 import com.stalkstock.consumer.activities.FilterActivity
 import com.stalkstock.consumer.activities.HomedetailsActivity
 import com.stalkstock.consumer.activities.MainConsumerActivity
 import com.stalkstock.consumer.adapter.CategoryAdapter
 import com.stalkstock.consumer.adapter.SuggestedAdapter
 import com.stalkstock.consumer.adapter.ViewDetailAdapter
+import com.stalkstock.consumer.model.ModelUserAddressList
+import com.stalkstock.consumer.model.PrimaryAddressModel
 import com.stalkstock.consumer.model.UserBannerModel
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.driver.models.SuggestedBody
 import com.stalkstock.driver.models.SuggestedDataListed
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.GlobalVariables.URL.getPrimaryAddress
 import com.stalkstock.vender.Utils.CurrentLocationActivity
 import com.stalkstock.viewmodel.HomeViewModel
 import com.viewpagerindicator.CirclePageIndicator
+import kotlinx.android.synthetic.main.fragment_home_consumer.*
 import okhttp3.RequestBody
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,6 +53,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     private var mLat: Double = 0.0
     private var mLong: Double = 0.0
     var stAddress = ""
+    var sortDeliveryType=2
 
     var currentLowPrice = ""
     var currentHighPrice = "10000"
@@ -78,6 +85,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     var statusClick = 1
     var tickClick = 1
     var clickMsg = 0
+    var productType="0"
 
     private var isLastPageSwiped = false
     private var counterPageScroll = 0
@@ -87,11 +95,12 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     lateinit var tv_delivery: Button
     lateinit var mActivity:MainConsumerActivity
 
+    var data:ModelUserAddressList.Body?=null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as MainConsumerActivity
     }
-    
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -151,6 +160,12 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         )
 
         suggested_recycle.adapter = adapter3
+        getPrimaryAddressApi()
+        tv_address.setOnClickListener {
+            val intent =Intent(context, ManageAddress::class.java)
+            context?.startActivity(intent)
+        }
+
         notification.setOnClickListener {
             val intent = Intent(activity, NotificationFirstActivity::class.java)
             startActivity(intent)
@@ -205,11 +220,18 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         return viewFrag
     }
 
+    private fun getPrimaryAddressApi() {
+        val mainConsumerActivity = activity as MainConsumerActivity
+        viewModel.getPrimaryAddress(mainConsumerActivity, false)
+        viewModel.homeResponse.observe(mainConsumerActivity, this)
+    }
+
     private fun getSuggestedBanner() {
         val map = HashMap<String, String>()
         map["offset"] = suggestionOffSet.toString()
         map["limit"] = "10"
         map["type"] = currentType  // default,rating,popular
+        map["deliveryType"] = currentDeliveryType.toString()  // default,pickup,delivery
         viewModel.getSuggestedProduct((activity as MainConsumerActivity), false,map)
     }
 
@@ -221,13 +243,14 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === 0) {
-            if (resultCode === Activity.RESULT_OK) {
+        if (requestCode == 0) {
+            if (resultCode == Activity.RESULT_OK) {
                 currentLowPrice = data!!.getStringExtra("lowPrice")!!
                 currentHighPrice = data.getStringExtra("highPrice")!!
                 currentSortBy = data.getStringExtra("sortBy")!!
+                productType = data.getStringExtra("productType")!!
             }
-            if (resultCode === Activity.RESULT_CANCELED) {
+            if (resultCode == Activity.RESULT_CANCELED) {
                 // Write your code if there's no result
             }
         }
@@ -267,7 +290,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         } catch (e: Exception) {
             stAddress = "No location found"
         }
-        tv_address.text = stAddress
+        //tv_address.text = stAddress
     }
 
     override fun onLocationGet(latitude: String?, longitude: String?) {
@@ -310,6 +333,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         tv_most = logoutUpdatedDialog2.findViewById(R.id.tv_most)
         tv_rating = logoutUpdatedDialog2.findViewById(R.id.tv_rating)
         btn_apply.setOnClickListener {
+            getSuggestedBanner()
             logoutUpdatedDialog2.dismiss()
             if (currentDeliveryType == 0)
                 bt_pickup.performClick()
@@ -478,6 +502,13 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
+
+                if (it.data is PrimaryAddressModel) {
+                    val mResponse: PrimaryAddressModel = it.data
+                    data= mResponse.body
+                    tv_address.text= data?.geoLocation
+                }
+
                 if (it.data is SuggestedDataListed) {
                     val mResponse: SuggestedDataListed = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
@@ -540,6 +571,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         intent.putExtra("currentHighPrice", currentHighPrice)
         intent.putExtra("currentLowPrice", currentLowPrice)
         intent.putExtra("currentSortBy", currentSortBy)
+        intent.putExtra("productType", productType)
         startActivity(intent)
     }
 }

@@ -95,9 +95,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                 rvRequestBids.visibility = GONE
                 btnAccepts.visibility = VISIBLE
 
-                detail.add(
-                   items
-                )
+                detail.add(items)
 
                 tvName.setText(items.vendorDetail.firstName + " " + items.vendorDetail.lastName)
                 tvPrices.setText("$" + items.amount)

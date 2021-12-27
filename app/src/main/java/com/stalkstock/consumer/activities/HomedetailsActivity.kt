@@ -9,12 +9,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.NotificationFirstActivity
@@ -25,10 +23,10 @@ import com.stalkstock.consumer.adapter.HomedetailAdapter
 import com.stalkstock.consumer.adapter.TitleAdapter
 import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.SliderItemTitleModel
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Utils.CheckLocationActivity
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_homedetails.*
 import okhttp3.RequestBody
 import java.util.*
@@ -47,6 +45,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     var stAddress = ""
     private var currentCatId = ""
     var currentDeliveryType = "0" // 0- pickup,1-deelivery , 2 -all
+    var productType = "0"
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"//sort by high_to_low => high to low low_to_high =>low to high
@@ -116,6 +115,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
         currentHighPrice = intent.getStringExtra("currentHighPrice")!!
         currentLowPrice = intent.getStringExtra("currentLowPrice")!!
         currentSortBy = intent.getStringExtra("currentSortBy")!!
+        productType = intent.getStringExtra("productType")!!
 
         detail_recycle = findViewById(R.id.detail_recycle)
         rv_title = findViewById(R.id.rv_title)
@@ -207,15 +207,13 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
 
         setTitleAdapter()
 
-
-
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     val data: Intent? = result.data
                     currentLowPrice = data!!.getStringExtra("lowPrice")!!
-                    currentHighPrice = data!!.getStringExtra("highPrice")!!
-                    currentSortBy = data!!.getStringExtra("sortBy")!!
+                    currentHighPrice = data.getStringExtra("highPrice")!!
+                    currentSortBy = data.getStringExtra("sortBy")!!
                     reset = true
                     getProductAsPerCatSub()
                 }
@@ -241,7 +239,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     private fun setTitleAdapter() {
         titleAdapter = TitleAdapter(this, listSub)
 
-        rv_title!!.adapter = titleAdapter
+        rv_title.adapter = titleAdapter
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -275,7 +273,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
                         tvNoProducts.visibility=View.VISIBLE
                         detail_recycle.visibility=View.GONE
                         currentModel.clear()
-                        adapter!!.notifyDataSetChanged()
+                        adapter.notifyDataSetChanged()
                     }
                 } else {
                     if (whichApi == "subCat")
@@ -284,7 +282,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
                         tvNoProducts.visibility=View.VISIBLE
                         detail_recycle.visibility=View.GONE
                         currentModel.clear()
-                        adapter!!.notifyDataSetChanged()
+                        adapter.notifyDataSetChanged()
                     }
                 }
             }

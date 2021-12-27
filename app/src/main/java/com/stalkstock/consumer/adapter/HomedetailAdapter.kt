@@ -55,7 +55,7 @@ class HomedetailAdapter(
                 intent.putExtra("sortBy", homedetailsActivity?.currentSortBy)
                 intent.putExtra("lowPrice", homedetailsActivity?.currentLowPrice)
                 intent.putExtra("highPrice", homedetailsActivity?.currentHighPrice)
-
+                intent.putExtra("productType", homedetailsActivity?.productType)
                 intent.putExtra("deliveryType", currentDeliveryType)
                 context.startActivity(intent)
             }

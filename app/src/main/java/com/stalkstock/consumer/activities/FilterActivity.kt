@@ -22,13 +22,12 @@ class FilterActivity : AppCompatActivity() {
 
     private var fromWhichActivity = ""
     var arrayList = ArrayList<FilterData>()
-    var categoryId=""
+    var categoryId = ""
+    var productType=0 // 1- Non veg, 0- veg
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-
-
 
         rangePrice.addOnChangeListener(object : RangeSlider.OnChangeListener {
 
@@ -41,8 +40,6 @@ class FilterActivity : AppCompatActivity() {
                 tv_end.text = "$$end_values"
                 currentHighPrice = end_values
 
-
-                //    tvValues.text = values.
             }
         })
 
@@ -61,40 +58,39 @@ class FilterActivity : AppCompatActivity() {
                             this@FilterActivity, R.color.sort_popup_gray_color
                         )
                     )
-                    categoryId=""
+                    categoryId = ""
                 } else {
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@FilterActivity, R.color.black
                         )
                     )
-
                     categoryId = spinner2.selectedItemPosition.toString()
 
                 }
-
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
             }
         }
 
-
         btn_apply.setOnClickListener {
 
             var returnIntent = Intent()
             if (fromWhichActivity == "HomeCounsumerFragment") {
-                var returnIntent = Intent()
+                val returnIntent = Intent()
                 returnIntent.putExtra("lowPrice", currentLowPrice.toString())
                 returnIntent.putExtra("highPrice", currentHighPrice.toString())
                 returnIntent.putExtra("sortBy", currentSortBy)
+                returnIntent.putExtra("productType", productType)
                 setResult(RESULT_OK, returnIntent)
             }
             if (fromWhichActivity == "MainHomeFragment") {
-                var returnIntent = Intent()
+                val returnIntent = Intent()
                 returnIntent.putExtra("lowPrice", currentLowPrice.toString())
                 returnIntent.putExtra("highPrice", currentHighPrice.toString())
                 returnIntent.putExtra("sortBy", currentSortBy)
+                returnIntent.putExtra("productType", productType)
                 setResult(RESULT_OK, returnIntent)
             }
             if (fromWhichActivity == "HomedetailsActivity")
@@ -107,6 +103,7 @@ class FilterActivity : AppCompatActivity() {
                 returnIntent.putExtra("lowPrice", currentLowPrice.toString())
                 returnIntent.putExtra("highPrice", currentHighPrice.toString())
                 returnIntent.putExtra("sortBy", currentSortBy)
+                returnIntent.putExtra("productType", productType.toString())
                 setResult(Activity.RESULT_OK, returnIntent)
             }
             finish()
@@ -133,16 +130,49 @@ class FilterActivity : AppCompatActivity() {
             currentSortBy = "low_to_high"
             imgLowToHigh.visibility = View.VISIBLE
             imgHighToLOw.visibility = View.GONE
+            imgRating.visibility = View.GONE
+            imgPopular.visibility = View.GONE
             txtHighToLow.setTextColor(getColor(R.color.dark_gray))
             txtLowToHigh.setTextColor(getColor(R.color.green_colour))
+            txtPopular.setTextColor(getColor(R.color.dark_gray))
+            txtRating.setTextColor(getColor(R.color.dark_gray))
         }
         rlCost.setOnClickListener {
             currentSortBy = "high_to_low"
             imgLowToHigh.visibility = View.GONE
+            imgRating.visibility = View.GONE
+            imgPopular.visibility = View.GONE
             imgHighToLOw.visibility = View.VISIBLE
             txtHighToLow.setTextColor(getColor(R.color.green_colour))
             txtLowToHigh.setTextColor(getColor(R.color.dark_gray))
+            txtPopular.setTextColor(getColor(R.color.dark_gray))
+            txtRating.setTextColor(getColor(R.color.dark_gray))
         }
+
+
+        rlPopular.setOnClickListener {
+            currentSortBy = "popular"
+            imgLowToHigh.visibility = View.GONE
+            imgHighToLOw.visibility = View.GONE
+            imgPopular.visibility = View.VISIBLE
+            imgRating.visibility = View.GONE
+            txtHighToLow.setTextColor(getColor(R.color.dark_gray))
+            txtLowToHigh.setTextColor(getColor(R.color.dark_gray))
+            txtPopular.setTextColor(getColor(R.color.green_colour))
+            txtRating.setTextColor(getColor(R.color.dark_gray))
+        }
+        rlRating.setOnClickListener {
+            currentSortBy = "rating"
+            imgLowToHigh.visibility = View.GONE
+            imgHighToLOw.visibility = View.GONE
+            imgPopular.visibility = View.GONE
+            imgRating.visibility = View.VISIBLE
+            txtHighToLow.setTextColor(getColor(R.color.dark_gray))
+            txtLowToHigh.setTextColor(getColor(R.color.dark_gray))
+            txtPopular.setTextColor(getColor(R.color.dark_gray))
+            txtRating.setTextColor(getColor(R.color.green_colour))
+        }
+
 
         if (MyApplication.instance.getString("usertype").equals("3")) {
             tv_sort_cate.visibility = View.VISIBLE
