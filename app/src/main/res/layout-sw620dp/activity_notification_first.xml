@@ -38,12 +38,12 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="vertical"
-            android:padding="20dp">
+           >
 
             <ImageView
                 android:id="@+id/iv_congrats"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/noitfy_empty" />

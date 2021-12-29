@@ -256,7 +256,7 @@
                 android:background="@drawable/btn_shape"
                 android:gravity="center"
                 android:minHeight="45dp"
-                android:text="Checkout"
+                android:text="Confirm Payment"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp" />

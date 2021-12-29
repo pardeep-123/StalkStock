@@ -69,12 +69,13 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_orderdeatils.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout-sw620dp/activity_parent.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_payment.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_paymentselect.xml" value="0.5" />
         <entry key="app/src/main/res/layout-sw620dp/activity_product.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_product_detail.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_productdetails.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_search.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/activity_search_screen.xml" value="0.17" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_select_category.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_select_category.xml" value="0.3468586387434555" />
         <entry key="app/src/main/res/layout-sw620dp/activity_sign_up.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup3.xml" value="0.11953125" />
@@ -95,7 +96,7 @@
         <entry key="app/src/main/res/layout-sw620dp/fragment_account2.xml" value="0.18" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_account_consumer.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_add_post.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-sw620dp/fragment_cart.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_cart.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_h_ome.xml" value="0.1" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_home_commercial.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_home_consumer.xml" value="0.22" />
@@ -119,7 +120,7 @@
         <entry key="app/src/main/res/layout-sw620dp/request_bids_adapter.xml" value="0.17" />
         <entry key="app/src/main/res/layout-sw620dp/request_detail.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/request_product_adapter.xml" value="0.21" />
-        <entry key="app/src/main/res/layout-sw620dp/row_cart.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw620dp/row_cart.xml" value="0.5" />
         <entry key="app/src/main/res/layout-sw620dp/row_categrey.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/row_homedetails.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/row_manageaddress.xml" value="0.13515625" />

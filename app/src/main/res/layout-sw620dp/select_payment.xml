@@ -264,7 +264,7 @@
                 android:layout_marginStart="@dimen/_40sdp"
                 android:background="@drawable/btn_shape"
                 android:gravity="center"
-                android:text="Checkout"
+                android:text="Confirm Payment"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17sp" />

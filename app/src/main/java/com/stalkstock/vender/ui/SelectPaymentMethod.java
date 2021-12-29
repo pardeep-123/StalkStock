@@ -80,7 +80,7 @@ public class SelectPaymentMethod extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (nextbutton.getText().toString().equals("Next")) {
-                    nextbutton.setText("Checkout");
+                    nextbutton.setText("Confirm Payment");
                     btn_add.setVisibility(View.VISIBLE);
                     radio_fill.setImageResource(R.drawable.radio_fill);
                     radio_empty.setImageResource(R.drawable.radio_circle);
