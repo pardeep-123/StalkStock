@@ -326,7 +326,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         }
 
         map["availability"] = mUtils.createPartFromString(avail.toString())
-        map["productType"] = mUtils.createPartFromString(productType.toString())
+       // map["productType"] = mUtils.createPartFromString(productType.toString())
         var arrayList: ArrayList<String> = ArrayList()
         for (i in arrStringMultipleImages) {
             arrayList.add(i.name!!)
@@ -347,11 +347,11 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             spinnerGetProduct.requestFocus()
             AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
             return false
-        }  else if(spinnerProdType.selectedItemPosition == 0) {
+        }  /*else if(spinnerProdType.selectedItemPosition == 0) {
             spinnerProdType.requestFocus()
             AppUtils.showErrorAlert(this, getString(R.string.please_select_product_type))
             return false
-        }
+        }*/
         else if(spinnerCountry.selectedItemPosition==0) {
             AppUtils.showErrorAlert(this, "Please select country")
             return false

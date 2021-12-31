@@ -129,7 +129,7 @@ class ProductActivity : BaseActivity(), Observer<RestObservable> {
         hashMap["highPrice"] = mUtils.createPartFromString(currentHighPrice)
         hashMap["product_id"] = mUtils.createPartFromString(currentProductID)
         hashMap["deliveryType"] = mUtils.createPartFromString(currentDelivery_type)
-        hashMap["productType"] = mUtils.createPartFromString(productType)
+    //    hashMap["productType"] = mUtils.createPartFromString(productType)
         viewModel.userGetVendorAsPerProductAPI(this, true, hashMap)
         viewModel.homeResponse.observe(this, this)
 

@@ -14,6 +14,7 @@
             android:id="@+id/img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:src="@drawable/red_dot"
             android:layout_marginTop="10sp"/>
         <com.stalkstock.utils.custom.TitiliumBoldTextView

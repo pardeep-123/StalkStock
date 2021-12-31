@@ -387,10 +387,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 AppUtils.showErrorAlert(this, "Please enter product name")
                 return false
             }
-            spinnerType.selectedItemPosition == 0 -> {
+           /* spinnerType.selectedItemPosition == 0 -> {
                 AppUtils.showErrorAlert(this, "Please select product type")
                 return false
-            }
+            }*/
             spinnerCountry.selectedItemPosition == 0 -> {
                 AppUtils.showErrorAlert(this, "Please select country")
                 return false
@@ -490,7 +490,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         }
 
         map["availability"] = mUtils.createPartFromString(avail.toString())
-        map["productType"] = mUtils.createPartFromString(productType.toString())
+   //     map["productType"] = mUtils.createPartFromString(productType.toString())
         Log.i("==Ids", deleteImageArrayId.size.toString())
 
 

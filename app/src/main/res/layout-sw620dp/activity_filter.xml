@@ -316,6 +316,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="PRODUCT TYPE"
@@ -325,6 +326,7 @@
 
         <RelativeLayout
             android:id="@+id/rlVeg"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp">
@@ -353,12 +355,14 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone"
             android:background="@color/dark_gray" />
 
         <RelativeLayout
             android:id="@+id/rlNonVeg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_8sdp">
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView

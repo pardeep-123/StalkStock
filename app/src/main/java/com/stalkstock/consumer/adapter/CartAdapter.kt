@@ -39,11 +39,11 @@ class CartAdapter(
             context.addToCartAPI(arrayList[position].productId.toString(), i.toString())
         }
 
-        if(arrayList[position].product.productType==1){
+      /*  if(arrayList[position].product.productType==1){
             holder.itemView.img1.setImageResource(R.drawable.red_dot)
         }else{
             holder.itemView.img1.setImageResource(R.drawable.green_dot)
-        }
+        }*/
         //img1
         holder.itemView.plus.setOnClickListener {
             val i = currentQty + 1
