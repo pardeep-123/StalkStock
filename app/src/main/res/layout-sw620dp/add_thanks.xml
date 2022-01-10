@@ -33,11 +33,10 @@
 
         <ImageView
             android:id="@+id/iv_Congo"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_40sdp"
             android:src="@drawable/confirm_icon" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -46,7 +45,8 @@
             android:gravity="center"
             android:text="Thank You !"
             android:textColor="@color/black"
-            android:textSize="@dimen/_16sdp" />
+            android:layout_marginTop="10dp"
+            android:textSize="18sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:gravity="center"
             android:text="Your request was sent successfully."
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="18sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tvRequestId"
@@ -65,7 +65,7 @@
             android:gravity="center"
             android:text="Request Id:#1234567"
 
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="18sp" />
 
 
     </LinearLayout>
@@ -73,17 +73,17 @@
     <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btnGo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/_25sdp"
         android:layout_marginRight="@dimen/_25sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/button_round_corners"
+        android:background="@drawable/btn_shape"
         android:gravity="center"
         android:text="Go to Home Page"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp" />
+        android:textSize="16sp" />
 
 
 </RelativeLayout>

@@ -31,7 +31,7 @@
                 android:layout_centerVertical="true"
                 android:text="@string/dummy_text"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -43,12 +43,12 @@
             <com.stalkstock.utils.custom.TitiliumSemiBoldButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NEW"
-                android:textStyle="italic"
                 android:layout_centerInParent="true"
-                android:textSize="18sp"
+                android:background="@color/white"
+                android:text="NEW"
                 android:textColor="@color/theme_green"
-                android:background="@color/white"/>
+                android:textSize="16sp"
+                android:textStyle="italic" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

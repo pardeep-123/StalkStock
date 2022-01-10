@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:text="@string/sign_up"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="@dimen/value_18sp" />
     </RelativeLayout>
 
 
@@ -95,7 +95,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                     android:background="@color/white"
                     android:text="First Name"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -131,7 +131,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
                     android:background="@color/white"
                     android:text="Last Name"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -166,7 +166,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                     android:background="@color/white"
                     android:text="@string/email"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -202,7 +202,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -213,7 +213,7 @@
                     android:background="@color/white"
                     android:text="@string/mobile"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -237,7 +237,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -248,7 +248,7 @@
                     android:background="@color/white"
                     android:text="Password"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -272,7 +272,7 @@
                     android:paddingRight="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -283,7 +283,7 @@
                     android:background="@color/white"
                     android:text="@string/confirm_password"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
 
@@ -297,7 +297,7 @@
                 android:text="@string/sign_up"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -314,7 +314,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/already_have_an_account"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tv_signin"
@@ -323,7 +323,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="@string/sign_in"
                     android:textColor="@color/theme_green"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
 

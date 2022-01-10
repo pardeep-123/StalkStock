@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:text="Add A Request For Products"
                 android:textColor="@color/black_color"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,8 +144,8 @@
                             android:prompt="@string/dropdown"
                             android:text="Select Category"
                             android:textColor="#000"
-                            android:textColorHint="@color/light_grey"
-                            android:textSize="13sp" />
+                            android:textColorHint="@color/black"
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
 
@@ -157,7 +157,7 @@
                         android:background="#fff"
                         android:text="Category"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -189,7 +189,7 @@
                         android:prompt="@string/dropdown"
                         android:textColor="#000"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                 </RelativeLayout>
 
@@ -216,7 +216,7 @@
                     android:background="#fff"
                     android:text="Select Sub Category"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:textStyle="bold">
 
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
@@ -249,7 +249,7 @@
                         android:text="Select Product"
                         android:textColor="#000"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                 </RelativeLayout>
 
@@ -277,7 +277,7 @@
                     android:background="#fff"
                     android:text="Product Name"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:textStyle="bold">
 
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
@@ -311,6 +311,7 @@
                     android:layout_marginStart="@dimen/value_35dp"
                     android:background="#ffffff"
                     android:text="Quantity of Product"
+                    android:textSize="14sp"
                     android:textColor="@color/light_grey">
 
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
@@ -348,6 +349,7 @@
                     android:layout_marginStart="@dimen/value_35dp"
                     android:background="#ffffff"
                     android:text="Unit of Measurement"
+                    android:textSize="14sp"
                     android:textColor="@color/light_grey">
 
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
@@ -420,6 +422,7 @@
                 android:background="@drawable/button_round_corners"
                 android:text="Submit"
                 android:textAllCaps="false"
+                android:textSize="16sp"
                 android:textColor="@color/white_color" />
 
         </RelativeLayout>

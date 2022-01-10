@@ -154,6 +154,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="upload_your_registration">Upload your registration</string>
     <!--<string name="look_like_you_do">Looks like you don\'t have any deliveries at the movement. You can check again soon or update your range and be on the lookout for new notifications!</string>-->
     <string name="look_like_you_do">Looks like you don\'t have any deliveries at the movement. Try again later or widen your range and look out for new notifications.</string>
+    <string name="look_like_you_products">Looks like you don\'t have anything available for sale at the moment! Let\'s get you started by adding some products. Tap on the button below.</string>
     <string name="look_like_you_not_request">Looks like you haven\'t placed any orders yet. Let\'s get you going by adding a new request.</string>
     <string name="look_like_your_cart">Looks like you haven\'t started shopping yet. Let\'s get you started!</string>
     <string name="funds_transfer_in_progress_please_allow_3_5_business_days_for_transfer_to_be_completed">Funds transfer in progress. Please allow 3-5 business days for transfer to be completed.</string>
@@ -268,7 +269,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_enter_registration_number">Please enter registration number</string>
     <string name="please_enter_registration_expdate">Please enter registration expiration date</string>
     <string name="enter_valid_date">Enter date in \"yyyy-mm-dd\" format</string>
-    <string name="select_your_business_delivery_type">Select your business delivery type</string>
+    <string name="select_your_business_delivery_type">Select the delivery options you offer</string>
     <string name="enter_account_name">Please enter account name</string>
     <string name="enter_bank_name">Please enter Bank name</string>
     <string name="enter_account_number">Please enter account name</string>
@@ -577,9 +578,9 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
         <item>Wholesaler\’s</item>
     </string-array>
     <string-array name="Select_business_delivery_type">
-        <item>Select your business delivery type</item>
+        <item>Delivery Options</item>
         <item>Pickup Only</item>
-        <item>Home Delivery Only</item>
-        <item>Both Pickup and Home Delivery</item>
+        <item>Delivery Only</item>
+        <item>Both Pickup and Delivery</item>
     </string-array>
 </resources>

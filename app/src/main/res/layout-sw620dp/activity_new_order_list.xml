@@ -36,7 +36,7 @@
                     android:layout_marginStart="10dp">
                 </ImageView>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textSize="16dp"
+                    android:textSize="18sp"
                     android:id="@+id/appbar_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,8 +69,7 @@
         android:id="@+id/tvNoOrders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_orders_found"
         android:layout_centerInParent="true"
-        />
+        android:text="@string/no_orders_found" />
 
 </RelativeLayout>

@@ -15,10 +15,9 @@
         <RelativeLayout
             android:id="@+id/neworder"
             android:layout_width="match_parent"
-
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_height="70dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/current_button"
             android:gravity="center_vertical">
@@ -31,23 +30,22 @@
                 android:layout_marginLeft="40dp"
                 android:text="New Orders"
                 android:textColor="#fff"
-                android:textSize="22sp"
-                />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/neworder_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                  android:paddingRight="@dimen/_10sdp"
-                android:src="@drawable/right_arrow_icon"></ImageView>
+                android:src="@drawable/right_arrow_icon"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/inprogress"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
@@ -62,26 +60,26 @@
                 android:layout_centerVertical="true"
 
                 android:layout_gravity="left"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="40dp"
+                android:gravity="center_vertical"
                 android:text="In Progress"
                 android:textColor="#000"
-                android:textSize="22sp"/>
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/inprogress_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                 android:paddingRight="@dimen/_10sdp"
-                android:src="@drawable/right_grey_icon"></ImageView>
+                android:paddingRight="@dimen/_10sdp"
+                android:src="@drawable/right_grey_icon" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/redypickup"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
@@ -95,24 +93,24 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
 
-                android:gravity="center_vertical"
                 android:layout_marginLeft="40dp"
+                android:gravity="center_vertical"
                 android:text="Ready For Pickup"
                 android:textColor="#000"
-                android:textSize="22sp"
+                android:textSize="14sp"
 
 
                 />
 
             <ImageView
                 android:id="@+id/redy_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
 
                 android:paddingRight="@dimen/_10sdp"
-                android:src="@drawable/right_grey_icon"></ImageView>
+                android:src="@drawable/right_grey_icon"/>
 
         </RelativeLayout>
 

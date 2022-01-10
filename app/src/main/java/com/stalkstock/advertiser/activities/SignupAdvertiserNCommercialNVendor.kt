@@ -724,7 +724,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         if (position == 0) {
             (selectedItemView as? TextView)?.setTextColor(
                 ContextCompat.getColor(
-                    this@SignupAdvertiserNCommercialNVendor, R.color.sort_popup_gray_color
+                    this@SignupAdvertiserNCommercialNVendor, R.color.black_color
                 )
             )
         } else {

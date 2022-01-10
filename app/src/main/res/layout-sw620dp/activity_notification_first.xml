@@ -25,11 +25,12 @@
         <include
             android:id="@+id/rl_tool"
             layout="@layout/toolbar" />
+
         <View
             android:id="@+id/view_botm"
-            android:layout_below="@+id/rl_tool"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_below="@+id/rl_tool"
             android:background="@color/light_grey" />
 
         <LinearLayout
@@ -42,8 +43,8 @@
 
             <ImageView
                 android:id="@+id/iv_congrats"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/noitfy_empty" />
@@ -58,7 +59,7 @@
                 android:gravity="center_horizontal"
                 android:text="No New Updates!"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_msg"
@@ -71,7 +72,7 @@
                 android:gravity="center_horizontal"
                 android:text="Stay tuned! Notifications about your\n activity will show up here."
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>

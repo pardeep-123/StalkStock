@@ -545,7 +545,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
         if (p2 == 0) {
             (view as? TextView)?.setTextColor(
                 ContextCompat.getColor(
-                    this@EditDriverInfoActivity, R.color.sort_popup_gray_color
+                    this@EditDriverInfoActivity, R.color.black_color
                 )
             )
         } else {

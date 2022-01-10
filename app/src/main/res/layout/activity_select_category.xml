@@ -290,10 +290,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/buttonshape"
-                    android:text="Enter item"
+                    android:text="Continue"
                     android:textAllCaps="false"
                     android:textColor="#fff"
-                    android:textSize="16dp"></com.stalkstock.utils.custom.TitiliumBoldButton>
+                    android:textSize="16dp"/>
             </RelativeLayout>
 
         </LinearLayout>

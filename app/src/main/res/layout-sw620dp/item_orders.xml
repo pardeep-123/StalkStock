@@ -21,25 +21,24 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/value_15dp"
         android:layout_marginTop="@dimen/value_15dp"
-        android:layout_toRightOf="@+id/iv_brandImage"
         android:layout_toLeftOf="@+id/tv_statusValueorders"
+        android:layout_toRightOf="@+id/iv_brandImage"
         android:gravity="left|top"
         android:text="Mc Donacvvvvvvvvvvvvvvld's"
         android:textColor="@color/black_color"
         android:textSize="@dimen/value_18sp" />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
+        android:id="@+id/tv_cityname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New York, "
-        android:textSize="@dimen/value_12sp"
-        android:textColor="@color/dark_gray"
         android:layout_below="@+id/tv_brandName"
         android:layout_alignLeft="@+id/tv_brandName"
-
         android:layout_marginTop="7dp"
-        android:id="@+id/tv_cityname"
-        />
+        android:text="New York, "
+
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/value_12sp" />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:id="@+id/tv_countryname"
@@ -67,27 +66,26 @@
         />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Beef Fresh Meet 250gm"
-        android:layout_alignLeft="@+id/lineView"
-        android:textColor="@color/black_color"
-        android:textSize="@dimen/value_12sp"
-        android:layout_below="@+id/lineView"
-        android:layout_marginTop="@dimen/value_7dp"
         android:id="@+id/tv_description"
-        />
-    <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="01 May 2020"
-        android:textSize="@dimen/value_10sp"
-        android:textColor="@color/dark_gray"
-        android:layout_alignLeft="@+id/tv_description"
-        android:layout_below="@+id/tv_description"
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lineView"
+        android:layout_alignLeft="@+id/lineView"
+        android:layout_marginTop="@dimen/value_7dp"
+        android:text="Beef Fresh Meet 250gm"
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/value_12sp" />
+
+    <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:id="@+id/tv_dateOrders"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_description"
+        android:layout_alignLeft="@+id/tv_description"
+        android:layout_marginTop="5dp"
+        android:text="01 May 2020"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/value_10sp" />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:layout_width="wrap_content"
@@ -119,20 +117,19 @@
         />
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView
+        android:id="@+id/tv_priceOrders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$80.50"
-        android:textColor="@color/black_color"
-        android:textSize="@dimen/value_16sp"
-        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/tv_description"
-        android:id="@+id/tv_priceOrders"
-        android:maxLines="1"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
-
-        android:singleLine="true"
         android:ellipsize="end"
-        />
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="$80.50"
+
+        android:textColor="@color/black_color"
+        android:textSize="@dimen/value_16sp" />
 
     <com.stalkstock.utils.custom.TitiliumRegularTextView
         android:id="@+id/tv_statusValueorders"

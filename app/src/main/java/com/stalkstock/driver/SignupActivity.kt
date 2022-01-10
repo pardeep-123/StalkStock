@@ -20,7 +20,6 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.commercial.view.model.Sendbidresponse
 import com.stalkstock.driver.models.CheckEmailResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
@@ -187,7 +186,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         if (p2 == 0) {
             (selectedItemView as? TextView)?.setTextColor(
                 ContextCompat.getColor(
-                    this@SignupActivity, R.color.sort_popup_gray_color
+                    this@SignupActivity, R.color.black_color
                 )
             )
         } else {

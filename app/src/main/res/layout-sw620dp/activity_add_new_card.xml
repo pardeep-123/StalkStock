@@ -33,7 +33,7 @@
             android:text="Enter New Card Details"
             android:layout_margin="20dp"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:background="@color/white"
                 android:text="@string/name"
                 android:textColor="@color/light_grey"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/etName"
@@ -65,7 +65,7 @@
                 android:paddingRight="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:text="Credit Card Number"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/light_grey"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/etCardNumber"
@@ -94,7 +94,7 @@
                 android:paddingRight="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                         android:text="Expiry Month"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/monthsss"
@@ -133,7 +133,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -150,7 +150,7 @@
                         android:text="Expiry Year"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/yearsss"
@@ -169,7 +169,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -188,7 +188,7 @@
                         android:visibility="visible"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldEditText
                         android:id="@+id/tvCvv"
@@ -208,7 +208,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -228,15 +228,15 @@
 
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:id="@+id/tv_terms_conditions"
-                    android:layout_toRightOf="@+id/ivCheckbox"
                     android:layout_width="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/ivCheckbox"
                     android:drawablePadding="3dp"
                     android:gravity="start"
                     android:text="Save for future transactions"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -271,7 +271,7 @@
                     android:text="Save"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

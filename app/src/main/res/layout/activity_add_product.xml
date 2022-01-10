@@ -225,13 +225,14 @@
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="8dp"
+                        android:visibility="gone"
                         android:layout_marginRight="20dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:visibility="gone"
+
                             android:background="@drawable/edit_text_bg_trans">
 
                             <Spinner
@@ -350,10 +351,10 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:hint="Add Price"
-                            android:inputType="number"
+                            android:inputType="numberDecimal"
+                            android:maxLength="5"
                             android:paddingLeft="15dp"
                             android:textColor="#000"
-                            android:maxLength="5"
                             android:textColorHint="@color/light_grey"
                             android:textSize="13sp" />
 

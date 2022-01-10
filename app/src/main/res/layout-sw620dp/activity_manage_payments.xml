@@ -36,7 +36,7 @@
             android:layout_margin="20dp"
             android:text="Default Payment Method"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -191,7 +191,7 @@
                     android:text="Add New Payment Method"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="13sp" />
+                    android:textSize="16sp" />
 
                 <com.stalkstock.utils.custom.TitiliumSemiBoldButton
                     android:id="@+id/btn_checkout"

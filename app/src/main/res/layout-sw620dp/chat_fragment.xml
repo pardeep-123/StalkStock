@@ -34,15 +34,14 @@
                 android:src="@drawable/back_arrow"
                 android:padding="12dp"
                 android:layout_centerVertical="true"/>
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16sp"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:text="Messages"
                 android:textColor="#000"
-                />
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <View
@@ -121,7 +120,7 @@
             android:id="@+id/tvNoMsgList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_result_found"
+            android:text="@string/no_data_found"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

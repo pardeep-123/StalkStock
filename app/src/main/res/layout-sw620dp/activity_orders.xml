@@ -34,20 +34,19 @@
                     tools:ignore="MissingConstraints">
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Orders"
                         android:layout_centerInParent="true"
+                        android:text="Orders"
                         android:textColor="#000"
-                        android:layout_centerHorizontal="true"/>
+                        android:textSize="18sp" />
 
                 </RelativeLayout>
                 <View
                     android:layout_width="match_parent"
                      android:layout_height="1dp"
                     android:background="@color/dark_gray"
-                    ></View>
+                   />
                 <LinearLayout
                     android:id="@+id/lvBtn"
                     android:layout_marginLeft="50dp"
@@ -60,27 +59,26 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btnCurrent"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:background="@drawable/current_button"
                         android:text="Current"
-                        android:textSize="22sp"
+                        android:textSize="16sp"
                         android:textAllCaps="false"
                         android:textColor="#fff" />
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btnPast"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="40dp"
                         android:text="Past"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:textColor="#000"
                         android:textAllCaps="false"
-                        android:textSize="22sp"
+                        android:textSize="16sp"
                         android:background="@drawable/past_button2"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_below="@id/lvBtn"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

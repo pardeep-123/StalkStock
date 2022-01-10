@@ -456,6 +456,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:text="ORDER NUMBER"
+                        android:visibility="gone"
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -464,6 +465,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:text=""
+                        android:visibility="gone"
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView

@@ -35,17 +35,15 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/back_arrow"></ImageView>
+                    android:src="@drawable/back_arrow"/>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_centerInParent="true"
                     android:text="Add Product"
-
                     android:textColor="#000"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/value_18sp" />
             </RelativeLayout>
 
             <View
@@ -82,7 +80,7 @@
                             android:prompt="@string/dropdown"
                             android:text="Select Category"
 
-                            android:textSize="13sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
@@ -95,7 +93,7 @@
                         android:background="#fff"
                         android:text="Category"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
 
@@ -118,7 +116,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="15dp"
                             android:paddingRight="20dp"
-                            android:textSize="13sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
@@ -131,7 +129,7 @@
                         android:background="#fff"
                         android:text="Sub-Category"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
 
@@ -142,7 +140,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="Select Tags"
-                    android:textColor="@color/light_grey"></com.stalkstock.utils.custom.TitiliumBoldTextView>
+                    android:textSize="@dimen/value_14sp"
+                    android:textColor="@color/light_grey"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,7 +161,7 @@
                         android:gravity="center"
                         android:text="Kosher"
                         android:textColor="#9E9C9C"
-                        android:textSize="17sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                        android:textSize="17sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/textone"
@@ -176,7 +175,7 @@
                         android:gravity="center"
                         android:text="Halal"
                         android:textColor="#9E9C9C"
-                        android:textSize="17sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                        android:textSize="17sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/texttwo"
@@ -190,7 +189,7 @@
                         android:gravity="center"
                         android:text="Organic"
                         android:textColor="#9E9C9C"
-                        android:textSize="17sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                        android:textSize="17sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -200,24 +199,26 @@
                     android:orientation="vertical">
 
                     <co.lujun.androidtagview.TagContainerLayout
+                        android:id="@+id/ltTagContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="0dp"
-                        android:id="@+id/ltTagContainer"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
                         android:background="@color/transparent"
                         android:padding="14dp"
-                        app:container_enable_drag="false"
-                        app:tag_enable_cross="true"
                         app:container_background_color="@color/transparent"
                         app:container_border_color="@color/transparent"
+                        app:container_enable_drag="false"
                         app:horizontal_interval="10dp"
                         app:tag_background="@drawable/textbackground"
                         app:tag_background_color="@color/transparent"
-                        app:tag_cross_area_padding="@dimen/_10sdp"
                         app:tag_border_color="@color/transparent"
-                        app:vertical_interval="10dp"
                         app:tag_clickable="true"
-                        app:tag_theme="none" />
+                        app:tag_enable_cross="true"
+                        app:tag_theme="none"
+                        app:vertical_interval="10dp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/textthree"
@@ -230,7 +231,7 @@
                         android:gravity="center"
                         android:text="Seasonal"
                         android:textColor="#9E9C9C"
-                        android:textSize="17sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                        android:textSize="17sp"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -247,7 +248,7 @@
                             android:hint="Tag name"
                             android:layout_toLeftOf="@+id/imgPlus"
                             android:textColorHint="@color/light_grey"
-                            android:textSize="13sp"
+                            android:textSize="14sp"
                             android:textColor="#000"/>
 
                         <ImageView
@@ -292,10 +293,10 @@
                     android:layout_marginRight="@dimen/_40sdp"
                     android:background="@drawable/buttonshape"
                     android:minHeight="45dp"
-                    android:text="Enter item"
+                    android:text="Continue"
                     android:textAllCaps="false"
                     android:textColor="#fff"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </RelativeLayout>
 
         </LinearLayout>

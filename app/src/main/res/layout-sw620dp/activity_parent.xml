@@ -30,7 +30,7 @@
                 android:background="@color/dark_gray"
                 />
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16dp"
+                android:textSize="18sp"
                 android:id="@+id/actHome"
                 android:layout_width="@dimen/value_0dp"
                 android:layout_height="match_parent"
@@ -104,13 +104,11 @@
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/tvStatus"
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:text=""
                         android:textColor="@color/orange_colour"
-
                         android:textSize="16sp" />
 
 
@@ -138,7 +136,7 @@
                     android:text="Your Order"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
                     />
 
@@ -193,10 +191,12 @@
                     android:layout_marginTop="25sp"
                     android:layout_marginLeft="15sp"
                     android:layout_marginRight="15sp">
+
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Item Total"/>
+                        android:text="Item Total"
+                        android:textSize="12sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvItemTotals"
@@ -204,7 +204,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/tv_rest_charges"
@@ -218,7 +219,8 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="McDonald's Restaurant Charges" />
+                        android:text="McDonald's Restaurant Charges"
+                        android:textSize="12sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvRestCharge"
@@ -226,6 +228,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text=""
+                        android:textSize="12sp"
                         android:textColor="@color/black" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -240,7 +243,8 @@
                         android:id="@+id/tv_free"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Fee" />
+                        android:text="Delivery Fee"
+                        android:textSize="12sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvDeliveryFees"
@@ -248,7 +252,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rv_hp_charges"
@@ -262,7 +267,7 @@
                         android:id="@+id/tvTextCh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:textSize="12sp"
                         android:text="Hp Charges" />
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvShopCharges"
@@ -271,6 +276,7 @@
                         android:layout_alignParentRight="true"
                         android:textColor="@color/black"
                         android:text=""
+                        android:textSize="12sp"
                         />
                 </RelativeLayout>
                 <RelativeLayout
@@ -284,7 +290,8 @@
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Charges" />
+                        android:text="Delivery Charges"
+                        android:textSize="12sp"/>
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvDeliveryCharges"
@@ -292,7 +299,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
                 </RelativeLayout>
 
                 <View
@@ -332,7 +340,7 @@
                     android:text="Order Details"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
                     />
 
@@ -342,14 +350,16 @@
                     android:layout_marginLeft="15dp"
                     android:text="ORDER NUMBER"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"/>
+                    android:textSize="14sp"
+                    android:layout_marginTop="16dp"/>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvOrderNumbers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    android:text=""/>
+                    android:text=""
+                    android:textSize="12sp"/>
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
@@ -357,14 +367,16 @@
                     android:layout_marginLeft="15dp"
                     android:text="DATE"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"/>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvDateTimes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    android:text=""/>
+                    android:text=""
+                    android:textSize="12sp"/>
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tv_delivered_by"
@@ -373,14 +385,16 @@
                     android:layout_marginLeft="15dp"
                     android:text="DELIVERED BY"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"/>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tv_delivered_by_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    android:text=""/>
+                    android:text=""
+                    android:textSize="12sp"/>
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tv_delivered_to"
                     android:layout_width="wrap_content"
@@ -388,15 +402,16 @@
                     android:layout_marginLeft="15dp"
                     android:text="DELIVERED TO"
                     android:textColor="@color/black"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"/>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tv_delivered_to_value"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textColor="@color/black"
-                    android:text=""/>
+                    android:text=""
+                    android:textSize="12sp"/>
 
 
                 <RelativeLayout

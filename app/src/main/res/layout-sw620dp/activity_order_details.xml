@@ -53,7 +53,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/dark_gray"></View>
+                android:background="@color/dark_gray"/>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                                 android:layout_marginStart="@dimen/_5sdp"
                                 android:text=""
                                 android:textColor="#000"
-                                android:textSize="@dimen/_15sdp" />
+                                android:textSize="@dimen/value_16sp" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:id="@+id/text_details"
@@ -98,7 +98,7 @@
                                 android:layout_toLeftOf="@+id/iv_drop"
                                 android:text=""
                                 android:textColor="#FF5722"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/value_14sp"
                                 android:visibility="gone" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -109,7 +109,7 @@
                                 android:layout_toLeftOf="@+id/iv_drop"
                                 android:text=""
                                 android:textColor="#FF9800"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/value_14sp"
                                 android:visibility="gone" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -123,7 +123,7 @@
                                 android:text=""
                                 android:textAlignment="center"
                                 android:textColor="#8BC34A"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/value_16sp"
                                 android:visibility="visible" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -132,10 +132,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="10dp"
                                 android:layout_toLeftOf="@+id/iv_drop"
-
                                 android:text=""
                                 android:textColor="#8BC34A"
-                                android:textSize="@dimen/_12sdp"
+                                android:textSize="@dimen/value_14sp"
 
                                 android:visibility="gone" />
 
@@ -145,12 +144,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_25sdp"
                                 android:layout_toLeftOf="@+id/iv_drop"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/value_14sp" />
 
                             <ImageView
                                 android:id="@+id/iv_drop"
-                                android:layout_width="@dimen/_15sdp"
-                                android:layout_height="@dimen/_15sdp"
+                                android:layout_width="@dimen/_12sdp"
+                                android:layout_height="@dimen/_12sdp"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/down_arow" />
@@ -169,7 +168,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 android:text="Order number"
-                                android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                                android:textSize="@dimen/value_14sp"/>
 
                             <com.stalkstock.utils.custom.TitiliumRegularTextView
                                 android:id="@+id/tvOrderNumber"
@@ -177,7 +176,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 android:text=""
-                                android:textSize="@dimen/_12sdp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                                android:textSize="@dimen/value_14sp"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -456,7 +455,8 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
                         android:text="ORDER NUMBER"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:visibility="gone"/>
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/tvOrderNumber2"
@@ -464,6 +464,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:text=""
+                        android:visibility="gone"
                         android:textColor="#000" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -529,7 +530,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginBottom="20sp"
-                        android:src="@drawable/visa_img"></ImageView>
+                        android:src="@drawable/visa_img"/>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>

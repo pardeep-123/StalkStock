@@ -214,7 +214,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         if(p2==0){
             (selectedItemView as? TextView)?.setTextColor(
                 ContextCompat.getColor(
-                    this@EditBussinessProfile, R.color.sort_popup_gray_color
+                    this@EditBussinessProfile, R.color.black_color
                 )
             )
         }else{

@@ -55,7 +55,7 @@
                     android:id="@+id/biddate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="June 10, 2020"/>
 
                 <View
@@ -104,7 +104,7 @@
                 android:id="@+id/bidimguser"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/chat_img_1"/>
+                android:src="@drawable/ic_dummy_img"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -119,25 +119,26 @@
                     android:layout_alignParentLeft="true"
                     android:text="Jamie Jai"
                     android:textColor="#000"
-                    android:textSize="17sp" />
+                    android:textSize="16sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/bidPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   android:layout_toLeftOf="@+id/imgAccept"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:text="$80.50"
                     android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/imgAccept"
+                    android:text="$80.50"
                     android:textColor="#8BC34A"
                     android:textSize="14sp" />
+
                 <ImageView
                     android:id="@+id/imgAccept"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
                     android:layout_alignParentRight="true"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/check_circle"/>
+                    android:src="@drawable/check_circle" />
             </RelativeLayout>
 
         </LinearLayout>

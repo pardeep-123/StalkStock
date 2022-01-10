@@ -30,7 +30,7 @@
                 android:layout_marginStart="@dimen/value_10dp"
                 android:layout_marginTop="@dimen/value_12dp"
                 android:layout_marginBottom="@dimen/value_12dp"
-                android:src="@drawable/chat_img_1"
+                android:src="@drawable/ic_dummy_img"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,9 +45,8 @@
                 android:layout_marginTop="@dimen/value_2dp"
                 android:layout_marginStart="@dimen/value_10dp"
                 android:textColor="@color/black_color"
-                android:textSize="@dimen/value_14dp"
-
-                android:text="Jamie Jai"
+                android:textSize="@dimen/value_14sp"
+                android:text=""
                 />
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tvDetail"
@@ -58,9 +57,9 @@
                 android:layout_marginStart="@dimen/value_10dp"
                 android:layout_marginBottom="@dimen/value_2dp"
                 android:textColor="@color/black_color"
-                android:textSize="@dimen/value_12dp"
+                android:textSize="@dimen/value_12sp"
 
-                android:text="Mcdonald's"
+                android:text=""
                 />
 
 
@@ -72,7 +71,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/value_15dp"
                 android:textColor="@color/red_dark_colour"
-                android:textSize="@dimen/value_14dp"
+                android:textSize="@dimen/value_14sp"
 
                 android:text="$80.50"
                 />
@@ -91,7 +90,7 @@
                 android:paddingBottom="@dimen/_2sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:textSize="@dimen/value_14dp"
+                android:textSize="@dimen/value_14sp"
 
                 android:text="Accept"
                 />

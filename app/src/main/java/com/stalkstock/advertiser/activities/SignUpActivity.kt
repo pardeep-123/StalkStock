@@ -407,7 +407,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         if (p2 == 0) {
             (selectedItemView as? TextView)?.setTextColor(
                 ContextCompat.getColor(
-                    this@SignUpActivity, R.color.sort_popup_gray_color
+                    this@SignUpActivity, R.color.black_color
                 )
             )
         } else {

@@ -123,7 +123,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 if (position == 0) {
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@SelectCategory, R.color.sort_popup_gray_color
+                            this@SelectCategory, R.color.black_color
                         )
                     )
                     setAdapterSpinnerSub("0", listSubCategoryBody)
@@ -158,7 +158,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 if (position == 0) {
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@SelectCategory, R.color.sort_popup_gray_color
+                            this@SelectCategory, R.color.black_color
                         )
                     )
                     setAdapterSpinnerSub("0", listSubCategoryBody)

@@ -34,7 +34,7 @@
             android:layout_margin="20dp"
             android:text="Select your Payment Method"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/firstclick"
@@ -141,7 +141,7 @@
                 android:text="Add New Payment Method"
                 android:textAllCaps="false"
                 android:textColor="@color/theme_green"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_checkout"
@@ -157,7 +157,7 @@
                 android:text="Confirm Payment"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

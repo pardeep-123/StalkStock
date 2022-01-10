@@ -120,7 +120,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                 if (position == 0) {
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@EditBusinessProfileActivity, R.color.sort_popup_gray_color
+                            this@EditBusinessProfileActivity, R.color.black_color
                         )
                     )
                 } else {
@@ -474,7 +474,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                                 if(position==0){
                                     (view as? TextView)?.setTextColor(
                                         ContextCompat.getColor(
-                                            this@EditBusinessProfileActivity, R.color.sort_popup_gray_color
+                                            this@EditBusinessProfileActivity, R.color.black_color
                                         )
                                     )
                                 }else{

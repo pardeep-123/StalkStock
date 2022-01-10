@@ -141,7 +141,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@AddedProduct, R.color.sort_popup_gray_color
+                            this@AddedProduct, R.color.black_color
                         )
                     )
                 }
@@ -183,7 +183,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@AddedProduct, R.color.sort_popup_gray_color
+                            this@AddedProduct, R.color.black_color
                         )
                     )
                 }
@@ -212,7 +212,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@AddedProduct, R.color.sort_popup_gray_color
+                            this@AddedProduct, R.color.black_color
                         )
                     )
                 }

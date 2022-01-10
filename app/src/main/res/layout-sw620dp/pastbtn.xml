@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="James Author"
             android:textColor="#000"
-            android:textSize="17sp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+            android:textSize="16sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                 android:text="Order Number"
                 android:textColor="#000000"
                 android:textSize="14sp"
-                android:textStyle="normal"></TextView>
+                android:textStyle="normal"/>
 
             <TextView
                 android:id="@+id/txtOrderNumber"
@@ -42,7 +42,7 @@
                 android:text="153633KLL"
                 android:textColor="#000000"
                 android:textSize="14sp"
-                android:textStyle="normal"></TextView>
+                android:textStyle="normal"/>
 
         </LinearLayout>
 
@@ -53,8 +53,8 @@
 
             <com.stalkstock.utils.custom.TitiliumSemiBoldButton
                 android:id="@+id/btnModeOfPayment"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/current_button"

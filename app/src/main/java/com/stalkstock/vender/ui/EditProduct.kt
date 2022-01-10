@@ -120,7 +120,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 if(position==0){
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@EditProduct, R.color.sort_popup_gray_color
+                            this@EditProduct, R.color.black_color
                         )
                     )
                 }else{
@@ -152,7 +152,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 if(position==0){
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@EditProduct, R.color.sort_popup_gray_color
+                            this@EditProduct, R.color.black_color
                         )
                     )
                 }else{
@@ -191,7 +191,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 if(position==0){
                     (selectedItemView as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@EditProduct, R.color.sort_popup_gray_color
+                            this@EditProduct, R.color.black_color
                     ) )
                 }else{
                     (selectedItemView as? TextView)?.setTextColor(

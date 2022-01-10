@@ -32,7 +32,7 @@
             android:gravity="center"
             android:text="Add New Address"
             android:textColor="@color/black_color"
-            android:textSize="16dp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -137,7 +137,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                         android:background="@color/white"
                         android:text="Street Address"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_unit"
@@ -173,7 +173,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                         android:background="@color/white"
                         android:text="@string/address_line2_optional"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_city"
@@ -209,7 +209,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -220,7 +220,7 @@
                         android:background="@color/white"
                         android:text="@string/city"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_state"
@@ -245,7 +245,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -256,7 +256,7 @@
                         android:background="@color/white"
                         android:text="@string/state_province_region"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_postal"
@@ -281,7 +281,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -292,7 +292,7 @@
                         android:background="@color/white"
                         android:text="@string/postal_zipcode"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
 
@@ -319,7 +319,7 @@
                             android:prompt="@string/select_country"
                             android:textColor="#000"
                             android:textColorHint="#F8F6F6"
-                            android:textSize="13sp" />
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
@@ -330,7 +330,7 @@
                         android:background="#fff"
                         android:text="@string/country"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp"
+                        android:textSize="14sp"
                         />
 
                 </RelativeLayout>
@@ -357,7 +357,7 @@
                         android:paddingEnd="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -368,7 +368,7 @@
                         android:background="@color/white"
                         android:text="Special Instructions (Optional)"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
 
@@ -385,7 +385,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Location Tag"
-                        android:textSize="@dimen/value_10dp"
+                        android:textSize="@dimen/value_12sp"
                         />
 
 
@@ -525,6 +525,7 @@
                     android:background="@drawable/button_round_corners"
                     android:text="@string/confirm_location_proceed"
                     android:textAllCaps="false"
+                    android:textSize="16sp"
                     android:textColor="@color/white_color"
                     app:layout_constraintBottom_toBottomOf="parent" />
 

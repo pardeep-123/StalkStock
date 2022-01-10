@@ -84,7 +84,7 @@
             app:layout_constraintBottom_toTopOf="@id/viewAddress"
 
             android:layout_marginBottom="@dimen/value_4dp"
-            android:textSize="@dimen/value_14dp"
+            android:textSize="@dimen/value_14sp"
             android:textColor="@color/black_color"
             app:layout_constraintStart_toStartOf="parent"
 
@@ -108,7 +108,7 @@
             android:text="Your Location"
             app:layout_constraintBottom_toTopOf="@id/tvLocation"
             android:layout_marginBottom="@dimen/value_3dp"
-            android:textSize="@dimen/value_10dp"
+            android:textSize="@dimen/value_12sp"
             app:layout_constraintStart_toStartOf="parent"
             />
 
@@ -121,8 +121,9 @@
             app:layout_constraintBottom_toTopOf="@id/clAddressDetail"
             android:layout_marginBottom="@dimen/value_10dp"
             android:gravity="center_vertical"
-            android:textSize="@dimen/value_12dp"
+            android:textSize="@dimen/value_12sp"
             android:textColor="@color/black_color"
+
             android:drawablePadding="@dimen/value_5dp"
             android:drawableLeft="@drawable/cart_check"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,19 +152,18 @@
                     android:hint="Street Address"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
-
                     style="@style/EditextFieldwhit1"
                     android:layout_margin="@dimen/value_10dp">
                 </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="Street Address"
                     android:layout_marginLeft="@dimen/value_45dp"
+                    android:background="#ffffff"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
-                    android:background="#ffffff">
-                </com.stalkstock.utils.custom.TitiliumBoldTextView>
+                    android:textSize="14sp"
+                    android:text="Street Address"/>
 
             </RelativeLayout>
             <RelativeLayout
@@ -187,6 +187,7 @@
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
+                    android:textSize="14sp"
                     android:background="#ffffff">
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -213,6 +214,7 @@
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
+                    android:textSize="14sp"
                     android:background="#ffffff">
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -239,6 +241,7 @@
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
+                    android:textSize="14sp"
                     android:background="#ffffff">
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -265,6 +268,7 @@
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
+                    android:textSize="14sp"
                     android:background="#ffffff">
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -292,6 +296,7 @@
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
+                    android:textSize="14sp"
                     android:background="#ffffff">
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
 
@@ -308,7 +313,7 @@
                 app:layout_constraintBottom_toTopOf="@id/tvTagHome"
                 android:layout_marginBottom="@dimen/value_5dp"
                 android:text="Tag this location for Later"
-                android:textSize="@dimen/value_10dp"
+                android:textSize="@dimen/value_12sp"
                 />
 
 
@@ -384,6 +389,7 @@
             android:background="@drawable/button_round_corners"
             android:text="Confirm Location &amp; Proceed"
             android:textAllCaps="false"
+            android:textSize="16sp"
             android:textColor="@color/white_color"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

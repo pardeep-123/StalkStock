@@ -37,21 +37,21 @@
                     android:padding="10dp"
                     android:layout_marginLeft="10dp">
                 </ImageView>
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textSize="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:text="Payment"
-                    android:layout_centerVertical="true"
                     android:textColor="#000"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="18sp" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_height="1dp"
                 android:background="#BDBCBC"
-                ></View>
+               />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,14 +61,13 @@
                 android:layout_below="@+id/layout">
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/spm_Detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Select Your Payment Method"
-                    android:id="@+id/spm_Detail"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="#171717"
                     android:layout_marginTop="@dimen/_15sdp"
-                    />
+                    android:text="Select Your Payment Method"
+                    android:textColor="#171717"
+                    android:textSize="@dimen/value_16sp" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -84,15 +83,14 @@
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CREDIT/DEBIT CARD"
-                    android:textSize="@dimen/_13sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
+                    android:layout_weight="3"
                     android:drawableLeft="@drawable/credit_card_img"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:layout_weight="3"
+                    android:text="CREDIT/DEBIT CARD"
 
-                    />
+                    android:textSize="@dimen/value_14sp" />
 
                 <ImageView
                     android:id="@+id/radio_fill"
@@ -160,15 +158,14 @@
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CREDIT/DEBIT CARD"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="3"
                     android:drawableLeft="@drawable/paypal"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_weight="3"
+                    android:text="CREDIT/DEBIT CARD"
 
-                    />
+                    android:textSize="@dimen/value_14sp" />
 
                 <ImageView
                     android:id="@+id/radio_empty"
@@ -252,14 +249,14 @@
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="60dp"
                         android:background="@drawable/buttonshape"
                         android:id="@+id/spm_btnNext"
                         android:text="Next"
                         android:textColor="#fff"
                         android:textAllCaps="false"
                         android:textStyle="bold"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/value_16sp"
                         />
                 </LinearLayout>
             </RelativeLayout>

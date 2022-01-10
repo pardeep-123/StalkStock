@@ -37,14 +37,14 @@
                     android:layout_marginLeft="10dp"
                     android:padding="10dp"
                     android:src="@drawable/back_arrow" />
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:text="Add Bank Account"
                     android:textColor="@color/black"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="18sp" />
             </RelativeLayout>
 
             <View
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name of Account"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/light_grey" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etAccountName"
@@ -75,7 +75,7 @@
                     android:textColorHint="@color/light_grey"
                     android:paddingLeft="@dimen/_10sdp"
                     android:inputType="text"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="#000"
                     android:background="@drawable/shape_edit_new_home"/>
 
@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Name of Bank"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/light_grey" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etBankName"
@@ -95,7 +95,7 @@
                     android:inputType="text"
                     android:hint="Enter name of bank"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="#000"
                     android:background="@drawable/shape_edit_new_home">
                 </com.stalkstock.utils.custom.TitiliumBoldEditText>
@@ -105,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Routing Number"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/light_grey" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etRoutingNumber"
@@ -115,7 +115,7 @@
                     android:paddingLeft="@dimen/_10sdp"
                     android:hint="Enter routing number"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:inputType="number"
                     android:textColor="#000"
                     android:background="@drawable/shape_edit_new_home">
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:text="Bank Account"
                     android:textColor="@color/light_grey"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/etBankAccount"
                     android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:hint="Enter bank account"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColorHint="@color/light_grey"
                     android:inputType="number"
                     android:textColor="#000"
@@ -146,7 +146,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_height="wrap_content"
                     android:text="@string/confirm_bank_account"
                     android:textColor="@color/light_grey" />
@@ -157,7 +157,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:textColor="#000"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColorHint="@color/light_grey"
                     android:hint="@string/confirm_bank_account2"
                     android:inputType="number"
@@ -181,7 +181,7 @@
                         android:minHeight="45dp"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
             </LinearLayout>

@@ -216,6 +216,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener, Observer<RestObserva
         }
     }
 
+    /*
+1=>user
+2=>driver
+3=>vendor
+4=>commercial
+5=>advertiser*
+*/
     private fun goingToSignUp() {
 
         when {

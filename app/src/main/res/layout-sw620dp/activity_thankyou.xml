@@ -58,7 +58,7 @@
                     android:gravity="center"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
-                    android:textSize="25sp" />
+                    android:textSize="18sp" />
 
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:gravity="center"
                     android:text="Your payment has been successfully processed."
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="match_parent"
@@ -76,23 +76,24 @@
                     android:gravity="center"
                     android:text="Your order has been submitted."
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
+
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_view"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_shape"
                 android:gravity="center"
                 android:minHeight="45dp"
                 android:text="View Order Details"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -124,15 +124,16 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:text="Sarah Ali"
                     android:textColor="#000"
-                    android:textSize="16sp"></com.stalkstock.utils.custom.TitiliumSemiBoldTextView>
+                    android:textSize="14sp" />
+
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="28 April 2020"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                    android:text="28 April 2020"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
             <LinearLayout
@@ -145,14 +146,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Order number"
-                    android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                    android:textSize="12sp"/>
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tvOrderNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:text="152KL0552"
-                    android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                    android:textSize="12sp"/>
+
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tvTime"
                     android:layout_weight="1"
@@ -162,7 +164,7 @@
                     android:gravity="right"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:text="2PM-3PM"
-                    android:textSize="14sp"></com.stalkstock.utils.custom.TitiliumRegularTextView>
+                    android:textSize="12sp"/>
             </LinearLayout>
 
         </LinearLayout>

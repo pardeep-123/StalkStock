@@ -67,7 +67,7 @@
             android:gravity="center"
             android:text="Beef: $9.50/LB"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/imgPriceRange"
@@ -110,7 +110,6 @@
             android:layout_toRightOf="@+id/img"
             android:drawableLeft="@drawable/green_location_arrow"
             android:drawablePadding="5dp"
-
             android:text="" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView

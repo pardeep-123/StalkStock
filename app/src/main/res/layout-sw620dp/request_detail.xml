@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:id="@+id/actHome"
             android:layout_width="@dimen/value_0dp"
             android:layout_height="match_parent"
@@ -76,7 +76,7 @@
                 android:layout_marginTop="10dp"
                 android:text=""
                 android:textColor="@color/black_color"
-                android:textSize="@dimen/value_14dp"
+                android:textSize="@dimen/value_14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,18 +84,20 @@
                 android:id="@+id/tvCreatedDateB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tvRequest"
                 android:layout_marginStart="@dimen/value_10dp"
                 android:layout_marginTop="@dimen/value_10dp"
+                android:layout_marginBottom="10dp"
                 android:text=""
                 android:textColor="#ACACAC"
-                android:textSize="@dimen/value_12dp"
-                android:layout_marginBottom="10dp"
-                android:layout_below="@+id/tvRequest" />
+                android:textSize="@dimen/value_12sp" />
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tvChat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/value_10dp"
                 android:background="@drawable/edit_text_bg"
                 android:paddingStart="@dimen/_10sdp"
@@ -106,9 +108,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/green_colour"
                 android:textSize="@dimen/value_14dp"
-                android:visibility="gone"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true" />
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -201,15 +201,15 @@
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvshoping"
-            android:layout_below="@+id/cvBidder"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="@dimen/value_15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/cvBidder"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/value_15dp"
+            android:layout_marginTop="15dp"
             android:text="Shopping List"
             android:textColor="@color/black_color"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
