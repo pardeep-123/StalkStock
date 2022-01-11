@@ -24,13 +24,12 @@
             <com.stalkstock.utils.custom.TitiliumRegularTextView
 
                 android:id="@+id/tv_order"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:text="Order ID : ADS777558"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -38,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_status"
                 android:text="Status : "
-                android:textSize="22sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_status"
@@ -49,13 +48,12 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="@string/in_progress"
                 android:textColor="@color/orange_colour"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_below="@id/tv_order"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -63,10 +61,10 @@
 
                 <ImageView
                     android:id="@+id/ivShopLogo"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_centerVertical="true"
-                    android:visibility="invisible"  />
+                    android:visibility="invisible" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tvDateTime"
@@ -76,7 +74,7 @@
                     android:layout_centerVertical="true"
                     android:text="10:30am, 20 June 2020"
                     android:textColor="@color/dark_gray"
-                    android:textSize="22sp" />
+                    android:textSize="16sp" />
             </RelativeLayout>
 
             <View
@@ -107,16 +105,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
                         android:includeFontPadding="false"
-                         android:layout_marginLeft="@dimen/_10sdp"
-                         android:text="Allen Chander "
+                        android:text="Allen Chander "
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:id="@+id/tvAddress"
@@ -128,7 +126,7 @@
                         android:includeFontPadding="false"
                         android:text="8753, Mauricio Walks, Mohali Stadium"
                         android:textColor="@color/black"
-                        android:textSize="22sp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 

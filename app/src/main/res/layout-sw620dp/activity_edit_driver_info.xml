@@ -40,7 +40,7 @@
                     android:layout_marginTop="20dp"
                     android:text="Upload Your Driver's License"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                     android:layout_marginTop="20dp"
                     android:text="Upload Your Registration"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <RelativeLayout
                     android:id="@+id/rl_EditRegistration"
@@ -149,7 +149,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/upload_your_proof_of_insurance"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -201,7 +201,7 @@
                             android:prompt="@string/dropdown_vehicle_type"
                             android:textColor="#000"
                             android:textColorHint="#F8F6F6"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/value_14sp" />
 
                     </RelativeLayout>
 
@@ -213,7 +213,7 @@
                         android:background="#fff"
                         android:text="Vehicle Type"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp"
+                        android:textSize="@dimen/value_14sp"
                         android:textStyle="bold" />
 
 
@@ -244,7 +244,7 @@
                                         android:textColor="@color/black"
                                         android:hint="@string/vechicle_type"
                                         android:textColorHint="@color/light_grey"
-                                        android:textSize="13sp" />
+                                        android:textSize="@dimen/value_14sp" />
 
                                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                                         android:layout_width="wrap_content"
@@ -255,7 +255,7 @@
                                         android:background="@color/white"
                                         android:text="Vehicle Type"
                                         android:textColor="@color/light_grey"
-                                        android:textSize="13sp" />
+                                        android:textSize="@dimen/value_14sp" />
                                 </RelativeLayout>
                 -->
                 <RelativeLayout
@@ -281,7 +281,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -292,7 +292,7 @@
                         android:background="@color/white"
                         android:text="Make"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -318,7 +318,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -329,7 +329,7 @@
                         android:background="@color/white"
                         android:text="Model"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -355,7 +355,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -366,7 +366,7 @@
                         android:background="@color/white"
                         android:text="Driver's License Number"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -393,7 +393,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -404,7 +404,7 @@
                         android:background="@color/white"
                         android:text="Driver's License Valid Through"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -430,7 +430,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -441,7 +441,7 @@
                         android:background="@color/white"
                         android:text="Registration Number"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -468,7 +468,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -479,7 +479,7 @@
                         android:background="@color/white"
                         android:text="Registration Valid Through"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -506,7 +506,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -517,7 +517,7 @@
                         android:background="@color/white"
                         android:text="@string/insurance_company"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -544,7 +544,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -555,7 +555,7 @@
                         android:background="@color/white"
                         android:text="@string/insurance_policy"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -582,7 +582,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -593,7 +593,7 @@
                         android:background="@color/white"
                         android:text="@string/insurance_valid_through"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
 
@@ -621,7 +621,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -632,7 +632,7 @@
                         android:background="@color/white"
                         android:text="@string/address"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -658,7 +658,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -669,7 +669,7 @@
                         android:background="@color/white"
                         android:text="@string/address_line2_optional"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
 
@@ -696,7 +696,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -707,7 +707,7 @@
                         android:background="@color/white"
                         android:text="City"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -733,7 +733,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -744,7 +744,7 @@
                         android:background="@color/white"
                         android:text="@string/state_province_region"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -770,7 +770,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -781,7 +781,7 @@
                         android:background="@color/white"
                         android:text="Postal/Zip Code"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -804,7 +804,7 @@
                         android:prompt="@string/select_country"
                         android:textColor="#000"
                         android:textColorHint="#F8F6F6"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -815,7 +815,7 @@
                         android:background="@color/white"
                         android:text="Country"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -829,12 +829,12 @@
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:minHeight="45dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="12dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="12dp"
                     android:text="Update"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </ScrollView>

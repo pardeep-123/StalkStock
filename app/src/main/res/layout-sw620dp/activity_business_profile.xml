@@ -219,7 +219,7 @@
                             android:layout_height="wrap_content"
                             android:text="Name"
                             android:textColor="#2C2C2C"
-                            android:textSize="@dimen/_14sdp"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -235,7 +235,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp">
+                            android:textSize="16sp">
 
                         </com.stalkstock.utils.custom.TitiliumRegularTextView>
 
@@ -269,7 +269,7 @@
                             android:text="Business Name"
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -287,7 +287,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -309,7 +309,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/business_description"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -329,7 +329,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -352,7 +352,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Business Type"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -372,7 +372,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -395,7 +395,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Business License"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -415,7 +415,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -436,7 +436,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Email"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -456,7 +456,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -481,7 +481,7 @@
                             android:text="Mobile"
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
 
                     </RelativeLayout>
@@ -500,7 +500,7 @@
                             android:textColor="#000"
                             android:textDirection="ltr"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -524,7 +524,7 @@
                             android:text="Business Telephone\nNumber"
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -542,7 +542,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
 
                     </RelativeLayout>
@@ -569,7 +569,7 @@
                             android:text="Website"
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -587,7 +587,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -613,7 +613,7 @@
                             android:text="@string/business_address"
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
 
                     </RelativeLayout>
@@ -631,7 +631,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -654,7 +654,7 @@
                             android:text="@string/address_line2"
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
 
                     </RelativeLayout>
@@ -672,7 +672,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -693,7 +693,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/city"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -709,7 +709,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -732,7 +732,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/state_province_region"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -751,7 +751,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -772,7 +772,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/postal_zipcode"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -793,7 +793,7 @@
                             android:text=""
                             android:textColor="#000"
 
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -813,7 +813,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/country"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -829,7 +829,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="16sp"
 
                             android:textColor="#000"/>
 
@@ -855,7 +855,7 @@
                         android:text="@string/edit_business_profile"
                         android:textAllCaps="false"
                         android:textColor="#fff"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
                 </RelativeLayout>
 
             </LinearLayout>

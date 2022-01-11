@@ -22,7 +22,7 @@
 
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
-            android:textSize="20sp"
+            android:textSize="@dimen/value_18sp"
             android:id="@+id/tv_titele"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -25,7 +25,7 @@
             android:layout_centerInParent="true"
             android:text="Filters"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
                     android:paddingEnd="20dp"
                     android:text="Select Category"
                     android:textColorHint="@color/dark_gray"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
 
                     />
 
@@ -138,7 +138,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:text="SORT BY "
             android:textColor="@color/dark_gray"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:id="@+id/rlCost"
@@ -266,7 +266,7 @@
             android:layout_marginBottom="@dimen/_20sdp"
             android:text="PRICE"
             android:textColor="@color/dark_gray"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -407,7 +407,7 @@
             android:text="Clear"
             android:textAllCaps="false"
             android:textColor="@color/dark_gray"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="@dimen/_20sdp"
@@ -424,7 +424,7 @@
             android:text="Apply"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </RelativeLayout>

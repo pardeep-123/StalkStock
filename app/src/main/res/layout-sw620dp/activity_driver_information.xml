@@ -40,7 +40,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
                 <ImageView
                     android:layout_width="match_parent"
                     android:id="@+id/imgDriverRegistration"
@@ -87,7 +87,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -114,7 +114,7 @@
                         android:layout_weight="1"
                         android:text="Vehicle Name"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -123,7 +123,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtVehicleName"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                         android:layout_weight="1"
                         android:text="Make"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -148,7 +148,7 @@
                         android:id="@+id/txtMake"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -164,7 +164,7 @@
                         android:layout_weight="1"
                         android:text="Model"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -173,7 +173,7 @@
                         android:id="@+id/txtModel"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -189,7 +189,7 @@
                         android:layout_weight="1"
                         android:text="Driver's License Number"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -198,7 +198,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtDriverLicenceNumber"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -214,7 +214,7 @@
                         android:layout_weight="1"
                         android:text="Driver's License Valid Through"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -223,7 +223,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtDriverLicenceValidThrough"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -239,7 +239,7 @@
                         android:layout_weight="1"
                         android:text="Registration Number"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -248,7 +248,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtDriverRegNumber"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -264,7 +264,7 @@
                         android:layout_weight="1"
                         android:text="Registration Valid Through"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -273,7 +273,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtDriverRegistrationValidThrough"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,7 +290,7 @@
                         android:layout_weight="1"
                         android:text="@string/insurance_company"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -299,7 +299,7 @@
                         android:id="@+id/txtInsuranceCompany"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -316,7 +316,7 @@
                         android:layout_weight="1"
                         android:text="@string/insurance_policy"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -325,7 +325,7 @@
                         android:id="@+id/txtInsurancePolicy"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -342,7 +342,7 @@
                         android:layout_weight="1"
                         android:text="@string/insurance_valid_through"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -351,7 +351,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtInsuranceValid"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -367,7 +367,7 @@
                         android:layout_weight="1"
                         android:text="@string/address"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -376,7 +376,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -392,7 +392,7 @@
                         android:layout_weight="1"
                         android:text="@string/address_line2"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -401,7 +401,7 @@
                         android:layout_weight="1"
                         android:id="@+id/txtDriverAddressLine2"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -417,7 +417,7 @@
                         android:layout_weight="1"
                         android:text="City"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -426,7 +426,7 @@
                         android:id="@+id/txtDriverCity"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -442,7 +442,7 @@
                         android:layout_weight="1"
                         android:text="@string/state_province_region"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -451,7 +451,7 @@
                         android:id="@+id/txtDriverState"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -467,7 +467,7 @@
                         android:layout_weight="1"
                         android:text="Postal/Zip Code"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -476,7 +476,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -492,7 +492,7 @@
                         android:layout_weight="1"
                         android:text="Country"
                         android:textColor="@color/home_grey"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="0dp"
@@ -501,7 +501,7 @@
                         android:id="@+id/txtDriverCountry"
                         android:layout_weight="1"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -518,7 +518,7 @@
                     android:text="Edit Information"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </ScrollView>

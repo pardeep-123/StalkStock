@@ -78,6 +78,7 @@
                         android:background="@drawable/current_button"
                         android:text="Request"
                         android:textAllCaps="false"
+                        android:textSize="16sp"
                         android:textColor="#fff" />
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/btnaccpet"
@@ -88,6 +89,7 @@
                         android:layout_weight="1"
                         android:textColor="#000"
                         android:textAllCaps="false"
+                        android:textSize="16sp"
                         android:background="@drawable/past_button2"/>
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView

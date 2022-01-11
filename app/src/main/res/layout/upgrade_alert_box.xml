@@ -16,6 +16,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/verifyset"
                 android:layout_width="match_parent"
@@ -28,14 +29,30 @@
                 app:civ_border_width="1dp" />
 
         </RelativeLayout>
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Want to add more photos?\nUpgrade now to unlock this feature\nand so much more!"
+            android:text="It’s Time to Unlock More Photos!"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="16sp">
+        </com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Looks like you’ve reached your photo limit for this product. To add more images,please upgrade your account."
             android:textColor="#4A4949"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textSize="14dp">
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="14sp">
         </com.stalkstock.utils.custom.TitiliumRegularTextView>
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -52,7 +69,7 @@
                 android:background="@drawable/buttonshape"
                 android:backgroundTint="#8BC34A"
                 android:textAllCaps="false"
-                android:text="Upgrade Your Account"
+                android:text="Upgrade Now"
                 android:textColor="#fff"
                 android:textSize="15dp"
                 android:layout_marginRight="@dimen/_5sdp"
@@ -67,7 +84,7 @@
                 android:textAllCaps="false"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/edittextshape"
-                android:text="Cancel"
+                android:text="No Thanks"
 
                 android:textColor="#8BC34A"
                 android:textSize="15dp"

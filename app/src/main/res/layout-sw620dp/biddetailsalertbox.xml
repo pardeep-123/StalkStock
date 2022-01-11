@@ -26,7 +26,7 @@
             android:paddingLeft="15dp"
             android:textColor="#000"
             android:textColorHint="@color/light_grey"
-            android:textSize="15dp" />
+            android:textSize="14sp" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:inputType="number"
             android:text="Bid Amount"
             android:textColor="@color/light_grey"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -59,7 +59,7 @@
             android:paddingLeft="15dp"
             android:textColor="#000"
             android:textColorHint="@color/light_grey"
-            android:textSize="15dp" />
+            android:textSize="14sp" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="wrap_content"
@@ -69,13 +69,13 @@
             android:background="#fff"
             android:text="Description"
             android:textColor="@color/light_grey"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/submitbutton"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_24sdp"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="@dimen/_14sdp"
@@ -84,6 +84,6 @@
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="#fff"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

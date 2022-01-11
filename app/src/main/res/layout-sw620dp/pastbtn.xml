@@ -53,7 +53,7 @@
 
             <com.stalkstock.utils.custom.TitiliumSemiBoldButton
                 android:id="@+id/btnModeOfPayment"
-                android:layout_width="@dimen/_80sdp"
+                android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp"

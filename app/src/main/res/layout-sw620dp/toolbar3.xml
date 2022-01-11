@@ -14,15 +14,14 @@
         android:src="@drawable/back_arrow"/>
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView
-        android:textSize="20sp"
         android:id="@+id/tv_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
-         android:layout_centerInParent="true"
-         android:text="@string/forgot_password"
+        android:text="@string/forgot_password"
         android:textColor="@color/black"
-         />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/iv_dots"

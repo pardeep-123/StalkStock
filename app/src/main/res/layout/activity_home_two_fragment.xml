@@ -139,11 +139,11 @@
 
         <ImageView
             android:id="@+id/iv_congrats"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:src="@drawable/cart_empty" />
+            android:src="@drawable/no_product" />
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:layout_width="match_parent"

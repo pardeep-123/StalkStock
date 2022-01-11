@@ -1,15 +1,14 @@
 package com.stalkstock.vender.fragment
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
@@ -31,9 +30,7 @@ import com.stalkstock.vender.ui.BottomnavigationScreen
 import com.stalkstock.vender.ui.MessageActivity
 import com.stalkstock.vender.ui.SelectCategory
 import com.stalkstock.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_bid_detail.*
 import kotlinx.android.synthetic.main.activity_home_two_fragment.*
-import kotlinx.android.synthetic.main.biddetailsalertbox.*
 import okhttp3.RequestBody
 import java.util.*
 import kotlin.collections.ArrayList
@@ -44,14 +41,18 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     private var testAdapter: TestAdapter? = null
 
     var clickMsg = 0
-    private var reset = false
-    private var currentOffset = 0
+    private var loading = true
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"
     var tv_Notfound: TextView? = null
     var rvCategory: RecyclerView? = null
     var etSearch: EditText? = null
+    var totalItemCount:Int=0
+    var visibleItemCount:Int=0
+    var pastVisiblesItems:Int=0
+    var page:Int=0
+
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var currentModel: ArrayList<ModelVendorProductList.Body.Product> = ArrayList()
@@ -68,17 +69,25 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         etSearch = view.findViewById(R.id.edtSearch)
         rvCategory = view.findViewById(R.id.recyclerview)
         testAdapter = TestAdapter(mcontext!!, currentModel, this)
-        rvCategory?.layoutManager = LinearLayoutManager(mcontext)
+        var mLayoutManager= LinearLayoutManager(requireContext())
+        rvCategory?.layoutManager = mLayoutManager
         rvCategory?.adapter = testAdapter
         testAdapter?.arrayList = currentModel
 
         rvCategory?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) { //check for scroll down
+                    visibleItemCount = mLayoutManager.childCount
+                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
 
-                if (!recyclerView.canScrollVertically(1)) {
-                    if (currentOffset > 1 && currentModel.size > 4)
-                        getVendorProducts()
+                    if (loading) {
+                        loading = false
+                        if ((visibleItemCount + pastVisiblesItems) <= totalItemCount) {
+                            page++
+                            getVendorProducts()
+                            loading = true
+                        }
+                    }
                 }
             }
         })
@@ -109,7 +118,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getVendorProducts()
+     //   getVendorProducts()
     }
 
     /* override fun onResume() {
@@ -122,10 +131,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     val viewModel: HomeViewModel by viewModels()
 
     private fun getVendorProducts() {
-        if (reset) {
-            currentOffset = 0
-            currentModel.clear()
-        }
+
         val map = HashMap<String, RequestBody>()
 
         if (activity != null) {
@@ -133,10 +139,10 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
             map["sortBy"] = mActivity.mUtils.createPartFromString(currentSortBy.toString())
             map["lowPrice"] = mActivity.mUtils.createPartFromString(currentLowPrice.toString())
             map["highPrice"] = mActivity.mUtils.createPartFromString(currentHighPrice.toString())
-            map["offset"] = mActivity.mUtils.createPartFromString(currentOffset.toString())
-            map["limit"] = mActivity.mUtils.createPartFromString("5")
+            map["offset"] = mActivity.mUtils.createPartFromString(page.toString())
+            map["limit"] = mActivity.mUtils.createPartFromString("10")
             viewModel.getVendorProductListAPI(mActivity, true, map)
-            viewModel.homeResponse.observe(this, this)
+            viewModel.homeResponse.observe(requireActivity(), this)
         }
 
     }
@@ -175,60 +181,12 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 currentLowPrice = data!!.getStringExtra("lowPrice")!!
                 currentHighPrice = data.getStringExtra("highPrice")!!
                 currentSortBy = data.getStringExtra("sortBy")!!
-                getVendorProducts()
+               // getVendorProducts()
             }
             if (resultCode === Activity.RESULT_CANCELED) {
                 // Write your code if there's no result
             }
         }
-    }
-
-    private fun editDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.biddetailsalertbox)
-        dialog.window!!.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-        dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-
-        dialog.submitbutton.setOnClickListener {
-            if (dialog.edtSellingPrice.text.toString().isEmpty()) {
-                dialog.edtSellingPrice.error = resources.getString(R.string.please_enter_sale_price)
-            } else if (dialog.edtSellngDesc.text.toString().isEmpty()) {
-                dialog.edtSellngDesc.error = resources.getString(R.string.please_enter_sale_terms)
-            } else {
-                val hashMap = HashMap<String, RequestBody>()
-//                hashMap["bidId"] = mUtil.createPartFromString("bidId")
-//                hashMap["amount"] = mUtil.createPartFromString(dialog.edtSellingPrice?.text.toString())
-//                hashMap["description"] = mUtil.createPartFromString(dialog.edtSellngDesc?.text.toString())
-//                viewModel.vendorAcceptBid(this, true, hashMap)
-//                viewModel.mResponse.observe(this, this)
-
-                bidamt.visibility = View.VISIBLE
-                biddisc.visibility = View.VISIBLE
-                placebid_button.tag = 1
-                placebid_button.text = "Place Bid"
-                if (placebid_button.text.toString() == "Place Bid") {
-                    placebid_button.text = "Edit Bid"
-                    it.tag = 1 //pause
-                } else {
-                    val status = it.tag as Int
-                    if (status == 1) {
-                        it.tag = 0 //pause
-                    } else {
-                        placebid_button.text = "Edit Bid"
-                        it.tag = 1 //pause
-                    }
-                }
-                dialog.dismiss()
-            }
-        }
-        dialog.show()
     }
 
 
@@ -238,7 +196,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 if (it.data is ModelVendorProductList) {
                     val mResponse: ModelVendorProductList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        currentOffset += 50
+                        totalItemCount= mResponse.body.total
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), mResponse.message)
@@ -249,8 +207,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(requireActivity(), mResponse.message)
-                        reset = true
-                        getVendorProducts()
+                        loading = true
+                     //   getVendorProducts()
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
@@ -260,7 +218,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 if (it.data != null) {
                     Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
-                    if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
+                    if (it.error!!.toString().contains("User Address") && page > 1) {
                     } else
                         Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT)
                             .show()
@@ -273,8 +231,6 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
 
     private fun setData(mResponse: ModelVendorProductList) {
         txtHomeTotal.text = "Total:${mResponse.body.product.size}"
-        currentModel.clear()
-
         currentModel.addAll(mResponse.body.product)
         testAdapter?.arrayList = currentModel
 
@@ -287,8 +243,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
             tvNoProducts.visibility = View.GONE
             recyclerview.visibility = View.VISIBLE
             llAddProduct.visibility = View.VISIBLE
-            testAdapter!!.notifyDataSetChanged()
-            reset = false
+            testAdapter?.notifyDataSetChanged()
+
         }
 
     }
@@ -306,8 +262,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
 
     override fun onResume() {
         super.onResume()
-
-        currentOffset = 0
+        page=0
         currentModel.clear()
         getVendorProducts()
     }

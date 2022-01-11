@@ -27,8 +27,8 @@
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/aahome" />
 
@@ -41,7 +41,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="No pending deliveries"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="@dimen/value_18sp" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:layout_width="match_parent"
@@ -51,6 +51,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:gravity="center"
+                android:textSize="@dimen/value_14sp"
                 android:text="@string/look_like_you_do" />
         </RelativeLayout>
 
@@ -70,7 +71,7 @@
             android:text="Try Again"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <RelativeLayout

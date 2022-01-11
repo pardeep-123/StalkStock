@@ -84,7 +84,7 @@
                                 android:id="@+id/requestid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
                                 android:text=""
                                 android:textColor="#000"
                                 android:textSize="16sp" />
@@ -113,7 +113,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#000"
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 android:layout_marginTop="3dp"
                                 android:text=""/>
                             <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -160,7 +160,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
                             android:layout_gravity="center">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -171,9 +171,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="#000"
-                                    android:textSize="17sp"
-
-                                    android:layout_alignParentLeft="true"
+                                    android:textSize="16sp"
+                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:text=""/>
                                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                                     android:id="@+id/bidqu"

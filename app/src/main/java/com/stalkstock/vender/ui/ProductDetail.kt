@@ -1,10 +1,16 @@
 package com.stalkstock.vender.ui
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -16,7 +22,6 @@ import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.consumer.model.UserCommonModel
 import com.stalkstock.utils.BaseActivity
-import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelProductDetail
 import com.stalkstock.viewmodel.HomeViewModel
@@ -37,9 +42,14 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val backarrow = findViewById<ImageView>(R.id.product_backarrow)
+        currentProductID = intent.getStringExtra("product_id")!!
         val btn = findViewById<Button>(R.id.edit_btn)
         val btn2 = findViewById<Button>(R.id.delete_btn)
-        btn2.setOnClickListener { deleteProduct(currentProductID) }
+        btn2.setOnClickListener {
+
+            deleteProductDialog(currentProductID)
+           // deleteProduct(currentProductID)
+        }
         btn.setOnClickListener {
             val intent = Intent(this@ProductDetail, EditProduct::class.java)
             intent.putExtra("body",currentProductModel)
@@ -47,7 +57,7 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
         }
         backarrow.setOnClickListener { onBackPressed() }
 
-        currentProductID = intent.getStringExtra("product_id")!!
+
     }
 
     private fun deleteProduct(currentProductID: String) {
@@ -107,6 +117,29 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
             it.status == Status.LOADING -> {
             }
         }
+    }
+
+    fun deleteProductDialog(currentProductID: String) {
+        val logoutUpdatedDialogs = Dialog(this)
+        logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        logoutUpdatedDialogs.setContentView(R.layout.delete_successfully_alert)
+        logoutUpdatedDialogs.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        logoutUpdatedDialogs.setCancelable(true)
+        logoutUpdatedDialogs.setCanceledOnTouchOutside(false)
+        logoutUpdatedDialogs.window!!.setGravity(Gravity.CENTER)
+        logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.btn_yes)
+        val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.btn_no)
+        btncontinue.setOnClickListener {
+            deleteProduct(currentProductID)
+        }
+        upgrade_cancel.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
+        }
+        logoutUpdatedDialogs.show()
     }
 
     private fun setData(mResponse: ModelProductDetail) {

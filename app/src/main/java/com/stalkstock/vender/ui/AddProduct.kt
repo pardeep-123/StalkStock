@@ -25,6 +25,8 @@ import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.ProductUnitData
+import com.stalkstock.utils.custom.TitiliumBoldTextView
+import com.stalkstock.utils.custom.TitiliumRegularTextView
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelAddProduct
 import com.stalkstock.viewmodel.HomeViewModel
@@ -266,11 +268,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 
             R.id.ivUpload -> {
                 if (arrStringMultipleImages.size == 2) {
-                    Toast.makeText(
-                        this,
-                        "You can't upload more than 2 photos!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                   updateSubscriptionDialog()
                 } else {
                     askCameraPermissonsMultiple()
                 }
@@ -398,6 +396,65 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 
     }
 
+
+    private fun updateSubscriptionDialog() {
+        val logoutUpdatedDialogs = Dialog(this)
+        logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        logoutUpdatedDialogs.setContentView(R.layout.upgrade_alert_box)
+        logoutUpdatedDialogs.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        logoutUpdatedDialogs.setCancelable(true)
+        logoutUpdatedDialogs.setCanceledOnTouchOutside(false)
+        logoutUpdatedDialogs.window!!.setGravity(Gravity.CENTER)
+        logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_yes)
+        val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_cancel)
+        btncontinue.setOnClickListener {
+            startActivity(Intent(this@AddProduct, Subscription::class.java))
+            finishAffinity()
+            logoutUpdatedDialogs.dismiss()
+        }
+        upgrade_cancel.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
+        }
+        logoutUpdatedDialogs.show()
+
+    }
+
+    private fun upgradeSubscriptionDialog() {
+        val logoutUpdatedDialogs = Dialog(this)
+        logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        logoutUpdatedDialogs.setContentView(R.layout.upgrade_alert_box)
+        logoutUpdatedDialogs.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        logoutUpdatedDialogs.setCancelable(true)
+        logoutUpdatedDialogs.setCanceledOnTouchOutside(false)
+        logoutUpdatedDialogs.window!!.setGravity(Gravity.CENTER)
+        logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_yes)
+        val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_cancel)
+        val tvDesc = logoutUpdatedDialogs.findViewById<TitiliumRegularTextView>(R.id.tvDesc)
+        val tvTitle = logoutUpdatedDialogs.findViewById<TitiliumBoldTextView>(R.id.tvTitle)
+
+        tvTitle.text= getString(R.string.time_to_upgrade_your_account)
+        tvDesc.text= getString(R.string.reached_your_limit_description)
+
+        btncontinue.setOnClickListener {
+            startActivity(Intent(this@AddProduct, Subscription::class.java))
+            finishAffinity()
+            logoutUpdatedDialogs.dismiss()
+        }
+        upgrade_cancel.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
+        }
+        logoutUpdatedDialogs.show()
+
+    }
+
     private fun askCameraPermissonsMultiple() {
         selectImage("2")
     }
@@ -441,21 +498,21 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 
     private fun setDialog() {
         detailDialog = Dialog(this)
-        detailDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        detailDialog!!.setContentView(R.layout.dialog_home)
-        detailDialog!!.window!!.setLayout(
+        detailDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        detailDialog.setContentView(R.layout.dialog_home)
+        detailDialog.window!!.setLayout(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        detailDialog!!.setCancelable(true)
-        detailDialog!!.setCanceledOnTouchOutside(true)
+        detailDialog.setCancelable(true)
+        detailDialog.setCanceledOnTouchOutside(true)
         detailDialog.window!!.setGravity(Gravity.CENTER)
-        detailDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val rvProductUnit: RecyclerView = detailDialog!!.findViewById(R.id.rvProductUnit)
-        val llDialog = detailDialog!!.findViewById<LinearLayout>(R.id.llDialog)
+        detailDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val rvProductUnit: RecyclerView = detailDialog.findViewById(R.id.rvProductUnit)
+        val llDialog = detailDialog.findViewById<LinearLayout>(R.id.llDialog)
         rvProductUnit.adapter = adapterMeasurements
-        llDialog.setOnClickListener { detailDialog!!.dismiss() }
-        detailDialog!!.show()
+        llDialog.setOnClickListener { detailDialog.dismiss() }
+        detailDialog.show()
     }
 
     private fun askCameraPermissons() {
@@ -517,12 +574,16 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 }
             }
             it.status == Status.ERROR -> {
-                if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
-//                    showAlerterRed()
+                if(it.error!!.toString()=="Please upgrade your Subscription Plan"){
+                 upgradeSubscriptionDialog()
+                }else{
+                    if (it.data != null) {
+                        Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, it.error.toString(), Toast.LENGTH_SHORT).show()
+                    }
                 }
+
             }
             it.status == Status.LOADING -> {
             }

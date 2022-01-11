@@ -5,15 +5,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.stalkstock.utils.custom.TitiliumBoldTextView
-        android:textSize="20sp"
         android:id="@+id/tv_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerVertical="true"
         android:layout_centerInParent="true"
-         android:text="@string/forgot_password"
-         android:textColor="@color/black"
-        />
+        android:layout_gravity="center"
+        android:text="@string/forgot_password"
+        android:textColor="@color/black"
+        android:textSize="@dimen/value_18sp" />
 
 </RelativeLayout>

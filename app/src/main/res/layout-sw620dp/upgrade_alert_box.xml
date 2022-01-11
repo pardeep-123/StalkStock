@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="500dp"
-    android:layout_gravity="center_horizontal"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="@dimen/_16sdp"
     android:layout_marginLeft="25dp"
     android:layout_marginRight="25dp"
-    android:layout_marginBottom="15dp"
-    android:background="@color/white">
+    android:layout_marginBottom="15dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,11 +16,12 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/verifyset"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:src="@drawable/lock_icon"
                 app:civ_border_color="#8C8D8E"
@@ -30,19 +29,34 @@
                 app:civ_border_width="1dp" />
 
         </RelativeLayout>
-        <com.stalkstock.utils.custom.TitiliumRegularTextView
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Want to add more photos?\nUpgrade now to unlock this feature\nand so much more!"
+            android:text="It’s Time to Unlock More Photos!"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="16sp">
+        </com.stalkstock.utils.custom.TitiliumBoldTextView>
+
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Looks like you’ve reached your photo limit for this product. To add more images,please upgrade your account."
             android:textColor="#4A4949"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textSize="22sp">
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="14sp">
         </com.stalkstock.utils.custom.TitiliumRegularTextView>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_width="match_parent"
@@ -51,13 +65,13 @@
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/upgrade_yes"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/buttonshape"
                 android:backgroundTint="#8BC34A"
                 android:textAllCaps="false"
-                android:text="Upgrade Your Account"
+                android:text="Upgrade Now"
                 android:textColor="#fff"
-                android:textSize="17sp"
+                android:textSize="15dp"
                 android:layout_marginRight="@dimen/_5sdp"
                 >
 
@@ -66,14 +80,14 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:id="@+id/upgrade_cancel"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:textAllCaps="false"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/edittextshape"
-                android:text="Cancel"
+                android:text="No Thanks"
 
                 android:textColor="#8BC34A"
-                android:textSize="17sp"
+                android:textSize="15dp"
                 >
 
             </com.stalkstock.utils.custom.TitiliumBoldButton>

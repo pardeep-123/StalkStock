@@ -166,10 +166,10 @@
                         android:id="@+id/tv_pending"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16sp"
                         android:gravity="center"
+                        android:text="Pending Ads"
                         android:textColor="@color/white"
-                        android:text="Pending Ads"/>
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
                 <RelativeLayout

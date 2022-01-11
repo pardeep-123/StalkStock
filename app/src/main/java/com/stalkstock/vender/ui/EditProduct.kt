@@ -3,6 +3,7 @@ package com.stalkstock.vender.ui
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -27,6 +28,8 @@ import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.ProductUnitData
+import com.stalkstock.utils.custom.TitiliumBoldTextView
+import com.stalkstock.utils.custom.TitiliumRegularTextView
 import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
@@ -342,11 +345,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             }
             R.id.imagesthree -> {
                 if (arrStringMultipleImages.size == 2) {
-                    Toast.makeText(
-                        this,
-                        "You can't upload more than 2 photos!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    updateSubscriptionDialog()
                 } else {
                     askCameraPermissonsMultiple()
                 }
@@ -363,6 +362,64 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     val viewModel: HomeViewModel by viewModels()
+
+    private fun updateSubscriptionDialog() {
+        val logoutUpdatedDialogs = Dialog(this)
+        logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        logoutUpdatedDialogs.setContentView(R.layout.upgrade_alert_box)
+        logoutUpdatedDialogs.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        logoutUpdatedDialogs.setCancelable(true)
+        logoutUpdatedDialogs.setCanceledOnTouchOutside(false)
+        logoutUpdatedDialogs.window!!.setGravity(Gravity.CENTER)
+        logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_yes)
+        val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_cancel)
+        btncontinue.setOnClickListener {
+            startActivity(Intent(this@EditProduct, Subscription::class.java))
+            finishAffinity()
+            logoutUpdatedDialogs.dismiss()
+        }
+        upgrade_cancel.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
+        }
+        logoutUpdatedDialogs.show()
+
+    }
+
+    private fun upgradeSubscriptionDialog() {
+        val logoutUpdatedDialogs = Dialog(this)
+        logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        logoutUpdatedDialogs.setContentView(R.layout.upgrade_alert_box)
+        logoutUpdatedDialogs.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        logoutUpdatedDialogs.setCancelable(true)
+        logoutUpdatedDialogs.setCanceledOnTouchOutside(false)
+        logoutUpdatedDialogs.window!!.setGravity(Gravity.CENTER)
+        logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_yes)
+        val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_cancel)
+        val tvDesc = logoutUpdatedDialogs.findViewById<TitiliumRegularTextView>(R.id.tvDesc)
+        val tvTitle = logoutUpdatedDialogs.findViewById<TitiliumBoldTextView>(R.id.tvTitle)
+
+        tvTitle.text= getString(R.string.time_to_upgrade_your_account)
+        tvDesc.text= getString(R.string.reached_your_limit_description)
+
+        btncontinue.setOnClickListener {
+            startActivity(Intent(this@EditProduct, Subscription::class.java))
+            finishAffinity()
+            logoutUpdatedDialogs.dismiss()
+        }
+        upgrade_cancel.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
+        }
+        logoutUpdatedDialogs.show()
+
+    }
 
     private fun validations(): Boolean {
         when {
@@ -648,11 +705,16 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 }
             }
             it.status == Status.ERROR -> {
-                setAdapterSpinnerSub("0", listSubCategoryBody)
-                if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+
+                if(it.error!!.toString()=="Please upgrade your Subscription Plan"){
+                    upgradeSubscriptionDialog()
+                }else{
+                    setAdapterSpinnerSub("0", listSubCategoryBody)
+                    if (it.data != null) {
+                        Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, it.error.toString(), Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
             it.status == Status.LOADING -> {

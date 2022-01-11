@@ -302,6 +302,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="no_request_found">No Request Found</string>
     <string name="confirm_location_proceed"><![CDATA[Confirm Location & Proceed]]></string>
     <string name="no_data_found">No data found</string>
+    <string name="time_to_upgrade_your_account">It’s Time to Upgrade Your Account.</string>
+    <string name="reached_your_limit_description">It looks like you’ve reached your listing limit. To add more products, please upgrade your account.</string>
 
     <string-array name="Select_Category">
         <item>Select category</item>

@@ -34,7 +34,7 @@
                 android:gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/home_grey"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
          android:text="Yes"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:textSize="16sp" />
     <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btn_no"
         android:layout_width="0dp"
@@ -63,7 +63,7 @@
          android:text="No"
         android:textAllCaps="false"
         android:textColor="@color/theme_green"
-        android:textSize="17sp" />
+        android:textSize="16sp" />
 </LinearLayout>
 
         </LinearLayout>

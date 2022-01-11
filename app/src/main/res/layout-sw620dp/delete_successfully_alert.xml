@@ -21,8 +21,7 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/delete_icon"
-                android:layout_centerHorizontal="true"/>
+                android:src="@drawable/warning_icon" />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_msg"
@@ -31,7 +30,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_gravity="center_horizontal"
-                android:text="Are you sure you want to remove this payment method?"
+                android:text="Are you sure you'd like to remove this product?"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/home_grey"
@@ -48,7 +47,7 @@
         android:layout_weight="1"
         android:background="@drawable/btn_shape"
         android:gravity="center"
-         android:text="Yes"
+         android:text="Delete"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17sp" />

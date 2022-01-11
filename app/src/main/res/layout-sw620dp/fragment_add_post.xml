@@ -90,7 +90,7 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/upload_image_640px_x_360px"
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/addPostRecyclerView"
@@ -131,7 +131,7 @@
                         android:background="@color/white"
                         android:text="@string/ad_title"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -164,7 +164,7 @@
                             android:paddingRight="12dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/light_grey"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/value_14sp" />
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                             android:background="@color/white"
                             android:text="@string/from"
                             android:textColor="@color/light_grey"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/value_14sp" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -202,7 +202,7 @@
                             android:paddingRight="12dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/light_grey"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/value_14sp" />
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="wrap_content"
@@ -213,7 +213,7 @@
                             android:background="@color/white"
                             android:text="@string/to"
                             android:textColor="@color/light_grey"
-                            android:textSize="13sp" />
+                            android:textSize="@dimen/value_14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -391,7 +391,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -402,7 +402,7 @@
                         android:background="@color/white"
                         android:text="@string/ad_destination_link"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -426,7 +426,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -437,7 +437,7 @@
                         android:background="@color/white"
                         android:text="@string/daily_advertising_budget"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -460,7 +460,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -471,7 +471,7 @@
                         android:background="@color/white"
                         android:text="Ad Description"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
 
@@ -495,7 +495,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -506,7 +506,7 @@
                         android:background="@color/white"
                         android:text="Billing information for approved ads"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -530,7 +530,7 @@
                         android:gravity="start"
                         android:text="@string/i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/value_14sp" />
 
                 </RelativeLayout>
                 <com.stalkstock.utils.custom.TitiliumBoldButton
@@ -546,7 +546,7 @@
                     android:text="@string/edit_update_payment_method"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldButton
                     android:id="@+id/btn_preview"
@@ -562,7 +562,7 @@
                     android:text="@string/preview_ad"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </ScrollView>
 
