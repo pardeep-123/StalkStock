@@ -98,10 +98,8 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
                 if (it.data is UserCommonModel) {
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            finish()
-                            //Do something after 100ms
-                        }, 2000)
+                        deleteSuccessDialog()
+
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
                     }
@@ -134,11 +132,38 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
         val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.btn_yes)
         val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.btn_no)
         btncontinue.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
             deleteProduct(currentProductID)
         }
         upgrade_cancel.setOnClickListener {
             logoutUpdatedDialogs.dismiss()
         }
+        logoutUpdatedDialogs.show()
+    }
+
+    fun deleteSuccessDialog() {
+        val logoutUpdatedDialogs = Dialog(this)
+        logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        logoutUpdatedDialogs.setContentView(R.layout.dialog_delete_product)
+        logoutUpdatedDialogs.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        logoutUpdatedDialogs.setCancelable(true)
+        logoutUpdatedDialogs.setCanceledOnTouchOutside(false)
+        logoutUpdatedDialogs.window!!.setGravity(Gravity.CENTER)
+        logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.btn_yes)
+
+        btncontinue.setOnClickListener {
+            logoutUpdatedDialogs.dismiss()
+            Handler(Looper.getMainLooper()).postDelayed({
+                         finish()
+                         //Do something after 100ms
+                     }, 1000)
+
+        }
+
         logoutUpdatedDialogs.show()
     }
 
@@ -162,7 +187,7 @@ class ProductDetail : BaseActivity(), Observer<RestObservable> {
             imagesList as MutableList<ModelProductDetail.Body.ProductImage>
         )
         viewPagerImages.adapter = customPagerAdapter
-        viewPagerImages.autoScroll(2000)
+        viewPagerImages.autoScroll(4000)
         if (imagesList.size > 1) {
             tab_layout.visibility = View.VISIBLE
         } else {

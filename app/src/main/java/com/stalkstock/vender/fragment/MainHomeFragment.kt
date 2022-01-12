@@ -45,7 +45,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     var currentLowPrice = ""
     var currentHighPrice = "10000"
     var currentSortBy = "high_to_low"
-    var tv_Notfound: TextView? = null
+    var tvNoProducts: LinearLayout? = null
+    var llAddProduct: LinearLayout? = null
     var rvCategory: RecyclerView? = null
     var etSearch: EditText? = null
     var totalItemCount:Int=0
@@ -65,7 +66,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         val view = inflater.inflate(R.layout.activity_home_two_fragment, container, false)
         mcontext = activity
 
-        tv_Notfound = view.findViewById(R.id.tvNoData)
+        tvNoProducts = view.findViewById(R.id.tvNoProducts)
+        llAddProduct = view.findViewById(R.id.llAddProduct)
         etSearch = view.findViewById(R.id.edtSearch)
         rvCategory = view.findViewById(R.id.recyclerview)
         testAdapter = TestAdapter(mcontext!!, currentModel, this)
@@ -235,14 +237,14 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         testAdapter?.arrayList = currentModel
 
         if (currentModel.size == 0) {
-            tvNoProducts.visibility = View.VISIBLE
+            tvNoProducts?.visibility = View.VISIBLE
             recyclerview.visibility = View.GONE
-            llAddProduct.visibility = View.GONE
+            llAddProduct?.visibility = View.GONE
 
         } else {
-            tvNoProducts.visibility = View.GONE
+            tvNoProducts?.visibility = View.GONE
             recyclerview.visibility = View.VISIBLE
-            llAddProduct.visibility = View.VISIBLE
+            llAddProduct?.visibility = View.VISIBLE
             testAdapter?.notifyDataSetChanged()
 
         }

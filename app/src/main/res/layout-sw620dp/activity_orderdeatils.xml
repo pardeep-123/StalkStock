@@ -25,13 +25,12 @@
             android:layout_height="50dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order Details"
                 android:layout_centerInParent="true"
+                android:text="Order Details"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/arrowBack"
@@ -114,15 +113,15 @@
                     android:layout_marginTop="15dp"
                     android:visibility="gone"
                     android:layout_marginStart="15sp"/>
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Order"
+                    android:layout_height="18dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="19sp"
+                    android:text="Your Order"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="18sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mRecyclerView"
@@ -263,13 +262,12 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Order Details"
+                    android:layout_height="22dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
-                    android:textSize="18sp"
+                    android:text="Order Details"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="18sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:layout_width="wrap_content"
@@ -322,11 +320,11 @@
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/textDelivery"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="18dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:text="DELIVERED TO"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="10dp"/>
+                    android:textColor="@color/black" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvDeliveryLocation"

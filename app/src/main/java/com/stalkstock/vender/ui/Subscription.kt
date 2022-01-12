@@ -1,45 +1,46 @@
-package com.stalkstock.vender.ui;
+package com.stalkstock.vender.ui
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.stalkstock.R
+import android.content.Intent
+import android.widget.Button
+import android.widget.ImageView
+import com.stalkstock.vender.ui.SelectPaymentMethod
+import android.widget.TextView
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.stalkstock.R;
-
-public class Subscription extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subscription);
-        ImageView imageView= findViewById(R.id.subscription_backarrow);
-        Button button = findViewById(R.id.upgrade_button);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Subscription.this, SelectPaymentMethod.class));
-
-            }
-        });
-
-        TextView upgrade_button1=findViewById(R.id.upgrade_button1);
-        upgrade_button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-
-            }
-        });
+class Subscription : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_subscription)
+        val imageView = findViewById<ImageView>(R.id.subscription_backarrow)
+        val button = findViewById<Button>(R.id.upgrade_button)
+        imageView.setOnClickListener { onBackPressed() }
+        button.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@Subscription,
+                    SelectPaymentMethod::class.java
+                )
+            )
+        }
+        val upgrade_button1 = findViewById<TextView>(R.id.upgrade_button1)
+        upgrade_button1.setOnClickListener {
+            onBackPressed()
+        }
     }
+
+    override fun onBackPressed() {
+        if(isTaskRoot){
+            startActivity(Intent(this, BottomnavigationScreen::class.java).also {
+                it.flags=Intent.FLAG_ACTIVITY_CLEAR_TOP  or Intent.FLAG_ACTIVITY_NEW_TASK
+            })
+
+        }else{
+
+            super.onBackPressed()
+        }
+    }
+
+
 }

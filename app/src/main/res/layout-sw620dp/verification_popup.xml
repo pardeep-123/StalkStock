@@ -37,11 +37,12 @@
 
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btn_ok11"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/btn_shape"
             android:gravity="center"
+            android:layout_gravity="center_horizontal"
              android:text="Okay"
             android:textAllCaps="false"
             android:textColor="@color/white"

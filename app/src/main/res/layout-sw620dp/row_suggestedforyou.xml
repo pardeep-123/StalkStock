@@ -18,10 +18,10 @@
         android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:textColor="@color/home_grey"
+        android:textColor="@color/black"
         android:text="Six core elements"/>
 
 </LinearLayout>

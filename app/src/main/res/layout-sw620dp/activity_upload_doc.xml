@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:text="@string/upload_your_driver_s_license"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/value_16sp" />
 
             <LinearLayout
                 android:id="@+id/layoutApp"
@@ -125,7 +125,7 @@
                     android:gravity="center"
                     android:text="@string/upload_your_registration"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/value_16sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -170,7 +170,7 @@
                     android:gravity="center"
                     android:text="@string/upload_your_proof_of_insurance"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/value_16sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -200,19 +200,19 @@
             <Button
                 android:id="@+id/btn_Upload1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_below="@+id/layoutText2"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:layout_marginTop="30dp"
-                android:minHeight="45dp"
                 android:layout_marginRight="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/button_round_corners"
+                android:background="@drawable/btn_shape"
+                android:minHeight="45dp"
                 android:text="Upload"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/value_16sp"
 
                 />
 

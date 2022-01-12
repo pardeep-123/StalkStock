@@ -34,9 +34,15 @@ class PastAdapter(
         else{
             holder.btnModeOfPayment.text = "Paid Offline"
         }
+
         holder.txtName.text = body.firstName+" "+body.lastName
         holder.txtOrderNumber.text = body.orderNo
         holder.pastorder.setOnClickListener {
+            if(mOrderArrayList[position].orderStatus==6){
+                message4="Rejected"
+            }else{
+                message4="Delivered"
+            }
             val intent4 = Intent(context, OrderDetails::class.java)
             intent4.putExtra("key", message4)
             intent4.putExtra("orderId", body.id.toString())

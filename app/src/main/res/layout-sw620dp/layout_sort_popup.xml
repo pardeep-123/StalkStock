@@ -30,7 +30,8 @@
                 android:layout_centerInParent="true"
                 android:text="Sort"
                 android:textAllCaps="true"
-                android:textSize="22sp"                android:textColor="@color/sort_popup_gray_color"/>
+                android:textColor="@color/sort_popup_gray_color"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
@@ -45,7 +46,7 @@
             android:text="Shopping Options"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
-            android:textSize="22sp"
+            android:textSize="16sp"
             android:textColor="@color/sort_popup_gray_color"/>
 
         <LinearLayout
@@ -72,24 +73,25 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
-                    android:tint="@color/sort_popup_gray_color"
-                    android:src="@drawable/ic_walking_black"/>
+                    android:src="@drawable/ic_walking_black"
+                    app:tint="@color/sort_popup_gray_color" />
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tv_pickup_o"
-                    android:layout_toRightOf="@+id/ic_pickup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:textAllCaps="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/ic_pickup"
+                    android:gravity="center"
                     android:text="Pickup"
+                    android:textAllCaps="false"
 
 
                     android:textColor="@color/sort_popup_gray_color"
 
-                    android:textAllCaps="false"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    app:textAllCaps="true" />
 
 
             </RelativeLayout>
@@ -113,22 +115,23 @@
                     android:layout_centerVertical="true"
                     android:tint="@color/green_colour"
                     android:src="@drawable/ic_lock_black"/>
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tv_delivery"
-                    android:layout_toRightOf="@+id/ic_delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/ic_delivery"
+                    android:gravity="center"
                     android:text="Delivery"
 
-                    app:textAllCaps="true"
+                    android:textAllCaps="false"
 
                     android:textColor="@color/green_colour"
 
-                    android:textAllCaps="false"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    app:textAllCaps="true" />
 
 
             </RelativeLayout>
@@ -183,7 +186,7 @@
             android:text="Sort"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
-            android:textSize="22sp"
+            android:textSize="16sp"
             android:textColor="@color/black"/>
 
 
@@ -215,20 +218,19 @@
             </RelativeLayout>
 
 
-
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tv_default"
-                android:layout_toRightOf="@+id/iv_pi"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@+id/iv_tick_popuplar"
+                android:layout_toRightOf="@+id/iv_pi"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:layout_toLeftOf="@+id/iv_tick_popuplar"
-                android:layout_height="wrap_content"
                 android:text="Selected for you (default)"
-                android:layout_marginLeft="15dp"
-                android:textSize="18sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
 
 
@@ -266,21 +268,19 @@
             </RelativeLayout>
 
 
-
-
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/tv_most"
-                android:layout_toRightOf="@+id/iv_psi"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Most popular"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@+id/iv_tick_most"
+                android:layout_toRightOf="@+id/iv_psi"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:textSize="18sp"
-                android:layout_toLeftOf="@+id/iv_tick_most"
-                android:textColor="@color/black"/>
+                android:text="Most popular"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/iv_tick_most"
@@ -289,9 +289,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:tint="@color/green_colour"
                 android:visibility="gone"
-                android:src="@drawable/ic_tick"/>
+                android:src="@drawable/ic_tick"
+                app:tint="@color/green_colour" />
 
         </RelativeLayout>
 
@@ -331,7 +331,7 @@
                 android:layout_toLeftOf="@+id/iv_tick_rating"
                 android:text="Rating"
                 android:layout_marginLeft="15dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/black"/>
 
             <ImageView
@@ -360,14 +360,14 @@
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/btn_apply"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/btn_shape"
                 android:gravity="center"
                  android:text="Apply"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
     </LinearLayout>

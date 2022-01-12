@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="@dimen/_10sdp"
         android:textColor="@color/black"
+        android:textSize="@dimen/value_16sp"
         android:text=""/>
 
     <androidx.appcompat.widget.AppCompatRatingBar

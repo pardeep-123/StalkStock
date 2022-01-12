@@ -56,7 +56,7 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         tv_home=findViewById(R.id.tv_home);
-         tv_order=findViewById(R.id.tv_order);
+        tv_order=findViewById(R.id.tv_order);
         tv_cart=findViewById(R.id.tv_cart);
         tv_payment=findViewById(R.id.tv_payment);
         tv_account=findViewById(R.id.tv_account);
@@ -159,7 +159,6 @@ public class BottomnavigationScreen extends BaseActivity implements BottomNaviga
                     iv_bidTab.setImageResource(R.drawable.ic_bid_gray);
                     iv_paymentTab.setImageResource(R.drawable.a14dooler1);
                     iv_accountTab.setImageResource(R.drawable.user_green_icon1);
-
 
                     textColorChange(tv_account,tv_bid,tv_order,tv_payment,tv_home);
 

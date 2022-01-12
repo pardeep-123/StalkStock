@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -63,7 +63,7 @@
                     android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/tvMobile"
@@ -72,7 +72,7 @@
                     android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,12 +101,12 @@
                 android:id="@+id/tv_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:minHeight="40dp"
                 android:padding="15dp"
-                android:layout_centerVertical="true"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <!--
                         <androidx.appcompat.widget.SwitchCompat
@@ -152,7 +152,7 @@
             android:padding="15dp"
             android:text="@string/documents"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -168,7 +168,7 @@
             android:padding="15dp"
             android:text="Manage Addresses"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -186,7 +186,7 @@
             android:padding="15dp"
             android:text="@string/change_password"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -202,7 +202,7 @@
             android:padding="15dp"
             android:text="@string/help"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -219,7 +219,7 @@
             android:padding="15dp"
             android:text="@string/logout"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"

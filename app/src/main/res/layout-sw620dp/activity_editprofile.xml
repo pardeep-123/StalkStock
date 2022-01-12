@@ -32,7 +32,7 @@
                 android:layout_centerInParent="true"
                 android:text="Edit Profile"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/back_arrow"
@@ -92,7 +92,7 @@
 
                     android:text="@string/add_change_profile_photo"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                         android:background="@color/white"
                         android:text="First Name"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -161,7 +161,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
                         android:background="@color/white"
                         android:text="Last Name"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -201,7 +201,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
                         android:background="@color/white"
                         android:text="@string/email"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -241,7 +241,7 @@
                         android:paddingRight="12dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
@@ -252,7 +252,7 @@
                         android:background="@color/white"
                         android:text="@string/mobile"
                         android:textColor="@color/light_grey"
-                        android:textSize="13sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -275,7 +275,7 @@
                         android:text="@string/save"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <!--end-->

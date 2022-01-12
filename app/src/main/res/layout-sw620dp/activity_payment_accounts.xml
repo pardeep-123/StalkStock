@@ -26,7 +26,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                 tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints">
 
                 <ImageView
                     android:id="@+id/paymentsbackarrow"
@@ -50,15 +50,15 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                 android:background="@color/dark_gray"></View>
+                android:background="@color/dark_gray"></View>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-
                 android:layout_marginTop="@dimen/_10sdp"
+
+                android:layout_marginRight="40dp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -79,9 +79,9 @@
                         android:id="@+id/radio_fillone"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:buttonTint="#8BC34A"
@@ -106,9 +106,9 @@
 
                         <ImageView
                             android:id="@+id/iv_vv"
-                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
                             android:layout_marginLeft="15dp"
                             android:src="@drawable/visa_img" />
 
@@ -148,13 +148,13 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginBottom="15dp"
 
-                         android:src="@drawable/dlt_icon" />
+                        android:src="@drawable/dlt_icon" />
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
                         android:layout_gravity="right"
                         android:layout_marginRight="15dp"
                         android:layout_marginBottom="10dp"
@@ -165,10 +165,10 @@
 
                 <RelativeLayout
                     android:id="@+id/rltwo"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp">
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone">
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
@@ -193,12 +193,12 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/cureentbackground"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -262,12 +262,12 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:visibility="gone"
                     android:id="@+id/rlthree"
-
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp">
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone">
 
                     <com.stalkstock.utils.custom.TitiliumRegularTextView
                         android:layout_width="wrap_content"
@@ -292,12 +292,12 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/cureentbackground"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -369,22 +369,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp">
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_40sdp">
 
             <com.stalkstock.utils.custom.TitiliumBoldButton
                 android:id="@+id/paymentsaccbutton"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/edittextshape"
+                android:background="@drawable/btn_shape"
                 android:text="Add New Payment Method"
                 android:textAllCaps="false"
-                android:textColor="#8BC34A"
-                android:textSize="17sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </RelativeLayout>
 
 

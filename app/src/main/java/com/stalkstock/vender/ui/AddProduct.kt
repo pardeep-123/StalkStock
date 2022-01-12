@@ -36,6 +36,7 @@ import com.stalkstock.vender.adapter.AddEditImageModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_add_product.spinner
 import kotlinx.android.synthetic.main.activity_add_product.spinnerCountry
@@ -128,7 +129,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 else{
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@AddProduct, R.color.sort_popup_gray_color
+                            this@AddProduct, R.color.black_color
                         )
                     )
                 }
@@ -159,7 +160,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 else{
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
-                            this@AddProduct, R.color.sort_popup_gray_color
+                            this@AddProduct, R.color.black_color
                         )
                     )
                 }
@@ -437,8 +438,10 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         logoutUpdatedDialogs.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val btncontinue = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_yes)
         val upgrade_cancel = logoutUpdatedDialogs.findViewById<Button>(R.id.upgrade_cancel)
+        val verifyset = logoutUpdatedDialogs.findViewById<CircleImageView>(R.id.verifyset)
         val tvDesc = logoutUpdatedDialogs.findViewById<TitiliumRegularTextView>(R.id.tvDesc)
         val tvTitle = logoutUpdatedDialogs.findViewById<TitiliumBoldTextView>(R.id.tvTitle)
+        verifyset.setImageResource(R.drawable.warning_icon)
 
         tvTitle.text= getString(R.string.time_to_upgrade_your_account)
         tvDesc.text= getString(R.string.reached_your_limit_description)
@@ -449,6 +452,8 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             logoutUpdatedDialogs.dismiss()
         }
         upgrade_cancel.setOnClickListener {
+            startActivity(Intent(this@AddProduct, BottomnavigationScreen::class.java))
+            finishAffinity()
             logoutUpdatedDialogs.dismiss()
         }
         logoutUpdatedDialogs.show()

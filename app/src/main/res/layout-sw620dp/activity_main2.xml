@@ -25,12 +25,11 @@
             android:id="@+id/appbar_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:text="Rating"
             android:textColor="#000"
-            android:textSize="16dp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
@@ -70,6 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="Give Rating to Vendor"
         android:layout_margin="@dimen/_10sdp"
+        android:textSize="@dimen/value_16sp"
         android:textColor="@color/black" />
 
     <androidx.appcompat.widget.AppCompatRatingBar
@@ -111,6 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="Give Rating to Driver"
         android:layout_margin="@dimen/_10sdp"
+        android:textSize="@dimen/value_16sp"
         android:textColor="@color/black" />
 
     <androidx.appcompat.widget.AppCompatRatingBar

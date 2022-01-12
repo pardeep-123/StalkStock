@@ -29,7 +29,7 @@
                 android:layout_centerInParent="true"
                 android:text="Account"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:textSize="16sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/txtUserEmail"
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/txtUserPhone"
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,12 +119,11 @@
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:minHeight="40dp"
                 android:padding="15dp"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
             <!--
                         <Switch
                             android:id="@+id/toggle"
@@ -167,7 +166,7 @@
             android:padding="15dp"
             android:text="Manage Addresses"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -184,7 +183,7 @@
             android:padding="15dp"
             android:text="@string/manage_payment_methods"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -201,7 +200,7 @@
             android:padding="15dp"
             android:text="@string/change_password"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -217,7 +216,7 @@
             android:padding="15dp"
             android:text="@string/help"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -234,7 +233,7 @@
             android:padding="15dp"
             android:text="@string/logout"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"

@@ -70,6 +70,12 @@ class OrderDetails : AppCompatActivity(), Observer<RestObservable> {
                     text_detailes4.text = stringExtra
                     ltStatusChange.setOnClickListener {  }
                 }
+                stringExtra.equals("Rejected") -> {
+                    text_detailes4.setTextColor(resources.getColor(R.color.red_bid))
+                    text_detailes4.visibility = View.VISIBLE
+                    text_detailes4.text = stringExtra
+                    ltStatusChange.setOnClickListener {  }
+                }
             }
         }
 

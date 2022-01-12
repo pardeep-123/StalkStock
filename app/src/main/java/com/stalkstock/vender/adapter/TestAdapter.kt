@@ -106,11 +106,13 @@ class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var
                 arrayList = results?.values as ArrayList<Product>
 
                 if(arrayList.size>0){
-                    homeFragment.tv_Notfound?.visibility= View.GONE
+                    homeFragment.tvNoProducts?.visibility= View.GONE
                     homeFragment.rvCategory?.visibility= View.VISIBLE
+                    homeFragment.llAddProduct?.visibility= View.VISIBLE
                 }else{
-                    homeFragment.tv_Notfound?.visibility= View.VISIBLE
+                    homeFragment.tvNoProducts?.visibility= View.VISIBLE
                     homeFragment.rvCategory?.visibility= View.GONE
+                    homeFragment.llAddProduct?.visibility= View.GONE
                 }
                 notifyDataSetChanged()
             }

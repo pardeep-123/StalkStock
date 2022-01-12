@@ -25,7 +25,7 @@
             android:layout_toRightOf="@+id/img"
             android:text="ghjgjghhhhhhhhhhhhhhhh"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:id="@+id/tvLocation"

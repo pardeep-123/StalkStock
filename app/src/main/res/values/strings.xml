@@ -562,7 +562,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
         <item>Zimbabwe</item>
     </string-array>
     <string-array name="Select_Category_available">
-        <item>Select your availability</item>
+        <item>Select product availability</item>
         <item>Available</item>
         <item>Not Available</item>
     </string-array>

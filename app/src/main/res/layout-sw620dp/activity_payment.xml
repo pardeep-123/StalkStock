@@ -58,7 +58,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="CREDIT/ DEBIT CARD"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="PAYPAL"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_bg"
                 android:gravity="center"
-                android:minHeight="45dp"
+                android:minHeight="50dp"
                 android:layout_marginStart="@dimen/_40sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:text="Add New Payment Method"
@@ -151,7 +151,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_shape"
                 android:gravity="center"
-                android:minHeight="45dp"
+                android:minHeight="50dp"
                 android:layout_marginStart="@dimen/_40sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:text="Confirm Payment"

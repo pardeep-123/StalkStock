@@ -43,9 +43,9 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivUserProfile"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/dummy_profile" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_dummy_img" />
             </LinearLayout>
 
             <LinearLayout
@@ -61,27 +61,27 @@
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jamie Row"
+                    android:text=""
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:textSize="16sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvUserEmailId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="jamie@gmail.com"
+                    android:text=""
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/tvUserPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="123785768"
+                    android:text=""
                     android:textColor="@color/light_grey"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
 
             </LinearLayout>
@@ -113,12 +113,12 @@
             <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:minHeight="40dp"
                 android:padding="15dp"
-                android:layout_centerVertical="true"
                 android:text="@string/notifications"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
             <!--
                         <Switch
                             android:layout_width="wrap_content"
@@ -160,7 +160,7 @@
             android:padding="15dp"
             android:text="@string/business_profile"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -175,7 +175,7 @@
             android:padding="15dp"
             android:text="@string/manage_payment_methods"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -190,7 +190,7 @@
             android:padding="15dp"
             android:text="@string/change_password"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -205,7 +205,7 @@
             android:padding="15dp"
             android:text="@string/help"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
@@ -220,7 +220,7 @@
             android:padding="15dp"
             android:text="@string/logout"
             android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"

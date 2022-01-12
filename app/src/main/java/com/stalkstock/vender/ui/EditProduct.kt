@@ -706,16 +706,16 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             }
             it.status == Status.ERROR -> {
 
-                if(it.error!!.toString()=="Please upgrade your Subscription Plan"){
+              /*  if(it.error!!.toString()=="Please upgrade your Subscription Plan"){
                     upgradeSubscriptionDialog()
-                }else{
+                }else{*/
                     setAdapterSpinnerSub("0", listSubCategoryBody)
                     if (it.data != null) {
                         Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this, it.error.toString(), Toast.LENGTH_SHORT).show()
                     }
-                }
+               // }
             }
             it.status == Status.LOADING -> {
             }

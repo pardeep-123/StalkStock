@@ -21,6 +21,20 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/warning_icon" />
 
+            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="25dp"
+                android:gravity="center_horizontal"
+                android:text="Confirm delete."
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/tv_msg"
                 android:layout_width="match_parent"
@@ -38,7 +52,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <com.stalkstock.utils.custom.TitiliumBoldButton
-        android:id="@+id/btn_yes"
+        android:id="@+id/btn_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -46,12 +60,12 @@
         android:background="@drawable/btn_shape"
         android:gravity="center"
         android:minHeight="45dp"
-        android:text="Delete"
+        android:text="Cancel"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp" />
     <com.stalkstock.utils.custom.TitiliumBoldButton
-        android:id="@+id/btn_no"
+        android:id="@+id/btn_yes"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -60,7 +74,7 @@
         android:background="@drawable/edit_text_bg"
         android:gravity="center"
         android:minHeight="45dp"
-        android:text="Cancel"
+        android:text="Delete"
         android:textAllCaps="false"
         android:textColor="@color/theme_green"
         android:textSize="15sp" />

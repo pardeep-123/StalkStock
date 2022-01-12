@@ -18,24 +18,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="39dp">
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Manage Payment"
                 android:layout_centerInParent="true"
+                android:text="Manage Payment"
                 android:textColor="@android:color/black"
-                />
+                android:textSize="16dp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/back_arrow"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:src="@drawable/back_arrow" />
 
         </RelativeLayout>
 
