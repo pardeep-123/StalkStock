@@ -204,6 +204,7 @@ class GlobalVariables {
             const val userId = "userId"
             const val token = "token"
             const val advertiserId = "advertiserId"
+
         }
     }
 
@@ -325,6 +326,7 @@ class GlobalVariables {
         const val getPayPalWebviewLink="getPayPalWebviewLink"
         const val getVendorProductSearch="vendor/vendorProductSearch"
         const val getPrimaryAddress="getPrimaryAddress"
+        const val sendOtp = "sendOtp"
 
    /*     {
             "addressId": 42,

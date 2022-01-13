@@ -29,6 +29,7 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
+import com.stalkstock.vender.ui.Verification
 import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
@@ -334,6 +335,8 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 return
             }
 
+
+
             val hashMap = HashMap<String, RequestBody>()
             hashMap["latitude"] = mUtils.createPartFromString(latitude)
             hashMap["longitude"] = mUtils.createPartFromString(longitude)
@@ -386,47 +389,28 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 ).show()
                 return
             }
-
-            val hashMap = HashMap<String, RequestBody>()
-            hashMap[GlobalVariables.PARAM.firstname] =
-                mUtils.createPartFromString(et_firstName.text.toString().trim())
-            hashMap["latitude"] = mUtils.createPartFromString(latitude)
-            hashMap["longitude"] = mUtils.createPartFromString(longitude)
-            hashMap[GlobalVariables.PARAM.lastname] =
-                mUtils.createPartFromString(et_lastName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.shopName] =
-                mUtils.createPartFromString(et_businessName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.shopDescription] =
-                mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessTypeId] =
-                mUtils.createPartFromString(business_type.toString())
-            hashMap[GlobalVariables.PARAM.deliveryType] =
-                mUtils.createPartFromString((business_delivery_type - 1).toString())
-            hashMap[GlobalVariables.PARAM.buisnessLicense] =
-                mUtils.createPartFromString(licnEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.email] =
-                mUtils.createPartFromString(emailEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.mobile] =
-                mUtils.createPartFromString(et_mobileNo.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.businessPhone] =
-                mUtils.createPartFromString(et_businessPhone.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.website] =
-                mUtils.createPartFromString(et_website.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.shopAddress] =
-                mUtils.createPartFromString(et_businessAddress.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.city] =
-                mUtils.createPartFromString(et_city.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.state] =
-                mUtils.createPartFromString(et_state.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.postalCode] =
-                mUtils.createPartFromString(et_zipCode.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
-            hashMap[GlobalVariables.PARAM.password] =
-                mUtils.createPartFromString(passwordEdittext.text.toString().trim())
-
-            viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
-            viewModel.homeResponse.observe(this, this)
-
+            val intent= Intent(this,Verification::class.java)
+            intent.putExtra("latitude",latitude)
+            intent.putExtra("longitude",longitude)
+            intent.putExtra("firstName",et_firstName.text.toString().trim())
+            intent.putExtra("lastname",et_lastName.text.toString().trim())
+            intent.putExtra("shopName",et_businessName.text.toString().trim())
+            intent.putExtra("shopDescription",et_businessDescptn.text.toString().trim())
+            intent.putExtra("buisnessTypeId",business_type.toString())
+            intent.putExtra("deliveryType",(business_delivery_type - 1).toString())
+            intent.putExtra("buisnessLicense",licnEdittext.text.toString().trim())
+            intent.putExtra("email",emailEdittext.text.toString().trim())
+            intent.putExtra("mobile",et_mobileNo.text.toString().trim())
+            intent.putExtra("buisnessPhone",et_businessPhone.text.toString().trim())
+            intent.putExtra("website",et_website.text.toString().trim())
+            intent.putExtra("shopAddress",et_businessAddress.text.toString().trim())
+            intent.putExtra("city",et_city.text.toString().trim())
+            intent.putExtra("state",et_state.text.toString().trim())
+            intent.putExtra("postalCode",et_zipCode.text.toString().trim())
+            intent.putExtra("country",country)
+            intent.putExtra("password",passwordEdittext.text.toString().trim())
+            intent.putExtra("firstimage",firstimage)
+            startActivity(intent)
 
         }
 
@@ -435,25 +419,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-                if (it.data is VendorSignupResponse) {
-                    val data = it.data as VendorSignupResponse
-                    if (MyApplication.instance.getString("usertype").equals("3")) {
-                        setData(data)
-                        AppUtils.showSuccessAlert(
-                            this,
-                            "Sign up successfully !! please login to continue"
-                        )
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            startActivity(Intent(this, LoginActivity::class.java))
-                            //Do something after 100ms
-                        }, 2000)
-                        //startActivity(Intent(mContext, Verification::class.java))
-//                finish()
-                    } else {
-                        startActivity(Intent(mContext, LoginActivity::class.java))
-                        finish()
-                    }
-                }
+
 
                 if (it.data is CommercialSignUpResponse) {
                     val data = it.data as CommercialSignUpResponse

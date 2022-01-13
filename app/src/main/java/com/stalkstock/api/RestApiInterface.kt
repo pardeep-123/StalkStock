@@ -558,4 +558,10 @@ interface RestApiInterface {
     @POST(URL.getPrimaryAddress)
     fun getPrimaryAddress(): Observable<PrimaryAddressModel>
 
+    @Multipart
+    @POST(URL.sendOtp)
+    fun sendOtp(
+        @PartMap map: HashMap<String, RequestBody>
+    ): Observable<CommonResponseModel>
+
 }
