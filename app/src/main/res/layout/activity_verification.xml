@@ -75,6 +75,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"/>
             <com.stalkstock.utils.custom.TitiliumBoldTextView
+              android:id="@+id/tvPhoneNumber"
                 android:layout_marginTop="8dp"
 
                 android:layout_width="match_parent"
@@ -97,82 +98,28 @@
             <com.stalkstock.utils.custom.TitiliumRegularTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PIN CODE"
+            android:text="OTP"
             android:textColor="#000"
             android:textSize="14dp"/>
-        <LinearLayout
-            android:id="@+id/otp_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="4">
-            <com.stalkstock.utils.custom.TitiliumBoldEditText
-                android:id="@+id/otp_edit_box1"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:inputType="numberPassword"
-                android:focusable="true"
-                android:backgroundTint="#8BC34A"
-                android:maxLength="1"
-                android:lines="1"
-                android:textSize="28sp"
-                android:textColorLink="#000"
-                android:textColor="#000"
-                android:imeOptions="actionNext" />
-            <com.stalkstock.utils.custom.TitiliumBoldEditText
-                android:id="@+id/otp_edit_box2"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:focusable="true"
-                android:backgroundTint="#8BC34A"
-                android:gravity="center"
-                android:textSize="28sp"
-                android:textColor="#000"
-                android:inputType="numberPassword"
-                android:maxLength="1"
-                android:imeOptions="actionNext"
-                />
-            <com.stalkstock.utils.custom.TitiliumBoldEditText
-                android:id="@+id/otp_edit_box3"
-                android:layout_weight="1"
-                android:layout_marginRight="20dp"
-                android:layout_width="0dp"
-                android:focusable="true"
-                android:backgroundTint="#8BC34A"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:textSize="28sp"
-                android:textColor="#000"
-                android:inputType="numberPassword"
-                android:maxLength="1"
-                android:imeOptions="actionNext"
-                />
-
-            <com.stalkstock.utils.custom.TitiliumBoldEditText
-                android:id="@+id/otp_edit_box4"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:textSize="28sp"
-                android:focusable="true"
-                android:backgroundTint="#8BC34A"
-                android:textColor="#000"
-                android:layout_weight="1"
-                android:inputType="numberPassword"
-                android:maxLength="1"
+            <com.chaos.view.PinView
+                android:id="@+id/otpPin"
+                style="@style/PinWidget.PinView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:cursorVisible="true"
+                android:hint="****"
                 android:imeOptions="actionDone"
-                />
-
-
-        </LinearLayout>
+                android:inputType="number"
+                app:hideLineWhenFilled="true"
+                app:itemCount="4"
+                app:itemHeight="50dp"
+                app:itemWidth="@dimen/_40sdp"
+                app:itemSpacing="@dimen/_24sdp"
+                app:lineColor="@android:color/transparent"
+                app:lineWidth="2dp"
+                app:viewType="line"/>
             <com.stalkstock.utils.custom.TitiliumRegularTextView
                 android:id="@+id/resendotp"
                 android:layout_width="match_parent"

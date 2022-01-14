@@ -1,5 +1,6 @@
 package com.stalkstock.api
 
+import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.advertiser.model.*
 import com.stalkstock.commercial.view.model.*
 import com.stalkstock.common.model.ModelCategoryList
@@ -562,6 +563,6 @@ interface RestApiInterface {
     @POST(URL.sendOtp)
     fun sendOtp(
         @PartMap map: HashMap<String, RequestBody>
-    ): Observable<CommonResponseModel>
+    ): Observable<SendOtpResponse>
 
 }

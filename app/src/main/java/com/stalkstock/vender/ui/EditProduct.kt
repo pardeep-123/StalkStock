@@ -105,7 +105,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         addproduct_unitmeasurement.setOnClickListener { setUnitList() }
         getCategories()
 
-        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages)
+        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,"dfjhgfh")
         adapterMultipleFiles.multipleFileInterface = this
         recyclerviewSubImages.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
@@ -733,15 +733,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         setData(currentProductModel)
     }
 
-    /*private fun setAdapterSpinnerSub(mResponse: ModelSubCategoriesList) {
-        listSubCategoryBody.clear()
-        listSubCategoryBody.addAll(mResponse.body)
-        listSub.clear()
-        for (i in listSubCategoryBody) {
-            listSub.add(i.name)
-        }
-        subCatAdapter.notifyDataSetChanged()
-    }*/
 
     private fun setAdapterSpinner(mResponse: ModelCategoryList) {
         listCategoryBody.clear()
@@ -786,5 +777,9 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             adapterMultipleFiles.notifyDataSetChanged()
 
         }
+    }
+
+    override fun onImageClick(position: Int) {
+
     }
 }

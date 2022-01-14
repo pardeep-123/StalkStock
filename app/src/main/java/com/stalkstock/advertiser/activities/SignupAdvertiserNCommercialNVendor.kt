@@ -6,8 +6,7 @@ import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
@@ -21,6 +20,7 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.CommercialSignUpResponse
@@ -52,7 +52,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
-
+    var otp=""
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
@@ -259,7 +259,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             et_businessDescptn.setError(resources.getString(R.string.please_enter_business_description))
         } else if (business_type == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
-        } else if (MyApplication.instance.getString("usertype") != "4" &&  spinner_delivery_type.selectedItemPosition == 0 ) {
+        } else if (MyApplication.instance.getString("usertype") != "4" && spinner_delivery_type.selectedItemPosition == 0) {
 
             AppUtils.showErrorAlert(
                 this,
@@ -335,8 +335,6 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 return
             }
 
-
-
             val hashMap = HashMap<String, RequestBody>()
             hashMap["latitude"] = mUtils.createPartFromString(latitude)
             hashMap["longitude"] = mUtils.createPartFromString(longitude)
@@ -389,28 +387,10 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 ).show()
                 return
             }
-            val intent= Intent(this,Verification::class.java)
-            intent.putExtra("latitude",latitude)
-            intent.putExtra("longitude",longitude)
-            intent.putExtra("firstName",et_firstName.text.toString().trim())
-            intent.putExtra("lastname",et_lastName.text.toString().trim())
-            intent.putExtra("shopName",et_businessName.text.toString().trim())
-            intent.putExtra("shopDescription",et_businessDescptn.text.toString().trim())
-            intent.putExtra("buisnessTypeId",business_type.toString())
-            intent.putExtra("deliveryType",(business_delivery_type - 1).toString())
-            intent.putExtra("buisnessLicense",licnEdittext.text.toString().trim())
-            intent.putExtra("email",emailEdittext.text.toString().trim())
-            intent.putExtra("mobile",et_mobileNo.text.toString().trim())
-            intent.putExtra("buisnessPhone",et_businessPhone.text.toString().trim())
-            intent.putExtra("website",et_website.text.toString().trim())
-            intent.putExtra("shopAddress",et_businessAddress.text.toString().trim())
-            intent.putExtra("city",et_city.text.toString().trim())
-            intent.putExtra("state",et_state.text.toString().trim())
-            intent.putExtra("postalCode",et_zipCode.text.toString().trim())
-            intent.putExtra("country",country)
-            intent.putExtra("password",passwordEdittext.text.toString().trim())
-            intent.putExtra("firstimage",firstimage)
-            startActivity(intent)
+            val hashMap = HashMap<String, RequestBody>()
+            hashMap["mobile"] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
+            viewModel.sendOtp(this, true, hashMap)
+            viewModel.homeResponse.observe(this, this)
 
         }
 
@@ -432,7 +412,38 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                         finish()
                     }
                 }
+                if (it.data is SendOtpResponse) {
+                    val data = it.data as SendOtpResponse
+                    if (data.code == 200) {
+                        Log.i("====", data.message)
+                        otp=data.body.otp.toString()
+                        val intent = Intent(this, Verification::class.java)
+                        intent.putExtra("latitude", latitude)
+                        intent.putExtra("longitude", longitude)
+                        intent.putExtra("firstName", et_firstName.text.toString().trim())
+                        intent.putExtra("lastname", et_lastName.text.toString().trim())
+                        intent.putExtra("shopName", et_businessName.text.toString().trim())
+                        intent.putExtra("shopDescription", et_businessDescptn.text.toString().trim())
+                        intent.putExtra("buisnessTypeId", business_type.toString())
+                        intent.putExtra("deliveryType", (business_delivery_type - 1).toString())
+                        intent.putExtra("buisnessLicense", licnEdittext.text.toString().trim())
+                        intent.putExtra("email", emailEdittext.text.toString().trim())
+                        intent.putExtra("mobile", et_mobileNo.text.toString().trim())
+                        intent.putExtra("buisnessPhone", et_businessPhone.text.toString().trim())
+                        intent.putExtra("website", et_website.text.toString().trim())
+                        intent.putExtra("shopAddress", et_businessAddress.text.toString().trim())
+                        intent.putExtra("city", et_city.text.toString().trim())
+                        intent.putExtra("state", et_state.text.toString().trim())
+                        intent.putExtra("postalCode", et_zipCode.text.toString().trim())
+                        intent.putExtra("country", country)
+                        intent.putExtra("password", passwordEdittext.text.toString().trim())
+                        intent.putExtra("firstimage", firstimage)
+                        intent.putExtra("otp", otp)
+                        startActivity(intent)
+                    }
+                }
             }
+
             it.status == Status.ERROR -> {
                 if (it.data != null) {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
@@ -686,7 +697,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, selectedItemView: View?, position: Int, p3: Long) {
+    override fun onItemSelected(
+        p0: AdapterView<*>?,
+        selectedItemView: View?,
+        position: Int,
+        p3: Long
+    ) {
         if (position == 0) {
             (selectedItemView as? TextView)?.setTextColor(
                 ContextCompat.getColor(

@@ -16,8 +16,9 @@ import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.bumptech.glide.Glide
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -56,6 +57,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     lateinit var textView2: TextView
     lateinit var textView3: TextView
     var categoryId = "0"
+    var adapterPosition=0
     private var productId: String=""
     var subCategoryId = "0"
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
@@ -94,11 +96,12 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         textView2 = findViewById(R.id.texttwo)
         textView3 = findViewById(R.id.textthree)
 
-        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages)
+        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,firstImage)
+
         adapterMultipleFiles.multipleFileInterface=this
-        rvSubImages.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
+        rvSubImages.layoutManager = GridLayoutManager(this, 3)
         rvSubImages.adapter = adapterMultipleFiles
+
         textView.setOnClickListener(View.OnClickListener {
             textView.setBackground(resources.getDrawable(R.drawable.edit_background))
             textView1.setBackground(resources.getDrawable(R.drawable.textbackground))
@@ -248,8 +251,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
     }
     private fun getProductAsSubCategory() {
-
-            currentModel.clear()
+        currentModel.clear()
 
         val map = java.util.HashMap<String, RequestBody>()
         map["subCategoryId"] = mUtils.createPartFromString(subCategoryId)
@@ -405,10 +407,10 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 if (it.data is ModelSubCategoriesList) {
                     val mResponse: ModelSubCategoriesList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        setAdapterSpinnerSub("1", mResponse.body!!)
+                        setAdapterSpinnerSub("1", mResponse.body)
 
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                        AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
             }
@@ -439,9 +441,36 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 .selectCount(2)
                 .columnCount(4)
                 .onResult { result ->
+                  //  mAlbumFilesMultiple.clear
                     mAlbumFilesMultiple.clear()
                     mAlbumFilesMultiple.addAll(result)
-                    setAdapter(mAlbumFilesMultiple)
+                    if (firstImage.isEmpty()){
+
+                        firstImage=result[0].path
+                        Glide.with(this).load(firstImage).into(imagesthree)
+
+                        if (result.size>=1){
+
+
+                            var tempList = ArrayList<AlbumFile>()
+
+                              tempList.addAll(result)
+                            tempList.removeAt(0)
+//                            mAlbumFilesMultiple.removeAt(0)
+                            setAdapter(tempList!!)
+                        }
+
+                    }else{
+
+
+                        var tempList = ArrayList<AlbumFile>()
+
+                        tempList.addAll(result)
+                        tempList.removeAt(0)
+
+                        //.addAll(result)
+                        setAdapter(tempList)
+                    }
                 }
                 .onCancel { }
                 .start()
@@ -449,19 +478,41 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         }
     }
 
+    var firstImage=""
     private fun setAdapter(mAlbumFilesMultiple:ArrayList<AlbumFile>) {
-        if (mAlbumFilesMultiple.size > 0) {
-            arrStringMultipleImages.clear()
-            for (i in mAlbumFilesMultiple) {
+        arrStringMultipleImages.clear()
+        for (i in 0 until mAlbumFilesMultiple.size) {
                 val data= AddEditImageModel()
-                data.name= i.path
+                data.name= mAlbumFilesMultiple[i].path
                 data.type="add"
                 arrStringMultipleImages.add(data)
-                Log.e("PathMulti,", i.path)
-            } }
 
-        adapterMultipleFiles.notifyDataSetChanged()
+
+        }
+
+        adapterMultipleFiles.firstImageUpdate(firstImage,arrStringMultipleImages)
+       // adapterMultipleFiles.notifyDataSetChanged()
+
+
+       /* if(mAlbumFilesMultiple.size==1){
+            Glide.with(this).load(mAlbumFilesMultiple[0].path).into(imagesthree)
+        }
+        else if (mAlbumFilesMultiple.size > 0) {
+         //   arrStringMultipleImages.clear()
+                for (i in 0 until mAlbumFilesMultiple.size) {
+                    if(i==0){
+                        Glide.with(this).load(mAlbumFilesMultiple[0].path).into(imagesthree)
+                    }else{
+                        val data= AddEditImageModel()
+                        data.name= mAlbumFilesMultiple[i].path
+                        data.type="add"
+                        arrStringMultipleImages.add(data)
+                        adapterMultipleFiles.notifyDataSetChanged()
+                    }
+                }
+         }*/
     }
+
 
     private fun setAdapterSpinnerSub(
         position: String,
@@ -505,5 +556,10 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
             adapterMultipleFiles.notifyDataSetChanged()
             Log.i("===",arrStringMultipleImages.size.toString())
         }
+    }
+
+    override fun onImageClick(position: Int) {
+        adapterPosition=position
+        askCameraPermissonsMultiple()
     }
 }

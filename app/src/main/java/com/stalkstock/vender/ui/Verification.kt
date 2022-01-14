@@ -1,45 +1,43 @@
 package com.stalkstock.vender.ui
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.LinearLayout
-import android.widget.EditText
-import android.os.Bundle
-import com.stalkstock.R
-import android.view.WindowManager
-import android.view.Gravity
-import android.graphics.drawable.ColorDrawable
 import android.content.Intent
 import android.graphics.Color
-import com.stalkstock.vender.ui.AddBusinessDetails
-import androidx.annotation.RequiresApi
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.ImageView
+import android.view.WindowManager
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.stalkstock.MyApplication
+import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
+import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.api.RestObservable
+import com.stalkstock.api.Status
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_verification.*
 import okhttp3.RequestBody
-import java.lang.Exception
 
 class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
-    var otp_layout: LinearLayout? = null
-    var otp1: EditText? = null
-    var otp2: EditText? = null
-    var otp3: EditText? = null
-    var otp4: EditText? = null
+
     var verfiy: Button? = null
     var verfy_backarrow: ImageView? = null
     var latitude=""
@@ -62,6 +60,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
     var country=""
     var password=""
     var firstimage=""
+    var otp=""
 
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -72,45 +71,28 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-      /*  try {
-            try {
-                if (intent.getStringExtra("type") == "my") {
-                    val logoutUpdatedDialog = Dialog(this, R.style.Theme_Dialog)
-                    logoutUpdatedDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                    logoutUpdatedDialog.setContentView(R.layout.verficationalertdialog)
-                    logoutUpdatedDialog.window!!.setLayout(
-                        WindowManager.LayoutParams.MATCH_PARENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT
-                    )
-                    logoutUpdatedDialog.setCancelable(true)
-                    logoutUpdatedDialog.setCanceledOnTouchOutside(false)
-                    logoutUpdatedDialog.window!!.setGravity(Gravity.CENTER)
-                    logoutUpdatedDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    val btncontinue =
-                        logoutUpdatedDialog.findViewById<Button>(R.id.verify_continuebutton)
-                    btncontinue.setOnClickListener { //                                        Intent intent = new Intent(ChatBox.this, MessageFragment.class);
-//                                        startActivity(intent);
-                        startActivity(Intent(this@Verification, AddBusinessDetails::class.java))
-                        logoutUpdatedDialog.dismiss()
-                    }
-                    logoutUpdatedDialog.show()
-                }
-            } catch (e: Exception) {
-
-                // loadFragment( fragment);
-            }
-            // change to whichever id should be default
-        } catch (e: Exception) {
-        }*/
-        super.onCreate(savedInstanceState)
+     super.onCreate(savedInstanceState)
 
         verfy_backarrow = findViewById(R.id.verify_backarrow)
-        otp_layout = findViewById(R.id.otp_layout)
-        otp1 = findViewById(R.id.otp_edit_box1)
-        otp2 = findViewById(R.id.otp_edit_box2)
-        otp3 = findViewById(R.id.otp_edit_box3)
-        otp4 = findViewById(R.id.otp_edit_box4)
 
+        otpPin.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                if (s.toString().length == 4) {
+                    //hide keyboard
+                    CommonMethods.hideKeyboard(this@Verification,otpPin)
+                }
+            }
+        })
+
+        otp= intent.getStringExtra("otp")!!
         latitude= intent.getStringExtra("latitude")!!
         longitude= intent.getStringExtra("longitude")!!
         firstName= intent.getStringExtra("firstName")!!
@@ -122,6 +104,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
         buisnessLicense= intent.getStringExtra("buisnessLicense")!!
         email= intent.getStringExtra("email")!!
         mobile= intent.getStringExtra("mobile")!!
+        tvPhoneNumber.text=mobile
         buisnessPhone= intent.getStringExtra("buisnessPhone").toString()
         website= intent.getStringExtra("website").toString()
         shopAddress= intent.getStringExtra("shopAddress").toString()
@@ -133,65 +116,10 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
         firstimage= intent.getStringExtra("firstimage").toString()
 
 
-         val hashMap = HashMap<String, RequestBody>()
-        hashMap[GlobalVariables.PARAM.firstname] =
-                mUtils.createPartFromString(firstName)
-        hashMap["latitude"] = mUtils.createPartFromString(latitude)
-        hashMap["longitude"] = mUtils.createPartFromString(longitude)
-        hashMap[GlobalVariables.PARAM.lastname] =
-                mUtils.createPartFromString(lastName)
-        hashMap[GlobalVariables.PARAM.shopName] =
-                mUtils.createPartFromString(shopName)
-        hashMap[GlobalVariables.PARAM.shopDescription] =
-                mUtils.createPartFromString(shopDescription)
-        hashMap[GlobalVariables.PARAM.buisnessTypeId] =
-                mUtils.createPartFromString(buisnessTypeId)
-        hashMap[GlobalVariables.PARAM.deliveryType] =
-                mUtils.createPartFromString(deliveryType)
-        hashMap[GlobalVariables.PARAM.buisnessLicense] =
-                mUtils.createPartFromString(buisnessLicense)
-        hashMap[GlobalVariables.PARAM.email] =
-                mUtils.createPartFromString(email)
-        hashMap[GlobalVariables.PARAM.mobile] =
-                mUtils.createPartFromString(mobile)
-        hashMap[GlobalVariables.PARAM.businessPhone] =
-                mUtils.createPartFromString(buisnessPhone)
-        hashMap[GlobalVariables.PARAM.website] =
-                mUtils.createPartFromString(website)
-        hashMap[GlobalVariables.PARAM.shopAddress] =
-                mUtils.createPartFromString(shopAddress)
-        hashMap[GlobalVariables.PARAM.city] =
-                mUtils.createPartFromString(city)
-        hashMap[GlobalVariables.PARAM.state] =
-                mUtils.createPartFromString(state)
-        hashMap[GlobalVariables.PARAM.postalCode] =
-                mUtils.createPartFromString(postalCode)
-        hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
-        hashMap[GlobalVariables.PARAM.password] =
-                mUtils.createPartFromString(password)
-
-        viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
-        viewModel.homeResponse.observe(this, this)
-
-        otp1?.setOnKeyListener(View.OnKeyListener { view, i, keyEvent ->
-            if (otp1?.getText().toString().length == 1) otp2?.requestFocus()
-            false
-        })
-        otp2?.setOnKeyListener(View.OnKeyListener { view, i, keyEvent ->
-            if (otp2?.getText().toString().length == 1) otp3?.requestFocus()
-            false
-        })
-        otp3?.setOnKeyListener(View.OnKeyListener { view, i, keyEvent ->
-            if (otp3?.getText().toString().length == 1) otp4?.requestFocus()
-            false
-        })
-        otp4?.setOnKeyListener(View.OnKeyListener { view, i, keyEvent ->
-            if (otp4?.getText().toString().length == 1) otp4?.requestFocus()
-            false
-        })
         verfiy = findViewById(R.id.verifybutton)
         verfiy?.setOnClickListener(this)
         verfy_backarrow?.setOnClickListener(this)
+        resendotp?.setOnClickListener(this)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -199,9 +127,59 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
         val id = view.id
         when (id) {
             R.id.verify_backarrow -> onBackPressed()
-            R.id.verifybutton -> verifyloDailogMethod()
-            else -> {
+            R.id.resendotp ->{
+                val hashMap = HashMap<String, RequestBody>()
+                hashMap["mobile"] = mUtils.createPartFromString(mobile)
+                viewModel.sendOtp(this, true, hashMap)
+                viewModel.homeResponse.observe(this, this)
             }
+
+            R.id.verifybutton -> {
+                if(otp!=otpPin.text.toString()){
+                    AppUtils.showErrorAlert(this, resources.getString(R.string.otp_does_not_match))
+                }else {
+                    val hashMap = HashMap<String, RequestBody>()
+                    hashMap[GlobalVariables.PARAM.firstname] =
+                        mUtils.createPartFromString(firstName)
+                    hashMap["latitude"] = mUtils.createPartFromString(latitude)
+                    hashMap["longitude"] = mUtils.createPartFromString(longitude)
+                    hashMap[GlobalVariables.PARAM.lastname] =
+                        mUtils.createPartFromString(lastName)
+                    hashMap[GlobalVariables.PARAM.shopName] =
+                        mUtils.createPartFromString(shopName)
+                    hashMap[GlobalVariables.PARAM.shopDescription] =
+                        mUtils.createPartFromString(shopDescription)
+                    hashMap[GlobalVariables.PARAM.buisnessTypeId] =
+                        mUtils.createPartFromString(buisnessTypeId)
+                    hashMap[GlobalVariables.PARAM.deliveryType] =
+                        mUtils.createPartFromString(deliveryType)
+                    hashMap[GlobalVariables.PARAM.buisnessLicense] =
+                        mUtils.createPartFromString(buisnessLicense)
+                    hashMap[GlobalVariables.PARAM.email] =
+                        mUtils.createPartFromString(email)
+                    hashMap[GlobalVariables.PARAM.mobile] =
+                        mUtils.createPartFromString(mobile)
+                    hashMap[GlobalVariables.PARAM.businessPhone] =
+                        mUtils.createPartFromString(buisnessPhone)
+                    hashMap[GlobalVariables.PARAM.website] =
+                        mUtils.createPartFromString(website)
+                    hashMap[GlobalVariables.PARAM.shopAddress] =
+                        mUtils.createPartFromString(shopAddress)
+                    hashMap[GlobalVariables.PARAM.city] =
+                        mUtils.createPartFromString(city)
+                    hashMap[GlobalVariables.PARAM.state] =
+                        mUtils.createPartFromString(state)
+                    hashMap[GlobalVariables.PARAM.postalCode] =
+                        mUtils.createPartFromString(postalCode)
+                    hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
+                    hashMap[GlobalVariables.PARAM.password] =
+                        mUtils.createPartFromString(password)
+
+                    viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
+                    viewModel.homeResponse.observe(this, this)
+                }
+            }
+
         }
     }
 
@@ -227,23 +205,37 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
     }
 
     override fun onChanged(it: RestObservable) {
-        if (it.data is VendorSignupResponse) {
-            val data = it.data as VendorSignupResponse
-            if (MyApplication.instance.getString("usertype").equals("3")) {
-                setData(data)
-                AppUtils.showSuccessAlert(
-                    this,
-                    "Sign up successfully !! please login to continue"
-                )
-                Handler(Looper.getMainLooper()).postDelayed({
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    //Do something after 100ms
-                }, 2000)
-                //startActivity(Intent(mContext, Verification::class.java))
-//                finish()
-            } else {
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+        when {
+            it.status == Status.SUCCESS -> {
+                if (it.data is VendorSignupResponse) {
+                    val data = it.data as VendorSignupResponse
+                    setData(data)
+                    AppUtils.showSuccessAlert(
+                        this,
+                        "Sign up successfully !! please login to continue"
+                    )
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        //Do something after 100ms
+                    }, 2000)
+                }
+                if (it.data is SendOtpResponse) {
+                    val data = it.data as SendOtpResponse
+                    if (data.code == 200) {
+                        Log.i("====", data.message)
+                        otp = data.body.otp.toString()
+                        otpPin.text?.clear()
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+            it.status == Status.LOADING -> {
             }
         }
     }

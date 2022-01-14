@@ -1,7 +1,6 @@
 package com.stalkstock.vender.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +8,13 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stalkstock.R
-import com.stalkstock.utils.loadImage
 
 import kotlinx.android.synthetic.main.item_sub_images.view.*
 
 class AdapterMultipleFiles(
     var context: Context,
-    var currentModel: ArrayList<AddEditImageModel>
+
+    var currentModel: ArrayList<AddEditImageModel>,var firstImage:String
 ) :
     RecyclerView.Adapter<AdapterMultipleFiles.RecyclerViewHolder>() {
     var inflater: LayoutInflater
@@ -33,8 +32,32 @@ class AdapterMultipleFiles(
         return viewHolder
     }
 
+    fun firstImageUpdate(image: String, arrStringMultipleImages: ArrayList<AddEditImageModel>){
+        currentModel=arrStringMultipleImages
+        firstImage=image
+        notifyDataSetChanged()
+    }
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        Glide.with(context).load(currentModel[position].name).into( holder.itemView.adduploadimagesone)
+        if(firstImage.isEmpty()){
+            Glide.with(context).load(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
+
+        }else{
+            //if(currentModel.size>0){
+            try {
+                Glide.with(context).load(currentModel[position].name).placeholder(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
+            } catch (e: Exception) {
+                Glide.with(context).load(R.drawable.place_holder).placeholder(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
+            }
+
+//            }else{
+//                Glide.with(context).load(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
+//
+//            }
+        }
+
+        holder.itemView.adduploadimagesone.setOnClickListener {
+            multipleFileInterface.onImageClick(position)
+        }
 
         holder.itemView.ivDeletePhoto.setOnClickListener {
             multipleFileInterface.onItemClick(position,currentModel[position]
@@ -43,7 +66,7 @@ class AdapterMultipleFiles(
     }
 
     override fun getItemCount(): Int {
-        return currentModel.size
+        return 9
     }
 
     init {
@@ -52,5 +75,6 @@ class AdapterMultipleFiles(
 
     interface MultipleFilesInterface{
         fun onItemClick(position: Int,data:AddEditImageModel)
+        fun onImageClick(position: Int)
     }
 }

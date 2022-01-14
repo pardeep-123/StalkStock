@@ -62,13 +62,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <androidx.core.widget.NestedScrollView
-                    android:id="@+id/svImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewToolbar">
 
-                    <RelativeLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
@@ -76,21 +71,15 @@
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:orientation="horizontal">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvSubImages"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_85sdp"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginEnd="@dimen/_4sdp"
-                            android:layout_toStartOf="@+id/relative_imagesthree"
-                            tools:listitem="@layout/item_sub_images" />
 
                         <RelativeLayout
                             android:id="@+id/relative_imagesthree"
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_80sdp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:layout_constraintEnd_toStartOf="@id/rvSubImages"
+                            app:layout_constraintStart_toStartOf="parent"
                             android:background="@drawable/addproduct">
 
                             <ImageView
@@ -104,14 +93,38 @@
                                 android:id="@+id/imagesthree"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
+                                android:layout_centerInParent="true"
                                 android:layout_gravity="center"
                                 android:src="@drawable/pro_camera_icon" />
 
                         </RelativeLayout>
-                    </RelativeLayout>
-                </androidx.core.widget.NestedScrollView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/rvSubImages"
+                            android:layout_toStartOf="@id/rvSubImages"
+                            app:layout_constraintBottom_toBottomOf="@+id/rvSubImages"
+                            app:layout_constraintTop_toBottomOf="@+id/relative_imagesthree"
+                            android:text="Add upto 2 photos.\nWe don't allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!"
+                            android:textAlignment="center" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvSubImages"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginStart="@dimen/_14sdp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="3"
+                            tools:itemCount="9"
+                            tools:listitem="@layout/item_sub_images" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

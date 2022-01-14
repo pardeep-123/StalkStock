@@ -100,7 +100,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <!--new2-->
     <string name="add_photo">Add Photo</string>
     <string name="now_dish">Now dish<b> Pizza Creamy Nachos </b>with extra cheese. Try it.</string>
-    <string name="resend"><u>Resend</u></string>
+    <string name="resend"><u>Resend OTP?</u></string>
     <string name="save">Save</string>
     <string name="helptext">Nunc a velit quis neque malesuada accumsan eu at erat Ut feugiat necaugue non sollicitudin. Pellentesque volutpat blandit nunc eu aliquet. Phasellus vestibulum malesuada felies Nunc a velit quis neque malesuada accumsaneu at eart. Ut feugiat necaugue non sollicitudin. Pellentesque volutpat blandit nunc eu aliquet. Phasellus vestibulum malesuada felies Nunc a velit quis neque malesuadaaccumsan eu at erat.Ut feugiat necaugue non sollicitudin. Pellentesque volutpat  blandit nunc eu aliquet.Phasellus vestibulum malesuada felies</string>
     <string name="forgotpassword">Forgot Password?</string>
@@ -304,6 +304,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="no_data_found">No data found</string>
     <string name="time_to_upgrade_your_account">It’s Time to Upgrade Your Account.</string>
     <string name="reached_your_limit_description">It looks like you’ve reached your listing limit. To add more products, please upgrade your account.</string>
+    <string name="otp_does_not_match">Otp does not match.</string>
 
     <string-array name="Select_Category">
         <item>Select category</item>

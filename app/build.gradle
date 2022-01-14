@@ -143,4 +143,6 @@ dependencies {
     //facebook
     implementation 'com.facebook.android:facebook-android-sdk:8.2+'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+    //pinView
+    implementation 'com.chaos.view:pinview:1.4.4'
 }

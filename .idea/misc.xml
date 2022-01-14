@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/drawable/filled_checkbox.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/grey_unfill_dot.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/ic_baseline_lens_24.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/drawable/ic_camera_alt_black_24dp.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/drawable/ic_dummy_image.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/ic_dummy_img.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable/item_border.xml" value="0.17552083333333332" />
@@ -99,6 +100,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_thankyou2.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/activity_upload.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/activity_upload_doc.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_verification.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/add_address.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/add_new_card.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/add_thanks.xml" value="0.25" />
@@ -138,7 +140,7 @@
         <entry key="app/src/main/res/layout-sw620dp/home_popup.xml" value="0.13515625" />
         <entry key="app/src/main/res/layout-sw620dp/item_cards.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/item_orders.xml" value="0.33" />
-        <entry key="app/src/main/res/layout-sw620dp/item_sub_images.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/item_sub_images.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/item_view_bid_order_adapter.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/item_view_product_rating.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/layout_progress_hud.xml" value="0.13515625" />
@@ -246,6 +248,7 @@
         <entry key="app/src/main/res/layout/activity_thankyou.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_upload.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_upload_doc.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/activity_verification.xml" value="0.25" />
         <entry key="app/src/main/res/layout/add_address.xml" value="0.33" />
         <entry key="app/src/main/res/layout/add_new_card.xml" value="0.14739583333333334" />
         <entry key="app/src/main/res/layout/add_thanks.xml" value="0.159375" />
