@@ -16,7 +16,7 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.live.stalkstockcommercial.ui.view.fragments.home.AdapterProductUnit2
@@ -30,7 +30,6 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.ProductUnitData
 import com.stalkstock.utils.custom.TitiliumBoldTextView
 import com.stalkstock.utils.custom.TitiliumRegularTextView
-import com.stalkstock.utils.loadImage
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.ModelEditProduct
@@ -66,6 +65,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     var subCategoryId = "0"
     private var listProduct: ArrayList<String> = ArrayList()
     var deleteImageArrayId = ArrayList<String>()
+    var adapterPosition=0
 
     private var curreMeasurementId = ""
     private var curreMeasurementName= ""
@@ -81,7 +81,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
     var m: Context? = null
     var ivImg: ImageView? = null
-    lateinit var adduploadimages: ImageView
     var relativeLayout: RelativeLayout? = null
     var detailDialog: Dialog? = null
 
@@ -96,19 +95,16 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         val button = findViewById<Button>(R.id.addproduct_updatebutton)
         relativeLayout = findViewById(R.id.relative_imagesthree)
         ivImg = findViewById(R.id.uploadimagesthree)
-        adduploadimages = findViewById(R.id.imagesthree)
         button.setOnClickListener(this)
         imageView.setOnClickListener(this)
-        adduploadimages.setOnClickListener(this)
-        addSingleImage.setOnClickListener(this)
-        deleteicon.setOnClickListener(this)
+        ivImg?.setOnClickListener(this)
+
         addproduct_unitmeasurement.setOnClickListener { setUnitList() }
         getCategories()
 
         adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,"dfjhgfh")
         adapterMultipleFiles.multipleFileInterface = this
-        recyclerviewSubImages.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true)
+        recyclerviewSubImages.layoutManager = GridLayoutManager(this, 3)
         recyclerviewSubImages.adapter = adapterMultipleFiles
 
         adapterMeasurements = AdapterProductUnit2(this, listProductUnit)
@@ -255,29 +251,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     private fun setData(currentProductModel: ModelProductDetail) {
-        subCategoryId= currentProductModel.body.subCategoryId.toString()
+        subCategoryId = currentProductModel.body.subCategoryId.toString()
 
-        val obj= listCategoryBody.find { it.id==currentProductModel.body.categoryId }
+        val obj = listCategoryBody.find { it.id == currentProductModel.body.categoryId }
         spinnerCategory.setSelection(listCategoryBody.indexOf(obj))
         getSubCategoryAPI(currentProductModel.body.categoryId.toString())
 
-//        categoryId = currentProductModel.body.categoryId.toString()
-//        getSubCategoryAPI(categoryId)
-        //  subCategoryId=currentProductModel.body.subCategoryId.toString()
-        /*for (i in 0 until list.size) {
-            if (lis[i] == currentProductModel.body.categoryId.toString()) {
-                spinnerCategory.setSelection(list.indexOf(currentProductModel.body.categoryId.toString()))
-               // getSubCategoryAPI(categoryId)
-            }
-        }
-
-        for (i in 0 until listSub.size) {
-            if (listSub[i] == currentProductModel.body.subCategoryId.toString()) {
-                spinnerSubCategory.setSelection(list.indexOf(currentProductModel.body.subCategoryId.toString()))
-                // getSubCategoryAPI(categoryId)
-            }
-        }*/
-        //  spinnerCategory.setSelection(list.indexOf(currentProductModel.body.categoryId.toString()))
         addproduct_unitmeasurement.text = currentProductModel.body.productMeasurement.name
         curreMeasurementId = currentProductModel.body.measurementId.toString()
         curreMeasurementName = currentProductModel.body.productMeasurement.name
@@ -315,16 +294,65 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
         val productImage = currentProductModel.body.productImage
         if (productImage.size > 0) {
+
+            if (firstimage.isEmpty()){
+
+                firstimage=productImage[0].image
+                Glide.with(this).load(firstimage).into(ivImg!!)
+
+                if (productImage.size>=1){
+
+
+                    var tempList = ArrayList<ModelProductDetail.Body.ProductImage>()
+
+                    tempList.addAll(productImage)
+                    tempList.removeAt(0)
+//                            mAlbumFilesMultiple.removeAt(0)
+                    setmultipleImages(tempList)
+                }
+
+            }else{
+
+
+                var tempList = ArrayList<ModelProductDetail.Body.ProductImage>()
+
+                tempList.addAll(productImage)
+                tempList.removeAt(0)
+
+                //.addAll(result)
+                setmultipleImages(tempList)
+            }
+
+            /*if (firstimage.isEmpty()) {
+
+                firstimage = productImage[0].image
+                Glide.with(this).load(firstimage).into(adduploadimages)
+
+                if (productImage.size >= 1) {
+
+                    setmultipleImages(productImage)
+                }
+
+            }*/
+/*            if(productImage.size==1){
+                firstimage= productImage[0].image
+                Glide.with(this).load(productImage[0].image).into(adduploadimages)
+            }else{
+                setmultipleImages(productImage)
+            }
 //            edituploadimages.loadImage(productImage[0].image)
 //            firstimage = productImage[0].image
-            setmultipleImages(productImage)
+
         } else if (productImage.isNotEmpty()) {
             edituploadimages.loadImage(productImage[0].image)
             firstimage = productImage[0].image
+        }*/
         }
     }
 
     private fun setmultipleImages(productImage: List<ModelProductDetail.Body.ProductImage>) {
+
+       // Glide.with(this).load(productImage[0].image).into(adduploadimages)
         arrStringMultipleImages.clear()
         for (i in productImage.indices) {
             val data = AddEditImageModel()
@@ -333,7 +361,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             data.type = "edit"
             arrStringMultipleImages.add(data)
         }
-        adapterMultipleFiles.notifyDataSetChanged()
+        adapterMultipleFiles.firstImageUpdate(firstimage,arrStringMultipleImages)
     }
 
     override fun onClick(view: View) {
@@ -343,12 +371,13 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 if (validations())
                     alertDailogConfirmEdit()
             }
-            R.id.imagesthree -> {
-                if (arrStringMultipleImages.size == 2) {
+            R.id.ivImg -> {
+                askCameraPermissonsMultiple()
+               /* if (arrStringMultipleImages.size == 2) {
                     updateSubscriptionDialog()
                 } else {
                     askCameraPermissonsMultiple()
-                }
+                }*/
 
             }
             R.id.addSingleImage -> {
@@ -597,12 +626,38 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 .onResult { result ->
                     mAlbumFilesMultiple.clear()
                     mAlbumFilesMultiple.addAll(result)
-                    setAdapter(mAlbumFilesMultiple)
+
+                    if (firstimage.isEmpty()){
+
+                        firstimage=result[0].path
+                        Glide.with(this).load(firstimage).into(ivImg!!)
+
+                        if (result.size>=1){
+
+                            var tempList = ArrayList<AlbumFile>()
+
+                            tempList.addAll(result)
+                            tempList.removeAt(0)
+//                            mAlbumFilesMultiple.removeAt(0)
+                            setAdapter(tempList)
+                        }
+
+                    }else{
+
+                        val tempList = ArrayList<AlbumFile>()
+                        tempList.addAll(result)
+                        tempList.removeAt(0)
+
+                        //.addAll(result)
+                        setAdapter(tempList)
+                    }
+
+                   // setAdapter(mAlbumFilesMultiple)
                 }
                 .onCancel { }
                 .start()
 
-        } else {
+        } /*else {
             Album.image(this)
                 .singleChoice()
                 .widget(Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build())
@@ -617,7 +672,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 }
                 .onCancel { }
                 .start()
-        }
+        }*/
     }
 
     private fun setAdapter(mAlbumFilesMultiple: java.util.ArrayList<AlbumFile>) {
@@ -631,8 +686,8 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 Log.e("PathMulti,", i.path)
             }
         }
-
-        adapterMultipleFiles.notifyDataSetChanged()
+        adapterMultipleFiles.firstImageUpdate(firstimage,arrStringMultipleImages)
+       // adapterMultipleFiles.notifyDataSetChanged()
     }
 
     private fun setUnitList() {
@@ -780,6 +835,11 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     override fun onImageClick(position: Int) {
-
+        adapterPosition=position
+        if(position==0){
+            askCameraPermissonsMultiple()
+        }else{
+            startActivity(Intent(this@EditProduct, Subscription::class.java))
+        }
     }
 }

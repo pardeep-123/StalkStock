@@ -17,6 +17,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import co.lujun.androidtagview.TagView.OnTagClickListener
 import com.bumptech.glide.Glide
 import com.stalkstock.R
@@ -26,11 +27,12 @@ import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.BaseActivity
-import com.stalkstock.utils.others.GlobalVariables
-import com.stalkstock.viewmodel.HomeViewModel
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.GridItemDecoration
 import com.stalkstock.vender.adapter.AdapterMultipleFiles
 import com.stalkstock.vender.adapter.AddEditImageModel
+import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -38,12 +40,10 @@ import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_select_category.*
-import kotlinx.android.synthetic.main.activity_select_category.ivUpload
 import kotlinx.android.synthetic.main.activity_select_category.spinner
 import kotlinx.android.synthetic.main.activity_select_category.spinnerGetProduct
 import kotlinx.android.synthetic.main.added_product.*
 import okhttp3.RequestBody
-
 
 class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObservable>,AdapterMultipleFiles.MultipleFilesInterface {
     private lateinit var subCatAdapter: ArrayAdapter<String>
@@ -99,15 +99,26 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,firstImage)
 
         adapterMultipleFiles.multipleFileInterface=this
-        rvSubImages.layoutManager = GridLayoutManager(this, 3)
+        rvSubImages.layoutManager = GridLayoutManager(this, 3,RecyclerView.VERTICAL,false)
+        rvSubImages.addItemDecoration(GridItemDecoration(this))
+
+//         rvSubImages.addItemDecoration(
+//            DividerItemDecoration(this,
+//                DividerItemDecoration.HORIZONTAL)
+//        )
+//        rvSubImages.addItemDecoration(
+//            DividerItemDecoration(this,
+//                DividerItemDecoration.VERTICAL)
+//        )
+
         rvSubImages.adapter = adapterMultipleFiles
 
-        textView.setOnClickListener(View.OnClickListener {
-            textView.setBackground(resources.getDrawable(R.drawable.edit_background))
-            textView1.setBackground(resources.getDrawable(R.drawable.textbackground))
-            textView2.setBackground(resources.getDrawable(R.drawable.textbackground))
-            textView3.setBackground(resources.getDrawable(R.drawable.textbackground))
-        })
+        textView.setOnClickListener {
+            textView.background = resources.getDrawable(R.drawable.edit_background)
+            textView1.background = resources.getDrawable(R.drawable.textbackground)
+            textView2.background = resources.getDrawable(R.drawable.textbackground)
+            textView3.background = resources.getDrawable(R.drawable.textbackground)
+        }
         textView1.setOnClickListener(View.OnClickListener {
             textView.setBackground(resources.getDrawable(R.drawable.textbackground))
             textView1.setBackground(resources.getDrawable(R.drawable.edit_background))
@@ -447,7 +458,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     if (firstImage.isEmpty()){
 
                         firstImage=result[0].path
-                        Glide.with(this).load(firstImage).into(imagesthree)
+                        Glide.with(this).load(firstImage).into(ivUpload)
 
                         if (result.size>=1){
 
@@ -486,8 +497,6 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 data.name= mAlbumFilesMultiple[i].path
                 data.type="add"
                 arrStringMultipleImages.add(data)
-
-
         }
 
         adapterMultipleFiles.firstImageUpdate(firstImage,arrStringMultipleImages)
@@ -560,6 +569,11 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
     override fun onImageClick(position: Int) {
         adapterPosition=position
-        askCameraPermissonsMultiple()
+        if(position==0){
+            askCameraPermissonsMultiple()
+        }else{
+            startActivity(Intent(this@SelectCategory, Subscription::class.java))
+        }
+
     }
 }

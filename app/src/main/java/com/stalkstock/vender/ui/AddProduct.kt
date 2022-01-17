@@ -189,6 +189,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             currentSubCatId = intent.getStringExtra("subCatId")!!
             currentTags = intent.getStringExtra("tags")!!
             productId = intent.getStringExtra("productId")!!
+            price = intent.getStringExtra("price")!!
 
 
         } catch (e: Exception) {

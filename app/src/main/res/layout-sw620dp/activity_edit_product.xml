@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -61,98 +62,44 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/addproduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="20dp"
-                        android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/relative_imagesthree"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp">
 
-                        <RelativeLayout
+                        <ImageView
+                            android:id="@+id/uploadimagesthree"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/addproduct"
-                            android:visibility="gone">
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/camera_green" />
 
-                            <ImageView
-                                android:id="@+id/edituploadimages"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_160sdp"
-                                android:background="@drawable/addproduct"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/place_holder" />
+                    </RelativeLayout>
 
-                            <ImageView
-                                android:id="@+id/addSingleImage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center"
-                                android:src="@drawable/pro_camera_icon" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Add upto 2 photos.We don't allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!"
+                        android:textAlignment="center" />
 
-                            <ImageView
-                                android:id="@+id/deleteicon"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="@dimen/_8sdp"
-                                android:layout_marginEnd="@dimen/_10sdp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/dlt_green">
-
-                            </ImageView>
-                        </RelativeLayout>
-
-                        <androidx.core.widget.NestedScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:orientation="horizontal">
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recyclerviewSubImages"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_marginEnd="@dimen/_4sdp"
-                                    android:layout_toStartOf="@+id/relative_imagesthree"
-                                    tools:listitem="@layout/item_sub_images" />
-
-                                <RelativeLayout
-                                    android:id="@+id/relative_imagesthree"
-                                    android:layout_width="@dimen/_80sdp"
-                                    android:layout_height="@dimen/_80sdp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_centerVertical="true"
-                                    android:background="@drawable/addproduct">
-
-                                    <ImageView
-                                        android:id="@+id/uploadimagesthree"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@drawable/addproduct"
-                                        android:scaleType="fitCenter" />
-
-                                    <ImageView
-                                        android:id="@+id/imagesthree"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/pro_camera_icon" />
-
-                                </RelativeLayout>
-                            </RelativeLayout>
-                        </androidx.core.widget.NestedScrollView>
-
-                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerviewSubImages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        android:clipToPadding="false"
+                        android:background="@drawable/add_product_image"
+                        tools:itemCount="9"
+                        tools:listitem="@layout/item_sub_images" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -222,7 +169,6 @@
                                 android:prompt="@string/dropdown"
                                 android:text="Select Sub-Category"
                                 android:textColor="#000"
-
                                 android:textColorHint="#F8F6F6"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />

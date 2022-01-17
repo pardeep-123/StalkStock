@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stalkstock.R
+import kotlinx.android.synthetic.main.activity_add_product.view.*
 
 import kotlinx.android.synthetic.main.item_sub_images.view.*
 
@@ -38,22 +39,33 @@ class AdapterMultipleFiles(
         notifyDataSetChanged()
     }
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        if(firstImage.isEmpty()){
-            Glide.with(context).load(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
-
+        if(position==0){
+            holder.itemView.adduploadimagesone.setImageResource(R.drawable.camera_green)
         }else{
-            //if(currentModel.size>0){
-            try {
-                Glide.with(context).load(currentModel[position].name).placeholder(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
-            } catch (e: Exception) {
-                Glide.with(context).load(R.drawable.place_holder).placeholder(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
+            holder.itemView.adduploadimagesone.setImageResource(R.drawable.camera_grey)
+        }
+        if(firstImage.isEmpty()){
+            if(position==0){
+                Glide.with(context).load(R.drawable.camera_green).into( holder.itemView.adduploadimagesone)
+            }else{
+                Glide.with(context).load(R.drawable.camera_grey).into( holder.itemView.adduploadimagesone)
             }
 
-//            }else{
-//                Glide.with(context).load(R.drawable.place_holder).into( holder.itemView.adduploadimagesone)
-//
-//            }
+        }else{
+            try {
+                Glide.with(context).load(currentModel[position].name).placeholder(R.drawable.camera_green).into( holder.itemView.adduploadimagesone)
+            } catch (e: Exception) {
+                if(position==0){
+                    Glide.with(context).load(R.drawable.place_holder).placeholder(R.drawable.camera_green).into(holder.itemView.adduploadimagesone)
+
+                }else{
+                    Glide.with(context).load(R.drawable.place_holder).placeholder(R.drawable.camera_grey).into(holder.itemView.adduploadimagesone)
+
+                }
+            }
         }
+
+
 
         holder.itemView.adduploadimagesone.setOnClickListener {
             multipleFileInterface.onImageClick(position)
