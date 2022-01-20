@@ -5,7 +5,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -87,6 +92,23 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         super.onCreate(savedInstanceState)
         val backarrow = findViewById<ImageView>(R.id.selectctgbackarrow)
         val button = findViewById<Button>(R.id.enteritembutton)
+
+        val ss = SpannableString(   tv_upgrade_desc.text )
+
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = false
+            }
+
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@SelectCategory, Subscription::class.java))
+            }
+        }
+        ss.setSpan(clickableSpan, 77, 92, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tv_upgrade_desc.text = ss
+        tv_upgrade_desc.movementMethod = LinkMovementMethod.getInstance()
+        tv_upgrade_desc.highlightColor = Color.TRANSPARENT
 
         button.setOnClickListener(this)
         backarrow.setOnClickListener(this)
@@ -229,7 +251,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
             }
         }
 
-        listProduct.add("Select Product")
+        listProduct.add("-Select a product name-")
         spinnerGetProduct.isEnabled = false
         productAdapter = ArrayAdapter(this, R.layout.spiner_layout_text, listProduct)
         spinnerGetProduct!!.adapter = productAdapter
@@ -530,7 +552,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         listSubCategoryBody.clear()
         listSubCategoryBody.add(
             0,
-            ModelSubCategoriesList.Body(0, 0, "Select sub category", categoryId.toInt(), 0)
+            ModelSubCategoriesList.Body(0, 0, "-Select a sub category-", categoryId.toInt(), 0)
         )
 
         if (position != "0") {
@@ -548,7 +570,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
     private fun setAdapterSpinner(mResponse: ModelCategoryList) {
         listCategoryBody.clear()
-        listCategoryBody.add(0, ModelCategoryList.Body(0, "", "Select Category", 0))
+        listCategoryBody.add(0, ModelCategoryList.Body(0, "", "-Select a Category-", 0))
         listCategoryBody.addAll(mResponse.body)
         list.clear()
         for (i in listCategoryBody) {

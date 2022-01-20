@@ -520,7 +520,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
     private fun setCommercialData(mResponse: GetCommercialBuisnessDetail) {
         country = mResponse.body.commercialDetail.country
 
-        Glide.with(this).load(mResponse.body.commercialDetail.buisnessLogo).into(imageBusiness)
+        Glide.with(this).load(mResponse.body.commercialDetail.buisnessLogo).placeholder(R.drawable.camera_green).into(imageBusiness)
         etFirstName.setText(mResponse.body.commercialDetail.firstName)
         etLastName.setText(mResponse.body.commercialDetail.lastName)
         etBusinessName.setText(mResponse.body.commercialDetail.buisnessName)

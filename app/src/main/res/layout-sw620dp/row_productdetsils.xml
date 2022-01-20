@@ -54,19 +54,19 @@
 
 
             <RatingBar
-                android:layout_below="@+id/starCount"
-                android:layout_marginTop="5dp"
+                android:id="@+id/star"
+                style="?android:attr/ratingBarStyleSmall"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/star"
-                android:progressTint="@color/yellow"
-                android:progressBackgroundTint="@color/yellow"
+                android:layout_below="@+id/starCount"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/img"
-                android:rating="5"
                 android:numStars="5"
-                style="?android:attr/ratingBarStyleSmall"/>
+                android:progressBackgroundTint="@color/yellow"
+                android:progressTint="@color/yellow"
+                android:rating="5" />
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
                 android:id="@+id/price"
@@ -93,12 +93,23 @@
                 android:gravity="center"
                 android:text="New York 920.." />
 
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:id="@+id/description_textbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/location_text"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/img"
+                android:gravity="center"
+                android:text="New York 920.." />
+
             <RelativeLayout
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:id="@+id/ltPlusMinus"
                 android:visibility="gone"
-                android:layout_below="@+id/location_text"
+                android:layout_below="@+id/description_textbox"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/background_box_new"
@@ -141,7 +152,7 @@
                 android:id="@+id/add"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/location_text"
+                android:layout_below="@+id/description_textbox"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/add_btn"

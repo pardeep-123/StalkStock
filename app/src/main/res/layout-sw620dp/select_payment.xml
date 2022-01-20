@@ -114,7 +114,6 @@
                     android:id="@+id/oneone"
                     android:src="@drawable/radio_circle"
                     android:layout_width="40dp"
-                    android:padding="@dimen/_5sdp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
 
@@ -226,7 +225,6 @@
                     android:id="@+id/onetwo"
                     android:src="@drawable/radio_circle"
                     android:layout_width="40dp"
-                    android:padding="@dimen/_5sdp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
 

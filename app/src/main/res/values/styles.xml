@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowDisablePreview">true</item>
@@ -20,9 +20,6 @@
         <!-- Add attributes here -->
         <item name="colorPrimary">@color/green_colour</item>
     </style>
-    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
-        <item name="android:textColor">@color/black</item>
-    </style>
 
     <style name="AlertTextAppearanceTitle">
         <!-- <item name="android:fontFamily">@font/sansation_bold</item>-->
@@ -32,16 +29,6 @@
     <style name="AlertTextAppearanceText">
         <!--<item name="android:fontFamily">@font/sansation_regular</item>-->
         <item name="android:textSize">@dimen/value_14sp</item>
-    </style>
-
-    <style name="ProgressHUD" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateVisible|adjustResize</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="customFontTab" parent="TextAppearance.Design.Tab">
@@ -54,9 +41,6 @@
     </style>
 
 
-    <style name="PauseDialogAnimation">
-        <item name="android:windowEnterAnimation">@anim/anim_fade_in</item>
-    </style>
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@android:color/darker_gray</item>
         <item name="colorControlActivated">#FFC600</item>
@@ -75,18 +59,6 @@
 
         <item name="android:background">@drawable/edittextshape</item>
     </style>
-    <style name="EditextFieldwhit2" parent="Widget.AppCompat.EditText">
-        <item name="android:layout_height">55dp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:imeOptions">actionNext</item>
-        <item name="android:maxLines">1</item>
-
-        <item name="android:gravity">center_vertical</item>
-
-        <item name="android:background">@drawable/edittextshape</item>
-    </style>
     <!--edittextshape-->
     <style name="Textfield1" parent="Widget.AppCompat.TextView">
         <item name="android:layout_height">wrap_content</item>
@@ -97,16 +69,6 @@
         <item name="android:maxLines">1</item>
 
     </style>
-    <style name="Textfield2" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:paddingLeft">2dp</item>
-        <item name="android:paddingRight">2dp</item>
-        <item name="android:maxLines">1</item>
-
-    </style>
-
 
 
 </resources>

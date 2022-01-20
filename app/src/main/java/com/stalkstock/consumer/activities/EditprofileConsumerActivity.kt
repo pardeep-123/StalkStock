@@ -26,6 +26,7 @@ import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_bussiness_profile.*
 import kotlinx.android.synthetic.main.activity_editprofile.*
 import okhttp3.RequestBody
 import java.util.*
@@ -172,7 +173,9 @@ class EditprofileConsumerActivity : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: ModelGetProfileDetail) {
-        image.loadImage(mResponse.body.userDetail.image)
+        Glide.with(this).load(mResponse.body.userDetail.image).placeholder(R.drawable.camera_green).into(image)
+
+       // image.loadImage(mResponse.body.userDetail.image)
         edtFirstName.setText(mResponse.body.userDetail.first_name)
         edtLastName.setText(mResponse.body.userDetail.last_name)
         edtMobile.setText(mResponse.body.mobile)

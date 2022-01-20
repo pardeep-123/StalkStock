@@ -35,20 +35,15 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/corner_white_circle"
                     android:elevation="5dp"
                     android:gravity="center">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageBusiness"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:src="@drawable/camera_green"/>
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/camera" />
 
                 </RelativeLayout>
 

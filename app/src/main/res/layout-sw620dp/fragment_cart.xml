@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -72,16 +72,14 @@
             android:text="@string/look_like_your_cart" />
     </RelativeLayout>
 
-
     <ScrollView
         android:id="@+id/llMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnPaymentMethod"
+        android:layout_above="@+id/btnPreview"
         android:layout_below="@+id/header"
         android:visibility="gone"
         tools:visibility="visible">
-
 
         <LinearLayout
 
@@ -233,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -248,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Charges"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
                     android:id="@+id/txtMerchantCharges"
@@ -256,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -278,7 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <View
@@ -325,7 +323,7 @@
                     android:layout_height="wrap_content"
                     android:text="Bill Details"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -336,16 +334,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Grand Total"
-                        android:textSize="14sp"
-                        android:textColor="@color/green" />
+                        android:textColor="@color/green"
+                        android:textSize="17sp" />
 
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:id="@+id/txtGrandTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:textSize="12sp"
-                        android:textColor="@color/green" />
+                        android:textColor="@color/green"
+                        android:textSize="17sp" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -356,9 +354,137 @@
                 android:layout_marginTop="30sp"
                 android:layout_marginRight="10dp"
                 android:background="@android:color/transparent" />
+
+            <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Select your Payment Method"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/firstClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/credit_card_img" />
+
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="CREDIT/ DEBIT CARD"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/album_dp_2"
+                    android:gravity="end"
+                    android:paddingTop="10dp"
+                    android:paddingRight="@dimen/album_dp_10">
+
+                    <ImageView
+                        android:id="@+id/ivCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/radio_circle"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/paypal" />
+
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="PAYPAL"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/album_dp_10">
+
+                    <ImageView
+                        android:id="@+id/ivPaypal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/radio_circle"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnPreview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnCheckout"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:background="@drawable/edit_text_bg"
+        android:gravity="center"
+        android:minHeight="45dp"
+        android:text="Add New Payment Method"
+        android:textAllCaps="false"
+        android:textColor="@color/theme_green"
+        android:textSize="15sp" />
+
+    <com.stalkstock.utils.custom.TitiliumBoldButton
+        android:id="@+id/btnCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/_40sdp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_shape"
+        android:gravity="center"
+        android:minHeight="45dp"
+        android:text="Pay Now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 
     <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btnPaymentMethod"
@@ -374,7 +500,8 @@
         android:text="Select Payment Method"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone" />
 
     <com.stalkstock.utils.custom.TitiliumBoldButton
         android:id="@+id/btnStartShopping"

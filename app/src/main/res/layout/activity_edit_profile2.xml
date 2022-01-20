@@ -90,20 +90,9 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="20dp"
                                 android:gravity="center"
-                                app:civ_border_color="#8C8D8E"
-                                app:civ_border_overlay="true"
-                                app:civ_border_width="1dp" />
+                                android:src="@drawable/camera_green"/>
 
-                            <ImageView
-                                android:id="@+id/editprofile_camera"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="20dp"
-                                android:backgroundTintMode="screen"
-                                android:padding="45dp"
-                                android:src="@drawable/camera" />
+
                         </RelativeLayout>
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView

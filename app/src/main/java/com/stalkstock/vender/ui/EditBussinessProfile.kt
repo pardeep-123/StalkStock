@@ -150,7 +150,8 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
     private fun setDataUI(body: VendorBusinessDetailResponse.Body) {
         val vendorDetail = body.vendorDetail
-        business_imageset.loadImage(vendorDetail.shopLogo)
+        Glide.with(this).load(vendorDetail.shopLogo).placeholder(R.drawable.camera_green).into(business_imageset)
+        //business_imageset.loadImage(vendorDetail.shopLogo)
         editboxbusinessname.setText(vendorDetail.firstName)
         editlastboxbusinessname.setText(vendorDetail.lastName)
         ediboxbusinessname2.setText(vendorDetail.firstName + " " + vendorDetail.lastName)

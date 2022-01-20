@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.mender.utlis.interfaces.OnNoInternetConnectionListener
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
@@ -18,6 +19,7 @@ import com.stalkstock.vender.Model.VendorBusinessDetailResponse
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
 import com.stalkstock.utils.others.AppUtils
 import kotlinx.android.synthetic.main.activity_bussiness_profile.*
+import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.*
 import kotlinx.android.synthetic.main.row_manageaddress.view.*
 
 class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
@@ -71,7 +73,9 @@ class BussinessProfile : AppCompatActivity(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         mData = mResponse.body
                         val vendorDetail = mResponse.body.vendorDetail
-                        imageset.loadImage(vendorDetail.shopLogo)
+                        Glide.with(this).load(vendorDetail.shopLogo).placeholder(R.drawable.camera_green).into(imageset)
+
+                       // imageset.loadImage(vendorDetail.shopLogo)
                         businessnamee.setText(vendorDetail.firstName+" "+vendorDetail.lastName )
                         businessnamee1.setText(vendorDetail.shopName)
                         businessaboutdetails.setText(vendorDetail.shopDescription)
