@@ -269,6 +269,7 @@ class GlobalVariables {
         const val VENDORBIDDINGLIST="bidingAcceptRequestList"
         const val VENDORBIDDINGDETAIL="vendor/biding/Detail"
         const val VENDORACCEPTBID="vendor/accept/biding"
+        const val BUSINESS_TYPE="buisnessType"
         const val code = 200
         const val FORGOTPASSWORD = "forgotPassword"
         const val GETPROFILE = "get_profile"

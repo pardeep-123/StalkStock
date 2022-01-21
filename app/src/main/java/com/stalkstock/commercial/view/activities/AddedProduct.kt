@@ -21,8 +21,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.google.gson.JsonArray
-import com.google.gson.JsonParser
 import com.stalkstock.commercial.view.adapters.AdapterProductUnit
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
@@ -46,7 +44,6 @@ import kotlinx.android.synthetic.main.dialog_home.*
 import kotlinx.android.synthetic.main.added_product.back
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import org.bouncycastle.crypto.modes.GOFBBlockCipher
 import org.json.JSONArray
 import org.json.JSONObject
 

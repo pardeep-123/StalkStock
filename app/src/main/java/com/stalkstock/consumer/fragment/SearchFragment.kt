@@ -196,6 +196,11 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
                     if (mResponse.code == GlobalVariables.URL.code) {
                         recentSearchList.clear()
                         recentSearchList.addAll(mResponse.body)
+                        if(recentSearchList.size>0){
+                            tvRecentSearch.visibility=View.VISIBLE
+                        }else{
+                            tvRecentSearch.visibility=View.GONE
+                        }
                         mRecentSearchAdapter.notifyDataSetChanged()
                     }
                 }

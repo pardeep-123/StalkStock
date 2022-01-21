@@ -9,7 +9,12 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -32,6 +37,7 @@ import com.stalkstock.utils.custom.TitiliumBoldTextView
 import com.stalkstock.utils.custom.TitiliumRegularTextView
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.utils.others.GridItemDecoration
 import com.stalkstock.vender.Model.ModelEditProduct
 import com.stalkstock.vender.Model.ModelProductDetail
 import com.stalkstock.vender.adapter.AdapterMultipleFiles
@@ -40,6 +46,7 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_product.*
@@ -80,7 +87,8 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private var listSubCategoryBody: ArrayList<ModelSubCategoriesList.Body> = ArrayList()
 
     var m: Context? = null
-    var ivImg: ImageView? = null
+    var ivImg: CircleImageView? = null
+    var ivDelete: ImageView? = null
     var relativeLayout: RelativeLayout? = null
     var detailDialog: Dialog? = null
 
@@ -95,6 +103,27 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         val button = findViewById<Button>(R.id.addproduct_updatebutton)
         relativeLayout = findViewById(R.id.relative_imagesthree)
         ivImg = findViewById(R.id.uploadimagesthree)
+        ivDelete = findViewById(R.id.ivDelete)
+        ivImg?.setOnClickListener(this)
+        ivDelete?.setOnClickListener(this)
+
+        val ss = SpannableString(   upgrade_desc.text )
+
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = false
+            }
+
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@EditProduct, Subscription::class.java))
+            }
+        }
+        ss.setSpan(clickableSpan, 77, 92, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        upgrade_desc.text = ss
+        upgrade_desc.movementMethod = LinkMovementMethod.getInstance()
+        upgrade_desc.highlightColor = Color.TRANSPARENT
+
         button.setOnClickListener(this)
         imageView.setOnClickListener(this)
         ivImg?.setOnClickListener(this)
@@ -102,9 +131,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         addproduct_unitmeasurement.setOnClickListener { setUnitList() }
         getCategories()
 
-        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,"dfjhgfh")
+        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,firstimage)
         adapterMultipleFiles.multipleFileInterface = this
         recyclerviewSubImages.layoutManager = GridLayoutManager(this, 3)
+        recyclerviewSubImages.addItemDecoration(GridItemDecoration(this))
         recyclerviewSubImages.adapter = adapterMultipleFiles
 
         adapterMeasurements = AdapterProductUnit2(this, listProductUnit)
@@ -161,7 +191,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                         )
                     )
                 }
-
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -199,8 +228,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                         )
                     )
                 }
-
-
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -299,6 +326,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
                 firstimage=productImage[0].image
                 Glide.with(this).load(firstimage).into(ivImg!!)
+                ivDelete?.visibility=View.VISIBLE
 
                 if (productImage.size>=1){
 
@@ -323,30 +351,6 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 setmultipleImages(tempList)
             }
 
-            /*if (firstimage.isEmpty()) {
-
-                firstimage = productImage[0].image
-                Glide.with(this).load(firstimage).into(adduploadimages)
-
-                if (productImage.size >= 1) {
-
-                    setmultipleImages(productImage)
-                }
-
-            }*/
-/*            if(productImage.size==1){
-                firstimage= productImage[0].image
-                Glide.with(this).load(productImage[0].image).into(adduploadimages)
-            }else{
-                setmultipleImages(productImage)
-            }
-//            edituploadimages.loadImage(productImage[0].image)
-//            firstimage = productImage[0].image
-
-        } else if (productImage.isNotEmpty()) {
-            edituploadimages.loadImage(productImage[0].image)
-            firstimage = productImage[0].image
-        }*/
         }
     }
 
@@ -366,6 +370,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
     override fun onClick(view: View) {
         when (view.id) {
+            R.id.ivDelete ->{
+                ivDelete?.visibility=View.GONE
+                ivImg?.setImageResource(R.drawable.camera_green)
+                firstimage=""
+
+            }
             R.id.addproduct_backarrow -> onBackPressed()
             R.id.addproduct_updatebutton -> {
                 if (validations())
@@ -386,6 +396,13 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
             R.id.deleteicon -> {
 
+            }
+            R.id.uploadimagesthree ->{
+                if (arrStringMultipleImages.size == 2) {
+                    updateSubscriptionDialog()
+                } else {
+                    askCameraPermissonsMultiple()
+                }
             }
         }
     }
@@ -451,58 +468,65 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     private fun validations(): Boolean {
-        when {
-            arrStringMultipleImages.size == 0 -> {
+//        if (firstimage.isEmpty()){
+//            AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
+//            return false
+//        }else{
+            when {
+                firstimage.isEmpty()-> {
                 AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
                 return false
-            }
+             }
 
-            spinnerSubCategory.selectedItemPosition==0 ->{
-                AppUtils.showErrorAlert(
-                    this,
-                    "Please select sub category"
-                )
-                return false
-            }
+                spinnerSubCategory.selectedItemPosition==0 ->{
+                    AppUtils.showErrorAlert(
+                        this,
+                        "Please select sub category"
+                    )
+                    return false
+                }
 
-            addproduct_Brand.text.toString().trim().isEmpty() -> {
-                AppUtils.showErrorAlert(this, "Please enter brand")
-                return false
+                addproduct_Brand.text.toString().trim().isEmpty() -> {
+                    AppUtils.showErrorAlert(this, "Please enter brand")
+                    return false
+                }
+                addproduct_productname.text.toString().trim().isEmpty() -> {
+                    AppUtils.showErrorAlert(this, "Please enter product name")
+                    return false
+                }
+                /* spinnerType.selectedItemPosition == 0 -> {
+                     AppUtils.showErrorAlert(this, "Please select product type")
+                     return false
+                 }*/
+                spinnerCountry.selectedItemPosition == 0 -> {
+                    AppUtils.showErrorAlert(this, "Please select country")
+                    return false
+                }
+                curreMeasurementId.trim().isEmpty() -> {
+                    AppUtils.showErrorAlert(this, "Please select measurement")
+                    return false
+                }
+                addproduct_addprice.text.toString().trim().isEmpty() -> {
+                    AppUtils.showErrorAlert(this, "Please enter price")
+                    return false
+                }
+                addproduct_addprice.text.toString().trim() == "0" -> {
+                    AppUtils.showErrorAlert(this, "Price should be greater than 0")
+                    return false
+                }
+                addproduct_description.text.toString().trim().isEmpty() -> {
+                    AppUtils.showErrorAlert(this, "Please enter description")
+                    return false
+                }
+                spinner.selectedItemPosition == 0 -> {
+                    AppUtils.showErrorAlert(this, "Please select product availability")
+                    return false
+                }
+                else -> return true
             }
-            addproduct_productname.text.toString().trim().isEmpty() -> {
-                AppUtils.showErrorAlert(this, "Please enter product name")
-                return false
-            }
-           /* spinnerType.selectedItemPosition == 0 -> {
-                AppUtils.showErrorAlert(this, "Please select product type")
-                return false
-            }*/
-            spinnerCountry.selectedItemPosition == 0 -> {
-                AppUtils.showErrorAlert(this, "Please select country")
-                return false
-            }
-            curreMeasurementId.trim().isEmpty() -> {
-                AppUtils.showErrorAlert(this, "Please select measurement")
-                return false
-            }
-            addproduct_addprice.text.toString().trim().isEmpty() -> {
-                AppUtils.showErrorAlert(this, "Please enter price")
-                return false
-            }
-            addproduct_addprice.text.toString().trim() == "0" -> {
-                AppUtils.showErrorAlert(this, "Price should be greater than 0")
-                return false
-            }
-            addproduct_description.text.toString().trim().isEmpty() -> {
-                AppUtils.showErrorAlert(this, "Please enter description")
-                return false
-            }
-            spinner.selectedItemPosition == 0 -> {
-                AppUtils.showErrorAlert(this, "Please select product availability")
-                return false
-            }
-            else -> return true
-        }
+       // }
+
+
     }
 
     private fun alertDailogConfirmEdit() {
@@ -535,12 +559,15 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         arrStringMultipleImagesUploadable.clear()
         // if (!firstimage.contains(GlobalVariables.URL.IMAGE_URL)) { arrStringMultipleImagesUploadable.add(firstimage) }
 
+//        if (firstimage.isNotEmpty()){
+//            arrStringMultipleImagesUploadable.add(firstimage)
+//        }
         for (i in 0 until arrStringMultipleImages.size) {
-            if (arrStringMultipleImages[i].name?.contains(GlobalVariables.URL.IMAGE_URL)!!) {
+            if (arrStringMultipleImages[i].name.contains(GlobalVariables.URL.IMAGE_URL)) {
                 arrStringMultipleImagesUploadable.remove(arrStringMultipleImages[i].name)
-                val removePrefix = arrStringMultipleImages[i].name?.removePrefix("localStalk")
+                val removePrefix = arrStringMultipleImages[i].name.removePrefix("localStalk")
             } else {
-                arrStringMultipleImagesUploadable.add(arrStringMultipleImages[i].name!!)
+                arrStringMultipleImagesUploadable.add(arrStringMultipleImages[i].name)
 
             }
         }
@@ -562,18 +589,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         //   map["deleteImageArrayId"] = deleteImageArrayId
 
         var avail=0
-        var productType=0
         if(spinner.selectedItemPosition==1){
             avail=1
         }else{
             avail=0
         }
 
-        if(spinnerType.selectedItemPosition==1){
-            productType=0
-        }else{
-            productType=1
-        }
 
         map["availability"] = mUtils.createPartFromString(avail.toString())
    //     map["productType"] = mUtils.createPartFromString(productType.toString())
@@ -687,7 +708,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             }
         }
         adapterMultipleFiles.firstImageUpdate(firstimage,arrStringMultipleImages)
-       // adapterMultipleFiles.notifyDataSetChanged()
+
     }
 
     private fun setUnitList() {
@@ -827,7 +848,9 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             arrStringMultipleImages.removeAt(position)
             adapterMultipleFiles.notifyDataSetChanged()
         } else {
-            deleteImageArrayId.add(data.id)
+            if (data.id.isNotEmpty()){
+                deleteImageArrayId.add(data.id)
+            }
             arrStringMultipleImages.removeAt(position)
             adapterMultipleFiles.notifyDataSetChanged()
 

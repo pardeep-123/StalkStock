@@ -98,9 +98,10 @@
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:id="@+id/tvRecentSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All Categories"
+                    android:text="Recent Search Items"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
@@ -116,6 +117,17 @@
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    />
+
+                <com.stalkstock.utils.custom.TitiliumBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All Categories"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <androidx.recyclerview.widget.RecyclerView

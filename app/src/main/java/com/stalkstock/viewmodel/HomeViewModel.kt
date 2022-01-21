@@ -855,6 +855,35 @@ class HomeViewModel : ViewModel() {
 
     }
 
+
+    @SuppressLint("CheckResult")
+    fun getBusinessTypeApi(
+        activity: Activity,
+        showLoader: Boolean
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getBuisnessType()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getBusinessTypeApi(activity, showLoader)
+                    }
+                })
+        }
+
+    }
+
+
     @SuppressLint("CheckResult")
     fun getUserCardDataAPI(
         activity: Activity,

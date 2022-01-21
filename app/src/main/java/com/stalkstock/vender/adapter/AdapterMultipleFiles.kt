@@ -45,25 +45,30 @@ class AdapterMultipleFiles(
             holder.itemView.adduploadimagesone.setImageResource(R.drawable.camera_grey)
         }
         if(firstImage.isEmpty()){
+            holder.itemView.ivDeletePhoto.visibility=View.GONE
             if(position==0){
-                Glide.with(context).load(R.drawable.camera_green).into( holder.itemView.adduploadimagesone)
+                Glide.with(context).load(R.drawable.camera_green).placeholder(R.drawable.camera_green).into( holder.itemView.adduploadimagesone)
             }else{
-                Glide.with(context).load(R.drawable.camera_grey).into( holder.itemView.adduploadimagesone)
+                Glide.with(context).load(R.drawable.camera_grey).placeholder(R.drawable.camera_grey).into( holder.itemView.adduploadimagesone)
             }
 
         }else{
             try {
+                holder.itemView.ivDeletePhoto.visibility=View.VISIBLE
                 Glide.with(context).load(currentModel[position].name).placeholder(R.drawable.camera_green).into( holder.itemView.adduploadimagesone)
             } catch (e: Exception) {
+                holder.itemView.ivDeletePhoto.visibility=View.GONE
                 if(position==0){
-                    Glide.with(context).load(R.drawable.place_holder).placeholder(R.drawable.camera_green).into(holder.itemView.adduploadimagesone)
+                    Glide.with(context).load(R.drawable.camera_green).placeholder(R.drawable.camera_green).into(holder.itemView.adduploadimagesone)
 
                 }else{
-                    Glide.with(context).load(R.drawable.place_holder).placeholder(R.drawable.camera_grey).into(holder.itemView.adduploadimagesone)
+
+                    Glide.with(context).load(R.drawable.camera_grey).placeholder(R.drawable.camera_grey).into(holder.itemView.adduploadimagesone)
 
                 }
             }
         }
+
 
 
 

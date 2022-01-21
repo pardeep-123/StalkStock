@@ -113,6 +113,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         button.setOnClickListener(this)
         backarrow.setOnClickListener(this)
         ivUpload.setOnClickListener(this)
+        ivDeleteImg.setOnClickListener(this)
         textView = findViewById(R.id.text)
         textView1 = findViewById(R.id.textone)
         textView2 = findViewById(R.id.texttwo)
@@ -327,6 +328,14 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     override fun onClick(view: View) {
         val id = view.id
         when (id) {
+
+            R.id.ivDeleteImg ->{
+                firstImage=""
+                mAlbumFilesMultiple.removeAt(0)
+                ivDeleteImg.visibility=View.GONE
+                ivUpload.setImageResource(R.drawable.camera_green)
+            }
+
             R.id.ivUpload -> {
                 if (arrStringMultipleImages.size == 2) {
                     updateSubscriptionDialog()
@@ -481,8 +490,13 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
 
                         firstImage=result[0].path
                         Glide.with(this).load(firstImage).into(ivUpload)
+                        ivDeleteImg.visibility=View.VISIBLE
+                        val data= AddEditImageModel()
+                        data.name=result[0].path
+                        data.type="add"
+                        arrStringMultipleImages.add(data)
 
-                        if (result.size>=1){
+                        if (result.size>1){
 
 
                             var tempList = ArrayList<AlbumFile>()
@@ -490,7 +504,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                               tempList.addAll(result)
                             tempList.removeAt(0)
 //                            mAlbumFilesMultiple.removeAt(0)
-                            setAdapter(tempList!!)
+                            setAdapter(tempList)
                         }
 
                     }else{

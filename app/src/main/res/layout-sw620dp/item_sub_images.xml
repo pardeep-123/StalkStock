@@ -3,11 +3,10 @@
     android:layout_width="@dimen/_50sdp"
     android:layout_height="@dimen/_50sdp" >
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/adduploadimagesone"
         android:layout_width="@dimen/_36sdp"
         android:layout_height="@dimen/_36sdp"
-        android:scaleType="fitXY"
         android:layout_centerInParent="true"
         android:src="@drawable/camera_green" />
 
@@ -19,6 +18,6 @@
         android:layout_alignParentEnd="true"
         android:padding="@dimen/_4sdp"
         android:visibility="gone"
-        android:src="@drawable/cross_icon" />
+        android:src="@drawable/cross_red_icon" />
 
 </RelativeLayout>

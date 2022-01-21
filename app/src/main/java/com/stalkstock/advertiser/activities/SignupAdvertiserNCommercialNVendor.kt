@@ -20,10 +20,15 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
+import com.stalkstock.advertiser.activities.pojo.BusinessTypeModel
 import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
+import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.commercial.view.model.CommercialSignUpResponse
+import com.stalkstock.common.model.ModelBusinessType
+import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
@@ -37,6 +42,7 @@ import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_addnewaddress.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.spinner
+import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 import java.util.*
@@ -45,13 +51,15 @@ import kotlin.collections.HashMap
 class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
-
+    val listC: ArrayList<CategoryList> = ArrayList()
     private var latitude = ""
     private var longitude = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 1
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
+    var businessTypeList: ArrayList<ModelBusinessType.Body> = ArrayList()
+
     var otp=""
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
@@ -83,6 +91,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             rlDelivery.visibility = View.VISIBLE
             rlBusinessType.visibility = View.VISIBLE
         }
+        getBusinessTypeApi()
         tv_heading.text = getString(R.string.sign_up)
         rl_deliveryType.visibility = View.VISIBLE
         tv_signin.setOnClickListener(this)
@@ -123,6 +132,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         spinner_type.adapter = foodadapter2
 
 
+    }
+
+    private fun getBusinessTypeApi() {
+        viewModel.getBusinessTypeApi(this, true)
+        viewModel.homeResponse.observe(this, this)
     }
 
     override fun onClick(p0: View?) {
@@ -376,7 +390,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
 
             viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)
-            viewModel.homeResponse.observe(this, this)
+           // viewModel.homeResponse.observe(this, this)
         } else {
 
             if (spinner.selectedItem.toString() == "Select Country") {
@@ -390,7 +404,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             val hashMap = HashMap<String, RequestBody>()
             hashMap["mobile"] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
             viewModel.sendOtp(this, true, hashMap)
-            viewModel.homeResponse.observe(this, this)
+           // viewModel.homeResponse.observe(this, this)
 
         }
 
@@ -399,7 +413,6 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-
 
                 if (it.data is CommercialSignUpResponse) {
                     val data = it.data as CommercialSignUpResponse
@@ -412,6 +425,30 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                         finish()
                     }
                 }
+                if (it.data is ModelBusinessType) {
+                    val mResponse: ModelBusinessType = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+
+                        businessTypeList.clear()
+                        businessTypeList.addAll(mResponse.body)
+
+                        listC.clear()
+                        listC.add(CategoryList(0, 0, "-Select your business type-", ""))
+                        if (businessTypeList.isNotEmpty()) {
+                            for (i in 0 until businessTypeList.size) {
+                                listC.add(
+                                    CategoryList(
+                                        businessTypeList[i].id, businessTypeList[i].status,
+                                        businessTypeList[i].name)
+                                )
+                            }
+                        }
+
+                        val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
+                        spinner_type.adapter = businessTypeListt
+                    }
+                }
+
                 if (it.data is SendOtpResponse) {
                     val data = it.data as SendOtpResponse
                     if (data.code == 200) {
@@ -718,12 +755,10 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             )
             if (p0?.id == R.id.spinner) {
                 var array = this.resources.getStringArray(R.array.Select_country)
-
                 country = array[position]
             } else if (p0?.id == R.id.spinner_type) {
-                var array = this.resources.getStringArray(R.array.Select_business_type)
-
-                business_type = position
+                val categories = businessTypeList[spinner_type!!.selectedItemPosition - 1]
+                business_type = categories.id
             } else if (p0?.id == R.id.spinner_delivery_type) {
                 var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
 

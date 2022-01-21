@@ -32,15 +32,21 @@
                 android:padding="10dp"
                 android:layout_marginLeft="10dp"
                 />
+
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="20sp"
+                android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@+id/notification"
+                android:layout_toEndOf="@+id/back"
+                android:singleLine="true"
                 android:text="Meat"
-                android:id="@+id/txtTitle"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-
-                android:layout_centerInParent="true"/>
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/search"
@@ -56,11 +62,10 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/notification_icon1"
-                android:layout_toLeftOf="@+id/search"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                />
+                android:layout_toLeftOf="@+id/search"
+                android:src="@drawable/notification_icon1" />
 
             <ImageView
                 android:id="@+id/fillter"

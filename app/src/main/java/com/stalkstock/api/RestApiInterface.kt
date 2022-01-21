@@ -3,10 +3,7 @@ package com.stalkstock.api
 import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.advertiser.model.*
 import com.stalkstock.commercial.view.model.*
-import com.stalkstock.common.model.ModelCategoryList
-import com.stalkstock.common.model.ModelMeasurementList
-import com.stalkstock.common.model.ModelSubCategoriesList
-import com.stalkstock.common.model.PayPalWebResponse
+import com.stalkstock.common.model.*
 import com.stalkstock.consumer.TermsData
 import com.stalkstock.consumer.model.*
 import com.stalkstock.driver.models.*
@@ -123,6 +120,9 @@ interface RestApiInterface {
 
     @GET(URL.getCategoryList)
     fun getCategoryListAPI(): Observable<ModelCategoryList>
+
+    @GET(URL.BUSINESS_TYPE)
+    fun getBusinessTypeAPI(): Observable<ModelBusinessType>
 
     @GET(URL.measurementList)
     fun measurementListAPI(): Observable<ModelMeasurementList>

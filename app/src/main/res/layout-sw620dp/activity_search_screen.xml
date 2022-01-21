@@ -108,14 +108,16 @@
                 </RelativeLayout>
 
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:id="@+id/tvRecentSearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
-                    android:text="All Categories"
+                    android:text="Recent Search Items"
                     android:textColor="#000"
-                    android:textSize="22sp" />
+                    android:visibility="gone"
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/searchRecycle"
@@ -126,6 +128,16 @@
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:text="All Categories"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/detail_recycle"

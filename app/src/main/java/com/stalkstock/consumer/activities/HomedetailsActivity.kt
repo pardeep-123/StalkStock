@@ -258,7 +258,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
                 if (it.data is ModelProductListAsPerSubCat) {
                     val mResponse: ModelProductListAsPerSubCat = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        currentOffset += 5
+                        currentOffset += 50
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message.toString())
@@ -291,6 +291,7 @@ class HomedetailsActivity : CheckLocationActivity(), Observer<RestObservable> {
     }
 
     private fun setData(mResponse: ModelProductListAsPerSubCat) {
+        currentModel.clear()
         currentModel.addAll(mResponse.body)
         if(currentModel.size==0){
             tvNoProducts.visibility=View.VISIBLE

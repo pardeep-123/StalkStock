@@ -50,8 +50,11 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         val imageView = findViewById<ImageView>(R.id.editprofile_backarrow)
         val button = findViewById<Button>(R.id.editprofile_savebtn)
         setimage = findViewById(R.id.editprofile_imageset)
+        setimage?.setOnClickListener(this)
 
-        imageView.setOnClickListener { onBackPressed() }
+        imageView.setOnClickListener {
+            onBackPressed()
+        }
         button.setOnClickListener {
             if (validations())
                 updateProfileAPI()

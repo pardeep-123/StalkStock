@@ -23,7 +23,7 @@
                 android:layout_height="140dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:src="@drawable/lock_icon"/>
+                android:src="@drawable/lock_icon" />
 
         </RelativeLayout>
         <com.stalkstock.utils.custom.TitiliumBoldTextView
