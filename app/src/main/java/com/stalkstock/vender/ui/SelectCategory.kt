@@ -25,13 +25,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.lujun.androidtagview.TagView.OnTagClickListener
 import com.bumptech.glide.Glide
+import com.live.stalkstockcommercial.ui.view.fragments.home.AdapterProductUnit2
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.common.model.ModelCategoryList
+import com.stalkstock.common.model.ModelMeasurementList
 import com.stalkstock.common.model.ModelSubCategoriesList
 import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.ProductUnitData
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.GridItemDecoration
@@ -56,6 +59,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     private var listCategoryBody: ArrayList<ModelCategoryList.Body> = ArrayList()
     private var listSub: ArrayList<String> = ArrayList()
     private var listSubCategoryBody: ArrayList<ModelSubCategoriesList.Body> = ArrayList()
+    private lateinit var adapterMeasurements: AdapterProductUnit2
     var mSpinner: Spinner? = null
     lateinit var textView: TextView
     lateinit var textView1: TextView
@@ -65,21 +69,23 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     var adapterPosition=0
     private var productId: String=""
     var subCategoryId = "0"
+    lateinit var detailDialog: Dialog
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
     private var mAlbumFiles = ArrayList<AlbumFile?>()
     private var mAlbumFilesMultiple = ArrayList<AlbumFile>()
     private lateinit var adapterMultipleFiles: AdapterMultipleFiles
     private var arrStringMultipleImages: ArrayList<AddEditImageModel> = ArrayList()
-
+    lateinit var measurement: TextView
     private lateinit var productAdapter: ArrayAdapter<String>
     private var listProduct: ArrayList<String> = ArrayList()
+    private var curreMeasurementId = ""
+    private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
+    var listProductUnit: ArrayList<ProductUnitData> = ArrayList()
+
     override fun getContentId(): Int {
         return R.layout.activity_select_category
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     val viewModel: HomeViewModel by viewModels()
 
@@ -92,7 +98,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         super.onCreate(savedInstanceState)
         val backarrow = findViewById<ImageView>(R.id.selectctgbackarrow)
         val button = findViewById<Button>(R.id.enteritembutton)
-
+        measurement = findViewById(R.id.addproductmasurement)
         val ss = SpannableString(   tv_upgrade_desc.text )
 
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
@@ -114,6 +120,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         backarrow.setOnClickListener(this)
         ivUpload.setOnClickListener(this)
         ivDeleteImg.setOnClickListener(this)
+        measurement.setOnClickListener(this)
         textView = findViewById(R.id.text)
         textView1 = findViewById(R.id.textone)
         textView2 = findViewById(R.id.texttwo)
@@ -268,6 +275,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     )
                     val product = currentModel[spinnerGetProduct.selectedItemPosition-1]
                     productId = product.id.toString()
+                    adapterMeasurements = AdapterProductUnit2(this@SelectCategory, listProductUnit)
+                    getMeasurementAPI()
                 }
                 else{
                     (view as? TextView)?.setTextColor(
@@ -284,6 +293,59 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         getCategories()
 
     }
+    private fun getMeasurementAPI() {
+        viewModel.measurementListAPI(this, true)
+        viewModel.homeResponse.observe(this, this)
+    }
+
+    private fun setUnitList() {
+        //        listProductUnit.add(new ProductUnitData("Volume", "Teaspoon (t or tsp.)", false));
+        setDialog()
+    }
+
+    private fun setDialog() {
+        detailDialog = Dialog(this)
+        detailDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        detailDialog.setContentView(R.layout.dialog_home)
+        detailDialog.window!!.setLayout(
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        detailDialog.setCancelable(true)
+        detailDialog.setCanceledOnTouchOutside(true)
+        detailDialog.window!!.setGravity(Gravity.CENTER)
+        detailDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val rvProductUnit: RecyclerView = detailDialog.findViewById(R.id.rvProductUnit)
+        val llDialog = detailDialog.findViewById<LinearLayout>(R.id.llDialog)
+        rvProductUnit.adapter = adapterMeasurements
+        llDialog.setOnClickListener { detailDialog.dismiss() }
+        detailDialog.show()
+    }
+
+    private fun setDataMeasurements(mResponse: ModelMeasurementList) {
+        listProductUnit.clear()
+        currentModelMeasurements.clear()
+        currentModelMeasurements = mResponse.body as ArrayList<ModelMeasurementList.Body>
+
+        for (i in currentModelMeasurements) {
+            listProductUnit.add(ProductUnitData("", i.name, false))
+        }
+        adapterMeasurements.notifyDataSetChanged()
+    }
+
+    fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
+        for (i in 0 until currentModelMeasurements.size) {
+            listProductUnit.set(i, ProductUnitData("", currentModelMeasurements.get(i).name, false))
+        }
+        val productUnitData1 = ProductUnitData("", productUnitData.unit, true)
+        listProductUnit.set(position, productUnitData1)
+        adapterMeasurements.notifyDataSetChanged()
+        addproductmasurement.setText(productUnitData.unit)
+        detailDialog.dismiss()
+        curreMeasurementId = currentModelMeasurements.get(position).id.toString()
+    }
+
+
     private fun getProductAsSubCategory() {
         currentModel.clear()
 
@@ -328,6 +390,10 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     override fun onClick(view: View) {
         val id = view.id
         when (id) {
+
+            R.id.addproductmasurement ->{
+                setUnitList()
+            }
 
             R.id.ivDeleteImg ->{
                 firstImage=""
@@ -374,6 +440,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 }else if (addproductprice.text.toString().trim()=="0") {
                     AppUtils.showErrorAlert(this, "Price should be greater than 0")
 
+                } else if (curreMeasurementId.trim().isEmpty()) {
+                    AppUtils.showErrorAlert(this, "Please select measurement")
                 }
                 else if (tags.size < 1) {
                     AppUtils.showErrorAlert(
@@ -388,6 +456,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     intent.putExtra("catId", categoryId)
                     intent.putExtra("price", addproductprice.text.toString())
                     intent.putExtra("productId", productId)
+                    intent.putExtra("curreMeasurementId", curreMeasurementId)
                     intent.putExtra("subCatId", subCategoryId)
                     intent.putExtra("tags", join)
                     val args = Bundle()
@@ -428,6 +497,15 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
+                if (it.data is ModelMeasurementList) {
+                    val mResponse: ModelMeasurementList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        setDataMeasurements(mResponse)
+                    } else {
+                        AppUtils.showErrorAlert(this, mResponse.message.toString())
+                    }
+                }
+
                 if (it.data is ModelCategoryList) {
                     val mResponse: ModelCategoryList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {

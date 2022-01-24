@@ -36,7 +36,9 @@ class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val product = arrayList[position]
-        holder.itemView.homeitemimage.loadImage(product.productImage[0].image)
+        if(product.productImage.size>0){
+            holder.itemView.homeitemimage.loadImage(product.productImage[0].image)
+        }
         holder.itemView.itemname.setText(product.name)
         holder.itemView.kg.setText(product.productMeasurement.name)
         holder.itemView.editname.setText(product.productCategory.name)

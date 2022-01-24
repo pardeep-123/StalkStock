@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.stalkstock.R
 import com.stalkstock.utils.ProductUnitData
-import com.stalkstock.vender.ui.AddProduct
+import com.stalkstock.vender.ui.SelectCategory
 import com.stalkstock.vender.ui.EditProduct
 import kotlinx.android.synthetic.main.product_unit_adapter.view.*
 
@@ -69,15 +69,15 @@ class AdapterProductUnit2(var mActivity : Activity, var listProductUnit: ArrayLi
         }
 
         holder.itemView.setOnClickListener {
-            if (mActivity is AddProduct)
+            if (mActivity is SelectCategory)
             {
-                val addProduct = mActivity as AddProduct
-                addProduct.setSelectedMeasurement(position,listProductUnit[position])
+                val SelectCategory = mActivity as SelectCategory
+                SelectCategory.setSelectedMeasurement(position,listProductUnit[position])
             }
             else if (mActivity is EditProduct)
             {
-                val addProduct = mActivity as EditProduct
-                addProduct.setSelectedMeasurement(position,listProductUnit[position])
+                val SelectCategory = mActivity as EditProduct
+                SelectCategory.setSelectedMeasurement(position,listProductUnit[position])
             }
 
         }

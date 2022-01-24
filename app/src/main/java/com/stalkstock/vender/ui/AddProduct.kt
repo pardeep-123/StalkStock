@@ -40,12 +40,12 @@ import okhttp3.RequestBody
 
 class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable>{
 
-    private var curreMeasurementId = ""
-    private lateinit var adapterMeasurements: AdapterProductUnit2
+
+
     private var arrStringMultipleImages: ArrayList<AddEditImageModel> = ArrayList()
-    private var currentModelMeasurements: ArrayList<ModelMeasurementList.Body> = ArrayList()
-    var listProductUnit: ArrayList<ProductUnitData> = ArrayList()
+
     private var currentCatId = ""
+    private var curreMeasurementId = ""
     private var currentSubCatId = ""
     private var productId = ""
     private var price = ""
@@ -59,11 +59,11 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     lateinit var ivImg: ImageView
     lateinit var cameropen: ImageView
     lateinit var visibaleimage: ImageView
-    lateinit var detailDialog: Dialog
+
     //lateinit var imagethree: RelativeLayout
     //lateinit var relativeLayout: RelativeLayout
     lateinit var setimage: RelativeLayout
-    lateinit var measurement: TextView
+
 
 
 
@@ -79,8 +79,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         ivImg = findViewById(R.id.iv_Img)
         setimage = findViewById(R.id.add_product)
         visibaleimage = findViewById(R.id.add_deleteicon)
-        measurement = findViewById(R.id.addproductmasurement)
-
 
        // imagethree.setOnClickListener(this)
         button.setOnClickListener(this)
@@ -88,7 +86,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         cameropen.setOnClickListener(this)
         setimage.setOnClickListener(this)
        // ivUpload.setOnClickListener(this)
-        measurement.setOnClickListener(this)
+
 
         val countryAdapter = ArrayAdapter.createFromResource(
             this,
@@ -189,22 +187,19 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             currentSubCatId = intent.getStringExtra("subCatId")!!
             currentTags = intent.getStringExtra("tags")!!
             productId = intent.getStringExtra("productId")!!
+            curreMeasurementId = intent.getStringExtra("curreMeasurementId")!!
             price = intent.getStringExtra("price")!!
 
 
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        adapterMeasurements = AdapterProductUnit2(this, listProductUnit)
-        getMeasurementAPI()
+
     }
 
     val viewModel: HomeViewModel by viewModels()
 
-    private fun getMeasurementAPI() {
-        viewModel.measurementListAPI(this, true)
-        viewModel.homeResponse.observe(this, this)
-    }
+
 
 
 
@@ -215,10 +210,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             R.id.addproduct_backarrow -> onBackPressed()
             R.id.addproductsubmitbutton -> {
                 if (validations()) {
-                    Log.e(
-                        "currentadhhsa>>",
-                        curreMeasurementId + "---" + spinner.selectedItemPosition.toString() + "cat:$currentCatId subcat::$currentSubCatId tags: $currentTags"
-                    )
+
                     addproductAPI()
                 }
 //                    addProductAlertDialog()
@@ -226,8 +218,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
            // R.id.add_uploadimages ->
                 //askCameraPermissons()
 
-            R.id.addproductmasurement ->
-                setUnitList()
+
         }
     }
 
@@ -286,10 +277,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         else if(spinnerCountry.selectedItemPosition==0) {
             AppUtils.showErrorAlert(this, "Please select country")
             return false
-        } else if (curreMeasurementId.trim().isEmpty()) {
-            AppUtils.showErrorAlert(this, "Please select measurement")
-            return false
-        }  else if (addproductdescription.text.toString().trim().isEmpty()) {
+        } else if (addproductdescription.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter description")
             return false
         }else if (spinner.selectedItemPosition==0) {
@@ -363,46 +351,12 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     }
 
 
-    private fun setUnitList() {
-        //        listProductUnit.add(new ProductUnitData("Volume", "Teaspoon (t or tsp.)", false));
-        setDialog()
-    }
-
-    private fun setDialog() {
-        detailDialog = Dialog(this)
-        detailDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        detailDialog.setContentView(R.layout.dialog_home)
-        detailDialog.window!!.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-        detailDialog.setCancelable(true)
-        detailDialog.setCanceledOnTouchOutside(true)
-        detailDialog.window!!.setGravity(Gravity.CENTER)
-        detailDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val rvProductUnit: RecyclerView = detailDialog.findViewById(R.id.rvProductUnit)
-        val llDialog = detailDialog.findViewById<LinearLayout>(R.id.llDialog)
-        rvProductUnit.adapter = adapterMeasurements
-        llDialog.setOnClickListener { detailDialog.dismiss() }
-        detailDialog.show()
-    }
-
-
-
 
 
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
 
-                if (it.data is ModelMeasurementList) {
-                    val mResponse: ModelMeasurementList = it.data
-                    if (mResponse.code == GlobalVariables.URL.code) {
-                        setDataMeasurements(mResponse)
-                    } else {
-                        AppUtils.showErrorAlert(this, mResponse.message.toString())
-                    }
-                }
 
 
 
@@ -432,30 +386,5 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         }
     }
 
-
-
-
-    private fun setDataMeasurements(mResponse: ModelMeasurementList) {
-        listProductUnit.clear()
-        currentModelMeasurements.clear()
-        currentModelMeasurements = mResponse.body as ArrayList<ModelMeasurementList.Body>
-
-        for (i in currentModelMeasurements) {
-            listProductUnit.add(ProductUnitData("", i.name, false))
-        }
-        adapterMeasurements.notifyDataSetChanged()
-    }
-
-    fun setSelectedMeasurement(position: Int, productUnitData: ProductUnitData) {
-        for (i in 0 until currentModelMeasurements.size) {
-            listProductUnit.set(i, ProductUnitData("", currentModelMeasurements.get(i).name, false))
-        }
-        val productUnitData1 = ProductUnitData("", productUnitData.unit, true)
-        listProductUnit.set(position, productUnitData1)
-        adapterMeasurements.notifyDataSetChanged()
-        addproductmasurement.setText(productUnitData.unit)
-        detailDialog.dismiss()
-        curreMeasurementId = currentModelMeasurements.get(position).id.toString()
-    }
 
 }

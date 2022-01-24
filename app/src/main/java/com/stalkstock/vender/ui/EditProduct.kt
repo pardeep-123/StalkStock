@@ -63,9 +63,11 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private lateinit var currentProductModel: ModelProductDetail
     private lateinit var adapterMultipleFiles: AdapterMultipleFiles
     private var arrStringMultipleImages: ArrayList<AddEditImageModel> = ArrayList()
+    private var stringMultipleImages=AddEditImageModel()
     private var arrStringMultipleImagesUploadable: ArrayList<String> = ArrayList()
     private var haveSubscription = false
     private var mAlbumFiles = ArrayList<AlbumFile?>()
+    private var mSingleFile = AlbumFile()
     private var mAlbumFilesMultiple = ArrayList<AlbumFile>()
     var firstimage = ""
     var categoryId = "0"
@@ -73,7 +75,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     private var listProduct: ArrayList<String> = ArrayList()
     var deleteImageArrayId = ArrayList<String>()
     var adapterPosition=0
-
+    var data:ModelProductDetail.Body.ProductImage?=null
     private var curreMeasurementId = ""
     private var curreMeasurementName= ""
     private lateinit var adapterMeasurements: AdapterProductUnit2
@@ -325,6 +327,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             if (firstimage.isEmpty()){
 
                 firstimage=productImage[0].image
+                data = productImage[0]
                 Glide.with(this).load(firstimage).into(ivImg!!)
                 ivDelete?.visibility=View.VISIBLE
 
@@ -374,6 +377,8 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                 ivDelete?.visibility=View.GONE
                 ivImg?.setImageResource(R.drawable.camera_green)
                 firstimage=""
+                deleteImageArrayId.add(data?.id.toString()
+                )
 
             }
             R.id.addproduct_backarrow -> onBackPressed()
@@ -473,7 +478,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 //            return false
 //        }else{
             when {
-                firstimage.isEmpty()-> {
+                firstimage.isEmpty() && arrStringMultipleImages.size==0 -> {
                 AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
                 return false
              }
@@ -557,11 +562,12 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
     private fun updateProductAPI() {
         arrStringMultipleImagesUploadable.clear()
-        // if (!firstimage.contains(GlobalVariables.URL.IMAGE_URL)) { arrStringMultipleImagesUploadable.add(firstimage) }
+         if (!firstimage.contains(GlobalVariables.URL.IMAGE_URL)) { arrStringMultipleImagesUploadable.add(firstimage) }
 
 //        if (firstimage.isNotEmpty()){
 //            arrStringMultipleImagesUploadable.add(firstimage)
 //        }
+
         for (i in 0 until arrStringMultipleImages.size) {
             if (arrStringMultipleImages[i].name.contains(GlobalVariables.URL.IMAGE_URL)) {
                 arrStringMultipleImagesUploadable.remove(arrStringMultipleImages[i].name)
@@ -603,12 +609,13 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
         val deleteImageIds: ArrayList<MultipartBody.Part> = ArrayList()
         for (i in 0 until deleteImageArrayId.size) {
-            deleteImageIds.add(
-                MultipartBody.Part.createFormData(
-                    "deleteImageArrayId",
-                    deleteImageArrayId[i]
+
+                deleteImageIds.add(
+                    MultipartBody.Part.createFormData(
+                        "deleteImageArrayId",
+                        deleteImageArrayId[i]
+                    )
                 )
-            )
 
         }
 
@@ -664,13 +671,23 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                         }
 
                     }else{
+                        if (result.size>=1){
+                            var tempList = ArrayList<AlbumFile>()
 
-                        val tempList = ArrayList<AlbumFile>()
-                        tempList.addAll(result)
-                        tempList.removeAt(0)
+                            tempList.addAll(result)
+                            tempList.removeAt(0)
+//                            mAlbumFilesMultiple.removeAt(0)
+                            setAdapter(tempList)
+                        }else{
+                            val tempList = ArrayList<AlbumFile>()
+                            tempList.addAll(result)
+                            // tempList.removeAt(0)
 
-                        //.addAll(result)
-                        setAdapter(tempList)
+                            //.addAll(result)
+                            setAdapter(tempList)
+                        }
+
+
                     }
 
                    // setAdapter(mAlbumFilesMultiple)
