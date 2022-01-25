@@ -29,7 +29,10 @@ class SuggestedAdapter(var listSuggested: ArrayList<SuggestedBody>) :
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         holder.itemView.tvTitle.text  = listSuggested[position].name
-        Glide.with(holder.itemView.context).load(listSuggested[position].productImage[0].image).into(holder.itemView.ivImage)
+        if(listSuggested[position].productImage.size>0){
+            Glide.with(holder.itemView.context).load(listSuggested[position].productImage[0].image).into(holder.itemView.ivImage)
+
+        }
 
         holder.itemView.setOnClickListener {
              val intent = Intent(holder.itemView.context, ProductDetailsActivity::class.java)

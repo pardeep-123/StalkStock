@@ -5,8 +5,11 @@
       <map>
         <entry key="../../../layout/custom_preview.xml" value="0.17447916666666666" />
         <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout-sw620dp/activity_add_product.xml" value="0.4" />
+        <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout-sw620dp/activity_homedetails.xml" value="0.173046875" />
+        <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout-sw620dp/activity_product.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout-sw620dp/activity_select_category.xml" value="0.264" />
         <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout/activity_add_product.xml" value="0.23072916666666668" />
+        <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout/activity_homedetails.xml" value="0.23072916666666668" />
         <entry key="..\:/AndroidProjects/stalkandstock/app/src/main/res/layout/activity_select_category.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/drawable-xhdpi/background_box_black.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/drawable/add_product_image.xml" value="0.16354166666666667" />

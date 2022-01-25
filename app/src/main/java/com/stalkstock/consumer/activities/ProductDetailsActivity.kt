@@ -152,7 +152,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                         currentOffset += 5
                         setAdapterData(mResponse)
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message)
+                      //  AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
 
@@ -163,7 +163,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
                         reset = true
                         getProductAsPerVendor()
                     } else {
-                        AppUtils.showErrorAlert(this, mResponse.message)
+                     //   AppUtils.showErrorAlert(this, mResponse.message)
                     }
                 }
 
@@ -179,9 +179,9 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
-                    Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this, it.error!!.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
             it.status == Status.LOADING -> {
