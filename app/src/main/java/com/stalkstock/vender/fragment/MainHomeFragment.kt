@@ -49,13 +49,11 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     var llAddProduct: LinearLayout? = null
     var rvCategory: RecyclerView? = null
     var etSearch: EditText? = null
-    var totalItemCount:Int=0
-    var visibleItemCount:Int=0
-    var previousTotal:Int=0
-    var pastVisiblesItems:Int=0
-    var page:Int=0
-
-
+    var totalItemCount: Int = 0
+    var visibleItemCount: Int = 0
+    var previousTotal: Int = 0
+    var pastVisiblesItems: Int = 0
+    var page: Int = 0
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var currentModel: ArrayList<ModelVendorProductList.Body.Product> = ArrayList()
@@ -78,29 +76,49 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         rvCategory?.adapter = testAdapter
         testAdapter?.arrayList = currentModel
 
+
+        /*
+         binding.rvOrders.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) { //check for scroll down
+                    visibleItemCount = mLayoutManager.childCount
+                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
+
+                    if (loading) {
+                        loading = false
+                        if ((visibleItemCount + pastVisiblesItems) <= totalItemCount) {
+                            binding.progressBar.visibility = View.VISIBLE
+                            page++
+
+
+                                    bookingViewModel.getUpcomingOrderListing(page, limit)
+
+
+
+                            loading = true
+                        }
+                    }
+                }
+            }
+        })
+         */
         rvCategory?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
-                visibleItemCount = mLayoutManager.getChildCount();
-                totalItemCount = mLayoutManager.getItemCount();
+                visibleItemCount = mLayoutManager.childCount
                 pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
 
                 if (loading) {
-                    if (totalItemCount > previousTotal) {
-                        loading = false
-                        previousTotal = totalItemCount;
-                    }
-                }
-                if (!loading && (totalItemCount - visibleItemCount) <= (pastVisiblesItems + 5)) {
-                    // End has been reached
+                    loading = false
+                    if ((visibleItemCount + pastVisiblesItems) <= totalItemCount) {
+                        page += 5
+                        getVendorProducts()
 
-                    page= page+5
-                    // Do something
-                    getVendorProducts()
-                    loading = true
+                        loading = true
+                    }
+
                 }
             }
-
 
         })
 
@@ -123,179 +141,182 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
             }
         })*/
 
-                val notification = view.findViewById<ImageView>(R.id.notification)
-                val filter = view.findViewById<ImageView>(R.id.filter)
-                val iv_msg = view.findViewById<ImageView>(R.id.iv_msg)
-                // val editText = view.findViewById<RelativeLayout>(R.id.edit_search)
-                val button = view.findViewById<Button>(R.id.addproductbutton)
-                val addNewProduct = view.findViewById<Button>(R.id.addNewProduct)
-                button.setOnClickListener(this)
-                addNewProduct.setOnClickListener(this)
-                notification.setOnClickListener(this)
-                filter.setOnClickListener(this)
-                etSearch?.addTextChangedListener(this)
-                //editText.setOnClickListener(this)
-                iv_msg.setOnClickListener {
+        val notification = view.findViewById<ImageView>(R.id.notification)
+        val filter = view.findViewById<ImageView>(R.id.filter)
+        val iv_msg = view.findViewById<ImageView>(R.id.iv_msg)
 
-                    if (clickMsg == 0) {
-                        clickMsg = 1
-                        val intent = Intent(requireActivity(), MessageActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
+        // val editText = view.findViewById<RelativeLayout>(R.id.edit_search)
+        val button = view.findViewById<Button>(R.id.addproductbutton)
+        val addNewProduct = view.findViewById<Button>(R.id.addNewProduct)
+        button.setOnClickListener(this)
+        addNewProduct.setOnClickListener(this)
+        notification.setOnClickListener(this)
+        filter.setOnClickListener(this)
+        etSearch?.addTextChangedListener(this)
+        //editText.setOnClickListener(this)
+        iv_msg.setOnClickListener {
 
-                return view
-            }
-
-            override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-                super.onViewCreated(view, savedInstanceState)
-                //   getVendorProducts()
-            }
-
-
-            val viewModel: HomeViewModel by viewModels()
-
-            private fun getVendorProducts() {
-
-                val map = HashMap<String, RequestBody>()
-
-                if (activity != null) {
-                    val mActivity = activity as BottomnavigationScreen
-                    map["sortBy"] = mActivity.mUtils.createPartFromString(currentSortBy.toString())
-                    map["lowPrice"] =
-                        mActivity.mUtils.createPartFromString(currentLowPrice.toString())
-                    map["highPrice"] =
-                        mActivity.mUtils.createPartFromString(currentHighPrice.toString())
-                    map["offset"] = mActivity.mUtils.createPartFromString(page.toString())
-                    map["limit"] = mActivity.mUtils.createPartFromString("5")
-                    viewModel.getVendorProductListAPI(mActivity, true, map)
-                    viewModel.homeResponse.observe(requireActivity(), this)
-                }
-
-            }
-
-            override fun onClick(view: View) {
-                when (view.id) {
-                    R.id.notification -> {
-                        //  editDialog()
-                        val intent = Intent(activity, NotificationFirstActivity::class.java)
-                        startActivity(intent)
-                    }
-                    R.id.filter -> {
-                        val intent2 = Intent(activity, FilterActivity::class.java)
-                        intent2.putExtra("from", "MainHomeFragment")
-                        startActivityForResult(intent2, 0)
-                    }
-                    /*R.id.edit_search -> {
-                        val intent1 = Intent(activity, SearchScreen::class.java)
-                        startActivity(intent1)
-                    }*/
-                    R.id.addproductbutton -> {
-                        val i = Intent(activity, SelectCategory::class.java)
-                        startActivity(i)
-                    }
-                    R.id.addNewProduct -> {
-                        val i = Intent(activity, SelectCategory::class.java)
-                        startActivity(i)
-                    }
-                }
-            }
-
-            override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-                super.onActivityResult(requestCode, resultCode, data)
-                if (requestCode === 0) {
-                    if (resultCode === Activity.RESULT_OK) {
-                        currentLowPrice = data!!.getStringExtra("lowPrice")!!
-                        currentHighPrice = data.getStringExtra("highPrice")!!
-                        currentSortBy = data.getStringExtra("sortBy")!!
-                        // getVendorProducts()
-                    }
-                    if (resultCode === Activity.RESULT_CANCELED) {
-                        // Write your code if there's no result
-                    }
-                }
-            }
-
-
-            override fun onChanged(it: RestObservable?) {
-                when {
-                    it!!.status == Status.SUCCESS -> {
-                        if (it.data is ModelVendorProductList) {
-                            val mResponse: ModelVendorProductList = it.data
-                            if (mResponse.code == GlobalVariables.URL.code) {
-                             //   page += 5
-                                setData(mResponse)
-                            } else {
-                                AppUtils.showErrorAlert(requireActivity(), mResponse.message)
-                            }
-                        }
-
-                        if (it.data is UserCommonModel) {
-                            val mResponse: UserCommonModel = it.data
-                            if (mResponse.code == GlobalVariables.URL.code) {
-                                AppUtils.showSuccessAlert(requireActivity(), mResponse.message)
-                                loading = true
-                                //   getVendorProducts()
-                            } else {
-                                AppUtils.showErrorAlert(requireActivity(), mResponse.message)
-                            }
-                        }
-                    }
-                    it.status == Status.ERROR -> {
-                        if (it.data != null) {
-                            Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT)
-                                .show()
-                        } else {
-                            if (it.error!!.toString().contains("User Address") && page > 1) {
-                            } else
-                                Toast.makeText(
-                                    requireContext(),
-                                    it.error.toString(),
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                        }
-                    }
-                    it.status == Status.LOADING -> {
-                    }
-                }
-            }
-
-            private fun setData(mResponse: ModelVendorProductList) {
-                txtHomeTotal.text = "Total:${mResponse.body.total}"
-                currentModel.addAll(mResponse.body.product)
-                testAdapter?.arrayList = currentModel
-
-                if (currentModel.size == 0) {
-                    tvNoProducts?.visibility = View.VISIBLE
-                    recyclerview.visibility = View.GONE
-                    llAddProduct?.visibility = View.GONE
-
-                } else {
-                    tvNoProducts?.visibility = View.GONE
-                    recyclerview.visibility = View.VISIBLE
-                    llAddProduct?.visibility = View.VISIBLE
-                    testAdapter?.notifyDataSetChanged()
-
-                }
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                testAdapter?.filter?.filter(s.toString().trim())
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun onResume() {
-                super.onResume()
-                page = 0
-                currentModel.clear()
-                getVendorProducts()
+            if (clickMsg == 0) {
+                clickMsg = 1
+                val intent = Intent(requireActivity(), MessageActivity::class.java)
+                startActivity(intent)
             }
         }
+
+        return view
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //   getVendorProducts()
+    }
+
+
+    val viewModel: HomeViewModel by viewModels()
+
+    private fun getVendorProducts() {
+
+        val map = HashMap<String, RequestBody>()
+
+        if (activity != null) {
+            val mActivity = activity as BottomnavigationScreen
+            map["sortBy"] = mActivity.mUtils.createPartFromString(currentSortBy.toString())
+            map["lowPrice"] =
+                mActivity.mUtils.createPartFromString(currentLowPrice.toString())
+            map["highPrice"] =
+                mActivity.mUtils.createPartFromString(currentHighPrice.toString())
+            map["offset"] = mActivity.mUtils.createPartFromString(page.toString())
+            map["limit"] = mActivity.mUtils.createPartFromString("5")
+            viewModel.getVendorProductListAPI(mActivity, true, map)
+            viewModel.homeResponse.observe(requireActivity(), this)
+        }
+
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.notification -> {
+                //  editDialog()
+                val intent = Intent(activity, NotificationFirstActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.filter -> {
+                val intent2 = Intent(activity, FilterActivity::class.java)
+                intent2.putExtra("from", "MainHomeFragment")
+                startActivityForResult(intent2, 0)
+            }
+            /*R.id.edit_search -> {
+                val intent1 = Intent(activity, SearchScreen::class.java)
+                startActivity(intent1)
+            }*/
+            R.id.addproductbutton -> {
+                val i = Intent(activity, SelectCategory::class.java)
+                startActivity(i)
+            }
+            R.id.addNewProduct -> {
+                val i = Intent(activity, SelectCategory::class.java)
+                startActivity(i)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === 0) {
+            if (resultCode === Activity.RESULT_OK) {
+                currentLowPrice = data!!.getStringExtra("lowPrice")!!
+                currentHighPrice = data.getStringExtra("highPrice")!!
+                currentSortBy = data.getStringExtra("sortBy")!!
+                // getVendorProducts()
+            }
+            if (resultCode === Activity.RESULT_CANCELED) {
+                // Write your code if there's no result
+            }
+        }
+    }
+
+
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is ModelVendorProductList) {
+                    val mResponse: ModelVendorProductList = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        totalItemCount = mResponse.body.total
+                        //   page += 5
+                        setData(mResponse)
+                    } else {
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
+                    }
+                }
+
+                if (it.data is UserCommonModel) {
+                    val mResponse: UserCommonModel = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+                        AppUtils.showSuccessAlert(requireActivity(), mResponse.message)
+                        loading = true
+                        //   getVendorProducts()
+                    } else {
+                        AppUtils.showErrorAlert(requireActivity(), mResponse.message)
+                    }
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    if (it.error!!.toString().contains("User Address") && page > 1) {
+                    } else
+                        Toast.makeText(
+                            requireContext(),
+                            it.error.toString(),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
+        }
+    }
+
+    private fun setData(mResponse: ModelVendorProductList) {
+        txtHomeTotal.text = "Total:${mResponse.body.total}"
+        currentModel.addAll(mResponse.body.product)
+        testAdapter?.arrayList = currentModel
+
+        if (currentModel.size == 0) {
+            tvNoProducts?.visibility = View.VISIBLE
+            rvCategory?.visibility = View.GONE
+            llAddProduct?.visibility = View.GONE
+
+        } else {
+            tvNoProducts?.visibility = View.GONE
+            rvCategory?.visibility = View.VISIBLE
+            llAddProduct?.visibility = View.VISIBLE
+            testAdapter?.notifyDataSetChanged()
+
+        }
+
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        testAdapter?.filter?.filter(s.toString().trim())
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+    }
+
+    override fun onResume() {
+        super.onResume()
+        page = 0
+        currentModel.clear()
+        getVendorProducts()
+    }
+}

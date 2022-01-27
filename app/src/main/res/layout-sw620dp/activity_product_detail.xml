@@ -218,7 +218,7 @@
                                 android:id="@+id/businesswebsite"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Add Price"
+                                android:text="Price"
                                 android:textSize="@dimen/value_16sp"
                                 android:layout_weight="1"
                                 android:textColor="#494848">

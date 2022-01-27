@@ -310,7 +310,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="Select Tags"
+                    android:text="Speciality Product Type"
                     android:textColor="@color/light_grey"/>
 
                 <LinearLayout

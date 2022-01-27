@@ -18,6 +18,10 @@ import kotlinx.android.synthetic.main.activity_home_two_fragment.*
 import kotlinx.android.synthetic.main.list_home_two.view.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.app.Activity
+
+
+
 
 class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var homeFragment: MainHomeFragment) :
     RecyclerView.Adapter<TestAdapter.RecyclerViewHolder>(),Filterable {
@@ -44,13 +48,10 @@ class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var
         holder.itemView.editname.setText(product.productCategory.name)
         holder.itemView.lb.setText(product.mrp+"/"+product.productMeasurement.name)
         holder.itemView.edititem.setOnClickListener {
-            val intent = Intent(
-                context,
-                ProductDetail::class.java
-            )
+            val intent = Intent(context, ProductDetail::class.java)
             intent.putExtra("product_id",product.id.toString())
-
             context.startActivity(intent)
+
         }
 
         if (product.availability==1)

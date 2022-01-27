@@ -50,7 +50,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
     private var reset = false
     private var currentOffset = 0
     private var currentModel: ArrayList<SellerProduct> = ArrayList()
-
+    var shopAddress=""
 
     lateinit var back: ImageView
     lateinit var notification: ImageView

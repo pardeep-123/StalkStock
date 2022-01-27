@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_12sdp"
-            android:text="2. Order Packed"
+            android:text="2. Order ready for pickup/delivery"
             android:textColor="#000"
             android:textSize="16sp" />
     </LinearLayout>
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_12sdp"
-            android:text="3. User picked order from restaurant - Order delivered"
+            android:text="3. Order collected by customer/Order delivered"
 
             android:textColor="#000"
             android:textSize="16sp" />

@@ -33,6 +33,7 @@ class ProductsdetailsAdapter(
         holder.itemView.starCount.text = currentModel[position].name
         holder.itemView.location_text.visibility = View.VISIBLE
         holder.itemView.description_textbox.text= currentModel[position].description
+       // holder.itemView.location_text.text= currentModel[position]
         holder.itemView.price.text = "$"+currentModel[position].mrp+"/"+if(currentModel[position].measurement==null) "" else currentModel[position].measurement.name
         holder.itemView.star.rating = currentModel[position].ratingCount.toFloat()
 
