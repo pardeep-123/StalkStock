@@ -198,7 +198,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Sub-Category"
+                            android:text="Subcategory"
                             android:textColor="@color/light_grey"
                             android:textSize="14sp"
                             android:textStyle="bold" />

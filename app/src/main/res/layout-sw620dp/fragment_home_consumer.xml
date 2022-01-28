@@ -195,13 +195,13 @@
             <RelativeLayout
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="@dimen/_120sdp"
                 android:layout_marginTop="15dp">
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewPagerDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="190dp">
+                    android:layout_height="@dimen/_120sdp">
 
                 </androidx.viewpager.widget.ViewPager>
 

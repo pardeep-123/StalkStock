@@ -168,6 +168,7 @@
         <entry key="app/src/main/res/layout-sw620dp/row_recent_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/row_request.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/row_suggestedforyou.xml" value="0.15" />
+        <entry key="app/src/main/res/layout-sw620dp/row_viewpager.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/select_payment.xml" value="0.17" />
         <entry key="app/src/main/res/layout-sw620dp/spiner_layout_text.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/spinner_item_text.xml" value="0.110546875" />

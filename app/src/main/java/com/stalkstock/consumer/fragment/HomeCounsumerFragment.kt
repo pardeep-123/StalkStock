@@ -9,6 +9,8 @@ import android.graphics.drawable.ColorDrawable
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.widget.*
 import androidx.core.content.ContextCompat
@@ -66,7 +68,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     lateinit var suggested_recycle: RecyclerView
     lateinit var viewPagerDetail: ViewPager
     lateinit var indicator: CirclePageIndicator
-    lateinit var detailAdapter: ViewDetailAdapter
+     var detailAdapter: ViewDetailAdapter?=null
     lateinit var adapter3: SuggestedAdapter
     lateinit var notification: ImageView
     lateinit var fillter: ImageView
@@ -118,13 +120,16 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         bt_sort = viewFrag!!.findViewById(R.id.bt_sort)
         bt_pickup = viewFrag!!.findViewById(R.id.bt_pickup)
         tv_delivery = viewFrag!!.findViewById(R.id.tv_delivery)
+
         adapter = CategoryAdapter(this, requireContext(), arrayListCategory)
         category_recycle.layoutManager = GridLayoutManager(activity, 4)
         category_recycle.adapter = adapter
         detailAdapter = ViewDetailAdapter(requireContext(), currentModel)
         viewPagerDetail.adapter = detailAdapter
+
         indicator.fillColor = resources.getColor(R.color.theme_green)
         indicator.setViewPager(viewPagerDetail)
+
         viewPagerDetail.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
@@ -560,7 +565,8 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
     private fun setData(mResponse: UserBannerModel) {
         currentModel.addAll(mResponse.body)
-        detailAdapter.notifyDataSetChanged()
+        detailAdapter?.notifyDataSetChanged()
+        viewPagerDetail.autoScroll(3000)
         reset = false
     }
 
@@ -573,5 +579,42 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         intent.putExtra("currentSortBy", currentSortBy)
         intent.putExtra("productType", productType)
         startActivity(intent)
+    }
+
+    private fun ViewPager.autoScroll(interval: Long) {
+
+        val handler = Handler(Looper.getMainLooper())
+        var scrollPosition = 0
+
+        val runnable = object : Runnable {
+
+            override fun run() {
+                val count = detailAdapter?.count!!
+                setCurrentItem(scrollPosition++ % count, true)
+
+                handler.postDelayed(this, interval)
+            }
+        }
+
+        addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageSelected(position: Int) {
+                // Updating "scroll position" when user scrolls manually
+                scrollPosition = position + 1
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                // Not necessary
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                // Not necessary
+            }
+        })
+
+        handler.post(runnable)
     }
 }

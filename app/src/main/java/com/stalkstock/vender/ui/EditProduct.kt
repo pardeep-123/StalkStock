@@ -246,7 +246,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         listSubCategoryBody.clear()
         listSubCategoryBody.add(
             0,
-            ModelSubCategoriesList.Body(0, 0, "Select sub category", categoryId.toInt(), 0)
+            ModelSubCategoriesList.Body(0, 0, "-Select a Subcategory-", categoryId.toInt(), 0)
         )
 
         if (position != "0") {

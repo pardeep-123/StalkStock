@@ -424,12 +424,12 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 } else if (spinnerSubCategory.selectedItemPosition == 0) {
                     AppUtils.showErrorAlert(
                         this,
-                        "Please select sub category"
+                        "Please select subcategory"
                     )
                 } else if (spinnerSubCategory.selectedItemPosition == -1) {
                     AppUtils.showErrorAlert(
                         this,
-                        "Change category , Sub category not found for this category "
+                        "Change category , Subcategory not found for this category "
                     )
                 }else if(spinnerGetProduct.selectedItemPosition==0) {
                     spinnerGetProduct.requestFocus()
@@ -644,7 +644,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         listSubCategoryBody.clear()
         listSubCategoryBody.add(
             0,
-            ModelSubCategoriesList.Body(0, 0, "-Select a sub category-", categoryId.toInt(), 0)
+            ModelSubCategoriesList.Body(0, 0, "-Select a Subcategory-", categoryId.toInt(), 0)
         )
 
         if (position != "0") {
