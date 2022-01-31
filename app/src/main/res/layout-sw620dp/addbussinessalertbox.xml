@@ -24,9 +24,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:src="@drawable/waiting_check"
-                app:civ_border_color="#8C8D8E"
-                app:civ_border_overlay="true"
-                app:civ_border_width="1dp" />
+               />
 
 
         </RelativeLayout>

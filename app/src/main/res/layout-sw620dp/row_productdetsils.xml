@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
 
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
@@ -91,6 +92,7 @@
                 android:drawableLeft="@drawable/green_location_arrow"
                 android:drawablePadding="5dp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="New York 920.." />
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -105,47 +107,68 @@
                 android:text="New York 920.." />
 
             <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="30dp"
                 android:id="@+id/ltPlusMinus"
-                android:visibility="gone"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
                 android:layout_below="@+id/description_textbox"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/background_box_new"
                 android:textColor="@color/theme_green"
+                android:visibility="gone"
+                tools:visibility="visible"
 
                 >
 
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                <ImageView
                     android:id="@+id/minus"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="4dp"
                     android:gravity="center"
-                    android:text="-"
-                    android:textColor="@color/theme_green"
-                    android:textSize="20sp" />
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_remove_24"
+                    android:textColor="@color/theme_green" />
 
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_toEndOf="@id/minus"
+                    android:background="@color/gray_editext_hint" />
+
+                <TextView
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="1"
-                    android:textColor="@color/theme_green"
-                    android:textSize="15sp" />
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="566"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                <com.stalkstock.utils.custom.TitiliumRegularTextView
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@id/plus"
+                    android:background="@color/gray_editext_hint" />
+
+
+                <ImageView
                     android:id="@+id/plus"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="+"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_add_24"
                     android:textColor="@color/theme_green"
-                    android:textSize="20sp" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -163,6 +186,7 @@
                 android:paddingBottom="10dp"
                 android:text="Add"
                 android:textColor="@color/white"
+                tools:visibility="gone"
 
                 />
         </RelativeLayout>

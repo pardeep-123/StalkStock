@@ -58,25 +58,28 @@
                 android:scrollbars="none">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:orientation="vertical"
                     tools:ignore="MissingConstraints">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:layout_gravity="center_horizontal">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imageset"
-                            android:layout_width="match_parent"
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@id/imageset"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            android:layout_width="120dp"
+                            android:background="@color/white"
                             android:layout_height="120dp"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center"
-                            app:civ_border_color="#8C8D8E"
-                            app:civ_border_overlay="true"
-                            app:civ_border_width="1dp" />
+                            android:scaleType="fitXY"
+                            android:src="@drawable/camera_green"
+                        />
                     </RelativeLayout>
 
                     <LinearLayout
@@ -177,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_15sdp">
+                        android:layout_marginRight="@dimen/_20sdp">
 
                         <RelativeLayout
                             android:layout_width="0dp"

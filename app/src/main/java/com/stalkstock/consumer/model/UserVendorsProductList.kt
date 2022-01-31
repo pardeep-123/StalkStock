@@ -77,7 +77,9 @@ data class ProductVendor(
     val shopLogo: String,
     val shopName: String,
     val totalRating: Int,
-    val userId: Int
+    val userId: Int,
+    val firstName: String, // fndidk
+    val lastName: String // fndidk
 )
 
 data class Cart(

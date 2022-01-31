@@ -26,9 +26,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:src="#7DBB00"
-                app:civ_border_color="#8C8D8E"
-                app:civ_border_overlay="true"
-                app:civ_border_width="1dp" />
+                 />
 
             <ImageView
                 android:id="@+id/verifyimgset"

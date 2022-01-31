@@ -72,21 +72,8 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:src="#fff"
-                        app:civ_border_color="#8BC34A"
-                        app:civ_border_overlay="true"
-                        app:civ_border_width="1dp" />
+                        android:src="@drawable/camera_green"/>
 
-                    <ImageView
-                        android:id="@+id/signup_imgcamera"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTintMode="screen"
-                        android:padding="45dp"
-                        android:src="@drawable/camera" />
 
                 </RelativeLayout>
 

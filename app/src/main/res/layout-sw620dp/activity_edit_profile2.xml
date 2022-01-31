@@ -177,14 +177,14 @@
                                 android:layout_height="45dp"
                                 android:layout_marginTop="15dp"
                                 android:background="@drawable/edittextshape"
-                                android:hint="Enter your email address"
                                 android:focusable="false"
+                                android:clickable="false"
+                                android:hint="Enter your email address"
                                 android:inputType="textEmailAddress"
                                 android:paddingLeft="15dp"
                                 android:textColor="#000"
                                 android:textColorHint="@color/light_grey"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <com.stalkstock.utils.custom.TitiliumBoldTextView
                                 android:layout_width="wrap_content"
@@ -211,8 +211,9 @@
                                 android:layout_height="45dp"
                                 android:layout_marginTop="15dp"
                                 android:background="@drawable/edittextshape"
-                                android:hint="@string/enter_mobile"
                                 android:focusable="false"
+                                android:clickable="false"
+                                android:hint="@string/enter_mobile"
                                 android:inputType="number"
                                 android:paddingStart="15dp"
                                 android:textColor="#000"

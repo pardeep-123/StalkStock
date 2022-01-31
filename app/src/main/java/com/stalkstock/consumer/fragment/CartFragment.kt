@@ -268,7 +268,7 @@ class CartFragment : Fragment(), Observer<RestObservable>, View.OnClickListener 
 
         }
 
-        var totalItemValue = 0.0f
+        var totalItemValue = 0.00f
         for (i in mResponse.body.cartData) {
             val mrp = i.product.mrp.toFloat()
             val singleItemTotal = i.quantity * mrp
@@ -276,7 +276,8 @@ class CartFragment : Fragment(), Observer<RestObservable>, View.OnClickListener 
             mTotalQuantity += i.quantity
             mVendorId = i.vendorId.toString()
         }
-        val format = DecimalFormat("##.##").format(totalItemValue)
+        val format = String.format("%.2f", totalItemValue).toString()
+            //DecimalFormat("##.##").format(totalItemValue)
         Log.e("asdfadsfdas","=====$format==")
         txtItemTotal.text = "$$format"
         mNetAmount = format
@@ -285,8 +286,8 @@ class CartFragment : Fragment(), Observer<RestObservable>, View.OnClickListener 
         mShopCharges = mResponse.body.shopDetail.shopCharges
         mShippingCharges = mResponse.body.deliveryCharges.value
         txtMerchantChargesTitle.text = mResponse.body.shopDetail.shopName + " Charges"
-        txtMerchantCharges.text = "$$shopCharges"
-        txtDeliveryCharges.text = "$$deliveryCharges"
+        txtMerchantCharges.text = String.format("%.2f", shopCharges).toString()
+        txtDeliveryCharges.text = String.format("%.2f", deliveryCharges).toString()
 
         val subtotal = totalItemValue + shopCharges + deliveryCharges
         val subtotalFormat = DecimalFormat("##.##").format(subtotal)

@@ -53,7 +53,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
     var visibleItemCount: Int = 0
     var previousTotal: Int = 0
     var pastVisiblesItems: Int = 0
-    var page: Int = 0
+    private var reset = false
+    private var currentOffset = 0
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var currentModel: ArrayList<ModelVendorProductList.Body.Product> = ArrayList()
@@ -76,70 +77,16 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         rvCategory?.adapter = testAdapter
         testAdapter?.arrayList = currentModel
 
-
-        /*
-         binding.rvOrders.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) { //check for scroll down
-                    visibleItemCount = mLayoutManager.childCount
-                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
-
-                    if (loading) {
-                        loading = false
-                        if ((visibleItemCount + pastVisiblesItems) <= totalItemCount) {
-                            binding.progressBar.visibility = View.VISIBLE
-                            page++
-
-
-                                    bookingViewModel.getUpcomingOrderListing(page, limit)
-
-
-
-                            loading = true
-                        }
-                    }
-                }
-            }
-        })
-         */
-        rvCategory?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      /*  rvCategory?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
-                visibleItemCount = mLayoutManager.childCount
-                pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
-
-                if (loading) {
-                    loading = false
-                    if ((visibleItemCount + pastVisiblesItems) <= totalItemCount) {
-                        page += 5
+                if (!recyclerView.canScrollVertically(1)) {
+                    if (currentOffset > 1 && currentModel.size>4)
                         getVendorProducts()
-
-                        loading = true
-                    }
-
-                }
-            }
-
-        })
+                } } })*/
 
 
-        /*rvCategory?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) { //check for scroll down
-                    visibleItemCount = mLayoutManager.childCount
-                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
 
-                    if (loading) {
-                        loading = false
-                        if ((visibleItemCount + pastVisiblesItems) <= totalItemCount) {
-                            page++
-                            getVendorProducts()
-                            loading = true
-                        }
-                    }
-                }
-            }
-        })*/
 
         val notification = view.findViewById<ImageView>(R.id.notification)
         val filter = view.findViewById<ImageView>(R.id.filter)
@@ -177,6 +124,10 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
 
     private fun getVendorProducts() {
 
+        if (reset) {
+            currentOffset = 0
+            currentModel.clear()
+        }
         val map = HashMap<String, RequestBody>()
 
         if (activity != null) {
@@ -186,8 +137,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 mActivity.mUtils.createPartFromString(currentLowPrice.toString())
             map["highPrice"] =
                 mActivity.mUtils.createPartFromString(currentHighPrice.toString())
-            map["offset"] = mActivity.mUtils.createPartFromString(page.toString())
-            map["limit"] = mActivity.mUtils.createPartFromString("5")
+            map["offset"] = mActivity.mUtils.createPartFromString(currentOffset.toString())
+            map["limit"] = mActivity.mUtils.createPartFromString("500")
             viewModel.getVendorProductListAPI(mActivity, true, map)
             viewModel.homeResponse.observe(requireActivity(), this)
         }
@@ -228,7 +179,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 currentLowPrice = data!!.getStringExtra("lowPrice")!!
                 currentHighPrice = data.getStringExtra("highPrice")!!
                 currentSortBy = data.getStringExtra("sortBy")!!
-                // getVendorProducts()
+                 getVendorProducts()
             }
             if (resultCode === Activity.RESULT_CANCELED) {
                 // Write your code if there's no result
@@ -244,7 +195,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                     val mResponse: ModelVendorProductList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         totalItemCount = mResponse.body.total
-                        //   page += 5
+                        currentOffset += 500
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), mResponse.message)
@@ -255,8 +206,8 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(requireActivity(), mResponse.message)
-                        loading = true
-                        //   getVendorProducts()
+                        reset = true
+                           getVendorProducts()
                     } else {
                         AppUtils.showErrorAlert(requireActivity(), mResponse.message)
                     }
@@ -267,7 +218,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                     Toast.makeText(requireContext(), it.data as String, Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    if (it.error!!.toString().contains("User Address") && page > 1) {
+                    if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
                     } else
                         Toast.makeText(
                             requireContext(),
@@ -286,7 +237,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         txtHomeTotal.text = "Total:${mResponse.body.total}"
         currentModel.addAll(mResponse.body.product)
         testAdapter?.arrayList = currentModel
-
+        reset=false
         if (currentModel.size == 0) {
             tvNoProducts?.visibility = View.VISIBLE
             rvCategory?.visibility = View.GONE
@@ -315,8 +266,6 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
 
     override fun onResume() {
         super.onResume()
-        page = 0
-        currentModel.clear()
         getVendorProducts()
     }
 }

@@ -10,7 +10,7 @@
                 android:right="1dp"
                 android:top="1dp" />
 
-            <solid android:color="#7DBB00" />
+            <solid android:color="@color/gray_editext_hint" />
             <corners android:radius="1dp" />
         </shape>
     </item>

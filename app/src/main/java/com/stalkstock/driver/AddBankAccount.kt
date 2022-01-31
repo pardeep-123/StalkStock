@@ -51,7 +51,7 @@ class AddBankAccount : AppCompatActivity(), Observer<RestObservable> {
                 AppUtils.showErrorAlert(this, getString(R.string.enter_bank_account_number))
                 return false
             }
-            etBankAccount.text.toString().length<16 ->{
+            etBankAccount.text.toString().length<6 ->{
                 AppUtils.showErrorAlert(this, getString(R.string.enter_minimum_bank_account_number))
                 return false
             }

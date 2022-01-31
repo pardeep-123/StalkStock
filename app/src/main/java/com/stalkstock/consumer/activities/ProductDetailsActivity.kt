@@ -190,7 +190,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun setAdapterData(mResponse: UserVendorsProductList) {
-        kfc.text = mResponse.body.product.productVendor.shopName
+        kfc.text = mResponse.body.product.productVendor.firstName+" "+mResponse.body.product.productVendor.lastName
         deliveryTime.text = mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)"
         starCount.text = String.format("%.2f",mResponse.body.product.productVendor.ratingCount.toFloat()) + " Rating, " + String.format("%.2f",mResponse.body.product.productVendor.totalRating.toFloat())
         star.rating = mResponse.body.product.productVendor.ratingCount.toFloat()

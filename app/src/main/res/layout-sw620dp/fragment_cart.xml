@@ -170,19 +170,23 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp">
 
-                <ImageView
-                    android:id="@+id/img"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@id/img"
                     android:layout_width="65dp"
-                    android:layout_height="50dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/place_holder" />
+                    android:layout_height="65dp"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/place_holder"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/kfc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/img"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
@@ -192,7 +196,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/kfc"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/img" />
+                    android:layout_toEndOf="@+id/img"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
 
@@ -210,7 +215,18 @@
                 android:id="@+id/recyclerCartItems"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <com.stalkstock.utils.custom.TitiliumRegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add more items"
+                android:textSize="12sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="15sp"
+                android:layout_gravity="end"/>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"

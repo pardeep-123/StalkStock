@@ -63,10 +63,11 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="ad_title">Ad Title</string>
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="upload_image_640px_x_360px">Upload image (640px X 360px)</string>
+    <string name="upload_image_640px_x_360px">Upload image \n(Dimensions: 1000px Wide x 360px High Text &amp; content boundary: 640px Wide x 360 High
+(Please note: any content outside of the 640px width will not display on smaller screens))</string>
     <string name="ad_destination_link">Ad Destination Link</string>
     <string name="daily_advertising_budget">Daily Advertising Budget</string>
-    <string name="i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements">I accept the Stalk + Stock Terms of service (including promotion terms) and the Stalk + Stock Advertising Privacy Agreements.</string>
+    <string name="i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements">I accept the Stalk + Stock Terms of Service (including promotion terms) and the Stalk + Stock Advertising Privacy Agreements.</string>
     <string name="preview_ad">Preview Ad</string>
     <string name="update">Update</string>
     <string name="edit_business_profile">Edit Business Profile</string>
@@ -232,7 +233,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="enter_routing_number">Please enter routing number</string>
     <string name="enter_minimum_routing_number">Please enter minimum 9 characters in routing number</string>
     <string name="enter_bank_account_number">Please enter bank account number</string>
-    <string name="enter_minimum_bank_account_number">Please enter minimum 16 characters in account number</string>
+    <string name="enter_minimum_bank_account_number">Please enter minimum 6 characters in account number</string>
     <string name="please_confirm_bank_account_number">Please confirm your bank account number</string>
     <string name="enter_account_amount">Please enter amount</string>
     <string name="insufficient_balance">Insufficient balance</string>

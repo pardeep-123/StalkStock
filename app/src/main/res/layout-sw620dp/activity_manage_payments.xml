@@ -204,7 +204,7 @@
                     android:background="@drawable/btn_shape"
                     android:text="Checkout"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="16sp"
                     android:textAllCaps="false"
                     android:visibility="gone" />
             </RelativeLayout>

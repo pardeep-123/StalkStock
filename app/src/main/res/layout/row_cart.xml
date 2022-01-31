@@ -1,108 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <RelativeLayout
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="2dp"
+    android:layout_marginStart="14dp"
+    android:layout_marginEnd="14dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20sp">
+        android:padding="@dimen/_10sdp"
+        >
 
         <ImageView
             android:id="@+id/img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:visibility="gone"
-            android:src="@drawable/red_dot" />
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:src="@drawable/red_dot"
+            android:visibility="visible"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/name_text"
+            app:layout_constraintBottom_toBottomOf="@id/relativeLayout"/>
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/name_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:layout_toRightOf="@+id/img1"
-            android:text="Creamy nachos"
+            android:text="ncsdchdcg"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/tvPrice"
+            app:layout_constraintBottom_toTopOf="@+id/tvLocation"
+            app:layout_constraintStart_toEndOf="@+id/img1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-
-        <!--
-                        <RelativeLayout
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/location_text"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/background_box_new"
-                            android:textColor="@color/theme_green"
-
-                            >
-
-                            <TextView
-                                android:id="@+id/minus"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="5dp"
-                                android:gravity="center_vertical"
-                                android:padding="4dp"
-                                android:text="-"
-                                android:textColor="@color/theme_green"
-                                android:textSize="22sp" />
-
-                            <TextView
-                                android:id="@+id/count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:gravity="center"
-                                android:padding="4dp"
-                                android:text="1"
-                                android:textColor="@color/theme_green"
-                                android:textSize="17sp" />
-
-                            <TextView
-                                android:id="@+id/plus"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="5dp"
-                                android:gravity="center"
-                                android:padding="4dp"
-                                android:text="+"
-                                android:textColor="@color/theme_green"
-                                android:textSize="22sp" />
-                        </RelativeLayout>
-        -->
+        <com.stalkstock.utils.custom.TitiliumRegularTextView
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_text"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/tvPrice"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/img1"
+            android:text="dfffffffffff"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+            app:layout_constraintStart_toEndOf="@+id/img1"
+            app:layout_constraintTop_toBottomOf="@+id/name_text" />
 
         <RelativeLayout
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_toLeftOf="@+id/tvPrice"
-            android:layout_toRightOf="@+id/name_text"
+            android:id="@+id/relativeLayout"
+            android:layout_width="120dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/background_box_new"
             android:gravity="center_vertical"
-            android:textColor="@color/theme_green"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img1"
+            app:layout_constraintEnd_toStartOf="@+id/tvRemoveItem"
 
-            >
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation">
 
-            <TextView
+            <ImageView
                 android:id="@+id/minus"
-                android:layout_width="@dimen/_14sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/ic_baseline_remove_24"
-                android:backgroundTint="@color/green_colour"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:padding="8dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:src="@drawable/ic_baseline_remove_24"
                 android:textColor="@color/theme_green" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_toEndOf="@id/minus"
+                android:background="@color/gray_editext_hint" />
 
             <TextView
                 android:id="@+id/count"
@@ -111,89 +97,61 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="4dp"
-                android:textColor="@color/theme_green"
+                android:text="566"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <TextView
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_toStartOf="@id/plus"
+                android:background="@color/gray_editext_hint" />
+
+
+            <ImageView
                 android:id="@+id/plus"
-                android:layout_width="@dimen/_14sdp"
-                android:layout_height="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:padding="8dp"
                 android:layout_centerVertical="true"
-                android:backgroundTint="@color/green_colour"
-                android:background="@drawable/ic_baseline_add_24"
+                android:layout_marginEnd="4dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:src="@drawable/ic_baseline_add_24"
                 android:textColor="@color/theme_green"
                 android:textSize="12sp" />
 
-
         </RelativeLayout>
 
-        <!--<RelativeLayout
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:layout_toLeftOf="@+id/tvPrice"
-            android:layout_below="@+id/location_text"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/theme_green"
-            android:background="@drawable/background_box_new"
 
-            >
-            <TextView
-                android:id="@+id/minus"
-                android:layout_marginLeft="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="-"
-                android:gravity="center"
-                android:layout_centerVertical="true"
-                android:textSize="20sp"
-                android:textColor="@color/theme_green"/>
-
-            <TextView
-                android:id="@+id/count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:layout_centerInParent="true"
-                android:textSize="20sp"
-                android:textColor="@color/theme_green"
-                />
-
-            <TextView
-                android:id="@+id/plus"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="+"
-                android:layout_marginRight="2dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textSize="20sp"
-                android:textColor="@color/theme_green"/>
-        </RelativeLayout>-->
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_alignParentEnd="true"
             android:layout_marginRight="15sp"
-            android:text="$9.50"
+            android:text="$9.sdddddddddd50"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/tvLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.stalkstock.utils.custom.TitiliumRegularTextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvRemoveItem"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/name_text"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/img1"
-            android:text="Regular" />
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="15sp"
+            android:text="Remove Item"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="end"
+            app:layout_constraintStart_toEndOf="@id/relativeLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    </RelativeLayout>
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -23,7 +23,7 @@ public class SignUpVendor extends AppCompatActivity implements View.OnClickListe
     private ArrayList<AlbumFile> mAlbumFiles = new ArrayList<>();
     String firstimage="";
 
-    ImageView camera, imageView,imageView1;
+    ImageView imageView,imageView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +32,12 @@ public class SignUpVendor extends AppCompatActivity implements View.OnClickListe
         ImageView backarrow= findViewById(R.id.signupbackarrow);
         imageView=findViewById(R.id.signup_imageset);
        // imageView1=findViewById(R.id.ivImg);
-        camera = findViewById(R.id.signup_imgcamera);
         Button signupbtn= findViewById(R.id.signupbutton);
         TextView signtext= findViewById(R.id.losignuptext);
 
         backarrow.setOnClickListener(this);
         signupbtn.setOnClickListener(this);
         signtext.setOnClickListener(this);
-        camera.setOnClickListener(this);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class SignUpVendor extends AppCompatActivity implements View.OnClickListe
             case R.id.losignuptext:
                 onBackPressed();
                 break;
-            case R.id.signup_imgcamera:
+            case R.id.signup_imageset:
                 askCameraPermissons();
         }
     }

@@ -33,7 +33,7 @@ class ProductsAdapter(
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         holder.itemView.starCount.text = currentModel[position].name
         holder.itemView.txtLocation.text = currentModel[position].productVendor.ShopAddress
-        holder.itemView.txtVendor.text = currentModel[position].productVendor.shopName
+        holder.itemView.txtVendor.text = currentModel[position].productVendor.firstName +" "+currentModel[position].productVendor.lastName
         if(currentModel[position].oldMrp==currentModel[position].mrp){
             holder.itemView.imgPriceRange.visibility=View.GONE
         }else if(currentModel[position].oldMrp< currentModel[position].mrp){

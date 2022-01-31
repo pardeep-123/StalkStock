@@ -40,7 +40,8 @@ class ManageAddressAdapter(var context: ManageAddress, var body: List<ModelUserA
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val cbDefault: CheckBox = holder.itemView.cbDefault
         val get = body[position]
-        holder.itemView.location.text= body[position].geoLocation
+        holder.itemView.location.text= body[position].street_address + " "+ body[position].city+ " " +body[position].state + " "+body[position].zipcode+
+                 " "+ body[position].country
         when (get.type) {
             "1" -> {
                 holder.textType.text = "Home"

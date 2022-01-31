@@ -1,6 +1,5 @@
 package com.stalkstock.vender.ui
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -19,27 +18,25 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.`interface`.GetLatLongInterface
-import com.stalkstock.utils.commonmodel.LocationModel
 import com.stalkstock.utils.extention.checkStringNull
-import com.stalkstock.utils.extention.setAutoComplete
-import com.stalkstock.utils.loadImage
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.VendorBusinessDetailResponse
+import com.stalkstock.vender.Utils.NetworkUtil
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
-import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_addnewaddress.*
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.*
+import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.editboxbusinesscity
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner_delivery_type
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner_type
@@ -63,7 +60,8 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
     var postalCode = ""
     private var latitude = ""
     private var longitude = ""
-    private val AUTOCOMPLETE_REQUEST_CODE = 1
+    private val AUTOCOMPLETE_REQUEST_CODE = 11
+    val PERMISSION_CALLBACK_CONSTANT = 100
     val viewModel: VendorViewModel by viewModels()
 
     override fun getContentId(): Int {
@@ -77,7 +75,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         val imageView = findViewById<ImageView>(R.id.edit_businessbackarrow)
         val button = findViewById<Button>(R.id.businessupdatebutton)
 
-        setAutoComplete(
+       /* setAutoComplete(
             LocationModel(
                 editboxbusinesscity,
                 editboxbusinessstate,
@@ -85,7 +83,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                 autoTvLocation!!
             ), this
         )
-
+*/
         business_imageset.setOnClickListener { askCameraPermissons() }
         imageView.setOnClickListener { onBackPressed() }
         val spinner = findViewById<Spinner>(R.id.spinner)
@@ -381,7 +379,14 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.autoTvLocation ->{
-                val fields = listOf(
+                if (NetworkUtil.checkLocPermission(this@EditBussinessProfile)) {
+                    val intent = Intent(this, MyNewMapActivity::class.java)
+                    intent.putExtra("type", "1")
+                    startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+                }
+
+                /*val fields = listOf(
                     Place.Field.ID,
                     Place.Field.NAME,
                     Place.Field.LAT_LNG,
@@ -393,7 +398,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                     Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
                         this
                     )
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)*/
             }
         }
     }
@@ -401,7 +406,22 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+
+        if (data != null) {
+            if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                val sarea = data.getStringExtra("area")
+                val myCity = data.getStringExtra("city")
+                latitude = data.getStringExtra("lat")!!.toString()
+                longitude = data.getStringExtra("lng")!!.toString()
+                val state = data.getStringExtra("state")
+             //   autoTvLocation.setText(sarea)
+              //  et_street.setText(state)
+              //  et_city.setText(myCity)
+                getAddress(latitude.toDouble(),longitude.toDouble())
+            }
+        }
+
+        /*if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
@@ -410,8 +430,18 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                 autoTvLocation.setText(place.name.toString())
 
             }
+        }*/
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            val intent = Intent(this, MyNewMapActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
     }
+
     private fun getAddress(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
 
@@ -420,7 +450,10 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             longitude,
             1
         )
-
+        if (addresses[0].featureName != null) {
+            address = addresses[0].featureName
+            autoTvLocation.setText(address)
+        }
         if (addresses[0].locality != null) {
             city = addresses[0].locality
             editboxbusinesscity.setText(city)

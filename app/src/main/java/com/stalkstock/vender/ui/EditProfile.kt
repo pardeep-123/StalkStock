@@ -86,7 +86,7 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             return false
         } else if (editprofile_address.text.toString().trim().isEmpty()) {
             editprofile_address.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter last name")
+            AppUtils.showErrorAlert(this, "Please enter address")
             return false
         } else {
             return true

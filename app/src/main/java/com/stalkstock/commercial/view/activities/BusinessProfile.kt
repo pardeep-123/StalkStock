@@ -59,9 +59,9 @@ class BusinessProfile : AppCompatActivity(), View.OnClickListener, Observer<Rest
                         businessnamee1.text = data.body.commercialDetail.buisnessName
                         businessaboutdetails.text = data.body.commercialDetail.buisnessDescription
                         if(data.body.commercialDetail.buisnessLogo.isNullOrEmpty()){
-                            imageSet.setImageResource(R.drawable.camera_green)
+                            imageset.setImageResource(R.drawable.camera_green)
                         }else{
-                            Glide.with(this).load(data.body.commercialDetail.buisnessLogo).placeholder(R.drawable.camera_green).into(imageSet)
+                            Glide.with(this).load(data.body.commercialDetail.buisnessLogo).placeholder(R.drawable.camera_green).into(imageset)
 
                         }
                         businesstypes.text = data.body.commercialDetail.buisnessTypeName

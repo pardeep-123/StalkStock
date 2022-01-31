@@ -59,7 +59,7 @@
                 android:scrollbars="none">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:orientation="vertical"
@@ -67,17 +67,17 @@
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imageset"
-                            android:layout_width="match_parent"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginTop="20dp"
-                            android:gravity="center"
-                            app:civ_border_color="#8C8D8E"
-                            app:civ_border_overlay="true"
-                            app:civ_border_width="1dp" />
+                            android:src="@drawable/camera_green"
+                            />
                     </RelativeLayout>
 
                     <LinearLayout

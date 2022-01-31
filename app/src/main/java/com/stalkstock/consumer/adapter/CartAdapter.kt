@@ -34,6 +34,7 @@ class CartAdapter(
         holder.itemView.name_text.setText(arrayList[position].product.name)
         holder.itemView.count.setText(arrayList[position].quantity.toString())
         holder.itemView.tvPrice.setText("$" + arrayList[position].product.mrp.toString())
+      //  holder.itemView.tvLocation.setText("$" + arrayList[position].product.mrp.toString())  // add location here
         holder.itemView.minus.setOnClickListener {
             val i = currentQty - 1
             context.addToCartAPI(arrayList[position].productId.toString(), i.toString())

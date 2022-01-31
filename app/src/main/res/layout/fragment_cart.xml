@@ -170,12 +170,15 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp">
 
-                <ImageView
-                    android:id="@+id/img"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@id/img"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     android:layout_width="65dp"
-                    android:layout_height="50dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/place_holder" />
+                    android:background="@color/white"
+                    android:layout_height="65dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/place_holder"
+                    />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/kfc"
