@@ -30,17 +30,21 @@ import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.model.EditCommercialBuisnessDetail
 import com.stalkstock.commercial.view.model.GetCommercialBuisnessDetail
+import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
+import com.stalkstock.vender.Utils.NetworkUtil
 import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
+import kotlinx.android.synthetic.main.activity_edit_business_profile.btn_update
 import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner
 import kotlinx.android.synthetic.main.activity_edit_business_profile.spinner_type
+import kotlinx.android.synthetic.main.activity_edit_driver_info.*
 import kotlinx.android.synthetic.main.activity_select_category.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -63,7 +67,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
     var country = ""
     var selectedId = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 1
-
+    val PERMISSION_CALLBACK_CONSTANT = 100
     var city = ""
     var address = ""
     var geoLocation = ""
@@ -156,19 +160,12 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         when (p0?.id) {
 
             R.id.etSreetAddress ->{
-                val fields = listOf(
-                    Place.Field.ID,
-                    Place.Field.NAME,
-                    Place.Field.LAT_LNG,
-                    Place.Field.ADDRESS_COMPONENTS,
-                    Place.Field.ADDRESS
-                )
-                // Start the autocomplete intent.
-                val intent =
-                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
-                        this
-                    )
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+                if (NetworkUtil.checkLocPermission(this@EditBusinessProfileActivity)) {
+                    val intent = Intent(this, MyNewMapActivity::class.java)
+                    intent.putExtra("type", "1")
+                    startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+                }
             }
 
             R.id.iv_back -> {
@@ -186,10 +183,30 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
             }
         }
     }
-
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            val intent = Intent(this, MyNewMapActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+        if (data != null) {
+            if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                val sarea = data.getStringExtra("area")
+                val myCity = data.getStringExtra("city")
+                latitude = data.getStringExtra("lat")!!.toString()
+                longitude = data.getStringExtra("lng")!!.toString()
+                val state = data.getStringExtra("state")
+                //   autoTvLocation.setText(sarea)
+                //  et_street.setText(state)
+                //  et_city.setText(myCity)
+                getAddress(latitude.toDouble(),longitude.toDouble())
+            }
+        }
+       /* if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
@@ -198,7 +215,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                 etSreetAddress.setText(place.name.toString())
 
             }
-        }
+        }*/
     }
 
     private fun getAddress(latitude: Double, longitude: Double) {
@@ -210,6 +227,10 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
             1
         )
 
+        if (addresses[0].featureName != null) {
+            address = addresses[0].featureName
+            etSreetAddress.setText(address)
+        }
         if (addresses[0].locality != null) {
             city = addresses[0].locality
             etCity.setText(city)

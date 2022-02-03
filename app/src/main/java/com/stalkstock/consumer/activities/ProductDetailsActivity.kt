@@ -190,11 +190,13 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun setAdapterData(mResponse: UserVendorsProductList) {
-        kfc.text = mResponse.body.product.productVendor.firstName+" "+mResponse.body.product.productVendor.lastName
+        kfc.text = mResponse.body.product.productVendor.shopName
         deliveryTime.text = mResponse.body.product.productVendor.deliveryTime.toString() + " (Delivery time)"
         starCount.text = String.format("%.2f",mResponse.body.product.productVendor.ratingCount.toFloat()) + " Rating, " + String.format("%.2f",mResponse.body.product.productVendor.totalRating.toFloat())
         star.rating = mResponse.body.product.productVendor.ratingCount.toFloat()
-        shopLocation.text = mResponse.body.product.productVendor.ShopAddress
+        mResponse.body.product.productVendor.apply {
+            shopLocation.text =this.ShopAddress+" "+this.city+" "+this.state+" "+this.country
+        }
         img.loadImage(mResponse.body.product.productVendor.shopLogo)
 
         currentModel.addAll(mResponse.body.sellerProduct)

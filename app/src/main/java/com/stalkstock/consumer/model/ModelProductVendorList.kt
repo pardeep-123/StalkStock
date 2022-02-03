@@ -75,6 +75,10 @@ data class ModelProductVendorList(
 
             data class ProductVendor(
                 val ShopAddress: String, // fndidk
+                val city: String,
+                val state: String,
+                val country: String,
+                val postalCode: String,
                 val firstName: String, // fndidk
                 val lastName: String, // fndidk
                 val geoLocation: String,

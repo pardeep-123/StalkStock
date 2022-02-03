@@ -257,7 +257,7 @@ class CartFragment : Fragment(), Observer<RestObservable>, View.OnClickListener 
                 if (mResponse.body.address.type == "3")
                     addressType = "Other"
                 item_count.text = "Deliver to $addressType"
-                addressInCart.text = mResponse.body.address.geoLocation
+                addressInCart.text = mResponse.body.address?.street_address + " "+ mResponse.body.address?.city+ " " +mResponse.body.address?.state + " "+mResponse.body.address?.zipcode+ " "+mResponse.body.address?.country
             }
             else
             {

@@ -68,6 +68,10 @@ data class ProductImage(
 
 data class ProductVendor(
     val ShopAddress: String,
+    val city: String,
+    val state: String,
+    val country: String,
+    val postalCode: String,
     val deliveryTime: Int,
     val geoLocation: String,
     val id: Int,

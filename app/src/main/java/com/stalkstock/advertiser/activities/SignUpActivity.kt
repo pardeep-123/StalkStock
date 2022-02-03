@@ -23,14 +23,19 @@ import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.advertiser.model.AdvertiserSignUpResponse
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
+import com.stalkstock.vender.Utils.NetworkUtil
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_signup.spinner
+import kotlinx.android.synthetic.main.activity_signup.spinner_type
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 import java.util.*
@@ -40,6 +45,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
     private val AUTOCOMPLETE_REQUEST_CODE = 1
+    val PERMISSION_CALLBACK_CONSTANT = 100
     val viewModel: AdvertiserViewModel by lazy {
         ViewModelProvider(this).get(AdvertiserViewModel::class.java)
     }
@@ -114,19 +120,12 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 finish()
             }
             R.id.et_businessAddress ->{
-                val fields = listOf(
-                    Place.Field.ID,
-                    Place.Field.NAME,
-                    Place.Field.LAT_LNG,
-                    Place.Field.ADDRESS_COMPONENTS,
-                    Place.Field.ADDRESS
-                )
-                // Start the autocomplete intent.
-                val intent =
-                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
-                        this
-                    )
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+                if (NetworkUtil.checkLocPermission(this@SignUpActivity)) {
+                    val intent = Intent(this, MyNewMapActivity::class.java)
+                    intent.putExtra("type", "1")
+                    startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+                }
             }
             R.id.image -> {
                 mAlbumFiles = java.util.ArrayList()
@@ -148,7 +147,21 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
-        }else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+        }
+       else if (data != null) {
+            if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                val sarea = data.getStringExtra("area")
+                val myCity = data.getStringExtra("city")
+                latitude = data.getStringExtra("lat")!!.toString()
+                longitude = data.getStringExtra("lng")!!.toString()
+                val state = data.getStringExtra("state")
+                //   autoTvLocation.setText(sarea)
+                //  et_street.setText(state)
+                //  et_city.setText(myCity)
+                getAddress(latitude.toDouble(),longitude.toDouble())
+            }
+        }
+       /* else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
@@ -157,9 +170,16 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 et_businessAddress.setText(place.name.toString())
 
             }
+        }*/
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            val intent = Intent(this, MyNewMapActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
     }
-
     private fun getAddress(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
 
@@ -168,6 +188,10 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             longitude,
             1
         )
+        if (addresses[0].featureName != null) {
+            address = addresses[0].featureName
+            et_businessAddress.setText(address)
+        }
 
         if (addresses[0].locality != null) {
             city = addresses[0].locality

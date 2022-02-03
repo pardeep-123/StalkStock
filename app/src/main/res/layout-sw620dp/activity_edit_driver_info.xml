@@ -68,9 +68,9 @@
                             android:background="@color/dark_transparent" />
 
                         <ImageView
+                            android:id="@+id/imgCamera1"
                             android:layout_width="@dimen/_30sdp"
                             android:layout_height="@dimen/_30sdp"
-                            android:id="@+id/imgCamera1"
                             android:layout_centerInParent="true"
                             android:layout_marginRight="@dimen/_10sdp"
                             android:src="@drawable/camera" />

@@ -27,6 +27,7 @@ import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
 import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.commercial.view.model.CommercialSignUpResponse
+import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.common.model.ModelBusinessType
 import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
@@ -34,12 +35,14 @@ import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
+import com.stalkstock.vender.Utils.NetworkUtil
 import com.stalkstock.vender.ui.Verification
 import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_addnewaddress.*
+import kotlinx.android.synthetic.main.activity_edit_driver_info.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.spinner
 import kotlinx.android.synthetic.main.added_product.*
@@ -55,6 +58,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     private var latitude = ""
     private var longitude = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 1
+    val PERMISSION_CALLBACK_CONSTANT = 100
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
@@ -163,20 +167,22 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             }
 
             R.id.et_businessAddress -> {
-                val fields = listOf(
-                    Place.Field.ID,
-                    Place.Field.NAME,
-                    Place.Field.LAT_LNG,
-                    Place.Field.ADDRESS_COMPONENTS,
-                    Place.Field.ADDRESS
-                )
-                // Start the autocomplete intent.
-                val intent =
-                    Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
-                        this
-                    )
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+                if (NetworkUtil.checkLocPermission(this@SignupAdvertiserNCommercialNVendor)) {
+                    val intent = Intent(this, MyNewMapActivity::class.java)
+                    intent.putExtra("type", "1")
+                    startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+                }
             }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            val intent = Intent(this, MyNewMapActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
     }
 
@@ -192,7 +198,21 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
-        } else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+        }
+       else if (data != null) {
+            if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                val sarea = data.getStringExtra("area")
+                val myCity = data.getStringExtra("city")
+                latitude = data.getStringExtra("lat")!!.toString()
+                longitude = data.getStringExtra("lng")!!.toString()
+                val state = data.getStringExtra("state")
+                //   autoTvLocation.setText(sarea)
+                //  et_street.setText(state)
+                //  et_city.setText(myCity)
+                getAddress(latitude.toDouble(),longitude.toDouble())
+            }
+        }
+       /* else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
@@ -201,7 +221,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 et_businessAddress.setText(place.name.toString())
 
             }
-        }
+        }*/
     }
 
 
@@ -213,6 +233,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             longitude,
             1
         )
+
+        if (addresses[0].featureName != null) {
+            address = addresses[0].featureName
+            et_businessAddress.setText(address)
+        }
 
         if (addresses[0].locality != null) {
             city = addresses[0].locality

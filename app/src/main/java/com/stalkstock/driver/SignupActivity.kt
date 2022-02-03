@@ -1,6 +1,5 @@
 package com.stalkstock.driver
 
-import android.app.Activity
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -13,22 +12,22 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.driver.models.CheckEmailResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.extention.checkStringNull
 import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.GlobalVariables
+import com.stalkstock.vender.Utils.NetworkUtil
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup3.*
 import kotlinx.android.synthetic.main.activity_signup3.btn_signup
@@ -56,6 +55,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
     private var latitude = ""
     private var longitude = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 1
+    val PERMISSION_CALLBACK_CONSTANT = 100
     private var mAlbumFiles: ArrayList<AlbumFile> = ArrayList()
     var firstimage = ""
     private var mVehicleType = ""
@@ -108,7 +108,14 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         when (p0?.id) {
 
             R.id.etDriverAddress -> {
-                val fields = listOf(
+                if (NetworkUtil.checkLocPermission(this@SignupActivity)) {
+                    val intent = Intent(this, MyNewMapActivity::class.java)
+                    intent.putExtra("type", "1")
+                    startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+                }
+
+              /*  val fields = listOf(
                     Place.Field.ID,
                     Place.Field.NAME,
                     Place.Field.LAT_LNG,
@@ -120,7 +127,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                     Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
                         this
                     )
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)*/
             }
             R.id.tv_signin -> {
                 startActivity(Intent(this, LoginActivity::class.java))
@@ -144,11 +151,31 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             }
         }
     }
-
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            val intent = Intent(this, MyNewMapActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-       if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+        if (data != null) {
+            if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                val sarea = data.getStringExtra("area")
+                val myCity = data.getStringExtra("city")
+                latitude = data.getStringExtra("lat")!!.toString()
+                longitude = data.getStringExtra("lng")!!.toString()
+                val state = data.getStringExtra("state")
+                //   autoTvLocation.setText(sarea)
+                //  et_street.setText(state)
+                //  et_city.setText(myCity)
+                getAddress(latitude.toDouble(),longitude.toDouble())
+            }
+        }
+      /* if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
@@ -157,7 +184,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                 etDriverAddress.setText(place.name.toString())
 
             }
-        }
+        }*/
     }
 
     private fun getAddress(latitude: Double, longitude: Double) {
@@ -168,7 +195,10 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             longitude,
             1
         )
-
+        if (addresses[0].featureName != null) {
+            address = addresses[0].featureName
+            etDriverAddress.setText(address)
+        }
         if (addresses[0].locality != null) {
             city = addresses[0].locality
             et_city.setText(city)

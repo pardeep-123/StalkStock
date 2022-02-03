@@ -1,6 +1,5 @@
 package com.stalkstock.driver
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
@@ -25,19 +24,18 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.driver.models.DriverDocResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.extention.checkObjectNull
 import com.stalkstock.utils.extention.checkStringNull
-import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.AppUtils
+import com.stalkstock.utils.others.CommonMethods
+import com.stalkstock.vender.Utils.NetworkUtil
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -45,9 +43,7 @@ import kotlinx.android.synthetic.main.activity_add_detail.*
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_driver_info.*
 import kotlinx.android.synthetic.main.activity_edit_driver_info.btn_update
-import kotlinx.android.synthetic.main.activity_edit_driver_info.edtCity
 import kotlinx.android.synthetic.main.activity_signup3.*
-import kotlinx.android.synthetic.main.activity_signup3.spinner
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.update_successfully_alert.*
 import okhttp3.RequestBody
@@ -76,6 +72,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
     private var latitude = ""
     private var longitude = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 1
+    val PERMISSION_CALLBACK_CONSTANT = 100
 
     lateinit var successfulUpdatedDialog: Dialog
     override fun getContentId(): Int {
@@ -136,19 +133,12 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
         }
 
         edtDriverStreetAddress.setOnClickListener {
-            val fields = listOf(
-                Place.Field.ID,
-                Place.Field.NAME,
-                Place.Field.LAT_LNG,
-                Place.Field.ADDRESS_COMPONENTS,
-                Place.Field.ADDRESS
-            )
-            // Start the autocomplete intent.
-            val intent =
-                Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(
-                    this
-                )
-            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+             if (NetworkUtil.checkLocPermission(this@EditDriverInfoActivity)) {
+                    val intent = Intent(this, MyNewMapActivity::class.java)
+                    intent.putExtra("type", "1")
+                    startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+                }
         }
 
         rlEditDriverFront.setOnClickListener {
@@ -196,9 +186,32 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            val intent = Intent(this, MyNewMapActivity::class.java)
+            intent.putExtra("type", "1")
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+
+        if (data != null) {
+            if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+                val sarea = data.getStringExtra("area")
+                val myCity = data.getStringExtra("city")
+                latitude = data.getStringExtra("lat")!!.toString()
+                longitude = data.getStringExtra("lng")!!.toString()
+                val state = data.getStringExtra("state")
+                //   autoTvLocation.setText(sarea)
+                //  et_street.setText(state)
+                //  et_city.setText(myCity)
+                getAddress(latitude.toDouble(),longitude.toDouble())
+            }
+        }
+       /* if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val place = Autocomplete.getPlaceFromIntent(data)
                 latitude = place.latLng?.latitude.toString()
@@ -207,7 +220,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
                 edtDriverStreetAddress.setText(place.name.toString())
 
             }
-        }
+        }*/
     }
 
     private fun getAddress(latitude: Double, longitude: Double) {
@@ -218,6 +231,11 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
             longitude,
             1
         )
+
+        if (addresses[0].featureName != null) {
+            address = addresses[0].featureName
+            edtDriverStreetAddress.setText(address)
+        }
 
         if (addresses[0].locality != null) {
             city = addresses[0].locality

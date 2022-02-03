@@ -511,7 +511,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 if (it.data is PrimaryAddressModel) {
                     val mResponse: PrimaryAddressModel = it.data
                     data= mResponse.body
-                    tv_address.text= data?.geoLocation
+                    tv_address.text= data?.street_address + " "+ data?.city+ " " +data?.state + " "+data?.zipcode+ " "+data?.country
                 }
 
                 if (it.data is SuggestedDataListed) {

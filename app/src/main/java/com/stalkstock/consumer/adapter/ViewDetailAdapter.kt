@@ -38,7 +38,7 @@ class ViewDetailAdapter(var mcontext: Context, var currentModel: ArrayList<UserB
         img.loadImage(currentModel[position].image)
         img.setOnClickListener {
             val intent = Intent(Intent.ACTION_WEB_SEARCH)
-            intent.putExtra(SearchManager.QUERY, currentModel[position].title)
+            intent.putExtra(SearchManager.QUERY, currentModel[position].adLink)
 
             img.context.startActivity(intent)
         }

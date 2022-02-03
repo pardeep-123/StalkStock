@@ -63,7 +63,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name of Account"
+                    android:text="Name on Account"
                     android:textSize="14sp"
                     android:textColor="@color/light_grey" />
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:hint="Enter name of account"
+                    android:hint="Enter name on account"
                     android:textColorHint="@color/light_grey"
                     android:paddingLeft="@dimen/_10sdp"
                     android:inputType="text"
