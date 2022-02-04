@@ -50,7 +50,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
         }
         val map = HashMap<String, RequestBody>()
         map["offset"] = mUtils.createPartFromString(currentOffset.toString())
-        map["limit"] = mUtils.createPartFromString("5")
+        map["limit"] = mUtils.createPartFromString("100")
         viewModel.getUserAddressListAPI(this, true, map)
         viewModel.homeResponse.observe(this, this)
     }
@@ -73,7 +73,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (!recyclerView.canScrollVertically(1)) {
-                    if (currentOffset > 1 && currentModel.size > 4)
+                    if (currentOffset > 1 && currentModel.size > 99)
                         getAddresses()
                 }}
         })
@@ -85,7 +85,7 @@ class ManageAddress : BaseActivity(), Observer<RestObservable> {
                 if (it.data is ModelUserAddressList) {
                     val mResponse: ModelUserAddressList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
-                        currentOffset += 5
+                        currentOffset += 100
                         setData(mResponse)
                     } else {
                         AppUtils.showErrorAlert(this, mResponse.message)
