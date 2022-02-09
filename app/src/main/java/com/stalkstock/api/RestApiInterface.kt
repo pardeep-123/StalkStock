@@ -442,7 +442,7 @@ interface RestApiInterface {
     ): Observable<EditBuisnessDetail>
 
     @GET(URL.buisnessType)
-    fun getBuisnessType(): Observable<BusinessTypeResponse>
+    fun getBuisnessType(): Observable<ModelBusinessType>
 
     @FormUrlEncoded
     @PUT(URL.notification_on_off)

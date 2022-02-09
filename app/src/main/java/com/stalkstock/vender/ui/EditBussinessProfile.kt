@@ -16,12 +16,16 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
+import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.common.MyNewMapActivity
+import com.stalkstock.common.model.ModelBusinessType
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.`interface`.GetLatLongInterface
 import com.stalkstock.utils.extention.checkStringNull
@@ -31,6 +35,7 @@ import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.vender.Model.VendorBusinessDetailResponse
 import com.stalkstock.vender.Utils.NetworkUtil
 import com.stalkstock.vender.vendorviewmodel.VendorViewModel
+import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -40,6 +45,7 @@ import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.editboxbus
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner_delivery_type
 import kotlinx.android.synthetic.main.activity_edit_bussiness_profile.spinner_type
+import kotlinx.android.synthetic.main.activity_edit_product.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import okhttp3.RequestBody
 import java.util.*
@@ -63,6 +69,12 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
     private val AUTOCOMPLETE_REQUEST_CODE = 11
     val PERMISSION_CALLBACK_CONSTANT = 100
     val viewModel: VendorViewModel by viewModels()
+    val viewModel1: HomeViewModel by lazy {
+        ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
+    val listC: ArrayList<CategoryList> = ArrayList()
+
+    var businessTypeList: ArrayList<ModelBusinessType.Body> = ArrayList()
 
     override fun getContentId(): Int {
         return R.layout.activity_edit_bussiness_profile
@@ -84,6 +96,10 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             ), this
         )
 */
+
+
+
+        getBusinessTypeApi()
         business_imageset.setOnClickListener { askCameraPermissons() }
         imageView.setOnClickListener { onBackPressed() }
         val spinner = findViewById<Spinner>(R.id.spinner)
@@ -99,13 +115,13 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         )
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
-        val foodadapter2: ArrayAdapter<*> = ArrayAdapter.createFromResource(
+       /* val foodadapter2: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
             R.array.Select_business_type,
             R.layout.spinner_layout_for_vehicle
         )
         foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner_type.adapter = foodadapter2
+        spinner_type.adapter = foodadapter2*/
 
         val foodadapter3: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
@@ -135,11 +151,11 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             logoutUpdatedDialog2.show()
         }
         CommonMethods.hideKeyboard(this, business_imageset)
-
         if (intent.hasExtra("data")) {
             val body = intent.getSerializableExtra("data") as VendorBusinessDetailResponse.Body
             setDataUI(body)
         }
+
         businessupdatebutton.setOnClickListener {
             setValidation()
         }
@@ -166,6 +182,9 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         editboxbusinessstate.setText(vendorDetail.state)
         editboxbusinesscode.setText(vendorDetail.postalCode)
         business_type = vendorDetail.buisnessTypeId
+        val obj = businessTypeList.find {
+            it.id == business_type}
+        spinner_type.setSelection(businessTypeList.indexOf(obj))
         mLatitude = vendorDetail.latitude
         mLongitude = vendorDetail.longitude
         business_delivery_type = vendorDetail.deliveryType + 1
@@ -228,9 +247,8 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
             mCountryName = array.get(p2)
         } else if (p0?.id == R.id.spinner_type) {
-            var array = this.resources.getStringArray(R.array.Select_business_type)
-
-            business_type = p2
+            val categories = businessTypeList[spinner_type!!.selectedItemPosition]
+            business_type = categories.id
         } else if (p0?.id == R.id.spinner_delivery_type) {
             var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
 
@@ -240,6 +258,11 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
+    }
+
+    private fun getBusinessTypeApi() {
+        viewModel1.getBusinessTypeApi(this, true)
+        viewModel1.homeResponse.observe(this, this)
     }
 
     fun setValidation() {
@@ -363,7 +386,35 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                         finish()
                     }
                 }
+
+                if (it.data is ModelBusinessType) {
+                    val mResponse: ModelBusinessType = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+
+                        businessTypeList.clear()
+                        businessTypeList.addAll(mResponse.body)
+
+                        listC.clear()
+                        listC.add(CategoryList(0, 0, "-Select your business type-", ""))
+                        if (businessTypeList.isNotEmpty()) {
+                            for (i in 0 until businessTypeList.size) {
+                                listC.add(
+                                    CategoryList(
+                                        businessTypeList[i].id, businessTypeList[i].status,
+                                        businessTypeList[i].name)
+                                )
+                            }
+                        }
+
+                        val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
+                        spinner_type.adapter = businessTypeListt
+
+                       // spinner_type.setSelection(listSub.indexOf(currentProductModel.body.subCategoryId.toString()))
+                    }
+                }
             }
+
+
             it.status == Status.ERROR -> {
                 if (it.data != null) {
                     Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()

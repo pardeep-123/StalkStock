@@ -357,9 +357,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         when {
             it!!.status == Status.SUCCESS -> {
 
-
-
-
                 if (it.data is ModelAddProduct) {
                     val mResponse: ModelAddProduct = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {

@@ -1,6 +1,5 @@
 package com.stalkstock.advertiser.activities
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.location.Address
@@ -15,12 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.advertiser.activities.pojo.BusinessTypeModel
 import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
@@ -29,7 +24,6 @@ import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.commercial.view.model.CommercialSignUpResponse
 import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.common.model.ModelBusinessType
-import com.stalkstock.common.model.ModelCategoryList
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
@@ -106,7 +100,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         btn_signup.setOnClickListener(this)
         et_businessAddress.setOnClickListener(this)
         spinner.onItemSelectedListener = this
-        spinner_type.onItemSelectedListener = this
+        spinner_business_type.onItemSelectedListener = this
         spinner_delivery_type.onItemSelectedListener = this
 
         val foodadapter3: ArrayAdapter<*> = ArrayAdapter.createFromResource(
@@ -133,7 +127,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             R.layout.spinner_layout_for_vehicle
         )
         foodadapter2.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner_type.adapter = foodadapter2
+        spinner_business_type.adapter = foodadapter2
 
 
     }
@@ -386,7 +380,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.buisnessDescription] =
                 mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessTypeId] =
-                mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
+                mUtils.createPartFromString(spinner_business_type.selectedItemPosition.toString())
             hashMap[GlobalVariables.PARAM.buisnessLicense] =
                 mUtils.createPartFromString(licnEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.deliveryType] =
@@ -470,7 +464,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                         }
 
                         val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
-                        spinner_type.adapter = businessTypeListt
+                        spinner_business_type.adapter = businessTypeListt
                     }
                 }
 
@@ -781,8 +775,8 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             if (p0?.id == R.id.spinner) {
                 var array = this.resources.getStringArray(R.array.Select_country)
                 country = array[position]
-            } else if (p0?.id == R.id.spinner_type) {
-                val categories = businessTypeList[spinner_type!!.selectedItemPosition - 1]
+            } else if (p0?.id == R.id.spinner_business_type) {
+                val categories = businessTypeList[spinner_business_type!!.selectedItemPosition - 1]
                 business_type = categories.id
             } else if (p0?.id == R.id.spinner_delivery_type) {
                 var array = this.resources.getStringArray(R.array.Select_business_delivery_type)

@@ -63,7 +63,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="ad_title">Ad Title</string>
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="upload_image_640px_x_360px"><b>Upload image</b> \nDimensions: 1000px Wide x 360px High \nText &amp; content boundary: 640px Wide x 360 High \n(Please note: any content outside of the 640px width will not display on smaller screens)</string>
+    <string name="upload_image_640px_x_360px"><b>Upload Image</b> \nDimensions: 1000px Wide x 360px High \nText &amp; content boundary: 640px Wide x 360 High \n(Please note: any content outside of the 640px width will not display on smaller screens)</string>
     <string name="ad_destination_link">Ad Destination Link</string>
     <string name="daily_advertising_budget">Daily Advertising Budget</string>
     <string name="i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements">I accept the Stalk + Stock Terms of Service (including promotion terms) and the Stalk + Stock Advertising Privacy Agreements.</string>
@@ -244,7 +244,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="enter_valid_cvv">Please enter valid CVV number</string>
     <string name="enter_card_holder_name">Please enter card holder name</string>
     <string name="no_card_found">No Card Found</string>
-    <string name="no_orders_found">No Order Found</string>
+    <string name="no_orders_found">No Orders Found</string>
     <string name="no_products_found">No Products Found</string>
     <string name="add_new">Add New</string>
     <string name="no_address_added">No Address Added</string>

@@ -72,7 +72,7 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
         etSearch = view.findViewById(R.id.edtSearch)
         rvCategory = view.findViewById(R.id.recyclerview)
         testAdapter = TestAdapter(mcontext!!, currentModel, this)
-        var mLayoutManager = LinearLayoutManager(requireContext())
+        val mLayoutManager = LinearLayoutManager(requireContext())
         rvCategory?.layoutManager = mLayoutManager
         rvCategory?.adapter = testAdapter
         testAdapter?.arrayList = currentModel
@@ -84,9 +84,6 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                     if (currentOffset > 1 && currentModel.size>4)
                         getVendorProducts()
                 } } })*/
-
-
-
 
         val notification = view.findViewById<ImageView>(R.id.notification)
         val filter = view.findViewById<ImageView>(R.id.filter)

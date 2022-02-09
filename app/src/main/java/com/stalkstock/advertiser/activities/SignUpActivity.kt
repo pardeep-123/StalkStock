@@ -35,7 +35,6 @@ import com.yanzhenjie.album.api.widget.Widget
 import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.spinner
-import kotlinx.android.synthetic.main.activity_signup.spinner_type
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 import java.util.*
@@ -84,7 +83,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         btn_signup.setOnClickListener(this)
         et_businessAddress.setOnClickListener(this)
         spinner.onItemSelectedListener = this
-        spinner_type.onItemSelectedListener = this
+        spinner_business_type.onItemSelectedListener = this
 
         val countryAdapter = ArrayAdapter.createFromResource(
             this,
@@ -247,7 +246,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         } else if (et_businessDescptn.text.toString().isEmpty()) {
             et_businessDescptn.requestFocus()
             et_businessDescptn.error = resources.getString(R.string.please_enter_business_description)
-        } else if (spinner_type.selectedItemPosition == 0) {
+        } else if (spinner_business_type.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
         }
 
@@ -313,7 +312,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessDescription] = mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_type.selectedItemPosition.toString())
+            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_business_type.selectedItemPosition.toString())
             hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
             hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
@@ -444,7 +443,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 val array = this.resources.getStringArray(R.array.Select_country)
 
                 country = array[p2]
-            } else if (p0?.id == R.id.spinner_type) {
+            } else if (p0?.id == R.id.spinner_business_type) {
                 var array = this.resources.getStringArray(R.array.Select_business_type)
 
                 businessType = p2.toString()
