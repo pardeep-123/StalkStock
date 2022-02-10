@@ -27,18 +27,17 @@
             <RelativeLayout
                 android:id="@+id/sgf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 tools:ignore="MissingConstraints">
 
                 <ImageView
                     android:id="@+id/noti_backarrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:padding="10dp"
+                    android:layout_width="@dimen/value_40dp"
+                    android:layout_height="@dimen/value_40dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/back_arrow"/>
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/backk" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:textSize="20sp"

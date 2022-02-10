@@ -106,7 +106,6 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         val spinner_type = findViewById<Spinner>(R.id.spinner_type)
         val spinner_delivery_type = findViewById<Spinner>(R.id.spinner_delivery_type)
         spinner.onItemSelectedListener = this
-        spinner_type.onItemSelectedListener = this
         spinner_delivery_type.onItemSelectedListener = this
         val foodadapter: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
@@ -115,6 +114,37 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
         )
         foodadapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = foodadapter
+
+
+        spinner_type!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+                if(position==0){
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditBussinessProfile, R.color.black_color
+                        )
+                    )
+                }else{
+                    (selectedItemView as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditBussinessProfile, R.color.black
+                        )
+                    )
+                    val get = businessTypeList[position]
+                    business_type = get.id
+                }
+
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
        /* val foodadapter2: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
             R.array.Select_business_type,
@@ -151,10 +181,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             logoutUpdatedDialog2.show()
         }
         CommonMethods.hideKeyboard(this, business_imageset)
-        if (intent.hasExtra("data")) {
-            val body = intent.getSerializableExtra("data") as VendorBusinessDetailResponse.Body
-            setDataUI(body)
-        }
+
 
         businessupdatebutton.setOnClickListener {
             setValidation()
@@ -246,10 +273,11 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             val array = this.resources.getStringArray(R.array.Select_country)
 
             mCountryName = array.get(p2)
-        } else if (p0?.id == R.id.spinner_type) {
-            val categories = businessTypeList[spinner_type!!.selectedItemPosition]
+        } /*else if (p0?.id == R.id.spinner_type) {
+
+            val categories = businessTypeList[spinner_type.selectedItemPosition]
             business_type = categories.id
-        } else if (p0?.id == R.id.spinner_delivery_type) {
+        }*/ else if (p0?.id == R.id.spinner_delivery_type) {
             var array = this.resources.getStringArray(R.array.Select_business_delivery_type)
 
             business_delivery_type = p2
@@ -408,6 +436,11 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
 
                         val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
                         spinner_type.adapter = businessTypeListt
+
+                        if (intent.hasExtra("data")) {
+                            val body = intent.getSerializableExtra("data") as VendorBusinessDetailResponse.Body
+                            setDataUI(body)
+                        }
 
                        // spinner_type.setSelection(listSub.indexOf(currentProductModel.body.subCategoryId.toString()))
                     }

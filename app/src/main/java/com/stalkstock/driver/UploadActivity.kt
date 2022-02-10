@@ -45,6 +45,7 @@ class UploadActivity : BaseActivity() {
     var state: String = ""
     var pass : String= ""
     var country: String = ""
+    var addressLine2: String = ""
     var mHashMap : HashMap<String, String> = HashMap()
 
 
@@ -78,7 +79,9 @@ class UploadActivity : BaseActivity() {
                 .putExtra("license1",mLicenseimage1)
                 .putExtra("license2",mLicenseimage2)
                 .putExtra("registration",mRegistrationImage)
-                .putExtra("insurance",mInsuranceImage))
+                .putExtra("insurance",mInsuranceImage)
+                .putExtra("addressLine2",addressLine2)
+            )
         }
 
             fName = intent.getStringExtra("fName").toString()
@@ -92,6 +95,7 @@ class UploadActivity : BaseActivity() {
             state = intent.getStringExtra("state").toString()
             country = intent.getStringExtra("country").toString()
             pass = intent.getStringExtra("pass").toString()
+        addressLine2 = intent.getStringExtra("addressLine2").toString()
 
 
             mProfileImage = intent.getStringExtra("profileImage")!!

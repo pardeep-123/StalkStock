@@ -9,9 +9,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:scaleType="fitEnd"
-        android:src="@drawable/bg_fit"
-        android:layout_alignParentEnd="true" />
+        android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:layout_width="match_parent"

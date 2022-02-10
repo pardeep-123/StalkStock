@@ -48,7 +48,7 @@ import kotlin.collections.HashMap
 class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
-    val listC: ArrayList<CategoryList> = ArrayList()
+
     private var latitude = ""
     private var longitude = ""
     private val AUTOCOMPLETE_REQUEST_CODE = 1
@@ -56,6 +56,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
+    val listC: ArrayList<CategoryList> = ArrayList()
     var businessTypeList: ArrayList<ModelBusinessType.Body> = ArrayList()
 
     var otp=""

@@ -61,11 +61,6 @@ class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>, var
         }
 
 
-
-        // holder.itemView.setOnClickListener { clickDoctor.clicked(position) }
-
-
-
     }
 
 

@@ -54,6 +54,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     var state: String = ""
     var pass : String= ""
     var country: String = ""
+    var addressLine2: String = ""
     var type=1
 
     override fun getContentId(): Int {
@@ -106,6 +107,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         state = intent.getStringExtra("state").toString()
         country = intent.getStringExtra("country").toString()
         pass = intent.getStringExtra("pass").toString()
+        addressLine2 = intent.getStringExtra("addressLine2").toString()
     }
 
     private fun dialogconfirmation() {
@@ -160,6 +162,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
                 hashMap[GlobalVariables.PARAM.vehicleMake] = mUtils.createPartFromString(make)
                 hashMap[GlobalVariables.PARAM.vehicleModel] = mUtils.createPartFromString(model)
                 hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(city)
+                hashMap[addressLine2] = mUtils.createPartFromString(addressLine2)
                 hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(state)
                 hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
                 hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(pass)

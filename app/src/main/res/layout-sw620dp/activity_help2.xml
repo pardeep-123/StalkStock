@@ -28,16 +28,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 tools:ignore="MissingConstraints">
+
                 <ImageView
                     android:id="@+id/help_backarrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/back_arrow"
-
-                    android:padding="10dp"
+                    android:layout_width="@dimen/value_40dp"
+                    android:layout_height="@dimen/value_40dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp">
-                </ImageView>
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/backk"/>
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:textSize="20sp"
                     android:layout_width="wrap_content"

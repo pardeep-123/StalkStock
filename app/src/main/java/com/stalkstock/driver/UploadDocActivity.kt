@@ -34,6 +34,7 @@ class UploadDocActivity : BaseActivity() {
     var state: String = ""
     var pass : String= ""
     var country: String = ""
+    var addressLine2: String = ""
 
 
 
@@ -92,6 +93,7 @@ class UploadDocActivity : BaseActivity() {
        country = intent.getStringExtra("country")!!
        pass = intent.getStringExtra("pass")!!
        mFirstImage = intent.getStringExtra("profileImage").toString()
+       addressLine2 = intent.getStringExtra("addressLine2").toString()
 
 
 
@@ -197,7 +199,8 @@ class UploadDocActivity : BaseActivity() {
                     .putExtra("license1",mLicenseimage1)
                     .putExtra("license2",mLicenseimage2)
                     .putExtra("registration",mRegistrationImage)
-                    .putExtra("insurance",mInsuranceImage))
+                    .putExtra("insurance",mInsuranceImage)
+                    .putExtra("addressLine2",addressLine2))
             }
         }
     }

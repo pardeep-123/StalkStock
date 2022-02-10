@@ -13,11 +13,10 @@
         android:layout_alignParentRight="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_arrow"
+        android:layout_width="@dimen/value_40dp"
+        android:layout_height="@dimen/value_40dp"
+        android:src="@drawable/backk"
         android:id="@+id/congo_backArrow"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         />

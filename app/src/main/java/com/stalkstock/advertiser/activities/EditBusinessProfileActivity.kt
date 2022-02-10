@@ -28,9 +28,12 @@ import com.stalkstock.advertiser.model.*
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
+import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.commercial.view.model.EditCommercialBuisnessDetail
 import com.stalkstock.commercial.view.model.GetCommercialBuisnessDetail
 import com.stalkstock.common.MyNewMapActivity
+import com.stalkstock.common.model.ModelBusinessType
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
@@ -76,7 +79,9 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
     var knownName = ""
     private var latitude = ""
     private var longitude = ""
-    var businessTypeArray: ArrayList<BusinessTypeResponse.Body> = ArrayList()
+    val listC: java.util.ArrayList<CategoryList> = java.util.ArrayList()
+
+    var businessTypeArray: ArrayList<ModelBusinessType.Body> = ArrayList()
     val userType = MyApplication.instance.getString("usertype")
 
     val viewModel: AdvertiserViewModel by lazy {
@@ -103,7 +108,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         btn_update.setOnClickListener(this)
         imageBusiness.setOnClickListener(this)
         etSreetAddress.setOnClickListener(this)
-        viewModel.mResponse.observe(this, this)
+
 
 
         val countryAdapter = ArrayAdapter.createFromResource(
@@ -142,18 +147,48 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
             override fun onNothingSelected(parentView: AdapterView<*>?) {
             }
         }
+        spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                if(position==0){
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditBusinessProfileActivity, R.color.black_color
+                        )
+                    )
+                }else{
+                    (view as? TextView)?.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditBusinessProfileActivity, R.color.black_color
+                        )
+                    )
+                }
+                if(listC.isNotEmpty()) {
+                    val category = listC[position]
+                    selectedId = category.id.toString()
+                    businessType = category.name.toString()
 
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+        }
 
     }
 
     private fun getBusinessTypeApi() {
         viewModel.getBusinessType(this, true)
+        viewModel.mResponse.observe(this, this)
     }
 
     private fun getBusinessProfileApi() {
         val map = HashMap<String, String>()
         viewModel.getBusinessDetail(this, true, map)
-        viewModel.mResponse.observe(this,this)
+       // viewModel.mResponse.observe(this,this)
     }
 
     override fun onClick(p0: View?) {
@@ -361,7 +396,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         map["addressLine2"] = mUtils.createPartFromString(etFloor.text.toString())
         map["buisnessDescription"] = mUtils.createPartFromString(etDecription.text.toString())
         map["buisnessTypeId"] = mUtils.createPartFromString(selectedId)
-        map["buisnessTypeName"] = mUtils.createPartFromString(spinner_type.selectedItem.toString())
+        map["buisnessTypeName"] = mUtils.createPartFromString(businessType)
         map["buisnessName"] = mUtils.createPartFromString(etBusinessName.text.toString())
         map["buisnessPhone"] = mUtils.createPartFromString(etBusinessPhone.text.toString())
         map["firstName"]=mUtils.createPartFromString(etFirstName.text.toString())
@@ -384,7 +419,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         map["addressLine2"] = mUtils.createPartFromString(etFloor.text.toString())
         map["buisnessDescription"] = mUtils.createPartFromString(etDecription.text.toString())
         map["buisnessTypeId"] = mUtils.createPartFromString(selectedId)
-        map["buisnessTypeName"] = mUtils.createPartFromString(spinner_type.selectedItem.toString())
+        map["buisnessTypeName"] = mUtils.createPartFromString(businessType)
         map["buisnessName"] = mUtils.createPartFromString(etBusinessName.text.toString())
         map["buisnessPhone"] = mUtils.createPartFromString(etBusinessPhone.text.toString())
         map["firstName"]=mUtils.createPartFromString(etFirstName.text.toString())
@@ -466,55 +501,30 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
                     }
                 }
 
-                if (it.data is BusinessTypeResponse) {
-                    val mResponse: BusinessTypeResponse = it.data
+                if (it.data is ModelBusinessType) {
+                    val mResponse: ModelBusinessType = it.data
 
                     if (mResponse.code == GlobalVariables.URL.code) {
 
-                        var size = mResponse.body.size
+
                         businessTypeArray.clear()
                         businessTypeArray.addAll(mResponse.body)
 
-                        val list : ArrayList<BussinessTypeList> = ArrayList()
-                        if(businessTypeArray.isNotEmpty())
-                        {
-                            for(i in 0 until businessTypeArray.size)
-                            {
-                                list.add(BussinessTypeList(businessTypeArray[i].id,businessTypeArray[i].name))
+                        listC.clear()
+                        listC.add(CategoryList(0, 0, "-Select your business type-", ""))
+                        if (businessTypeArray.isNotEmpty()) {
+                            for (i in 0 until businessTypeArray.size) {
+                                listC.add(
+                                    CategoryList(
+                                        businessTypeArray[i].id, businessTypeArray[i].status,
+                                        businessTypeArray[i].name)
+                                )
                             }
                         }
 
-                        val businessTypeAdapter = BusinessTypeAdapter(this, list," Select any ")
+                        val businessTypeAdapter = CategoryCommercialAdapter(this, "-Select your business type-", listC)
                         spinner_type.adapter = businessTypeAdapter
 
-                        spinner_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                            override fun onItemSelected(
-                                parent: AdapterView<*>,
-                                view: View, position: Int, id: Long
-                            ) {
-                                if(position==0){
-                                    (view as? TextView)?.setTextColor(
-                                        ContextCompat.getColor(
-                                            this@EditBusinessProfileActivity, R.color.black_color
-                                        )
-                                    )
-                                }else{
-                                    (view as? TextView)?.setTextColor(
-                                        ContextCompat.getColor(
-                                            this@EditBusinessProfileActivity, R.color.black_color
-                                        )
-                                    )
-                                }
-                                if(businessTypeArray.isNotEmpty()) {
-                                    val category = businessTypeArray[spinner_type!!.selectedItemPosition]
-                                    selectedId = category.id.toString()
-                                }
-                            }
-
-                            override fun onNothingSelected(parent: AdapterView<*>) {
-
-                            }
-                        }
 
                         if (MyApplication.instance.getString("usertype").equals("4")){
                             getCommercialBusinessResponse()
@@ -556,9 +566,11 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         etCity.setText(mResponse.body.commercialDetail.city)
         etState.setText(mResponse.body.commercialDetail.state)
         etZipCode.setText(mResponse.body.commercialDetail.postalCode)
-        val businessType = mResponse.body.commercialDetail.buisnessTypeName
-        val obj = businessTypeArray.find { it.name == businessType }
-        spinner_type.setSelection(businessTypeArray.indexOf(obj))
+        selectedId=  mResponse.body.commercialDetail.buisnessTypeId.toString()
+
+        businessType = mResponse.body.commercialDetail.buisnessTypeName
+        val obj = listC.find { it.id == selectedId.toInt() }
+        spinner_type.setSelection(listC.indexOf(obj))
 
         val countryName: Array<String> = resources.getStringArray(R.array.Select_country)
         for(i in countryName.indices)
@@ -596,7 +608,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
 
         country = mResponse.body.advertiserDetail.country
 
-        Glide.with(this).load(mResponse.body.advertiserDetail.buisnessLogo).into(imageBusiness)
+        Glide.with(this).load(mResponse.body.advertiserDetail.buisnessLogo).placeholder(R.drawable.camera_green).into(imageBusiness)
         etFirstName.setText(mResponse.body.advertiserDetail.firstName)
         etLastName.setText(mResponse.body.advertiserDetail.lastName)
         etBusinessName.setText(mResponse.body.advertiserDetail.buisnessName)
@@ -612,9 +624,11 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         etState.setText(mResponse.body.advertiserDetail.state)
         etZipCode.setText(mResponse.body.advertiserDetail.postalCode)
 
-        val businessType = mResponse.body.advertiserDetail.buisnessTypeName
-        val obj = businessTypeArray.find { it.name == businessType }
-        spinner_type.setSelection(businessTypeArray.indexOf(obj))
+        selectedId=  mResponse.body.advertiserDetail.buisnessTypeId.toString()
+
+        businessType = mResponse.body.advertiserDetail.buisnessTypeName
+        val obj = listC.find { it.id == selectedId.toInt() }
+        spinner_type.setSelection(listC.indexOf(obj))
 
         val countryName: Array<String> = resources.getStringArray(R.array.Select_country)
         for(i in countryName.indices)

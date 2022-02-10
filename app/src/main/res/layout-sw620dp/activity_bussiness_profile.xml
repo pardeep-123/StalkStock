@@ -30,12 +30,11 @@
 
                 <ImageView
                     android:id="@+id/businessbackarrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/value_40dp"
+                    android:layout_height="@dimen/value_40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:padding="10dp"
-                    android:src="@drawable/back_arrow"></ImageView>
+                    android:src="@drawable/backk"/>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
@@ -73,13 +72,12 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@id/imageset"
-                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                             android:layout_width="120dp"
-                            android:background="@color/white"
                             android:layout_height="120dp"
+                            android:background="@color/white"
                             android:scaleType="fitXY"
                             android:src="@drawable/camera_green"
-                        />
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
                     </RelativeLayout>
 
                     <LinearLayout

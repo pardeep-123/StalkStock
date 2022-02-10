@@ -35,16 +35,14 @@
                 android:text="Business Profile"
                 android:textColor="@color/black_color"
                 android:textSize="18sp" />
-            <ImageView
-                android:padding="10dp"
 
+            <ImageView
                 android:id="@+id/ivBusiness"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/value_40dp"
+                android:layout_height="@dimen/value_40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/back_arrow"
-                />
+                android:src="@drawable/backk" />
 
             <!--
                     <ImageView

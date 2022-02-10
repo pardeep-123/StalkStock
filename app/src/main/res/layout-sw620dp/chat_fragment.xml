@@ -29,10 +29,9 @@
             <ImageView
                 android:id="@+id/iv_back"
                 android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/back_arrow"
-                android:padding="12dp"
+                android:layout_width="@dimen/value_40dp"
+                android:layout_height="@dimen/value_40dp"
+                android:src="@drawable/backk"
                 android:layout_centerVertical="true"/>
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView

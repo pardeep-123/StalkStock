@@ -1,6 +1,5 @@
 package com.stalkstock.advertiser.activities
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.location.Address
@@ -14,21 +13,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.stalkstock.MyApplication
 import com.stalkstock.R
-import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.advertiser.model.AdvertiserSignUpResponse
+import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
+import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.common.MyNewMapActivity
+import com.stalkstock.common.model.ModelBusinessType
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.vender.Utils.NetworkUtil
+import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
@@ -48,7 +48,12 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
     val viewModel: AdvertiserViewModel by lazy {
         ViewModelProvider(this).get(AdvertiserViewModel::class.java)
     }
+    val viewModel1: HomeViewModel by lazy {
+        ViewModelProvider(this).get(HomeViewModel::class.java)
+    }
 
+    val listC: ArrayList<CategoryList> = ArrayList()
+    var businessTypeList: ArrayList<ModelBusinessType.Body> = ArrayList()
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
@@ -72,7 +77,8 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         // this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         Places.initialize(this, getString(R.string.maps_api_key))
-        relAddressLine.visibility = View.GONE
+        relAddressLine.visibility = View.VISIBLE
+        getBusinessTypeApi()
 
         tv_heading.text = getString(R.string.sign_up)
         tv_signin.setOnClickListener(this)
@@ -99,8 +105,15 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             R.layout.spinner_layout_for_vehicle
         )
         businessTypeAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
-        spinner_type.adapter = businessTypeAdapter
+        spinner_business_type.adapter = businessTypeAdapter
     }
+
+
+    private fun getBusinessTypeApi() {
+        viewModel1.getBusinessTypeApi(this, true)
+        viewModel1.homeResponse.observe(this, this)
+    }
+
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
@@ -319,6 +332,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             hashMap[GlobalVariables.PARAM.businessPhone] = mUtils.createPartFromString(et_businessPhone.text.toString().trim())
             hashMap[GlobalVariables.PARAM.website] = mUtils.createPartFromString(et_website.text.toString().trim())
             hashMap[GlobalVariables.PARAM.buisnessAddress] = mUtils.createPartFromString(et_businessAddress.text.toString().trim())
+            hashMap["addressLine2"] = mUtils.createPartFromString(et_addressline2.text.toString())
             hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
             hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
             hashMap[GlobalVariables.PARAM.postalCode] = mUtils.createPartFromString(et_zipCode.text.toString().trim())
@@ -338,6 +352,30 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                     if (data.code==200){
                         setData(data)
                         startActivity(Intent(this,MainActivity::class.java))
+                    }
+                }
+
+                if (it.data is ModelBusinessType) {
+                    val mResponse: ModelBusinessType = it.data
+                    if (mResponse.code == GlobalVariables.URL.code) {
+
+                        businessTypeList.clear()
+                        businessTypeList.addAll(mResponse.body)
+
+                        listC.clear()
+                        listC.add(CategoryList(0, 0, "-Select your business type-", ""))
+                        if (businessTypeList.isNotEmpty()) {
+                            for (i in 0 until businessTypeList.size) {
+                                listC.add(
+                                    CategoryList(
+                                        businessTypeList[i].id, businessTypeList[i].status,
+                                        businessTypeList[i].name)
+                                )
+                            }
+                        }
+
+                        val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
+                        spinner_business_type.adapter = businessTypeListt
                     }
                 }
             }
@@ -443,10 +481,10 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 val array = this.resources.getStringArray(R.array.Select_country)
 
                 country = array[p2]
-            } else if (p0?.id == R.id.spinner_business_type) {
-                var array = this.resources.getStringArray(R.array.Select_business_type)
-
-                businessType = p2.toString()
+            }
+            else if (p0?.id == R.id.spinner_business_type) {
+                val categories = businessTypeList[spinner_business_type!!.selectedItemPosition - 1]
+                businessType = categories.id.toString()
             }
         }
     }

@@ -347,6 +347,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             hashMap[GlobalVariables.PARAM.vehicleType] = mVehicleType
             hashMap[GlobalVariables.PARAM.vehicleMake] = et_vehiclemake.text.toString().trim()
             hashMap[GlobalVariables.PARAM.vehicleModel] = et_vehiclemodel.text.toString().trim()
+            hashMap["addressLine2"] = etAddressline2.text.toString()
             hashMap[GlobalVariables.PARAM.city] = et_city.text.toString().trim()
             hashMap[GlobalVariables.PARAM.state] = et_state.text.toString().trim()
             hashMap[GlobalVariables.PARAM.country] = mCountryName
@@ -390,6 +391,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                         intent.putExtra("country", mCountryName)
                         intent.putExtra("pass", passwordEdittext.text.toString())
                         intent.putExtra("profileImage", firstimage)
+                        intent.putExtra("addressLine2", etAddressline2.text.toString())
                         startActivity(intent)
                     }
                 }

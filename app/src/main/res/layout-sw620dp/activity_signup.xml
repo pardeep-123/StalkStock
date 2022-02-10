@@ -607,12 +607,12 @@
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     android:id="@+id/et_state"
                     android:layout_width="match_parent"
-                    android:imeOptions="actionNext"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center_vertical"
                     android:hint="@string/enter_state_province_region"
+                    android:imeOptions="actionNext"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
                     android:paddingRight="12dp"
