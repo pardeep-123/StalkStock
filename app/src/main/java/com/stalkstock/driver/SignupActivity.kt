@@ -169,7 +169,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                 latitude = data.getStringExtra("lat")!!.toString()
                 longitude = data.getStringExtra("lng")!!.toString()
                 val state = data.getStringExtra("state")
-                //   autoTvLocation.setText(sarea)
+                etDriverAddress.setText(sarea)
                 //  et_street.setText(state)
                 //  et_city.setText(myCity)
                 getAddress(latitude.toDouble(),longitude.toDouble())
@@ -195,10 +195,10 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
             longitude,
             1
         )
-        if (addresses[0].featureName != null) {
+      /*  if (addresses[0].featureName != null) {
             address = addresses[0].featureName
             etDriverAddress.setText(address)
-        }
+        }*/
         if (addresses[0].locality != null) {
             city = addresses[0].locality
             et_city.setText(city)

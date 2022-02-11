@@ -205,7 +205,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
                 latitude = data.getStringExtra("lat")!!.toString()
                 longitude = data.getStringExtra("lng")!!.toString()
                 val state = data.getStringExtra("state")
-                //   autoTvLocation.setText(sarea)
+                edtDriverStreetAddress.setText(sarea)
                 //  et_street.setText(state)
                 //  et_city.setText(myCity)
                 getAddress(latitude.toDouble(),longitude.toDouble())
@@ -232,10 +232,10 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
             1
         )
 
-        if (addresses[0].featureName != null) {
+     /*   if (addresses[0].featureName != null) {
             address = addresses[0].featureName
             edtDriverStreetAddress.setText(address)
-        }
+        }*/
 
         if (addresses[0].locality != null) {
             city = addresses[0].locality

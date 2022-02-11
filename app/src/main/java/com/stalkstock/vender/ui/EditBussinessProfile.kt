@@ -498,7 +498,7 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                 latitude = data.getStringExtra("lat")!!.toString()
                 longitude = data.getStringExtra("lng")!!.toString()
                 val state = data.getStringExtra("state")
-             //   autoTvLocation.setText(sarea)
+                autoTvLocation.setText(sarea)
               //  et_street.setText(state)
               //  et_city.setText(myCity)
                 getAddress(latitude.toDouble(),longitude.toDouble())
@@ -534,10 +534,10 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
             longitude,
             1
         )
-        if (addresses[0].featureName != null) {
+       /* if (addresses[0].featureName != null) {
             address = addresses[0].featureName
             autoTvLocation.setText(address)
-        }
+        }*/
         if (addresses[0].locality != null) {
             city = addresses[0].locality
             editboxbusinesscity.setText(city)
