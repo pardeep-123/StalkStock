@@ -50,7 +50,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_bussiness_profile.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_change_password.xml" value="0.283" />
         <entry key="app/src/main/res/layout-sw620dp/activity_change_password2.xml" value="0.21" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.3204983012457531" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_chat_box.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_driver_information.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_edit_ad.xml" value="0.17" />
@@ -80,6 +80,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_manage_payments.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/activity_manageaddress.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_managment_payment.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_my_new_map.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_my_order.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_my_request.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_new_order_list.xml" value="0.18" />
@@ -107,6 +108,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_signup3.xml" value="0.36187845303867405" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup_consumer.xml" value="0.5" />
         <entry key="app/src/main/res/layout-sw620dp/activity_subscription.xml" value="0.1415" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_terms_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_thank_you.xml" value="0.16" />
         <entry key="app/src/main/res/layout-sw620dp/activity_thankyou.xml" value="0.16" />
         <entry key="app/src/main/res/layout-sw620dp/activity_thankyou2.xml" value="0.22" />

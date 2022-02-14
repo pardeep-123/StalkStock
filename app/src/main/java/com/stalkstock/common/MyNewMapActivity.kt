@@ -29,7 +29,6 @@ import com.stalkstock.vender.Utils.MyInterface
 import kotlinx.android.synthetic.main.activity_my_new_map.*
 import java.io.IOException
 import com.stalkstock.R
-import com.stalkstock.api.RestObservable
 import com.stalkstock.utils.others.Anim
 import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.ProgressHUD
@@ -43,7 +42,9 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
     var postalCode = ""
     var lat = ""
     var lng = ""
+    var place_name=""
     var cnt = 1
+    var isAddress=0
     lateinit var locObj: FusedLoc
     var type = ""
     lateinit var getLoc: MyInterface
@@ -106,6 +107,7 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
                         intent.putExtra("city", city)
                         intent.putExtra("state", state)
                         intent.putExtra("pin", postalCode)
+                        intent.putExtra("place_name", place_name)
                         setResult(1, intent)
                         finish()
                     }
@@ -125,7 +127,7 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         my_map_search_txt.setOnClickListener {
-
+            isAddress=1
             try {
                 Log.d("TAG", "place")
 
@@ -176,7 +178,10 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
                         postalCode = addresses[0].postalCode
                         state = addresses[0].adminArea
                         address = address1
-                        txt_location.text = address1
+                        if(isAddress==0){
+                            txt_location.text = address1
+                        }
+
                         if (!address1.isNullOrEmpty()) {
                             showbtn()
                         }
@@ -281,6 +286,8 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 location = "1"
                 val place = Autocomplete.getPlaceFromIntent(data!!)
                 Log.i("Place: ", place.name.toString() + " " + place.address)
+                txt_location.text= place.address.toString()
+                place_name= place.name.toString()
                 destination_name = place.address!!.toString() + ""
                 val lati = place.latLng.toString()
                 val latlng2 = place.latLng

@@ -23,6 +23,7 @@
 
 
     <color name="light_grey">#C3C3C3</color>
+    <color name="light_grey1">#48504E4E</color>
     <color name="profile_grey">#FAFAFA</color>
     <color name="home_grey">#797979</color>
     <color name="yellow">#fcbb1a</color>

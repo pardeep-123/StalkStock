@@ -34,14 +34,36 @@ class MessageAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        Glide.with(mContext).load(arrayList[position].receiver.image).into(holder.itemView.iv_userimage)
-        holder.itemView.tv_personName.text= arrayList[position].receiver.firstName + " "+arrayList[position].receiver.lastName
+
+        if(arrayList[position].senderId==getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)){
+            holder.itemView.tv_personName.text= arrayList[position].receiver.firstName + " "+arrayList[position].receiver.lastName
+            Glide.with(mContext).load(arrayList[position].receiver.image).into(holder.itemView.iv_userimage)
+
+        }else{
+            holder.itemView.tv_personName.text= arrayList[position].sender.firstName + " "+arrayList[position].sender.lastName
+            Glide.with(mContext).load(arrayList[position].sender.image).into(holder.itemView.iv_userimage)
+
+        }
+
+
         holder.itemView.tv_messageTemplate.text= arrayList[position].lastMessage.message
         holder.itemView.tv_timeOFMessage.text= AppUtils.convertTimeStampToDateTime(arrayList[position].created.toLong())
 
         holder.itemView.setOnClickListener {
 
             val intent = Intent(mContext, Chat::class.java)
+            if (arrayList[position].receiverId == getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)){
+                intent.putExtra("userId",arrayList[position].senderId)
+                intent.putExtra("userName", arrayList[position].sender.firstName + " "+arrayList[position].sender.lastName)
+                intent.putExtra("userImage",arrayList[position].sender.image.toString())
+
+            }else{
+                intent.putExtra("userImage",arrayList[position].receiver.image.toString())
+                intent.putExtra("userName", arrayList[position].receiver.firstName + " "+arrayList[position].receiver.lastName)
+
+
+                intent.putExtra("userId",arrayList[position].receiverId)
+            }
 
             if(arrayList[position].bidId==0){
                 intent.putExtra("id",arrayList[position].orderId.toString())
@@ -52,8 +74,6 @@ class MessageAdapter(
             }
 
             intent.putExtra("chatId",arrayList[position].id.toString())
-            intent.putExtra("userName",arrayList[position].receiver.firstName + " "+arrayList[position].receiver.lastName)
-            intent.putExtra("userImage",arrayList[position].receiver.image.toString())
             if (arrayList[position].receiverId == getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)){
                 intent.putExtra("userId",arrayList[position].senderId)
 

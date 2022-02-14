@@ -260,6 +260,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="reached_your_limit_description">It looks like you’ve reached your listing limit. To add more products, please upgrade your account.</string>
     <string name="otp_does_not_match">Otp does not match.</string>
     <string name="upgrade_desc">Add upto 2 photos.We don\'t allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!</string>
+    <string name="no_messages">No Messages</string>
+    <string name="chat_alert">We scan messages to enforce policies. Only purchases on STALK + STOCK qualify for coverage by STALK + STOCK purchase protection programs. Any communication requesting to complete a transaction outside of STALK + STOCK is not allowed and may lead to your account being suspended</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>

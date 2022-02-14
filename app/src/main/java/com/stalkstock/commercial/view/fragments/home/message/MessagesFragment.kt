@@ -50,7 +50,7 @@ class MessagesFragment : Fragment(), View.OnClickListener,SocketManager.SocketIn
         val jsonObject = JSONObject()
         jsonObject.put("userId", userId)
         jsonObject.put("offset", "0")
-        jsonObject.put("limit", "10")
+        jsonObject.put("limit", "100")
         Log.e(SocketManager.GET_USER_LIST, jsonObject.toString())
         SocketManager.socket?.sendDataToServer(SocketManager.GET_USER_LIST, jsonObject)
     }

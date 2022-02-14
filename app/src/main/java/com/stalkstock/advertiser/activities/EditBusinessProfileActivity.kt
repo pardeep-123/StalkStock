@@ -230,7 +230,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
             if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-                val sarea = data.getStringExtra("area")
+                val sarea = data.getStringExtra("place_name")
                 val myCity = data.getStringExtra("city")
                 latitude = data.getStringExtra("lat")!!.toString()
                 longitude = data.getStringExtra("lng")!!.toString()

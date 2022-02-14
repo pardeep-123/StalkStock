@@ -36,8 +36,7 @@ class ChatAdapter(var mContext:Context,var chatList: ArrayList<MessageList>, var
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        if (senderid == chatList[position].senderId.toString())
-        {
+        if (senderid == chatList[position].senderId.toString()) {
             holder.itemView.clOther.visibility = View.GONE
             holder.itemView.clMe.visibility = View.VISIBLE
 
