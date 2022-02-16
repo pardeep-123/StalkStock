@@ -51,7 +51,7 @@
                         android:text="My Orders"
                         android:textColor="@color/black_color"
                         android:gravity="center"
-                        android:padding="@dimen/value_15dp"
+                        android:padding="@dimen/value_5dp"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

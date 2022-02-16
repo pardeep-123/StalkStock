@@ -135,8 +135,11 @@ class EditBussinessProfile : BaseActivity(), GetLatLongInterface,
                             this@EditBussinessProfile, R.color.black
                         )
                     )
-                    val get = businessTypeList[position]
-                    business_type = get.id
+
+                    val categories = businessTypeList[spinner_type!!.selectedItemPosition - 1]
+                    business_type = categories.id
+//                    val get = businessTypeList[position]
+//                    business_type = get.id
                 }
 
             }

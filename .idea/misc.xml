@@ -145,8 +145,8 @@
         <entry key="app/src/main/res/layout-sw620dp/fragment_home_commercial.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_home_consumer.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_list.xml" value="0.109765625" />
-        <entry key="app/src/main/res/layout-sw620dp/fragment_messages.xml" value="0.21" />
-        <entry key="app/src/main/res/layout-sw620dp/fragment_my_orders.xml" value="0.110546875" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_messages.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-sw620dp/fragment_my_orders.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_my_request.xml" value="0.17" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_payment.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/fragment_pending_ads.xml" value="0.1415" />

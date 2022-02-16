@@ -27,7 +27,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/value_20dp">
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/toolbar_messages"
@@ -47,7 +47,7 @@
                         android:layout_width="@dimen/value_0dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:padding="@dimen/value_15dp"
+                        android:padding="@dimen/value_5dp"
                         android:text="Messages"
                         android:textColor="@color/black_color"
                         android:textSize="18sp"
