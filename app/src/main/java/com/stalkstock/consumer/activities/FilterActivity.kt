@@ -82,7 +82,7 @@ class FilterActivity : AppCompatActivity() {
                 returnIntent.putExtra("lowPrice", currentLowPrice.toString())
                 returnIntent.putExtra("highPrice", currentHighPrice.toString())
                 returnIntent.putExtra("sortBy", currentSortBy)
-                returnIntent.putExtra("productType", productType)
+                returnIntent.putExtra("productType", productType.toString())
                 setResult(RESULT_OK, returnIntent)
             }
             if (fromWhichActivity == "MainHomeFragment") {
@@ -122,6 +122,7 @@ class FilterActivity : AppCompatActivity() {
                 returnIntent.putExtra("lowPrice", currentLowPrice.toString())
                 returnIntent.putExtra("highPrice", currentHighPrice.toString())
                 returnIntent.putExtra("sortBy", currentSortBy)
+                returnIntent.putExtra("productType", productType.toString())
                 setResult(Activity.RESULT_OK, returnIntent)
             }
             finish()

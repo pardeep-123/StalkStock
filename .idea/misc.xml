@@ -40,7 +40,7 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_add_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_new_card.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_new_card2.xml" value="0.1415" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_add_product.xml" value="0.4789473684210526" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_add_product.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_addcardpayment.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_addcartdetails.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_addnewaddress.xml" value="0.25" />
@@ -73,8 +73,8 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_home_two_fragment.xml" value="0.16" />
         <entry key="app/src/main/res/layout-sw620dp/activity_homedetails.xml" value="0.13515625" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_login.xml" value="0.21" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_main.xml" value="0.1415" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_login.xml" value="0.19" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_main2.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_main_consumer.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_manage_payments.xml" value="0.22" />
@@ -102,9 +102,9 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_search_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_select_category.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_select_payment_method.xml" value="0.2" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_selectuser.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_selectuser.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_sign_up.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.22585794094173983" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_signup.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup3.xml" value="0.36187845303867405" />
         <entry key="app/src/main/res/layout-sw620dp/activity_signup_consumer.xml" value="0.5" />
         <entry key="app/src/main/res/layout-sw620dp/activity_subscription.xml" value="0.1415" />
@@ -295,7 +295,7 @@
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/fragment_account2.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_account_consumer.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/fragment_add_post.xml" value="0.2710727969348659" />
+        <entry key="app/src/main/res/layout/fragment_add_post.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_h_ome.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_home_commercial.xml" value="0.17222222222222222" />
@@ -361,7 +361,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
