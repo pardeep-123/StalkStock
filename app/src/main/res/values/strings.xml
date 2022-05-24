@@ -253,6 +253,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="please_select_product">Please select product</string>
     <string name="please_select_sub_category">Please select sub category</string>
     <string name="please_select_category">Please select category</string>
+    <string name="please_enter_otp">Please enter OTP</string>
     <string name="please_select_quantity">Please select unit of measurement</string>
     <string name="confirm_location_proceed"><![CDATA[Confirm Location & Proceed]]></string>
     <string name="no_data_found">No data found</string>

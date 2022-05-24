@@ -194,7 +194,7 @@
         <entry key="app/src/main/res/layout-sw620dp/update_successfully_alert.xml" value="0.110546875" />
         <entry key="app/src/main/res/layout-sw620dp/upgrade_alert_box.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/verficationalertdialog.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-sw620dp/verification.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw620dp/verification.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/verification_popup.xml" value="0.22" />
         <entry key="app/src/main/res/layout-v26/activity_terms_condition.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/accept_request_alert.xml" value="0.18020833333333333" />
@@ -263,7 +263,7 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_signup3.xml" value="0.2617621899059025" />
-        <entry key="app/src/main/res/layout/activity_signup_consumer.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_signup_consumer.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_terms_condition.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_thankyou.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_thankyou2.xml" value="0.14739583333333334" />

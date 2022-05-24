@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.stalkstock.MyApplication
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.activities.Verification
 import com.stalkstock.consumer.model.ModelSignupUser
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.GlobalVariables
@@ -68,7 +70,6 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
         map["password"] = mUtils.createPartFromString(edtConsumerPassword.text.toString())
         viewModel.getusersignupApi(this, true, map, firstimage, mUtils)
         viewModel.homeResponse.observe(this, this)
-
     }
 
     private fun validations(): Boolean {
@@ -105,7 +106,7 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             edtConsumerPassword.requestFocus()
             AppUtils.showErrorAlert(this, "Please enter password")
             return false
-        }else if (edtConsumerPassword.text.toString().length<6) {
+        } else if (edtConsumerPassword.text.toString().length < 6) {
             edtConsumerPassword.requestFocus()
             AppUtils.showErrorAlert(this, "Password should contain atleast 6 characters")
             return false
@@ -169,8 +170,15 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun moveToConsumerHome() {
-        startActivity(Intent(this, MainConsumerActivity::class.java))
-        finishAffinity()
+        if (MyApplication.instance.getString("usertype").equals("1")) {
+            val intent = Intent(this, Verification::class.java)
+            intent.putExtra("phoneNo", edtConsumerPhone.text.toString().trim())
+            startActivity(intent)
+        } /*else {
+            startActivity(Intent(this, MainConsumerActivity::class.java))
+            finishAffinity()
+        }*/
+
     }
 
     private fun setData(mResponse: ModelSignupUser) {

@@ -369,7 +369,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 return
             }
 
-            val hashMap = HashMap<String, RequestBody>()
+            /*val hashMap = HashMap<String, RequestBody>()
             hashMap["latitude"] = mUtils.createPartFromString(latitude)
             hashMap["longitude"] = mUtils.createPartFromString(longitude)
             hashMap[GlobalVariables.PARAM.firstname] =
@@ -409,8 +409,24 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 mUtils.createPartFromString(passwordEdittext.text.toString().trim())
 
 
-            viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)
+            viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)*/
            // viewModel.homeResponse.observe(this, this)
+
+
+
+            if (spinner.selectedItem.toString() == "Select Country") {
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.please_enter_country),
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            }
+            val hashMap = HashMap<String, RequestBody>()
+            hashMap["mobile"] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
+            viewModel.sendOtp(this, true, hashMap)
+
+
         } else {
 
             if (spinner.selectedItem.toString() == "Select Country") {
@@ -474,29 +490,56 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     if (data.code == 200) {
                         Log.i("====", data.message)
                         otp=data.body.otp.toString()
-                        val intent = Intent(this, Verification::class.java)
-                        intent.putExtra("latitude", latitude)
-                        intent.putExtra("longitude", longitude)
-                        intent.putExtra("firstName", et_firstName.text.toString().trim())
-                        intent.putExtra("lastname", et_lastName.text.toString().trim())
-                        intent.putExtra("shopName", et_businessName.text.toString().trim())
-                        intent.putExtra("shopDescription", et_businessDescptn.text.toString().trim())
-                        intent.putExtra("buisnessTypeId", business_type.toString())
-                        intent.putExtra("deliveryType", (business_delivery_type - 1).toString())
-                        intent.putExtra("buisnessLicense", licnEdittext.text.toString().trim())
-                        intent.putExtra("email", emailEdittext.text.toString().trim())
-                        intent.putExtra("mobile", et_mobileNo.text.toString().trim())
-                        intent.putExtra("buisnessPhone", et_businessPhone.text.toString().trim())
-                        intent.putExtra("website", et_website.text.toString().trim())
-                        intent.putExtra("shopAddress", et_businessAddress.text.toString().trim())
-                        intent.putExtra("city", et_city.text.toString().trim())
-                        intent.putExtra("state", et_state.text.toString().trim())
-                        intent.putExtra("postalCode", et_zipCode.text.toString().trim())
-                        intent.putExtra("country", country)
-                        intent.putExtra("password", passwordEdittext.text.toString().trim())
-                        intent.putExtra("firstimage", firstimage)
-                        intent.putExtra("otp", otp)
-                        startActivity(intent)
+                        if (MyApplication.instance.getString("usertype").equals("3")) {
+                            val intent = Intent(this, Verification::class.java)
+                            intent.putExtra("latitude", latitude)
+                            intent.putExtra("longitude", longitude)
+                            intent.putExtra("firstName", et_firstName.text.toString().trim())
+                            intent.putExtra("lastname", et_lastName.text.toString().trim())
+                            intent.putExtra("shopName", et_businessName.text.toString().trim())
+                            intent.putExtra("shopDescription", et_businessDescptn.text.toString().trim())
+                            intent.putExtra("buisnessTypeId", business_type.toString())
+                            intent.putExtra("deliveryType", (business_delivery_type - 1).toString())
+                            intent.putExtra("buisnessLicense", licnEdittext.text.toString().trim())
+                            intent.putExtra("email", emailEdittext.text.toString().trim())
+                            intent.putExtra("mobile", et_mobileNo.text.toString().trim())
+                            intent.putExtra("buisnessPhone", et_businessPhone.text.toString().trim())
+                            intent.putExtra("website", et_website.text.toString().trim())
+                            intent.putExtra("shopAddress", et_businessAddress.text.toString().trim())
+                            intent.putExtra("city", et_city.text.toString().trim())
+                            intent.putExtra("state", et_state.text.toString().trim())
+                            intent.putExtra("postalCode", et_zipCode.text.toString().trim())
+                            intent.putExtra("country", country)
+                            intent.putExtra("password", passwordEdittext.text.toString().trim())
+                            intent.putExtra("firstimage", firstimage)
+                            intent.putExtra("otp", otp)
+                            startActivity(intent)
+                        }else if (MyApplication.instance.getString("usertype").equals("4")){
+                            val intent = Intent(this, Verification::class.java)
+                            intent.putExtra("latitude",latitude)
+                            intent.putExtra("longitude",longitude)
+                            intent.putExtra("firstName",et_firstName.text.toString().trim())
+                            intent.putExtra("lastname",et_lastName.text.toString().trim())
+                            intent.putExtra("buisnessName",et_businessName.text.toString().trim())
+                            intent.putExtra("buisnessDescription",et_businessDescptn.text.toString().trim())
+                            intent.putExtra("buisnessTypeId",spinner_business_type.selectedItemPosition.toString())
+                            intent.putExtra("buisnessLicense",licnEdittext.text.toString().trim())
+                            intent.putExtra("deliveryType",(business_delivery_type - 1).toString())
+                            intent.putExtra("email",emailEdittext.text.toString().trim())
+                            intent.putExtra("mobile",et_mobileNo.text.toString().trim())
+                            intent.putExtra("businessPhone",et_businessPhone.text.toString().trim())
+                            intent.putExtra("website",et_website.text.toString().trim())
+                            intent.putExtra("buisnessAddress",et_businessAddress.text.toString().trim())
+                            intent.putExtra("city",et_city.text.toString().trim())
+                            intent.putExtra("state",et_state.text.toString().trim())
+                            intent.putExtra("postalCode",et_zipCode.text.toString().trim())
+                            intent.putExtra("country",spinner.selectedItem.toString())
+                            intent.putExtra("password",passwordEdittext.text.toString().trim())
+                            intent.putExtra("firstimage", firstimage)
+                            intent.putExtra("otp", otp)
+                            startActivity(intent)
+                        }
+
                     }
                 }
             }

@@ -16,6 +16,7 @@ import com.stalkstock.R
 import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.activities.Verification
 import com.stalkstock.common.MyNewMapActivity
 import com.stalkstock.driver.models.CheckEmailResponse
 import com.stalkstock.driver.viewmodel.DriverViewModel
@@ -378,7 +379,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                     val mResponse: CheckEmailResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
 
-                        val intent = Intent(this, UploadDocActivity::class.java)
+                        val intent = Intent(this, Verification::class.java)
                         intent.putExtra("fName", et_firstName.text.toString())
                         intent.putExtra("lName", et_lastName.text.toString())
                         intent.putExtra("eId", emailEdittext.text.toString())
@@ -392,6 +393,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
                         intent.putExtra("pass", passwordEdittext.text.toString())
                         intent.putExtra("profileImage", firstimage)
                         intent.putExtra("addressLine2", etAddressline2.text.toString())
+                        intent.putExtra("phoneNo", et_mobileNo.text.toString())
                         startActivity(intent)
                     }
                 }

@@ -178,6 +178,7 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
                         postalCode = addresses[0].postalCode
                         state = addresses[0].adminArea
                         address = address1
+                        place_name = address1
                         if(isAddress==0){
                             txt_location.text = address1
                         }

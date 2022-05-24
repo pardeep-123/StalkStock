@@ -15,7 +15,9 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +27,7 @@ import com.stalkstock.advertiser.activities.LoginActivity
 import com.stalkstock.advertiser.activities.pojo.SendOtpResponse
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.model.CommercialSignUpResponse
 import com.stalkstock.response_models.vendor_response.vendor_signup.VendorSignupResponse
 import com.stalkstock.utils.BaseActivity
 import com.stalkstock.utils.others.AppUtils
@@ -32,7 +35,6 @@ import com.stalkstock.utils.others.CommonMethods
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_verification.*
 import okhttp3.RequestBody
 
@@ -40,27 +42,27 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
 
     var verfiy: Button? = null
     var verfy_backarrow: ImageView? = null
-    var latitude=""
-    var longitude=""
-    var firstName=""
-    var lastName=""
-    var shopName=""
-    var shopDescription=""
-    var buisnessTypeId=""
-    var deliveryType=""
-    var buisnessLicense=""
-    var email=""
-    var mobile=""
-    var buisnessPhone=""
-    var website=""
-    var shopAddress=""
-    var city=""
-    var state=""
-    var postalCode=""
-    var country=""
-    var password=""
-    var firstimage=""
-    var otp=""
+    var latitude = ""
+    var longitude = ""
+    var firstName = ""
+    var lastName = ""
+    var shopName = ""
+    var shopDescription = ""
+    var buisnessTypeId = ""
+    var deliveryType = ""
+    var buisnessLicense = ""
+    var email = ""
+    var mobile = ""
+    var buisnessPhone = ""
+    var website = ""
+    var shopAddress = ""
+    var city = ""
+    var state = ""
+    var postalCode = ""
+    var country = ""
+    var password = ""
+    var firstimage = ""
+    var otp = ""
 
     val viewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -71,7 +73,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-     super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
 
         verfy_backarrow = findViewById(R.id.verify_backarrow)
 
@@ -87,33 +89,38 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
 
                 if (s.toString().length == 4) {
                     //hide keyboard
-                    CommonMethods.hideKeyboard(this@Verification,otpPin)
+                    CommonMethods.hideKeyboard(this@Verification, otpPin)
                 }
             }
         })
 
-        otp= intent.getStringExtra("otp")!!
-        latitude= intent.getStringExtra("latitude")!!
-        longitude= intent.getStringExtra("longitude")!!
-        firstName= intent.getStringExtra("firstName")!!
-        lastName= intent.getStringExtra("lastname")!!
-        shopName= intent.getStringExtra("shopName")!!
-        shopDescription= intent.getStringExtra("shopDescription")!!
-        buisnessTypeId= intent.getStringExtra("buisnessTypeId")!!
-        deliveryType= intent.getStringExtra("deliveryType")!!
-        buisnessLicense= intent.getStringExtra("buisnessLicense")!!
-        email= intent.getStringExtra("email")!!
-        mobile= intent.getStringExtra("mobile")!!
-        tvPhoneNumber.text=mobile
-        buisnessPhone= intent.getStringExtra("buisnessPhone").toString()
-        website= intent.getStringExtra("website").toString()
-        shopAddress= intent.getStringExtra("shopAddress").toString()
-        city= intent.getStringExtra("city").toString()
-        state= intent.getStringExtra("state").toString()
-        postalCode= intent.getStringExtra("postalCode").toString()
-        country= intent.getStringExtra("country").toString()
-        password= intent.getStringExtra("password").toString()
-        firstimage= intent.getStringExtra("firstimage").toString()
+        otp = intent.getStringExtra("otp")!!
+        if (MyApplication.instance.getString("usertype").equals("3")) {
+            latitude = intent.getStringExtra("latitude")!!
+            longitude = intent.getStringExtra("longitude")!!
+            firstName = intent.getStringExtra("firstName")!!
+            lastName = intent.getStringExtra("lastname")!!
+            shopName = intent.getStringExtra("shopName")!!
+            shopDescription = intent.getStringExtra("shopDescription")!!
+            buisnessTypeId = intent.getStringExtra("buisnessTypeId")!!
+            deliveryType = intent.getStringExtra("deliveryType")!!
+            buisnessLicense = intent.getStringExtra("buisnessLicense")!!
+            email = intent.getStringExtra("email")!!
+            mobile = intent.getStringExtra("mobile")!!
+            tvPhoneNumber.text = mobile
+            buisnessPhone = intent.getStringExtra("buisnessPhone").toString()
+            website = intent.getStringExtra("website").toString()
+            shopAddress = intent.getStringExtra("shopAddress").toString()
+            city = intent.getStringExtra("city").toString()
+            state = intent.getStringExtra("state").toString()
+            postalCode = intent.getStringExtra("postalCode").toString()
+            country = intent.getStringExtra("country").toString()
+            password = intent.getStringExtra("password").toString()
+            firstimage = intent.getStringExtra("firstimage").toString()
+        }else{
+            mobile = intent.getStringExtra("mobile")!!
+            tvPhoneNumber.text = mobile
+        }
 
 
         verfiy = findViewById(R.id.verifybutton)
@@ -127,7 +134,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
         val id = view.id
         when (id) {
             R.id.verify_backarrow -> onBackPressed()
-            R.id.resendotp ->{
+            R.id.resendotp -> {
                 val hashMap = HashMap<String, RequestBody>()
                 hashMap["mobile"] = mUtils.createPartFromString(mobile)
                 viewModel.sendOtp(this, true, hashMap)
@@ -135,48 +142,97 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
             }
 
             R.id.verifybutton -> {
-                if(otp!=otpPin.text.toString()){
+                if (otp != otpPin.text.toString()) {
                     AppUtils.showErrorAlert(this, resources.getString(R.string.otp_does_not_match))
-                }else {
-                    val hashMap = HashMap<String, RequestBody>()
-                    hashMap[GlobalVariables.PARAM.firstname] =
-                        mUtils.createPartFromString(firstName)
-                    hashMap["latitude"] = mUtils.createPartFromString(latitude)
-                    hashMap["longitude"] = mUtils.createPartFromString(longitude)
-                    hashMap[GlobalVariables.PARAM.lastname] =
-                        mUtils.createPartFromString(lastName)
-                    hashMap[GlobalVariables.PARAM.shopName] =
-                        mUtils.createPartFromString(shopName)
-                    hashMap[GlobalVariables.PARAM.shopDescription] =
-                        mUtils.createPartFromString(shopDescription)
-                    hashMap[GlobalVariables.PARAM.buisnessTypeId] =
-                        mUtils.createPartFromString(buisnessTypeId)
-                    hashMap[GlobalVariables.PARAM.deliveryType] =
-                        mUtils.createPartFromString(deliveryType)
-                    hashMap[GlobalVariables.PARAM.buisnessLicense] =
-                        mUtils.createPartFromString(buisnessLicense)
-                    hashMap[GlobalVariables.PARAM.email] =
-                        mUtils.createPartFromString(email)
-                    hashMap[GlobalVariables.PARAM.mobile] =
-                        mUtils.createPartFromString(mobile)
-                    hashMap[GlobalVariables.PARAM.businessPhone] =
-                        mUtils.createPartFromString(buisnessPhone)
-                    hashMap[GlobalVariables.PARAM.website] =
-                        mUtils.createPartFromString(website)
-                    hashMap[GlobalVariables.PARAM.shopAddress] =
-                        mUtils.createPartFromString(shopAddress)
-                    hashMap[GlobalVariables.PARAM.city] =
-                        mUtils.createPartFromString(city)
-                    hashMap[GlobalVariables.PARAM.state] =
-                        mUtils.createPartFromString(state)
-                    hashMap[GlobalVariables.PARAM.postalCode] =
-                        mUtils.createPartFromString(postalCode)
-                    hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
-                    hashMap[GlobalVariables.PARAM.password] =
-                        mUtils.createPartFromString(password)
+                } else {
+                    if (MyApplication.instance.getString("usertype").equals("3")) {
+                        val hashMap = HashMap<String, RequestBody>()
+                        hashMap[GlobalVariables.PARAM.firstname] =
+                            mUtils.createPartFromString(firstName)
+                        hashMap["latitude"] = mUtils.createPartFromString(latitude)
+                        hashMap["longitude"] = mUtils.createPartFromString(longitude)
+                        hashMap[GlobalVariables.PARAM.lastname] =
+                            mUtils.createPartFromString(lastName)
+                        hashMap[GlobalVariables.PARAM.shopName] =
+                            mUtils.createPartFromString(shopName)
+                        hashMap[GlobalVariables.PARAM.shopDescription] =
+                            mUtils.createPartFromString(shopDescription)
+                        hashMap[GlobalVariables.PARAM.buisnessTypeId] =
+                            mUtils.createPartFromString(buisnessTypeId)
+                        hashMap[GlobalVariables.PARAM.deliveryType] =
+                            mUtils.createPartFromString(deliveryType)
+                        hashMap[GlobalVariables.PARAM.buisnessLicense] =
+                            mUtils.createPartFromString(buisnessLicense)
+                        hashMap[GlobalVariables.PARAM.email] =
+                            mUtils.createPartFromString(email)
+                        hashMap[GlobalVariables.PARAM.mobile] =
+                            mUtils.createPartFromString(mobile)
+                        hashMap[GlobalVariables.PARAM.businessPhone] =
+                            mUtils.createPartFromString(buisnessPhone)
+                        hashMap[GlobalVariables.PARAM.website] =
+                            mUtils.createPartFromString(website)
+                        hashMap[GlobalVariables.PARAM.shopAddress] =
+                            mUtils.createPartFromString(shopAddress)
+                        hashMap[GlobalVariables.PARAM.city] =
+                            mUtils.createPartFromString(city)
+                        hashMap[GlobalVariables.PARAM.state] =
+                            mUtils.createPartFromString(state)
+                        hashMap[GlobalVariables.PARAM.postalCode] =
+                            mUtils.createPartFromString(postalCode)
+                        hashMap[GlobalVariables.PARAM.country] =
+                            mUtils.createPartFromString(country)
+                        hashMap[GlobalVariables.PARAM.password] =
+                            mUtils.createPartFromString(password)
 
-                    viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
-                    viewModel.homeResponse.observe(this, this)
+                        viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
+                        viewModel.homeResponse.observe(this, this)
+                    } else if (MyApplication.instance.getString("usertype").equals("4")) {
+                        val hashMap = HashMap<String, RequestBody>()
+                        hashMap["latitude"] =
+                            mUtils.createPartFromString(intent.getStringExtra("latitude"))
+                        hashMap["longitude"] =
+                            mUtils.createPartFromString(intent.getStringExtra("longitude"))
+                        hashMap[GlobalVariables.PARAM.firstname] =
+                            mUtils.createPartFromString(intent.getStringExtra("firstName"))
+                        hashMap[GlobalVariables.PARAM.lastname] =
+                            mUtils.createPartFromString(intent.getStringExtra("lastname"))
+                        hashMap[GlobalVariables.PARAM.buisnessName] =
+                            mUtils.createPartFromString(intent.getStringExtra("buisnessName"))
+                        hashMap[GlobalVariables.PARAM.buisnessDescription] =
+                            mUtils.createPartFromString(intent.getStringExtra("buisnessDescription"))
+                        hashMap[GlobalVariables.PARAM.buisnessTypeId] =
+                            mUtils.createPartFromString(intent.getStringExtra("buisnessTypeId"))
+                        hashMap[GlobalVariables.PARAM.buisnessLicense] =
+                            mUtils.createPartFromString(intent.getStringExtra("buisnessLicense"))
+                        hashMap[GlobalVariables.PARAM.deliveryType] =
+                            mUtils.createPartFromString(intent.getStringExtra("deliveryType"))
+
+                        hashMap[GlobalVariables.PARAM.email] =
+                            mUtils.createPartFromString(intent.getStringExtra("email"))
+                        hashMap[GlobalVariables.PARAM.mobile] =
+                            mUtils.createPartFromString(intent.getStringExtra("mobile"))
+                        hashMap[GlobalVariables.PARAM.businessPhone] =
+                            mUtils.createPartFromString(intent.getStringExtra("businessPhone"))
+                        hashMap[GlobalVariables.PARAM.website] =
+                            mUtils.createPartFromString(intent.getStringExtra("website"))
+                        hashMap[GlobalVariables.PARAM.buisnessAddress] =
+                            mUtils.createPartFromString(intent.getStringExtra("buisnessAddress"))
+                        hashMap[GlobalVariables.PARAM.city] =
+                            mUtils.createPartFromString(intent.getStringExtra("city"))
+                        hashMap[GlobalVariables.PARAM.state] =
+                            mUtils.createPartFromString(intent.getStringExtra("state"))
+                        hashMap[GlobalVariables.PARAM.postalCode] =
+                            mUtils.createPartFromString(intent.getStringExtra("postalCode"))
+                        hashMap[GlobalVariables.PARAM.country] =
+                            mUtils.createPartFromString(intent.getStringExtra("country"))
+                        hashMap[GlobalVariables.PARAM.password] =
+                            mUtils.createPartFromString(intent.getStringExtra("password"))
+
+
+                        viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)
+                        viewModel.homeResponse.observe(this, this)
+                    }
+
                 }
             }
 
@@ -225,6 +281,17 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
                         Log.i("====", data.message)
                         otp = data.body.otp.toString()
                         otpPin.text?.clear()
+                    }
+                }
+                if (it.data is CommercialSignUpResponse) {
+                    val data = it.data as CommercialSignUpResponse
+                    if (data.code == 200) {
+                        Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
+                        // setCommercialData(data)
+                        startActivity(Intent(this, LoginActivity::class.java))
+                    } else {
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
                     }
                 }
             }
