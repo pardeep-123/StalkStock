@@ -44,18 +44,18 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     var mRegistrationImage = ""
     var mInsuranceImage = ""
     var fName: String = ""
-    var lName : String= ""
-    var eId : String= ""
+    var lName: String = ""
+    var eId: String = ""
     var mNumber: String = ""
     var vType: String = ""
-    var model : String= ""
+    var model: String = ""
     var make: String = ""
     var city: String = ""
     var state: String = ""
-    var pass : String= ""
+    var pass: String = ""
     var country: String = ""
     var addressLine2: String = ""
-    var type=1
+    var type = 1
 
     override fun getContentId(): Int {
         return R.layout.activity_add_detail
@@ -77,16 +77,16 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         }
         tv_heading.text = "Add Details"
         edText1.setOnClickListener {
-            type=1
+            type = 1
             datePicker()
         }
         edText3.setOnClickListener {
-            type=2
+            type = 2
             datePicker()
         }
 
 
-        iv_back.setOnClickListener {finish()}
+        iv_back.setOnClickListener { finish() }
         btn_Continue.setOnClickListener {
             signUpApi()
         }
@@ -111,7 +111,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     }
 
     private fun dialogconfirmation() {
-        val  dialog = Dialog(this)
+        val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.verification_popup)
 
@@ -126,15 +126,14 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialog.btn_ok11.setOnClickListener {
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             dialog.dismiss()
             finishAffinity()
         }
         dialog.show()
     }
 
-    private fun signUpApi()
-    {
+    private fun signUpApi() {
         when {
             checkStringNull(edText.text.toString()) -> {
                 edText.requestFocus()
@@ -166,11 +165,31 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
                 hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(state)
                 hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(country)
                 hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(pass)
-                hashMap[GlobalVariables.PARAM.licenceNumber] = mUtils.createPartFromString(edText.text.toString())
-                hashMap[GlobalVariables.PARAM.registrationNumber] = mUtils.createPartFromString(edText2.text.toString())
-                hashMap[GlobalVariables.PARAM.licenceExpiryDate] = mUtils.createPartFromString(edText1.text.toString())
-                hashMap[GlobalVariables.PARAM.registrationExpiryDate] = mUtils.createPartFromString(edText3.text.toString())
-                viewModel.driverSignUpApi(this, true, hashMap,mProfileImage,mLicenseimage1,mLicenseimage2,mRegistrationImage,mInsuranceImage,mUtils)
+                hashMap[GlobalVariables.PARAM.licenceNumber] =
+                    mUtils.createPartFromString(edText.text.toString())
+                hashMap[GlobalVariables.PARAM.registrationNumber] =
+                    mUtils.createPartFromString(edText2.text.toString())
+                hashMap[GlobalVariables.PARAM.licenceExpiryDate] =
+                    mUtils.createPartFromString(edText1.text.toString())
+                hashMap[GlobalVariables.PARAM.registrationExpiryDate] =
+                    mUtils.createPartFromString(edText3.text.toString())
+                hashMap["currencyType"] =
+                    mUtils.createPartFromString(
+                        Currency.getInstance(Locale.getDefault()).toString()
+                    )
+
+
+                viewModel.driverSignUpApi(
+                    this,
+                    true,
+                    hashMap,
+                    mProfileImage,
+                    mLicenseimage1,
+                    mLicenseimage2,
+                    mRegistrationImage,
+                    mInsuranceImage,
+                    mUtils
+                )
                 viewModel.mResponse.observe(this, this)
             }
         }
@@ -181,13 +200,13 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is DriverSignUpResponse) {
                     val data = it.data as DriverSignUpResponse
-                   if (data.code == 200) {
-                       dialogconfirmation()
-                       setData(data)
-                       //Verification is in progress. Please wait for admin approval.
-                       startActivity(Intent(this, LoginActivity::class.java))
-                       finishAffinity()
-                   }
+                    if (data.code == 200) {
+                        dialogconfirmation()
+                        setData(data)
+                        //Verification is in progress. Please wait for admin approval.
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finishAffinity()
+                    }
                 }
             }
             it.status == Status.ERROR -> {
@@ -204,8 +223,14 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
 
     private fun setData(mResponse: DriverSignUpResponse) {
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, mResponse.body.token)
-        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
-        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.DRIVER_DATA, modelToString(mResponse.body.driverDetail))
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_DRIVER.DRIVER_DATA,
+            modelToString(mResponse.body.driverDetail)
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.token, mResponse.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, mResponse.body.id)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.role, mResponse.body.role)
@@ -216,7 +241,10 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceToken, mResponse.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.deviceType, mResponse.body.deviceType)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.notification, mResponse.body.notification)
-        savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.remember_token, mResponse.body.remember_token)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_DRIVER.remember_token,
+            mResponse.body.remember_token
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.created, mResponse.body.created)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.updated, mResponse.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_DRIVER.createdAt, mResponse.body.createdAt)
@@ -225,11 +253,13 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
 
     private fun datePicker() {
 
-        val datePickerDialog = DatePickerDialog(this, date,  myCalendar[Calendar.YEAR],
+        val datePickerDialog = DatePickerDialog(
+            this, date, myCalendar[Calendar.YEAR],
             myCalendar[Calendar.MONTH],
-            myCalendar[Calendar.DAY_OF_MONTH])
+            myCalendar[Calendar.DAY_OF_MONTH]
+        )
 
-        datePickerDialog.datePicker.minDate= System.currentTimeMillis() -1000
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
 
     }
@@ -237,9 +267,9 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
     private fun updateDateLabel() {
         val dateFormat = "dd/MM/yyyy" //In which you need put here
         val sdf = SimpleDateFormat(dateFormat, Locale.US)
-        if(type==1){
+        if (type == 1) {
             edText1.setText(sdf.format(myCalendar.time))
-        }else{
+        } else {
             edText3.setText(sdf.format(myCalendar.time))
         }
 

@@ -37,6 +37,8 @@ import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_verification.*
 import okhttp3.RequestBody
+import java.util.*
+import kotlin.collections.HashMap
 
 class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
 
@@ -117,7 +119,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
             country = intent.getStringExtra("country").toString()
             password = intent.getStringExtra("password").toString()
             firstimage = intent.getStringExtra("firstimage").toString()
-        }else{
+        } else {
             mobile = intent.getStringExtra("mobile")!!
             tvPhoneNumber.text = mobile
         }
@@ -183,6 +185,8 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
                             mUtils.createPartFromString(country)
                         hashMap[GlobalVariables.PARAM.password] =
                             mUtils.createPartFromString(password)
+                        hashMap["currencyType"] =
+                            mUtils.createPartFromString(Currency.getInstance(Locale.getDefault()).toString())
 
                         viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
                         viewModel.homeResponse.observe(this, this)
@@ -227,7 +231,10 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
                             mUtils.createPartFromString(intent.getStringExtra("country"))
                         hashMap[GlobalVariables.PARAM.password] =
                             mUtils.createPartFromString(intent.getStringExtra("password"))
-
+                        hashMap["currencyType"] =
+                            mUtils.createPartFromString(
+                                Currency.getInstance(Locale.getDefault()).toString()
+                            )
 
                         viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)
                         viewModel.homeResponse.observe(this, this)

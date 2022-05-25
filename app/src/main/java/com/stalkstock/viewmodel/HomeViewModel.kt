@@ -59,6 +59,42 @@ class HomeViewModel : ViewModel() {
 
     }
 
+
+    @SuppressLint("CheckResult")
+    fun postAdvertiserSignUpApi(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, RequestBody>,
+        firstImage: String,
+        mUtils: Util
+    ) {
+
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            var image: MultipartBody.Part? = null
+            if (firstImage.isNotEmpty()) {
+                val file = File(firstImage)
+                image = mUtils.prepareFilePart("image", file)
+            }
+
+            restApiInterface.advertiserSignUp(hashMap, image)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        postAdvertiserSignUpApi(activity, showLoader, hashMap, firstImage, mUtils)
+                    }
+                })
+        }
+    }
+
     @SuppressLint("CheckResult")
     fun termsAndCondition(
         activity: Activity,

@@ -15,21 +15,14 @@ import com.stalkstock.api.Status
 import com.stalkstock.commercial.view.activities.Verification
 import com.stalkstock.consumer.model.ModelSignupUser
 import com.stalkstock.utils.BaseActivity
+import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.utils.others.savePrefrence
 import com.stalkstock.viewmodel.HomeViewModel
-import com.stalkstock.utils.others.AppUtils
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup_consumer.*
-import kotlinx.android.synthetic.main.activity_signup_consumer.btn_signup
-import kotlinx.android.synthetic.main.activity_signup_consumer.emailEdittext
-import kotlinx.android.synthetic.main.activity_signup_consumer.tv_signin
-import okhttp3.RequestBody
-import java.util.*
 
 class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
     private var mAlbumFiles = ArrayList<AlbumFile?>()
@@ -62,14 +55,25 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
     val viewModel: HomeViewModel by viewModels()
 
     private fun signupUserAPI() {
-        val map = HashMap<String, RequestBody>()
+        /*val map = HashMap<String, RequestBody>()
         map["first_name"] = mUtils.createPartFromString(edtConsumerFirstname.text.toString())
         map["last_name"] = mUtils.createPartFromString(edtConsumerLastname.text.toString())
         map["email"] = mUtils.createPartFromString(emailEdittext.text.toString())
         map["mobile"] = mUtils.createPartFromString(edtConsumerPhone.text.toString())
         map["password"] = mUtils.createPartFromString(edtConsumerPassword.text.toString())
         viewModel.getusersignupApi(this, true, map, firstimage, mUtils)
-        viewModel.homeResponse.observe(this, this)
+        viewModel.homeResponse.observe(this, this)*/
+
+        val intent = Intent(this, Verification::class.java)
+        intent.putExtra("first_name", edtConsumerFirstname.text.toString().trim())
+        intent.putExtra("last_name", edtConsumerLastname.text.toString().trim())
+        intent.putExtra("email", emailEdittext.text.toString().trim())
+        intent.putExtra("phoneNo", edtConsumerPhone.text.toString().trim())
+        intent.putExtra("password", edtConsumerPassword.text.toString().trim())
+        intent.putExtra("firstimage", firstimage)
+        startActivity(intent)
+
+
     }
 
     private fun validations(): Boolean {

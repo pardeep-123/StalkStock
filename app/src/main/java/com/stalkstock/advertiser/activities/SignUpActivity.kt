@@ -19,6 +19,7 @@ import com.stalkstock.advertiser.model.AdvertiserSignUpResponse
 import com.stalkstock.advertiser.viewModel.AdvertiserViewModel
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
+import com.stalkstock.commercial.view.activities.Verification
 import com.stalkstock.commercial.view.adapters.CategoryCommercialAdapter
 import com.stalkstock.commercial.view.model.CategoryList
 import com.stalkstock.common.MyNewMapActivity
@@ -40,7 +41,7 @@ import okhttp3.RequestBody
 import java.util.*
 import kotlin.collections.HashMap
 
-class SignUpActivity: BaseActivity(), View.OnClickListener,
+class SignUpActivity : BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
     AdapterView.OnItemSelectedListener {
     private val AUTOCOMPLETE_REQUEST_CODE = 1
@@ -131,7 +132,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             R.id.iv_back -> {
                 finish()
             }
-            R.id.et_businessAddress ->{
+            R.id.et_businessAddress -> {
                 if (NetworkUtil.checkLocPermission(this@SignUpActivity)) {
                     val intent = Intent(this, MyNewMapActivity::class.java)
                     intent.putExtra("type", "1")
@@ -159,8 +160,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
-        }
-       else if (data != null) {
+        } else if (data != null) {
             if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
                 val sarea = data.getStringExtra("place_name")
                 val myCity = data.getStringExtra("city")
@@ -170,21 +170,26 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 et_businessAddress.setText(sarea)
                 //  et_street.setText(state)
                 //  et_city.setText(myCity)
-                getAddress(latitude.toDouble(),longitude.toDouble())
+                getAddress(latitude.toDouble(), longitude.toDouble())
             }
         }
-       /* else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                val place = Autocomplete.getPlaceFromIntent(data)
-                latitude = place.latLng?.latitude.toString()
-                longitude = place.latLng?.longitude.toString()
-                getAddress(latitude.toDouble(),longitude.toDouble())
-                et_businessAddress.setText(place.name.toString())
+        /* else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+             if (resultCode == Activity.RESULT_OK && data != null) {
+                 val place = Autocomplete.getPlaceFromIntent(data)
+                 latitude = place.latLng?.latitude.toString()
+                 longitude = place.latLng?.longitude.toString()
+                 getAddress(latitude.toDouble(),longitude.toDouble())
+                 et_businessAddress.setText(place.name.toString())
 
-            }
-        }*/
+             }
+         }*/
     }
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
             val intent = Intent(this, MyNewMapActivity::class.java)
@@ -192,6 +197,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
     }
+
     private fun getAddress(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
 
@@ -200,10 +206,10 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             longitude,
             1
         )
-      /*  if (addresses[0].featureName != null) {
-            address = addresses[0].featureName
-            et_businessAddress.setText(address)
-        }*/
+        /*  if (addresses[0].featureName != null) {
+              address = addresses[0].featureName
+              et_businessAddress.setText(address)
+          }*/
 
         if (addresses[0].locality != null) {
             city = addresses[0].locality
@@ -258,12 +264,11 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             et_businessName.error = resources.getString(R.string.please_enter_business_name)
         } else if (et_businessDescptn.text.toString().isEmpty()) {
             et_businessDescptn.requestFocus()
-            et_businessDescptn.error = resources.getString(R.string.please_enter_business_description)
+            et_businessDescptn.error =
+                resources.getString(R.string.please_enter_business_description)
         } else if (spinner_business_type.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_business_type))
-        }
-
-        else if (licnEdittext.text.toString().isEmpty()) {
+        } else if (licnEdittext.text.toString().isEmpty()) {
             licnEdittext.requestFocus()
             licnEdittext.error = resources.getString(R.string.please_enter_business_license)
         } else if (emailEdittext.text.toString().isEmpty()) {
@@ -284,7 +289,8 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             et_mobileNo.error = resources.getString(R.string.please_enter_valid_number)
         } else if (et_businessPhone.text.toString().isEmpty()) {
             et_businessPhone.requestFocus()
-            et_businessPhone.error = resources.getString(R.string.please_enter_business_phone_number)
+            et_businessPhone.error =
+                resources.getString(R.string.please_enter_business_phone_number)
         } else if (et_businessPhone.text.toString().length < 6) {
             et_businessPhone.requestFocus()
             et_businessPhone.error = resources.getString(R.string.please_enter_valid_number)
@@ -303,12 +309,12 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         } else if (et_zipCode.text.toString().isEmpty()) {
             et_zipCode.requestFocus()
             et_zipCode.error = resources.getString(R.string.please_enter_postal_code)
-        }  else if (spinner.selectedItemPosition == 0){
+        } else if (spinner.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(this, resources.getString(R.string.please_enter_country))
         } else if (passwordEdittext.text.toString().isEmpty()) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = resources.getString(R.string.please_enter_password)
-        }else if (passwordEdittext.text.toString().length<6) {
+        } else if (passwordEdittext.text.toString().length < 6) {
             passwordEdittext.requestFocus()
             passwordEdittext.error = "Password should contain atleast 6 characters"
         } else if (repasswordEdittext.text.toString().isEmpty()) {
@@ -320,27 +326,65 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             repasswordEdittext.error = resources.getString(R.string.new_confirm_password_dont_match)
         } else {
 
-            val hashMap = HashMap<String, RequestBody>()
-            hashMap[GlobalVariables.PARAM.firstname] = mUtils.createPartFromString(et_firstName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.lastname] = mUtils.createPartFromString(et_lastName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessName] = mUtils.createPartFromString(et_businessName.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessDescription] = mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessTypeId] = mUtils.createPartFromString(spinner_business_type.selectedItemPosition.toString())
-            hashMap[GlobalVariables.PARAM.buisnessLicense] = mUtils.createPartFromString(licnEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.email] = mUtils.createPartFromString(emailEdittext.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.mobile] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.businessPhone] = mUtils.createPartFromString(et_businessPhone.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.website] = mUtils.createPartFromString(et_website.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.buisnessAddress] = mUtils.createPartFromString(et_businessAddress.text.toString().trim())
-            hashMap["addressLine2"] = mUtils.createPartFromString(et_addressline2.text.toString())
-            hashMap[GlobalVariables.PARAM.city] = mUtils.createPartFromString(et_city.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.state] = mUtils.createPartFromString(et_state.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.postalCode] = mUtils.createPartFromString(et_zipCode.text.toString().trim())
-            hashMap[GlobalVariables.PARAM.country] = mUtils.createPartFromString(spinner.selectedItem.toString())
-            hashMap[GlobalVariables.PARAM.password] = mUtils.createPartFromString(passwordEdittext.text.toString().trim())
+            val intent = Intent(this, Verification::class.java)
+            intent.putExtra("firstname", et_firstName.text.toString().trim())
+            intent.putExtra("lastname", et_lastName.text.toString().trim())
+            intent.putExtra("buisnessName", et_businessName.text.toString().trim())
+            intent.putExtra("buisnessDescription", et_businessDescptn.text.toString().trim())
+            intent.putExtra("buisnessTypeId", spinner_business_type.selectedItemPosition.toString())
+            intent.putExtra("buisnessLicense", licnEdittext.text.toString().trim())
+            intent.putExtra("email", emailEdittext.text.toString().trim())
+            intent.putExtra("phoneNo", et_mobileNo.text.toString().trim())
+            intent.putExtra("businessPhone", et_businessPhone.text.toString().trim())
+            intent.putExtra("website", et_website.text.toString().trim())
+            intent.putExtra("buisnessAddress", et_businessAddress.text.toString().trim())
+            intent.putExtra("addressLine2", et_addressline2.text.toString().trim())
+            intent.putExtra("city", et_city.text.toString().trim())
+            intent.putExtra("state", et_state.text.toString().trim())
+            intent.putExtra("postalCode", et_zipCode.text.toString().trim())
+            intent.putExtra("country", spinner.selectedItem.toString())
+            intent.putExtra("password", passwordEdittext.text.toString().trim())
+            intent.putExtra("firstimage", firstimage)
+            startActivity(intent)
 
-            viewModel.postAdvertiserSignUpApi(this, true, hashMap,firstimage,mUtils)
-            viewModel.mResponse.observe(this, this)
+
+           /* val hashMap = HashMap<String, RequestBody>()
+            hashMap[GlobalVariables.PARAM.firstname] =
+                mUtils.createPartFromString(et_firstName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.lastname] =
+                mUtils.createPartFromString(et_lastName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessName] =
+                mUtils.createPartFromString(et_businessName.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessDescription] =
+                mUtils.createPartFromString(et_businessDescptn.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessTypeId] =
+                mUtils.createPartFromString(spinner_business_type.selectedItemPosition.toString())
+            hashMap[GlobalVariables.PARAM.buisnessLicense] =
+                mUtils.createPartFromString(licnEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.email] =
+                mUtils.createPartFromString(emailEdittext.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.mobile] =
+                mUtils.createPartFromString(et_mobileNo.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.businessPhone] =
+                mUtils.createPartFromString(et_businessPhone.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.website] =
+                mUtils.createPartFromString(et_website.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.buisnessAddress] =
+                mUtils.createPartFromString(et_businessAddress.text.toString().trim())
+            hashMap["addressLine2"] = mUtils.createPartFromString(et_addressline2.text.toString())
+            hashMap[GlobalVariables.PARAM.city] =
+                mUtils.createPartFromString(et_city.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.state] =
+                mUtils.createPartFromString(et_state.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.postalCode] =
+                mUtils.createPartFromString(et_zipCode.text.toString().trim())
+            hashMap[GlobalVariables.PARAM.country] =
+                mUtils.createPartFromString(spinner.selectedItem.toString())
+            hashMap[GlobalVariables.PARAM.password] =
+                mUtils.createPartFromString(passwordEdittext.text.toString().trim())
+
+            viewModel.postAdvertiserSignUpApi(this, true, hashMap, firstimage, mUtils)
+            viewModel.mResponse.observe(this, this)*/
         }
     }
 
@@ -349,9 +393,9 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             it!!.status == Status.SUCCESS -> {
                 if (it.data is AdvertiserSignUpResponse) {
                     val data = it.data
-                    if (data.code==200){
+                    if (data.code == 200) {
                         setData(data)
-                        startActivity(Intent(this,MainActivity::class.java))
+                        startActivity(Intent(this, MainActivity::class.java))
                     }
                 }
 
@@ -369,12 +413,14 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                                 listC.add(
                                     CategoryList(
                                         businessTypeList[i].id, businessTypeList[i].status,
-                                        businessTypeList[i].name)
+                                        businessTypeList[i].name
+                                    )
                                 )
                             }
                         }
 
-                        val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
+                        val businessTypeListt =
+                            CategoryCommercialAdapter(this, "-Select your business type-", listC)
                         spinner_business_type.adapter = businessTypeListt
                     }
                 }
@@ -395,7 +441,10 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         savePrefrence(GlobalVariables.SHARED_PREF.AUTH_KEY, data.body.authKey)
         savePrefrence(GlobalVariables.SHARED_PREF.DEVICE_TOKEN, data.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.AUTH_KEY, data.body.authKey)
-        savePrefrence(GlobalVariables.SHARED_PREF.USER_TYPE, MyApplication.instance.getString("usertype").toString())
+        savePrefrence(
+            GlobalVariables.SHARED_PREF.USER_TYPE,
+            MyApplication.instance.getString("usertype").toString()
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.token, data.body.token)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.deviceToken, data.body.deviceToken)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.id, data.body.id)
@@ -415,32 +464,56 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.updated, data.body.updated)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.createdAt, data.body.createdAt)
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.updatedAt, data.body.updatedAt)
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.advertiserId, data.body.advertiserDetail.id)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.advertiserId,
+            data.body.advertiserDetail.id
+        )
 
         savePrefrence(
             GlobalVariables.SHARED_PREF_ADVERTISER.firstName,
             data.body.advertiserDetail.firstName
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.lastName, data.body.advertiserDetail.lastName)
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.image, data.body.advertiserDetail.image)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.lastName,
+            data.body.advertiserDetail.lastName
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.image,
+            data.body.advertiserDetail.image
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_ADVERTISER.buisnessPhone,
             data.body.advertiserDetail.buisnessPhone
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.buisnessLogo, data.body.advertiserDetail.buisnessLogo)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.buisnessLogo,
+            data.body.advertiserDetail.buisnessLogo
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_ADVERTISER.buisnessTypeId,
             data.body.advertiserDetail.buisnessTypeId
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.buisnessName, data.body.advertiserDetail.buisnessName)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.buisnessName,
+            data.body.advertiserDetail.buisnessName
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_ADVERTISER.buisnessLicense,
             data.body.advertiserDetail.buisnessLicense
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.website, data.body.advertiserDetail.website)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.website,
+            data.body.advertiserDetail.website
+        )
         savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.city, data.body.advertiserDetail.city)
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.state, data.body.advertiserDetail.state)
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.country, data.body.advertiserDetail.country)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.state,
+            data.body.advertiserDetail.state
+        )
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.country,
+            data.body.advertiserDetail.country
+        )
         savePrefrence(
             GlobalVariables.SHARED_PREF_ADVERTISER.postalCode,
             data.body.advertiserDetail.postalCode
@@ -457,7 +530,10 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
             GlobalVariables.SHARED_PREF_ADVERTISER.buisnessDescription,
             data.body.advertiserDetail.buisnessDescription
         )
-        savePrefrence(GlobalVariables.SHARED_PREF_ADVERTISER.userId, data.body.advertiserDetail.userId)
+        savePrefrence(
+            GlobalVariables.SHARED_PREF_ADVERTISER.userId,
+            data.body.advertiserDetail.userId
+        )
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -481,8 +557,7 @@ class SignUpActivity: BaseActivity(), View.OnClickListener,
                 val array = this.resources.getStringArray(R.array.Select_country)
 
                 country = array[p2]
-            }
-            else if (p0?.id == R.id.spinner_business_type) {
+            } else if (p0?.id == R.id.spinner_business_type) {
                 val categories = businessTypeList[spinner_business_type!!.selectedItemPosition - 1]
                 businessType = categories.id.toString()
             }
