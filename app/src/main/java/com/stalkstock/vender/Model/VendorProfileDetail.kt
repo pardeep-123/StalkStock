@@ -20,6 +20,7 @@ data class VendorProfileDetail(
             val firstName: String, // Sanju
             val id: Int, // 14
             val image: String, // http://3.13.214.27:8800/uploads/user/8c3078a7-d673-40da-9eee-3b62e7629279.jpg
+            val coverImage: String, // http://3.13.214.27:8800/uploads/user/8c3078a7-d673-40da-9eee-3b62e7629279.jpg
             val lastName: String, // Baghla
             val shopAddress: String, // ahhfjffndidk
             val userId: Int // 78

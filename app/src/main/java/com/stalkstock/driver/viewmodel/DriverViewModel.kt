@@ -373,10 +373,11 @@ class DriverViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun driverOrderRequestAPI(
         activity: Activity,
-        showLoader: Boolean
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
-            restApiInterface.driverOrderRequestAPI()
+            restApiInterface.driverOrderRequestAPI(hashMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -389,7 +390,7 @@ class DriverViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        driverOrderRequestAPI(activity, showLoader)
+                        driverOrderRequestAPI(activity, showLoader,hashMap)
                     }
                 })
         }

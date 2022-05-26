@@ -20,6 +20,8 @@ import com.stalkstock.api.Status
 import kotlinx.android.synthetic.main.fragment_pending_ads.view.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.util.*
+import kotlin.collections.HashMap
 
 class PendingAdsFragment : Fragment(), Observer<RestObservable> {
 
@@ -49,6 +51,8 @@ class PendingAdsFragment : Fragment(), Observer<RestObservable> {
         }
         val map = HashMap<String, RequestBody>()
         map["type"] = createPartFromString("0")
+        map["currencyType"] =
+            createPartFromString(Currency.getInstance(Locale.getDefault()).toString())
         viewModel.getAdsList(requireActivity(),true,map)
         viewModel.mResponse.observe(requireActivity(),this)
     }

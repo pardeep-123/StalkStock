@@ -64,6 +64,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
     var country = ""
     var password = ""
     var firstimage = ""
+    var coverImage = ""
     var otp = ""
 
     val viewModel: HomeViewModel by lazy {
@@ -119,6 +120,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
             country = intent.getStringExtra("country").toString()
             password = intent.getStringExtra("password").toString()
             firstimage = intent.getStringExtra("firstimage").toString()
+            coverImage = intent.getStringExtra("coverImage")!!
         } else {
             mobile = intent.getStringExtra("mobile")!!
             tvPhoneNumber.text = mobile
@@ -188,7 +190,7 @@ class Verification : BaseActivity(), View.OnClickListener, Observer<RestObservab
                         hashMap["currencyType"] =
                             mUtils.createPartFromString(Currency.getInstance(Locale.getDefault()).toString())
 
-                        viewModel.postvendorsignupApi(this, true, hashMap, firstimage, mUtils)
+                        viewModel.postvendorsignupApi(this, true, hashMap, firstimage,coverImage, mUtils)
                         viewModel.homeResponse.observe(this, this)
                     } else if (MyApplication.instance.getString("usertype").equals("4")) {
                         val hashMap = HashMap<String, RequestBody>()

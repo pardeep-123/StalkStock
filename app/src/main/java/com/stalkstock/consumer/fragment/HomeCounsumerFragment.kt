@@ -51,11 +51,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable> {
-    private var currentDeliveryType: Int=2
+    private var currentDeliveryType: Int = 2
     private var mLat: Double = 0.0
     private var mLong: Double = 0.0
     var stAddress = ""
-    var sortDeliveryType=2
+    var sortDeliveryType = 2
 
     var currentLowPrice = ""
     var currentHighPrice = "10000"
@@ -68,7 +68,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     lateinit var suggested_recycle: RecyclerView
     lateinit var viewPagerDetail: ViewPager
     lateinit var indicator: CirclePageIndicator
-     var detailAdapter: ViewDetailAdapter?=null
+    var detailAdapter: ViewDetailAdapter? = null
     lateinit var adapter3: SuggestedAdapter
     lateinit var notification: ImageView
     lateinit var fillter: ImageView
@@ -87,7 +87,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     var statusClick = 1
     var tickClick = 1
     var clickMsg = 0
-    var productType="0"
+    var productType = "0"
 
     private var isLastPageSwiped = false
     private var counterPageScroll = 0
@@ -95,9 +95,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
     lateinit var bt_sort: Button
     lateinit var bt_pickup: Button
     lateinit var tv_delivery: Button
-    lateinit var mActivity:MainConsumerActivity
+    lateinit var mActivity: MainConsumerActivity
 
-    var data:ModelUserAddressList.Body?=null
+    var data: ModelUserAddressList.Body? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -139,14 +139,13 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 if (position == currentModel.size && positionOffset == 0f && !isLastPageSwiped) {
                     if (counterPageScroll != 0) {
                         isLastPageSwiped = true
-                        if (currentModel.size>4)
-                        {
+                        if (currentModel.size > 4) {
                             currentOffset += 5
                             getAdsBannerAPI()
-                        } }
+                        }
+                    }
                     counterPageScroll++
-                }
-                else {
+                } else {
                     counterPageScroll = 0
                 }
             }
@@ -167,7 +166,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         suggested_recycle.adapter = adapter3
         getPrimaryAddressApi()
         tv_address.setOnClickListener {
-            val intent =Intent(context, ManageAddress::class.java)
+            val intent = Intent(context, ManageAddress::class.java)
             context?.startActivity(intent)
         }
 
@@ -178,10 +177,15 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         fillter.setOnClickListener {
             val intent = Intent(requireContext(), FilterActivity::class.java)
             intent.putExtra("from", "HomeCounsumerFragment")
-            startActivityForResult(intent,0)
+            startActivityForResult(intent, 0)
         }
         etSearch.setOnClickListener {
-            mActivity.openSearchFragment(currentDeliveryType,currentHighPrice,currentLowPrice,currentSortBy)
+            mActivity.openSearchFragment(
+                currentDeliveryType,
+                currentHighPrice,
+                currentLowPrice,
+                currentSortBy
+            )
         }
         bt_sort.setOnClickListener {
             bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
@@ -200,7 +204,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             bt_pickup.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
             bt_pickup.setTextColor(mActivity.getColor(R.color.white))
             tv_delivery.background =
-            mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             tv_delivery.setTextColor(mActivity.getColor(R.color.green_ss))
             currentDeliveryType = 0
         }
@@ -208,7 +212,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
             bt_sort.background = mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             bt_sort.setTextColor(mActivity.getColor(R.color.green_ss))
             bt_pickup.background =
-            mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
+                mActivity.resources.getDrawable(R.drawable.btn_shape_gray)
             bt_pickup.setTextColor(mActivity.getColor(R.color.green_ss))
             tv_delivery.background = mActivity.resources.getDrawable(R.drawable.btn_shape)
             tv_delivery.setTextColor(mActivity.getColor(R.color.white))
@@ -237,7 +241,8 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         map["limit"] = "10"
         map["type"] = currentType  // default,rating,popular
         map["deliveryType"] = currentDeliveryType.toString()  // default,pickup,delivery
-        viewModel.getSuggestedProduct((activity as MainConsumerActivity), false,map)
+        map["currencyType"] = Currency.getInstance(Locale.getDefault()).toString()
+        viewModel.getSuggestedProduct((activity as MainConsumerActivity), false, map)
     }
 
     private fun getCategories() {
@@ -269,7 +274,8 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val mainConsumerActivity = activity as MainConsumerActivity
         if (reset) {
             currentOffset = 0
-            currentModel.clear()}
+            currentModel.clear()
+        }
         val map = HashMap<String, RequestBody>()
         map["offset"] = mainConsumerActivity.mUtils.createPartFromString(currentOffset.toString())
         map["limit"] = mainConsumerActivity.mUtils.createPartFromString("5")
@@ -291,7 +297,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
             val address: String = addresses[0].getAddressLine(0)
 
-            if (address != null) { stAddress = address }
+            if (address != null) {
+                stAddress = address
+            }
         } catch (e: Exception) {
             stAddress = "No location found"
         }
@@ -308,7 +316,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
         val logoutUpdatedDialog2 = Dialog(requireContext())
         logoutUpdatedDialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
         logoutUpdatedDialog2.setContentView(R.layout.layout_sort_popup)
-        logoutUpdatedDialog2.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        logoutUpdatedDialog2.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
         logoutUpdatedDialog2.setCancelable(false)
         logoutUpdatedDialog2.setCanceledOnTouchOutside(false)
         logoutUpdatedDialog2.window!!.setGravity(Gravity.BOTTOM)
@@ -465,29 +476,59 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
                 rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
+                iv2.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
+                )
                 rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
+                iv3.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
+                )
             }
             2 -> {
                 rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
+                iv1.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
+                )
                 rl2.background = resources.getDrawable(R.drawable.strokegreen)
                 t2.setTextColor(resources.getColor(R.color.green_colour))
                 iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
                 rl3.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t3.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
+                iv3.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
+                )
             }
             3 -> {
                 rl1.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t1.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv1.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
+                iv1.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
+                )
                 rl2.background = resources.getDrawable(R.drawable.strokegray_sort)
                 t2.setTextColor(resources.getColor(R.color.sort_popup_gray_color))
-                iv2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.sort_popup_gray_color))
+                iv2.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sort_popup_gray_color
+                    )
+                )
                 rl3.background = resources.getDrawable(R.drawable.strokegreen)
                 t3.setTextColor(resources.getColor(R.color.green_colour))
                 iv3.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green_colour))
@@ -510,8 +551,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
                 if (it.data is PrimaryAddressModel) {
                     val mResponse: PrimaryAddressModel = it.data
-                    data= mResponse.body
-                    tv_address.text= data?.street_address + " "+ data?.city+ " " +data?.state + " "+data?.zipcode+ " "+data?.country
+                    data = mResponse.body
+                    tv_address.text =
+                        data?.street_address + " " + data?.city + " " + data?.state + " " + data?.zipcode + " " + data?.country
                 }
 
                 if (it.data is SuggestedDataListed) {
@@ -520,8 +562,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                         listSuggested.clear()
                         listSuggested.addAll(mResponse.body)
                         adapter3.notifyDataSetChanged()
-                    }
-                    else {
+                    } else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
@@ -530,8 +571,7 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     val mResponse: ModelCategoryList = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         setDataCategody(mResponse)
-                    }
-                    else {
+                    } else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
                     }
                 }
@@ -540,10 +580,10 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                     val mResponse: UserCommonModel = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(mActivity, mResponse.message)
-                    }
-                    else {
+                    } else {
                         AppUtils.showErrorAlert(mActivity, mResponse.message)
-                    } }
+                    }
+                }
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -551,10 +591,13 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
                 } else {
                     if (it.error!!.toString().contains("User Address") && currentOffset > 1) {
                     } else
-                        Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT).show()
-                } }
+                        Toast.makeText(requireContext(), it.error.toString(), Toast.LENGTH_SHORT)
+                            .show()
+                }
+            }
             it.status == Status.LOADING -> {
-            } }
+            }
+        }
     }
 
     private fun setDataCategody(mResponse: ModelCategoryList) {

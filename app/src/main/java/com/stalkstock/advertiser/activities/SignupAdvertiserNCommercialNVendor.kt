@@ -35,15 +35,10 @@ import com.stalkstock.viewmodel.HomeViewModel
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import kotlinx.android.synthetic.main.activity_addnewaddress.*
-import kotlinx.android.synthetic.main.activity_edit_driver_info.*
 import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.activity_signup.spinner
-import kotlinx.android.synthetic.main.added_product.*
 import kotlinx.android.synthetic.main.toolbar.*
 import okhttp3.RequestBody
 import java.util.*
-import kotlin.collections.HashMap
 
 class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     Observer<RestObservable>,
@@ -59,10 +54,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
     val listC: ArrayList<CategoryList> = ArrayList()
     var businessTypeList: ArrayList<ModelBusinessType.Body> = ArrayList()
 
-    var otp=""
+    var otp = ""
     val mContext: Context = this
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var firstimage = ""
+    private var coverImage = ""
     var business_type = 0
     var business_delivery_type = 0
     var country = ""
@@ -90,12 +86,18 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             rlDelivery.visibility = View.VISIBLE
             rlBusinessType.visibility = View.VISIBLE
         }
+
+        if (MyApplication.instance.getString("usertype").equals("3")) {
+            rlCoverPic.visibility = View.VISIBLE
+        }
+
         getBusinessTypeApi()
         tv_heading.text = getString(R.string.sign_up)
         rl_deliveryType.visibility = View.VISIBLE
         tv_signin.setOnClickListener(this)
         iv_back.setOnClickListener(this)
         image.setOnClickListener(this)
+        ivCoverImage.setOnClickListener(this)
         tv_signin.setOnClickListener(this)
         total.setOnClickListener(this)
         btn_signup.setOnClickListener(this)
@@ -160,6 +162,9 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 mAlbumFiles.clear()
                 selectImage(image, "1")
             }
+            R.id.ivCoverImage -> {
+                selectImage(ivCoverImage, "2")
+            }
 
             R.id.et_businessAddress -> {
                 if (NetworkUtil.checkLocPermission(this@SignupAdvertiserNCommercialNVendor)) {
@@ -172,7 +177,11 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
             val intent = Intent(this, MyNewMapActivity::class.java)
@@ -193,8 +202,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     e.printStackTrace()
                 }
             }
-        }
-       else if (data != null) {
+        } else if (data != null) {
             if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
                 val sarea = data.getStringExtra("place_name")
                 val myCity = data.getStringExtra("city")
@@ -204,19 +212,19 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                 et_businessAddress.setText(sarea)
                 //  et_street.setText(state)
                 //  et_city.setText(myCity)
-                getAddress(latitude.toDouble(),longitude.toDouble())
+                getAddress(latitude.toDouble(), longitude.toDouble())
             }
         }
-       /* else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                val place = Autocomplete.getPlaceFromIntent(data)
-                latitude = place.latLng?.latitude.toString()
-                longitude = place.latLng?.longitude.toString()
-                getAddress(latitude.toDouble(), longitude.toDouble())
-                et_businessAddress.setText(place.name.toString())
+        /* else if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+             if (resultCode == Activity.RESULT_OK && data != null) {
+                 val place = Autocomplete.getPlaceFromIntent(data)
+                 latitude = place.latLng?.latitude.toString()
+                 longitude = place.latLng?.longitude.toString()
+                 getAddress(latitude.toDouble(), longitude.toDouble())
+                 et_businessAddress.setText(place.name.toString())
 
-            }
-        }*/
+             }
+         }*/
     }
 
 
@@ -229,10 +237,10 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             1
         )
 
-       /* if (addresses[0].featureName != null) {
-            address = addresses[0].featureName
-            et_businessAddress.setText(address)
-        }*/
+        /* if (addresses[0].featureName != null) {
+             address = addresses[0].featureName
+             et_businessAddress.setText(address)
+         }*/
 
         if (addresses[0].locality != null) {
             city = addresses[0].locality
@@ -260,9 +268,12 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
-                Glide.with(this).load(result[0].path).into(ivProduct)
                 if (type.equals("1")) {
+                    Glide.with(this).load(result[0].path).into(ivProduct)
                     firstimage = result[0].path
+                } else if (type.equals("2")) {
+                    Glide.with(this).load(result[0].path).into(ivProduct)
+                    coverImage = result[0].path
                 }
             }
             .onCancel {
@@ -339,7 +350,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
         } else if (et_zipCode.getText().toString().isEmpty()) {
             et_zipCode.requestFocus()
             et_zipCode.setError(resources.getString(R.string.please_enter_postal_code))
-        } else if (spinner.selectedItem.toString() == "Select Country") {
+        } else if (spinner.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(
                 this,
                 resources.getString(R.string.please_enter_country)
@@ -410,8 +421,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
 
 
             viewModel.commrercialSignupApi(this, true, hashMap, firstimage, mUtils)*/
-           // viewModel.homeResponse.observe(this, this)
-
+            // viewModel.homeResponse.observe(this, this)
 
 
             if (spinner.selectedItem.toString() == "Select Country") {
@@ -440,7 +450,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
             val hashMap = HashMap<String, RequestBody>()
             hashMap["mobile"] = mUtils.createPartFromString(et_mobileNo.text.toString().trim())
             viewModel.sendOtp(this, true, hashMap)
-           // viewModel.homeResponse.observe(this, this)
+            // viewModel.homeResponse.observe(this, this)
 
         }
 
@@ -475,12 +485,14 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                                 listC.add(
                                     CategoryList(
                                         businessTypeList[i].id, businessTypeList[i].status,
-                                        businessTypeList[i].name)
+                                        businessTypeList[i].name
+                                    )
                                 )
                             }
                         }
 
-                        val businessTypeListt = CategoryCommercialAdapter(this, "-Select your business type-", listC)
+                        val businessTypeListt =
+                            CategoryCommercialAdapter(this, "-Select your business type-", listC)
                         spinner_business_type.adapter = businessTypeListt
                     }
                 }
@@ -489,7 +501,7 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                     val data = it.data as SendOtpResponse
                     if (data.code == 200) {
                         Log.i("====", data.message)
-                        otp=data.body.otp.toString()
+                        otp = data.body.otp.toString()
                         if (MyApplication.instance.getString("usertype").equals("3")) {
                             val intent = Intent(this, Verification::class.java)
                             intent.putExtra("latitude", latitude)
@@ -497,44 +509,66 @@ class SignupAdvertiserNCommercialNVendor : BaseActivity(), View.OnClickListener,
                             intent.putExtra("firstName", et_firstName.text.toString().trim())
                             intent.putExtra("lastname", et_lastName.text.toString().trim())
                             intent.putExtra("shopName", et_businessName.text.toString().trim())
-                            intent.putExtra("shopDescription", et_businessDescptn.text.toString().trim())
+                            intent.putExtra(
+                                "shopDescription",
+                                et_businessDescptn.text.toString().trim()
+                            )
                             intent.putExtra("buisnessTypeId", business_type.toString())
                             intent.putExtra("deliveryType", (business_delivery_type - 1).toString())
                             intent.putExtra("buisnessLicense", licnEdittext.text.toString().trim())
                             intent.putExtra("email", emailEdittext.text.toString().trim())
                             intent.putExtra("mobile", et_mobileNo.text.toString().trim())
-                            intent.putExtra("buisnessPhone", et_businessPhone.text.toString().trim())
+                            intent.putExtra(
+                                "buisnessPhone",
+                                et_businessPhone.text.toString().trim()
+                            )
                             intent.putExtra("website", et_website.text.toString().trim())
-                            intent.putExtra("shopAddress", et_businessAddress.text.toString().trim())
+                            intent.putExtra(
+                                "shopAddress",
+                                et_businessAddress.text.toString().trim()
+                            )
                             intent.putExtra("city", et_city.text.toString().trim())
                             intent.putExtra("state", et_state.text.toString().trim())
                             intent.putExtra("postalCode", et_zipCode.text.toString().trim())
                             intent.putExtra("country", country)
                             intent.putExtra("password", passwordEdittext.text.toString().trim())
                             intent.putExtra("firstimage", firstimage)
+                            intent.putExtra("coverImage", coverImage)
                             intent.putExtra("otp", otp)
                             startActivity(intent)
-                        }else if (MyApplication.instance.getString("usertype").equals("4")){
+                        } else if (MyApplication.instance.getString("usertype").equals("4")) {
                             val intent = Intent(this, Verification::class.java)
-                            intent.putExtra("latitude",latitude)
-                            intent.putExtra("longitude",longitude)
-                            intent.putExtra("firstName",et_firstName.text.toString().trim())
-                            intent.putExtra("lastname",et_lastName.text.toString().trim())
-                            intent.putExtra("buisnessName",et_businessName.text.toString().trim())
-                            intent.putExtra("buisnessDescription",et_businessDescptn.text.toString().trim())
-                            intent.putExtra("buisnessTypeId",spinner_business_type.selectedItemPosition.toString())
-                            intent.putExtra("buisnessLicense",licnEdittext.text.toString().trim())
-                            intent.putExtra("deliveryType",(business_delivery_type - 1).toString())
-                            intent.putExtra("email",emailEdittext.text.toString().trim())
-                            intent.putExtra("mobile",et_mobileNo.text.toString().trim())
-                            intent.putExtra("businessPhone",et_businessPhone.text.toString().trim())
-                            intent.putExtra("website",et_website.text.toString().trim())
-                            intent.putExtra("buisnessAddress",et_businessAddress.text.toString().trim())
-                            intent.putExtra("city",et_city.text.toString().trim())
-                            intent.putExtra("state",et_state.text.toString().trim())
-                            intent.putExtra("postalCode",et_zipCode.text.toString().trim())
-                            intent.putExtra("country",spinner.selectedItem.toString())
-                            intent.putExtra("password",passwordEdittext.text.toString().trim())
+                            intent.putExtra("latitude", latitude)
+                            intent.putExtra("longitude", longitude)
+                            intent.putExtra("firstName", et_firstName.text.toString().trim())
+                            intent.putExtra("lastname", et_lastName.text.toString().trim())
+                            intent.putExtra("buisnessName", et_businessName.text.toString().trim())
+                            intent.putExtra(
+                                "buisnessDescription",
+                                et_businessDescptn.text.toString().trim()
+                            )
+                            intent.putExtra(
+                                "buisnessTypeId",
+                                spinner_business_type.selectedItemPosition.toString()
+                            )
+                            intent.putExtra("buisnessLicense", licnEdittext.text.toString().trim())
+                            intent.putExtra("deliveryType", (business_delivery_type - 1).toString())
+                            intent.putExtra("email", emailEdittext.text.toString().trim())
+                            intent.putExtra("mobile", et_mobileNo.text.toString().trim())
+                            intent.putExtra(
+                                "businessPhone",
+                                et_businessPhone.text.toString().trim()
+                            )
+                            intent.putExtra("website", et_website.text.toString().trim())
+                            intent.putExtra(
+                                "buisnessAddress",
+                                et_businessAddress.text.toString().trim()
+                            )
+                            intent.putExtra("city", et_city.text.toString().trim())
+                            intent.putExtra("state", et_state.text.toString().trim())
+                            intent.putExtra("postalCode", et_zipCode.text.toString().trim())
+                            intent.putExtra("country", spinner.selectedItem.toString())
+                            intent.putExtra("password", passwordEdittext.text.toString().trim())
                             intent.putExtra("firstimage", firstimage)
                             intent.putExtra("otp", otp)
                             startActivity(intent)

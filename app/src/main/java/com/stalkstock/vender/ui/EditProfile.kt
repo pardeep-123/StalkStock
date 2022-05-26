@@ -37,8 +37,8 @@ import java.util.*
 
 class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
     private var from = ""
-    private var mAlbumFiles = ArrayList<AlbumFile?>()
     var firstimage = ""
+    var coverImage = ""
     var context: Context? = null
     var setimage: ImageView? = null
     override fun getContentId(): Int {
@@ -51,6 +51,10 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         val button = findViewById<Button>(R.id.editprofile_savebtn)
         setimage = findViewById(R.id.editprofile_imageset)
         setimage?.setOnClickListener(this)
+
+        ivCoverImage.setOnClickListener {
+            selectImage(ivCoverImage, "2")
+        }
 
         imageView.setOnClickListener {
             onBackPressed()
@@ -70,7 +74,7 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         map.put("lastName", mUtils.createPartFromString(editprofile_last_name.text.toString()))
         map.put("shopAddress", mUtils.createPartFromString(editprofile_address.text.toString()))
         from = "edit"
-        viewModel.editVendorProfileDetail(this, true, map, firstimage, mUtils)
+        viewModel.editVendorProfileDetail(this, true, map, firstimage,coverImage, mUtils)
         viewModel.homeResponse.observe(this, this)
 
     }
@@ -107,8 +111,6 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
     }
 
     private fun askCameraPermissons() {
-        mAlbumFiles = ArrayList()
-        mAlbumFiles.clear()
         selectImage(setimage, "1")
     }
 
@@ -119,10 +121,11 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
             .camera(true)
             .columnCount(4)
             .onResult { result ->
-                mAlbumFiles.addAll(result)
                 Glide.with(this@EditProfile).load(result[0].path).into(setimage!!)
                 if (s == "1") {
                     firstimage = result[0].path
+                }else if (s=="2"){
+                    coverImage = result[0].path
                 }
             }
             .onCancel { }
@@ -205,6 +208,7 @@ class EditProfile : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
     private fun setData(mResponse: VendorProfileDetail) {
         Glide.with(this).load(mResponse.body.vendorDetail.image).into(editprofile_imageset as ImageView)
+        Glide.with(this).load(mResponse.body.vendorDetail.coverImage).into(ivCoverImage)
         editprofile_name.setText(mResponse.body.vendorDetail.firstName)
         editprofile_last_name.setText(mResponse.body.vendorDetail.lastName)
         editprofile_email.setText(mResponse.body.email)

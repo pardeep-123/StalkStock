@@ -78,19 +78,46 @@
                         tools:ignore="MissingConstraints">
 
                         <RelativeLayout
+                            android:id="@+id/rlCoverPic"
+                            android:gravity="center"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="@dimen/_120sdp">
 
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/editprofile_imageset"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
+                            <ImageView
+                                android:id="@+id/ivCoverImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/dark_green_colour"
+                                android:contentDescription="@string/app_name"
+                                android:scaleType="centerCrop" />
+
+                            <ImageView
+                                android:id="@+id/ivCameraIcon"
+                                android:layout_width="@dimen/_25sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:src="@drawable/pro_camera_icon" />
+
+                            <com.stalkstock.utils.custom.TitiliumBoldTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/ivCameraIcon"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginTop="20dp"
-                                android:gravity="center"
-                                android:src="@drawable/camera_green" />
-
+                                android:layout_gravity="center"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/add_change_cover_photo"
+                                android:textColor="@color/white" />
                         </RelativeLayout>
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/editprofile_imageset"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:src="@drawable/camera_green" />
 
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="wrap_content"

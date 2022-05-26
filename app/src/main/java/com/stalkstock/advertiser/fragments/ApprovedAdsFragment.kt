@@ -20,12 +20,13 @@ import com.stalkstock.api.Status
 import kotlinx.android.synthetic.main.fragment_approved_ads.view.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.util.*
 import kotlin.collections.HashMap
 
 class ApprovedAdsFragment : Fragment(), Observer<RestObservable> {
 
-    lateinit var v:View
-    lateinit var mContext:Context
+    lateinit var v: View
+    lateinit var mContext: Context
 
     val viewModel: AdvertiserViewModel by lazy {
         ViewModelProvider(this).get(AdvertiserViewModel::class.java)
@@ -36,7 +37,7 @@ class ApprovedAdsFragment : Fragment(), Observer<RestObservable> {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        v= inflater.inflate(R.layout.fragment_approved_ads, container, false)
+        v = inflater.inflate(R.layout.fragment_approved_ads, container, false)
         mContext = activity as Context
 
         return v
@@ -48,40 +49,44 @@ class ApprovedAdsFragment : Fragment(), Observer<RestObservable> {
                 MultipartBody.FORM, string
             )
         }
+
         val map = HashMap<String, RequestBody>()
         map["type"] = createPartFromString("1")
-        viewModel.getAdsList(requireActivity(),true,map)
-        viewModel.mResponse.observe(requireActivity(),this)
+        map["currencyType"] =
+            createPartFromString(Currency.getInstance(Locale.getDefault()).toString())
+        viewModel.getAdsList(requireActivity(), true, map)
+        viewModel.mResponse.observe(requireActivity(), this)
     }
 
     override fun onChanged(it: RestObservable?) {
 
-            when {
-                it!!.status == Status.SUCCESS -> {
+        when {
+            it!!.status == Status.SUCCESS -> {
 
-                    if (it.data is BusinessAdsList){
-                        val data = it.data
-                        if (data.code == 200){
-                            val adsList: List<BusinessAdsList.Body> = data.body
-                            setAdapter(adsList)
-                        }
+                if (it.data is BusinessAdsList) {
+                    val data = it.data
+                    if (data.code == 200) {
+                        val adsList: List<BusinessAdsList.Body> = data.body
+                        setAdapter(adsList)
                     }
-                }
-
-                it.status == Status.ERROR -> {
-                    if (it.data != null) {
-                        Toast.makeText(requireActivity(), it.data as String, Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-                it.status == Status.LOADING -> {
                 }
             }
+
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Toast.makeText(requireActivity(), it.data as String, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireActivity(), it.error!!.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            it.status == Status.LOADING -> {
+            }
         }
+    }
 
     private fun setAdapter(adsList: List<BusinessAdsList.Body>) {
-        val adapter = ApprovedAdsAdapter(mContext,adsList)
+        val adapter = ApprovedAdsAdapter(mContext, adsList)
         v.rv_approved.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
         v.rv_approved.adapter = adapter
     }
@@ -90,4 +95,4 @@ class ApprovedAdsFragment : Fragment(), Observer<RestObservable> {
         super.onResume()
         getApprovedAdsList()
     }
-    }
+}

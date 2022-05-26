@@ -181,7 +181,8 @@ interface RestApiInterface {
 
     @Multipart
     @POST(URL.USERSIGNUP)
-    fun usersignup(@PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+    fun usersignup(
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
     ): Observable<ModelSignupUser>
 
     @Multipart
@@ -244,14 +245,16 @@ interface RestApiInterface {
     @Multipart
     @PUT(URL.editVendorProfileDetail)
     fun editVendorProfileDetail(
-        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?
+        @PartMap map: HashMap<String, RequestBody>, @Part profileImage: MultipartBody.Part?,
+        @Part coverImage: MultipartBody.Part?
     ): Observable<UpdateVendorProfileModel>
 
     @Multipart
     @POST(URL.VENDORSIGNUP)
     fun vendorsignup(
         @PartMap map: HashMap<String, RequestBody>,
-        @Part image: MultipartBody.Part?
+        @Part image: MultipartBody.Part?,
+        @Part coverImage: MultipartBody.Part?
     ): Observable<VendorSignupResponse>
 
     @FormUrlEncoded
@@ -288,13 +291,13 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<VendorBiddingListResponse>
 
-  @Multipart
+    @Multipart
     @POST(URL.VENDORBIDDINGDETAIL)
     fun vendorBiddingDetail(
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<VendorBidDetailResponse>
 
-  @Multipart
+    @Multipart
     @POST(URL.VENDORACCEPTBID)
     fun vendorAcceptBid(
         @PartMap map: HashMap<String, RequestBody>
@@ -328,8 +331,9 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>
     ): Observable<DefaultDataModel>
 
+    @FormUrlEncoded
     @POST(URL.driverOrderRequestAPI)
-    fun driverOrderRequestAPI(): Observable<NewOrderResponse>
+    fun driverOrderRequestAPI(@FieldMap map: HashMap<String, String>): Observable<NewOrderResponse>
 
     @Multipart
     @POST(URL.DRIVERSIGNUP)
@@ -403,7 +407,7 @@ interface RestApiInterface {
     @POST(URL.getNotificationList)
     fun getNotificationList(@FieldMap map: HashMap<String, String>): Observable<NotificationListData>
 
-   // @DELETE(URL.deleteCard)
+    // @DELETE(URL.deleteCard)
 
 
     @FormUrlEncoded
@@ -422,7 +426,8 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(URL.advertiserProfile)
     fun getUserProfile(
-        @FieldMap map: HashMap<String, String>): Observable<AdvertiserProfileDetailResponse>
+        @FieldMap map: HashMap<String, String>
+    ): Observable<AdvertiserProfileDetailResponse>
 
     @Multipart
     @PUT(URL.editAdvertiserProfileDetail)
@@ -433,7 +438,8 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(URL.getBuisnessDetail)
     fun getBusinessProfile(
-        @FieldMap map: HashMap<String, String>): Observable<AdvertiserSignUpResponse>
+        @FieldMap map: HashMap<String, String>
+    ): Observable<AdvertiserSignUpResponse>
 
     @Multipart
     @PUT(URL.editAdvertiserBuisnessDetail)
@@ -447,7 +453,7 @@ interface RestApiInterface {
     @FormUrlEncoded
     @PUT(URL.notification_on_off)
     fun notificationOnOffAPI(
-       @FieldMap map: HashMap<String, String>
+        @FieldMap map: HashMap<String, String>
     ): Observable<NotificationResponse>
 
     @Multipart
@@ -468,7 +474,7 @@ interface RestApiInterface {
     fun editBuisnessAd(
 //        @PartMap map: HashMap<String, RequestBody>, @Part image: ArrayList<MultipartBody.Part>
 //    ): Observable<EditAdsResponse>
-        @PartMap map: HashMap<String, RequestBody>, @Part image:  MultipartBody.Part?
+        @PartMap map: HashMap<String, RequestBody>, @Part image: MultipartBody.Part?
     ): Observable<EditAdsResponse>
 
     @Multipart
@@ -491,7 +497,8 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(URL.getCommercialProfileDetail)
     fun getCommercialUserProfile(
-        @FieldMap map: HashMap<String, String>): Observable<CommercialProfileDetailResponse>
+        @FieldMap map: HashMap<String, String>
+    ): Observable<CommercialProfileDetailResponse>
 
     @Multipart
     @PUT(URL.editCommercialProfileDetail)
@@ -502,7 +509,8 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(URL.getCommercialBuisnessDetail)
     fun getCommercialBusinessDetail(
-        @FieldMap map: HashMap<String, String>): Observable<GetCommercialBuisnessDetail>
+        @FieldMap map: HashMap<String, String>
+    ): Observable<GetCommercialBuisnessDetail>
 
     @Multipart
     @PUT(URL.editCommercialBuisnessDetail)
@@ -513,7 +521,8 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(URL.bidinglist)
     fun getBidinglist(
-        @FieldMap map: HashMap<String, String>): Observable<BidingListResponse>
+        @FieldMap map: HashMap<String, String>
+    ): Observable<BidingListResponse>
 
     @Multipart
     @POST(URL.bidingDetail)
@@ -526,35 +535,35 @@ interface RestApiInterface {
     fun sendBidingRequest(@Body body: SendRequestData): Observable<Sendbidresponse>
 
     @POST(URL.orderPlace)
-    fun orderPlace(@Body body: HashMap<String,Any>): Observable<CommericalOrderPlaceResponse>
+    fun orderPlace(@Body body: HashMap<String, Any>): Observable<CommericalOrderPlaceResponse>
 
     @Multipart
     @PUT(URL.markAsPrimaryAddress)
-    fun makeDefaultAddress(@PartMap body: HashMap<String,Int>): Observable<CommonResponseModel>
+    fun makeDefaultAddress(@PartMap body: HashMap<String, Int>): Observable<CommonResponseModel>
 
     @Multipart
     @PUT(URL.makeDefaultCard)
-    fun makeDefaultCard(@PartMap body: HashMap<String,Int>): Observable<CommonResponseModel>
+    fun makeDefaultCard(@PartMap body: HashMap<String, Int>): Observable<CommonResponseModel>
 
     @Multipart
     @POST(URL.addProductRating)
-    fun addProductRating(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+    fun addProductRating(@PartMap body: HashMap<String, Any>): Observable<CommonResponseModel>
 
     @Multipart
     @POST(URL.userReview)
-    fun addUserReview(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+    fun addUserReview(@PartMap body: HashMap<String, Any>): Observable<CommonResponseModel>
 
     @Multipart
     @POST(URL.driverReview)
-    fun addDriverReview(@PartMap body: HashMap<String,Any>): Observable<CommonResponseModel>
+    fun addDriverReview(@PartMap body: HashMap<String, Any>): Observable<CommonResponseModel>
 
     @Multipart
     @POST(URL.getPayPalWebviewLink)
-    fun getPayPalLink(@PartMap body: HashMap<String,Any>): Observable<PayPalWebResponse>
+    fun getPayPalLink(@PartMap body: HashMap<String, Any>): Observable<PayPalWebResponse>
 
     @Multipart
     @POST(URL.getVendorProductSearch)
-    fun getVendorProduct(@PartMap body: HashMap<String,RequestBody>): Observable<CommonResponseModel>
+    fun getVendorProduct(@PartMap body: HashMap<String, RequestBody>): Observable<CommonResponseModel>
 
     @POST(URL.getPrimaryAddress)
     fun getPrimaryAddress(): Observable<PrimaryAddressModel>

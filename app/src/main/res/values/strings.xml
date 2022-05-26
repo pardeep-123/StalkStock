@@ -14,7 +14,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
 -->
     <string name="app_name">STALK + STOCK</string>
 <!--    <string name="maps_api_key">AIzaSyD8c46gsZPEYwRqSxm3tSg5zg5Yc7Jr7Gc</string>-->
-    <string name="maps_api_key">AIzaSyDG3ftTHL_IMGAd8c8vU-q0Oi-oURgTeKE</string>
+    <string name="maps_api_key" translatable="false">AIzaSyDG3ftTHL_IMGAd8c8vU-q0Oi-oURgTeKE</string>
 
 
     <string name="facebook_app_id">150987940516952</string>
@@ -263,6 +263,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="upgrade_desc">Add upto 2 photos.We don\'t allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!</string>
     <string name="no_messages">No Messages</string>
     <string name="chat_alert">We scan messages to enforce policies. Only purchases on STALK + STOCK qualify for coverage by STALK + STOCK purchase protection programs. Any communication requesting to complete a transaction outside of STALK + STOCK is not allowed and may lead to your account being suspended</string>
+    <string name="add_change_cover_photo_or_logo">Add/Change cover photo or Logo</string>
+    <string name="add_change_cover_photo">Add/Change cover photo</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>

@@ -136,6 +136,9 @@ class MainHomeFragment : Fragment(), View.OnClickListener, Observer<RestObservab
                 mActivity.mUtils.createPartFromString(currentHighPrice.toString())
             map["offset"] = mActivity.mUtils.createPartFromString(currentOffset.toString())
             map["limit"] = mActivity.mUtils.createPartFromString("500")
+            map["currencyType"] =
+                mActivity.mUtils.createPartFromString(
+                    Currency.getInstance(Locale.getDefault()).toString())
             viewModel.getVendorProductListAPI(mActivity, true, map)
             viewModel.homeResponse.observe(requireActivity(), this)
         }

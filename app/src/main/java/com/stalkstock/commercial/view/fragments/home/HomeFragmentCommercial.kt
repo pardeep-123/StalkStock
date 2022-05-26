@@ -25,7 +25,8 @@ import com.stalkstock.utils.others.AppUtils
 import com.stalkstock.utils.others.GlobalVariables
 import com.stalkstock.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home_commercial.*
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestObservable> {
     //  var listner: CommunicationListner? = null
@@ -125,6 +126,7 @@ class HomeFragmentCommercial : Fragment(), View.OnClickListener, Observer<RestOb
 
     private fun getBidingListApi() {
         val map = HashMap<String, String>()
+        map["currencyType"] =Currency.getInstance(Locale.getDefault()).toString()
         homeModel.getBidingList(requireActivity(), true, map)
         homeModel.homeResponse.observe(this, this)
     }

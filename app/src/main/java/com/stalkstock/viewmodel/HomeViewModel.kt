@@ -117,7 +117,9 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         termsAndCondition(activity, showLoader)
                     }
-                }) } }
+                })
+        }
+    }
 
     @SuppressLint("CheckResult")
     fun logout(
@@ -141,7 +143,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         logout(activity, showLoader)
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -167,7 +170,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getProfileDetail(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -193,9 +197,9 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getVendorProduct(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
-
 
 
     @SuppressLint("CheckResult")
@@ -259,7 +263,7 @@ class HomeViewModel : ViewModel() {
     fun makeDefaultAddress(
         activity: Activity,
         showLoader: Boolean,
-        addressId: HashMap<String,Int>
+        addressId: HashMap<String, Int>
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
@@ -497,7 +501,7 @@ class HomeViewModel : ViewModel() {
                 }
             }
 
-            restApiInterface.editProductAPI(hashMap,deleteImage, image)
+            restApiInterface.editProductAPI(hashMap, deleteImage, image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
@@ -510,9 +514,17 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        editProductAPI(activity, showLoader, hashMap, deleteImage,profileImage, mUtils)
+                        editProductAPI(
+                            activity,
+                            showLoader,
+                            hashMap,
+                            deleteImage,
+                            profileImage,
+                            mUtils
+                        )
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -594,7 +606,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getProductAccToCategorySubcategoryAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
 
@@ -621,7 +634,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getProductAccToCategoryAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
 
@@ -648,7 +662,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         addRecentSearchAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -673,7 +688,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         getRecentSearchAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -698,7 +714,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         deleteRecentSearchAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -724,7 +741,8 @@ class HomeViewModel : ViewModel() {
                     override fun onRetryApi() {
                         userBannerListAPI(activity, showLoader, hashMap)
                     }
-                }) }
+                })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -979,7 +997,7 @@ class HomeViewModel : ViewModel() {
     fun sendOtp(
         activity: Activity,
         showLoader: Boolean,
-        data: HashMap<String,RequestBody>
+        data: HashMap<String, RequestBody>
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
@@ -1009,17 +1027,25 @@ class HomeViewModel : ViewModel() {
         showLoader: Boolean,
         hashMap: HashMap<String, RequestBody>,
         firstimage: String,
+        coverImage: String,
         mUtils: Util
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             var image: MultipartBody.Part? = null
+            var coverImageMultiPart: MultipartBody.Part? = null
             if (firstimage.isNotEmpty()) {
                 val file = File(firstimage)
                 image = mUtils.prepareFilePart("image", file)
             }
 
-            restApiInterface.vendorsignup(hashMap, image)
+            if (coverImage.isNotEmpty()) {
+                val file = File(coverImage)
+                coverImageMultiPart = mUtils.prepareFilePart("coverImage", file)
+            }
+
+
+            restApiInterface.vendorsignup(hashMap, image, coverImageMultiPart)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
@@ -1032,7 +1058,14 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        postvendorsignupApi(activity, showLoader, hashMap, firstimage, mUtils)
+                        postvendorsignupApi(
+                            activity,
+                            showLoader,
+                            hashMap,
+                            firstimage,
+                            coverImage,
+                            mUtils
+                        )
                     }
                 })
         }
@@ -1153,16 +1186,22 @@ class HomeViewModel : ViewModel() {
         showLoader: Boolean,
         map: HashMap<String, RequestBody>,
         profileImage: String,
+        coverImage: String,
         mUtils: Util
     ) {
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             var image: MultipartBody.Part? = null
+            var coverImgMultiPart: MultipartBody.Part? = null
             if (profileImage.isNotEmpty()) {
                 val file = File(profileImage)
                 image = mUtils.prepareFilePart("image", file)
             }
+            if (coverImage.isNotEmpty()) {
+                val file = File(coverImage)
+                coverImgMultiPart = mUtils.prepareFilePart("coverImage", file)
+            }
 
-            restApiInterface.editVendorProfileDetail(map, image)
+            restApiInterface.editVendorProfileDetail(map, image,coverImgMultiPart)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { homeResponse.value = RestObservable.loading(activity, showLoader) }
@@ -1175,7 +1214,7 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        editVendorProfileDetail(activity, showLoader, map, profileImage, mUtils)
+                        editVendorProfileDetail(activity, showLoader, map, profileImage, coverImage,mUtils)
                     }
                 })
         }
@@ -1511,11 +1550,11 @@ class HomeViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun sendBidingRequest(
-        activity: Activity,addressId:Int,data:JSONArray, showLoader: Boolean
+        activity: Activity, addressId: Int, data: JSONArray, showLoader: Boolean
     ) {
         val jsonParser = JsonParser()
         val gsonObject = jsonParser.parse(data.toString()) as JsonArray
-        val dataObj= SendRequestData(addressId, gsonObject)
+        val dataObj = SendRequestData(addressId, gsonObject)
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
             restApiInterface.sendBidingRequest(dataObj)
@@ -1531,71 +1570,71 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        sendBidingRequest(activity,addressId,data, showLoader)
+                        sendBidingRequest(activity, addressId, data, showLoader)
                     }
                 })
         }
     }
 
-        @SuppressLint("CheckResult")
-        fun getBidingList(
-            activity: Activity,
-            showLoader: Boolean,
-            hashMap: HashMap<String, String>
-        ) {
-            if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
-                restApiInterface.getBidinglist(hashMap)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe {
-                        homeResponse.value = RestObservable.loading(activity, showLoader)
-                    }
-                    .subscribe(
-                        { homeResponse.value = RestObservable.success(it) },
-                        { homeResponse.value = RestObservable.error(activity, it) }
-                    )
-            } else {
-                AppUtils.showNoInternetAlert(activity,
-                    activity.getString(R.string.no_internet_connection),
-                    object : OnNoInternetConnectionListener {
-                        override fun onRetryApi() {
-                            getBidingList(activity, showLoader, hashMap)
-                        }
-                    })
-            }
-        }
-
-            @SuppressLint("CheckResult")
-            fun getBidingDetail(
-                activity: Activity,
-                showLoader: Boolean,
-                hashMap: HashMap<String, Int>
-            ) {
-                if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
-                    restApiInterface.getBidingDetail(hashMap)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe {
-                            homeResponse.value = RestObservable.loading(activity, showLoader)
-                        }
-                        .subscribe(
-                            { homeResponse.value = RestObservable.success(it) },
-                            { homeResponse.value = RestObservable.error(activity, it) }
-                        )
-                } else {
-                    AppUtils.showNoInternetAlert(activity,
-                        activity.getString(R.string.no_internet_connection),
-                        object : OnNoInternetConnectionListener {
-                            override fun onRetryApi() {
-                                getBidingDetail(activity, showLoader, hashMap)
-                            }
-                        })
+    @SuppressLint("CheckResult")
+    fun getBidingList(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, String>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getBidinglist(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    homeResponse.value = RestObservable.loading(activity, showLoader)
                 }
-            }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getBidingList(activity, showLoader, hashMap)
+                    }
+                })
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun getBidingDetail(
+        activity: Activity,
+        showLoader: Boolean,
+        hashMap: HashMap<String, Int>
+    ) {
+        if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
+            restApiInterface.getBidingDetail(hashMap)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    homeResponse.value = RestObservable.loading(activity, showLoader)
+                }
+                .subscribe(
+                    { homeResponse.value = RestObservable.success(it) },
+                    { homeResponse.value = RestObservable.error(activity, it) }
+                )
+        } else {
+            AppUtils.showNoInternetAlert(activity,
+                activity.getString(R.string.no_internet_connection),
+                object : OnNoInternetConnectionListener {
+                    override fun onRetryApi() {
+                        getBidingDetail(activity, showLoader, hashMap)
+                    }
+                })
+        }
+    }
 
     @SuppressLint("CheckResult")
     fun orderPlace(
-        activity: Activity, data: HashMap<String,Any>, showLoader: Boolean
+        activity: Activity, data: HashMap<String, Any>, showLoader: Boolean
     ) {
 
         if (AppUtils.isNetworkConnected(MyApplication.getinstance())) {
@@ -1612,7 +1651,7 @@ class HomeViewModel : ViewModel() {
                 activity.getString(R.string.no_internet_connection),
                 object : OnNoInternetConnectionListener {
                     override fun onRetryApi() {
-                        orderPlace(activity,data, showLoader)
+                        orderPlace(activity, data, showLoader)
                     }
                 })
         }

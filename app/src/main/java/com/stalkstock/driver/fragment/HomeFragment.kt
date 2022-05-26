@@ -54,6 +54,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
@@ -65,7 +66,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     private lateinit var mGoogleMap: GoogleMap
     lateinit var mapFragment: SupportMapFragment
-     var orderID: String = ""
+    var orderID: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -126,6 +127,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             updateCamera(mGoogleMap, mLatitude, mLongitude, 12F)
 
     }
+
     val viewModel: DriverViewModel by viewModels()
 
     override fun onMapReady(p0: GoogleMap?) {
@@ -144,12 +146,14 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         super.onResume()
         mactivity
         val map = HashMap<String, RequestBody>()
-       getOrderRequest()
+        getOrderRequest()
     }
 
-    fun getOrderRequest(){
-        viewModel.driverOrderRequestAPI(mactivity!!, true)
-        viewModel.mResponse.observe(this, this)
+    fun getOrderRequest() {
+        val map = HashMap<String, String>()
+        map["currencyType"] = Currency.getInstance(Locale.getDefault()).toString()
+        viewModel.driverOrderRequestAPI(mactivity!!, true,map)
+        viewModel.mResponse.observe(requireActivity(), this)
     }
 
     private fun enabaleMyLocationIfPermitted() {
@@ -193,10 +197,12 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         val margin = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 10f,
-            resources.displayMetrics).toInt()
+            resources.displayMetrics
+        ).toInt()
         val marginBottom = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 120f,
-            resources.displayMetrics).toInt()
+            resources.displayMetrics
+        ).toInt()
         rlp.setMargins(margin, margin, margin, marginBottom)
     }
 
@@ -235,7 +241,10 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                                         resources,
                                         R.drawable.black_map_circle
                                     ), 70, 120, false
-                                ))))
+                                )
+                            )
+                        )
+                )
 
 
                 val zoomLevel = 12.0f
@@ -252,7 +261,9 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     return
                 }
                 mGoogleMap!!.isMyLocationEnabled = false
-            } } }
+            }
+        }
+    }
 
     private fun updateDriverLocationSocket() {
         val userId = getPrefrence(GlobalVariables.SHARED_PREF_DRIVER.id, 0)
@@ -335,13 +346,19 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.tv_order.text = "Order ID : " + currentOrder.body.orderNo
         dialog.txtEstEarning.text = "$ " + currentOrder.body.shippingCharges
-        dialog.txtDatePopup.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
+        dialog.txtDatePopup.text = AppUtils.changeDateFormat(
+            currentOrder.body.updatedAt,
+            GlobalVariables.DATEFORMAT.DateTimeFormat3,
+            GlobalVariables.DATEFORMAT.DateTimeFormat2
+        )
         dialog.txtRestLocation.text = currentOrder.body.vendorDetail.shopAddress
         dialog.txtDestinationLocation.text = currentOrder.body.orderAddress.geoLocation
         dialog.txtAddressPopup.text = currentOrder.body.orderAddress.geoLocation
         dialog.tv_name.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
-        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.iv_sub as ImageView)
-        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo).into(dialog.ivShopLogo as ImageView)
+        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
+            .into(dialog.iv_sub as ImageView)
+        Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
+            .into(dialog.ivShopLogo as ImageView)
         Glide.with(this).load(currentOrder.body.image).into(dialog.iv_profile)
 
         dialog.btn_accept.setOnClickListener {
@@ -389,7 +406,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
             dialog.dismiss()
             val map = HashMap<String, RequestBody>()
 
-            Log.e("adsfdfas=====","$orderID")
+            Log.e("adsfdfas=====", "$orderID")
             map["status"] = RequestBody.create(MultipartBody.FORM, "1")
             map["acceptedLong"] = RequestBody.create(MultipartBody.FORM, mLongitude)
             map["acceptedLat"] = RequestBody.create(MultipartBody.FORM, mLatitude)
@@ -444,7 +461,6 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
     }
 
 
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -453,26 +469,31 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     val mResponse: NewOrderResponse = it.data
                     if (mResponse.code == GlobalVariables.URL.code) {
                         currentOrder = mResponse
-                        if(currentOrder.body==null){
-                            rlNoRequest.visibility=View.VISIBLE
-                            rl_tv.visibility=View.GONE
-                        }else{
-                            rlNoRequest.visibility=View.GONE
-                            rl_tv.visibility=View.VISIBLE
-                            if(currentOrder.body.orderStatus==1){
+                        if (currentOrder.body == null) {
+                            rlNoRequest.visibility = View.VISIBLE
+                            rl_tv.visibility = View.GONE
+                        } else {
+                            rlNoRequest.visibility = View.GONE
+                            rl_tv.visibility = View.VISIBLE
+                            if (currentOrder.body.orderStatus == 1) {
                                 if (currentOrder.body.orderNo != null) {
                                     orderID = currentOrder.body.id.toString()
                                     ca_tv1.visibility = View.VISIBLE
                                     tv_orderHome.text = "Order ID : " + currentOrder.body.orderNo
-                                    txtDateHome.text = AppUtils.changeDateFormat(currentOrder.body.updatedAt, GlobalVariables.DATEFORMAT.DateTimeFormat3, GlobalVariables.DATEFORMAT.DateTimeFormat2)
-                                    tv_nameHome.text = currentOrder.body.firstName + " " + currentOrder.body.lastName
+                                    txtDateHome.text = AppUtils.changeDateFormat(
+                                        currentOrder.body.updatedAt,
+                                        GlobalVariables.DATEFORMAT.DateTimeFormat3,
+                                        GlobalVariables.DATEFORMAT.DateTimeFormat2
+                                    )
+                                    tv_nameHome.text =
+                                        currentOrder.body.firstName + " " + currentOrder.body.lastName
                                     txtAddressHome.text = currentOrder.body.orderAddress.geoLocation
                                     Glide.with(this).load(currentOrder.body.vendorDetail.shopLogo)
                                         .into(imgVendorImage as ImageView)
-                                    Glide.with(this).load(currentOrder.body.image).into(iv_profileHome)
+                                    Glide.with(this).load(currentOrder.body.image)
+                                        .into(iv_profileHome)
                                 }
-                            }
-                            else {
+                            } else {
                                 ca_tv1.visibility = View.GONE
                             }
                         }
@@ -481,8 +502,7 @@ class HomeFragment : CurrentLocationActivity(), OnMapReadyCallback,
                     } else {
                         ca_tv1.visibility = View.VISIBLE
                     }
-                }
-                else{
+                } else {
                     ca_tv1.visibility = View.GONE
                 }
                 if (it.data is UserCommonModel) {
