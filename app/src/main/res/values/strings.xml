@@ -265,6 +265,8 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="chat_alert">We scan messages to enforce policies. Only purchases on STALK + STOCK qualify for coverage by STALK + STOCK purchase protection programs. Any communication requesting to complete a transaction outside of STALK + STOCK is not allowed and may lead to your account being suspended</string>
     <string name="add_change_cover_photo_or_logo">Add/Change cover photo or Logo</string>
     <string name="add_change_cover_photo">Add/Change cover photo</string>
+    <string name="product_title">Product Title</string>
+    <string name="enter_product_title">Enter Product title</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>

@@ -22,12 +22,13 @@ class GlobalVariables {
     }
 
     class FilterVariables {
-        companion object{
+        companion object {
             var currentLowPrice = 0
-             var currentHighPrice = 1000
-             var currentSortBy = ""
+            var currentHighPrice = 1000
+            var currentSortBy = ""
         }
     }
+
     class SHARED_PREF_USER {
         companion object {
             const val AUTH_KEY = "auth_key"
@@ -129,8 +130,8 @@ class GlobalVariables {
         }
     }
 
-    class SHARED_PREF_ADVERTISER{
-        companion object{
+    class SHARED_PREF_ADVERTISER {
+        companion object {
             const val AUTH_KEY = "auth_key"
             const val id = "id"
             const val role = "role"
@@ -168,8 +169,8 @@ class GlobalVariables {
         }
     }
 
-    class SHARED_PREF_COMMERCIAL{
-        companion object{
+    class SHARED_PREF_COMMERCIAL {
+        companion object {
             const val AUTH_KEY = "auth_key"
             const val id = "id"
             const val role = "role"
@@ -211,14 +212,15 @@ class GlobalVariables {
 
     object URL {
 
-        const val BASE_URL: String = "http://3.13.214.27:8800/api/"
-       // const val BASE_URL: String = "http://192.168.1.119:8800/api/"  //local
-        const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
-       // const val IMAGE_URL: String = "http://192.168.1.156:8800/uploads/"  // local
+//        const val BASE_URL: String = "http://3.13.214.27:8800/api/"
+        const val BASE_URL: String = "http://192.168.1.222:8800/api/"  //local
 
-            const val SOCKET_URL: String = "http://3.13.214.27:8800"
-          //  const val SOCKET_URL: String = "http://192.168.1.156:8800"  //local
-         //   const val IMAGE_URL: String = "http://202.164.42.227:8992/images/users/"
+//        const val IMAGE_URL: String = "http://3.13.214.27:8800/uploads/"
+        const val IMAGE_URL: String = "http://192.168.1.222:8800/uploads/"  // local
+
+//        const val SOCKET_URL: String = "http://3.13.214.27:8800"
+        const val SOCKET_URL: String = "http://192.168.1.222:8800"  //local
+        //   const val IMAGE_URL: String = "http://202.164.42.227:8992/images/users/"
 
 
         const val SECURITY_KEY: String = "stalkandstock1123"
@@ -254,7 +256,7 @@ class GlobalVariables {
         const val userAddUpdateToCart = "user/add/cart"
         const val helpContent = "helpContent"
         const val getCategoryList = "getCategoryList"
-        const val getUserCardData  = "user/cartDetail"
+        const val getUserCardData = "user/cartDetail"
         const val measurementList = "measurementList"
         const val USERSIGNUP = "user/signup"
         const val checkEmailMobileExist = "user/checkEmailMobileExist"
@@ -266,10 +268,10 @@ class GlobalVariables {
         const val VENDOREDITBUSINESSDETAIL = "vendor/editVendorBuisnessDetail"
         const val VENDORORDERLISTDETAIL = "vendor/orderList"
         const val VENDORORDERDETAIL = "vendor/orderDetail"
-        const val VENDORBIDDINGLIST="bidingAcceptRequestList"
-        const val VENDORBIDDINGDETAIL="vendor/biding/Detail"
-        const val VENDORACCEPTBID="vendor/accept/biding"
-        const val BUSINESS_TYPE="buisnessType"
+        const val VENDORBIDDINGLIST = "bidingAcceptRequestList"
+        const val VENDORBIDDINGDETAIL = "vendor/biding/Detail"
+        const val VENDORACCEPTBID = "vendor/accept/biding"
+        const val BUSINESS_TYPE = "buisnessType"
         const val code = 200
         const val FORGOTPASSWORD = "forgotPassword"
         const val GETPROFILE = "get_profile"
@@ -321,23 +323,23 @@ class GlobalVariables {
         const val makeDefaultCard = "user/markAsPrimary"
         const val markAsPrimaryAddress = "markAsPrimaryAddress"
 
-        const val addProductRating= "orderItemReview"
-        const val userReview= "userReview"
-        const val driverReview= "driverReview"
-        const val getPayPalWebviewLink="getPayPalWebviewLink"
-        const val getVendorProductSearch="vendor/vendorProductSearch"
-        const val getPrimaryAddress="getPrimaryAddress"
+        const val addProductRating = "orderItemReview"
+        const val userReview = "userReview"
+        const val driverReview = "driverReview"
+        const val getPayPalWebviewLink = "getPayPalWebviewLink"
+        const val getVendorProductSearch = "vendor/vendorProductSearch"
+        const val getPrimaryAddress = "getPrimaryAddress"
         const val sendOtp = "sendOtp"
 
-   /*     {
-            "addressId": 42,
-            "bidItem": [
-            {
-                "productId": 20,
-                "qty": 10
-            }
-           ]
-        }*/
+        /*     {
+                 "addressId": 42,
+                 "bidItem": [
+                 {
+                     "productId": 20,
+                     "qty": 10
+                 }
+                ]
+             }*/
         const val bidingDetail = "commercial/biding/Detail" //bidId
 
     }
@@ -384,8 +386,7 @@ class GlobalVariables {
 
     }
 
-    object DATEFORMAT
-    {
+    object DATEFORMAT {
         const val DateFormat = "MM/dd/yyyy"
         const val DateFormat1 = "dd MMM,yyyy"
         const val DateFormat2 = "yyyy-MM-dd"

@@ -21,6 +21,7 @@ data class ModelProductDetail(
         val mrp: String, // 4634.00
         val name: String, // jdjdfn
         val oldMrp: String, // 4634.00
+        val title: String, // 4634.00
         val parentId: Int, // 0
         val productType:Int,
         val percentageDiscount: Int, // 0

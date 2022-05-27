@@ -82,6 +82,7 @@ data class ProductVendor(
     val shopName: String,
     val totalRating: Int,
     val userId: Int,
+    val coverImage: String, //http://192.168.1.222:8800/uploads/cover/fa2cce29-a61b-4401-90f1-e8b54faf6d33.jpeg
     val firstName: String, // fndidk
     val lastName: String // fndidk
 )

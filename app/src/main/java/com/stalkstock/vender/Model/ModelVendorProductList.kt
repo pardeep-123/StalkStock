@@ -32,7 +32,8 @@ data class ModelVendorProductList(
             val productTag: List<ProductTag>,
             val status: Int, // 1
             val subCategoryId: Int, // 49
-            val vendorId: Int // 78
+            val vendorId: Int, // 78
+            val title: String // 78
         ) {
             data class ProductCategory(
                 val id: Int, // 38

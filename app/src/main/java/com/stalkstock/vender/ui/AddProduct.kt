@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -14,15 +13,10 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
-import com.live.stalkstockcommercial.ui.view.fragments.home.AdapterProductUnit2
 import com.stalkstock.R
 import com.stalkstock.api.RestObservable
 import com.stalkstock.api.Status
-import com.stalkstock.common.model.ModelMeasurementList
-import com.stalkstock.consumer.model.ModelProductListAsPerSubCat
 import com.stalkstock.utils.BaseActivity
-import com.stalkstock.utils.ProductUnitData
 import com.stalkstock.utils.custom.TitiliumBoldTextView
 import com.stalkstock.utils.custom.TitiliumRegularTextView
 import com.stalkstock.utils.others.AppUtils
@@ -32,14 +26,9 @@ import com.stalkstock.vender.adapter.AddEditImageModel
 import com.stalkstock.viewmodel.HomeViewModel
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_add_product.*
-import kotlinx.android.synthetic.main.activity_add_product.spinner
-import kotlinx.android.synthetic.main.activity_add_product.spinnerCountry
-import kotlinx.android.synthetic.main.activity_edit_product.*
-import kotlinx.android.synthetic.main.added_product.*
 import okhttp3.RequestBody
 
-class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable>{
-
+class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable> {
 
 
     private var arrStringMultipleImages: ArrayList<AddEditImageModel> = ArrayList()
@@ -65,8 +54,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     lateinit var setimage: RelativeLayout
 
 
-
-
     override fun getContentId(): Int {
         return R.layout.activity_add_product
     }
@@ -80,12 +67,12 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         setimage = findViewById(R.id.add_product)
         visibaleimage = findViewById(R.id.add_deleteicon)
 
-       // imagethree.setOnClickListener(this)
+        // imagethree.setOnClickListener(this)
         button.setOnClickListener(this)
         backarrow.setOnClickListener(this)
         cameropen.setOnClickListener(this)
         setimage.setOnClickListener(this)
-       // ivUpload.setOnClickListener(this)
+        // ivUpload.setOnClickListener(this)
 
 
         val countryAdapter = ArrayAdapter.createFromResource(
@@ -96,17 +83,21 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         countryAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinnerCountry.adapter = countryAdapter
 
-        spinnerCountry.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        spinnerCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 
-                if (position!=0){
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddProduct, R.color.black_color
                         )
                     )
-                }
-                else{
+                } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddProduct, R.color.black_color
@@ -114,6 +105,7 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                     )
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
@@ -127,17 +119,21 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         prodTypeAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinnerProdType.adapter = prodTypeAdapter
 
-        spinnerProdType.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        spinnerProdType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 
-                if (position!=0){
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddProduct, R.color.black_color
                         )
                     )
-                }
-                else{
+                } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddProduct, R.color.black_color
@@ -145,12 +141,13 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                     )
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
 
 
-         val availAdapter = ArrayAdapter.createFromResource(
+        val availAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.Select_Category_available,
             R.layout.spinner_layout_for_vehicle
@@ -158,17 +155,21 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         availAdapter.setDropDownViewResource(R.layout.spiner_layout_text)
         spinner.adapter = availAdapter
 
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 
-                if (position!=0){
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddProduct, R.color.black_color
                         )
                     )
-                }
-                else{
+                } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddProduct, R.color.sort_popup_gray_color
@@ -176,13 +177,15 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                     )
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
 
         try {
             val args = intent.getBundleExtra("images")
-            arrStringMultipleImages = args!!.getSerializable("ARRAYLIST") as ArrayList<AddEditImageModel>
+            arrStringMultipleImages =
+                args!!.getSerializable("ARRAYLIST") as ArrayList<AddEditImageModel>
             currentCatId = intent.getStringExtra("catId")!!
             currentSubCatId = intent.getStringExtra("subCatId")!!
             currentTags = intent.getStringExtra("tags")!!
@@ -200,9 +203,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     val viewModel: HomeViewModel by viewModels()
 
 
-
-
-
     override fun onClick(view: View) {
         val id = view.id
         when (id) {
@@ -215,8 +215,8 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 }
 //                    addProductAlertDialog()
             }
-           // R.id.add_uploadimages ->
-                //askCameraPermissons()
+            // R.id.add_uploadimages ->
+            //askCameraPermissons()
 
 
         }
@@ -224,10 +224,10 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
 
     private fun addproductAPI() {
 
-       /* if(mAlbumFilesMultiple.size==0){
-            AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
-            return
-        }*/
+        /* if(mAlbumFilesMultiple.size==0){
+             AppUtils.showErrorAlert(this, "Please upload atleast one photo of the product")
+             return
+         }*/
         var map = HashMap<String, RequestBody>()
         map["categoryId"] = mUtils.createPartFromString(currentCatId)
         map["subCategoryId"] = mUtils.createPartFromString(currentSubCatId)
@@ -236,26 +236,27 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         map["productId"] = mUtils.createPartFromString(productId)
         map["description"] = mUtils.createPartFromString(addproductdescription.text.toString())
         map["brandName"] = mUtils.createPartFromString(addproductbrand.text.toString())
+        map["title"] = mUtils.createPartFromString(edtProductTitle.text.toString())
         map["mrp"] = mUtils.createPartFromString(price)
         map["country"] = mUtils.createPartFromString(spinnerCountry.selectedItem.toString())
 
         //productType(0=>veg 1=>non veg)
-        var avail=0
-        var productType=0
-        if(spinner.selectedItemPosition==1){
-            avail=1
-        }else{
-            avail=0
+        var avail = 0
+        var productType = 0
+        if (spinner.selectedItemPosition == 1) {
+            avail = 1
+        } else {
+            avail = 0
         }
 
-        if(spinnerProdType.selectedItemPosition==1){
-            productType=0
-        }else{
-            productType=1
+        if (spinnerProdType.selectedItemPosition == 1) {
+            productType = 0
+        } else {
+            productType = 1
         }
 
         map["availability"] = mUtils.createPartFromString(avail.toString())
-       // map["productType"] = mUtils.createPartFromString(productType.toString())
+        // map["productType"] = mUtils.createPartFromString(productType.toString())
         var arrayList: ArrayList<String> = ArrayList()
         for (i in arrStringMultipleImages) {
             arrayList.add(i.name!!)
@@ -266,7 +267,10 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     }
 
     private fun validations(): Boolean {
-       if (addproductbrand.text.toString().trim().isEmpty()) {
+        if (edtProductTitle.text.toString().trim().isEmpty()) {
+            AppUtils.showErrorAlert(this, "Please enter product title")
+            return false
+        } else if (addproductbrand.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter brand")
             return false
         }   /*else if(spinnerProdType.selectedItemPosition == 0) {
@@ -274,13 +278,13 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
             AppUtils.showErrorAlert(this, getString(R.string.please_select_product_type))
             return false
         }*/
-        else if(spinnerCountry.selectedItemPosition==0) {
+        else if (spinnerCountry.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(this, "Please select country")
             return false
         } else if (addproductdescription.text.toString().trim().isEmpty()) {
             AppUtils.showErrorAlert(this, "Please enter description")
             return false
-        }else if (spinner.selectedItemPosition==0) {
+        } else if (spinner.selectedItemPosition == 0) {
             AppUtils.showErrorAlert(this, "Please select product availability")
             return false
         } else
@@ -312,8 +316,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     }
 
 
-
-
     private fun upgradeSubscriptionDialog() {
         val logoutUpdatedDialogs = Dialog(this)
         logoutUpdatedDialogs.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -333,8 +335,8 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
         val tvTitle = logoutUpdatedDialogs.findViewById<TitiliumBoldTextView>(R.id.tvTitle)
         verifyset.setImageResource(R.drawable.warning_icon)
 
-        tvTitle.text= getString(R.string.time_to_upgrade_your_account)
-        tvDesc.text= getString(R.string.reached_your_limit_description)
+        tvTitle.text = getString(R.string.time_to_upgrade_your_account)
+        tvDesc.text = getString(R.string.reached_your_limit_description)
 
         btncontinue.setOnClickListener {
             startActivity(Intent(this@AddProduct, Subscription::class.java))
@@ -351,8 +353,6 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
     }
 
 
-
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -367,9 +367,9 @@ class AddProduct : BaseActivity(), View.OnClickListener, Observer<RestObservable
                 }
             }
             it.status == Status.ERROR -> {
-                if(it.error!!.toString()=="Please upgrade your Subscription Plan"){
-                 upgradeSubscriptionDialog()
-                }else{
+                if (it.error!!.toString() == "Please upgrade your Subscription Plan") {
+                    upgradeSubscriptionDialog()
+                } else {
                     if (it.data != null) {
                         Toast.makeText(this, it.data as String, Toast.LENGTH_SHORT).show()
                     } else {

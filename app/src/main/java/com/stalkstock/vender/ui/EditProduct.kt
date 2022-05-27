@@ -47,14 +47,7 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_add_product.*
-import kotlinx.android.synthetic.main.activity_edit_business_profile.*
 import kotlinx.android.synthetic.main.activity_edit_product.*
-import kotlinx.android.synthetic.main.activity_edit_product.spinner
-import kotlinx.android.synthetic.main.activity_edit_product.spinnerCountry
-import kotlinx.android.synthetic.main.activity_edit_product.spinnerSubCategory
-import kotlinx.android.synthetic.main.activity_select_category.*
-import kotlinx.android.synthetic.main.added_product.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
@@ -312,6 +305,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
 
         addproduct_Brand.setText(currentProductModel.body.brandName)
         addproduct_productname.setText(currentProductModel.body.name)
+        edtProductTitle.setText(currentProductModel.body.title)
         val countryName: Array<String> = resources.getStringArray(R.array.Select_country)
         for (i in countryName.indices) {
             if (currentProductModel.body.country == countryName[i]) {
@@ -491,6 +485,10 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
                     return false
                 }
 
+                edtProductTitle.text.toString().trim().isEmpty() -> {
+                    AppUtils.showErrorAlert(this, "Please enter product title")
+                    return false
+                }
                 addproduct_Brand.text.toString().trim().isEmpty() -> {
                     AppUtils.showErrorAlert(this, "Please enter brand")
                     return false
@@ -587,6 +585,7 @@ class EditProduct : BaseActivity(), View.OnClickListener, Observer<RestObservabl
         map["measurementId"] = mUtils.createPartFromString(curreMeasurementId)
         map["tag"] = mUtils.createPartFromString(addproduct_tag.text.toString())
         map["name"] = mUtils.createPartFromString(addproduct_productname.text.toString())
+        map["title"] = mUtils.createPartFromString(edtProductTitle.text.toString())
         map["description"] = mUtils.createPartFromString(addproduct_description.text.toString())
         map["brandName"] = mUtils.createPartFromString(addproduct_Brand.text.toString())
         map["mrp"] = mUtils.createPartFromString(addproduct_addprice.text.toString())

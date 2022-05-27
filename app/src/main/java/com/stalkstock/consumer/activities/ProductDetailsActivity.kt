@@ -198,6 +198,7 @@ class ProductDetailsActivity : BaseActivity(), Observer<RestObservable> {
             shopLocation.text =this.ShopAddress+" "+this.city+" "+this.state+" "+this.country
         }
         img.loadImage(mResponse.body.product.productVendor.shopLogo)
+        imgShopCover.loadImage(mResponse.body.product.productVendor.coverImage)
 
         currentModel.addAll(mResponse.body.sellerProduct)
 

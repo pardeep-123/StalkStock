@@ -633,7 +633,9 @@ class HomeCounsumerFragment : CurrentLocationActivity(), Observer<RestObservable
 
             override fun run() {
                 val count = detailAdapter?.count!!
-                setCurrentItem(scrollPosition++ % count, true)
+                if (count > 0){
+                    setCurrentItem(scrollPosition++ % count, true)
+                }
 
                 handler.postDelayed(this, interval)
             }
