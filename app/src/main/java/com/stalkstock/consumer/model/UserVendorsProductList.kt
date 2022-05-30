@@ -49,6 +49,7 @@ data class SellerProduct(
     val measurementId: Int,
     val mrp: String,
     val name: String,
+    val title: String,
     val oldMrp: String,
     val parentId: Int,
     val percentageDiscount: Int,

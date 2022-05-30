@@ -31,7 +31,7 @@ class ProductsAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.itemView.starCount.text = currentModel[position].name
+        holder.itemView.starCount.text = currentModel[position].title+" "+currentModel[position].name
         currentModel[position].productVendor.apply {
             holder.itemView.txtLocation.text =this.ShopAddress+" "+this.city+" "+this.state+" "+this.country
         }

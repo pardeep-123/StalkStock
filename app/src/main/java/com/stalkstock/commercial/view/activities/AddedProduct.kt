@@ -126,7 +126,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 position: Int,
                 id: Long
             ) {
-                if (position !=0) {
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@AddedProduct, R.color.black_color
@@ -569,7 +569,13 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
         listProduct.clear()
         listProduct.add("Select Product")
         for (i in 0 until currentModel.size) {
-            listProduct.add(currentModel[i].name)
+            if (!currentModel[i].title.isNullOrEmpty()) {
+                listProduct.add(currentModel[i].title + " " + currentModel[i].name)
+
+            } else {
+                listProduct.add(currentModel[i].name)
+
+            }
         }
 
         productAdapter.notifyDataSetChanged()

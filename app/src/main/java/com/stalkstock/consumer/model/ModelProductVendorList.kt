@@ -51,6 +51,7 @@ data class ModelProductVendorList(
             val measurementId: Int, // 1
             val mrp: String, // 56.00
             val name: String, // dnnfn
+            val title: String, // dnnfn
             val oldMrp: String, // 5665656.00
             val parentId: Any, // null
             val percentageDiscount: Int, // 0

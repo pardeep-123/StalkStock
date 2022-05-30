@@ -30,7 +30,7 @@ class ProductsdetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        holder.itemView.starCount.text = currentModel[position].name
+        holder.itemView.starCount.text = currentModel[position].title+" "+currentModel[position].name
        // holder.itemView.location_text.visibility = View.VISIBLE
         holder.itemView.description_textbox.text= currentModel[position].description
        // holder.itemView.location_text.text= currentModel[position]

@@ -53,7 +53,8 @@ import kotlinx.android.synthetic.main.activity_select_category.spinnerGetProduct
 import kotlinx.android.synthetic.main.added_product.*
 import okhttp3.RequestBody
 
-class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObservable>,AdapterMultipleFiles.MultipleFilesInterface {
+class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObservable>,
+    AdapterMultipleFiles.MultipleFilesInterface {
     private lateinit var subCatAdapter: ArrayAdapter<String>
     private var list: ArrayList<String> = ArrayList()
     private var listCategoryBody: ArrayList<ModelCategoryList.Body> = ArrayList()
@@ -66,8 +67,8 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     lateinit var textView2: TextView
     lateinit var textView3: TextView
     var categoryId = "0"
-    var adapterPosition=0
-    private var productId: String=""
+    var adapterPosition = 0
+    private var productId: String = ""
     var subCategoryId = "0"
     lateinit var detailDialog: Dialog
     private var currentModel: ArrayList<ModelProductListAsPerSubCat.Body> = ArrayList()
@@ -99,7 +100,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         val backarrow = findViewById<ImageView>(R.id.selectctgbackarrow)
         val button = findViewById<Button>(R.id.enteritembutton)
         measurement = findViewById(R.id.addproductmasurement)
-        val ss = SpannableString(   tv_upgrade_desc.text )
+        val ss = SpannableString(tv_upgrade_desc.text)
 
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun updateDrawState(ds: TextPaint) {
@@ -126,10 +127,10 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         textView2 = findViewById(R.id.texttwo)
         textView3 = findViewById(R.id.textthree)
 
-        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages,firstImage)
+        adapterMultipleFiles = AdapterMultipleFiles(this, arrStringMultipleImages, firstImage)
 
-        adapterMultipleFiles.multipleFileInterface=this
-        rvSubImages.layoutManager = GridLayoutManager(this, 3,RecyclerView.VERTICAL,false)
+        adapterMultipleFiles.multipleFileInterface = this
+        rvSubImages.layoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
         rvSubImages.addItemDecoration(GridItemDecoration(this))
 
 //         rvSubImages.addItemDecoration(
@@ -264,21 +265,25 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         productAdapter = ArrayAdapter(this, R.layout.spiner_layout_text, listProduct)
         spinnerGetProduct!!.adapter = productAdapter
 
-        spinnerGetProduct.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        spinnerGetProduct.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 
-                if (position!=0){
+                if (position != 0) {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@SelectCategory, R.color.black_color
                         )
                     )
-                    val product = currentModel[spinnerGetProduct.selectedItemPosition-1]
+                    val product = currentModel[spinnerGetProduct.selectedItemPosition - 1]
                     productId = product.id.toString()
                     adapterMeasurements = AdapterProductUnit2(this@SelectCategory, listProductUnit)
                     getMeasurementAPI()
-                }
-                else{
+                } else {
                     (view as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             this@SelectCategory, R.color.sort_popup_gray_color
@@ -286,6 +291,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     )
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
@@ -293,6 +299,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         getCategories()
 
     }
+
     private fun getMeasurementAPI() {
         viewModel.measurementListAPI(this, true)
         viewModel.homeResponse.observe(this, this)
@@ -355,6 +362,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         viewModel.getProductAccToCategoryAPI(this, true, map)
         viewModel.homeResponse.observe(this, this)
     }
+
     private fun setData(mResponse: ModelProductListAsPerSubCat) {
         currentModel.clear()
         currentModel.addAll(mResponse.body)
@@ -363,10 +371,12 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         listProduct.clear()
         listProduct.add("Select Product")
         for (i in 0 until currentModel.size) {
-            listProduct.add(currentModel[i].name) }
+            listProduct.add(currentModel[i].title + " " + currentModel[i].name)
+        }
 
         productAdapter.notifyDataSetChanged()
     }
+
     private fun getSubCategoryAPI(id1: String) {
         listSubCategoryBody.clear()
         subCatAdapter.notifyDataSetChanged()
@@ -391,14 +401,14 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         val id = view.id
         when (id) {
 
-            R.id.addproductmasurement ->{
+            R.id.addproductmasurement -> {
                 setUnitList()
             }
 
-            R.id.ivDeleteImg ->{
-                firstImage=""
+            R.id.ivDeleteImg -> {
+                firstImage = ""
                 mAlbumFilesMultiple.removeAt(0)
-                ivDeleteImg.visibility=View.GONE
+                ivDeleteImg.visibility = View.GONE
                 ivUpload.setImageResource(R.drawable.camera_green)
             }
 
@@ -412,11 +422,10 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
             R.id.selectctgbackarrow -> onBackPressed()
             R.id.enteritembutton -> {
                 val tags = ltTagContainer.tags
-                if (mAlbumFilesMultiple.size==0) {
+                if (mAlbumFilesMultiple.size == 0) {
                     AppUtils.showErrorAlert(this, "Please select an image for the product")
 
-                }
-               else if (spinner.selectedItemPosition == 0) {
+                } else if (spinner.selectedItemPosition == 0) {
                     AppUtils.showErrorAlert(
                         this,
                         "Please select category"
@@ -431,19 +440,18 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                         this,
                         "Change category , Subcategory not found for this category "
                     )
-                }else if(spinnerGetProduct.selectedItemPosition==0) {
+                } else if (spinnerGetProduct.selectedItemPosition == 0) {
                     spinnerGetProduct.requestFocus()
                     AppUtils.showErrorAlert(this, getString(R.string.please_select_product))
-                }else if (addproductprice.text.toString().trim().isEmpty()) {
+                } else if (addproductprice.text.toString().trim().isEmpty()) {
                     AppUtils.showErrorAlert(this, "Please enter price")
 
-                }else if (addproductprice.text.toString().trim()=="0") {
+                } else if (addproductprice.text.toString().trim() == "0") {
                     AppUtils.showErrorAlert(this, "Price should be greater than 0")
 
                 } else if (curreMeasurementId.trim().isEmpty()) {
                     AppUtils.showErrorAlert(this, "Please select measurement")
-                }
-                else if (tags.size < 1) {
+                } else if (tags.size < 1) {
                     AppUtils.showErrorAlert(
                         this,
                         "Add atleast one tag!"
@@ -461,7 +469,7 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                     intent.putExtra("tags", join)
                     val args = Bundle()
                     args.putSerializable("ARRAYLIST", arrStringMultipleImages)
-                    intent.putExtra("images",args)
+                    intent.putExtra("images", args)
                     startActivity(intent)
                 }
             }
@@ -548,9 +556,11 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
             }
         }
     }
+
     private fun askCameraPermissonsMultiple() {
         selectImage("2")
     }
+
     private fun selectImage(s: String) {
         if (s == "2") {
             Album.image(this)
@@ -561,31 +571,31 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
                 .selectCount(2)
                 .columnCount(4)
                 .onResult { result ->
-                  //  mAlbumFilesMultiple.clear
+                    //  mAlbumFilesMultiple.clear
                     mAlbumFilesMultiple.clear()
                     mAlbumFilesMultiple.addAll(result)
-                    if (firstImage.isEmpty()){
+                    if (firstImage.isEmpty()) {
 
-                        firstImage=result[0].path
+                        firstImage = result[0].path
                         Glide.with(this).load(firstImage).into(ivUpload)
-                        ivDeleteImg.visibility=View.VISIBLE
-                        val data= AddEditImageModel()
-                        data.name=result[0].path
-                        data.type="add"
+                        ivDeleteImg.visibility = View.VISIBLE
+                        val data = AddEditImageModel()
+                        data.name = result[0].path
+                        data.type = "add"
                         arrStringMultipleImages.add(data)
 
-                        if (result.size>1){
+                        if (result.size > 1) {
 
 
                             var tempList = ArrayList<AlbumFile>()
 
-                              tempList.addAll(result)
+                            tempList.addAll(result)
                             tempList.removeAt(0)
 //                            mAlbumFilesMultiple.removeAt(0)
                             setAdapter(tempList)
                         }
 
-                    }else{
+                    } else {
 
 
                         var tempList = ArrayList<AlbumFile>()
@@ -603,37 +613,37 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
         }
     }
 
-    var firstImage=""
-    private fun setAdapter(mAlbumFilesMultiple:ArrayList<AlbumFile>) {
+    var firstImage = ""
+    private fun setAdapter(mAlbumFilesMultiple: ArrayList<AlbumFile>) {
         arrStringMultipleImages.clear()
         for (i in 0 until mAlbumFilesMultiple.size) {
-                val data= AddEditImageModel()
-                data.name= mAlbumFilesMultiple[i].path
-                data.type="add"
-                arrStringMultipleImages.add(data)
+            val data = AddEditImageModel()
+            data.name = mAlbumFilesMultiple[i].path
+            data.type = "add"
+            arrStringMultipleImages.add(data)
         }
 
-        adapterMultipleFiles.firstImageUpdate(firstImage,arrStringMultipleImages)
-       // adapterMultipleFiles.notifyDataSetChanged()
+        adapterMultipleFiles.firstImageUpdate(firstImage, arrStringMultipleImages)
+        // adapterMultipleFiles.notifyDataSetChanged()
 
 
-       /* if(mAlbumFilesMultiple.size==1){
-            Glide.with(this).load(mAlbumFilesMultiple[0].path).into(imagesthree)
-        }
-        else if (mAlbumFilesMultiple.size > 0) {
-         //   arrStringMultipleImages.clear()
-                for (i in 0 until mAlbumFilesMultiple.size) {
-                    if(i==0){
-                        Glide.with(this).load(mAlbumFilesMultiple[0].path).into(imagesthree)
-                    }else{
-                        val data= AddEditImageModel()
-                        data.name= mAlbumFilesMultiple[i].path
-                        data.type="add"
-                        arrStringMultipleImages.add(data)
-                        adapterMultipleFiles.notifyDataSetChanged()
-                    }
-                }
-         }*/
+        /* if(mAlbumFilesMultiple.size==1){
+             Glide.with(this).load(mAlbumFilesMultiple[0].path).into(imagesthree)
+         }
+         else if (mAlbumFilesMultiple.size > 0) {
+          //   arrStringMultipleImages.clear()
+                 for (i in 0 until mAlbumFilesMultiple.size) {
+                     if(i==0){
+                         Glide.with(this).load(mAlbumFilesMultiple[0].path).into(imagesthree)
+                     }else{
+                         val data= AddEditImageModel()
+                         data.name= mAlbumFilesMultiple[i].path
+                         data.type="add"
+                         arrStringMultipleImages.add(data)
+                         adapterMultipleFiles.notifyDataSetChanged()
+                     }
+                 }
+          }*/
     }
 
 
@@ -673,19 +683,19 @@ class SelectCategory : BaseActivity(), View.OnClickListener, Observer<RestObserv
     }
 
     override fun onItemClick(position: Int, data: AddEditImageModel) {
-        if(data.type=="add"){
+        if (data.type == "add") {
             mAlbumFilesMultiple.removeAt(position)
             arrStringMultipleImages.removeAt(position)
             adapterMultipleFiles.notifyDataSetChanged()
-            Log.i("===",arrStringMultipleImages.size.toString())
+            Log.i("===", arrStringMultipleImages.size.toString())
         }
     }
 
     override fun onImageClick(position: Int) {
-        adapterPosition=position
-        if(position==0){
+        adapterPosition = position
+        if (position == 0) {
             askCameraPermissonsMultiple()
-        }else{
+        } else {
             startActivity(Intent(this@SelectCategory, Subscription::class.java))
         }
 

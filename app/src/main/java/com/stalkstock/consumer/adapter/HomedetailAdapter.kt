@@ -21,7 +21,7 @@ class HomedetailAdapter(
     var currentModel: ArrayList<ModelProductListAsPerSubCat.Body>,
     var currentDeliveryType: String,
     var searchFragment: SearchFragment?,
-    var homedetailsActivity:HomedetailsActivity?
+    var homedetailsActivity: HomedetailsActivity?
 ) :
     RecyclerView.Adapter<HomedetailAdapter.RecyclerViewHolder>() {
     var inflater: LayoutInflater
@@ -40,7 +40,7 @@ class HomedetailAdapter(
         val body = currentModel[position]
         if (body.productImage.size > 0)
             holder.itemView.img.loadImage(body.productImage[0].image)
-        holder.itemView.starCount.setText(body.name)
+        holder.itemView.starCount.setText(body.title + " " + body.name)
         //holder.itemView.price.setText("$" + body.mrp + "/")
         holder.itemView.star.visibility = View.GONE
         holder.itemView.price.visibility = View.GONE
@@ -51,7 +51,7 @@ class HomedetailAdapter(
             } else {
                 val intent = Intent(context, ProductActivity::class.java)
                 intent.putExtra("product_id", body.id.toString())
-                intent.putExtra("title", body.name.toString())
+                intent.putExtra("title", body.title + " " + body.name.toString())
                 intent.putExtra("sortBy", homedetailsActivity?.currentSortBy)
                 intent.putExtra("lowPrice", homedetailsActivity?.currentLowPrice)
                 intent.putExtra("highPrice", homedetailsActivity?.currentHighPrice)

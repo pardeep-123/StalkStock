@@ -21,12 +21,15 @@ import kotlin.collections.ArrayList
 import android.app.Activity
 
 
-
-
-class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var homeFragment: MainHomeFragment) :
-    RecyclerView.Adapter<TestAdapter.RecyclerViewHolder>(),Filterable {
+class TestAdapter(
+    var context: Context,
+    var currentModel: ArrayList<Product>,
+    var homeFragment: MainHomeFragment
+) :
+    RecyclerView.Adapter<TestAdapter.RecyclerViewHolder>(), Filterable {
     var inflater: LayoutInflater
-    var arrayList= ArrayList<Product>()
+    var arrayList = ArrayList<Product>()
+
     inner class RecyclerViewHolder(view: View?) : RecyclerView.ViewHolder(
         view!!
     )
@@ -40,31 +43,29 @@ class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val product = arrayList[position]
-        if(product.productImage.size>0){
+        if (product.productImage.size > 0) {
             holder.itemView.homeitemimage.loadImage(product.productImage[0].image)
         }
-        holder.itemView.itemname.setText(product.name)
+        holder.itemView.itemname.setText(product.title + " " + product.name)
         holder.itemView.kg.setText(product.productMeasurement.name)
         holder.itemView.editname.setText(product.productCategory.name)
-        holder.itemView.lb.setText(product.mrp+"/"+product.productMeasurement.name)
+        holder.itemView.lb.setText(product.mrp + "/" + product.productMeasurement.name)
         holder.itemView.edititem.setOnClickListener {
             val intent = Intent(context, ProductDetail::class.java)
-            intent.putExtra("product_id",product.id.toString())
+            intent.putExtra("product_id", product.id.toString())
             context.startActivity(intent)
 
         }
 
-        if (product.availability==1)
-        {
+        if (product.availability == 1) {
             holder.itemView.notavble.visibility = View.GONE
             holder.itemView.avble.visibility = View.VISIBLE
-        }
-        else
-        {
+        } else {
             holder.itemView.notavble.visibility = View.VISIBLE
             holder.itemView.avble.visibility = View.GONE
         }
     }
+
     override fun getItemCount(): Int {
         return arrayList.size
     }
@@ -108,14 +109,14 @@ class TestAdapter(var context: Context, var currentModel: ArrayList<Product>,var
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 arrayList = results?.values as ArrayList<Product>
 
-                if(arrayList.size>0){
-                    homeFragment.tvNoProducts?.visibility= View.GONE
-                    homeFragment.rvCategory?.visibility= View.VISIBLE
-                    homeFragment.llAddProduct?.visibility= View.VISIBLE
-                }else{
-                    homeFragment.tvNoProducts?.visibility= View.VISIBLE
-                    homeFragment.rvCategory?.visibility= View.GONE
-                    homeFragment.llAddProduct?.visibility= View.GONE
+                if (arrayList.size > 0) {
+                    homeFragment.tvNoProducts?.visibility = View.GONE
+                    homeFragment.rvCategory?.visibility = View.VISIBLE
+                    homeFragment.llAddProduct?.visibility = View.VISIBLE
+                } else {
+                    homeFragment.tvNoProducts?.visibility = View.VISIBLE
+                    homeFragment.rvCategory?.visibility = View.GONE
+                    homeFragment.llAddProduct?.visibility = View.GONE
                 }
                 notifyDataSetChanged()
             }
