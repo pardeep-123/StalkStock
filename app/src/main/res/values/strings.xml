@@ -17,7 +17,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="maps_api_key" translatable="false">AIzaSyDG3ftTHL_IMGAd8c8vU-q0Oi-oURgTeKE</string>
 
 
-    <string name="facebook_app_id">150987940516952</string>
+    <string name="facebook_app_id" translatable="false">150987940516952</string>
     <string name="default_notification_channel_id" translatable="false">Stalk_fcm_default_channel</string>
 
     <string name="add_or_change_profile_photo_or_logo">Add/Change Profile Photo or Logo</string>
@@ -50,7 +50,6 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="billing_info">Billing Info</string>
     <string name="enter_billing_info">Enter your billing info</string>
     <string name="send">Send</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="notifications">Notifications</string>
     <string name="business_profile">Business Profile</string>
     <string name="manage_payment_methods">Manage Payment Methods</string>
@@ -82,7 +81,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
 
 
     <string name="strok" />
-    <!--new2-->
+
     <string name="add_photo">Add Photo</string>
     <string name="resend"><u>Resend OTP?</u></string>
     <string name="save">Save</string>
@@ -127,9 +126,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="or">OR</string>
     <string name="your_order_no_8974563251_has_been_be_picked_up">Your order no <b>8974563251</b> has been be picked up!</string>
     <string name="i_want_to">I want to…</string>
-    <!--
-     <string name="by_tapping">By tapping \"LET\'S GO\", you agree to join the\nUser Experience Programme.</string>
--->
+
     <string name="enter_vehicle_make">Enter your vehicle make</string>
     <string name="enter_vehicle_model">Enter your vehicle model</string>
     <string name="enter_driver_license_number">Enter your driver\ʼs license number</string>
