@@ -62,11 +62,11 @@ class EditprofileConsumerActivity : BaseActivity(), Observer<RestObservable> {
     private fun validations(): Boolean {
         if (edtFirstName.text.toString().trim().isEmpty()) {
             edtFirstName.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter first name")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_first_name))
             return false
         } else if (edtLastName.text.toString().trim().isEmpty()) {
             edtLastName.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter last name")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_last_name))
             return false
         } else return true
     }

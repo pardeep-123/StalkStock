@@ -20,18 +20,20 @@ import kotlinx.android.synthetic.main.activity_business_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Observer<RestObservable>{
-    val mContext: Context =this
+class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener,
+    Observer<RestObservable> {
+    val mContext: Context = this
 
     val viewModel: AdvertiserViewModel by lazy {
         ViewModelProvider(this).get(AdvertiserViewModel::class.java)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         setContentView(R.layout.activity_business_profile)
-        tv_heading.text = "Business Profile"
+        tv_heading.text = getString(R.string.business_profile)
 
         iv_back.setOnClickListener(this)
         btn_edit.setOnClickListener(this)
@@ -40,16 +42,16 @@ class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Obser
     private fun getBusinessDetailApi() {
         val map = HashMap<String, String>()
 
-        viewModel.getBusinessDetail(this, true,map)
+        viewModel.getBusinessDetail(this, true, map)
         viewModel.mResponse.observe(this, this)
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.iv_back->{
+        when (p0?.id) {
+            R.id.iv_back -> {
                 finish()
             }
-            R.id.btn_edit->{
+            R.id.btn_edit -> {
                 startActivity(Intent(mContext, EditBusinessProfileActivity::class.java))
             }
         }
@@ -61,15 +63,17 @@ class BusinessProfileActivity : AppCompatActivity(), View.OnClickListener, Obser
                 if (it.data is AdvertiserSignUpResponse) {
                     val data = it.data
 
-                    if (data.code==200){
+                    if (data.code == 200) {
 
-                        businessnamee.text = data.body.advertiserDetail.firstName+" "+data.body.advertiserDetail.lastName
+                        businessnamee.text =
+                            data.body.advertiserDetail.firstName + " " + data.body.advertiserDetail.lastName
                         businessnamee1.text = data.body.advertiserDetail.buisnessName
                         businessaboutdetails.text = data.body.advertiserDetail.buisnessDescription
-                        if(data.body.advertiserDetail.buisnessLogo.isNullOrEmpty()){
-                         imageset.setImageResource(R.drawable.ic_dummy_img)
-                        }else{
-                            Glide.with(this).load(data.body.advertiserDetail.buisnessLogo).into(imageset)
+                        if (data.body.advertiserDetail.buisnessLogo.isNullOrEmpty()) {
+                            imageset.setImageResource(R.drawable.ic_dummy_img)
+                        } else {
+                            Glide.with(this).load(data.body.advertiserDetail.buisnessLogo)
+                                .into(imageset)
                         }
 
                         businesstypes.text = data.body.advertiserDetail.buisnessTypeName

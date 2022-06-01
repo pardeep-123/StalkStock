@@ -346,7 +346,7 @@
                         android:background="@drawable/edit_text_bg"
                         android:gravity="center_vertical"
                         android:id="@+id/edtDeliveryInstructions"
-                        android:hint="@string/enter_delivery_instructions_eg_gate_code"
+                        android:hint="@string/enter_delivery_instructions"
                         android:inputType="text"
                         android:maxLines="1"
                         android:minHeight="45dp"

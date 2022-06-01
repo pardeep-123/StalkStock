@@ -49,7 +49,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
     lateinit var actionSelectedTitle: String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         v= inflater.inflate(R.layout.fragment_add_post, container, false)
-        v.tv_heading.text= "Post Ad"
+        v.tv_heading.text= getString(R.string.post_ad)
         mContext = activity as Context
         return v
     }
@@ -98,7 +98,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                     showToDatePickerDialog(view)
                 }
                 else{
-                    Toast.makeText(requireActivity(),"Please select start date", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),getString(R.string.pls_select_start_date), Toast.LENGTH_SHORT).show()
                 }
 
 
@@ -223,7 +223,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 c123.error = resources.getString(R.string.please_enter_end_date)
             }
             actionselected.trim().isEmpty()-> {
-                Toast.makeText(requireActivity(),"Please select an action", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(),getString(R.string.pls_select_action), Toast.LENGTH_SHORT).show()
             }
 
             etAdsLink.text.toString().isEmpty() -> {
@@ -247,7 +247,7 @@ class AddPostFragment : Fragment(), View.OnClickListener ,OnClick{
                 etEnterDescription.error = resources.getString(R.string.please_enter_description)
             }
             !ivCheckbox.isChecked->{
-                Toast.makeText(requireActivity(),"Please select terms and conditions", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(),getString(R.string.pls_select_terms_condition), Toast.LENGTH_SHORT).show()
             }
 
 

@@ -39,7 +39,7 @@ class ChangePasswordActivity : BaseActivity(), View.OnClickListener, Observer<Re
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        tv_heading.text = "Change Password"
+        tv_heading.text = getString(R.string.change_password)
         iv_back.setOnClickListener(this)
         btn_update_pass.setOnClickListener(this)
     }
@@ -104,7 +104,7 @@ class ChangePasswordActivity : BaseActivity(), View.OnClickListener, Observer<Re
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tvmsg.text = "Your password has been successfully updated"
+        successfulUpdatedDialog.tvmsg.text = getString(R.string.password_successfully_updated)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

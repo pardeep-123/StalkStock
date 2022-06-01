@@ -29,7 +29,7 @@ class HelpActivity : BaseActivity(), View.OnClickListener, Observer<RestObservab
         super.onCreate(savedInstanceState)
         //    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        tv_heading.text = "Help"
+        tv_heading.text = getString(R.string.help)
         iv_back.setOnClickListener(this)
         btn_ok.setOnClickListener(this)
 

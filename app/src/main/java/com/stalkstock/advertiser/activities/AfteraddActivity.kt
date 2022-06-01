@@ -40,7 +40,7 @@ class AfteraddActivity : AppCompatActivity() , View.OnClickListener{
 
         setContentView(R.layout.activity_afteradd)
 
-        tv_heading.text = "Add A New Card"
+        tv_heading.text = getString(R.string.add_new_card)
         iv_back.setOnClickListener(this)
         btn_save.setOnClickListener(this)
         month_text.setOnClickListener(this)
@@ -71,7 +71,7 @@ class AfteraddActivity : AppCompatActivity() , View.OnClickListener{
         builder.setTitle(resources.getString(R.string.expiry_year))
         builder.setItems(
             yearArray,
-            DialogInterface.OnClickListener { dialog, item -> year_text.setText(yearArray!![item]) })
+            DialogInterface.OnClickListener { dialog, item -> year_text.setText(yearArray[item]) })
         val alert = builder.create()
         alert.show()
 

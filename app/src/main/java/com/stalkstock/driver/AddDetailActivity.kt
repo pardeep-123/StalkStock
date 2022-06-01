@@ -75,7 +75,7 @@ class AddDetailActivity : BaseActivity(), Observer<RestObservable> {
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateDateLabel()
         }
-        tv_heading.text = "Add Details"
+        tv_heading.text = getString(R.string.add_details)
         edText1.setOnClickListener {
             type = 1
             datePicker()

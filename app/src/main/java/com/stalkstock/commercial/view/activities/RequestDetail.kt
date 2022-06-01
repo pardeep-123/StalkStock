@@ -112,7 +112,7 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
     private fun clicks() {
         btnAccepts.setOnClickListener {
             if (btnAccepts.text != "Pay Now") {
-                btnAccepts.text = "Pay Now"
+                btnAccepts.text = getString(R.string.pay_now)
                 tvPrices.setTextColor(resources.getColor(R.color.green_colour))
                 ivTick.visibility = View.VISIBLE
             } else {
@@ -171,8 +171,8 @@ class RequestDetail : AppCompatActivity(), Observer<RestObservable> {
                         layShpList.visibility = VISIBLE
                         rl_edit.visibility = GONE
                         rl_delete.visibility = GONE
-                        tvType.text = "Item Name"
-                        tvQuantity.text = "Quantity"
+                        tvType.text = getString(R.string.item_name)
+                        tvQuantity.text = getString(R.string.quantity)
                         tvQuantityType.text = "U.O.M"
                         rvRequestProducts.adapter = RequestProductAdapter(list, orderItemList)
                         listBids.clear()

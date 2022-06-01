@@ -73,7 +73,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         setContentView(R.layout.activity_manage_payments)
         mUtils= Util()
         rvCards = findViewById(R.id.rvCards)
-        tv_heading.text = "Manage Payments"
+        tv_heading.text = getString(R.string.manage_payment)
         if (intent.getStringExtra("from") != null) {
             from = intent.getStringExtra("from")!!
 
@@ -82,7 +82,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
         }
         if(from=="add_post"){
             btn_checkout.visibility=View.VISIBLE
-            btn_checkout.text = "Save"
+            btn_checkout.text = getString(R.string.save)
         }
         else if(from=="account") {
             btn_checkout.visibility=View.GONE
@@ -116,7 +116,7 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
                 if(cardId=="0"){
                     AppUtils.showErrorAlert(
                         this,
-                        "Please add your card first before making a request."
+                        getString(R.string.add_your_card)
                     )
                     Handler(Looper.getMainLooper()).postDelayed({
 
@@ -297,8 +297,8 @@ class ManagePaymentsActivity : AppCompatActivity(), View.OnClickListener,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tvmsg.text = "Your ad details have been successfully submitted for approval. You can check the status of your ad in the Ad Manager!"
-        successfulUpdatedDialog.btn_ok.text = "Go to Ad Manager"
+        successfulUpdatedDialog.tvmsg.text = getString(R.string.ad_detail_submitted)
+        successfulUpdatedDialog.btn_ok.text = getString(R.string.go_to_ad_manager)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

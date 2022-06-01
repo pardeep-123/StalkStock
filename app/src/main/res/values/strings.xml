@@ -27,7 +27,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
-    <string name="no_need_to_worry_we_ll_send_an_email_nto_help_you_reset_it">No need to worry, we\'ll send an email to help you reset it.</string>
+    <string name="send_email_to_help">No need to worry, we\'ll send an email to help you reset it.</string>
     <string name="forgot_your_password">Forgot Your Password?</string>
     <string name="enter_your_email_address">Enter your email address</string>
     <string name="already_have_an_account">Already have an account?</string>
@@ -53,11 +53,12 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="notifications">Notifications</string>
     <string name="business_profile">Business Profile</string>
     <string name="manage_payment_methods">Manage Payment Methods</string>
+    <string name="manage_payment">Manage Payment</string>
     <string name="change_password">Change Password</string>
     <string name="help">Help</string>
     <string name="logout">Logout</string>
     <string name="you_have_no_ads_at_the_momemt">You have no Ads at the momemt!</string>
-    <string name="looks_like_you_have_no_ads_running_yet_nlets_get_you_started">Looks like You have no ads running yet.\nLets get you started</string>
+    <string name="looks_like_you_have_no_ads">Looks like You have no ads running yet.\nLets get you started</string>
     <string name="create_ad">Create Ad</string>
     <string name="ad_title">Ad Title</string>
     <string name="from">From</string>
@@ -65,7 +66,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="upload_image_640px_x_360px"><b>Upload Image</b> \nDimensions: 1000px Wide x 360px High \nText &amp; content boundary: 640px Wide x 360 High \n(Please note: any content outside of the 640px width will not display on smaller screens)</string>
     <string name="ad_destination_link">Ad Destination Link</string>
     <string name="daily_advertising_budget">Daily Advertising Budget</string>
-    <string name="i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements">I accept the Stalk + Stock Terms of Service (including promotion terms) and the Stalk + Stock Advertising Privacy Agreements.</string>
+    <string name="i_accept_the_stalk_stock_terms_of_service">I accept the Stalk + Stock Terms of Service (including promotion terms) and the Stalk + Stock Advertising Privacy Agreements.</string>
     <string name="preview_ad">Preview Ad</string>
     <string name="update">Update</string>
     <string name="edit_business_profile">Edit Business Profile</string>
@@ -111,20 +112,19 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="get_started_text2"><b> + STOCK</b>,</string>
     <string name="get_started_text3">your virtual</string>
     <string name="get_started_text4">marketplace! Let\'s get started by creating an\naccount that\'s tailored to your needs.\nWhat would you like to do today?</string>
-    <string name="i_want_to_purchase_items_for_my_household">purchase items for my household</string>
-    <string name="i_want_to_purchase_items_in_bulk_or_my_business">purchase items in bulk for my business</string>
-    <string name="i_want_to_sell_items_i_produce">sell items I produce</string>
-    <string name="i_want_to_offer_delivery_services_for_items">offer delivery services for items</string>
-    <string name="i_want_to_promote_my_goods_and_services">promote my goods and services</string>
+    <string name="purchase_items_household">purchase items for my household</string>
+    <string name="purchase_items_in_bulk">purchase items in bulk for my business</string>
+    <string name="sell_items_produce">sell items I produce</string>
+    <string name="delivery_services_items">offer delivery services for items</string>
+    <string name="promote_goods_and_services">promote my goods and services</string>
     <string name="upload_your_registration">Upload your registration</string>
-    <!--<string name="look_like_you_do">Looks like you don\'t have any deliveries at the movement. You can check again soon or update your range and be on the lookout for new notifications!</string>-->
     <string name="look_like_you_do">Looks like you don\'t have any deliveries at the movement. Try again later or widen your range and look out for new notifications.</string>
     <string name="look_like_you_products">Looks like you don\'t have anything available for sale at the moment! Let\'s get you started by adding some products. Tap on the button below.</string>
     <string name="look_like_you_not_request">Looks like you haven\'t placed any orders yet. Let\'s get you going by adding a new request.</string>
     <string name="look_like_your_cart">Looks like you haven\'t started shopping yet. Let\'s get you started!</string>
-    <string name="funds_transfer_in_progress_please_allow_3_5_business_days_for_transfer_to_be_completed">Funds transfer in progress. Please allow 3-5 business days for transfer to be completed.</string>
+    <string name="funds_transfer_in_progress">Funds transfer in progress. Please allow 3-5 business days for transfer to be completed.</string>
     <string name="or">OR</string>
-    <string name="your_order_no_8974563251_has_been_be_picked_up">Your order no <b>8974563251</b> has been be picked up!</string>
+    <string name="your_order_picked_up">Your order no <b>8974563251</b> has been be picked up!</string>
     <string name="i_want_to">I want to…</string>
 
     <string name="enter_vehicle_make">Enter your vehicle make</string>
@@ -151,7 +151,7 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="enter_state_province_region">Enter State/Province/Region</string>
     <string name="postal_zipcode">Postal/Zip Code</string>
     <string name="enter_postal_zipcode">Enter Postal/Zip Code (Enter 00000 for addresses without Postal/Zip Code)</string>
-    <string name="enter_delivery_instructions_eg_gate_code">Enter delivery instructions eg. Gate Code: 000</string>
+    <string name="enter_delivery_instructions">Enter delivery instructions eg. Gate Code: 000</string>
     <string name="enter_your_existing_password">Enter your existing password</string>
     <string name="enter_your_new_password">Enter your new password</string>
     <string name="enter_re_enter_your_new_password">Re-enter your new password</string>
@@ -264,6 +264,51 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="add_change_cover_photo">Add/Change cover photo</string>
     <string name="product_title">Product Title</string>
     <string name="enter_product_title">Enter Product title</string>
+    <string name="request_ad">Request Ad</string>
+    <string name="detail_dlt_successfully">Your ad details have been successfully deleted. You can check the status of your ad in the Ad Manager!</string>
+    <string name="go_to_ad_manager">Go to Ad Manager</string>
+    <string name="add_new_card">Add A New Card</string>
+    <string name="password_successfully_updated">Your password has been successfully updated</string>
+    <string name="edit_ad">Edit Ad</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="profile_updated">Your profile has been successfully updated!</string>
+    <string name="verification_in_progress">Verification is in progress.Please wait for admin approval</string>
+    <string name="add_your_card">Please add your card first before making a request.</string>
+    <string name="ad_detail_submitted">Your ad details have been successfully submitted for approval. You can check the status of your ad in the Ad Manager!</string>
+    <string name="post_ad">Post_ad</string>
+    <string name="payment">Payment</string>
+    <string name="pay_now">Pay now</string>
+    <string name="pls_add_card_first">Please add your card first</string>
+    <string name="pls_wait">Please wait…</string>
+    <string name="account">Account</string>
+    <string name="pls_select_start_date">Please select start date</string>
+    <string name="pls_select_action">Please select an action</string>
+    <string name="pls_select_terms_condition">Please select terms and conditions</string>
+    <string name="qty_greater_zero">Quantity should be greater than 0</string>
+    <string name="add_address_first">Please add your address first before sending the request.</string>
+    <string name="clear_chat">Are you sure you want to clear this Chat?</string>
+    <string name="home">Home</string>
+    <string name="my_orders">My Orders</string>
+    <string name="messages">Messages</string>
+    <string name="delivered_by">Delivered By</string>
+    <string name="shop_charges">Shop Charges</string>
+    <string name="pending">Pending</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="rejected">Rejected</string>
+    <string name="item_name">Item Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="request_dlt_successfully">Request deleted successfully</string>
+    <string name="select_location">Select your location first</string>
+    <string name="business">Business</string>
+    <string name="password_6_characters">Password should contain atleast 6 characters</string>
+    <string name="confirm_password_same">Confirm password should be same as password</string>
+    <string name="add_details">Add Details</string>
+    <string name="driver_information">Driver Information</string>
+    <string name="edit_driver_information">Edit Driver Information</string>
+    <string name="information_update_successful">Your information has been successfully updated!</string>
+    <string name="my_requests">My Requests</string>
+    <string name="pls_select_vehicle_type">Please select your vehicle type</string>
+    <string name="upload_documents">Upload Documents</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>
@@ -526,14 +571,11 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
         <item>Available</item>
         <item>Not Available</item>
     </string-array>
-
-
     <string-array name="Select_product_type">
         <item>-Select product type-</item>
         <item>Veg</item>
         <item>Non-Veg</item>
     </string-array>
-
     <string-array name="Select_business_type">
         <item>-Select your business type-</item>
         <item>Retailer</item>

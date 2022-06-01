@@ -55,12 +55,17 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
         tv_account = findViewById(R.id.tv_account)
 
         if (getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) != null) {
-            iv_notification.isChecked = getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) == 1
+            iv_notification.isChecked =
+                getPrefrence(GlobalVariables.SHARED_PREF_USER.status, 0) == 1
         }
 
         iv_notification.setOnCheckedChangeListener { compoundButton, b ->
-            if (b) { changeOnlineStatus("1") }
-            else { changeOnlineStatus("0") } }
+            if (b) {
+                changeOnlineStatus("1")
+            } else {
+                changeOnlineStatus("0")
+            }
+        }
         rl_home.setOnClickListener(this)
         rl_plus.setOnClickListener(this)
         rl_profile1.setOnClickListener(this)
@@ -107,7 +112,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_im.visibility = View.GONE
                 iv_notification.visibility = View.GONE
                 tv_titele.visibility = View.VISIBLE
-                tv_titele.text = "My Requests"
+                tv_titele.text = getString(R.string.my_requests)
                 iv_home.setImageDrawable(resources.getDrawable(R.drawable.home_black_icon1))
                 iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_green_icon1))
                 iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
@@ -119,7 +124,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_im.visibility = View.GONE
                 iv_notification.visibility = View.GONE
                 tv_titele.visibility = View.VISIBLE
-                tv_titele.text = "Payments"
+                tv_titele.text = getString(R.string.payment)
                 iv_home.setImageDrawable(resources.getDrawable(R.drawable.home_black_icon1))
                 iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_black_icon1))
                 iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
@@ -132,7 +137,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                 iv_im.visibility = View.GONE
                 iv_notification.visibility = View.GONE
                 tv_titele.visibility = View.VISIBLE
-                tv_titele.text = "Account"
+                tv_titele.text = getString(R.string.account)
                 iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_green_icon1))
                 iv_home.setImageDrawable(resources.getDrawable(R.drawable.home_black_icon1))
                 iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_black_icon1))
@@ -154,7 +159,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
             iv_im.visibility = View.GONE
             iv_notification.visibility = View.GONE
             tv_titele.visibility = View.VISIBLE
-            tv_titele.text = "My Requests"
+            tv_titele.text = getString(R.string.my_requests)
             iv_home.setImageDrawable(resources.getDrawable(R.drawable.home_black_icon1))
             iv_add.setImageDrawable(resources.getDrawable(R.drawable.list_green_icon1))
             iv_profile1.setImageDrawable(resources.getDrawable(R.drawable.user_black_icon1))
@@ -172,7 +177,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, CommunicationListner,
                     if (mResponse.code == GlobalVariables.URL.code) {
                         AppUtils.showSuccessAlert(
                             this,
-                            mResponse.message)
+                            mResponse.message
+                        )
                     }
                 }
             }

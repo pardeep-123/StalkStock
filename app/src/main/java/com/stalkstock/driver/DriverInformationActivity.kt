@@ -33,7 +33,7 @@ class DriverInformationActivity : AppCompatActivity(), Observer<RestObservable> 
             getWindow().setStatusBarColor(Color.WHITE);
         }
         setContentView(R.layout.activity_driver_information)
-        tv_heading.text = "Driver Information"
+        tv_heading.text = getString(R.string.driver_information)
         iv_back.setOnClickListener {
             finish()
         }

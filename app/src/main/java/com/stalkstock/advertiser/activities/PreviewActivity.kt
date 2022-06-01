@@ -67,7 +67,7 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         mUtils = Util()
-        tv_heading.text = "Preview Ad"
+        tv_heading.text = getString(R.string.preview_ad)
 
         if(intent.hasExtra("intentFrom"))
         {
@@ -185,7 +185,7 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
                        // addAdsApi()
                     }
                     else -> {
-                        Toast.makeText(this,"no internet", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -228,8 +228,8 @@ class PreviewActivity : BaseActivity(), View.OnClickListener, Observer<RestObser
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tvmsg.text = "Your ad details have been successfully submitted for approval. You can check the status of your ad in the Ad Manager!"
-        successfulUpdatedDialog.btn_ok.text = "Go to Ad Manager"
+        successfulUpdatedDialog.tvmsg.text = getString(R.string.ad_detail_submitted)
+        successfulUpdatedDialog.btn_ok.text = getString(R.string.go_to_ad_manager)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

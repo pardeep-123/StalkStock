@@ -238,6 +238,7 @@
         <entry key="app/src/main/res/layout/activity_login_screen.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_main_commercial.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_main_consumer.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_manage_payments.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_manageaddress.xml" value="0.25" />

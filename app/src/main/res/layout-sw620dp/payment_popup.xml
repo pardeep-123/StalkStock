@@ -29,7 +29,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/funds_transfer_in_progress_please_allow_3_5_business_days_for_transfer_to_be_completed"
+            android:text="@string/funds_transfer_in_progress"
             android:gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:textSize="22sp" />

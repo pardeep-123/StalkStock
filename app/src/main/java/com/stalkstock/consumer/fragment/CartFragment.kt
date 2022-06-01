@@ -412,7 +412,7 @@ class CartFragment : Fragment(), Observer<RestObservable>, View.OnClickListener 
         )
         llParam.gravity = Gravity.CENTER
         val tvText = TextView(context)
-        tvText.text = "Please wait..."
+        tvText.text =  requireContext().getString(R.string.pls_wait)
         tvText.setTextColor(Color.parseColor("#019243"))
         tvText.textSize = 16f
         tvText.layoutParams = llParam

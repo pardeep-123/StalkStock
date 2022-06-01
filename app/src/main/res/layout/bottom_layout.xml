@@ -109,6 +109,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="HOME"
+            android:textAllCaps="true"
             android:textColor="@color/green"
             android:textSize="10sp" />
 
@@ -120,6 +121,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="ORDERS"
+            android:textAllCaps="true"
             android:textColor="@color/colorIcon"
             android:textSize="10sp" />
 
@@ -131,6 +133,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="CART"
+            android:textAllCaps="true"
             android:textColor="@color/colorIcon"
             android:textSize="10sp" />
 
@@ -142,6 +145,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="ACCOUNT"
+            android:textAllCaps="true"
             android:textColor="@color/colorIcon"
             android:textSize="10sp" />
 

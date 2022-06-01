@@ -61,7 +61,7 @@ class EditAdActivity : AppCompatActivity(), View.OnClickListener,OnClick {
         setContentView(R.layout.activity_edit_ad)
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        tv_heading.text = "Edit Ad"
+        tv_heading.text = getString(R.string.edit_ad)
 
         title = intent.getStringExtra("title").toString()
         startDate = intent.getStringExtra("startDate").toString()

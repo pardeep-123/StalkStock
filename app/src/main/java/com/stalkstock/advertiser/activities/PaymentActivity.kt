@@ -51,7 +51,7 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
 
         setContentView(R.layout.activity_payment)
 
-        tv_heading.text = "Payment"
+        tv_heading.text = getString(R.string.payment)
         iv_back.setOnClickListener(this)
         btn_checkout.setOnClickListener(this)
         btn_preview.setOnClickListener(this)
@@ -74,14 +74,14 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
             R.id.btn_checkout -> {
                 if (click == 0) {
                     click = 1;
-                    btn_checkout.text = "Pay Now"
+                    btn_checkout.text = getString(R.string.pay_now)
                 } else {
                     // if (MyApplication.instance.getString("usertype").equals("1")) {
                     if (mObject != null && mPaymentType == "1") {
                         if (cardId == 0) {
                             AppUtils.showErrorAlert(
                                 this,
-                                "Please add your card first"
+                                getString(R.string.pls_add_card_first)
                             )
                         } else {
                             mObject!!.paymentMethod = mPaymentType
@@ -219,7 +219,7 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener, Observer<Rest
         )
         llParam.gravity = Gravity.CENTER
         val tvText = TextView(this)
-        tvText.text = "Please wait..."
+        tvText.text = getString(R.string.pls_wait)
         tvText.setTextColor(Color.parseColor("#019243"))
         tvText.textSize = 16f
         tvText.layoutParams = llParam

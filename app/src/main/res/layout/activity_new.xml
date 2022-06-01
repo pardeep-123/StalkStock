@@ -582,7 +582,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="3dp"
                         android:gravity="start"
-                        android:text="@string/i_accept_the_stalk_stock_terms_of_service_including_promotion_terms_and_the_stalk_stock_advertising_privacy_agreements"
+                        android:text="@string/i_accept_the_stalk_stock_terms_of_service"
                         android:textColor="@color/light_grey"
                         android:textSize="13sp" />
 

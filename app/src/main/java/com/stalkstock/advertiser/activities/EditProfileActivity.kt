@@ -66,7 +66,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        tv_heading.text = "Edit Profile"
+        tv_heading.text = getString(R.string.edit_profile)
         iv_back.setOnClickListener(this)
         btn_update_profile.setOnClickListener(this)
         image.setOnClickListener(this)
@@ -174,7 +174,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener, Observer<RestO
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tvmsg.text = "Your profile has been successfully updated!"
+        successfulUpdatedDialog.tvmsg.text = getString(R.string.profile_updated)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

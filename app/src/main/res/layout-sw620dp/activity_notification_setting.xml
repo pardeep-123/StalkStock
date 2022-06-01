@@ -68,7 +68,7 @@
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/your_order_no_8974563251_has_been_be_picked_up"
+                        android:text="@string/your_order_picked_up"
                         android:textSize="22sp"
                         android:textColor="#fff"></com.stalkstock.utils.custom.TitiliumRegularTextView>
                     <LinearLayout
@@ -107,7 +107,7 @@
                         android:layout_marginLeft="@dimen/_8sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/your_order_no_8974563251_has_been_be_picked_up"
+                        android:text="@string/your_order_picked_up"
                         android:textSize="22sp"
                         android:textColor="#fff"></com.stalkstock.utils.custom.TitiliumRegularTextView>
 

@@ -78,19 +78,19 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
 
     private fun validations(): Boolean {
         if (firstimage == "") {
-            AppUtils.showErrorAlert(this, "Please select image")
+            AppUtils.showErrorAlert(this, getString(R.string.please_select_image))
             return false
         } else if (edtConsumerFirstname.text.toString().trim().isEmpty()) {
             edtConsumerFirstname.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter first name")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_first_name))
             return false
         } else if (edtConsumerLastname.text.toString().trim().isEmpty()) {
             edtConsumerLastname.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter last name")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_last_name))
             return false
         } else if (emailEdittext.text.toString().trim().isEmpty()) {
             emailEdittext.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter email")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_email))
             return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailEdittext.getText().toString()).matches()) {
             emailEdittext.requestFocus()
@@ -98,7 +98,7 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             return false
         } else if (edtConsumerPhone.text.toString().trim().isEmpty()) {
             edtConsumerPhone.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter mobile number")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_mobile_number))
             return false
         } else if (edtConsumerPhone.text.toString().length < 10 || edtConsumerPhone.getText()
                 .toString().length > 13
@@ -108,21 +108,21 @@ class SignupConsumerActivity : BaseActivity(), Observer<RestObservable> {
             return false
         } else if (edtConsumerPassword.text.toString().trim().isEmpty()) {
             edtConsumerPassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Please enter password")
+            AppUtils.showErrorAlert(this, getString(R.string.please_enter_password))
             return false
         } else if (edtConsumerPassword.text.toString().length < 6) {
             edtConsumerPassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Password should contain atleast 6 characters")
+            AppUtils.showErrorAlert(this, getString(R.string.password_6_characters))
             return false
         } else if (edtConsumerRePassword.text.toString().trim().isEmpty()) {
             edtConsumerRePassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Please re-enter password")
+            AppUtils.showErrorAlert(this, getString(R.string.please_reenter_password))
             return false
         } else if (edtConsumerRePassword.text.toString()
                 .trim() != edtConsumerPassword.text.toString().trim()
         ) {
             edtConsumerRePassword.requestFocus()
-            AppUtils.showErrorAlert(this, "Confirm password should be same as password")
+            AppUtils.showErrorAlert(this, getString(R.string.confirm_password_same))
             return false
         } else {
             return true

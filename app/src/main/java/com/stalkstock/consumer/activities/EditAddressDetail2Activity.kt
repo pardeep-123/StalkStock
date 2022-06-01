@@ -250,7 +250,7 @@ class EditAddressDetail2Activity : BaseActivity(), OnMapReadyCallback, Observer<
 
         if (MyApplication.instance.getString("usertype").equals("4")) {
             rl_work.visibility = View.GONE
-            tvTagHome.text = "Business"
+            tvTagHome.text = getString(R.string.business)
             iv_home_edit.setImageResource(R.drawable.ic_work_for_edit)
         }
 

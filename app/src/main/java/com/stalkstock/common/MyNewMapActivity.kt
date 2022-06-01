@@ -96,7 +96,7 @@ class MyNewMapActivity : AppCompatActivity(), OnMapReadyCallback {
         btn_save.setOnClickListener {
 
             if (txt_location.text.toString().isEmpty()) {
-                Toast.makeText(c, "Select your location first", Toast.LENGTH_LONG).show()
+                Toast.makeText(c, getString(R.string.select_location), Toast.LENGTH_LONG).show()
             } else {
                 when (type) {
                     "1" -> {

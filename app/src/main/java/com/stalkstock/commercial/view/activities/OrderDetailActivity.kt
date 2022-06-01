@@ -59,7 +59,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 tv_delivered_by_value.visibility = View.GONE
                 tv_delivered_to.visibility = View.VISIBLE
                 tv_delivered_to_value.visibility = View.VISIBLE
-                tv_delivered_to.text = "DELIVERED BY"
+                tv_delivered_to.text = getString(R.string.delivered_by)
             }
             "1" -> {
                 tvStatus.setTextColor(resources.getColor(R.color.themeColor))
@@ -83,7 +83,7 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             tv_rest_charges.visibility = View.GONE
             relDelveryFee.visibility = View.GONE
             rl_visa.visibility = View.VISIBLE
-            tvTextCh.text = "Shop Charges"
+            tvTextCh.text = getString(R.string.shop_charges)
         } else {
             rl_visa.visibility = View.GONE
         }
@@ -172,23 +172,23 @@ class OrderDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun setOrderStatus(orderStatus: Int) {
         when(orderStatus){
-            0->{ tvStatus.text = "Pending"
+            0->{ tvStatus.text = getString(R.string.pending)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
-            1->{tvStatus.text = "In Progress"
+            1->{tvStatus.text = getString(R.string.in_progress)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
-            2->{tvStatus.text = "Packed"
+            2->{tvStatus.text = getString(R.string.packed)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
-            3->{tvStatus.text = "On the way"
+            3->{tvStatus.text = getString(R.string.onWay)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
             4->{
-                tvStatus.text= "Completed"
+                tvStatus.text= getString(R.string.completed)
                 tvStatus.setTextColor(resources.getColor(R.color.green_colour))
             }
-            5->{tvStatus.text = "Cancelled"
+            5->{tvStatus.text = getString(R.string.cancelled)
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
-            6->{tvStatus.text= "Rejected"
+            6->{tvStatus.text= getString(R.string.rejected)
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
-            else->{tvStatus.text= "Error"
+            else->{tvStatus.text= getString(R.string.error_)
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
         }
 

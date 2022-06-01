@@ -33,7 +33,7 @@ class AddNewCardActivity : AppCompatActivity(), View.OnClickListener, Observer<R
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_card)
         from= intent.getStringExtra("from").toString()
-        tv_heading.text = "Add A New Card"
+        tv_heading.text = getString(R.string.add_new_card)
         iv_back.setOnClickListener(this)
         btn_save.setOnClickListener(this)
         monthsss.setOnClickListener(this)

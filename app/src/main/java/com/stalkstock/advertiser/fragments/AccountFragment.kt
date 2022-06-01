@@ -66,7 +66,7 @@ class AccountFragment : Fragment(), View.OnClickListener, Observer<RestObservabl
     ): View {
         v = inflater.inflate(R.layout.fragment_account, container, false)
         mContext = activity as Context
-        v.tv_heading.text = "Account"
+        v.tv_heading.text = getString(R.string.account)
 
         return v
     }

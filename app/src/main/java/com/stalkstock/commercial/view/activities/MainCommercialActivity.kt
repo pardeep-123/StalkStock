@@ -25,10 +25,10 @@ class MainCommercialActivity : AppCompatActivity(), CommunicationListner {
         tv_order = findViewById(R.id.tv_order)
         tv_cart = findViewById(R.id.tv_cart)
         tv_account = findViewById(R.id.tv_account)
-        tv_home!!.text="HOME"
-        tv_order!!.text="MY ORDERS"
-        tv_cart!!.text="MESSAGES"
-        tv_account!!.text="ACCOUNT"
+        tv_home!!.text=getString(R.string.home)
+        tv_order!!.text=getString(R.string.my_orders)
+        tv_cart!!.text=getString(R.string.messages)
+        tv_account!!.text=getString(R.string.account)
 
         if (savedInstanceState == null) {
             val f = supportFragmentManager.findFragmentById(R.id.rl_content_frame)

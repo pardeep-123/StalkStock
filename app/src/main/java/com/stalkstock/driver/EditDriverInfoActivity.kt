@@ -87,7 +87,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(Color.WHITE);
         }
-        tv_heading.text = "Edit Driver Information"
+        tv_heading.text = getString(R.string.edit_driver_information)
         iv_back.setOnClickListener {
             finish()
         }
@@ -517,7 +517,7 @@ class EditDriverInfoActivity : BaseActivity(), Observer<RestObservable>,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tvmsg.text = "Your information has been successfully updated!"
+        successfulUpdatedDialog.tvmsg.text = getString(R.string.information_update_successful)
         successfulUpdatedDialog.iv_congrats.setImageResource(R.drawable.thumb_up)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)

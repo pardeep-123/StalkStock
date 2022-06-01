@@ -46,20 +46,20 @@ class MyordersAdapter(
 
         when(mOrderArrayList[position].orderStatus)
         {
-            0->{holder.itemView.tvStatus.text = "Pending"
+            0->{holder.itemView.tvStatus.text = context.getString(R.string.pending)
             }
-            1->{holder.itemView.tvStatus.text = "In Progress"}
-            2->{holder.itemView.tvStatus.text = "Packed"}
-            3->{holder.itemView.tvStatus.text = "On the way"}
-            4->{holder.itemView.tvStatus.text = "Completed"}
-            5->{holder.itemView.tvStatus.text = "Cancelled"}
-            6->{holder.itemView.tvStatus.text = "Rejected"}
-            else->{holder.itemView.tvStatus.text = "Error"}
+            1->{holder.itemView.tvStatus.text =  context.getString(R.string.in_progress)}
+            2->{holder.itemView.tvStatus.text =  context.getString(R.string.packed)}
+            3->{holder.itemView.tvStatus.text =  context.getString(R.string.onWay)}
+            4->{holder.itemView.tvStatus.text =  context.getString(R.string.completed)}
+            5->{holder.itemView.tvStatus.text =  context.getString(R.string.cancelled)}
+            6->{holder.itemView.tvStatus.text =  context.getString(R.string.rejected)}
+            else->{holder.itemView.tvStatus.text =  context.getString(R.string.error_)}
         }
         holder.itemView.tvStatus.setTextColor(ContextCompat.getColor(holder.itemView.context,getStatusColor(mOrderArrayList[position].orderStatus)))
 
         if (mOrderArrayList[position].orderStatus == 0)
-            holder.itemView.tvStatus.text = "Pending"
+            holder.itemView.tvStatus.text =  context.getString(R.string.pending)
         holder.itemView.setOnClickListener {
             val intent = Intent(context, OrderdeatilsActivity::class.java)
             intent.putExtra("orderId",mOrderArrayList[position].id.toString())

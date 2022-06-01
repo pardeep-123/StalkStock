@@ -60,7 +60,7 @@ class UploadActivity : BaseActivity() {
             window.statusBarColor = Color.WHITE;
         }
 
-        tv_heading.text = "Upload Documents"
+        tv_heading.text = getString(R.string.upload_documents)
         iv_back.setOnClickListener {finish()}
         btn_continue.setOnClickListener {
             startActivity(Intent(this, AddDetailActivity::class.java)

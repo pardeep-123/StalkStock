@@ -140,23 +140,23 @@ class OrderdeatilsActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun setOrderStatus(orderStatus: Int) {
         when(orderStatus){
-            0->{ tvStatus.text = "Pending"
+            0->{ tvStatus.text = getString(R.string.pending)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
-            1->{tvStatus.text = "In Progress"
+            1->{tvStatus.text =getString(R.string.in_progress)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
-            2->{tvStatus.text = "Packed"
+            2->{tvStatus.text = getString(R.string.packed)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
-            3->{tvStatus.text = "On the way"
+            3->{tvStatus.text = getString(R.string.onWay)
                 tvStatus.setTextColor(resources.getColor(R.color.orange_colour))}
             4->{
-                tvStatus.text= "Completed"
+                tvStatus.text= getString(R.string.completed)
                 tvStatus.setTextColor(resources.getColor(R.color.green_colour))
             }
-            5->{tvStatus.text = "Cancelled"
+            5->{tvStatus.text = getString(R.string.cancelled)
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
-            6->{tvStatus.text= "Rejected"
+            6->{tvStatus.text= getString(R.string.rejected)
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
-            else->{tvStatus.text= "Error"
+            else->{tvStatus.text= getString(R.string.error_)
                 tvStatus.setTextColor(resources.getColor(R.color.red_dark_colour))}
         }
 

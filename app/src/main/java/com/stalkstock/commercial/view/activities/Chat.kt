@@ -189,7 +189,7 @@ class Chat : AppCompatActivity(), View.OnClickListener, SocketManager.SocketInte
         val btn_no = dialogSuccessful.findViewById<Button>(R.id.btn_no)
 
 
-        tvMsg.text = "Are you sure you want to clear this Chat?"
+        tvMsg.text = getString(R.string.clear_chat)
 
         btn_yes.setOnClickListener {
             val jsonObject = JSONObject()

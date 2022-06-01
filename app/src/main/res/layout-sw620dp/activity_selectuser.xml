@@ -163,7 +163,7 @@ comsumer ==user
                     android:paddingTop="3dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="3dp"
-                    android:text="@string/i_want_to_purchase_items_for_my_household"
+                    android:text="@string/purchase_items_household"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
@@ -184,7 +184,7 @@ comsumer ==user
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
 
-                    android:text="@string/i_want_to_purchase_items_in_bulk_or_my_business"
+                    android:text="@string/purchase_items_in_bulk"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
@@ -203,7 +203,7 @@ comsumer ==user
                     android:layout_marginRight="40dp"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
-                    android:text="@string/i_want_to_sell_items_i_produce"
+                    android:text="@string/sell_items_produce"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
@@ -223,7 +223,7 @@ comsumer ==user
                     android:layout_marginBottom="30dp"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
-                    android:text="@string/i_want_to_offer_delivery_services_for_items"
+                    android:text="@string/delivery_services_items"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />
@@ -242,7 +242,7 @@ comsumer ==user
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
-                    android:text="@string/i_want_to_promote_my_goods_and_services"
+                    android:text="@string/promote_goods_and_services"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="17sp" />

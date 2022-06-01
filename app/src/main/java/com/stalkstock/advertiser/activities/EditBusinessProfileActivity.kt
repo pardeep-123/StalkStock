@@ -100,7 +100,7 @@ class EditBusinessProfileActivity : BaseActivity(), View.OnClickListener, Observ
 
         //rlBusinessType.visibility=View.GONE
 
-        tv_heading.text = "Edit Business Profile"
+        tv_heading.text = getString(R.string.edit_business_profile)
 
         getBusinessTypeApi()
 

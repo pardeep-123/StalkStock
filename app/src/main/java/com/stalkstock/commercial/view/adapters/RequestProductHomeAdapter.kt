@@ -63,7 +63,7 @@ class RequestProductHomeAdapter(var list: ArrayList<AddedProduct.RequestProductD
 
 
             holder.itemView.rl_delete.setOnClickListener {
-                Toast.makeText(context, "Request deleted successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.request_dlt_successfully), Toast.LENGTH_SHORT).show()
                 list.removeAt(pos)
                 notifyItemRemoved(pos)
                 notifyItemRangeChanged(pos,list.size)

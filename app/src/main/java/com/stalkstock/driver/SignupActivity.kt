@@ -330,11 +330,11 @@ class SignupActivity : BaseActivity(), View.OnClickListener, AdapterView.OnItemS
         } else {
 
             if (mVehicleType == "Select your vehicle type") {
-                Toast.makeText(this, "Please select your vehicle type", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.pls_select_vehicle_type), Toast.LENGTH_SHORT).show()
                 return
             }
             if (mCountryName == "Select Country") {
-                Toast.makeText(this, "Please select country name", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.please_select_countryname), Toast.LENGTH_SHORT).show()
                 return
             }
 

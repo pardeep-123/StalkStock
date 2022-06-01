@@ -390,7 +390,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                 etEnterQuantity.error = resources.getString(R.string.please_enter_quantity)
             } else if (etEnterQuantity.text.toString().trim() == "0") {
                 etEnterQuantity.requestFocus()
-                etEnterQuantity.error = "Quantity should be greater than 0"
+                etEnterQuantity.error = getString(R.string.qty_greater_zero)
             } else if (etUnitMeasurement.text.toString().trim().isEmpty()) {
                 etUnitMeasurement.requestFocus()
                 etUnitMeasurement.error = resources.getString(R.string.please_select_quantity)
@@ -469,7 +469,7 @@ class AddedProduct : BaseActivity(), View.OnClickListener, Observer<RestObservab
                         if (mResponse.body.size == 0) {
                             AppUtils.showErrorAlert(
                                 this,
-                                "Please add your address first before sending the request."
+                                getString(R.string.add_address_first)
                             )
                             Handler(Looper.getMainLooper()).postDelayed({
                                 finish()

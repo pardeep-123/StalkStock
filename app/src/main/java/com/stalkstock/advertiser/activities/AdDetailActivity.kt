@@ -65,7 +65,7 @@ class AdDetailActivity : BaseActivity(), View.OnClickListener, Observer<RestObse
       //  window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
 
-        tv_heading.text = "Request Ad"
+        tv_heading.text = getString(R.string.request_ad)
 
         if(intent.hasExtra("model")&& intent.hasExtra("intentfrom"))
         {
@@ -186,8 +186,8 @@ class AdDetailActivity : BaseActivity(), View.OnClickListener, Observer<RestObse
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        successfulUpdatedDialog.tvmsg.text = "Your ad details have been successfully deleted. You can check the status of your ad in the Ad Manager!"
-        successfulUpdatedDialog.btn_ok.text = "Go to Ad Manager"
+        successfulUpdatedDialog.tvmsg.text = getString(R.string.detail_dlt_successfully)
+        successfulUpdatedDialog.btn_ok.text = getString(R.string.go_to_ad_manager)
         successfulUpdatedDialog.setCancelable(true)
         successfulUpdatedDialog.setCanceledOnTouchOutside(false)
         successfulUpdatedDialog.window!!.setGravity(Gravity.CENTER)

@@ -34,7 +34,7 @@ class NewActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_new)
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        tv_heading.text = "Post Ad"
+        tv_heading.text = getString(R.string.post_ad)
         iv_back.setOnClickListener(this)
         btn_preview.setOnClickListener(this)
         c1234.setOnClickListener(this)

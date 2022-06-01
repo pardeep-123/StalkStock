@@ -17,7 +17,7 @@ class NotificationListActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification_list)
-        tv_heading.text = "Notifications"
+        tv_heading.text = getString(R.string.notifications)
         iv_back.setOnClickListener(this)
 
     }
