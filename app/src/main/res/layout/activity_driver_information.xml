@@ -36,7 +36,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Driver's License"
+                    android:text="@string/driver_s_license"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
@@ -66,7 +66,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Registration"
+                    android:text="@string/registration"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
@@ -83,7 +83,7 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Proof of Insurance"
+                    android:text="@string/proof_of_insurance"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
@@ -112,7 +112,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Vehicle Name"
+                        android:text="@string/vehicle_name"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -137,7 +137,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Make"
+                        android:text="@string/make"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -162,7 +162,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Model"
+                        android:text="@string/model"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -187,7 +187,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Driver's License Number"
+                        android:text="@string/driver_s_license_number"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -212,7 +212,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Driver's License Valid Through"
+                        android:text="@string/driver_s_license_valid_through"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -237,7 +237,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Registration Number"
+                        android:text="@string/registration_number"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -262,7 +262,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Registration Valid Through"
+                        android:text="@string/registration_valid_through"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -415,7 +415,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="City"
+                        android:text="@string/city"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -465,7 +465,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Postal/Zip Code"
+                        android:text="@string/postal_zipcode"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -490,7 +490,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Country"
+                        android:text="@string/country"
                         android:textColor="@color/home_grey"
                         android:textSize="15sp" />
 
@@ -515,7 +515,7 @@
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:minHeight="45dp"
-                    android:text="Edit Information"
+                    android:text="@string/edit_information"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="15sp" />

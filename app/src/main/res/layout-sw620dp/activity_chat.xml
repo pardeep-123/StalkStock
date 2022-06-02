@@ -253,7 +253,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvNotification"
-                android:text="Clear Chat"
+                android:text="@string/clear_chat_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/value_14sp"
                 />
@@ -267,7 +267,7 @@
                 app:layout_constraintEnd_toStartOf="@id/switchNotification"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:text="Notification"
+                android:text="@string/notification"
                 android:textColor="@color/black"
                 />
 

@@ -127,7 +127,7 @@
                         android:layout_centerVertical="true"
                         android:paddingLeft="@dimen/_8sdp"
                         android:backgroundTint="@android:color/transparent"
-                        android:hint="Type your message here..."
+                        android:hint="@string/type_your_message_here"
                         android:gravity="center_vertical"
                         android:textColorHint="#000"
                         android:textSize="@dimen/_12sdp" />

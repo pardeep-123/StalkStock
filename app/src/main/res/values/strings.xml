@@ -375,6 +375,18 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="old_password">Old Password</string>
+    <string name="clear_chat_text">Clear Chat</string>
+    <string name="notification">Notification</string>
+    <string name="type_your_message_here">Type your message here...</string>
+    <string name="driver_s_license">Driver\'s License</string>
+    <string name="registration">Registration</string>
+    <string name="proof_of_insurance">Proof of Insurance</string>
+    <string name="vehicle_name">Vehicle Name</string>
+    <string name="make">Make</string>
+    <string name="model">Model</string>
+    <string name="driver_s_license_number">Driver\'s License Number</string>
+    <string name="driver_s_license_valid_through">Driver\'s License Valid Through</string>
+    <string name="edit_information">Edit Information</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>
