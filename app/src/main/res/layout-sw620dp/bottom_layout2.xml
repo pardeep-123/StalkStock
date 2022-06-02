@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white_color"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:paddingBottom="5dp"
-     xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingBottom="5dp">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/value_1dp"
@@ -16,103 +16,103 @@
         />
 
     <LinearLayout
-        android:paddingTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp">
+
         <RelativeLayout
-            android:layout_weight="1"
-            android:gravity="center"
+            android:id="@+id/home_tab"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/home_tab">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:gravity="center">
 
+            <ImageView
                 android:id="@+id/iv_homeTab"
-                 android:src="@drawable/home_green_icon1"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:src="@drawable/home_green_icon1" />
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="match_parent"
 
+        <RelativeLayout
             android:id="@+id/order_tab"
-            >
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:gravity="center">
 
             <ImageView
+                android:id="@+id/iv_orderTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+
                 android:layout_centerInParent="true"
 
-
-                android:id="@+id/iv_orderTab"
-
-                android:src="@drawable/list_black_icon1"
-                />
+                android:src="@drawable/list_black_icon1" />
 
         </RelativeLayout>
+
         <RelativeLayout
+            android:id="@+id/bid_tab"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_bidTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_centerInParent="true"
+
+                android:src="@drawable/ic_bid_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/message_tab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_height="match_parent"
-
-            android:id="@+id/bid_tab"
-            >
+            android:visibility="gone">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-
-
-                android:id="@+id/iv_bidTab"
-
-                android:src="@drawable/ic_bid_gray"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-           android:gravity="center"
-            android:id="@+id/message_tab">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-
-
                 android:id="@+id/iv_messageTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_centerInParent="true"
                 android:src="@drawable/chat_grey_icon1"
 
                 />
 
 
         </RelativeLayout>
+
         <RelativeLayout
+            android:id="@+id/payment_tab"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-           android:gravity="center"
-            android:id="@+id/payment_tab">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <ImageView
+                android:id="@+id/iv_paymentTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+
                 android:layout_centerInParent="true"
-
-
-                android:id="@+id/iv_paymentTab"
                 android:src="@drawable/a14dooler1"
 
                 />
@@ -122,18 +122,18 @@
 
 
         <RelativeLayout
+            android:id="@+id/account_tab"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/account_tab">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <ImageView
+                android:id="@+id/iv_accountTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
 
-                android:id="@+id/iv_accountTab"
+                android:layout_centerInParent="true"
                 android:src="@drawable/user_black_icon1"
 
                 />
@@ -141,100 +141,96 @@
         </RelativeLayout>
 
 
-
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         >
+        android:layout_height="wrap_content">
 
 
         <com.stalkstock.utils.custom.TitiliumBoldTextView
 
             android:id="@+id/tv_home"
-            android:textColor="@color/green"
-            android:text="HOME"
-            android:textSize="16sp"
-
-            android:gravity="center"
-            android:includeFontPadding="false"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            />
-         <com.stalkstock.utils.custom.TitiliumBoldTextView
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:includeFontPadding="false"
+            android:text="@string/home"
+            android:textAllCaps="true"
+            android:textColor="@color/green"
+            android:textSize="16sp" />
+
+        <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_order"
 
-            android:textColor="@color/colorIcon"
-            android:text="ORDERS"
-            android:textSize="16sp"
-
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            />
+            android:text="@string/orders"
+            android:textAllCaps="true"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp" />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_bid"
 
-             android:textColor="@color/colorIcon"
-            android:text="BIDS"
-            android:textSize="16sp"
-
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            />
+            android:text="@string/bids"
+            android:textAllCaps="true"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp" />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_cart"
 
-            android:visibility="gone"
-            android:textColor="@color/colorIcon"
-            android:text="CART"
-            android:textSize="16sp"
-
-            android:gravity="center"
-            android:includeFontPadding="false"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            />
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:includeFontPadding="false"
+            android:text="CART"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_payment"
 
-            android:textColor="@color/colorIcon"
-            android:text="PAYMENTS"
-            android:textSize="16sp"
-
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            />
+            android:text="@string/payments"
+            android:textAllCaps="true"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp" />
+
         <com.stalkstock.utils.custom.TitiliumBoldTextView
             android:id="@+id/tv_account"
 
-            android:textColor="@color/colorIcon"
-            android:text="ACCOUNT"
-            android:textSize="16sp"
-
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            />
+            android:text="@string/account"
+            android:textAllCaps="true"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp" />
 
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

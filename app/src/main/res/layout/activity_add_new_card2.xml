@@ -42,13 +42,12 @@
                 </ImageView>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textSize="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add A New Card"
-                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
+                    android:text="@string/add_new_card"
                     android:textColor="@color/black"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="16dp" />
 
             </RelativeLayout>
 
@@ -71,7 +70,7 @@
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textSize="13sp"
                     android:textColor="@color/light_grey" />
 
@@ -91,7 +90,7 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Credit Card Number"
+                    android:text="@string/credit_card_number"
                     android:textSize="13sp"
                     android:textColor="@color/light_grey" />
 
@@ -119,7 +118,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Expiry Date"
+                        android:text="@string/expiry_date"
                         android:textSize="13sp"
                         android:textColor="@color/light_grey"
                         android:layout_weight="1">
@@ -131,7 +130,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CVV/CW"
+                        android:text="@string/cvv_cw"
                         android:textSize="13sp"
                         android:textColor="@color/light_grey">
 
@@ -161,7 +160,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="#000"
-                        android:hint="MM/YY"
+                        android:hint="@string/mm_yy"
                         android:maxLength="5"
                         android:inputType="date"
                         android:textColorHint="@color/light_grey"
@@ -179,7 +178,7 @@
                         android:textColorHint="@color/light_grey"
                         android:maxLength="3"
                         android:textColor="#000"
-                        android:hint="CVV"
+                        android:hint="@string/cvv"
                         android:gravity="center"
                         android:inputType="numberPassword"
                         android:background="@drawable/shape_edit_for_add_card"/>
@@ -206,7 +205,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
-                        android:text="Save for future transactions"
+                        android:text="@string/save_for_future_transactions"
                         android:textColor="@color/light_grey" />
 
                 </LinearLayout>
@@ -224,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:textAllCaps="false"
-                        android:text="Save"
+                        android:text="@string/save"
                         android:textColor="#fff"
                         android:textSize="16dp"
                         android:background="@drawable/buttonshape">

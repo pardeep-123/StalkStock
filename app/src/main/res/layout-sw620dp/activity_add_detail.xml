@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@color/white">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bg_fit"
         android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
-        />
+        android:src="@drawable/bg_fit" />
 
     <LinearLayout
         android:id="@+id/layout"
@@ -24,26 +22,25 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/v_View"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
-        android:id="@+id/v_View"
-        android:background="@color/grey"
+        android:layout_below="@+id/layout"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_below="@+id/layout"
-        />
+        android:background="@color/grey" />
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_below="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/layout"
         android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp">
+        android:layout_marginRight="@dimen/_20sdp"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginTop="@dimen/_15sdp"
-            >
+            android:layout_marginTop="@dimen/_15sdp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/edText"
@@ -69,15 +66,15 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
-                android:text="License Number"
+                android:text="@string/license_number"
                 android:textColor="@color/light_grey"
                 android:textSize="14sp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="20dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/edText1"
@@ -86,7 +83,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_bg"
                 android:gravity="center_vertical"
-                android:hint="@string/enter_expiration_date"                android:imeOptions="actionNext"
+                android:hint="@string/enter_expiration_date"
+                android:imeOptions="actionNext"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:paddingLeft="15dp"
@@ -102,7 +100,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
-                android:text="License Number Valid Through"
+                android:text="@string/license_number_valid_through"
                 android:textColor="@color/light_grey"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -111,8 +109,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="20dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/edText2"
@@ -138,15 +135,15 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
-                android:text="Registration Number"
+                android:text="@string/registration_number"
                 android:textColor="@color/light_grey"
                 android:textSize="14sp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="20dp">
 
             <com.stalkstock.utils.custom.TitiliumBoldEditText
                 android:id="@+id/edText3"
@@ -172,7 +169,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white"
-                android:text="Registration Valid Through"
+                android:text="@string/registration_valid_through"
                 android:textColor="@color/light_grey"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -180,18 +177,18 @@
     </LinearLayout>
 
     <com.stalkstock.utils.custom.TitiliumBoldButton
-        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_Continue"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/btn_Continue"
-        android:background="@drawable/btn_shape"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginRight="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_30sdp"
-        android:text="Continue"
-        android:textSize="16sp"
-        android:textColor="@color/white"
+        android:background="@drawable/btn_shape"
+        android:text="@string/continue_txt"
         android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
 
         />
 

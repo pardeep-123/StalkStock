@@ -218,7 +218,7 @@
                             android:id="@+id/businessname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Name"
+                            android:text="@string/name"
                             android:textColor="#2C2C2C"
                             android:textSize="16sp" />
 
@@ -267,7 +267,7 @@
                             android:id="@+id/businessname1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Business Name"
+                            android:text="@string/business_name"
                             android:textColor="#000"
 
                             android:textSize="16sp" />
@@ -305,14 +305,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:id="@+id/businessabout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/business_description"
-                            android:textSize="16sp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -348,14 +349,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:id="@+id/businesstype"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Business Type"
-                            android:textSize="16sp"
+                            android:text="@string/business_type"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -391,14 +393,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:id="@+id/businesslicense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Business License"
-                            android:textSize="16sp"
+                            android:text="@string/business_license"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -432,14 +435,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:id="@+id/businessemail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Email"
-                            android:textSize="16sp"
+                            android:text="@string/email"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
 
                     </RelativeLayout>
@@ -479,7 +483,7 @@
                             android:id="@+id/businessmobilenuber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Mobile"
+                            android:text="@string/mobile"
                             android:textColor="#000"
 
                             android:textSize="16sp" />
@@ -522,7 +526,7 @@
                             android:id="@+id/businesstelephone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Business Telephone\nNumber"
+                            android:text="@string/business_telephone_number"
                             android:textColor="#000"
 
                             android:textSize="16sp" />
@@ -567,7 +571,7 @@
                             android:id="@+id/businesswebsite"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Website"
+                            android:text="@string/website"
                             android:textColor="#000"
 
                             android:textSize="16sp" />
@@ -689,14 +693,15 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
 
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/city"
-                            android:textSize="16sp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -729,13 +734,14 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/state_province_region"
-                            android:textSize="16sp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -773,9 +779,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/postal_zipcode"
-                            android:textSize="16sp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
 
                     </RelativeLayout>
@@ -810,13 +816,14 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
+
                         <com.stalkstock.utils.custom.TitiliumBoldTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/country"
-                            android:textSize="16sp"
+                            android:textColor="#000"
 
-                            android:textColor="#000"/>
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 

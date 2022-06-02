@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bg_fit"
         android:layout_alignParentEnd="true"
         android:scaleType="fitEnd"
-        />
+        android:src="@drawable/bg_fit" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar_myorders"
@@ -35,14 +32,14 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.stalkstock.utils.custom.TitiliumBoldTextView
-                android:textSize="18sp"
                 android:id="@+id/actHome"
                 android:layout_width="@dimen/value_0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="@dimen/value_15dp"
-                android:text="Account"
+                android:text="@string/account"
                 android:textColor="@color/black"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,19 +49,20 @@
 
 
         <ScrollView
-            app:layout_constraintTop_toBottomOf="@id/toolbar_myorders"
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_myorders">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/value_20dp"
-                    android:paddingRight="@dimen/value_20dp"
-                    >
+                    android:paddingRight="@dimen/value_20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clCard"
@@ -80,8 +78,8 @@
                             android:layout_width="@dimen/value_60dp"
                             android:layout_height="@dimen/value_60dp"
                             android:layout_marginStart="@dimen/value_10dp"
-                            android:src="@drawable/ic_dummy_img"
                             android:scaleType="centerCrop"
+                            android:src="@drawable/ic_dummy_img"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -132,12 +130,12 @@
 
                     <RelativeLayout
                         android:id="@+id/rlNotification"
-                        android:layout_marginTop="@dimen/value_15dp"
-
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/clCard"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/value_15dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/clCard">
 
                         <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                             android:id="@+id/tvNotification"
@@ -162,8 +160,8 @@
                             android:id="@+id/toggle_off2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_5sdp"
                             android:src="@drawable/toggle_on"
                             android:visibility="gone" />
@@ -185,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/value_15dp"
                         android:paddingBottom="@dimen/value_15dp"
-                        android:text="Business Profile"
+                        android:text="@string/business_profile"
                         android:textColor="@color/black_color"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +203,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/value_15dp"
                         android:paddingBottom="@dimen/value_15dp"
-                        android:text="Manage Addresses"
+                        android:text="@string/manage_addresses"
                         android:textColor="@color/black_color"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -224,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/value_15dp"
                         android:paddingBottom="@dimen/value_15dp"
-                        android:text="Manage Payment Methods"
+                        android:text="@string/manage_payment_methods"
                         android:textColor="@color/black_color"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/value_15dp"
                         android:paddingBottom="@dimen/value_15dp"
-                        android:text="Change Password"
+                        android:text="@string/change_password"
                         android:textColor="@color/black_color"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +261,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/value_15dp"
                         android:paddingBottom="@dimen/value_15dp"
-                        android:text="Help"
+                        android:text="@string/help"
                         android:textColor="@color/black_color"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -282,7 +280,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/value_15dp"
                         android:paddingBottom="@dimen/value_15dp"
-                        android:text="Logout"
+                        android:text="@string/logout"
                         android:textColor="@color/black_color"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"

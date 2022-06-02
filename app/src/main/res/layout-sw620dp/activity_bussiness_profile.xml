@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Business Profile"
+                    android:text="@string/business_profile"
                     android:textColor="#000"
                     android:textSize="18sp" />
             </RelativeLayout>
@@ -97,10 +97,10 @@
                                 android:id="@+id/businessname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Name"
+                                android:text="@string/name"
                                 android:textColor="#2C2C2C"
 
-                                android:textSize="@dimen/value_16sp"/>
+                                android:textSize="@dimen/value_16sp" />
 
                         </RelativeLayout>
 
@@ -146,7 +146,7 @@
                                 android:id="@+id/businessname1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Business Name"
+                                android:text="@string/business_name"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -232,7 +232,7 @@
                                 android:id="@+id/businesstype"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Business Type"
+                                android:text="@string/business_type"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -274,7 +274,7 @@
                                 android:id="@+id/businessDeliverytype"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Business Delivery Type"
+                                android:text="@string/business_delivery_type"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -316,7 +316,7 @@
                                 android:id="@+id/businesslicense"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Business License"
+                                android:text="@string/business_license"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -358,7 +358,7 @@
                                 android:id="@+id/businessemail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Email"
+                                android:text="@string/email"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -401,7 +401,7 @@
                                 android:id="@+id/businessmobilenuber"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Mobile"
+                                android:text="@string/mobile"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -444,7 +444,7 @@
                                 android:id="@+id/businesstelephone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Business Telephone\nNumber"
+                                android:text="@string/business_telephone_number"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -489,7 +489,7 @@
                                 android:id="@+id/businesswebsite"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Website"
+                                android:text="@string/website"
                                 android:textColor="#000"
 
                                 android:textSize="@dimen/value_16sp" />
@@ -774,7 +774,7 @@
                             android:layout_marginEnd="@dimen/_20sdp"
                             android:layout_marginBottom="@dimen/_15sdp"
                             android:background="@drawable/buttonshape"
-                            android:text="Edit Business Profile"
+                            android:text="@string/edit_business_profile"
                             android:textAllCaps="false"
                             android:textColor="#fff"
                             android:textSize="@dimen/value_16sp" />

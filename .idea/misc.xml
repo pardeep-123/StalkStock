@@ -42,12 +42,14 @@
         <entry key="app/src/main/res/layout-sw620dp/activity_add_new_card2.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_product.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_addcardpayment.xml" value="0.1415" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_addcartdetails.xml" value="0.1415" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_addcartdetails.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_addnewaddress.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_afteradd.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/activity_bid_product.xml" value="0.3204983012457531" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_bottomnavigation_screen.xml" value="0.117578125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_business_profile.xml" value="0.21" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_bussiness_profile.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_bussiness_profile.xml" value="0.28874172185430463" />
         <entry key="app/src/main/res/layout-sw620dp/activity_change_password.xml" value="0.283" />
         <entry key="app/src/main/res/layout-sw620dp/activity_change_password2.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/activity_chat.xml" value="0.25" />
@@ -124,6 +126,7 @@
         <entry key="app/src/main/res/layout-sw620dp/bidprdouctaccpetlist.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/bidproductlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/bottom_layout.xml" value="0.13515625" />
+        <entry key="app/src/main/res/layout-sw620dp/bottom_layout2.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/business_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout-sw620dp/card_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/chat_adapter.xml" value="0.1415" />
@@ -200,16 +203,21 @@
         <entry key="app/src/main/res/layout/accept_request_alert.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/account.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/account_fragment.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_ad_detail.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_add_bank_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_add_bank_account2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_business_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_add_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_new_card.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_add_new_card2.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_add_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_addcardpayment.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_addcartdetails.xml" value="0.14739583333333334" />
-        <entry key="app/src/main/res/layout/activity_addnewaddress.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_addnewaddress.xml" value="0.15677083333333333" />
+        <entry key="app/src/main/res/layout/activity_afteradd.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_bid_detail.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_bid_product.xml" value="0.10462962962962963" />
+        <entry key="app/src/main/res/layout/activity_bottomnavigation_screen.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_business_profile.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/activity_bussiness_profile.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.14739583333333334" />
@@ -280,7 +288,7 @@
         <entry key="app/src/main/res/layout/bidprdouctaccpetlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bidproductlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/bottom_layout2.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/bottom_layout2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/business_profile.xml" value="0.159375" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/chat_adapter.xml" value="0.25364583333333335" />

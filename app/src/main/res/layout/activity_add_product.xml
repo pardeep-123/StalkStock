@@ -40,9 +40,8 @@
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="Add Product"
+                    android:layout_centerInParent="true"
+                    android:text="@string/add_product"
                     android:textColor="#000"
                     android:textSize="16dp" />
             </RelativeLayout>
@@ -50,7 +49,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/dark_gray"></View>
+                android:background="@color/dark_gray"/>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -144,7 +143,7 @@
                             android:layout_height="45dp"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Brand"
+                            android:hint="@string/enter_your_business_name"
                             android:inputType="text"
                             android:paddingLeft="15dp"
                             android:textColor="#000"
@@ -157,7 +156,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Brand"
+                            android:text="@string/brand"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -188,7 +187,7 @@
                                 android:paddingLeft="15dp"
                                 android:paddingRight="20dp"
                                 android:prompt="@string/dropdown1"
-                                android:text="Select Product Type"
+                                android:text="@string/select_product_type"
                                 android:textColor="#000"
                                 android:textColorHint="@color/light_grey"
                                 android:textSize="13sp" />
@@ -201,7 +200,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Type"
+                            android:text="@string/product_type"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -243,7 +242,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Country of Origin"
+                            android:text="@string/country_of_origin"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -263,7 +262,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="start"
-                            android:hint="Product Description"
+                            android:hint="@string/product_description"
 
                             android:inputType="textMultiLine"
                             android:paddingLeft="15dp"
@@ -280,7 +279,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Description"
+                            android:text="@string/product_description"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -341,7 +340,7 @@
                                 android:paddingLeft="15dp"
                                 android:paddingRight="20dp"
                                 android:prompt="@string/dropdown1"
-                                android:text="Select Category"
+                                android:text="@string/select_category"
                                 android:textColor="#000"
 
                                 android:textColorHint="@color/light_grey"
@@ -355,7 +354,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Select Product Availability"
+                            android:text="@string/select_product_availability"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -372,7 +371,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="30dp"
                         android:background="@drawable/buttonshape"
-                        android:text="Submit"
+                        android:text="@string/submit"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="16dp" />

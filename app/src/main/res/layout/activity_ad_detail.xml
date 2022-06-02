@@ -147,7 +147,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="From Date"
+                        android:text="@string/from_date"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -174,7 +174,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="To Date"
+                        android:text="@string/to_date"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
@@ -201,7 +201,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Daily Advertising Budget"
+                        android:text="@string/daily_advertising_budget"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 

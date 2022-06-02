@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bg_fit"
         android:layout_alignParentRight="true"
         android:scaleType="fitEnd"
-        />
+        android:src="@drawable/bg_fit" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -37,138 +36,149 @@
 
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/backk"/>
+                    android:src="@drawable/backk" />
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add A New Card"
+                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:text="@string/add_new_card"
                     android:textColor="@color/black"
-                    android:layout_centerHorizontal="true"/>
+                    android:textSize="20sp" />
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
                 android:layout_height="1dp"
-                android:background="#BDBCBC"
-                ></View>
+                android:layout_marginTop="8dp"
+                android:background="#BDBCBC"></View>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
                 android:orientation="vertical">
+
                 <com.stalkstock.utils.custom.TitiliumSemiBoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textSize="16sp"
+                    android:text="@string/name"
                     android:textColor="@color/light_grey"
-                    />
+                    android:textSize="16sp" />
+
                 <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
                     android:id="@+id/addcard_name"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:textSize="16sp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/shape_edit_for_add_card"
                     android:hint="@string/enter_cardholder_full_name"
-                    android:textColorHint="@color/light_grey"
                     android:paddingLeft="@dimen/_10sdp"
                     android:textColor="#000"
-                    android:background="@drawable/shape_edit_for_add_card"/>
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="16sp" />
+
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
-                    android:layout_marginTop="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Credit Card Number"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/credit_card_number"
 
 
-                    android:textSize="16sp"
                     android:textColor="@color/light_grey"
-                    />
+                    android:textSize="16sp" />
+
                 <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
                     android:id="@+id/addcard_cardnumber"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:textSize="16sp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:paddingLeft="@dimen/_10sdp"
+                    android:background="@drawable/shape_edit_for_add_card"
+                    android:drawableRight="@drawable/visa_img"
                     android:hint="@string/enter_credit_card_number"
                     android:inputType="number"
-                    android:textColorHint="@color/light_grey"
+                    android:paddingLeft="@dimen/_10sdp"
 
-                    android:textColor="#000"
-                    android:drawableRight="@drawable/visa_img"
                     android:paddingRight="@dimen/_10sdp"
-                    android:background="@drawable/shape_edit_for_add_card"/>
+                    android:textColor="#000"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="16sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
-                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Expiry Date"
-                        android:textSize="16sp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_weight="1"
+                        android:text="@string/expiry_date"
                         android:textColor="@color/light_grey"
 
-                        android:layout_weight="1"/>
+                        android:textSize="16sp" />
+
                     <TextView
-                        android:layout_weight="2"
-                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CVV/CW"
-                        android:textSize="16sp"
-                        android:textColor="@color/light_grey"
-                        ></TextView>
-                    <ImageView
                         android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_weight="2"
+                        android:text="CVV/CW"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16sp" />
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:src="@drawable/ques_icon">
 
                     </ImageView>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
                         android:id="@+id/date"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:textSize="16sp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:textColor="#000"
-                        android:hint="MM/YY"
-                        android:maxLength="5"
-                        android:inputType="date"
-                        android:textColorHint="@color/light_grey"
                         android:layout_marginRight="@dimen/_15sdp"
-                        android:paddingRight="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_edit_for_add_card"
                         android:drawableRight="@drawable/expiry_check"
-                        android:background="@drawable/shape_edit_for_add_card"/>
+                        android:hint="@string/mm_yy"
+                        android:inputType="date"
+                        android:maxLength="5"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textColor="#000"
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="16sp" />
+
                     <com.stalkstock.utils.custom.TitiliumSemiBoldEditText
-                        android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:textSize="16sp"
                         android:layout_marginTop="@dimen/_5sdp"
-                         android:textColorHint="@color/light_grey"
+                        android:layout_weight="2"
+                        android:background="@drawable/shape_edit_for_add_card"
+                        android:gravity="center"
 
+                        android:hint="@string/cvv"
+                        android:inputType="numberPassword"
                         android:maxLength="3"
                         android:textColor="#000"
-                        android:hint="CVV"
-                        android:gravity="center"
-                        android:inputType="numberPassword"
-                        android:background="@drawable/shape_edit_for_add_card"/>
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="16sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/editprofilcheck"
                     android:layout_width="match_parent"
@@ -179,39 +189,39 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:checked="false"
                         android:buttonTint="#8BC34A"
+                        android:checked="false"
 
-                         android:textColor="#ACA9A9"/>
+                        android:textColor="#ACA9A9" />
+
                     <com.stalkstock.utils.custom.TitiliumBoldTextView
                         android:layout_width="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="16sp"
                         android:layout_height="wrap_content"
-                        android:text="Save for future transactions"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/funds_transfer_in_progress"
                         android:textColor="@color/light_grey"
-                        />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_35sdp"
                     android:layout_marginLeft="@dimen/_35sdp"
+                    android:layout_marginRight="@dimen/_35sdp"
                     android:layout_marginBottom="@dimen/_20sdp">
+
                     <com.stalkstock.utils.custom.TitiliumBoldButton
                         android:id="@+id/addcard_button"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_alignParentBottom="true"
-                        android:textAllCaps="false"
-                        android:text="Save"
-                        android:textColor="#fff"
-                        android:textSize="17sp"
                         android:background="@drawable/buttonshape"
-                        >
-                    </com.stalkstock.utils.custom.TitiliumBoldButton>
+                        android:text="@string/save"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="17sp"/>
                 </RelativeLayout>
 
 
@@ -221,7 +231,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </RelativeLayout>

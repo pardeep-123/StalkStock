@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Details"
+            android:text="@string/details"
             android:textColor="@color/black"
             android:textSize="16dp" />
 
@@ -467,7 +467,7 @@
             android:layout_below="@+id/item_count"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:text="Extra charges may apply" />
+            android:text="@string/extra_charges_may_apply" />
 
         <com.stalkstock.utils.custom.TitiliumBoldButton
             android:id="@+id/btnCheckOut"
@@ -477,12 +477,12 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:background="@drawable/buttonshape"
+            android:gravity="center"
             android:paddingLeft="45dp"
             android:paddingTop="8dp"
             android:paddingRight="45dp"
-            android:gravity="center"
             android:paddingBottom="8dp"
-            android:text="checkout"
+            android:text="@string/checkout"
             android:textColor="@color/white" />
 
     </RelativeLayout>
