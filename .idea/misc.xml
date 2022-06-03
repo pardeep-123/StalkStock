@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout-sw620dp/account.xml" value="0.21" />
         <entry key="app/src/main/res/layout-sw620dp/account_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout-sw620dp/activity_ad_detail.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-sw620dp/activity_add_bank_account.xml" value="0.13125" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_business_details.xml" value="0.1415" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout-sw620dp/activity_add_new_card.xml" value="0.25" />
@@ -225,7 +225,8 @@
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_chat_box.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_driver_information.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_edit_ad.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_edit_ad.xml" value="0.15677083333333333" />
+        <entry key="app/src/main/res/layout/activity_edit_address_detail.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/activity_edit_address_detail2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_business_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_bussiness_profile.xml" value="0.25" />

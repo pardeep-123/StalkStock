@@ -387,6 +387,19 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="driver_s_license_number">Driver\'s License Number</string>
     <string name="driver_s_license_valid_through">Driver\'s License Valid Through</string>
     <string name="edit_information">Edit Information</string>
+    <string name="select_ad_start_date">Select ad start date</string>
+    <string name="select_ad_end_date">Select ad end date</string>
+    <string name="call_to_action_text">Call to action text</string>
+    <string name="shop_now">Shop Now</string>
+    <string name="get_now">Get Now</string>
+    <string name="join_now">Join Now</string>
+    <string name="signup_now">Signup Now</string>
+    <string name="ad_description">Ad Description</string>
+    <string name="billing_information">Enter billing information for approved ads</string>
+    <string name="billing_information_for_approved_ads">Billing information for approved ads</string>
+    <string name="tag_this_location_for_later">Tag this location for Later</string>
+    <string name="edit_address_details">Edit Address Details</string>
+    <string name="save_address">Save Address</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>

@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Add New Address"
+            android:text="@string/add_new_address"
             android:textColor="@color/black_color"
             android:gravity="center"
             android:autoSizeTextType="uniform"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/value_10dp"
-            android:text="Select Delivery Location"
+            android:text="@string/select_delivery_location"
             app:layout_constraintBottom_toTopOf="@id/viewAddress"
             android:layout_marginBottom="@dimen/value_4dp"
             android:textSize="@dimen/value_14dp"
@@ -103,7 +103,7 @@
             android:layout_marginLeft="@dimen/value_10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Location"
+            android:text="@string/your_location"
             app:layout_constraintBottom_toTopOf="@id/tvLocation"
             android:layout_marginBottom="@dimen/value_3dp"
             android:textSize="@dimen/value_10dp"
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:layout_marginLeft="@dimen/value_10dp"
-            android:text="The Castro"
+            android:text="@string/the_castro"
             app:layout_constraintBottom_toTopOf="@id/clAddressDetail"
             android:layout_marginBottom="@dimen/value_10dp"
             android:textSize="@dimen/value_12dp"
@@ -146,7 +146,7 @@
                 >
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
-                    android:hint="Street Address"
+                    android:hint="@string/street_address"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
 
@@ -156,7 +156,7 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="Street Address"
+                    android:text="@string/street_address"
                     android:layout_marginLeft="@dimen/value_45dp"
 
 
@@ -172,7 +172,7 @@
                 >
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
-                    android:hint="Address Line 2(Optional)"
+                    android:hint="@string/address_line2_optional"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
                     style="@style/EditextFieldwhit1"
@@ -181,7 +181,7 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="Address Line 2(Optional)"
+                    android:text="@string/address_line2_optional"
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:background="#ffffff">
                 </com.stalkstock.utils.custom.TitiliumBoldTextView>
@@ -199,13 +199,13 @@
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
 
-                    android:hint="City"
+                    android:hint="@string/city"
                     android:layout_margin="@dimen/value_10dp">
                 </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="City"
+                    android:text="@string/city"
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
@@ -225,13 +225,13 @@
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
 
-                    android:hint="State/Province/Region"
+                    android:hint="@string/state_province_region"
                     android:layout_margin="@dimen/value_10dp">
                 </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="State/Province/Region"
+                    android:text="@string/state_province_region"
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
@@ -248,7 +248,7 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldEditText
                     style="@style/EditextFieldwhit1"
-                    android:hint="postal/Zip code"
+                    android:hint="@string/postal_zipcode"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
                     android:inputType="number"
@@ -257,7 +257,7 @@
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="Postal/Zip code"
+                    android:text="@string/postal_zipcode"
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
@@ -278,13 +278,13 @@
                     style="@style/EditextFieldwhit1"
                     android:paddingLeft="@dimen/value_10dp"
                     android:paddingRight="@dimen/value_10dp"
-                    android:hint="Enter Delivery Instructions eg. Gate Code"
+                    android:hint="@string/enter_delivery_instructions"
                     android:layout_margin="@dimen/value_10dp">
                 </com.stalkstock.utils.custom.TitiliumBoldEditText>
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     style="@style/Textfield1"
-                    android:text="Special Instructions(Optional)"
+                    android:text="@string/special_instructions"
                     android:layout_marginLeft="@dimen/value_45dp"
                     android:paddingStart="@dimen/value_10dp"
                     android:paddingEnd="@dimen/value_10dp"
@@ -303,7 +303,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/tvTagHome"
                 android:layout_marginBottom="@dimen/value_5dp"
-                android:text="Tag this location for Later"
+                android:text="@string/tag_this_location_for_later"
                 android:textSize="@dimen/value_10dp"
                 />
 
@@ -316,7 +316,7 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="Home"
+                android:text="@string/home"
                 android:layout_marginBottom="@dimen/value_10dp"
                 android:background="@color/light_grey"
                 android:padding="@dimen/value_4dp"
@@ -329,7 +329,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tvTagHome"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="Work"
+                android:text="@string/work"
                 android:layout_marginLeft="@dimen/value_10dp"
                 android:layout_marginBottom="@dimen/value_10dp"
                 android:background="@color/light_grey"
@@ -343,7 +343,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tvTagWork"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="Home"
+                android:text="@string/home"
                 android:layout_marginLeft="@dimen/value_10dp"
                 android:layout_marginBottom="@dimen/value_10dp"
                 android:background="@color/light_grey"
@@ -357,7 +357,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tvTagHotel"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="Other"
+                android:text="@string/other"
                 android:layout_marginLeft="@dimen/value_10dp"
                 android:layout_marginBottom="@dimen/value_10dp"
                 android:background="@color/green_colour"
@@ -378,7 +378,7 @@
             android:layout_marginBottom="@dimen/value_20dp"
             android:layout_marginRight="@dimen/value_30dp"
             android:background="@drawable/button_round_corners"
-            android:text="Confirm Location &amp; Proceed"
+            android:text="@string/confirm_location_proceed"
             android:textAllCaps="false"
             android:textColor="@color/white_color"
             app:layout_constraintBottom_toBottomOf="parent"/>

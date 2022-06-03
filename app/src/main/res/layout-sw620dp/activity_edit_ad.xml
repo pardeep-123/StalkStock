@@ -285,7 +285,7 @@
                             android:background="@drawable/edit_text_bg"
                             android:drawableRight="@drawable/calendar_icon"
                             android:gravity="center_vertical"
-                            android:hint="Select ad start date"
+                            android:hint="@string/select_ad_start_date"
                             android:imeOptions="actionNext"
                             android:inputType="textPersonName"
 
@@ -323,7 +323,7 @@
                             android:background="@drawable/edit_text_bg"
                             android:drawableRight="@drawable/calendar_icon"
                             android:gravity="center_vertical"
-                            android:hint="Select ad end date"
+                            android:hint="@string/select_ad_end_date"
                             android:imeOptions="actionNext"
                             android:inputType="textPersonName"
 
@@ -357,7 +357,7 @@
                     android:drawablePadding="3dp"
                     android:gravity="start"
                     android:layout_marginTop="10dp"
-                    android:text="Call to action text"
+                    android:text="@string/call_to_action_text"
                     android:textColor="@color/light_grey"
                     android:textSize="15sp" />
 
@@ -384,7 +384,7 @@
                             android:layout_centerVertical="true"
                             android:layout_height="wrap_content"
                             android:gravity="start"
-                            android:text="Learn More"
+                            android:text="@string/learn_more"
                             android:textColor="@color/light_grey"
                             android:textSize="11sp" />
 
@@ -408,7 +408,7 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="start"
-                            android:text="Shop Now"
+                            android:text="@string/shop_now"
                             android:textColor="@color/light_grey"
                             android:textSize="11sp" />
 
@@ -432,7 +432,7 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="start"
-                            android:text="Get Now"
+                            android:text="@string/get_now"
                             android:textColor="@color/light_grey"
                             android:textSize="11sp" />
 
@@ -465,7 +465,7 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="start"
-                            android:text="Join Now"
+                            android:text="@string/join_now"
                             android:textColor="@color/light_grey"
                             android:textSize="11sp" />
 
@@ -489,7 +489,7 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="start"
-                            android:text="Signup Now"
+                            android:text="@string/signup_now"
                             android:textColor="@color/light_grey"
                             android:textSize="11sp" />
 
@@ -600,7 +600,7 @@
                         android:layout_marginLeft="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
-                        android:text="Ad Description"
+                        android:text="@string/ad_description"
                         android:textColor="@color/light_grey"
                         android:textSize="13sp" />
                 </RelativeLayout>
@@ -620,7 +620,7 @@
                         android:paddingBottom="5dp"
                         android:paddingRight="12dp"
 
-                        android:hint="Enter billing information for approved ads"
+                        android:hint="@string/billing_information"
 
 
                         android:textColor="@color/black"
@@ -634,7 +634,7 @@
                         android:layout_marginLeft="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
-                        android:text="Billing information for approved ads"
+                        android:text="@string/billing_information_for_approved_ads"
                         android:textColor="@color/light_grey"
                         android:textSize="13sp" />
                 </RelativeLayout>

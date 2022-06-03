@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:hint="@string/enter_name_of_account"
+                    android:hint="@string/enter_name_on_account"
                     android:textColorHint="@color/light_grey"
                     android:paddingStart="@dimen/_10sdp"
                     android:inputType="text"

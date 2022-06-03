@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="Edit Address Details"
+            android:text="@string/edit_address_details"
             android:textColor="@color/black_color"
             android:textSize="18sp" />
 
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/value_10dp"
                     android:layout_marginBottom="@dimen/value_4dp"
-                    android:text="Select Delivery Location"
+                    android:text="@string/select_delivery_location"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/value_14sp"
 
@@ -93,7 +93,7 @@
                     android:layout_below="@+id/viewAddress"
                     android:layout_marginStart="@dimen/value_10dp"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:text="Your Location"
+                    android:text="@string/your_location"
                     android:textSize="@dimen/value_12sp" />
 
                 <com.stalkstock.utils.custom.TitiliumRegularTextView
@@ -106,7 +106,7 @@
                     android:drawableStart="@drawable/cart_check"
                     android:drawablePadding="@dimen/value_5dp"
                     android:gravity="center"
-                    android:text="The Castro"
+                    android:text="@string/the_castro"
                     android:textColor="@color/black_color"
                     android:textSize="@dimen/value_12sp"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -143,7 +143,7 @@
                         android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
-                        android:text="Street Address"
+                        android:text="@string/street_address"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp" />
                 </RelativeLayout>
@@ -363,7 +363,7 @@
                         android:layout_marginStart="45dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/white"
-                        android:text="Special Instructions (Optional)"
+                        android:text="@string/special_instructions"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp" />
                 </RelativeLayout>
@@ -381,7 +381,7 @@
                         android:id="@+id/tvTagTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Location Tag"
+                        android:text="@string/location_tag"
                         android:textSize="@dimen/value_12sp"
                         />
 
@@ -418,7 +418,7 @@
                                 android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Home"
+                                android:text="@string/home"
                                 android:layout_centerVertical="true"
                                 android:textSize="@dimen/value_12dp"
                                 />
@@ -450,7 +450,7 @@
                                 android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Work"
+                                android:text="@string/work"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="5dp"
                                 android:layout_centerVertical="true"
@@ -465,7 +465,7 @@
                             android:textColor="@color/black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Home"
+                            android:text="@string/home"
                             android:layout_gravity="center_vertical"
                             android:visibility="gone"
                             android:layout_marginStart="@dimen/value_10dp"
@@ -497,7 +497,7 @@
                                 android:layout_toEndOf="@+id/iv_loca_edit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Other"
+                                android:text="@string/other"
                                 android:layout_marginStart="5dp"
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_vertical"
@@ -520,7 +520,7 @@
                     android:layout_marginRight="@dimen/value_35dp"
                     android:layout_marginBottom="@dimen/value_20dp"
                     android:background="@drawable/button_round_corners"
-                    android:text="Save Address"
+                    android:text="@string/save_address"
                     android:textAllCaps="false"
                     android:textColor="@color/white_color"
                     app:layout_constraintBottom_toBottomOf="parent" />
