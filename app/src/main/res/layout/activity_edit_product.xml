@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <ImageView
@@ -42,11 +42,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Edit Product"
+                    android:text="@string/edit_product"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -74,8 +75,8 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:background="@drawable/addproduct">
+                            android:background="@drawable/addproduct"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:id="@+id/edituploadimages"
@@ -138,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:text="Add upto 2 photos.We don't allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!"
+                            android:text="@string/add_upto_2_photos"
                             android:textAlignment="center" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -178,7 +179,7 @@
                                 android:paddingStart="15dp"
                                 android:paddingEnd="20dp"
                                 android:prompt="@string/dropdown"
-                                android:text="Select Category"
+                                android:text="@string/select_category"
                                 android:textColor="#000"
                                 android:textColorHint="#F8F6F6"
                                 android:textSize="13sp"
@@ -192,7 +193,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Category"
+                            android:text="@string/category"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -222,7 +223,7 @@
                                 android:paddingStart="15dp"
                                 android:paddingEnd="20dp"
                                 android:prompt="@string/dropdown"
-                                android:text="Select Sub-Category"
+                                android:text="@string/select_sub_category"
                                 android:textColor="#000"
 
                                 android:textColorHint="#F8F6F6"
@@ -237,7 +238,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Sub-Category"
+                            android:text="@string/sub_category"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -258,7 +259,7 @@
                             android:layout_height="45dp"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Select Tag"
+                            android:hint="@string/select_tag"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:singleLine="true"
@@ -272,7 +273,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Select Tag"
+                            android:text="@string/select_tag"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -322,7 +323,7 @@
                             android:layout_height="45dp"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Enter Brand"
+                            android:hint="@string/enter_brand"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:singleLine="true"
@@ -336,7 +337,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Brand"
+                            android:text="@string/brand"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -355,7 +356,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="center_vertical"
-                            android:hint="Enter product name"
+                            android:hint="@string/enter_product_name"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:paddingEnd="@dimen/_10sdp"
@@ -370,7 +371,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Name"
+                            android:text="@string/product_name"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -382,8 +383,8 @@
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="8dp"
-                        android:visibility="gone"
-                        android:layout_marginRight="20dp">
+                        android:layout_marginRight="20dp"
+                        android:visibility="gone">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -400,7 +401,7 @@
                                 android:paddingLeft="15dp"
                                 android:paddingRight="20dp"
                                 android:prompt="@string/dropdown1"
-                                android:text="Select Product Type"
+                                android:text="@string/select_product_type"
                                 android:textColor="#000"
                                 android:textColorHint="@color/light_grey"
                                 android:textSize="13sp"
@@ -414,7 +415,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Type"
+                            android:text="@string/product_type"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -423,11 +424,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp">
+                        android:layout_marginRight="20dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -455,35 +456,11 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Country of Origin"
+                            android:text="@string/country_of_origin"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
 
                     </RelativeLayout>
-
-                   <!-- <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="20dp">
-
-                        <com.stalkstock.utils.custom.TitiliumBoldEditText
-                            android:id="@+id/addproduct_countryorigin"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginTop="15dp"
-                            android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Country of origin"
-                            android:inputType="text"
-                            android:paddingStart="15dp"
-                            android:singleLine="true"
-                            android:textColor="#000"
-                            android:textColorHint="@color/light_grey"
-                            android:textSize="13sp" />
-
-
-                    </RelativeLayout>-->
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -499,7 +476,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="center_vertical"
-                            android:hint="Unit of measurement"
+                            android:hint="@string/unit_of_measurement"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:singleLine="true"
@@ -513,7 +490,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Unit of Measurement"
+                            android:text="@string/unit_of_measurement"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -532,7 +509,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="center_vertical"
-                            android:hint="Add price"
+                            android:hint="@string/add_price"
                             android:inputType="numberDecimal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
@@ -547,7 +524,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Add Price"
+                            android:text="@string/add_price"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
                     </RelativeLayout>
@@ -566,7 +543,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="start"
-                            android:hint="Enter Product description"
+                            android:hint="@string/enter_product_description"
                             android:inputType="textMultiLine"
                             android:paddingLeft="15dp"
                             android:paddingTop="10dp"
@@ -582,10 +559,11 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Description"
+                            android:text="@string/product_description"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="13sp" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
@@ -622,7 +600,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Select Product Availability"
+                            android:text="@string/select_product_availability"
                             android:textColor="@color/light_grey"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -639,7 +617,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="30dp"
                         android:background="@drawable/buttonshape"
-                        android:text="Update"
+                        android:text="@string/update"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="16dp" />

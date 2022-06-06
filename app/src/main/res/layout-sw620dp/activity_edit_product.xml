@@ -33,14 +33,14 @@
                     android:layout_height="@dimen/value_40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
-                 android:src="@drawable/backk" />
+                    android:src="@drawable/backk" />
 
                 <com.stalkstock.utils.custom.TitiliumBoldTextView
                     android:id="@+id/editappbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Edit Product"
+                    android:text="@string/edit_product"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Add upto 2 photos.We don't allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!"
+                        android:text="@string/add_upto_2_photos"
                         android:textAlignment="center" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -103,11 +103,11 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="@drawable/add_product_image"
+                        android:clipToPadding="false"
                         android:nestedScrollingEnabled="false"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="3"
-                        android:clipToPadding="false"
-                        android:background="@drawable/add_product_image"
                         tools:itemCount="9"
                         tools:listitem="@layout/item_sub_images" />
 
@@ -133,7 +133,7 @@
                                 android:paddingStart="15dp"
                                 android:paddingEnd="20dp"
                                 android:prompt="@string/dropdown"
-                                android:text="Select Category"
+                                android:text="@string/select_category"
                                 android:textColor="#000"
                                 android:textColorHint="#F8F6F6"
                                 android:textSize="14sp"
@@ -147,7 +147,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Category"
+                            android:text="@string/category"
                             android:textColor="@color/light_grey"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -177,7 +177,7 @@
                                 android:paddingStart="15dp"
                                 android:paddingEnd="20dp"
                                 android:prompt="@string/dropdown"
-                                android:text="Select Sub-Category"
+                                android:text="@string/select_sub_category"
                                 android:textColor="#000"
                                 android:textColorHint="#F8F6F6"
                                 android:textSize="14sp"
@@ -191,7 +191,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Subcategory"
+                            android:text="@string/sub_category"
                             android:textColor="@color/light_grey"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -213,7 +213,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="center_vertical"
-                            android:hint="-Select a product name-"
+                            android:hint="@string/select_a_product_name"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:paddingEnd="@dimen/_10sdp"
@@ -228,7 +228,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Name"
+                            android:text="@string/product_name"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -247,7 +247,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="center_vertical"
-                            android:hint="Enter product price"
+                            android:hint="@string/enter_product_price"
                             android:inputType="numberDecimal"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
@@ -262,7 +262,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Price"
+                            android:text="@string/price"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -281,7 +281,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="center_vertical"
-                            android:hint=" -Select a unit of measurement-"
+                            android:hint="@string/select_a_unit_of_measurement"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:singleLine="true"
@@ -295,7 +295,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Unit of Measurement"
+                            android:text="@string/unit_of_measurement"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -313,7 +313,7 @@
                             android:layout_height="45dp"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Enter tags to filter your product in search results eg. Seasonal, Organic, Kosher, Halal"
+                            android:hint="@string/enter_tags_to_filter_your_product_in_search_results_eg_seasonal_organic_kosher_halal"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:singleLine="true"
@@ -327,7 +327,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Speciality Product Type"
+                            android:text="@string/speciality_product_type"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -379,7 +379,7 @@
                             android:layout_height="45dp"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
-                            android:hint="Enter your business’ name if no brand name is available"
+                            android:hint="@string/enter_your_business_name_if_no_brand_name_is_available"
                             android:inputType="text"
                             android:paddingStart="15dp"
                             android:singleLine="true"
@@ -393,12 +393,10 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Brand"
+                            android:text="@string/brand"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
                     </RelativeLayout>
-
-
 
 
                     <RelativeLayout
@@ -425,7 +423,7 @@
                                 android:paddingLeft="15dp"
                                 android:paddingRight="20dp"
                                 android:prompt="@string/dropdown1"
-                                android:text="Select Product Type"
+                                android:text="@string/select_product_type"
                                 android:textColor="#000"
                                 android:textColorHint="@color/light_grey"
                                 android:textSize="14sp"
@@ -439,7 +437,7 @@
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Type"
+                            android:text="@string/product_type"
                             android:textColor="@color/light_grey"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -480,38 +478,11 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Country of Origin"
+                            android:text="@string/country_of_origin"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
 
                     </RelativeLayout>
-
-                    <!-- <RelativeLayout
-                         android:layout_width="match_parent"
-                         android:layout_height="60dp"
-                         android:layout_marginLeft="20dp"
-                         android:layout_marginTop="8dp"
-                         android:layout_marginRight="20dp">
-
-                         <com.stalkstock.utils.custom.TitiliumBoldEditText
-                             android:id="@+id/addproduct_countryorigin"
-                             android:layout_width="match_parent"
-                             android:layout_height="45dp"
-                             android:layout_marginTop="15dp"
-                             android:background="@drawable/edit_text_bg_trans"
-                             android:hint="Country of origin"
-                             android:inputType="text"
-                             android:paddingStart="15dp"
-                             android:singleLine="true"
-                             android:textColor="#000"
-                             android:textColorHint="@color/light_grey"
-                             android:textSize="13sp" />
-
-
-                     </RelativeLayout>-->
-
-
-
 
 
                     <RelativeLayout
@@ -528,7 +499,7 @@
                             android:layout_marginTop="15dp"
                             android:background="@drawable/edit_text_bg_trans"
                             android:gravity="start"
-                            android:hint="Give a detailed description of your product"
+                            android:hint="@string/give_a_detailed_description_of_your_product"
                             android:inputType="textMultiLine"
                             android:paddingLeft="15dp"
                             android:paddingTop="10dp"
@@ -544,7 +515,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Product Description"
+                            android:text="@string/product_description"
                             android:textColor="@color/gray_editext_hint"
                             android:textSize="14sp" />
                     </RelativeLayout>
@@ -585,7 +556,7 @@
                             android:layout_marginStart="35dp"
                             android:layout_marginTop="5dp"
                             android:background="#fff"
-                            android:text="Select Product Availability"
+                            android:text="@string/select_product_availability"
                             android:textColor="@color/light_grey"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -602,7 +573,7 @@
                         android:layout_marginRight="@dimen/_40sdp"
                         android:layout_marginBottom="30dp"
                         android:background="@drawable/buttonshape"
-                        android:text="Update"
+                        android:text="@string/update"
                         android:textAllCaps="false"
                         android:textColor="#fff"
                         android:textSize="16sp" />

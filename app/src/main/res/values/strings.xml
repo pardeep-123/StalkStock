@@ -400,6 +400,26 @@ https://docs.google.com/document/d/1X3U5szecghPXHUE3IRURZgX6mAq1IcAmvv3TV68klkY/
     <string name="tag_this_location_for_later">Tag this location for Later</string>
     <string name="edit_address_details">Edit Address Details</string>
     <string name="save_address">Save Address</string>
+    <string name="about_your_business">About Your Business</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="add_upto_2_photos">Add upto 2 photos.We don\'t allow photos with extra borders, text or artwork.\nUPGRADE ACCOUNT to unlock more!</string>
+    <string name="category">Category</string>
+    <string name="select_sub_category">Select Sub-Category</string>
+    <string name="sub_category">Sub-Category</string>
+    <string name="select_tag">Select Tag</string>
+    <string name="enter_brand">Enter Brand</string>
+    <string name="enter_product_name">Enter product name</string>
+    <string name="product_name">Product Name</string>
+    <string name="add_price">Add price</string>
+    <string name="enter_product_description">Enter Product description</string>
+    <string name="select_a_product_name">-Select a product name-</string>
+    <string name="enter_product_price">Enter product price</string>
+    <string name="price">Price</string>
+    <string name="select_a_unit_of_measurement">-Select a unit of measurement-</string>
+    <string name="enter_tags_to_filter_your_product_in_search_results_eg_seasonal_organic_kosher_halal">Enter tags to filter your product in search results eg. Seasonal, Organic, Kosher, Halal</string>
+    <string name="speciality_product_type">Speciality Product Type</string>
+    <string name="enter_your_business_name_if_no_brand_name_is_available">Enter your business’ name if no brand name is available</string>
+    <string name="give_a_detailed_description_of_your_product">Give a detailed description of your product</string>
 
     <string-array name="Select_Category">
         <item>-Select a category-</item>
